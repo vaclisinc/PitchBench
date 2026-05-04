@@ -236,7 +236,7 @@ def save_accuracy_plots(
         xlabel="Instrument / waveform",
     )
     plt.tight_layout()
-    p = run_dir / f"accuracy_per_instrument_{model_name}.png"
+    p = run_dir / f"accuracy_per_instrument_{_slug(model_name)}.png"
     plt.savefig(p, dpi=150)
     plt.close()
 
@@ -266,11 +266,11 @@ def save_accuracy_plots(
         xlabel="Pitch (MIDI note)",
     )
     plt.tight_layout()
-    p = run_dir / f"accuracy_per_pitch_{model_name}.png"
+    p = run_dir / f"accuracy_per_pitch_{_slug(model_name)}.png"
     plt.savefig(p, dpi=150)
     plt.close()
 
-    print(f"Plots saved → {run_dir}/accuracy_per_{{instrument,pitch}}_{model_name}.png")
+    print(f"Plots saved → {run_dir}/accuracy_per_{{instrument,pitch}}_{_slug(model_name)}.png")
 
 
 def save_pitch_prediction_plots(

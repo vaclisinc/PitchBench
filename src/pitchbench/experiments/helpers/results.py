@@ -11,6 +11,7 @@ And when multiple models finish, a cross-model comparison:
 import csv
 import io
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime
@@ -18,9 +19,15 @@ from pathlib import Path
 from typing import Any
 
 import pitchbench.config as config
+from pitchbench.experiments.helpers import cost as cost_tracker
 
 RESULTS_ROOT = config.RESULTS_DIR
 DATA_ROOT    = config.DATA_DIR
+
+
+def _safe_stem(name: str) -> str:
+    """Filesystem-safe version of model_name (OpenRouter slugs contain slashes)."""
+    return re.sub(r"[^a-zA-Z0-9]+", "_", name).strip("_") or "model"
 
 
 # ── Run-log tee ───────────────────────────────────────────────────────────────
@@ -89,6 +96,9 @@ def make_run_dir(exp_name: str) -> Path:
     run_dir.mkdir()
     log_file = open(run_dir / "run_log.txt", "w", encoding="utf-8")
     sys.stdout = _Tee(sys.__stdout__, log_file)  # type: ignore[assignment]
+    # Each experiment run accumulates LLM cost from a clean slate so per-model
+    # totals reflect just this run, not anything billed earlier in the process.
+    cost_tracker.reset()
     return run_dir
 
 
@@ -255,6 +265,209 @@ def _format_marginals_block(
     return out
 
 
+# ── LLM usage / cost block ────────────────────────────────────────────────────
+
+def _format_usage_block(usage: dict[str, Any]) -> list[str]:
+    """Render an LLM USAGE block; returns [] when nothing was billed (local models)."""
+    if not usage or not usage.get("calls"):
+        return []
+    lines = ["", "LLM USAGE", "=" * 50,
+             f"  {'calls':<22} {usage.get('calls', 0):>12,}",
+             f"  {'prompt tokens':<22} {usage.get('prompt_tokens', 0):>12,}",
+             f"  {'completion tokens':<22} {usage.get('completion_tokens', 0):>12,}",
+             f"  {'total tokens':<22} {usage.get('total_tokens', 0):>12,}"]
+    cached = usage.get("cached_tokens", 0)
+    if cached:
+        lines.append(f"  {'cached prompt tokens':<22} {cached:>12,}")
+    lines.append(f"  {'cost (USD)':<22} {'$' + format(usage.get('cost_usd', 0.0), '.6f'):>12}")
+    return lines
+
+
+# ── Cross-experiment aggregation ──────────────────────────────────────────────
+
+def extract_format_accuracies(
+    run_dir: Path,
+    model_names: list[str],
+) -> dict[str, dict[str, Any]]:
+    """Read per-format accuracies (and stimulus count) back from a run directory.
+
+    Returns ``{model: {"n": int, "formats": {fmt: acc}}}``. ``n`` is taken from
+    ``summary.total`` in ``results_<model>.json`` (falls back to record count,
+    then ``None``). Models with no ``format_accuracy_<model>.csv`` file are
+    skipped silently.
+    """
+    out: dict[str, dict[str, Any]] = {}
+    for m in model_names:
+        fa_path = run_dir / f"format_accuracy_{m}.csv"
+        if not fa_path.exists():
+            continue
+
+        formats: dict[str, float] = {}
+        with open(fa_path) as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                fmt     = row["Format"].strip().lower()
+                acc_str = row["Accuracy"].strip().rstrip("%")
+                try:
+                    formats[fmt] = float(acc_str) / 100.0
+                except ValueError:
+                    continue
+        if not formats:
+            continue
+
+        n: int | None = None
+        json_path = run_dir / f"results_{m}.json"
+        if json_path.exists():
+            try:
+                payload = json.loads(json_path.read_text())
+                summary = payload.get("summary", {})
+                n = summary.get("total")
+                if n is None:
+                    results = payload.get("results")
+                    if isinstance(results, list):
+                        n = len(results)
+            except (OSError, json.JSONDecodeError):
+                pass
+
+        out[m] = {"n": n, "formats": formats}
+    return out
+
+
+def write_aggregate_format_accuracies(
+    output_path: Path,
+    runs: dict[str, dict[str, dict[str, Any]]],
+) -> None:
+    """Write a single CSV aggregating per-experiment format accuracies + per-model means.
+
+    Args:
+        output_path: target CSV path
+        runs:        ``{exp_name: {model: {"n": int, "formats": {fmt: acc}}}}``
+
+    Layout (long form, columns: experiment, model, n_samples, format, accuracy):
+        pitchbench_a1_pitch_id, audio_flamingo_next_think, 57,   midi,   0.198
+        pitchbench_a1_pitch_id, audio_flamingo_next_think, 57,   abc,    0.068
+        ...
+        __MEAN__,               audio_flamingo_next_think, 1850, midi,   0.123
+        __MEAN__,               audio_flamingo_next_think, 1850, abc,    0.087
+
+    The ``__MEAN__`` rows give the per-model, per-format mean across experiments;
+    ``n_samples`` on a ``__MEAN__`` row is the total stimuli summed across the
+    experiments that contributed.
+    """
+    rows: list[dict[str, Any]] = []
+    means: dict[tuple[str, str], list[float]] = {}
+    totals: dict[str, int] = {}
+
+    for exp_name, by_model in sorted(runs.items()):
+        for model, info in by_model.items():
+            n       = info.get("n")
+            formats = info.get("formats", {})
+            for fmt, acc in formats.items():
+                rows.append({
+                    "experiment": exp_name,
+                    "model":      model,
+                    "n_samples":  n if n is not None else "",
+                    "format":     fmt,
+                    "accuracy":   round(acc, 4),
+                })
+                means.setdefault((model, fmt), []).append(acc)
+            if isinstance(n, int):
+                totals[model] = totals.get(model, 0) + n
+
+    for (model, fmt), accs in sorted(means.items()):
+        if not accs:
+            continue
+        rows.append({
+            "experiment": "__MEAN__",
+            "model":      model,
+            "n_samples":  totals.get(model, ""),
+            "format":     fmt,
+            "accuracy":   round(sum(accs) / len(accs), 4),
+        })
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=["experiment", "model", "n_samples", "format", "accuracy"],
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+# ── Session-level cost summary (across multiple experiments) ──────────────────
+
+def write_session_cost_summary(
+    out_dir: Path,
+    per_experiment: dict[str, dict[str, dict[str, Any]]],
+) -> Path | None:
+    """Write a cross-experiment LLM cost rollup.
+
+    Args:
+        out_dir:        directory to create and write into.
+        per_experiment: ``{exp_name: {model_name: usage_dict}}`` where usage_dict
+                        is whatever ``cost.all_totals()`` returned at the end of
+                        each experiment.
+
+    Returns the path of the .txt file, or ``None`` if no cost was recorded
+    anywhere (in which case nothing is written).
+    """
+    grand_calls  = 0
+    grand_tokens = 0
+    grand_cost   = 0.0
+    per_exp_total: list[tuple[str, int, int, float]] = []
+    for exp_name in sorted(per_experiment):
+        e_calls = e_toks = 0
+        e_cost  = 0.0
+        for u in per_experiment[exp_name].values():
+            e_calls += u.get("calls", 0)
+            e_toks  += u.get("total_tokens", 0)
+            e_cost  += u.get("cost_usd", 0.0)
+        per_exp_total.append((exp_name, e_calls, e_toks, e_cost))
+        grand_calls  += e_calls
+        grand_tokens += e_toks
+        grand_cost   += e_cost
+
+    if grand_calls == 0:
+        return None
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ts = datetime.now().isoformat()
+
+    # ── JSON ──────────────────────────────────────────────────────────────────
+    payload = {
+        "timestamp":      ts,
+        "experiments":    per_experiment,
+        "total_calls":    grand_calls,
+        "total_tokens":   grand_tokens,
+        "total_cost_usd": round(grand_cost, 6),
+    }
+    (out_dir / "cost_summary.json").write_text(json.dumps(payload, indent=2))
+
+    # ── TXT ───────────────────────────────────────────────────────────────────
+    name_w = max(34, max(len(e) for e, *_ in per_exp_total) + 2)
+    lines = [
+        "PitchBench session cost summary",
+        f"Timestamp : {ts}",
+        "",
+        f"{'Experiment':<{name_w}}{'calls':>10}{'tokens':>14}{'cost (USD)':>16}",
+        "─" * (name_w + 10 + 14 + 16),
+    ]
+    for exp_name, c, t, cost_usd in per_exp_total:
+        lines.append(
+            f"{exp_name:<{name_w}}{c:>10,}{t:>14,}{('$' + format(cost_usd, '.6f')):>16}"
+        )
+    lines += [
+        "─" * (name_w + 10 + 14 + 16),
+        f"{'TOTAL':<{name_w}}{grand_calls:>10,}{grand_tokens:>14,}"
+        f"{('$' + format(grand_cost, '.6f')):>16}",
+        "",
+    ]
+    txt_path = out_dir / "cost_summary.txt"
+    txt_path.write_text("\n".join(lines) + "\n")
+    return txt_path
+
+
 # ── Per-model results ─────────────────────────────────────────────────────────
 
 def save_format_accuracy_csv(
@@ -266,7 +479,7 @@ def save_format_accuracy_csv(
 
     Columns: Format, Accuracy  (e.g. "MIDI", "19.8%")
     """
-    path = run_dir / f"format_accuracy_{model_name}.csv"
+    path = run_dir / f"format_accuracy_{_safe_stem(model_name)}.csv"
     with open(path, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["Format", "Accuracy"])
@@ -301,11 +514,16 @@ def save_results(
     if run_dir is None:
         run_dir = make_run_dir(exp_name)
 
-    stem = f"results_{model_name}"
+    stem = f"results_{_safe_stem(model_name)}"
 
     # ── Marginal-accuracy summary (added automatically; included in JSON) ─────
     marginals = summarise_marginals(records, formats=formats, extra_metrics=extra_metrics)
     summary   = {**summary, "marginals": marginals}
+
+    # ── LLM usage / cost (OpenRouter only — local servers record nothing) ─────
+    usage    = cost_tracker.get(model_name)
+    metadata = {**metadata, "usage": usage}
+    summary  = {**summary, "cost_usd": usage["cost_usd"], "total_tokens": usage["total_tokens"]}
 
     # ── JSON ──────────────────────────────────────────────────────────────────
     payload = {"metadata": metadata, "summary": summary, "results": records}
@@ -317,6 +535,8 @@ def save_results(
         f"Model      : {model_name}",
     ]
     for k, v in metadata.items():
+        if k == "usage":
+            continue                                  # rendered in its own block below
         lines.append(f"{k:10} : {v}")
     lines += ["", "SUMMARY", "=" * 50]
     if summary_lines:
@@ -326,7 +546,14 @@ def save_results(
             if isinstance(v, (int, float, str, bool)) or v is None:
                 lines.append(f"  {k:<30} {v}")
     lines.extend(_format_marginals_block(marginals, formats=formats, extra_metrics=extra_metrics))
+    usage_lines = _format_usage_block(usage)
+    lines.extend(usage_lines)
     (run_dir / f"{stem}.txt").write_text("\n".join(lines) + "\n")
+
+    # Echo the LLM USAGE block to stdout so the cost is visible at the end of
+    # each model run (and gets teed into run_log.txt automatically).
+    for ln in usage_lines:
+        print(ln)
 
     # ── CSV ───────────────────────────────────────────────────────────────────
     if records:
@@ -389,6 +616,12 @@ def save_comparison(
                 flat_keys.append(k)
                 seen.add(k)
 
+    # ── LLM cost rollup across models (OpenRouter only) ───────────────────────
+    usage_per_model = {m: cost_tracker.get(m) for m in models}
+    total_cost_usd  = round(sum(u["cost_usd"]    for u in usage_per_model.values()), 6)
+    total_tokens    = sum(u["total_tokens"]      for u in usage_per_model.values())
+    total_calls     = sum(u["calls"]             for u in usage_per_model.values())
+
     # ── JSON ──────────────────────────────────────────────────────────────────
     payload = {
         "exp_name":       exp_name,
@@ -400,6 +633,12 @@ def save_comparison(
             for m in models
         },
         "full_summaries": model_summaries,
+        "usage":          {
+            "per_model":      usage_per_model,
+            "total_cost_usd": total_cost_usd,
+            "total_tokens":   total_tokens,
+            "total_calls":    total_calls,
+        },
     }
     (run_dir / "comparison.json").write_text(json.dumps(payload, indent=2))
 
@@ -440,6 +679,23 @@ def save_comparison(
         for m in models:
             vals = [fmt(model_summaries[m].get(k)) for k in keys_chunk]
             txt_lines.append(f"{m:<{model_w}}" + "  ".join(f"{v:>{col_w}}" for v in vals))
+        txt_lines.append("")
+
+    # Render the LLM-cost rollup only when at least one model was billed —
+    # local-only runs (everything zero) skip the block entirely.
+    if total_calls:
+        txt_lines += ["LLM USAGE", "─" * 50,
+                      f"{'Model':<{model_w}}{'calls':>10}{'tokens':>14}{'cost (USD)':>16}"]
+        for m in models:
+            u = usage_per_model[m]
+            txt_lines.append(
+                f"{m:<{model_w}}{u['calls']:>10,}{u['total_tokens']:>14,}"
+                f"{('$' + format(u['cost_usd'], '.6f')):>16}"
+            )
+        txt_lines.append(
+            f"{'TOTAL':<{model_w}}{total_calls:>10,}{total_tokens:>14,}"
+            f"{('$' + format(total_cost_usd, '.6f')):>16}"
+        )
         txt_lines.append("")
 
     (run_dir / "comparison.txt").write_text("\n".join(txt_lines))

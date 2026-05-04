@@ -26,9 +26,15 @@ import argparse
 import importlib
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import pitchbench.config as config
+from pitchbench.experiments.helpers import cost as cost_tracker
+from pitchbench.experiments.helpers.results import (
+    write_aggregate_format_accuracies, write_session_cost_summary,
+)
 
 
 def _prompt_for_models() -> list[str]:
@@ -85,15 +91,16 @@ def _id_to_name(exp_id: str) -> str | None:
     return None
 
 
-def run_experiment(name: str, extra_argv: list[str]) -> None:
+def run_experiment(name: str, extra_argv: list[str]) -> dict[str, dict[str, Any]] | None:
+    """Run one experiment; return its per-model format accuracies (or None for preview)."""
     print(f"\n{'#' * 60}")
     print(f"# {name}")
     print(f"{'#' * 60}\n")
     mod = importlib.import_module(f"pitchbench.experiments.scripts.{name}")
     if "--preview" in extra_argv:
         mod.preview()
-    else:
-        mod.run()
+        return None
+    return mod.run()
 
 
 def main() -> None:
@@ -196,8 +203,35 @@ def main() -> None:
         parser.error("provide an experiment name or --id <letter><digit> (or use --list)")
 
     if name == "all":
+        all_runs:      dict[str, dict[str, dict[str, Any]]]   = {}
+        per_exp_costs: dict[str, dict[str, dict[str, Any]]]   = {}
         for n in discover():
-            run_experiment(n, extra)
+            # Reset before each experiment so a crash before make_run_dir doesn't
+            # mis-attribute the previous experiment's totals to this one.
+            cost_tracker.reset()
+            try:
+                result = run_experiment(n, extra)
+            except Exception as exc:
+                print(f"\n[ERROR] Experiment {n} failed with error:\n{exc}\n")
+                per_exp_costs[n] = cost_tracker.all_totals()
+                continue
+            per_exp_costs[n] = cost_tracker.all_totals()
+            if result:
+                all_runs[n] = result
+
+        if all_runs and not stimulus_only:
+            ts          = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_path = config.RESULTS_DIR / f"format_accuracy_aggregate_{ts}.csv"
+            write_aggregate_format_accuracies(output_path, all_runs)
+            print(f"\nAggregate format accuracies → {output_path}")
+
+        if not stimulus_only:
+            ts        = datetime.now().strftime("%Y%m%d_%H%M%S")
+            session_d = config.RESULTS_DIR / "_sessions" / ts
+            txt_path  = write_session_cost_summary(session_d, per_exp_costs)
+            if txt_path is not None:
+                print(f"\nSession cost summary → {txt_path}")
+                print(txt_path.read_text())
     else:
         run_experiment(name, extra)
 

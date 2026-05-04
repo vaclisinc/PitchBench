@@ -34,11 +34,12 @@ import requests
 
 try:
     from dotenv import load_dotenv
-    load_dotenv()                            # picks up OPENROUTER_KEY etc.
+    load_dotenv(override=True)               # .env wins over a stale/empty shell var
 except ImportError:                          # python-dotenv not installed; fall back to env
     pass
 
 import pitchbench.config as config
+from pitchbench.experiments.helpers import cost as cost_tracker
 
 OPENROUTER_PREFIX = "openrouter/"
 
@@ -117,7 +118,7 @@ def _local_text(model_name: str, audio_path: str, prompt: str,
     resp.raise_for_status()
     raw = resp.json()
     return {"result": raw.get("result", ""), "raw_response": raw,
-            "top_tokens": None, "embedding": None}
+            "top_tokens": None, "embedding": None, "usage": None}
 
 
 def _local_probs(model_name: str, audio_path: str, prompt: str,
@@ -133,7 +134,7 @@ def _local_probs(model_name: str, audio_path: str, prompt: str,
     resp.raise_for_status()
     raw = resp.json()
     return {"result": raw.get("result", ""), "raw_response": raw,
-            "top_tokens": raw.get("top_tokens"), "embedding": None}
+            "top_tokens": raw.get("top_tokens"), "embedding": None, "usage": None}
 
 
 def _local_embed(model_name: str, audio_path: str, timeout_s: float) -> dict:
@@ -151,7 +152,7 @@ def _local_embed(model_name: str, audio_path: str, timeout_s: float) -> dict:
     resp.raise_for_status()
     raw = resp.json()
     return {"result": None, "raw_response": raw,
-            "top_tokens": None, "embedding": raw.get("embedding")}
+            "top_tokens": None, "embedding": raw.get("embedding"), "usage": None}
 
 
 # ── OpenRouter handler ────────────────────────────────────────────────────────
@@ -221,6 +222,8 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
         ],
         "max_tokens":  max_new_tokens,
         "temperature": temperature,
+        # Asks OpenRouter to include per-call USD cost in `usage.cost`.
+        "usage":       {"include": True},
     }
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -252,8 +255,12 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
             content = (choice.get("message") or {}).get("content", "")
             if isinstance(content, list):                # multipart content
                 content = "".join(p.get("text", "") for p in content if isinstance(p, dict))
+            usage   = cost_tracker.parse_openrouter_usage(data.get("usage"))
+            if usage:
+                cost_tracker.record(model_name, **usage)
             return {"result": content, "raw_response": data,
-                    "top_tokens": None, "embedding": None}
+                    "top_tokens": None, "embedding": None,
+                    "usage": usage or None}
         except requests.exceptions.RequestException as e:
             last_err = str(e)
             time.sleep(2 ** attempt)
@@ -296,6 +303,8 @@ def query_alm(
             raw_response  dict          provider's raw JSON
             top_tokens    list | None   per-step top-k token probs (probs mode only)
             embedding     list | None   mean-pooled audio embedding (embed mode only)
+            usage         dict | None   token counts (OpenRouter only); None for local
+            cost_usd      float         USD cost of this single call (OpenRouter only; 0.0 otherwise)
             model_params  dict          everything needed to reproduce the call
             model_info    dict          /health response or synthetic OpenRouter info
             elapsed_s     float         wall-clock latency
@@ -349,15 +358,33 @@ def query_alm(
             raise ValueError(f"Unknown mode: {mode!r}")
     elapsed = time.time() - start
 
+    usage = result.get("usage")
     return {
         "result":       result["result"],
         "raw_response": result["raw_response"],
         "top_tokens":   result["top_tokens"],
         "embedding":    result["embedding"],
+        "usage":        usage,
+        "cost_usd":     float((usage or {}).get("cost_usd", 0.0)),
         "model_params": model_params,
         "model_info":   info,
         "elapsed_s":    round(elapsed, 3),
     }
+
+
+def _print_running_cost(model_name: str) -> None:
+    """Emit a one-line running-total for the current model (skipped for local servers).
+
+    Hidden behind the ``PITCHBENCH_LIVE_COST=0`` env var for users who find the
+    extra line noisy.
+    """
+    if os.environ.get("PITCHBENCH_LIVE_COST", "1") == "0":
+        return
+    u = cost_tracker.get(model_name)
+    if not u["calls"]:
+        return
+    print(f"        cost   → {u['calls']:,} calls, "
+          f"{u['total_tokens']:,} tok, ${u['cost_usd']:.4f}")
 
 
 def query_four_formats(
@@ -385,6 +412,7 @@ def query_four_formats(
         print(f"        SPN    → {(r_spn['result']    or '').strip()!r}")
         print(f"        doremi → {(r_doremi['result'] or '').strip()!r}")
         print(f"        Hz     → {(r_hz['result']     or '').strip()!r}")
+        _print_running_cost(model_name)
     return r_midi, r_spn, r_doremi, r_hz
 
 
@@ -412,6 +440,7 @@ def query_three_formats(
         print(f"        MIDI   → {s_midi.strip()!r}")
         print(f"        SPN    → {s_spn.strip()!r}")
         print(f"        doremi → {s_doremi.strip()!r}")
+        _print_running_cost(model_name)
     return s_midi, s_spn, s_doremi
 
 
