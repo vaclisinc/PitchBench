@@ -17,9 +17,26 @@ from __future__ import annotations
 import argparse
 import importlib
 import re
+import sys
 from pathlib import Path
 
 import pitchbench.config as config
+
+
+def _prompt_for_models() -> list[str]:
+    """Ask the user which model to run; default to config.DEFAULT_MODEL on Enter.
+
+    Returns a list with one model slug (matching the --models nargs='+' shape).
+    Falls back to [DEFAULT_MODEL] without prompting when stdin isn't a TTY.
+    """
+    default = config.DEFAULT_MODEL
+    if not sys.stdin.isatty():
+        return [default]
+    try:
+        choice = input(f"Model? [{default}]: ").strip()
+    except EOFError:
+        choice = ""
+    return [choice] if choice else [default]
 
 # pitchbench_<id>_<desc>.py — capture the id (lowercase letter + digit(s))
 _NAME_RE = re.compile(r"^pitchbench_([a-z]+\d+)_(.+)$")
@@ -101,7 +118,16 @@ def main() -> None:
             print(f"  {ident:>6}  {n}")
         return
 
-    models_extra = (["--models"] + args.models) if args.models else []
+    # If the user didn't pass --models, prompt with DEFAULT_MODEL (Enter accepts it).
+    # --preview skips the prompt since no model is queried in that path.
+    if args.models:
+        models = args.models
+    elif args.preview or args.list:
+        models = []
+    else:
+        models = _prompt_for_models()
+
+    models_extra = (["--models"] + models) if models else []
     extra        = (["--preview"] if args.preview else []) + models_extra + unknown
 
     if args.exp_id is not None:

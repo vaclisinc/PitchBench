@@ -74,20 +74,19 @@ MODEL_URLS: dict[str, str] = {
     "audio_flamingo_next_think":     os.environ.get("AF_NEXT_THINK_URL","http://localhost:8002"),
     "audio_flamingo_next_captioner": os.environ.get("AF_NEXT_CAP_URL",  "http://localhost:8003"),
     "qwen3_omni":                    os.environ.get("QWEN3_OMNI_URL",   "http://localhost:8004"),
-    # OpenRouter audio-capable slugs (routed via openrouter.ai chat-completions)
-    "openrouter/google/gemini-2.5-flash": "openrouter",
-    "openrouter/google/gemini-2.5-pro":   "openrouter",
+    # OpenRouter slugs (prefixed "openrouter/") are routed inside helpers/api.py
+    # and don't need to be registered here — pass any slug via --models.
 }
 
-# Whitelist of OpenRouter model IDs known to accept audio inputs.
-# query_alm refuses to send audio to any other openrouter slug.
-OPENROUTER_AUDIO_MODELS: list[str] = [
-    "google/gemini-2.5-flash",
-    "google/gemini-2.5-pro",
-]
 OPENROUTER_BASE_URL: str = os.environ.get(
     "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
 )
+
+# Default model used when the user runs `pitchbench` without --models.
+# The CLI prompts interactively with this as the default; pressing Enter accepts it.
+# Any OpenRouter slug works — if the chosen model can't accept audio, OpenRouter's
+# error response is surfaced verbatim rather than being pre-validated here.
+DEFAULT_MODEL: str = "openrouter/google/gemini-3.1-flash-lite-preview"
 
 # HuggingFace model IDs (used by model server scripts)
 MODEL_MUSIC_FLAMINGO = "nvidia/music-flamingo-hf"

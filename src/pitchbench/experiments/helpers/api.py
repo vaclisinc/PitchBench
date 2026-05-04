@@ -23,9 +23,11 @@ There is no backwards-compatibility layer. The previous helpers
 from __future__ import annotations
 
 import base64
+import getpass
 import hashlib
 import os
 import re
+import sys
 import time
 from pathlib import Path
 from typing import Any, Literal
@@ -156,21 +158,55 @@ def _local_embed(model_name: str, audio_path: str, timeout_s: float) -> dict:
 
 # ── OpenRouter handler ────────────────────────────────────────────────────────
 
-def _openrouter_text(model_name: str, audio_path: str, prompt: str,
-                     max_new_tokens: int, temperature: float, timeout_s: float) -> dict:
+def _resolve_openrouter_key() -> str:
+    """Return the OpenRouter API key, prompting the user once if missing.
+
+    On a TTY, asks the user to paste a key (hidden via getpass) and offers to
+    save it to ./.env so they aren't prompted again. On a non-TTY (CI, nohup),
+    falls back to a hard SystemExit so silent runs don't hang.
+    """
     api_key = os.environ.get("OPENROUTER_KEY") or os.environ.get("OPENROUTER_API_KEY")
-    if not api_key:
+    if api_key:
+        return api_key
+
+    if not sys.stdin.isatty():
         raise SystemExit(
             "OPENROUTER_KEY not set. Add it to .env or export it before calling OpenRouter."
         )
 
-    or_model = model_name[len(OPENROUTER_PREFIX):]
-    if or_model not in config.OPENROUTER_AUDIO_MODELS:
-        raise ValueError(
-            f"OpenRouter model {or_model!r} not in audio-capable whitelist. "
-            f"Allowed: {config.OPENROUTER_AUDIO_MODELS}"
-        )
+    print("OPENROUTER_KEY not found in environment or .env.")
+    print("Get one at https://openrouter.ai/keys")
+    try:
+        api_key = getpass.getpass("Paste your OpenRouter key (input hidden): ").strip()
+    except (EOFError, KeyboardInterrupt):
+        raise SystemExit("\nNo key provided — aborting.")
+    if not api_key:
+        raise SystemExit("No key provided — aborting.")
 
+    os.environ["OPENROUTER_KEY"] = api_key
+    try:
+        save = input("Save to ./.env for next time? [Y/n]: ").strip().lower()
+    except EOFError:
+        save = ""
+    if save in ("", "y", "yes"):
+        env_path = Path(".env")
+        line = f"OPENROUTER_KEY={api_key}\n"
+        existing = env_path.read_text() if env_path.exists() else ""
+        if "OPENROUTER_KEY=" in existing:
+            existing = re.sub(r"^OPENROUTER_KEY=.*$", line.rstrip(), existing, flags=re.M)
+            env_path.write_text(existing if existing.endswith("\n") else existing + "\n")
+        else:
+            sep = "" if existing == "" or existing.endswith("\n") else "\n"
+            env_path.write_text(existing + sep + line)
+        print(f"Saved to {env_path.resolve()}")
+    return api_key
+
+
+def _openrouter_text(model_name: str, audio_path: str, prompt: str,
+                     max_new_tokens: int, temperature: float, timeout_s: float) -> dict:
+    api_key = _resolve_openrouter_key()
+
+    or_model = model_name[len(OPENROUTER_PREFIX):]
     body = {
         "model": or_model,
         "messages": [
@@ -203,10 +239,16 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
                 json=body, headers=headers, timeout=timeout_s,
             )
             if resp.status_code in (429, 500, 502, 503, 504):
-                last_err = f"HTTP {resp.status_code}: {resp.text[:300]}"
+                last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
                 time.sleep(2 ** attempt)
                 continue
-            resp.raise_for_status()
+            if not resp.ok:
+                # Surface the provider's error body (e.g. "model does not
+                # support audio input") instead of requests' generic message.
+                raise RuntimeError(
+                    f"OpenRouter HTTP {resp.status_code} for model {or_model!r}: "
+                    f"{resp.text[:500]}"
+                )
             data    = resp.json()
             choice  = (data.get("choices") or [{}])[0]
             content = (choice.get("message") or {}).get("content", "")
@@ -261,8 +303,10 @@ def query_alm(
             elapsed_s     float         wall-clock latency
 
     Raises:
-        ValueError:           unknown model_name, or OpenRouter slug not in the
-                              audio-capable whitelist.
+        ValueError:           unknown local model_name.
+        RuntimeError:         OpenRouter rejected the request (e.g. the model
+                              doesn't accept audio); the provider's error body
+                              is included in the message.
         NotImplementedError:  mode='probs' or 'embed' with OpenRouter.
         SystemExit:           local server unreachable, or OPENROUTER_KEY missing.
     """

@@ -32,22 +32,22 @@ import pitchbench.config as config
 SERVERS: list[dict] = [
     {
         "slug":   "music_flamingo",
-        "script": ROOT / "model" / "api.py",
+        "script": ROOT / "model" / "api_music_fl.py",
         "env":    {},
     },
     {
         "slug":   "audio_flamingo_next_instruct",
-        "script": ROOT / "model" / "api_fl_next.py",
+        "script": ROOT / "model" / "api_audio_fl_next.py",
         "env":    {"AF_NEXT_CHECKPOINT": "instruct"},
     },
     {
         "slug":   "audio_flamingo_next_think",
-        "script": ROOT / "model" / "api_fl_next.py",
+        "script": ROOT / "model" / "api_audio_fl_next.py",
         "env":    {"AF_NEXT_CHECKPOINT": "think"},
     },
     {
         "slug":   "audio_flamingo_next_captioner",
-        "script": ROOT / "model" / "api_fl_next.py",
+        "script": ROOT / "model" / "api_audio_fl_next.py",
         "env":    {"AF_NEXT_CHECKPOINT": "captioner"},
     },
     {

@@ -7,7 +7,7 @@ between them.  Plots embedding distance vs. Δ (cents) alongside the
 behavioural accuracy curve from exp_4.
 
 Usage:
-    # requires a running model server (python model/api.py)
+    # requires a running model server (e.g. python -m pitchbench.model.api_music_fl)
     python analysis/embedding_distance.py
     python analysis/embedding_distance.py --model audio_flamingo_next_instruct
     python analysis/embedding_distance.py --base A4 --n-per-delta 5
@@ -95,7 +95,7 @@ def run(model_name: str, base_name: str, n_per_delta: int, seed: int) -> None:
     except requests.exceptions.ConnectionError:
         raise SystemExit(
             f"\nModel server not reachable at {url}\n"
-            f"Start it with:  python model/api.py  (or the appropriate variant)"
+            f"Start it with:  python -m pitchbench.model.api_music_fl  (or the appropriate variant)"
         )
 
     # check /embed is available
