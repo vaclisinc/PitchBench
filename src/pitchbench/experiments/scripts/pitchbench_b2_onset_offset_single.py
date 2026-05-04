@@ -31,19 +31,19 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-POSITIONS_MS: list[int] = [2_000, 7_000, 14_000, 22_000, 27_000]
-TOTAL_DUR_MS  = 30_000
+POSITIONS_MS: list[int] = config.DEFAULT_TONE_POSITIONS_MS  # note positions inside the clip (ms)
+TOTAL_DUR_MS  = config.DEFAULT_TOTAL_DUR_MS 
 SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
-    "This audio is a 30-second clip that contains exactly ONE sustained "
+    "This audio is a 60-second clip that contains exactly ONE sustained "
     "musical note inside silence. Identify the onset and offset times of "
     "the note. Reply with ONLY two timestamps in MM:SS.cc format separated "
-    "by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Do not think."
+    "by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer."
 )
 
 
@@ -198,10 +198,7 @@ def preview() -> None:
     args    = _parse_args()
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try:    _wav_for(c)
         except ValueError as exc:
@@ -221,10 +218,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try:    _wav_for(c)
         except ValueError: pass

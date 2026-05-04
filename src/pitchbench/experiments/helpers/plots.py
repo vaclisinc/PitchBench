@@ -54,8 +54,7 @@ def _record_predicted_midi(record: dict[str, Any]) -> float | None:
 
     if variant == "abc":
         try:
-            from helpers.music import note_to_midi
-
+            from pitchbench.experiments.helpers.music import note_to_midi
             midi = note_to_midi(pred) if isinstance(pred, str) else None
         except Exception:
             midi = None
@@ -77,9 +76,8 @@ def _task_labels(records: list[dict[str, Any]], task_values: list[Any], task_key
 
     if task_values and all(isinstance(v, int) for v in task_values):
         try:
-            from helpers.music import midi_to_note
-
-            return [midi_to_note(int(v)) for v in task_values]
+            from pitchbench.experiments.helpers.music import midi_to_note
+            return [f"{v}\n({midi_to_note(int(v))})" for v in task_values]
         except Exception:
             return [str(v) for v in task_values]
 
@@ -185,6 +183,194 @@ def _grouped_bar(
     ax.grid(True, axis="y", alpha=0.3)
 
 
+def _hz_iou(pred: Any, gt: Any) -> float:
+    """Ratio metric for Hz predictions: min/max in [0, 1]. 1 = exact."""
+    try:
+        p, g = float(pred), float(gt)
+        if p > 0 and g > 0:
+            return min(p, g) / max(p, g)
+    except (TypeError, ValueError):
+        pass
+    return 0.0
+
+
+def _iv_labels(iv_values: list[Any], iv_key: str) -> list[str]:
+    """Format IV values for x-axis; MIDI keys get '69\\n(A4)' style labels."""
+    if "midi" in iv_key.lower() and iv_values and all(isinstance(v, int) for v in iv_values):
+        try:
+            from pitchbench.experiments.helpers.music import midi_to_note
+            return [f"{v}\n({midi_to_note(v)})" for v in iv_values]
+        except Exception:
+            pass
+    return [str(v) for v in iv_values]
+
+
+FORMAT_METRIC: dict[str, str] = {
+    "midi":   "Exact-match accuracy (%)",
+    "spn":    "Exact-match accuracy (%)",
+    "doremi": "Exact-match accuracy (%)",
+    "hz":     "Hz IoU (%)",
+}
+
+FORMAT_CORRECT_KEY: dict[str, str] = {
+    "midi":   "midi_correct",
+    "spn":    "spn_correct",
+    "doremi": "doremi_correct",
+    "hz":     None,   # computed via _hz_iou
+}
+
+FORMAT_COLORS: dict[str, str] = {
+    "midi":   "#4C72B0",
+    "spn":    "#DD8452",
+    "doremi": "#55A868",
+    "hz":     "#C44E52",
+}
+
+FORMAT_DISPLAY: dict[str, str] = {
+    "midi":   "MIDI",
+    "spn":    "SPN / ABC",
+    "doremi": "Doremi",
+    "hz":     "Hz (IoU)",
+}
+
+
+def _format_score(record: dict[str, Any], fmt: str) -> float | None:
+    """Return the per-record score for a given format."""
+    if fmt == "hz":
+        pred = record.get("hz_pred")
+        gt   = record.get("hz_gt")
+        if pred is None or gt is None:
+            return None
+        return _hz_iou(pred, gt)
+    key = FORMAT_CORRECT_KEY.get(fmt)
+    if key is None:
+        return None
+    val = record.get(key)
+    return float(val) if val is not None else None
+
+
+def save_per_format_iv_plots(
+    records: list[dict[str, Any]],
+    run_dir: Path,
+    model_name: str,
+    iv_key: str,
+    iv_label: str = "",
+) -> None:
+    """One bar-chart PNG per notation format (midi/spn/doremi/hz), grouped by source.
+
+    Hz bars show IoU instead of exact-match accuracy.
+    Files: per_format/<fmt>_by_<iv_key>_<model>.png
+    """
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        import numpy as np
+    except ImportError:
+        return
+
+    out_dir = run_dir / "per_format"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    iv_vals   = sorted({r[iv_key] for r in records if iv_key in r})
+    iv_lbls   = _iv_labels(iv_vals, iv_key)
+    sources   = sorted({r.get("source", r.get("instrument", "")) for r in records})
+    x         = np.arange(len(iv_vals))
+    x_label   = iv_label or iv_key
+
+    for fmt in ("midi", "spn", "doremi", "hz"):
+        # series: source → per-IV-value mean score
+        series: dict[str, list[float]] = {}
+        for src in sources:
+            vals = []
+            for iv in iv_vals:
+                sub = [r for r in records
+                       if r.get(iv_key) == iv
+                       and r.get("source", r.get("instrument", "")) == src]
+                scores = [s for r in sub for s in [_format_score(r, fmt)] if s is not None]
+                vals.append(float(np.mean(scores) * 100) if scores else float("nan"))
+            series[src] = vals
+
+        k = len(sources)
+        width = min(0.8 / max(k, 1), 0.35)
+        cmap  = plt.get_cmap("tab20")
+
+        fig, ax = plt.subplots(figsize=(max(10, len(iv_vals) * 0.45 + 2), 4))
+        for i, src in enumerate(sources):
+            ax.bar(
+                x + (i - k / 2 + 0.5) * width,
+                series[src],
+                width,
+                label=src,
+                color=cmap(i % 20),
+                alpha=0.85,
+            )
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(iv_lbls, rotation=35, ha="right", fontsize=8)
+        ax.set_ylim(0, 110)
+        ax.set_xlabel(x_label)
+        ax.set_ylabel(FORMAT_METRIC[fmt])
+        ax.set_title(f"{FORMAT_DISPLAY[fmt]} — {model_name}")
+        ax.legend(fontsize=7, ncol=max(1, k // 4 + 1))
+        ax.grid(True, axis="y", alpha=0.3)
+        plt.tight_layout()
+        fname = out_dir / f"{fmt}_by_{_slug(iv_key)}_{_slug(model_name)}.png"
+        plt.savefig(fname, dpi=150)
+        plt.close()
+
+    print(f"Per-format plots → {out_dir}/")
+
+
+def save_combined_iv_plot(
+    records: list[dict[str, Any]],
+    run_dir: Path,
+    model_name: str,
+    iv_key: str,
+    iv_label: str = "",
+) -> None:
+    """One line plot with all 4 formats on the same axes vs the main IV.
+
+    File: combined_iv_<iv_key>_<model>.png
+    """
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        import numpy as np
+    except ImportError:
+        return
+
+    iv_vals = sorted({r[iv_key] for r in records if iv_key in r})
+    iv_lbls = _iv_labels(iv_vals, iv_key)
+    x       = np.arange(len(iv_vals))
+    x_label = iv_label or iv_key
+
+    fig, ax = plt.subplots(figsize=(max(10, len(iv_vals) * 0.45 + 2), 4))
+    for fmt in ("midi", "spn", "doremi", "hz"):
+        means = []
+        for iv in iv_vals:
+            sub    = [r for r in records if r.get(iv_key) == iv]
+            scores = [s for r in sub for s in [_format_score(r, fmt)] if s is not None]
+            means.append(float(np.mean(scores) * 100) if scores else float("nan"))
+        ax.plot(x, means, marker="o", markersize=4, linewidth=1.8,
+                color=FORMAT_COLORS[fmt], label=FORMAT_DISPLAY[fmt])
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(iv_lbls, rotation=35, ha="right", fontsize=8)
+    ax.set_ylim(0, 110)
+    ax.set_xlabel(x_label)
+    ax.set_ylabel("Score (%)")
+    ax.set_title(f"All formats vs {x_label} — {model_name}")
+    ax.legend(fontsize=8)
+    ax.grid(True, axis="y", alpha=0.3)
+    plt.tight_layout()
+    fname = run_dir / f"combined_iv_{_slug(iv_key)}_{_slug(model_name)}.png"
+    plt.savefig(fname, dpi=150)
+    plt.close()
+    print(f"Combined IV plot → {fname}")
+
+
 def save_accuracy_plots(
     records: list[dict[str, Any]],
     run_dir: Path,
@@ -243,10 +429,9 @@ def save_accuracy_plots(
     # ── Plot B: per pitch ─────────────────────────────────────────────────────
 
     pitch_vals = sorted({r[pitch_key] for r in records if pitch_key in r})
-    # convert MIDI ints to note names for labels if possible
     try:
-        from helpers.music import midi_to_note
-        pitch_labels = [midi_to_note(int(p)) if str(p).isdigit() else str(p)
+        from pitchbench.experiments.helpers.music import midi_to_note
+        pitch_labels = [f"{p}\n({midi_to_note(int(p))})" if isinstance(p, int) else str(p)
                         for p in pitch_vals]
     except Exception:
         pitch_labels = [str(p) for p in pitch_vals]

@@ -11,9 +11,8 @@ Experiment-specific IVs:
     separation_ms:   {200, 500, 1000, 2000}   (silence between the two tones)
     order:           {first_higher, second_higher}
 
-Fixed conditions: pure sine waveforms only (the relative-pitch judgment
-should not depend on timbre); equal level; deterministic randomised order
-seeded by `--seed`.
+Fixed conditions: equal level; deterministic randomised order seeded by
+`--seed`; instruments use MIDI pitch bend for fractional-cent detuning.
 
 The model is asked a single binary question; chance = 50 %.
 
@@ -35,7 +34,7 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 
 EXP_NAME = Path(__file__).stem
@@ -52,10 +51,10 @@ DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS           # per tone — univer
 DEFAULT_N_TRIALS    = config.DEFAULT_N_TRIALS
 DEFAULT_SEED = config.DEFAULT_SEED
 
-SOURCES: list[str] = list(config.WAVEFORMS)   # waveforms only — Hz tones unsupported on instruments
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
-    "Two pure tones play one after another, separated by a brief silence. "
+    "Two tones play one after another, separated by a brief silence. "
     "Which tone is higher in pitch — the first or the second? "
     'Reply with ONLY "first" or "second".'
 )
@@ -191,10 +190,7 @@ def preview() -> None:
     all_conds = build_conditions(
         config.DEFAULT_DURATIONS_MS, SEPARATION_MS, args.n_trials, args.seed,
     )
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
     print(f"Experiment  : {EXP_NAME}")
@@ -216,10 +212,7 @@ def run() -> dict:
     all_conds = build_conditions(
         config.DEFAULT_DURATIONS_MS, SEPARATION_MS, args.n_trials, args.seed,
     )
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
 

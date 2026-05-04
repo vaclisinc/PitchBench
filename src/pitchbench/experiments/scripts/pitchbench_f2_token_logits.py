@@ -65,18 +65,18 @@ MAX_NEW_TOKENS  = 32
 
 PROMPT_MIDI_EXP14 = (
     "What is the MIDI note number (an integer)? The note number of the played note is between 10 and 99."
-    "Reply with ONLY the integer. Nothing else. Do not think."
+    "Reply with ONLY the integer. Nothing else. Output only the answer."
 )
 
 PROMPT_ABC_EXP14 = (
     "What is the note name and octave? "
-    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Do not think."
+    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Output only the answer."
 )
 
 PROMPT_DOREMI_EXP14 = (
     "What is the solfege syllable and accidental (if needed) of this pitch? "
     "Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). "
-    "Reply with the syllable and accidental (if needed) and accidental (if necessary). Nothing else. Do not think."
+    "Reply with the syllable and accidental (if needed) and accidental (if necessary). Nothing else. Output only the answer."
 )
 
 PROMPTS: dict[str, str] = {

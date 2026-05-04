@@ -24,6 +24,7 @@ Instrument sources: require FluidSynth (pyfluidsynth + SF2 soundfont).
 from __future__ import annotations
 
 import hashlib
+import math
 import wave
 from pathlib import Path
 from typing import Sequence
@@ -225,6 +226,64 @@ def _render_instrument(
     return audio.astype(np.float32)
 
 
+def _render_instrument_detuned(
+    midi: int,
+    instrument: str,
+    duration_s: float,
+    detune_cents: float,
+) -> np.ndarray:
+    """Render a MIDI note via FluidSynth with a pitch-bend offset in cents.
+
+    GM pitch bend range is ±200 cents (±2 semitones).  The maximum residual
+    when snapping an arbitrary Hz value to the nearest MIDI note is 50 cents,
+    well within range.
+    """
+    try:
+        import fluidsynth
+    except ImportError:
+        raise ValueError(
+            f"FluidSynth not available — cannot render instrument {instrument!r}.\n"
+            "Install with:  pip install pyfluidsynth\n"
+            "and ensure libfluidsynth is present on your system."
+        )
+
+    sf2 = config.SF2_PATH
+    program = config.GM_PROGRAMS_V1.get(instrument)
+    if program is None:
+        raise ValueError(f"Unknown instrument {instrument!r}. "
+                         f"Available: {list(config.GM_PROGRAMS_V1)}")
+
+    _BEND_RANGE_CENTS = 200.0
+    bend_value = int(round(8192 + detune_cents / _BEND_RANGE_CENTS * 8192))
+    bend_value = max(0, min(16383, bend_value))
+
+    fs = fluidsynth.Synth(samplerate=float(SR))
+    sfid = fs.sfload(sf2)
+    fs.program_select(0, sfid, 0, program)
+    fs.pitch_bend(0, bend_value)
+
+    note_on_dur  = max(min(duration_s * 0.85, duration_s - 0.1), duration_s * 0.5)
+    release_dur  = duration_s - note_on_dur
+    n_body  = int(note_on_dur  * SR)
+    n_tail  = int(release_dur  * SR)
+    n_total = int(duration_s   * SR)
+
+    fs.noteon(0, midi, 100)
+    body = np.array(fs.get_samples(n_body),  dtype=np.float32).reshape(-1, 2).mean(axis=1)
+    fs.noteoff(0, midi)
+    tail = np.array(fs.get_samples(n_tail),  dtype=np.float32).reshape(-1, 2).mean(axis=1)
+    fs.delete()
+
+    audio = np.concatenate([body, tail])[:n_total]
+    peak  = float(np.max(np.abs(audio)))
+    if peak > 0:
+        audio = audio / peak * 0.9
+    fade_n = int(0.05 * SR)
+    if fade_n < len(audio):
+        audio[-fade_n:] *= np.linspace(1.0, 0.0, fade_n)
+    return audio.astype(np.float32)
+
+
 # ── Source routing ────────────────────────────────────────────────────────────
 
 def _is_waveform(source: str) -> bool:
@@ -239,9 +298,13 @@ def _render_single(midi: int, duration_s: float, source: str) -> np.ndarray:
 
 
 def _render_hz(freq_hz: float, duration_s: float, source: str) -> np.ndarray:
-    if not _is_waveform(source):
-        raise ValueError("Hz-based rendering only supported for waveform sources")
-    return _synth_waveform(freq_hz, duration_s, source)
+    if _is_waveform(source):
+        return _synth_waveform(freq_hz, duration_s, source)
+    # Instrument: snap to nearest MIDI note, apply residual as pitch bend
+    midi = round(69 + 12 * math.log2(freq_hz / 440.0))
+    midi_freq = 440.0 * 2.0 ** ((midi - 69) / 12.0)
+    residual_cents = 1200.0 * math.log2(freq_hz / midi_freq)
+    return _render_instrument_detuned(midi, source, duration_s, residual_cents)
 
 
 # ── Public API ────────────────────────────────────────────────────────────────
@@ -265,7 +328,7 @@ def tone_hz(
     source: str,
     duration_ms: int,
 ) -> Path:
-    """Single tone at an arbitrary frequency (waveform sources only)."""
+    """Single tone at an arbitrary frequency."""
     name = f"{_hz_slug(freq_hz)}_{source}_{duration_ms}ms.wav"
     path = _audio_dir() / name
     if path.exists():
@@ -366,7 +429,7 @@ def sequence_hz(
     tone_ms: int,
     gap_ms: int,
 ) -> Path:
-    """Sequential tones at arbitrary Hz (waveform sources only)."""
+    """Sequential tones at arbitrary Hz."""
     slugs = "-".join(_hz_slug(f) for f in freqs_hz)
     name  = f"{slugs}_{source}_seq_{tone_ms}ms_{gap_ms}msgap.wav"
     path  = _audio_dir() / name

@@ -39,7 +39,7 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
@@ -47,6 +47,8 @@ EXP_NAME = Path(__file__).stem
 
 VIBRATO_RATES_HZ:    list[float] = [0, 3, 5, 7, 10]
 VIBRATO_DEPTHS_CENTS: list[float] = [0, 25, 50, 100, 200]
+
+DURATIONS_MS = [config.DEFAULT_DURATION_MS]
 
 SOURCES: list[str] = list(config.WAVEFORMS)        # vibrato is waveform-only
 
@@ -150,7 +152,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
         sources=SOURCES, pitches=config.DEFAULT_PITCHES,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
+        durations_ms=DURATIONS_MS,
         vibrato_rates_hz=VIBRATO_RATES_HZ,
         vibrato_depths_cents=VIBRATO_DEPTHS_CENTS,
         prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
@@ -179,11 +181,9 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args    = _parse_args()
     sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
     print(f"Experiment : {EXP_NAME}")
@@ -200,11 +200,9 @@ def run() -> dict:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
 

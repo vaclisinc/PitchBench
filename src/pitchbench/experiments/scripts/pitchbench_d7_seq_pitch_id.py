@@ -40,7 +40,7 @@ from pitchbench.experiments.helpers.music import (
     semitone_distance,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
@@ -65,7 +65,7 @@ def make_prompt_abc(n: int) -> str:
         "each separated by a brief silence. "
         f"Identify all {n} notes in order from first to last. "
         "Reply with ONLY the note names separated by spaces "
-        "(e.g. C4 E4 G#4). Nothing else. Do not think."
+        "(e.g. C4 E4 G#4). Nothing else. Output only the answer."
     )
 
 
@@ -75,7 +75,7 @@ def make_prompt_midi(n: int) -> str:
         "each separated by a brief silence. "
         f"Identify all {n} MIDI note numbers in order from first to last. "
         "Reply with ONLY the integers separated by spaces "
-        "(e.g. 60 64 68). Nothing else. Do not think."
+        "(e.g. 60 64 68). Nothing else. Output only the answer."
     )
 
 
@@ -86,7 +86,7 @@ def make_prompt_doremi(n: int) -> str:
         f"Identify all {n} solfège syllable and accidentals (if needed) in order from first to last "
         "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B; include sharps e.g. do# re#). "
         "Reply with ONLY the syllable and accidentals (if needed) separated by spaces "
-        "(e.g. do mi sol#). Nothing else. Do not think."
+        "(e.g. do mi sol#). Nothing else. Output only the answer."
     )
 
 
@@ -96,7 +96,7 @@ def make_prompt_hz(n: int) -> str:
         "each separated by a brief silence. "
         f"Identify the pitch frequency in Hertz of all {n} notes in order from first to last. "
         "Reply with ONLY the frequencies in Hz separated by spaces "
-        "(e.g. 261.6 329.6 392.0). Nothing else. Do not think."
+        "(e.g. 261.6 329.6 392.0). Nothing else. Output only the answer."
     )
 
 
@@ -466,14 +466,7 @@ def preview() -> None:
     args = _parse_args()
     seqs = build_sequences(args.n_notes, args.n_trials, args.seed)
     all_conds = build_conditions(seqs, SOURCES)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(
-            all_conds, args.sample_n,
-            lambda c: (c["n_notes"], c["source"]),
-            seed=args.sample_seed,
-        )
-    s_meta = sampling_meta(len(all_conds), "(n_notes, source)", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     total_dur = sum(
         c["n_notes"] * TONE_MS / 1000 + (c["n_notes"] - 1) * GAP_MS / 1000
         for c in conds
@@ -498,14 +491,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     seqs = build_sequences(args.n_notes, args.n_trials, args.seed)
     all_conds = build_conditions(seqs, SOURCES)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(
-            all_conds, args.sample_n,
-            lambda c: (c["n_notes"], c["source"]),
-            seed=args.sample_seed,
-        )
-    s_meta = sampling_meta(len(all_conds), "(n_notes, source)", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         engine.sequence(c["midi_sequence"], c["source"], TONE_MS, GAP_MS)
     print(f"Experiment : {EXP_NAME}")

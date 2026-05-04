@@ -65,7 +65,7 @@ from pitchbench.experiments.helpers.results import (
     save_comparison,
     save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
@@ -297,7 +297,7 @@ def make_prompt_midi(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
         f"List all {N_NOTES} MIDI note numbers in order from first to last. "
-        "Reply with ONLY the integers separated by spaces. Nothing else. Do not think."
+        "Reply with ONLY the integers separated by spaces. Nothing else. Output only the answer."
     )
 
 
@@ -305,7 +305,7 @@ def make_prompt_spn(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
         f"List all {N_NOTES} note names in order from first to last. "
-        "Reply with ONLY the note names separated by spaces (e.g. C5 D5 E5). Nothing else. Do not think."
+        "Reply with ONLY the note names separated by spaces (e.g. C5 D5 E5). Nothing else. Output only the answer."
     )
 
 
@@ -314,7 +314,7 @@ def make_prompt_doremi(n: int, x: int, inst_cfg: str, sources: list[str]) -> str
         f"{_preamble(n, x, inst_cfg, sources)} "
         f"List all {N_NOTES} solfège syllable and accidentals (if needed) in order from first to last "
         "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B; include sharps e.g. do# re#). "
-        "Reply with ONLY the syllable and accidentals (if needed) separated by spaces. Nothing else. Do not think."
+        "Reply with ONLY the syllable and accidentals (if needed) separated by spaces. Nothing else. Output only the answer."
     )
 
 
@@ -614,14 +614,7 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args      = _parse_args()
     all_conds = build_conditions(args.n_trials, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(
-            all_conds, args.sample_n,
-            lambda c: (c["n"], c["source_label"]),
-            seed=args.sample_seed,
-        )
-    s_meta    = sampling_meta(len(all_conds), "(n_voices, source_label)", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
 
     n_audio    = len(conds)
@@ -656,14 +649,7 @@ def run() -> dict:
     args         = _parse_args()
     target_models = args.models or list(config.MODELS)
     all_conds    = build_conditions(args.n_trials, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(
-            all_conds, args.sample_n,
-            lambda c: (c["n"], c["source_label"]),
-            seed=args.sample_seed,
-        )
-    s_meta = sampling_meta(len(all_conds), "(n_voices, source_label)", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
 
     print(f"Experiment : {EXP_NAME}")

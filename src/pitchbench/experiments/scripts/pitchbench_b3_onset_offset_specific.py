@@ -32,13 +32,13 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-N_DISTRACTORS:  list[int] = [2, 4]
+N_DISTRACTORS:  list[int] = [2, 4, 6]
 TARGET_POS_OPTS: list[str] = ["first", "middle", "last"]
-TOTAL_DUR_MS = 30_000
+TOTAL_DUR_MS = config.DEFAULT_TOTAL_DUR_MS
 GAP_MIN_MS, GAP_MAX_MS = 500, 2000
 DEFAULT_SEED = config.DEFAULT_SEED
 
@@ -50,7 +50,7 @@ def _prompt_for(target_note: str) -> str:
         f"This audio contains a sequence of musical notes separated by silence. "
         f"Identify the onset and offset times of the note {target_note} "
         f"(it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc "
-        f"format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Do not think."
+        f"format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer."
     )
 
 
@@ -78,7 +78,7 @@ def build_conditions(durations_ms: list[int], pitches: list[int], sources: list[
                         else:                         # middle
                             notes.insert(len(notes) // 2, tgt)
                         # layout: gaps drawn from [GAP_MIN_MS, GAP_MAX_MS]
-                        gaps = [sub_rng.randint(GAP_MIN_MS, GAP_MAX_MS)
+                        gaps = [sub_rng.randrange(GAP_MIN_MS, GAP_MAX_MS + 10, 10)
                                 for _ in range(len(notes) + 1)]   # leading + interior + trailing
                         # check fits in clip
                         total = sum(gaps) + dur * len(notes)
@@ -123,6 +123,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         out    = query_alm(model_name, wav, prompt)
         raw    = (out["result"] or "").strip()
         ts     = parse_mm_ss_cc(raw)
+        print(f' parsed timestamps: {ts} from raw response: "{raw}"')
         on_p, off_p = (ts[0], ts[1]) if len(ts) >= 2 else (None, None)
         on_gt   = c["target_onset_ms"]  / 1000
         off_gt  = c["target_offset_ms"] / 1000
@@ -232,10 +233,7 @@ def preview() -> None:
     args    = _parse_args()
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try:    _wav_for(c)
         except ValueError as exc:
@@ -255,10 +253,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try:    _wav_for(c)
         except ValueError: pass

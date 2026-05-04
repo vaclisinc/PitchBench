@@ -51,8 +51,12 @@ class _Tee(io.TextIOBase):
 # ── Metadata ──────────────────────────────────────────────────────────────────
 
 def get_run_metadata(**extra) -> dict[str, Any]:
-    """Return base metadata: timestamp + git commit + any extra kwargs."""
-    meta: dict[str, Any] = {"timestamp": datetime.now().isoformat()}
+    """Return base metadata: timestamp, git commit, CLI argv, and any extra kwargs."""
+    import sys
+    meta: dict[str, Any] = {
+        "timestamp": datetime.now().isoformat(),
+        "argv":      sys.argv[:],
+    }
     try:
         commit = subprocess.check_output(
             ["git", "rev-parse", "HEAD"],
@@ -64,6 +68,11 @@ def get_run_metadata(**extra) -> dict[str, Any]:
         ) != 0
         meta["git_commit"] = commit
         meta["git_dirty"]  = dirty
+        if dirty:
+            print(
+                "\n  *** WARNING: working tree has uncommitted changes — "
+                "results will NOT be exactly reproducible from git_commit alone ***\n"
+            )
     except Exception:
         meta["git_commit"] = None
         meta["git_dirty"]  = None

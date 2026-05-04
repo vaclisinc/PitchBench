@@ -548,12 +548,12 @@ def extract_chord_quality(text: str) -> str | None:
 
 PROMPT_MIDI = (
     "What is the MIDI note number (an integer from 0 to 127)? "
-    "Reply with ONLY the integer. Nothing else. Don't think."
+    "Reply with ONLY the integer. Nothing else. Output only the answer."
 )
 
 PROMPT_SPN = (
     "What is the note name and octave? "
-    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Don't think."
+    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Output only the answer."
 )
 PROMPT_ABC = PROMPT_SPN   # legacy alias — many older scripts import PROMPT_ABC
 
@@ -561,13 +561,13 @@ PROMPT_DOREMI = (
     "What is the solfege syllable and accidental (if needed) of this pitch? "
     "Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). "
     "Include sharps or flats when needed (e.g. do#, reb, fa#, sib). "
-    "Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Don't think."
+    "Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Output only the answer."
 )
 PROMPT_SOLFEGE = PROMPT_DOREMI   # alias
 
 PROMPT_HZ = (
     "What is the pitch frequency in Hertz? "
-    "Reply with ONLY a number (the frequency in Hz). Nothing else. Don't think."
+    "Reply with ONLY a number (the frequency in Hz). Nothing else. Output only the answer."
 )
 
 

@@ -49,6 +49,9 @@ DEFAULT_SELECTION = [30, 36, 43, 48, 54, 58, 60, 64, 67, 69, 73, 76, 79, 88] if 
 # exp: a4, a5, b2, b3, b4, b5, c1, d3, d4, d5, e1, e3
 DEFAULT_PITCHES: list[int] = DEFAULT_SELECTION
 
+DEFAULT_TOTAL_DUR_MS = 60_000  # ms; total duration of each stimulus (when not specified otherwise)
+DEFAULT_TONE_POSITIONS_MS = [2_000, 7_000, 14_000, 22_000, 27_000, 41_000, 47_000, 53_000]  # ms; positions of tones inside the stimulus (when not specified otherwise)
+
 # purpose: silence gap between consecutive notes in a sequence (ms)
 # exp: d1, d6
 DEFAULT_GAP_MS   = 300
@@ -151,3 +154,55 @@ GM_PROGRAMS_V1: dict[str, int] = {
 WAVEFORMS: list[str] = ["sine", "sawtooth", "square", "triangle"]
 
 ALL_SOURCES: list[str] = list(WAVEFORMS) + list(GM_PROGRAMS_V1.keys())
+
+
+# ── Per-experiment paper-run defaults ─────────────────────────────────────────
+# Keyed by EXP_NAME (file stem). Each entry:
+#   "per_stratum": samples per stratum cell (None = run the full grid).
+#                  Total drawn = per_stratum × num_distinct_strata_keys, computed
+#                  inside apply_default_sampling() from the actual condition list.
+#   "strata":      tuple of condition-dict keys to stratify by; primary outcome
+#                  variable first. Builds key_fn = lambda c: tuple(c[f] for f in strata).
+# Tune values here; do not duplicate per-experiment.
+EXPERIMENT_DEFAULTS: dict[str, dict] = {
+    # Single-pitch ID (a) — primary axis is the target pitch
+    "pitchbench_a1_pitch_id":              {"per_stratum": None, "strata": ("midi",)},
+    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 10, "strata": ("condition", "interval")},
+    "pitchbench_a3_pitch_by_duration":     {"per_stratum":  5, "strata": ("midi", "duration_ms")},
+    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 10, "strata": ("midi", "is_control")},
+    "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 10, "strata": ("midi", "detune_hz")},
+
+    # Onsets / offsets / time-localised pitch (b)
+    "pitchbench_b1_pitch_in_silence":      {"per_stratum": 20, "strata": ("condition", "midi")},
+    "pitchbench_b2_onset_offset_single":   {"per_stratum":  5, "strata": ("midi", "pos_ms")},
+    "pitchbench_b3_onset_offset_specific": {"per_stratum": 20, "strata": ("target_pos", "n_distractors")},
+    "pitchbench_b4_pitch_at_time":         {"per_stratum": 20, "strata": ("n_notes", "target_idx")},
+    "pitchbench_b5_onset_offset_each":     {"per_stratum": 25, "strata": ("rhythm", "n_notes")},
+
+    # Chords / dyads / simultaneous pitches (c)
+    "pitchbench_c1_dyad_interval":         {"per_stratum": 20, "strata": ("interval_st",)},
+    "pitchbench_c2_chord_pitch_count":     {"per_stratum": 15, "strata": ("n", "chord_quality")},
+    "pitchbench_c3_chord_pitch_id":        {"per_stratum": 20, "strata": ("chord_type",)},
+    "pitchbench_c4_chord_quality":         {"per_stratum": 25, "strata": ("chord_quality",)},
+
+    # Sequences / contour / intervals (d)
+    "pitchbench_d1_seq_pitch_count":       {"per_stratum": 20, "strata": ("n", "rhythm")},
+    "pitchbench_d2_pitch_difference":      {"per_stratum": 15, "strata": ("delta_cents", "order")},
+    "pitchbench_d3_interval_id_seq":       {"per_stratum": 12, "strata": ("signed_st",)},
+    "pitchbench_d4_contour_discrete":      {"per_stratum": 15, "strata": ("n_transitions", "step_size_st")},
+    "pitchbench_d5_contour_continuous":    {"per_stratum": None, "strata": ("traj_name",)},
+    "pitchbench_d6_pitch_ranking":         {"per_stratum": 20, "strata": ("rhythm", "n_notes")},
+    "pitchbench_d7_seq_pitch_id":          {"per_stratum": 25, "strata": ("n_notes",)},
+
+    # Loudness / effects / backgrounds (e)
+    "pitchbench_e1_loudness":              {"per_stratum":  5, "strata": ("midi", "loudness_db")},
+    "pitchbench_e2_audio_effects":         {"per_stratum": 10, "strata": ("effect_type", "midi")},
+    "pitchbench_e3_background_effects":    {"per_stratum": 10, "strata": ("background", "snr_db")},
+
+    # Polyphony (g)
+    "pitchbench_g1_melodic_line_id":       {"per_stratum": 20, "strata": ("n", "source_label")},
+    "pitchbench_g2_chorale_voice_id":      {"per_stratum": None, "strata": ("chorale_slug",)},
+
+    # f1/f2/f3 (embedding probes) — never sub-sample, never appear here.
+    # z1 (NSynth) — has its own per-family sampling (DEFAULT_N_PER_FAMILY); skipped here.
+}

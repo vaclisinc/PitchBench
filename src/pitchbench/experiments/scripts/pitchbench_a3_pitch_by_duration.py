@@ -26,13 +26,13 @@ from pitchbench.experiments.helpers.music import (
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-PITCHES: list[int] = config.DEFAULT_SELECTION  # C3, F#3, A#3, C4, E4, G4, A4, C5, D#5, F5, G#5 — 11 pitches spanning common vocal/instrumental range
+PITCHES: list[int] = config.DEFAULT_SELECTION 
 
-DURATIONS_MS: list[int] = [50, 100, 250, 500, 1_000, 2_000, 4_000, 6_000, 8_000]
+DURATIONS_MS: list[int] = [50, 100, 250, 500, 1_000, 2_000, 4_000, 5_000, 15_000, 60_000]
 
 SOURCES: list[str] = config.ALL_SOURCES
 
@@ -195,9 +195,7 @@ def preview() -> None:
     args = _parse_args()
     all_conds = build_conditions()
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
     print(f"Experiment : {EXP_NAME}")
     print(f"Sources    : {SOURCES}")
@@ -216,9 +214,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     all_conds = build_conditions()
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
 
     print(f"Experiment : {EXP_NAME}")

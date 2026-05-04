@@ -35,7 +35,7 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
@@ -56,7 +56,7 @@ PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
 PROMPT_DOREMI_FULL = PROMPT_PREFIX + PROMPT_DOREMI
 PROMPT_HZ_FULL     = PROMPT_PREFIX + PROMPT_HZ
 
-DURATIONS_MS = config.DEFAULT_DURATIONS_MS
+DURATIONS_MS = [config.DEFAULT_DURATION_MS]
 
 
 def build_conditions(durations_ms: list[int], pitches: list[int], sources: list[str]) -> list[dict]:
@@ -166,14 +166,7 @@ def preview() -> None:
     args    = _parse_args()
     sources = args.sources or SOURCES
     all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(
-            all_conds, args.sample_n,
-            lambda c: (c["source"], c["background"]),
-            seed=args.sample_seed,
-        )
-    s_meta = sampling_meta(len(all_conds), "(source, background)", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try: _wav_for(c)
         except ValueError as exc:
@@ -193,14 +186,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
     all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(
-            all_conds, args.sample_n,
-            lambda c: (c["source"], c["background"]),
-            seed=args.sample_seed,
-        )
-    s_meta = sampling_meta(len(all_conds), "(source, background)", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try: _wav_for(c)
         except ValueError: pass

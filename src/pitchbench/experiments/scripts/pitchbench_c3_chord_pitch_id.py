@@ -34,7 +34,7 @@ from pitchbench.experiments.helpers.music import (
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
@@ -74,19 +74,19 @@ BASE_ROOTS: list[int] = config.DEFAULT_SELECTION
 PROMPT_MIDI = (
     "This audio contains multiple musical pitches played simultaneously. "
     "List ALL MIDI note numbers you hear, from lowest to highest. "
-    "Reply with ONLY the integers separated by spaces. Nothing else. Do not think."
+    "Reply with ONLY the integers separated by spaces. Nothing else. Output only the answer."
 )
 
 PROMPT_ABC = (
     "This audio contains multiple musical pitches played simultaneously. "
     "List ALL note names you hear, from lowest to highest. "
-    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G#4. Nothing else. Do not think."
+    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G#4. Nothing else. Output only the answer."
 )
 
 PROMPT_DOREMI = (
     "This audio contains multiple musical pitches played simultaneously. "
     "List ALL solfège syllable and accidentals (if needed) you hear (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
-    "Reply with ONLY the syllables with accidental (if needed) separated by spaces, e.g. do mi sol#. Nothing else. Do not think."
+    "Reply with ONLY the syllables with accidental (if needed) separated by spaces, e.g. do mi sol#. Nothing else. Output only the answer."
 )
 
 PROMPTS: dict[str, str] = {
@@ -311,10 +311,7 @@ def preview() -> None:
     args = _parse_args()
     sources = args.sources or SOURCES
     all_conds = build_conditions(sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
     print(f"Experiment  : {EXP_NAME}")
     print(f"Sources     : {sources}")
@@ -333,10 +330,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
     all_conds = build_conditions(sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
 
     print(f"Experiment : {EXP_NAME}")

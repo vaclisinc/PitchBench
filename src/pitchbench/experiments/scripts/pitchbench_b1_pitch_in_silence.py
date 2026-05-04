@@ -37,19 +37,18 @@ from pitchbench.experiments.helpers.music import (
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
 # Representative pitches — wide range
 PITCHES: list[int] = config.DEFAULT_PITCHES
-#                     C3  E3  G3  C4  E4  G4  C5
 
 # Positions where the tone is placed inside the silent clip (ms)
-TONE_POSITIONS_MS: list[int] = [5_000, 15_000, 30_000, 45_000, 55_000]
+TONE_POSITIONS_MS: list[int] = config.DEFAULT_TONE_POSITIONS_MS
 
 TONE_DURATION_MS = config.DEFAULT_DURATION_MS    # note duration
-TOTAL_SILENCE_MS  = 60_000   # total clip length
+TOTAL_SILENCE_MS  = config.DEFAULT_TOTAL_DUR_MS  # total clip length
 
 CONDITIONS: list[str] = ["hidden", "baseline"]   # with/without surrounding silence
 
@@ -82,8 +81,7 @@ def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, conditio
     else:  # hidden
         context = (
             f"You will hear a {total_s:.0f}-second audio clip. "
-            f"A single musical note sounds from {pos_s:.1f} s to {end_s:.1f} s "
-            f"({dur_s:.1f} s duration); the rest is silence. "
+            f"A single musical note sounds in the clip; the rest is silence. "
         )
         if variant == "midi":
             return context + ("What is the MIDI note number (integer 0–127) of that note? "
@@ -264,10 +262,7 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     all_conds = build_conditions(SOURCES)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     print(f"Experiment   : {EXP_NAME}")
     print(f"Sources      : {SOURCES}")
     print(f"Pitches      : {[midi_to_note(m) for m in PITCHES]}")
@@ -291,11 +286,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     sources = list(SOURCES)
     all_conds = build_conditions(sources)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
-
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
     print(f"Stimuli    : {len(conds)}")

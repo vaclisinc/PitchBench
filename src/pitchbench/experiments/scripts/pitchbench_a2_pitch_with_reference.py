@@ -29,13 +29,12 @@ from pitchbench.experiments.helpers.music import (
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
 # Reference pitches spanning the middle range
 REFERENCE_PITCHES: list[int] = config.DEFAULT_SELECTION
-#                               E3  G3  C4  E4  G4  A4  C5
 
 INTERVALS: list[int] = [-12, -7, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 7, 12]
 
@@ -254,9 +253,7 @@ def preview() -> None:
     args = _parse_args()
     all_conds = build_conditions()
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
     n_audio = len(conds)
     print(f"Experiment   : {EXP_NAME}")
@@ -278,9 +275,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     all_conds = build_conditions()
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     generate_stimuli(conds)
 
     print(f"Experiment : {EXP_NAME}")

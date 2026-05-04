@@ -36,7 +36,7 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 
 EXP_NAME = Path(__file__).stem
@@ -55,7 +55,7 @@ SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are played in "
-    "this sequence? Reply with ONLY a single integer. Nothing else. Do not think."
+    "this sequence? Reply with ONLY a single integer. Nothing else. Output only the answer."
 )
 
 
@@ -220,10 +220,7 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args  = _parse_args()
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try:    _wav_for(c)
         except ValueError as exc:
@@ -242,10 +239,7 @@ def run() -> dict:
     args  = _parse_args()
     target_models = args.models or list(config.MODELS)
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try:    _wav_for(c)
         except ValueError: pass

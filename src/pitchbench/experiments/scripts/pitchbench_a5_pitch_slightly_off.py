@@ -11,9 +11,8 @@ Experiment-specific IVs:
                Each pitch gets the same number of detune levels symmetrically
                around 0; e.g. {-Δmax, -Δmax/2, 0, +Δmax/2, +Δmax}.
 
-Fixed conditions: pure waveforms only (Hz tones unsupported on instruments);
-equal level. Prompt asks for the nearest in-tune pitch in 4 formats; we
-also record whether the model leaked the off-tune Hz value.
+Fixed conditions: equal level. Prompt asks for the nearest in-tune pitch in
+4 formats; we also record whether the model leaked the off-tune Hz value.
 
 Scoring:
     nearest_correct: predicted MIDI == in-tune target
@@ -41,11 +40,11 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-ALL_SOURCES: list[str] = config.ALL_SOURCES
+SOURCES: list[str] = config.ALL_SOURCES
 N_DETUNE_LEVELS = 5
 DETUNE_FRACTION = 0.40    # |detune| ≤ 40 % of half-distance-to-neighbour, well inside the basin
 
@@ -125,7 +124,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             PROMPT_MIDI_FULL, PROMPT_SPN_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
         )
         rec = standard_pitch_record(
-            wav=wav, source=c["source"], source_type="waveform",
+            wav=wav, source=c["source"],
+            source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["midi"],
             raw_midi=r_m["result"], raw_spn=r_s["result"],
             raw_doremi=r_d["result"], raw_hz=r_h["result"],
@@ -165,7 +165,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
         sources=SOURCES, pitches=config.DEFAULT_PITCHES,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
+        durations_ms=[config.DEFAULT_DURATION_MS],
         n_detune_levels=N_DETUNE_LEVELS, detune_fraction=DETUNE_FRACTION,
         prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
         prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
@@ -193,11 +193,9 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args    = _parse_args()
     sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions([config.DEFAULT_DURATION_MS], config.DEFAULT_PITCHES, sources)
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
     print(f"Experiment : {EXP_NAME}")
@@ -216,9 +214,7 @@ def run() -> dict:
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
     conds = all_conds  # rename: save the full list
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
 

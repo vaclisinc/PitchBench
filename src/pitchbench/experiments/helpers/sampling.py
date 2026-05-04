@@ -6,6 +6,8 @@ import random
 from collections import defaultdict
 from typing import Any, Callable
 
+import pitchbench.config as config
+
 
 def stratified_sample(
     items: list[dict],
@@ -71,3 +73,46 @@ def sampling_summary_lines(meta: dict[str, Any]) -> list[str]:
         f"  Sampling     : {meta['sample_n']} of {meta['total_available']} "
         f"(stratified by {meta['stratified_by']!r}, seed={meta['sample_seed']})",
     ]
+
+
+def apply_default_sampling(
+    exp_name: str,
+    all_conds: list[dict],
+    cli_sample_n: int | None,
+    cli_seed: int,
+) -> tuple[list[dict], dict[str, Any]]:
+    """Resolve sample size + strata key from ``config.EXPERIMENT_DEFAULTS`` and apply.
+
+    Sizing model:
+      - The config field ``"per_stratum"`` is samples *per stratum cell* — total
+        drawn = per_stratum × num_distinct_strata_keys, computed from the
+        actual condition list.
+      - ``per_stratum=None`` → run the full grid.
+      - CLI ``--sample-n N`` (cli_sample_n is not None) overrides as a *total*
+        cap (legacy semantics, useful for quick pipeline checks).
+
+    Strata key always comes from ``EXPERIMENT_DEFAULTS[exp_name]["strata"]`` —
+    a tuple of condition-dict field names. The lambda is built from that spec
+    so dev-mode and paper-mode share the same strata axis.
+    Falls back to ``("source",)`` if the experiment is missing from the config.
+    """
+    spec   = config.EXPERIMENT_DEFAULTS.get(exp_name, {})
+    fields: tuple[str, ...] = spec.get("strata") or ("source",)
+    per_stratum = spec.get("per_stratum")
+
+    key_fn = lambda c, fs=fields: tuple(c[f] for f in fs)
+    strata_label = "(" + ", ".join(fields) + ")" if len(fields) > 1 else fields[0]
+
+    if cli_sample_n is not None:
+        n = cli_sample_n
+    elif per_stratum is None:
+        n = None
+    else:
+        num_strata = len({key_fn(c) for c in all_conds})
+        n = per_stratum * num_strata
+
+    if n is None or n >= len(all_conds):
+        return all_conds, sampling_meta(len(all_conds), strata_label, None, cli_seed)
+
+    sampled = stratified_sample(all_conds, n, key_fn, seed=cli_seed)
+    return sampled, sampling_meta(len(all_conds), strata_label, n, cli_seed)

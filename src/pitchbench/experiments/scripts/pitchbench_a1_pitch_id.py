@@ -31,9 +31,12 @@ from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI,
     midi_to_note, standard_pitch_record, wide_to_long_records,
 )
-from pitchbench.experiments.helpers.plots import save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots
+from pitchbench.experiments.helpers.plots import (
+    save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots,
+    save_per_format_iv_plots, save_combined_iv_plot,
+)
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
@@ -41,8 +44,6 @@ MIDI_MIN = config.DEFAULT_MIDI_MIN
 MIDI_MAX = config.DEFAULT_MIDI_MAX
 
 PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
-
-
 
 TONE_DURATION_MS = config.DEFAULT_DURATION_MS
 
@@ -173,6 +174,8 @@ def run_one_model(
         long_records, run_dir, model_name,
         source_key="source", task_key="midi_gt",
     )
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
     return {f"acc_{fmt}": per_fmt[fmt] for fmt in per_fmt}, records
 
 
@@ -193,12 +196,7 @@ def _parse_args() -> argparse.Namespace:
 
 
 def _apply_sampling(all_conds: list[dict], args: argparse.Namespace) -> tuple[list[dict], dict]:
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
-    if args.sample_n is not None:
-        return stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed), s_meta
-    return all_conds, s_meta
-
-
+    return apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
 def preview() -> None:
     engine.set_exp(EXP_NAME)
     args = _parse_args()

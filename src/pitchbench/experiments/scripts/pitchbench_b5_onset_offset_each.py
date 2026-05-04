@@ -36,14 +36,14 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
-from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
 N_NOTES_OPTS:    list[int] = [3, 5, 8]
 RHYTHMS:         list[str] = ["regular", "irregular"]
 PITCH_PATTERNS:  list[str] = ["fixed_pitch", "varied_pitches"]
-TOTAL_DUR_MS = 30_000
+TOTAL_DUR_MS = config.DEFAULT_TOTAL_DUR_MS
 DEFAULT_SEED = config.DEFAULT_SEED
 
 REG_GAP_MS              = 800
@@ -233,10 +233,7 @@ def preview() -> None:
     args    = _parse_args()
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try: _wav_for(c)
         except ValueError as exc:
@@ -256,10 +253,7 @@ def run() -> dict:
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
     all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources, args.seed)
-    conds = all_conds
-    if args.sample_n is not None:
-        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
-    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
         try: _wav_for(c)
         except ValueError: pass
