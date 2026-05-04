@@ -28,7 +28,7 @@ from pitchbench.experiments.helpers.music import (
     standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
-from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
@@ -241,7 +241,7 @@ def preview() -> None:
     print("\nRun without --preview to query the model(s).")
 
 
-def run() -> None:
+def run() -> dict:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
@@ -261,7 +261,7 @@ def run() -> None:
     for model_name in target_models:
         all_summaries[model_name] = run_one_model(model_name, conds, run_dir, s_meta)
     save_comparison(run_dir, all_summaries, EXP_NAME)
-
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 

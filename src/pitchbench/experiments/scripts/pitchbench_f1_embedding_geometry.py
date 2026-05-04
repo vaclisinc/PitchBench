@@ -31,16 +31,15 @@ import warnings
 from pathlib import Path
 
 import numpy as np
-from numpy.__config__ import CONFIG
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
-from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison
+from pitchbench.experiments.helpers.results import _safe_stem, exp_data_dir, get_run_metadata, make_run_dir, save_comparison, extract_format_accuracies
 
 EXP_NAME = Path(__file__).stem
 
-MIDI_MIN = CONFIG.DEFAULT_MIDI_MIN
-MIDI_MAX = CONFIG.DEFAULT_MIDI_MAX
+MIDI_MIN = config.DEFAULT_MIDI_MIN
+MIDI_MAX = config.DEFAULT_MIDI_MAX
 MIDI_PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))   # 49 pitches
 
 # Colours for PCA scatter
@@ -618,7 +617,7 @@ def run_one_model(
     _save_knn_accuracy_plot(knn, run_dir, model_name)
 
     # ── Save JSON + TXT ───────────────────────────────────────────────────────
-    stem = f"results_{model_name}"
+    stem = f"results_{_safe_stem(model_name)}"
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
         n_sources=len(set(source_labels)),
@@ -676,7 +675,7 @@ def preview() -> None:
     print("\nRun without --preview to query the model(s).")
 
 
-def run() -> None:
+def run() -> dict:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     stimuli_root, sources = _discover_stimuli_dir()
@@ -698,7 +697,7 @@ def run() -> None:
         except (NotImplementedError, RuntimeError) as exc:
             print(f"\n  [SKIP] {model_name}: {exc}")
     save_comparison(run_dir, all_summaries, EXP_NAME)
-
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
     args = _parse_args()

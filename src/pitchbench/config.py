@@ -7,10 +7,11 @@ to the working directory so that ``pip install pitchbench`` + ``pitchbench …``
 works from any project root.  Override the base via the PITCHBENCH_ROOT env var.
 """
 
+from datetime import datetime
 import os
 from pathlib import Path
 
-DEV = True
+DEV = False
 
 # ── Runtime / project root ────────────────────────────────────────────────────
 # Running from a clone : PITCHBENCH_ROOT unset  → cwd == repo root  (unchanged)
@@ -19,7 +20,7 @@ _PROJECT_ROOT = Path(os.environ.get("PITCHBENCH_ROOT", ".")).resolve()
 
 DATA_DIR     = _PROJECT_ROOT / "data"       # generated experiment stimuli
 AUDIO_DIR    = DATA_DIR / "audio"           # central audio engine cache
-RESULTS_DIR  = _PROJECT_ROOT / "results"   # experiment outputs (never deleted)
+RESULTS_DIR  = _PROJECT_ROOT / "results" / f"run_{datetime.now().strftime("%Y%m%d_%H%M%S")}"  # experiment outputs (never deleted)
 STIMULI_DIR  = _PROJECT_ROOT / "stimuli"   # reference stimuli
 
 # ── Audio defaults ────────────────────────────────────────────────────────────
@@ -30,8 +31,8 @@ SAMPLE_RATE = 16_000   # Hz
 DEFAULT_DURATIONS_MS: list[int] = [1000, 5000]
 DEFAULT_DURATION_MS = 5000   # ms per note (for experiments with a single duration IV slot)
 DEFAULT_PITCHES: list[int] = [36, 48, 52, 55, 60, 64, 67, 72, 84]   # 9 reps spanning C2..C6
-DEFAULT_MIDI_MIN = 29 if not DEV else 60 # A0
-DEFAULT_MIDI_MAX = 89 if not DEV else 62 # C8 (range that works for all sounds)
+DEFAULT_MIDI_MIN = 29 if not DEV else 60   # F1 / C4 in DEV
+DEFAULT_MIDI_MAX = 89 if not DEV else 62   # F6 / D4 in DEV
 DEFAULT_SELECTION = [30, 36, 43, 48, 54, 58, 60, 64, 67, 69, 73, 76, 79, 88] if not DEV else [60, 69]  # 14 reps spanning C1..F6, or just middle C for dev
 
 

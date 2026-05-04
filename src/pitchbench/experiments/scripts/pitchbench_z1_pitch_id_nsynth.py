@@ -28,7 +28,7 @@ from pitchbench.experiments.helpers.music import (
     standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
-from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
@@ -210,7 +210,7 @@ def _parse_args() -> argparse.Namespace:
     return args
 
 
-def run() -> None:
+def run() -> dict:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     examples = load_nsynth_examples()
@@ -229,7 +229,7 @@ def run() -> None:
             model_name, sample, args.n_per_family, args.seed, run_dir, s_meta,
         )
     save_comparison(run_dir, all_summaries, EXP_NAME)
-
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 def preview() -> None:
     args = _parse_args()

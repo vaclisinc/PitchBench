@@ -32,7 +32,7 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note, standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots
-from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
@@ -216,7 +216,7 @@ def preview() -> None:
     print("Done. Run without --preview to query the model(s).")
 
 
-def run() -> None:
+def run() -> dict:
     print(f"Experiment : {EXP_NAME} with MIDI pitches {MIDI_MIN}–{MIDI_MAX} ({len(PITCHES)} notes)")
 
     engine.set_exp(EXP_NAME)
@@ -254,6 +254,7 @@ def run() -> None:
     save_comparison(run_dir, all_summaries, EXP_NAME)
     long_all = {m: wide_to_long_records(r) for m, r in all_records.items()}
     save_cross_model_pitch_plots(long_all, run_dir, source_key="source", task_key="midi_gt")
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 
 if __name__ == "__main__":

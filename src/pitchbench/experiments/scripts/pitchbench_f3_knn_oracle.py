@@ -44,7 +44,7 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note, midi_to_solfege,
     semitone_distance, solfege_pc_distance,
 )
-from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 
 EXP_NAME = Path(__file__).stem
 EXP13_NAME = "pitchbench_f1_embedding_geometry"   # may reuse embedding cache
@@ -573,7 +573,7 @@ def preview() -> None:
     print("\nRun without --preview to start the experiment.")
 
 
-def run() -> None:
+def run() -> dict:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     stimuli_root, sources = _discover_stimuli_dir()
@@ -594,7 +594,7 @@ def run() -> None:
             run_verbal=not args.no_verbal,
         )
     save_comparison(run_dir, all_summaries, EXP_NAME)
-
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
     args = _parse_args()

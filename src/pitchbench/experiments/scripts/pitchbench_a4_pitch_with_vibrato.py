@@ -36,6 +36,7 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note, standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.results import (
+    extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
 from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
@@ -194,7 +195,7 @@ def preview() -> None:
     print("\nRun without --preview to query the model(s).")
 
 
-def run() -> None:
+def run() -> dict:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
@@ -220,7 +221,7 @@ def run() -> None:
         s = run_one_model(m, conds, run_dir, s_meta)
         all_summaries[m] = s
     save_comparison(run_dir, all_summaries, EXP_NAME)
-
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
     args = _parse_args()

@@ -49,7 +49,7 @@ from pitchbench.experiments.helpers.music import (
     semitone_distance, solfege_pc_distance,
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
-from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 
 EXP_NAME = Path(__file__).stem
 
@@ -723,7 +723,7 @@ def preview() -> None:
     print("\nRun without --preview to query the model(s).")
 
 
-def run() -> None:
+def run() -> dict:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
@@ -742,7 +742,7 @@ def run() -> None:
             model_name, conds, run_dir, top_k=args.top_k,
         )
     save_comparison(run_dir, all_summaries, EXP_NAME)
-
+    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
     args = _parse_args()

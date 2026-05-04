@@ -298,7 +298,8 @@ def extract_format_accuracies(
     """
     out: dict[str, dict[str, Any]] = {}
     for m in model_names:
-        fa_path = run_dir / f"format_accuracy_{m}.csv"
+        stem    = _safe_stem(m)
+        fa_path = run_dir / f"format_accuracy_{stem}.csv"
         if not fa_path.exists():
             continue
 
@@ -316,7 +317,7 @@ def extract_format_accuracies(
             continue
 
         n: int | None = None
-        json_path = run_dir / f"results_{m}.json"
+        json_path = run_dir / f"results_{stem}.json"
         if json_path.exists():
             try:
                 payload = json.loads(json_path.read_text())
