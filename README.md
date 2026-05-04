@@ -5,44 +5,65 @@ Benchmark suite for evaluating pitch and acoustic perception in audio language m
 ## Install
 
 ```bash
-uv sync --all-extras     # recommended (includes FluidSynth + model-server stack)
+uv sync --all-extras     # recommended (includes FluidSynth bindings + model-server stack)
 uv sync                  # core only
 uv sync --extra generation   # adds pretty-midi, pyfluidsynth
 uv sync --extra model        # adds torch, transformers, fastapi
 ```
 
-Requires Python ≥ 3.12. Instrument sources require FluidSynth and a GM soundfont (default: `/usr/share/sounds/sf2/FluidR3_GM.sf2`, override with `PITCHBENCH_SF2`).
+Requires Python ≥ 3.12.
+
+## Setup
+
+### 1. FluidSynth (optional — for GM instrument sources)
+
+Install the system library for your platform, then `uv sync --extra generation`:
+
+| Platform | Command |
+|----------|---------|
+| Linux / WSL | `sudo apt install fluidsynth` |
+| macOS | `brew install fluid-synth` |
+| Windows | `choco install fluidsynth` or download from [fluidsynth.org](https://www.fluidsynth.org) |
+
+Without FluidSynth, GM instruments (piano, violin, …) are skipped and only waveform sources (sine, sawtooth, square, triangle) are used. A GM soundfont is also required (default: `/usr/share/sounds/sf2/FluidR3_GM.sf2`, override with `PITCHBENCH_SF2`).
+
+### 2. Model backend (pick one)
+
+**Option A — OpenRouter (easiest, no GPU needed)**
+
+Add your key to `.env`:
+```
+OPENROUTER_KEY=sk-or-...
+```
+
+**Option B — Local model servers**
+
+Requires `uv sync --extra model` (installs torch, transformers, fastapi). Start each server before running experiments:
+
+```bash
+python -m pitchbench.model.api             # music_flamingo on :8000
+python -m pitchbench.model.api_fl_next     # audio_flamingo_next_instruct on :8001
+```
+
+Model URLs are set in `config.MODEL_URLS` and overridable via env vars (`MF_URL`, `AF_NEXT_INST_URL`, …).
 
 ## Running experiments
 
 ```bash
 pitchbench --list                          # list all experiments
-pitchbench --id a1                         # run by short ID
-pitchbench pitchbench_a1_pitch_id          # run by full module name
-pitchbench --id a1 --preview               # generate stimuli only, skip queries
-pitchbench all                             # run every experiment
+pitchbench --id a1 --preview               # generate stimuli only, no model queries
+pitchbench --id a1 --models openrouter/google/gemini-2.5-flash   # OpenRouter
+pitchbench --id a1 --models audio_flamingo_next_instruct          # local server
+pitchbench all --models openrouter/google/gemini-2.5-flash        # run everything
 ```
 
-**Local model servers** — start each server first, then pass `--models`:
+You can mix local and cloud models in one run — a `comparison.*` file is written automatically when more than one model runs:
 
 ```bash
-python -m pitchbench.model.api             # music_flamingo on :8000
-python -m pitchbench.model.api_fl_next     # audio_flamingo_next_instruct on :8001
-
-pitchbench --id a1 --models audio_flamingo_next_instruct
-pitchbench all --models music_flamingo audio_flamingo_next_instruct
+pitchbench --id a1 --models music_flamingo openrouter/google/gemini-2.5-flash
 ```
 
-Model URLs are set in `config.MODEL_URLS` and overridable via env vars (`MF_URL`, `AF_NEXT_INST_URL`, …).
-
-**OpenRouter** — set `OPENROUTER_KEY` in `.env`, then use the `openrouter/` prefix:
-
-```bash
-pitchbench --id a1 --models openrouter/google/gemini-2.5-flash
-pitchbench all --models openrouter/google/gemini-2.5-pro
-```
-
-Audio-capable slugs are whitelisted in `config.OPENROUTER_AUDIO_MODELS`. Mix local and cloud models freely — a `comparison.*` file is written automatically when more than one model runs.
+Audio-capable OpenRouter slugs are whitelisted in `config.OPENROUTER_AUDIO_MODELS`.
 
 ## Experiment categories
 
@@ -164,7 +185,6 @@ Runtime directories resolve relative to the working directory; set `PITCHBENCH_R
 ```bash
 pytest tests/
 ```
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
