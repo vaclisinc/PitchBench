@@ -30,10 +30,11 @@ Register ranges (top → bottom, one octave each):
   part 3  48–59  (C3–B3)
   part 4  36–47  (C2–B2)
 
-Prompt formats: MIDI integers · SPN note names · Solfège syllable and accidental (if needed)s
+Prompt formats: MIDI integers · SPN note names · Solfège syllable and accidentals (if needed)
 
-Scoring: per-position accuracy + full-sequence exact match, broken down by
-         (n, x, tempo, instrument_config, source_label, format).
+Scoring: binary full-sequence exact match (1 if every position matches the
+         ground truth, else 0); reported as a percentage of stimuli, broken
+         down by (n, x, tempo, instrument_config, source_label, format).
 
 Usage:
     pitchbench pitchbench_g1_melodic_line_id
@@ -81,7 +82,6 @@ DUR_JITTER    = 0.5      # ± fraction around mean duration for per-note jitter
 TEMPOS: dict[str, int] = {
     "slow":   1000,
     "medium":  500,
-    "fast":    250,
 }
 
 # One-octave register ranges, top → bottom (index 0 = highest part)
@@ -312,9 +312,9 @@ def make_prompt_spn(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
 def make_prompt_doremi(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
-        f"List all {N_NOTES} solfège syllable and accidental (if needed)s in order from first to last "
+        f"List all {N_NOTES} solfège syllable and accidentals (if needed) in order from first to last "
         "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B; include sharps e.g. do# re#). "
-        "Reply with ONLY the syllable and accidental (if needed)s separated by spaces. Nothing else. Do not think."
+        "Reply with ONLY the syllable and accidentals (if needed) separated by spaces. Nothing else. Do not think."
     )
 
 
@@ -348,18 +348,17 @@ def _parse_doremi_seq(text: str) -> list[int | None]:
 
 def _score_midi(
     gt: list[int], pred: list[int | None]
-) -> tuple[list[bool | None], int, int]:
+) -> tuple[list[bool | None], int]:
     per_pos = [
         (gt[i] == pred[i] if pred[i] is not None else None)
         for i in range(N_NOTES)
     ]
-    n_correct = sum(1 for v in per_pos if v is True)
-    return per_pos, n_correct, int(n_correct == N_NOTES)
+    return per_pos, int(all(v is True for v in per_pos))
 
 
 def _score_spn(
     gt_midi: list[int], pred: list[str | None]
-) -> tuple[list[bool | None], int, int]:
+) -> tuple[list[bool | None], int]:
     gt_spn = [midi_to_note(m) for m in gt_midi]
     per_pos: list[bool | None] = []
     for gt, pr in zip(gt_spn, pred):
@@ -368,13 +367,12 @@ def _score_spn(
         else:
             dist = semitone_distance(gt, pr)
             per_pos.append(dist == 0 if dist is not None else False)
-    n_correct = sum(1 for v in per_pos if v is True)
-    return per_pos, n_correct, int(n_correct == N_NOTES)
+    return per_pos, int(all(v is True for v in per_pos))
 
 
 def _score_doremi(
     gt_midi: list[int], pred_pcs: list[int | None]
-) -> tuple[list[bool | None], int, int]:
+) -> tuple[list[bool | None], int]:
     gt_pcs = [m % 12 for m in gt_midi]
     per_pos: list[bool | None] = []
     for gt_pc, pred_pc in zip(gt_pcs, pred_pcs):
@@ -383,18 +381,15 @@ def _score_doremi(
         else:
             diff = abs(gt_pc - pred_pc)
             per_pos.append(min(diff, 12 - diff) == 0)
-    n_correct = sum(1 for v in per_pos if v is True)
-    return per_pos, n_correct, int(n_correct == N_NOTES)
+    return per_pos, int(all(v is True for v in per_pos))
 
 
 # ── Summary helpers ───────────────────────────────────────────────────────────
 
-def _acc_pair(records: list[dict], nc_key: str, sc_key: str) -> tuple[float, float]:
+def _acc(records: list[dict], sc_key: str) -> float:
     if not records:
-        return 0.0, 0.0
-    note_acc = sum(r[nc_key] for r in records) / (len(records) * N_NOTES)
-    seq_acc  = sum(r[sc_key] for r in records) / len(records)
-    return round(note_acc, 4), round(seq_acc, 4)
+        return 0.0
+    return round(sum(r[sc_key] for r in records) / len(records), 4)
 
 
 def _compute_summary(records: list[dict]) -> dict[str, Any]:
@@ -403,8 +398,8 @@ def _compute_summary(records: list[dict]) -> dict[str, Any]:
 
     FMTS = ("midi", "spn", "doremi")
 
-    def breakdown(sub: list[dict]) -> dict:
-        return {f: _acc_pair(sub, f"{f}_n_correct", f"{f}_seq_correct") for f in FMTS}
+    def breakdown(sub: list[dict]) -> dict[str, float]:
+        return {f: _acc(sub, f"{f}_seq_correct") for f in FMTS}
 
     by_nx: dict[str, dict] = {}
     for n in N_PARTS_LIST:
@@ -415,9 +410,14 @@ def _compute_summary(records: list[dict]) -> dict[str, Any]:
 
     labels_seen = sorted({r["source_label"] for r in records})
 
+    overall = breakdown(records)
+
     return {
         "total":       len(records),
-        "overall":     breakdown(records),
+        # `per_format` is what helpers/results.save_results uses to write the
+        # cross-experiment format_accuracy_<model>.csv aggregate.
+        "per_format":  overall,
+        "overall":     overall,
         "by_inst_cfg": {
             cfg: breakdown([r for r in records if r["inst_cfg"] == cfg])
             for cfg in ("similar", "mixed")
@@ -442,24 +442,19 @@ def _compute_summary(records: list[dict]) -> dict[str, Any]:
 
 
 def _format_summary(records: list[dict], summary: dict) -> list[str]:
-    HDR = (
-        f"  {'':20s}  {'MIDI note':>9}  {'MIDI seq':>8}"
-        f"  {'SPN note':>8}  {'SPN seq':>7}"
-        f"  {'Do note':>7}  {'Do seq':>6}"
-    )
-    SEP = f"  {'─' * 72}"
+    HDR = f"  {'':20s}  {'MIDI':>7}  {'SPN':>7}  {'Doremi':>7}"
+    SEP = f"  {'─' * 48}"
 
-    def row(label: str, d: dict) -> str:
-        mn, ms = d["midi"]
-        sn, ss = d["spn"]
-        dn, ds = d["doremi"]
+    def row(label: str, d: dict[str, float]) -> str:
         return (
-            f"  {label:20s}  {mn:>9.1%}  {ms:>8.1%}"
-            f"  {sn:>8.1%}  {ss:>7.1%}"
-            f"  {dn:>7.1%}  {ds:>6.1%}"
+            f"  {label:20s}  {d['midi']:>7.1%}  {d['spn']:>7.1%}  {d['doremi']:>7.1%}"
         )
 
-    lines: list[str] = [f"  Total records : {summary.get('total', 0)}", ""]
+    lines: list[str] = [
+        f"  Total records : {summary.get('total', 0)}",
+        "  (Accuracy = fraction of stimuli where the FULL sequence is correct.)",
+        "",
+    ]
 
     for section, key in [
         ("Overall", "overall"),
@@ -467,6 +462,7 @@ def _format_summary(records: list[dict], summary: dict) -> list[str]:
         ("By tempo", "by_tempo"),
         ("By number of parts (n)", "by_n"),
         ("By source label", "by_source_label"),
+        ("By (n, x)", "by_nx"),
     ]:
         data = summary.get(key)
         if not data:
@@ -478,17 +474,6 @@ def _format_summary(records: list[dict], summary: dict) -> list[str]:
             for k, d in data.items():
                 lines.append(row(str(k), d))
         lines.append("")
-
-    # (n, x) table — note accuracy only to keep it compact
-    by_nx = summary.get("by_nx", {})
-    if by_nx:
-        lines += ["  By (n, x) — note accuracy:", f"  {'─' * 44}"]
-        lines.append(f"  {'cond':12s}  {'MIDI':>7}  {'SPN':>7}  {'Doremi':>7}")
-        for key, d in by_nx.items():
-            mn, _ = d["midi"]
-            sn, _ = d["spn"]
-            dn, _ = d["doremi"]
-            lines.append(f"  {key:12s}  {mn:>7.1%}  {sn:>7.1%}  {dn:>7.1%}")
 
     return lines
 
@@ -534,9 +519,9 @@ def run_one_model(
         pred_spn    = _parse_spn_seq(raw_spn)
         pred_doremi = _parse_doremi_seq(raw_doremi)
 
-        midi_pos, midi_nc, midi_sc = _score_midi(tgt, pred_midi)
-        spn_pos,  spn_nc,  spn_sc  = _score_spn(tgt, pred_spn)
-        dor_pos,  dor_nc,  dor_sc  = _score_doremi(tgt, pred_doremi)
+        midi_pos, midi_sc = _score_midi(tgt, pred_midi)
+        spn_pos,  spn_sc  = _score_spn(tgt, pred_spn)
+        dor_pos,  dor_sc  = _score_doremi(tgt, pred_doremi)
 
         records.append({
             # ── condition ─────────────────────────────────────────────────────
@@ -559,17 +544,14 @@ def run_one_model(
             # ── MIDI ─────────────────────────────────────────────────────────
             "midi_pred":        str(pred_midi),
             "midi_per_pos":     str(midi_pos),
-            "midi_n_correct":   midi_nc,
             "midi_seq_correct": midi_sc,
             # ── SPN ──────────────────────────────────────────────────────────
             "spn_pred":         str(pred_spn),
             "spn_per_pos":      str(spn_pos),
-            "spn_n_correct":    spn_nc,
             "spn_seq_correct":  spn_sc,
             # ── Doremi ───────────────────────────────────────────────────────
             "doremi_pred":      str(pred_doremi),
             "doremi_per_pos":   str(dor_pos),
-            "doremi_n_correct": dor_nc,
             "doremi_seq_correct": dor_sc,
             # ── raw responses ─────────────────────────────────────────────────
             "raw_midi":         raw_midi.strip(),
@@ -623,7 +605,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by (n_voices, source_label))")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

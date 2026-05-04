@@ -45,8 +45,8 @@ EXP_NAME = Path(__file__).stem
 
 N_COUNTS:        list[int] = [1, 2, 3, 4, 5, 7, 10]
 RHYTHMS:         list[str] = ["regular", "irregular"]
-DEFAULT_GAP_MS               = 300
-DEFAULT_N_TRIALS             = 3
+DEFAULT_GAP_MS               = config.DEFAULT_GAP_MS
+DEFAULT_N_TRIALS             = config.DEFAULT_N_TRIALS
 DEFAULT_SEED = config.DEFAULT_SEED
 
 PITCH_MIN, PITCH_MAX = 48, 84
@@ -211,7 +211,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--seed",     type=int, default=DEFAULT_SEED)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

@@ -56,7 +56,7 @@ CHORD_INTERVALS: dict[str, tuple[int, ...]] = {
 QUALITIES_FIXED:   list[str] = list(CHORD_INTERVALS.keys())
 QUALITIES:         list[str] = QUALITIES_FIXED + ["random_set"]
 
-ROOT_MIDIS:        list[int] = list(range(48, 60))   # C3..B3, 12 roots
+ROOT_MIDIS:        list[int] = config.DEFAULT_SELECTION
 SAME_INSTRUMENT_OPTS: list[bool] = [True, False]
 
 DEFAULT_N_TRIALS = 1                # per (n, quality, root, dur, source) cell
@@ -227,7 +227,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--seed",    type=int, default=DEFAULT_SEED)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

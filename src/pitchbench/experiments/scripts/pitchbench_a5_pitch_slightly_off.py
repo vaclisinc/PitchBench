@@ -184,7 +184,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--sources", nargs="+", metavar="SRC", default=None)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

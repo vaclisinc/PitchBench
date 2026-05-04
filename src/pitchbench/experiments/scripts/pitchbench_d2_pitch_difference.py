@@ -49,7 +49,7 @@ DELTA_CENTS: list[int] = [1, 2, 5, 10, 25, 50, 100, 200, 400, 700, 1200]
 SEPARATION_MS: list[int] = [200, 500, 1000, 2000]
 
 DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS           # per tone — universal IV slot is "duration_ms"
-DEFAULT_N_TRIALS    = 3
+DEFAULT_N_TRIALS    = config.DEFAULT_N_TRIALS
 DEFAULT_SEED = config.DEFAULT_SEED
 
 SOURCES: list[str] = list(config.WAVEFORMS)   # waveforms only — Hz tones unsupported on instruments
@@ -180,7 +180,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--seed",      type=int, default=DEFAULT_SEED)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

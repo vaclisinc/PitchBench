@@ -22,9 +22,9 @@ from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_three_formats
+from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
 from pitchbench.experiments.helpers.music import (
-    midi_to_note, midi_to_solfege,
+    midi_to_freq, midi_to_note, midi_to_solfege,
     standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
@@ -51,6 +51,7 @@ def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
     ref_note    = midi_to_note(ref_midi)
     ref_solfege = midi_to_solfege(ref_midi)
     ref_midi_s  = str(ref_midi)
+    ref_hz_s    = f"{midi_to_freq(ref_midi):.2f}"
 
     if condition == "baseline":
         if variant == "midi":
@@ -61,10 +62,14 @@ def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
             return ("This audio contains a single musical note. "
                     "What is the note name and octave, e.g. C4, F#3? "
                     "Reply with ONLY the note name.")
-        else:  # doremi
+        elif variant == "doremi":
             return ("This audio contains a single musical note. "
                     "What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
                     "Reply with the syllable and accidental (if necessary).")
+        else:  # hz
+            return ("This audio contains a single musical note. "
+                    "What is the pitch frequency in Hertz? "
+                    "Reply with ONLY a number (the frequency in Hz). Nothing else.")
     else:  # anchored
         if variant == "midi":
             return (f"You will hear two tones separated by a silence. "
@@ -76,11 +81,16 @@ def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
                     f"The FIRST tone is {ref_note}. "
                     f"What is the note name of the SECOND tone, e.g. C4, F#3? "
                     f"Reply with ONLY the note name.")
-        else:  # doremi
+        elif variant == "doremi":
             return (f"You will hear two tones separated by a silence. "
                     f"The FIRST tone is '{ref_solfege}' (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
                     f"What is the solfège syllable and accidental (if needed) of the SECOND tone? "
                     f"Reply with the syllable and accidental (if necessary).")
+        else:  # hz
+            return (f"You will hear two tones separated by a silence. "
+                    f"The FIRST tone is {ref_hz_s} Hz. "
+                    f"What is the pitch frequency of the SECOND tone in Hertz? "
+                    f"Reply with ONLY a number (the frequency in Hz). Nothing else.")
 
 
 # ── Conditions / stimulus generation ─────────────────────────────────────────
@@ -134,15 +144,18 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         prompt_midi   = _make_prompt("midi",   c["ref_midi"], c["condition"])
         prompt_abc    = _make_prompt("abc",    c["ref_midi"], c["condition"])
         prompt_doremi = _make_prompt("doremi", c["ref_midi"], c["condition"])
-        raw_midi, raw_abc, raw_doremi = query_three_formats(
-            model_name, wav, prompt_midi, prompt_abc, prompt_doremi
+        prompt_hz     = _make_prompt("hz",     c["ref_midi"], c["condition"])
+        r_m, r_a, r_d, r_h = query_four_formats(
+            model_name, wav, prompt_midi, prompt_abc, prompt_doremi, prompt_hz,
         )
         rec = standard_pitch_record(
             wav=wav, source=c["source"],
             source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["tgt_midi"],
-            raw_midi=raw_midi, raw_abc=raw_abc, raw_doremi=raw_doremi,
-            prompt_midi=prompt_midi, prompt_abc=prompt_abc, prompt_doremi=prompt_doremi,
+            raw_midi=r_m["result"], raw_abc=r_a["result"],
+            raw_doremi=r_d["result"], raw_hz=r_h["result"],
+            prompt_midi=prompt_midi, prompt_abc=prompt_abc,
+            prompt_doremi=prompt_doremi, prompt_hz=prompt_hz,
             condition=c["condition"],
             ref_midi=c["ref_midi"], ref_note=c["ref_note"],
             interval=c["interval"],
@@ -158,6 +171,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "midi":   round(sum(r["midi_correct"]   for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
             "abc":    round(sum(r["abc_correct"]    for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
             "doremi": round(sum(r["doremi_correct"] for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
+            "hz":     round(sum(r["hz_correct"]     for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
         }
 
     per_interval: dict[int, dict] = {}
@@ -181,13 +195,14 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  Stimuli : {n}  ({len(REFERENCE_PITCHES)} refs × {len(INTERVALS)} intervals × "
         f"{len(SOURCES)} sources × {len(CONDITIONS)} conditions)",
         "",
-        f"  {'Condition':10s}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>8}",
-        f"  {'─' * 38}",
+        f"  {'Condition':10s}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>8}  {'Hz%':>6}",
+        f"  {'─' * 46}",
     ]
     for cond, vd in per_cond_var.items():
         summary_lines.append(
             f"  {cond:10s}  {vd.get('midi', 0):>7.1%}  "
-            f"{vd.get('abc', 0):>7.1%}  {vd.get('doremi', 0):>8.1%}"
+            f"{vd.get('abc', 0):>7.1%}  {vd.get('doremi', 0):>8.1%}  "
+            f"{vd.get('hz', 0):>6.1%}"
         )
     summary_lines += ["", "  ABC accuracy by interval (anchored | baseline):"]
     for iv, d in per_interval.items():
@@ -229,7 +244,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -250,7 +265,7 @@ def preview() -> None:
     print(f"Intervals    : {INTERVALS}")
     print(f"Conditions   : {CONDITIONS}")
     print(f"Audio files  : {n_audio}")
-    print(f"Queries/model: {n_audio * 3}  (3 prompt variants)")
+    print(f"Queries/model: {n_audio * 4}  (4 prompt variants)")
     print(f"Audio dir    : {config.AUDIO_DIR}")
     for line in sampling_summary_lines(s_meta):
         print(line)
@@ -270,7 +285,7 @@ def run() -> dict:
 
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
-    print(f"Audio files: {len(conds)}  × 3 variants = {len(conds)*3} queries/model")
+    print(f"Audio files: {len(conds)}  × 4 variants = {len(conds)*4} queries/model")
     for line in sampling_summary_lines(s_meta):
         print(line)
 

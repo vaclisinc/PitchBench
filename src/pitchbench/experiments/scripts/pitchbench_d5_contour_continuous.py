@@ -41,11 +41,11 @@ from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summ
 
 EXP_NAME = Path(__file__).stem
 
-START_PITCHES: list[int] = [30, 48, 55, 60, 67, 72, 82]   # F#1, C3, G3, C4, G4, C5, G5
+START_PITCHES: list[int] = config.DEFAULT_PITCHES 
 
-INTERVALS_ST: list[int] = [4, 7, 12]   # semitones of change
+INTERVALS_ST: list[int] = [1, 4, 7, 12]   # semitones of change
 
-DURATION_MS = 3_000
+DURATION_MS = config.DEFAULT_DURATION_MS
 
 SOURCES: list[str] = list(config.WAVEFORMS)  # glide works best on waveforms
 
@@ -276,7 +276,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

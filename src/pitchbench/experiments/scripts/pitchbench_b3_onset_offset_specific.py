@@ -148,10 +148,15 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "iou":              m["iou"],
             "abs_error_on":     m["abs_error_on"],
             "abs_error_off":    m["abs_error_off"],
-            "within_500ms_on":  m["within_500ms_on"],
-            "within_500ms_off": m["within_500ms_off"],
-            "within_250ms_on":  m["within_250ms_on"],
-            "within_250ms_off": m["within_250ms_off"],
+            "within_100ms_on":   m["within_100ms_on"],
+            "within_100ms_off":  m["within_100ms_off"],
+            "within_100ms_both": m["within_100ms_both"],
+            "within_250ms_on":   m["within_250ms_on"],
+            "within_250ms_off":  m["within_250ms_off"],
+            "within_250ms_both": m["within_250ms_both"],
+            "within_500ms_on":   m["within_500ms_on"],
+            "within_500ms_off":  m["within_500ms_off"],
+            "within_500ms_both": m["within_500ms_both"],
             "valid":            int(m["valid"]),
             "seed":             c["seed"],
             "model_params":     out["model_params"],
@@ -162,14 +167,26 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     summary = {
         "total":            n,
         "valid":            len(valid),
-        "mean_iou":         round(sum(r["iou"] for r in valid) / max(1, len(valid)), 4),
-        "within_500ms_on":  round(sum(r["within_500ms_on"]  for r in records) / max(1, n), 4),
-        "within_500ms_off": round(sum(r["within_500ms_off"] for r in records) / max(1, n), 4),
+        "mean_iou":          round(sum(r["iou"] for r in valid) / max(1, n), 4),
+        "within_100ms_on":   round(sum(r["within_100ms_on"]   for r in records) / max(1, n), 4),
+        "within_100ms_off":  round(sum(r["within_100ms_off"]  for r in records) / max(1, n), 4),
+        "within_100ms_both": round(sum(r["within_100ms_both"] for r in records) / max(1, n), 4),
+        "within_250ms_on":   round(sum(r["within_250ms_on"]   for r in records) / max(1, n), 4),
+        "within_250ms_off":  round(sum(r["within_250ms_off"]  for r in records) / max(1, n), 4),
+        "within_250ms_both": round(sum(r["within_250ms_both"] for r in records) / max(1, n), 4),
+        "within_500ms_on":   round(sum(r["within_500ms_on"]   for r in records) / max(1, n), 4),
+        "within_500ms_off":  round(sum(r["within_500ms_off"]  for r in records) / max(1, n), 4),
+        "within_500ms_both": round(sum(r["within_500ms_both"] for r in records) / max(1, n), 4),
     }
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli   : {n}  (valid: {len(valid)})",
         f"  Mean IoU  : {summary['mean_iou']:.3f}",
+        f"  ±100 ms on/off: {summary['within_100ms_on']:.1%} / {summary['within_100ms_off']:.1%}",
+        f"  ±100 ms both  : {summary['within_100ms_both']:.1%}",
+        f"  ±250 ms on/off: {summary['within_250ms_on']:.1%} / {summary['within_250ms_off']:.1%}",
+        f"  ±250 ms both  : {summary['within_250ms_both']:.1%}",
         f"  ±500 ms on/off: {summary['within_500ms_on']:.1%} / {summary['within_500ms_off']:.1%}",
+        f"  ±500 ms both  : {summary['within_500ms_both']:.1%}",
     ]
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
@@ -189,8 +206,10 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         EXP_NAME, model_name, records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=("iou", "within_500ms_on", "within_500ms_off",
-                       "within_250ms_on", "within_250ms_off"),
+        extra_metrics=("iou",
+                       "within_100ms_on", "within_100ms_off", "within_100ms_both",
+                       "within_250ms_on", "within_250ms_off", "within_250ms_both",
+                       "within_500ms_on", "within_500ms_off", "within_500ms_both"),
     )
     return summary
 
@@ -203,7 +222,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--seed",    type=int, default=DEFAULT_SEED)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

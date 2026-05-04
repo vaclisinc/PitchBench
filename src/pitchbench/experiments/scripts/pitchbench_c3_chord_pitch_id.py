@@ -7,7 +7,7 @@ seventh chords (dom7/maj7/min7) across all 12 roots.
 Three prompt variants per stimulus:
   MIDI:    list all MIDI note numbers
   ABC:     list all note names
-  Solfège: list all solfège syllable and accidental (if needed)s
+  Solfège: list all solfège syllable and accidentals (if needed)
 
 Scoring: set-level exact match (order-agnostic) + per-note recall.
 
@@ -38,7 +38,7 @@ from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summ
 
 EXP_NAME = Path(__file__).stem
 
-TONE_DURATION_MS = 2_000
+TONE_DURATION_MS = config.DEFAULT_DURATION_MS
 
 SOURCES: list[str] = config.ALL_SOURCES
 
@@ -69,7 +69,7 @@ CHORD_TYPES: dict[str, list[int]] = {
     "seventh_min": [0, 3, 7, 10],
 }
 
-BASE_ROOTS: list[int] = list(range(60, 72))  # C4–B4 (all 12 pitch classes)
+BASE_ROOTS: list[int] = config.DEFAULT_SELECTION
 
 PROMPT_MIDI = (
     "This audio contains multiple musical pitches played simultaneously. "
@@ -80,12 +80,12 @@ PROMPT_MIDI = (
 PROMPT_ABC = (
     "This audio contains multiple musical pitches played simultaneously. "
     "List ALL note names you hear, from lowest to highest. "
-    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G4#. Nothing else. Do not think."
+    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G#4. Nothing else. Do not think."
 )
 
 PROMPT_DOREMI = (
     "This audio contains multiple musical pitches played simultaneously. "
-    "List ALL solfège syllable and accidental (if needed)s you hear (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
+    "List ALL solfège syllable and accidentals (if needed) you hear (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
     "Reply with ONLY the syllables with accidental (if needed) separated by spaces, e.g. do mi sol#. Nothing else. Do not think."
 )
 
@@ -301,7 +301,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Sources to use (default: all). Available: {all_sources}")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

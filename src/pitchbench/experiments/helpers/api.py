@@ -42,6 +42,7 @@ import pitchbench.config as config
 from pitchbench.experiments.helpers import cost as cost_tracker
 
 OPENROUTER_PREFIX = "openrouter/"
+MANUAL_MODEL_NAME = "manual"
 
 
 # ── small utilities ───────────────────────────────────────────────────────────
@@ -78,7 +79,12 @@ def model_slug(info: dict | str) -> str:
 # ── model info / health ───────────────────────────────────────────────────────
 
 def get_model_info(model_name: str) -> dict:
-    """Return /health for local models, or a synthetic info dict for OpenRouter."""
+    """Return /health for local models, or a synthetic info dict for OpenRouter / manual."""
+    if model_name == MANUAL_MODEL_NAME:
+        return {
+            "model":    MANUAL_MODEL_NAME,
+            "provider": "manual",
+        }
     if model_name.startswith(OPENROUTER_PREFIX):
         return {
             "model":               model_name,
@@ -153,6 +159,36 @@ def _local_embed(model_name: str, audio_path: str, timeout_s: float) -> dict:
     raw = resp.json()
     return {"result": None, "raw_response": raw,
             "top_tokens": None, "embedding": raw.get("embedding"), "usage": None}
+
+
+# ── Manual handler ────────────────────────────────────────────────────────────
+
+def _manual_text(audio_path: str, prompt: str) -> dict:
+    """Prompt the human at the CLI to provide a response for this stimulus.
+
+    Stand-in for an ALM call — the wav path and prompt are printed and the
+    user's typed answer is returned as ``result``. Requires an interactive TTY.
+    """
+    if not sys.stdin.isatty():
+        raise SystemExit(
+            f"Model {MANUAL_MODEL_NAME!r} requires an interactive terminal "
+            "(stdin is not a TTY)."
+        )
+    print()
+    print(f"  [manual]  {Path(audio_path).name}")
+    print(f"      audio :  {audio_path}")
+    print(f"      prompt:  {prompt}")
+    try:
+        answer = input("      answer:  ").strip()
+    except EOFError:
+        answer = ""
+    return {
+        "result":       answer,
+        "raw_response": {"manual": True, "answer": answer, "prompt": prompt},
+        "top_tokens":   None,
+        "embedding":    None,
+        "usage":        None,
+    }
 
 
 # ── OpenRouter handler ────────────────────────────────────────────────────────
@@ -318,8 +354,16 @@ def query_alm(
         SystemExit:           local server unreachable, or OPENROUTER_KEY missing.
     """
     audio_path    = str(audio_path)
+    is_manual     = model_name == MANUAL_MODEL_NAME
     is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
     info          = get_model_info(model_name)
+
+    if is_manual:
+        endpoint = "manual"
+    elif is_openrouter:
+        endpoint = "openrouter"
+    else:
+        endpoint = config.MODEL_URLS.get(model_name)
 
     model_params: dict[str, Any] = {
         "model_name":     model_name,
@@ -331,11 +375,17 @@ def query_alm(
         "audio_file":     os.path.basename(audio_path),
         "audio_sha256":   _audio_sha256(audio_path),
         "prompt":         prompt,
-        "endpoint":       "openrouter" if is_openrouter else config.MODEL_URLS.get(model_name),
+        "endpoint":       endpoint,
     }
 
     start = time.time()
-    if is_openrouter:
+    if is_manual:
+        if mode != "text":
+            raise NotImplementedError(
+                f"Manual mode supports mode='text' only, got mode={mode!r}."
+            )
+        result = _manual_text(audio_path, prompt)
+    elif is_openrouter:
         if mode == "embed":
             raise NotImplementedError("OpenRouter does not expose audio embeddings.")
         if mode == "probs":

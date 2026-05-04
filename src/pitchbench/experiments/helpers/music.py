@@ -149,7 +149,7 @@ def extract_solfege(text: str) -> int | None:
 
 
 def extract_all_solfege(text: str) -> list[int]:
-    """Parse all solfege syllable and accidental (if needed)s in order and return pitch classes.
+    """Parse all solfege syllable and accidentals (if needed) in order and return pitch classes.
 
     Falls back to a cheap OpenRouter LLM (``config.DOREMI_PARSER_MODEL``) when
     the regex matches no syllables; same gating as :func:`extract_solfege`.
@@ -330,26 +330,65 @@ def note_pc(spn_str: str) -> tuple[str | None, int | None]:
         return None, None
 
 
-# ── Time-string parsing (MM:SS.cc) ────────────────────────────────────────────
+# ── Time-string parsing ───────────────────────────────────────────────────────
 
-_TIME_RE = re.compile(r"(\d{1,2}):(\d{1,2}(?:\.\d+)?)")
+# MM:SS.cc or MM:SS (colon-separated)
+_RE_COLON   = re.compile(r"(\d{1,2}):(\d{1,2}(?:\.\d+)?)")
+# MM.SS.cc (dot-separated, e.g. "0.05.20" → 5.20 s, "01.23.45" → 83.45 s)
+# Requires exactly 3 dot-separated parts to avoid clashing with bare floats.
+_RE_DOT     = re.compile(r"(\d{1,2})\.(\d{1,2})\.(\d+)")
+# Bare seconds with an explicit 's' suffix (e.g. "5.2s", "83s")
+_RE_S_SUFF  = re.compile(r"(\d+(?:\.\d+)?)s\b", re.IGNORECASE)
 
 
 def parse_mm_ss_cc(text: str) -> list[float]:
-    """Parse comma-separated ``MM:SS.cc`` timestamps into floats (seconds).
+    """Extract timestamps from text, accepting several formats (seconds-based result).
+
+    Tried in priority order — first pattern that yields at least one hit wins:
+
+    1. ``MM:SS.cc`` / ``MM:SS``   e.g. ``0:05.20``, ``1:23``
+    2. ``MM.SS.cc``               e.g. ``0.05.20`` → 5.20 s, ``01.23.45`` → 83.45 s
+    3. ``XXXs`` / ``XX.Xs``       e.g. ``5.2s``, ``83s``
+    4. Bare number(s)             last resort — only if the cleaned text parses
+                                  entirely as space/comma-separated floats
 
     Examples::
 
-        parse_mm_ss_cc("0:01.20, 0:02.50")   → [1.20, 2.50]
-        parse_mm_ss_cc("01:23.45")           → [83.45]
-        parse_mm_ss_cc("garbage")            → []
+        parse_mm_ss_cc("0:01.20, 0:02.50")  → [1.20, 2.50]
+        parse_mm_ss_cc("01:23.45")          → [83.45]
+        parse_mm_ss_cc("0.05.20, 0.08.50")  → [5.20, 8.50]
+        parse_mm_ss_cc("5.2s, 8.5s")        → [5.2, 8.5]
+        parse_mm_ss_cc("5.2, 8.5")          → [5.2, 8.5]
+        parse_mm_ss_cc("garbage")           → []
     """
-    out: list[float] = []
-    for m in _TIME_RE.finditer(text):
-        minutes = int(m.group(1))
-        seconds = float(m.group(2))
-        out.append(minutes * 60 + seconds)
-    return out
+    # 1) MM:SS.cc or MM:SS
+    out = [int(m.group(1)) * 60 + float(m.group(2))
+           for m in _RE_COLON.finditer(text)]
+    if out:
+        return out
+
+    # 2) MM.SS.cc (dot-separated triple)
+    out = [int(m.group(1)) * 60 + int(m.group(2)) + float("0." + m.group(3))
+           for m in _RE_DOT.finditer(text)]
+    if out:
+        return out
+
+    # 3) Bare seconds with 's' suffix
+    out = [float(m.group(1)) for m in _RE_S_SUFF.finditer(text)]
+    if out:
+        return out
+
+    # 4) Bare number fallback — only if the entire content is numbers + separators
+    stripped = re.sub(r"[^\d.,\s]", "", text).strip()
+    if stripped:
+        try:
+            floats = [float(p) for p in re.split(r"[\s,]+", stripped) if p]
+            if floats:
+                return floats
+        except ValueError:
+            pass
+
+    return []
 
 
 def timing_metrics(
@@ -364,17 +403,16 @@ def timing_metrics(
         within_100ms_on / off                  0 / 1
         within_250ms_on / off                  0 / 1
         within_500ms_on / off                  0 / 1
+        within_250ms_both                      1 iff BOTH endpoints ≤ 250 ms
+        within_500ms_both                      1 iff BOTH endpoints ≤ 500 ms
         valid                                  bool — both endpoints parsed
-
-    All threshold metrics are reported per-endpoint so callers can aggregate
-    onset and offset separately.
     """
     if pred_on is None or pred_off is None:
         return {"valid": False, "iou": 0.0,
                 "abs_error_on": None,  "abs_error_off": None,
-                "within_100ms_on": 0,  "within_100ms_off": 0,
-                "within_250ms_on": 0,  "within_250ms_off": 0,
-                "within_500ms_on": 0,  "within_500ms_off": 0}
+                "within_100ms_on": 0,  "within_100ms_off": 0,  "within_100ms_both": 0,
+                "within_250ms_on": 0,  "within_250ms_off": 0,  "within_250ms_both": 0,
+                "within_500ms_on": 0,  "within_500ms_off": 0,  "within_500ms_both": 0}
 
     if pred_off < pred_on:                       # tolerate reversed predictions
         pred_on, pred_off = pred_off, pred_on
@@ -385,16 +423,19 @@ def timing_metrics(
     iou             = inter / union if union > 0 else 0.0
 
     return {
-        "valid":            True,
-        "iou":              round(iou, 4),
-        "abs_error_on":     round(abs_on, 4),
-        "abs_error_off":    round(abs_off, 4),
-        "within_100ms_on":  int(abs_on  <= 0.100),
-        "within_100ms_off": int(abs_off <= 0.100),
-        "within_250ms_on":  int(abs_on  <= 0.250),
-        "within_250ms_off": int(abs_off <= 0.250),
-        "within_500ms_on":  int(abs_on  <= 0.500),
-        "within_500ms_off": int(abs_off <= 0.500),
+        "valid":             True,
+        "iou":               round(iou, 4),
+        "abs_error_on":      round(abs_on, 4),
+        "abs_error_off":     round(abs_off, 4),
+        "within_100ms_on":   int(abs_on  <= 0.100),
+        "within_100ms_off":  int(abs_off <= 0.100),
+        "within_100ms_both": int(abs_on  <= 0.100 and abs_off <= 0.100),
+        "within_250ms_on":   int(abs_on  <= 0.250),
+        "within_250ms_off":  int(abs_off <= 0.250),
+        "within_250ms_both": int(abs_on  <= 0.250 and abs_off <= 0.250),
+        "within_500ms_on":   int(abs_on  <= 0.500),
+        "within_500ms_off":  int(abs_off <= 0.500),
+        "within_500ms_both": int(abs_on  <= 0.500 and abs_off <= 0.500),
     }
 
 

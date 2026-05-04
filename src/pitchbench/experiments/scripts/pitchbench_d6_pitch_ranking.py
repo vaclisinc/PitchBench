@@ -46,15 +46,15 @@ EXP_NAME = Path(__file__).stem
 
 BASE_FREQS:  dict[str, float] = {"A3": 220.00, "A4": 440.00, "A5": 880.00}
 DELTA_CENTS: list[int]        = [25, 50, 100, 200, 400]
-N_TONES:     list[int]        = [3, 4, 5]
+N_TONES:     list[int]        = [3, 4, 5, 7]
 RHYTHMS:     list[str]        = ["regular", "irregular"]
 
 DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS   # per tone
-DEFAULT_GAP_MS      = 300    # base inter-tone silence (rhythm=regular)
-DEFAULT_N_TRIALS    = 3
+DEFAULT_GAP_MS      = config.DEFAULT_GAP_MS    # base inter-tone silence (rhythm=regular)
+DEFAULT_N_TRIALS    = config.DEFAULT_N_TRIALS
 DEFAULT_SEED = config.DEFAULT_SEED
 
-SOURCES: list[str] = list(config.WAVEFORMS)   # Hz tones unsupported on instruments
+SOURCES: list[str] = config.WAVEFORMS   # Hz tones unsupported on instruments
 
 
 def _prompt(n: int) -> str:
@@ -262,7 +262,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--seed",     type=int, default=DEFAULT_SEED)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

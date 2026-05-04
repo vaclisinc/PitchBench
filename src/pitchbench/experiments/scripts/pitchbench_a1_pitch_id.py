@@ -26,9 +26,9 @@ from typing import Any
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_three_formats
+from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
 from pitchbench.experiments.helpers.music import (
-    PROMPT_ABC, PROMPT_DOREMI, PROMPT_MIDI,
+    PROMPT_ABC, PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI,
     midi_to_note, standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots
@@ -51,6 +51,7 @@ ALL_SOURCES: list[str] = config.ALL_SOURCES
 PROMPT_MIDI_FULL   = "This audio contains a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "This audio contains a single musical note. " + PROMPT_ABC
 PROMPT_DOREMI_FULL = "This audio contains a single musical note. " + PROMPT_DOREMI
+PROMPT_HZ_FULL     = "This audio contains a single musical note. " + PROMPT_HZ
 
 
 def build_conditions(sources: list[str]) -> list[dict]:
@@ -89,17 +90,19 @@ def run_one_model(
             continue
 
         print(f"    {midi_to_note(midi):4s}  {src}")
-        raw_midi, raw_abc, raw_doremi = query_three_formats(
+        r_m, r_a, r_d, r_h = query_four_formats(
             model_name, wav,
-            PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL,
+            PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
         )
         rec = standard_pitch_record(
             wav=wav, source=src, source_type=source_type,
             midi_gt=midi,
-            raw_midi=raw_midi, raw_abc=raw_abc, raw_doremi=raw_doremi,
+            raw_midi=r_m["result"], raw_abc=r_a["result"],
+            raw_doremi=r_d["result"], raw_hz=r_h["result"],
             prompt_midi=PROMPT_MIDI_FULL,
             prompt_abc=PROMPT_ABC_FULL,
             prompt_doremi=PROMPT_DOREMI_FULL,
+            prompt_hz=PROMPT_HZ_FULL,
         )
         records.append(rec)
 
@@ -107,7 +110,7 @@ def run_one_model(
     n = len(records)
     per_fmt: dict[str, float] = {
         fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, n), 4)
-        for fmt in ("midi", "abc", "doremi")
+        for fmt in ("midi", "abc", "doremi", "hz")
     }
 
     sources_seen = sorted({c["source"] for c in conds})
@@ -118,7 +121,7 @@ def run_one_model(
             continue
         per_src[src] = {
             fmt: round(sum(r[f"{fmt}_correct"] for r in sub) / max(1, len(sub)), 4)
-            for fmt in ("midi", "abc", "doremi")
+            for fmt in ("midi", "abc", "doremi", "hz")
         }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
@@ -140,6 +143,9 @@ def run_one_model(
     summary_lines += ["", "  Per source (doremi accuracy):"]
     for src, d in per_src.items():
         summary_lines.append(f"    {src:16s}: {d.get('doremi', 0):.1%}")
+    summary_lines += ["", "  Per source (Hz accuracy):"]
+    for src, d in per_src.items():
+        summary_lines.append(f"    {src:16s}: {d.get('hz', 0):.1%}")
 
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
@@ -152,7 +158,7 @@ def run_one_model(
         sources=sources_seen, pitches=PITCHES,
         tone_duration_ms=TONE_DURATION_MS,
         prompt_midi=PROMPT_MIDI_FULL, prompt_abc=PROMPT_ABC_FULL,
-        prompt_doremi=PROMPT_DOREMI_FULL,
+        prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
@@ -181,7 +187,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -206,7 +212,7 @@ def preview() -> None:
     for line in sampling_summary_lines(s_meta):
         print(line)
     print(f"Audio files  : {n}  (generating in {config.AUDIO_DIR})")
-    print(f"Queries/model: {n * 3}  (MIDI + ABC + doremi)")
+    print(f"Queries/model: {n * 4}  (MIDI + ABC + doremi + Hz)")
     print("Generating audio …")
     for c in conds:
         try:
@@ -242,7 +248,7 @@ def run() -> dict:
     print(f"Sources    : {available}")
     for line in sampling_summary_lines(s_meta):
         print(line)
-    print(f"Pitches    : {len(PITCHES)}  |  Formats: MIDI + ABC + doremi")
+    print(f"Pitches    : {len(PITCHES)}  |  Formats: MIDI + ABC + doremi + Hz")
 
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict[str, float]] = {}

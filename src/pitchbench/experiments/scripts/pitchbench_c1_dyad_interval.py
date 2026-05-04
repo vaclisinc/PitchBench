@@ -43,9 +43,8 @@ SAME_INSTRUMENT_OPTS: list[bool] = [True, False]
 
 PROMPT = (
     "This audio contains two simultaneous musical notes. "
-    "Name the musical interval between them. "
-    "Examples: 'minor third', 'perfect fifth', 'tritone', 'octave'. "
-    "Reply with ONLY the interval name."
+    "How many semitones apart are they? "
+    "Reply with ONLY the integer number of semitones."
 )
 
 
@@ -172,7 +171,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--models",  nargs="+", metavar="MODEL")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

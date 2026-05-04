@@ -29,7 +29,7 @@ from typing import Any
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_three_formats
+from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note, midi_to_solfege,
@@ -42,7 +42,7 @@ from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summ
 EXP_NAME = Path(__file__).stem
 
 # Representative pitches — wide range
-PITCHES: list[int] = [24, 36, 48, 52, 55, 60, 64, 67, 72, 84, 96]
+PITCHES: list[int] = config.DEFAULT_PITCHES
 #                     C3  E3  G3  C4  E4  G4  C5
 
 # Positions where the tone is placed inside the silent clip (ms)
@@ -71,10 +71,14 @@ def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, conditio
             return ("This audio contains a single musical note. "
                     "What is the note name and octave, e.g. C4, F#3? "
                     "Reply with ONLY the note name.")
-        else:  # doremi
+        elif variant == "doremi":
             return ("This audio contains a single musical note. "
                     "What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
                     "Reply with the syllable and accidental (if necessary).")
+        else:  # hz
+            return ("This audio contains a single musical note. "
+                    "What is the pitch frequency in Hertz? "
+                    "Reply with ONLY a number (the frequency in Hz). Nothing else.")
     else:  # hidden
         context = (
             f"You will hear a {total_s:.0f}-second audio clip. "
@@ -87,9 +91,12 @@ def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, conditio
         elif variant == "abc":
             return context + ("What is the note name and octave of that note, e.g. C4, F#3? "
                               "Reply with ONLY the note name.")
-        else:  # doremi
+        elif variant == "doremi":
             return context + ("What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) "
                               "of that note? Reply with the syllable and accidental (if necessary).")
+        else:  # hz
+            return context + ("What is the pitch frequency of that note in Hertz? "
+                              "Reply with ONLY a number (the frequency in Hz). Nothing else.")
 
 
 def build_conditions(sources: list[str]) -> list[dict]:
@@ -144,15 +151,18 @@ def run_one_model(
         prompt_midi   = _make_prompt("midi",   c["pos_ms"], TONE_DURATION_MS, TOTAL_SILENCE_MS, c["condition"])
         prompt_abc    = _make_prompt("abc",    c["pos_ms"], TONE_DURATION_MS, TOTAL_SILENCE_MS, c["condition"])
         prompt_doremi = _make_prompt("doremi", c["pos_ms"], TONE_DURATION_MS, TOTAL_SILENCE_MS, c["condition"])
-        raw_midi, raw_abc, raw_doremi = query_three_formats(
-            model_name, str(wav), prompt_midi, prompt_abc, prompt_doremi
+        prompt_hz     = _make_prompt("hz",     c["pos_ms"], TONE_DURATION_MS, TOTAL_SILENCE_MS, c["condition"])
+        r_m, r_a, r_d, r_h = query_four_formats(
+            model_name, str(wav), prompt_midi, prompt_abc, prompt_doremi, prompt_hz,
         )
         rec = standard_pitch_record(
             wav=wav, source=c["source"],
             source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["midi"],
-            raw_midi=raw_midi, raw_abc=raw_abc, raw_doremi=raw_doremi,
-            prompt_midi=prompt_midi, prompt_abc=prompt_abc, prompt_doremi=prompt_doremi,
+            raw_midi=r_m["result"], raw_abc=r_a["result"],
+            raw_doremi=r_d["result"], raw_hz=r_h["result"],
+            prompt_midi=prompt_midi, prompt_abc=prompt_abc,
+            prompt_doremi=prompt_doremi, prompt_hz=prompt_hz,
             condition=c["condition"], pos_ms=c["pos_ms"],
         )
         records.append(rec)
@@ -165,6 +175,7 @@ def run_one_model(
             "midi":   round(sum(r["midi_correct"]   for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
             "abc":    round(sum(r["abc_correct"]    for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
             "doremi": round(sum(r["doremi_correct"] for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
+            "hz":     round(sum(r["hz_correct"]     for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
         }
 
     per_position: dict[int, dict] = {}
@@ -173,7 +184,7 @@ def run_one_model(
         b = [r for r in records if r["condition"] == "baseline"]
         if h:
             per_position[pos] = {}
-            for v in ("midi", "abc", "doremi"):
+            for v in ("midi", "abc", "doremi", "hz"):
                 col = f"{v}_correct"
                 per_position[pos][f"hidden_{v}"]   = round(sum(r[col] for r in h) / max(1, len(h)), 4)
                 per_position[pos][f"baseline_{v}"] = round(sum(r[col] for r in b) / max(1, len(b)), 4) if b else None
@@ -184,15 +195,16 @@ def run_one_model(
         f"  Positions : {[p // 1000 for p in TONE_POSITIONS_MS]} s",
         f"  Clip      : {TOTAL_SILENCE_MS // 1000} s total, tone {TONE_DURATION_MS // 1000} s",
         "",
-        f"  {'Condition':10s}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>8}",
-        f"  {'─' * 38}",
+        f"  {'Condition':10s}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>8}  {'Hz%':>6}",
+        f"  {'─' * 46}",
     ]
     for cond, vd in per_cond.items():
         summary_lines.append(
             f"  {cond:10s}  {vd.get('midi', 0):>7.1%}  "
-            f"{vd.get('abc', 0):>7.1%}  {vd.get('doremi', 0):>8.1%}"
+            f"{vd.get('abc', 0):>7.1%}  {vd.get('doremi', 0):>8.1%}  "
+            f"{vd.get('hz', 0):>6.1%}"
         )
-    summary_lines += ["", "  Accuracy by position — hidden | baseline  (MIDI / ABC / Doremi):"]
+    summary_lines += ["", "  Accuracy by position — hidden | baseline  (MIDI / ABC / Doremi / Hz):"]
     for pos, d in per_position.items():
         parts = []
         for v in ("midi", "abc", "doremi"):
@@ -228,9 +240,9 @@ def run_one_model(
         prompt_key="prompt_variant", accuracy_key="exact_match",
     )
     return {
-        f"hidden_{v}":   per_cond.get("hidden",   {}).get(v, 0.0) for v in ("midi", "abc", "doremi")
+        f"hidden_{v}":   per_cond.get("hidden",   {}).get(v, 0.0) for v in ("midi", "abc", "doremi", "hz")
     } | {
-        f"baseline_{v}": per_cond.get("baseline", {}).get(v, 0.0) for v in ("midi", "abc", "doremi")
+        f"baseline_{v}": per_cond.get("baseline", {}).get(v, 0.0) for v in ("midi", "abc", "doremi", "hz")
     }
 
 
@@ -243,7 +255,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -269,7 +281,7 @@ def preview() -> None:
             print(f"  [SKIP] {exc}")
     for line in sampling_summary_lines(s_meta):
         print(line)
-    print(f"Queries/model: {len(conds) * 3}")
+    print(f"Queries/model: {len(conds) * 4}")
     print("\nRun without --preview to query the model(s).")
 
 

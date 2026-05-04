@@ -14,8 +14,6 @@ from pathlib import Path
 DEV = False
 
 # ── Runtime / project root ────────────────────────────────────────────────────
-# Running from a clone : PITCHBENCH_ROOT unset  → cwd == repo root  (unchanged)
-# Installed via pip    : set PITCHBENCH_ROOT to the desired project directory
 _PROJECT_ROOT = Path(os.environ.get("PITCHBENCH_ROOT", ".")).resolve()
 
 DATA_DIR     = _PROJECT_ROOT / "data"       # generated experiment stimuli
@@ -23,19 +21,49 @@ AUDIO_DIR    = DATA_DIR / "audio"           # central audio engine cache
 RESULTS_DIR  = _PROJECT_ROOT / "results" / f"run_{datetime.now().strftime("%Y%m%d_%H%M%S")}"  # experiment outputs (never deleted)
 STIMULI_DIR  = _PROJECT_ROOT / "stimuli"   # reference stimuli
 
+
 # ── Audio defaults ────────────────────────────────────────────────────────────
 SAMPLE_RATE = 16_000   # Hz
 
-# Universal IV defaults applied by every experiment (PitchBench v2):
-#   every experiment varies duration_ms, midi, and source as a minimum.
+# purpose: the two note durations (ms) each experiment tests
+# exp: a4, a5, b2, b3, b4, b5, c1, c2, c4, d1, d2, d3, d4, d6, e3
 DEFAULT_DURATIONS_MS: list[int] = [1000, 5000]
-DEFAULT_DURATION_MS = 5000   # ms per note (for experiments with a single duration IV slot)
-DEFAULT_PITCHES: list[int] = [36, 48, 52, 55, 60, 64, 67, 72, 84]   # 9 reps spanning C2..C6
-DEFAULT_MIDI_MIN = 29 if not DEV else 60   # F1 / C4 in DEV
-DEFAULT_MIDI_MAX = 89 if not DEV else 62   # F6 / D4 in DEV
-DEFAULT_SELECTION = [30, 36, 43, 48, 54, 58, 60, 64, 67, 69, 73, 76, 79, 88] if not DEV else [60, 69]  # 14 reps spanning C1..F6, or just middle C for dev
 
+# purpose: note duration (ms) when an experiment uses only one fixed duration
+# exp: a1, a2, b1, c3, d2, d5, d6, d7, e1, e2
+DEFAULT_DURATION_MS = 5000
 
+# purpose: lowest MIDI note number used in pitch sweeps (F1 normally, C4 in DEV mode)
+# exp: a1, d7, f1, f3
+DEFAULT_MIDI_MIN = 29 if not DEV else 60
+
+# purpose: highest MIDI note number used in pitch sweeps (F6 normally, D4 in DEV mode)
+# exp: a1, d7, f1, f3
+DEFAULT_MIDI_MAX = 89 if not DEV else 62
+
+# purpose: 14 hand-picked pitches spread across C1–F6 used as the standard test set (reduced to [C4, A4] in DEV mode)
+# exp: a2, a3, c2, c3
+DEFAULT_SELECTION = [30, 36, 43, 48, 54, 58, 60, 64, 67, 69, 73, 76, 79, 88] if not DEV else [60, 69]
+
+# purpose: same list as DEFAULT_SELECTION, used by experiments that refer to it as "pitches"
+# exp: a4, a5, b2, b3, b4, b5, c1, d3, d4, d5, e1, e3
+DEFAULT_PITCHES: list[int] = DEFAULT_SELECTION
+
+# purpose: silence gap between consecutive notes in a sequence (ms)
+# exp: d1, d6
+DEFAULT_GAP_MS   = 300
+
+# purpose: how many times each condition is repeated
+# exp: d1, d2, d6
+DEFAULT_N_TRIALS = 3
+
+# purpose: random seed that controls which notes/sequences get assigned to which trial
+# exp: b3, b4, b5, c2, d1, d2, d4, d6, d7, f3, g1, g2, z1
+DEFAULT_SEED = 100
+
+# purpose: random seed for picking a smaller subset of conditions when --sample-n is used
+# exp: a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, d1, d2, d3, d4, d5, d6, d7, e1, e2, e3, g1, g2, z1
+DEFAULT_SAMPLE_SEED = 42
 
 # ── Stimulus generation (FluidSynth) ──────────────────────────────────────────
 SF2_PATH = os.environ.get(
@@ -54,6 +82,7 @@ NSYNTH_VALID_DIR  = DATASETS_DIR / "NSynth" / "nsynth-valid"
 # ── Models ────────────────────────────────────────────────────────────────────
 # Canonical slug → human-readable display name
 MODELS: dict[str, str] = {
+    "manual":                        "Manual (CLI input by human)",
     "music_flamingo":                "Music Flamingo",
     "audio_flamingo_next_instruct":  "Audio Flamingo Next – instruct",
     "audio_flamingo_next_think":     "Audio Flamingo Next – think",
@@ -122,5 +151,3 @@ GM_PROGRAMS_V1: dict[str, int] = {
 WAVEFORMS: list[str] = ["sine", "sawtooth", "square", "triangle"]
 
 ALL_SOURCES: list[str] = list(WAVEFORMS) + list(GM_PROGRAMS_V1.keys())
-
-DEFAULT_SEED = 100

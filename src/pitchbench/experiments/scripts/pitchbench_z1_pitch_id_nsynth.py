@@ -21,9 +21,9 @@ from pathlib import Path
 from typing import Any
 
 import pitchbench.config as config
-from pitchbench.experiments.helpers.api import get_model_info, query_three_formats
+from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
 from pitchbench.experiments.helpers.music import (
-    PROMPT_ABC, PROMPT_MIDI, PROMPT_DOREMI,
+    PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note,
     standard_pitch_record, wide_to_long_records,
 )
@@ -39,6 +39,7 @@ DEFAULT_SEED = config.DEFAULT_SEED
 PROMPT_DOREMI_FULL = "Listen to this audio recording of a single musical note. " + PROMPT_DOREMI
 PROMPT_ABC_FULL    = "Listen to this audio recording of a single musical note. " + PROMPT_ABC
 PROMPT_MIDI_FULL   = "Listen to this audio recording of a single musical note. " + PROMPT_MIDI
+PROMPT_HZ_FULL     = "Listen to this audio recording of a single musical note. " + PROMPT_HZ
 
 
 def load_nsynth_examples() -> dict:
@@ -89,9 +90,9 @@ def run_one_model(
         gt_midi = item["pitch"]
 
         print(f"    {item['note_str']}")
-        raw_midi, raw_abc, raw_doremi = query_three_formats(
+        r_m, r_a, r_d, r_h = query_four_formats(
             model_name, wav,
-            PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL,
+            PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
             verbose=True,
         )
 
@@ -100,12 +101,14 @@ def run_one_model(
             source=item["note_str"],
             source_type="instrument",
             midi_gt=gt_midi,
-            raw_midi=raw_midi,
-            raw_abc=raw_abc,
-            raw_doremi=raw_doremi,
+            raw_midi=r_m["result"],
+            raw_abc=r_a["result"],
+            raw_doremi=r_d["result"],
+            raw_hz=r_h["result"],
             prompt_midi=PROMPT_MIDI_FULL,
             prompt_abc=PROMPT_ABC_FULL,
             prompt_doremi=PROMPT_DOREMI_FULL,
+            prompt_hz=PROMPT_HZ_FULL,
             note_str=item["note_str"],
             instrument_family=item["instrument_family_str"],
             instrument_source=item["instrument_source_str"],
@@ -117,6 +120,7 @@ def run_one_model(
     midi_correct   = sum(r["midi_correct"]   for r in records)
     abc_correct    = sum(r["abc_correct"]    for r in records)
     doremi_correct = sum(r["doremi_correct"] for r in records)
+    hz_correct     = sum(r["hz_correct"]     for r in records)
     midi_within_1  = sum(r["midi_within_1"]  for r in records)
 
     summary = {
@@ -127,6 +131,7 @@ def run_one_model(
         "midi_within_1":   midi_within_1,
         "abc_correct":     abc_correct,
         "doremi_correct":  doremi_correct,
+        "hz_correct":      hz_correct,
     }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
@@ -141,6 +146,9 @@ def run_one_model(
         f"",
         f"  [Doremi — solfege]",
         f"    Exact match            : {doremi_correct} / {n}  ({doremi_correct/n:.1%})",
+        f"",
+        f"  [Hz — frequency]",
+        f"    Exact match (≤1 Hz)    : {hz_correct} / {n}  ({hz_correct/n:.1%})",
     ]
 
     print(f"\n{'=' * 60}")
@@ -157,6 +165,7 @@ def run_one_model(
         prompt_midi=PROMPT_MIDI_FULL,
         prompt_abc=PROMPT_ABC_FULL,
         prompt_doremi=PROMPT_DOREMI_FULL,
+        prompt_hz=PROMPT_HZ_FULL,
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
@@ -205,7 +214,7 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Random seed for sampling (default: {DEFAULT_SEED})")
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N total stimuli from full NSynth valid pool (supersedes --n-per-family)")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 

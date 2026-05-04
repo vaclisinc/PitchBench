@@ -56,6 +56,8 @@ PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
 PROMPT_DOREMI_FULL = PROMPT_PREFIX + PROMPT_DOREMI
 PROMPT_HZ_FULL     = PROMPT_PREFIX + PROMPT_HZ
 
+DURATIONS_MS = config.DEFAULT_DURATIONS_MS
+
 
 def build_conditions(durations_ms: list[int], pitches: list[int], sources: list[str]) -> list[dict]:
     rows: list[dict] = []
@@ -137,7 +139,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
         sources=SOURCES, pitches=config.DEFAULT_PITCHES,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
+        durations_ms=DURATIONS_MS,
         backgrounds=BACKGROUNDS, snr_db=SNR_DB,
         prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
         prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
@@ -154,7 +156,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--sources", nargs="+", metavar="SRC", default=None)
     parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
                         help="Draw N stimuli (stratified by (source, background))")
-    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
+    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -163,7 +165,7 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args    = _parse_args()
     sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
     conds = all_conds
     if args.sample_n is not None:
         conds = stratified_sample(
@@ -190,7 +192,7 @@ def run() -> dict:
     args    = _parse_args()
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
     conds = all_conds
     if args.sample_n is not None:
         conds = stratified_sample(
