@@ -27,7 +27,9 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note,
     standard_pitch_record, wide_to_long_records,
 )
-from pitchbench.experiments.helpers.plots import save_accuracy_plots
+from pitchbench.experiments.helpers.plots import (
+    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+)
 from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
@@ -178,6 +180,8 @@ def run_one_model(
         prompt_key="prompt_variant",
         accuracy_key="exact_match",
     )
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
     return summary
 
 

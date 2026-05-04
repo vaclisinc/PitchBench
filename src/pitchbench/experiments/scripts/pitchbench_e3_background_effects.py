@@ -35,6 +35,7 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
+from pitchbench.experiments.helpers.plots import save_combined_iv_plot, save_per_format_iv_plots
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
@@ -129,8 +130,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         "",
     ]
     for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"  {fmt.upper():>6}  {summary[f'acc_{fmt}']:.1%}")
-    summary_lines.append(f"  MIDI±1  {summary['acc_midi_within_1']:.1%}")
+        summary_lines.append(f"  {fmt.upper():>6}  n={n:>4}  {summary[f'acc_{fmt}']:.1%}")
+    summary_lines.append(f"  MIDI±1  n={n:>4}  {summary['acc_midi_within_1']:.1%}")
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
     for line in summary_lines:
@@ -146,6 +147,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="snr_db", iv_label="SNR (dB)")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="snr_db", iv_label="SNR (dB)")
     return summary
 
 

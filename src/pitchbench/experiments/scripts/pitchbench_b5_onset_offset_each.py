@@ -46,7 +46,6 @@ PITCH_PATTERNS:  list[str] = ["fixed_pitch", "varied_pitches"]
 TOTAL_DUR_MS = config.DEFAULT_TOTAL_DUR_MS
 DEFAULT_SEED = config.DEFAULT_SEED
 
-REG_GAP_MS              = 800
 IRR_GAP_MIN, IRR_GAP_MAX = 300, 2500
 
 SOURCES: list[str] = config.ALL_SOURCES
@@ -76,11 +75,16 @@ def build_conditions(durations_ms: list[int], pitches: list[int], sources: list[
                         else:
                             midis = sub_rng.sample(pitches, n)
                         if rhythm == "regular":
-                            gaps = [REG_GAP_MS] * (n + 1)
+                            # Regular rhythm: equal gaps that exactly fill TOTAL_DUR_MS.
+                            total_gap_budget = TOTAL_DUR_MS - dur * n
+                            if total_gap_budget < 0:
+                                continue
+                            gap_size = total_gap_budget // (n + 1)
+                            gaps = [gap_size] * (n + 1)
                         else:
                             gaps = [sub_rng.randint(IRR_GAP_MIN, IRR_GAP_MAX) for _ in range(n + 1)]
-                        if sum(gaps) + dur * n > TOTAL_DUR_MS:
-                            continue
+                            if sum(gaps) + dur * n > TOTAL_DUR_MS:
+                                continue
                         onsets = []
                         cursor = gaps[0]
                         for _ in range(n):

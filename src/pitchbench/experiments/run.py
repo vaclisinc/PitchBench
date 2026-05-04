@@ -9,6 +9,8 @@ Usage::
     pitchbench a1 --preview                     # generate stimuli, skip queries
     pitchbench --id a1 --download               # generate audio files for a1
     pitchbench --download                       # generate audio for ALL experiments
+    pitchbench a                                # run every experiment in category 'a'
+    pitchbench a --download                     # generate audio for every 'a' experiment
     pitchbench all                              # run every experiment
     pitchbench --list                           # list available experiments
 
@@ -56,6 +58,8 @@ def _prompt_for_models() -> list[str]:
 _NAME_RE = re.compile(r"^pitchbench_([a-z]+\d+)_(.+)$")
 # Bare experiment-id shorthand, e.g. "a1", "b3" — accepted as a positional arg.
 _ID_RE = re.compile(r"^[a-z]+\d+$")
+# Bare category prefix, e.g. "a", "b" — runs every experiment in that category.
+_CAT_RE = re.compile(r"^[a-z]$")
 
 
 def _scripts_dir() -> Path:
@@ -89,6 +93,17 @@ def _id_to_name(exp_id: str) -> str | None:
         if m and m.group(1) == exp_id:
             return n
     return None
+
+
+def _category_to_names(cat: str) -> list[str]:
+    """Return all experiment module names whose ID starts with ``cat``."""
+    cat = cat.lower()
+    out: list[str] = []
+    for n in discover():
+        m = _NAME_RE.match(n)
+        if m and m.group(1).startswith(cat):
+            out.append(n)
+    return out
 
 
 def run_experiment(name: str, extra_argv: list[str]) -> dict[str, dict[str, Any]] | None:
@@ -182,7 +197,19 @@ def main() -> None:
 
     known_names: list[str] = discover()
 
-    if exp_id is not None:
+    # Category prefix: "a", "b", … runs every experiment in that category.
+    category: str | None = None
+    if args.experiment and _CAT_RE.match(args.experiment.lower()):
+        category = args.experiment.lower()
+    elif args.exp_id and _CAT_RE.match(args.exp_id.lower()):
+        category = args.exp_id.lower()
+
+    if category is not None:
+        cat_names = _category_to_names(category)
+        if not cat_names:
+            parser.error(f"No experiments found for category {category!r}.")
+        name = cat_names
+    elif exp_id is not None:
         name = _id_to_name(exp_id)
         if name is None:
             ids = [_NAME_RE.match(n).group(1) for n in known_names if _NAME_RE.match(n)]
@@ -202,10 +229,11 @@ def main() -> None:
     else:
         parser.error("provide an experiment name or --id <letter><digit> (or use --list)")
 
-    if name == "all":
+    if isinstance(name, list) or name == "all":
+        names_to_run = discover() if name == "all" else name
         all_runs:      dict[str, dict[str, dict[str, Any]]]   = {}
         per_exp_costs: dict[str, dict[str, dict[str, Any]]]   = {}
-        for n in discover():
+        for n in names_to_run:
             # Reset before each experiment so a crash before make_run_dir doesn't
             # mis-attribute the previous experiment's totals to this one.
             cost_tracker.reset()

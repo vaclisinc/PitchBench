@@ -69,28 +69,53 @@ Any OpenRouter slug can be passed via `--models openrouter/<slug>`. If the model
 
 ## Sampling
 
-Every experiment supports two flags that draw a deterministic, reproducible subset of stimuli:
+Two ways to size a run: the **paper defaults** baked into `config.EXPERIMENT_DEFAULTS` (used for the standard benchmark), and `--sample-n N` (used for quick testing). Both draw deterministically and stratified, so the same seed always yields the same subset.
+
+### Standard benchmark (no flag) — config-driven, per-stratum
+
+With no `--sample-n`, each experiment reads its entry in `config.EXPERIMENT_DEFAULTS`:
+
+```python
+"pitchbench_a3_pitch_by_duration": {"per_stratum": 5, "strata": ("midi", "duration_ms")},
+```
+
+- `per_stratum` is **per stratum cell**. Total drawn = `per_stratum × num_distinct_strata_keys`, computed from the actual condition list.
+- `per_stratum: None` → run the full grid (no sub-sampling). Used for `a1`, `d5`, `g2`, and the embedding probes (`f1`/`f2`/`f3`, which never sub-sample).
+
+This is the mode used to produce paper results — tune sample sizes by editing `config.py`, not by passing flags.
+
+```bash
+# Run the standard benchmark
+pitchbench --id a3 --models openrouter/google/gemini-2.5-flash
+pitchbench all       --models openrouter/google/gemini-2.5-flash
+```
+
+### Quick testing — `--sample-n N` (total cap)
+
+`--sample-n N` **overrides the config** and is treated as a **total cap** across all strata, not per cell. The strata fields still come from `EXPERIMENT_DEFAULTS[...]["strata"]`, so coverage stays balanced — each cell gets `floor(N / k)`, remainder distributed in sorted-key order.
 
 | Flag | Default | Effect |
 |------|---------|--------|
-| `--sample-n N` | (none) | Draw exactly N stimuli (stratified by source) |
+| `--sample-n N` | (config `per_stratum`) | Override: draw exactly N stimuli **total**, stratified by the config's `strata` |
 | `--sample-seed S` | `42` | RNG seed for the stratified draw |
-
-Without `--sample-n` all stimuli are used (original behaviour). With it, each stratum (typically `source`) receives `floor(N / k)` items, with the remainder distributed to the first strata in sorted-key order — giving equal coverage regardless of N.
 
 ```bash
 # Quick sanity pass: 10 stimuli from a1, reproducible
 pitchbench --id a1 --sample-n 10 --preview
 pitchbench --id a1 --sample-n 10 --models openrouter/google/gemini-2.5-flash
 
-# Same fixed budget across every experiment (fair comparison)
+# Same fixed budget across every experiment (cheap pipeline check)
 pitchbench all --sample-n 50 --models openrouter/google/gemini-2.5-flash
 ```
 
-Sampling parameters (`sample_n`, `sample_seed`, `total_available`, `stratified_by`) are embedded in every result JSON for full reproducibility. The `.txt` summary echoes them:
+Caveat: if `N < num_strata_cells`, some cells get a zero quota; if any cell has fewer items than its quota, `stratified_sample` raises `ValueError` — pick a larger `N` or a coarser strata in the config.
+
+### Reproducibility
+
+Sampling parameters (`sample_n`, `sample_seed`, `total_available`, `stratified_by`) are embedded in every result JSON. The `.txt` summary echoes them:
 
 ```
-  Sampling     : 10 of 1159 (stratified by 'source', seed=42)
+  Sampling     : 10 of 1159 (stratified by '(midi, duration_ms)', seed=42)
 ```
 
 For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the full valid pool stratified by `instrument_family_str`.

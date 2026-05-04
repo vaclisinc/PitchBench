@@ -313,6 +313,7 @@ def extract_format_accuracies(
             continue
 
         formats: dict[str, float] = {}
+        n: int | None = None
         with open(fa_path) as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -322,12 +323,16 @@ def extract_format_accuracies(
                     formats[fmt] = float(acc_str) / 100.0
                 except ValueError:
                     continue
+                if n is None and row.get("n_samples", "").strip():
+                    try:
+                        n = int(row["n_samples"])
+                    except ValueError:
+                        pass
         if not formats:
             continue
 
-        n: int | None = None
         json_path = run_dir / f"results_{stem}.json"
-        if json_path.exists():
+        if n is None and json_path.exists():
             try:
                 payload = json.loads(json_path.read_text())
                 summary = payload.get("summary", {})
@@ -484,17 +489,18 @@ def save_format_accuracy_csv(
     run_dir: Path,
     model_name: str,
     per_format: dict[str, float],
+    n_samples: int | None = None,
 ) -> None:
     """Write format_accuracy_<model>.csv — one row per prompt format.
 
-    Columns: Format, Accuracy  (e.g. "MIDI", "19.8%")
+    Columns: Format, n_samples, Accuracy  (e.g. "MIDI", 57, "19.8%")
     """
     path = run_dir / f"format_accuracy_{_safe_stem(model_name)}.csv"
     with open(path, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["Format", "Accuracy"])
+        writer.writerow(["Format", "n_samples", "Accuracy"])
         for fmt, acc in per_format.items():
-            writer.writerow([fmt.upper(), f"{acc:.1%}"])
+            writer.writerow([fmt.upper(), n_samples if n_samples is not None else "", f"{acc:.1%}"])
 
 
 def save_results(
@@ -593,7 +599,7 @@ def save_results(
     # ── Per-format accuracy summary ───────────────────────────────────────────
     per_format = summary.get("per_format")
     if per_format:
-        save_format_accuracy_csv(run_dir, model_name, per_format)
+        save_format_accuracy_csv(run_dir, model_name, per_format, n_samples=summary.get("total"))
 
     print(f"\nResults saved → {run_dir}/{stem}.*")
     return run_dir

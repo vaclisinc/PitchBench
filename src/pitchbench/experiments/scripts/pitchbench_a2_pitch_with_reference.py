@@ -27,7 +27,9 @@ from pitchbench.experiments.helpers.music import (
     midi_to_freq, midi_to_note, midi_to_solfege,
     standard_pitch_record, wide_to_long_records,
 )
-from pitchbench.experiments.helpers.plots import save_accuracy_plots
+from pitchbench.experiments.helpers.plots import (
+    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+)
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
@@ -167,6 +169,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     for cond in CONDITIONS:
         sub_all = [r for r in records if r["condition"] == cond]
         per_cond_var[cond] = {
+            "n":      len(sub_all),
             "midi":   round(sum(r["midi_correct"]   for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
             "abc":    round(sum(r["abc_correct"]    for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
             "doremi": round(sum(r["doremi_correct"] for r in sub_all) / len(sub_all), 4) if sub_all else 0.0,
@@ -194,12 +197,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  Stimuli : {n}  ({len(REFERENCE_PITCHES)} refs × {len(INTERVALS)} intervals × "
         f"{len(SOURCES)} sources × {len(CONDITIONS)} conditions)",
         "",
-        f"  {'Condition':10s}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>8}  {'Hz%':>6}",
-        f"  {'─' * 46}",
+        f"  {'Condition':10s}  {'n':>5}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>8}  {'Hz%':>6}",
+        f"  {'─' * 54}",
     ]
     for cond, vd in per_cond_var.items():
         summary_lines.append(
-            f"  {cond:10s}  {vd.get('midi', 0):>7.1%}  "
+            f"  {cond:10s}  {vd.get('n', 0):>5}  {vd.get('midi', 0):>7.1%}  "
             f"{vd.get('abc', 0):>7.1%}  {vd.get('doremi', 0):>8.1%}  "
             f"{vd.get('hz', 0):>6.1%}"
         )
@@ -231,6 +234,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         prompt_key="prompt_variant",
         accuracy_key="exact_match",
     )
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="condition", iv_label="Reference condition")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="condition", iv_label="Reference condition")
     return summary
 
 

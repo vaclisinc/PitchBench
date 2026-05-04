@@ -351,13 +351,13 @@ def run_one_model(
         f"  Sources   : {SOURCES}",
         f"  Sequences : {len(records)}",
         "",
-        f"  {'N':>3}  {'MIDI note':>9}  {'MIDI seq':>8}  {'ABC note':>9}  {'ABC seq':>8}"
+        f"  {'N':>3}  {'n':>5}  {'MIDI note':>9}  {'MIDI seq':>8}  {'ABC note':>9}  {'ABC seq':>8}"
         f"  {'Do note':>8}  {'Do seq':>7}  {'Hz note':>8}  {'Hz seq':>7}",
-        f"  {'─' * 82}",
+        f"  {'─' * 90}",
     ]
     for n, d in per_n.items():
         summary_lines.append(
-            f"  {n:>3}  {d['midi_note_acc']:>9.1%}  {d['midi_seq_acc']:>8.1%}"
+            f"  {n:>3}  {d['trials']:>5}  {d['midi_note_acc']:>9.1%}  {d['midi_seq_acc']:>8.1%}"
             f"  {d['abc_note_acc']:>9.1%}  {d['abc_seq_acc']:>8.1%}"
             f"  {d['doremi_note_acc']:>8.1%}  {d['doremi_seq_acc']:>7.1%}"
             f"  {d['hz_note_acc']:>8.1%}  {d['hz_seq_acc']:>7.1%}"

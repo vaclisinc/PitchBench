@@ -228,11 +228,11 @@ def run_one_model(
         f"  Overall  : {overall:.1%}",
         f"  Chance   : {1/len(TRAJECTORIES):.1%}  ({len(TRAJECTORIES)} classes)",
         "",
-        f"  {'Trajectory':16s}  {'Accuracy':>9}",
-        f"  {'─' * 28}",
+        f"  {'Trajectory':16s}  {'n':>5}  {'Accuracy':>9}",
+        f"  {'─' * 36}",
     ]
     for name, d in per_traj.items():
-        summary_lines.append(f"  {name:16s}  {d['accuracy']:>9.1%}")
+        summary_lines.append(f"  {name:16s}  {d['n']:>5}  {d['accuracy']:>9.1%}")
     summary_lines += ["", "  By interval (non-flat):"]
     for iv, acc in per_interval.items():
         summary_lines.append(f"    Δ={iv:+2d}st : {acc:.1%}")

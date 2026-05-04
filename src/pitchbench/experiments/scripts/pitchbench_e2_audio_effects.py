@@ -39,7 +39,9 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note,
     standard_pitch_record, wide_to_long_records,
 )
-from pitchbench.experiments.helpers.plots import save_accuracy_plots
+from pitchbench.experiments.helpers.plots import (
+    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+)
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
@@ -178,12 +180,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  Sources : {SOURCES}",
         f"  Stimuli : {n}  ({len(SOURCES)} sources × {len(PITCHES)} pitches × {len(EFFECTS)} effects)",
         f"",
-        f"  {'Effect':12s}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
-        f"  {'─' * 46}",
+        f"  {'Effect':12s}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
+        f"  {'─' * 54}",
     ]
     for eff_name, d in per_effect.items():
         summary_lines.append(
-            f"  {eff_name:12s}  {d['midi_acc']:>7.1%}  {d['abc_acc']:>7.1%}  "
+            f"  {eff_name:12s}  {d['n']:>5}  {d['midi_acc']:>7.1%}  {d['abc_acc']:>7.1%}  "
             f"{d['doremi_acc']:>8.1%}  {d['hz_acc']:>6.1%}"
         )
     summary_lines += ["", "  Per source (MIDI | ABC | Doremi | Hz):"]
@@ -219,6 +221,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         prompt_key="prompt_variant",
         accuracy_key="exact_match",
     )
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="effect", iv_label="Effect")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="effect", iv_label="Effect")
     return summary
 
 

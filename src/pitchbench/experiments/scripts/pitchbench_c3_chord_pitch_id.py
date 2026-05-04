@@ -243,6 +243,7 @@ def run_one_model(
             continue
         recall_vals = [r["recall"] for r in sub]
         per_variant[variant] = {
+            "n":              len(sub),
             "exact_accuracy": round(sum(r["exact_match"] for r in sub) / len(sub), 4),
             "mean_recall":    round(sum(recall_vals) / len(recall_vals), 4),
         }
@@ -257,14 +258,16 @@ def run_one_model(
         f"  Sources : {sources}",
         f"  Stimuli : {n // len(PROMPTS)}  chords × {len(PROMPTS)} variants = {n} queries",
         "",
-        f"  {'Variant':10s}  {'Exact%':>8}  {'Recall%':>8}",
-        f"  {'─' * 30}",
+        f"  {'Variant':10s}  {'n':>5}  {'Exact%':>8}  {'Recall%':>8}",
+        f"  {'─' * 38}",
     ]
     for v, d in per_variant.items():
-        summary_lines.append(f"  {v:10s}  {d['exact_accuracy']:>8.1%}  {d['mean_recall']:>8.1%}")
+        summary_lines.append(
+            f"  {v:10s}  {d['n']:>5}  {d['exact_accuracy']:>8.1%}  {d['mean_recall']:>8.1%}"
+        )
     summary_lines += ["", "  Per chord type (exact accuracy):"]
     for chord_name, d in per_chord.items():
-        summary_lines.append(f"    {chord_name:14s}: {d['exact_accuracy']:.1%}")
+        summary_lines.append(f"    {chord_name:14s}: n={d['n']:>4}  {d['exact_accuracy']:.1%}")
 
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")

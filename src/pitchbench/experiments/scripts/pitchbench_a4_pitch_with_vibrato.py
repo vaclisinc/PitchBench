@@ -39,6 +39,7 @@ from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
+from pitchbench.experiments.helpers.plots import save_combined_iv_plot, save_per_format_iv_plots
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
@@ -56,6 +57,8 @@ PROMPT_PREFIX = (
     "This audio contains a single sustained musical note that may have vibrato. "
     "Identify the nominal CENTRE pitch (ignore the vibrato modulation). "
 )
+
+PITCHES: list[int] = config.DEFAULT_PITCHES
 
 PROMPT_MIDI_FULL   = PROMPT_PREFIX + PROMPT_MIDI
 PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
@@ -138,12 +141,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  Stimuli : {n}",
         f"  Sources : {SOURCES}",
         "",
-        f"  {'Format':>10}  {'Accuracy':>10}",
-        f"  {'─' * 26}",
+        f"  {'Format':>10}  {'n':>5}  {'Accuracy':>10}",
+        f"  {'─' * 32}",
     ]
     for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"  {fmt.upper():>10}  {summary[f'acc_{fmt}']:>10.1%}")
-    summary_lines.append(f"  {'MIDI±1':>10}  {summary['acc_midi_within_1']:>10.1%}")
+        summary_lines.append(f"  {fmt.upper():>10}  {n:>5}  {summary[f'acc_{fmt}']:>10.1%}")
+    summary_lines.append(f"  {'MIDI±1':>10}  {n:>5}  {summary['acc_midi_within_1']:>10.1%}")
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
     for line in summary_lines:
@@ -151,7 +154,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
 
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
-        sources=SOURCES, pitches=config.DEFAULT_PITCHES,
+        sources=SOURCES, pitches=PITCHES,
         durations_ms=DURATIONS_MS,
         vibrato_rates_hz=VIBRATO_RATES_HZ,
         vibrato_depths_cents=VIBRATO_DEPTHS_CENTS,
@@ -160,6 +163,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="vibrato_depth_cents", iv_label="Vibrato depth (cents)")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="vibrato_depth_cents", iv_label="Vibrato depth (cents)")
     return summary
 
 
@@ -181,7 +186,7 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args    = _parse_args()
     sources = args.sources or SOURCES
-    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions(DURATIONS_MS, PITCHES, sources)
     conds = all_conds  # rename: save the full list
     conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:
@@ -200,7 +205,7 @@ def run() -> dict:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     sources = args.sources or SOURCES
-    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
+    all_conds = build_conditions(DURATIONS_MS, PITCHES, sources)
     conds = all_conds  # rename: save the full list
     conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
     for c in conds:

@@ -116,10 +116,12 @@ def run_one_model(
 
     sources_seen = sorted({c["source"] for c in conds})
     per_src: dict[str, dict[str, float]] = {}
+    per_src_n: dict[str, int] = {}
     for src in sources_seen:
         sub = [r for r in records if r["source"] == src]
         if not sub:
             continue
+        per_src_n[src] = len(sub)
         per_src[src] = {
             fmt: round(sum(r[f"{fmt}_correct"] for r in sub) / max(1, len(sub)), 4)
             for fmt in ("midi", "abc", "doremi", "hz")
@@ -130,23 +132,17 @@ def run_one_model(
         f"  Pitches: {MIDI_MIN}–{MIDI_MAX}  ({len(PITCHES)} notes)",
         f"  Stimuli: {n}",
         "",
-        f"  {'Format':>8}  {'Accuracy':>9}",
-        f"  {'─' * 20}",
+        f"  {'Format':>8}  {'n':>5}  {'Accuracy':>9}",
+        f"  {'─' * 28}",
     ]
     for fmt, acc in per_fmt.items():
-        summary_lines.append(f"  {fmt.upper():>8}  {acc:>9.1%}")
-    summary_lines += ["", "  Per source (ABC accuracy):"]
-    for src, d in per_src.items():
-        summary_lines.append(f"    {src:16s}: {d.get('abc', 0):.1%}")
-    summary_lines += ["", "  Per source (MIDI accuracy):"]
-    for src, d in per_src.items():
-        summary_lines.append(f"    {src:16s}: {d.get('midi', 0):.1%}")
-    summary_lines += ["", "  Per source (doremi accuracy):"]
-    for src, d in per_src.items():
-        summary_lines.append(f"    {src:16s}: {d.get('doremi', 0):.1%}")
-    summary_lines += ["", "  Per source (Hz accuracy):"]
-    for src, d in per_src.items():
-        summary_lines.append(f"    {src:16s}: {d.get('hz', 0):.1%}")
+        summary_lines.append(f"  {fmt.upper():>8}  {n:>5}  {acc:>9.1%}")
+    for label, key in (("ABC", "abc"), ("MIDI", "midi"), ("doremi", "doremi"), ("Hz", "hz")):
+        summary_lines += ["", f"  Per source ({label} accuracy):"]
+        for src, d in per_src.items():
+            summary_lines.append(
+                f"    {src:16s}: n={per_src_n[src]:>4}  {d.get(key, 0):.1%}"
+            )
 
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")

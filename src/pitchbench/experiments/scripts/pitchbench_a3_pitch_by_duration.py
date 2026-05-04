@@ -24,7 +24,9 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note,
     standard_pitch_record, wide_to_long_records,
 )
-from pitchbench.experiments.helpers.plots import save_accuracy_plots
+from pitchbench.experiments.helpers.plots import (
+    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+)
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
@@ -109,6 +111,7 @@ def run_one_model(
     for dur_ms in DURATIONS_MS:
         sub = [r for r in records if r["duration_ms"] == dur_ms]
         per_duration[dur_ms] = {
+            "n":      len(sub),
             "midi":   round(sum(r["midi_correct"]   for r in sub) / max(1, len(sub)), 4),
             "abc":    round(sum(r["abc_correct"]    for r in sub) / max(1, len(sub)), 4),
             "doremi": round(sum(r["doremi_correct"] for r in sub) / max(1, len(sub)), 4),
@@ -140,12 +143,12 @@ def run_one_model(
         f"  Sources : {SOURCES}",
         f"  Stimuli : {n}  ({len(PITCHES)} pitches × {len(DURATIONS_MS)} durations × {len(SOURCES)} sources)",
         "",
-        f"  {'Duration':>10}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>9}  {'Hz%':>6}",
-        f"  {'─' * 48}",
+        f"  {'Duration':>10}  {'n':>5}  {'MIDI%':>7}  {'ABC%':>7}  {'Doremi%':>9}  {'Hz%':>6}",
+        f"  {'─' * 56}",
     ]
     for dur_ms, d in per_duration.items():
         summary_lines.append(
-            f"  {dur_ms:>8}ms  {d['midi']:>7.1%}  "
+            f"  {dur_ms:>8}ms  {d['n']:>5}  {d['midi']:>7.1%}  "
             f"{d['abc']:>7.1%}  {d['doremi']:>9.1%}  {d['hz']:>6.1%}"
         )
 
@@ -173,6 +176,8 @@ def run_one_model(
         prompt_key="prompt_variant",
         accuracy_key="exact_match",
     )
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="duration_ms", iv_label="Duration (ms)")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="duration_ms", iv_label="Duration (ms)")
     return summary
 
 

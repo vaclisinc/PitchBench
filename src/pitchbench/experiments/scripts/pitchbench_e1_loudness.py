@@ -27,7 +27,9 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note,
     standard_pitch_record, wide_to_long_records,
 )
-from pitchbench.experiments.helpers.plots import save_accuracy_plots
+from pitchbench.experiments.helpers.plots import (
+    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+)
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
@@ -143,12 +145,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  [Hz — frequency]",
         f"    Exact match (≤1 Hz)  : {summary['hz_correct']} / {n}  ({summary['hz_correct']/n:.1%})",
         f"",
-        f"  {'dBFS':>6}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
-        f"  {'─' * 42}",
+        f"  {'dBFS':>6}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
+        f"  {'─' * 50}",
     ]
     for db, d in per_loudness.items():
         summary_lines.append(
-            f"  {db:>6}  {d['midi_acc']:>7.1%}  {d['abc_acc']:>7.1%}  "
+            f"  {db:>6}  {d['n']:>5}  {d['midi_acc']:>7.1%}  {d['abc_acc']:>7.1%}  "
             f"{d['doremi_acc']:>8.1%}  {d['hz_acc']:>6.1%}"
         )
 
@@ -178,6 +180,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         prompt_key="prompt_variant",
         accuracy_key="exact_match",
     )
+    save_per_format_iv_plots(records, run_dir, model_name, iv_key="loudness_db", iv_label="Loudness (dB)")
+    save_combined_iv_plot(records, run_dir, model_name, iv_key="loudness_db", iv_label="Loudness (dB)")
     return summary
 
 
