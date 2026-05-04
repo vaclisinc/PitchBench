@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import json
+import os
 import re
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -125,20 +128,32 @@ def extract_midi(text: str) -> int | None:
 
 
 def extract_solfege(text: str) -> int | None:
-    """Parse a solfege syllable and accidental (if needed) from text and return pitch class 0-11, or None."""
+    """Parse a solfege syllable and accidental (if needed) from text and return pitch class 0-11, or None.
+
+    Falls back to a cheap OpenRouter LLM (``config.DOREMI_PARSER_MODEL``) when
+    the regex does not match — only fires if ``OPENROUTER_KEY`` is set and
+    ``PITCHBENCH_DOREMI_LLM`` is not ``"0"``. Returns ``None`` if the LLM
+    fallback is unavailable or fails.
+    """
     match = _SOLFEGE_RE.search(text.strip().lower())
-    if not match:
-        return None
-    base       = match.group(1).lower()
-    accidental = match.group(2) or match.group(3)
-    pc = SOLFEGE_BASE_TO_PC[base]
-    if accidental:
-        pc = (pc + _ACCIDENTAL_TO_OFFSET[accidental.lower()]) % 12
-    return pc
+    if match:
+        base       = match.group(1).lower()
+        accidental = match.group(2) or match.group(3)
+        pc = SOLFEGE_BASE_TO_PC[base]
+        if accidental:
+            pc = (pc + _ACCIDENTAL_TO_OFFSET[accidental.lower()]) % 12
+        return pc
+    if _doremi_llm_enabled():
+        return _doremi_llm_parse_one(text)
+    return None
 
 
 def extract_all_solfege(text: str) -> list[int]:
-    """Parse all solfege syllable and accidental (if needed)s in order and return pitch classes."""
+    """Parse all solfege syllable and accidental (if needed)s in order and return pitch classes.
+
+    Falls back to a cheap OpenRouter LLM (``config.DOREMI_PARSER_MODEL``) when
+    the regex matches no syllables; same gating as :func:`extract_solfege`.
+    """
     pcs: list[int] = []
     for match in _SOLFEGE_RE.finditer(text.strip().lower()):
         base       = match.group(1).lower()
@@ -147,7 +162,122 @@ def extract_all_solfege(text: str) -> list[int]:
         if accidental:
             pc = (pc + _ACCIDENTAL_TO_OFFSET[accidental.lower()]) % 12
         pcs.append(pc)
+    if not pcs and _doremi_llm_enabled():
+        return _doremi_llm_parse_many(text)
     return pcs
+
+
+# ── LLM fallback for solfège parsing ──────────────────────────────────────────
+
+def _doremi_llm_enabled() -> bool:
+    if os.environ.get("PITCHBENCH_DOREMI_LLM", "1") == "0":
+        return False
+    return bool(
+        os.environ.get("OPENROUTER_KEY") or os.environ.get("OPENROUTER_API_KEY")
+    )
+
+
+@lru_cache(maxsize=2048)
+def _doremi_llm_call(text: str, expect_many: bool) -> str | None:
+    """Single OpenRouter call to parse a solfège answer. Returns content string or None."""
+    try:
+        import requests
+    except ImportError:
+        return None
+    try:
+        from dotenv import load_dotenv
+        load_dotenv(override=False)
+    except ImportError:
+        pass
+    api_key = os.environ.get("OPENROUTER_KEY") or os.environ.get("OPENROUTER_API_KEY")
+    if not api_key:
+        return None
+
+    import pitchbench.config as config
+    model_id = config.DOREMI_PARSER_MODEL
+    if model_id.startswith("openrouter/"):
+        model_id = model_id[len("openrouter/"):]
+
+    if expect_many:
+        instruction = (
+            'You parse solfège answers. Given the user message (a model response '
+            'naming one or more solfège syllables in fixed-do), reply with a '
+            'compact JSON object: {"pcs": [<int>, ...]} where each integer is a '
+            'pitch class 0..11 with do=0, do#/reb=1, re=2, re#/mib=3, mi=4, fa=5, '
+            'fa#/solb=6, sol=7, sol#/lab=8, la=9, la#/sib=10, si/ti=11. Order them '
+            'as they appear. If no solfège is present, return {"pcs": []}. '
+            'Reply with ONLY the JSON object, nothing else.'
+        )
+    else:
+        instruction = (
+            'You parse solfège answers. Given the user message (a model response '
+            'naming a single solfège syllable in fixed-do), reply with a compact '
+            'JSON object: {"pc": <int|null>} where the integer is a pitch class '
+            '0..11 with do=0, do#/reb=1, re=2, re#/mib=3, mi=4, fa=5, fa#/solb=6, '
+            'sol=7, sol#/lab=8, la=9, la#/sib=10, si/ti=11. If no solfège is '
+            'present, return {"pc": null}. Reply with ONLY the JSON object, '
+            'nothing else.'
+        )
+
+    body = {
+        "model":       model_id,
+        "messages": [
+            {"role": "system", "content": instruction},
+            {"role": "user",   "content": text},
+        ],
+        "max_tokens":      64,
+        "temperature":     0.0,
+        "response_format": {"type": "json_object"},
+    }
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type":  "application/json",
+        "HTTP-Referer":  "https://github.com/vaclis-CNMAT/PitchBench",
+        "X-Title":       "PitchBench",
+    }
+    try:
+        resp = requests.post(
+            f"{config.OPENROUTER_BASE_URL}/chat/completions",
+            json=body, headers=headers, timeout=30,
+        )
+        if not resp.ok:
+            return None
+        data    = resp.json()
+        choice  = (data.get("choices") or [{}])[0]
+        content = (choice.get("message") or {}).get("content", "")
+        if isinstance(content, list):
+            content = "".join(p.get("text", "") for p in content if isinstance(p, dict))
+        return content
+    except Exception:
+        return None
+
+
+def _doremi_llm_parse_one(text: str) -> int | None:
+    raw = _doremi_llm_call(text, expect_many=False)
+    if not raw:
+        return None
+    try:
+        obj = json.loads(raw)
+    except Exception:
+        return None
+    v = obj.get("pc") if isinstance(obj, dict) else None
+    if isinstance(v, int) and 0 <= v <= 11:
+        return v
+    return None
+
+
+def _doremi_llm_parse_many(text: str) -> list[int]:
+    raw = _doremi_llm_call(text, expect_many=True)
+    if not raw:
+        return []
+    try:
+        obj = json.loads(raw)
+    except Exception:
+        return []
+    seq = obj.get("pcs") if isinstance(obj, dict) else None
+    if not isinstance(seq, list):
+        return []
+    return [int(x) for x in seq if isinstance(x, int) and 0 <= x <= 11]
 
 
 def solfege_pc_to_midi(reference_midi: int, pred_pc: int) -> int:

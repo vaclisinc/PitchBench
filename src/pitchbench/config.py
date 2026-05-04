@@ -78,6 +78,12 @@ OPENROUTER_BASE_URL: str = os.environ.get(
     "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
 )
 
+# Cheap OpenRouter model used as a fallback parser when regex fails to
+# extract a solfège pitch class from a model's free-text response.
+# Set PITCHBENCH_DOREMI_LLM=0 to disable; the fallback also no-ops if no
+# OPENROUTER_KEY is available.
+DOREMI_PARSER_MODEL: str = "openrouter/google/gemini-2.5-flash-lite"
+
 # Default model used when the user runs `pitchbench` without --models.
 # The CLI prompts interactively with this as the default; pressing Enter accepts it.
 # Any OpenRouter slug works — if the chosen model can't accept audio, OpenRouter's
