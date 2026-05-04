@@ -39,6 +39,7 @@ from pitchbench.experiments.helpers.music import (
     semitone_distance,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
 
@@ -115,10 +116,13 @@ def build_sequences(
     return rows
 
 
-def generate_stimuli(seqs: list[dict]) -> None:
-    for s in seqs:
-        for src in SOURCES:
-            engine.sequence(s["midi_sequence"], src, TONE_MS, GAP_MS)
+def build_conditions(seqs: list[dict], sources: list[str]) -> list[dict]:
+    """Expand seq × source into a flat list of conditions (one per audio file)."""
+    rows: list[dict] = []
+    for seq in seqs:
+        for src in sources:
+            rows.append({**seq, "source": src})
+    return rows
 
 
 # ── Response parsing ──────────────────────────────────────────────────────────
@@ -155,95 +159,96 @@ def parse_doremi_sequence(text: str, n: int) -> list[int | None]:
 
 def run_one_model(
     model_name: str,
-    seqs: list[dict],
+    conds: list[dict],
     n_trials: int,
     seed: int,
     run_dir: Path,
+    sample_info: dict | None = None,
 ) -> dict[str, Any]:
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
     records: list[dict[str, Any]] = []
-    for seq in seqs:
-        n = seq["n_notes"]
+    for c in conds:
+        n   = c["n_notes"]
+        src = c["source"]
         prompt_midi   = make_prompt_midi(n)
         prompt_abc    = make_prompt_abc(n)
         prompt_doremi = make_prompt_doremi(n)
 
-        for src in SOURCES:
-            wav = str(engine.sequence(seq["midi_sequence"], src, TONE_MS, GAP_MS))
+        wav = str(engine.sequence(c["midi_sequence"], src, TONE_MS, GAP_MS))
 
-            print(f"    n={n} t={seq['trial']} {src}")
-            raw_midi, raw_abc, raw_doremi = query_three_formats(
-                model_name, wav, prompt_midi, prompt_abc, prompt_doremi
-            )
+        print(f"    n={n} t={c['trial']} {src}")
+        raw_midi, raw_abc, raw_doremi = query_three_formats(
+            model_name, wav, prompt_midi, prompt_abc, prompt_doremi
+        )
 
-            # ── ABC scoring ───────────────────────────────────────────────────
-            pred_abc     = parse_abc_sequence(raw_abc, n)
-            abc_per_pos: list[bool | None] = []
-            for gt, pred in zip(seq["note_sequence"], pred_abc):
-                if pred is None:
-                    abc_per_pos.append(None)
-                else:
-                    dist = semitone_distance(gt, pred)
-                    abc_per_pos.append(dist == 0 if dist is not None else False)
-            n_abc_correct = sum(1 for v in abc_per_pos if v is True)
+        # ── ABC scoring ───────────────────────────────────────────────────
+        pred_abc     = parse_abc_sequence(raw_abc, n)
+        abc_per_pos: list[bool | None] = []
+        for gt, pred in zip(c["note_sequence"], pred_abc):
+            if pred is None:
+                abc_per_pos.append(None)
+            else:
+                dist = semitone_distance(gt, pred)
+                abc_per_pos.append(dist == 0 if dist is not None else False)
+        n_abc_correct = sum(1 for v in abc_per_pos if v is True)
 
-            # ── MIDI scoring ──────────────────────────────────────────────────
-            pred_midi_seq = parse_midi_sequence(raw_midi, n)
-            midi_per_pos: list[bool | None] = []
-            for gt, pred in zip(seq["midi_sequence"], pred_midi_seq):
-                if pred is None:
-                    midi_per_pos.append(None)
-                else:
-                    midi_per_pos.append(gt == pred)
-            n_midi_correct = sum(1 for v in midi_per_pos if v is True)
+        # ── MIDI scoring ──────────────────────────────────────────────────
+        pred_midi_seq = parse_midi_sequence(raw_midi, n)
+        midi_per_pos: list[bool | None] = []
+        for gt, pred in zip(c["midi_sequence"], pred_midi_seq):
+            if pred is None:
+                midi_per_pos.append(None)
+            else:
+                midi_per_pos.append(gt == pred)
+        n_midi_correct = sum(1 for v in midi_per_pos if v is True)
 
-            # ── Doremi scoring ────────────────────────────────────────────────
-            pred_doremi_seq = parse_doremi_sequence(raw_doremi, n)
-            doremi_per_pos: list[bool | None] = []
-            gt_pcs = [m % 12 for m in seq["midi_sequence"]]
-            for gt_pc, pred_pc in zip(gt_pcs, pred_doremi_seq):
-                if pred_pc is None:
-                    doremi_per_pos.append(None)
-                else:
-                    diff = abs(gt_pc - pred_pc)
-                    doremi_per_pos.append(min(diff, 12 - diff) == 0)
-            n_doremi_correct = sum(1 for v in doremi_per_pos if v is True)
+        # ── Doremi scoring ────────────────────────────────────────────────
+        pred_doremi_seq = parse_doremi_sequence(raw_doremi, n)
+        doremi_per_pos: list[bool | None] = []
+        gt_pcs = [m % 12 for m in c["midi_sequence"]]
+        for gt_pc, pred_pc in zip(gt_pcs, pred_doremi_seq):
+            if pred_pc is None:
+                doremi_per_pos.append(None)
+            else:
+                diff = abs(gt_pc - pred_pc)
+                doremi_per_pos.append(min(diff, 12 - diff) == 0)
+        n_doremi_correct = sum(1 for v in doremi_per_pos if v is True)
 
-            records.append({
-                "source":               src,
-                "source_type":          "waveform" if src in config.WAVEFORMS else "instrument",
-                "n_notes":              n,
-                "trial":                seq["trial"],
-                "midi_sequence_gt":     str(seq["midi_sequence"]),
-                "abc_sequence_gt":      str(seq["note_sequence"]),
-                "doremi_sequence_gt":   str(seq["doremi_sequence"]),
-                "wav":                  wav,
-                # MIDI format
-                "midi_pred":            str(pred_midi_seq),
-                "midi_per_pos":         str(midi_per_pos),
-                "midi_n_correct":       n_midi_correct,
-                "midi_sequence_correct":int(n_midi_correct == n),
-                # ABC format
-                "abc_pred":             str(pred_abc),
-                "abc_per_pos":          str(abc_per_pos),
-                "abc_n_correct":        n_abc_correct,
-                "abc_sequence_correct": int(n_abc_correct == n),
-                # Doremi format
-                "doremi_pred":          str(pred_doremi_seq),
-                "doremi_per_pos":       str(doremi_per_pos),
-                "doremi_n_correct":     n_doremi_correct,
-                "doremi_sequence_correct": int(n_doremi_correct == n),
-                # Raw responses
-                "raw_midi":             raw_midi.strip(),
-                "raw_abc":              raw_abc.strip(),
-                "raw_doremi":           raw_doremi.strip(),
-                # Prompts
-                "prompt_midi":          prompt_midi,
-                "prompt_abc":           prompt_abc,
-                "prompt_doremi":        prompt_doremi,
-            })
+        records.append({
+            "source":               src,
+            "source_type":          "waveform" if src in config.WAVEFORMS else "instrument",
+            "n_notes":              n,
+            "trial":                c["trial"],
+            "midi_sequence_gt":     str(c["midi_sequence"]),
+            "abc_sequence_gt":      str(c["note_sequence"]),
+            "doremi_sequence_gt":   str(c["doremi_sequence"]),
+            "wav":                  wav,
+            # MIDI format
+            "midi_pred":            str(pred_midi_seq),
+            "midi_per_pos":         str(midi_per_pos),
+            "midi_n_correct":       n_midi_correct,
+            "midi_sequence_correct":int(n_midi_correct == n),
+            # ABC format
+            "abc_pred":             str(pred_abc),
+            "abc_per_pos":          str(abc_per_pos),
+            "abc_n_correct":        n_abc_correct,
+            "abc_sequence_correct": int(n_abc_correct == n),
+            # Doremi format
+            "doremi_pred":          str(pred_doremi_seq),
+            "doremi_per_pos":       str(doremi_per_pos),
+            "doremi_n_correct":     n_doremi_correct,
+            "doremi_sequence_correct": int(n_doremi_correct == n),
+            # Raw responses
+            "raw_midi":             raw_midi.strip(),
+            "raw_abc":              raw_abc.strip(),
+            "raw_doremi":           raw_doremi.strip(),
+            # Prompts
+            "prompt_midi":          prompt_midi,
+            "prompt_abc":           prompt_abc,
+            "prompt_doremi":        prompt_doremi,
+        })
 
     # ── Summary ───────────────────────────────────────────────────────────────
     per_n: dict[int, dict[str, Any]] = {}
@@ -290,9 +295,9 @@ def run_one_model(
         "per_position":    per_position,
     }
 
-    summary_lines: list[str] = [
+    summary_lines: list[str] = sampling_summary_lines(sample_info or {}) + [
         f"  Sources   : {SOURCES}",
-        f"  Sequences : {len(records)}  ({N_NOTES_LIST} notes × {n_trials} trials × {len(SOURCES)} sources)",
+        f"  Sequences : {len(records)}",
         "",
         f"  {'N':>3}  {'MIDI note':>9}  {'MIDI seq':>8}  {'ABC note':>9}  {'ABC seq':>8}  {'Do note':>8}  {'Do seq':>7}",
         f"  {'─' * 65}",
@@ -316,6 +321,7 @@ def run_one_model(
         tone_duration=TONE_DURATION, gap_duration=GAP_DURATION,
         prompt_midi=make_prompt_midi(3), prompt_abc=make_prompt_abc(3),
         prompt_doremi=make_prompt_doremi(3),
+        **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
     _save_plot(records, run_dir, model_name)
@@ -389,6 +395,9 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--seed",     type=int, default=DEFAULT_SEED)
     parser.add_argument("--models",   nargs="+", metavar="MODEL",
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
+    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
+                        help="Draw N stimuli (stratified by (n_notes, source))")
+    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -397,22 +406,30 @@ def preview() -> None:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     seqs = build_sequences(args.n_notes, args.n_trials, args.seed)
-    generate_stimuli(seqs)
+    all_conds = build_conditions(seqs, SOURCES)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(
+            all_conds, args.sample_n,
+            lambda c: (c["n_notes"], c["source"]),
+            seed=args.sample_seed,
+        )
+    s_meta = sampling_meta(len(all_conds), "(n_notes, source)", args.sample_n, args.sample_seed)
     total_dur = sum(
-        s["n_notes"] * TONE_DURATION + (s["n_notes"] - 1) * GAP_DURATION
-        for s in seqs
+        c["n_notes"] * TONE_DURATION + (c["n_notes"] - 1) * GAP_DURATION
+        for c in conds
     )
     print(f"Experiment   : {EXP_NAME}")
     print(f"Sources      : {SOURCES}")
     print(f"Seed         : {args.seed}")
     print(f"Lengths      : {args.n_notes}  × {args.n_trials} trials = {len(seqs)} sequences")
-    print(f"Audio files  : {len(seqs) * len(SOURCES)}")
-    print(f"Pitch range  : MIDI {PITCH_MIN}–{PITCH_MAX} (C3–C6)")
+    print(f"Stimuli      : {len(conds)}  (generating …)")
     print(f"Total audio  : {total_dur:.1f} s  ({total_dur/60:.1f} min)")
-    print(f"Queries/model: {len(seqs) * len(SOURCES) * 3}  (MIDI + ABC + doremi)")
-    print(f"Audio dir    : {config.AUDIO_DIR}")
-    for s in seqs:
-        print(f"  n={s['n_notes']} t={s['trial']}  {s['note_sequence']}")
+    print(f"Queries/model: {len(conds) * 3}  (MIDI + ABC + doremi)")
+    for c in conds:
+        engine.sequence(c["midi_sequence"], c["source"], TONE_MS, GAP_MS)
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     print("\nRun without --preview to query the model(s).")
 
 
@@ -421,14 +438,28 @@ def run() -> None:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     seqs = build_sequences(args.n_notes, args.n_trials, args.seed)
-    generate_stimuli(seqs)
+    all_conds = build_conditions(seqs, SOURCES)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(
+            all_conds, args.sample_n,
+            lambda c: (c["n_notes"], c["source"]),
+            seed=args.sample_seed,
+        )
+    s_meta = sampling_meta(len(all_conds), "(n_notes, source)", args.sample_n, args.sample_seed)
+    for c in conds:
+        engine.sequence(c["midi_sequence"], c["source"], TONE_MS, GAP_MS)
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
-    print(f"Sequences  : {len(seqs) * len(SOURCES)}  × 3 formats = {len(seqs) * len(SOURCES) * 3} queries/model")
+    print(f"Stimuli    : {len(conds)}  × 3 formats = {len(conds) * 3} queries/model")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict[str, Any]] = {}
     for model_name in target_models:
-        all_summaries[model_name] = run_one_model(model_name, seqs, args.n_trials, args.seed, run_dir)
+        all_summaries[model_name] = run_one_model(
+            model_name, conds, args.n_trials, args.seed, run_dir, s_meta,
+        )
     save_comparison(run_dir, all_summaries, EXP_NAME)
 
 

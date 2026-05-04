@@ -67,6 +67,34 @@ pitchbench --id a1 --models music_flamingo openrouter/google/gemini-2.5-flash
 
 Any OpenRouter slug can be passed via `--models openrouter/<slug>`. If the model can't accept audio, OpenRouter's error message is surfaced verbatim — no local whitelist to maintain.
 
+## Sampling
+
+Every experiment supports two flags that draw a deterministic, reproducible subset of stimuli:
+
+| Flag | Default | Effect |
+|------|---------|--------|
+| `--sample-n N` | (none) | Draw exactly N stimuli (stratified by source) |
+| `--sample-seed S` | `42` | RNG seed for the stratified draw |
+
+Without `--sample-n` all stimuli are used (original behaviour). With it, each stratum (typically `source`) receives `floor(N / k)` items, with the remainder distributed to the first strata in sorted-key order — giving equal coverage regardless of N.
+
+```bash
+# Quick sanity pass: 10 stimuli from a1, reproducible
+pitchbench --id a1 --sample-n 10 --preview
+pitchbench --id a1 --sample-n 10 --models openrouter/google/gemini-2.5-flash
+
+# Same fixed budget across every experiment (fair comparison)
+pitchbench all --sample-n 50 --models openrouter/google/gemini-2.5-flash
+```
+
+Sampling parameters (`sample_n`, `sample_seed`, `total_available`, `stratified_by`) are embedded in every result JSON for full reproducibility. The `.txt` summary echoes them:
+
+```
+  Sampling     : 10 of 1159 (stratified by 'source', seed=42)
+```
+
+For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the full valid pool stratified by `instrument_family_str`.
+
 ## Experiment categories
 
 | ID | Topic |

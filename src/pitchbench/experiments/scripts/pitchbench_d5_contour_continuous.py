@@ -47,11 +47,12 @@ from pitchbench.experiments.helpers.api import get_model_info, query_alm
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
 
 START_PITCHES: list[int] = [30, 48, 55, 60, 67, 72, 82]   # F#1, C3, G3, C4, G4, C5, G5
-#       
+#
 
 INTERVALS_ST: list[int] = [4, 7, 12]   # semitones of change
 
@@ -134,13 +135,13 @@ def _get_wav(c: dict) -> Path:
 
 def run_one_model(
     model_name: str,
-    sources: list[str],
+    conds: list[dict],
     run_dir: Path,
+    sample_info: dict | None = None,
 ) -> dict:
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    conds   = build_conditions(sources)
     records: list[dict] = []
 
     for c in conds:
@@ -192,8 +193,8 @@ def run_one_model(
         if sub:
             per_interval[iv] = round(sum(r["trajectory_correct"] for r in sub) / len(sub), 4)
 
-    summary_lines = [
-        f"  Sources  : {sources}",
+    summary_lines = sampling_summary_lines(sample_info or {}) + [
+        f"  Sources  : {SOURCES}",
         f"  Stimuli  : {n}",
         f"  Overall  : {overall:.1%}",
         f"  Chance   : {1/len(TRAJECTORIES):.1%}  ({len(TRAJECTORIES)} classes)",
@@ -219,9 +220,10 @@ def run_one_model(
     }
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
-        sources=sources, start_pitches=START_PITCHES,
+        sources=SOURCES, start_pitches=START_PITCHES,
         intervals_st=INTERVALS_ST, duration_ms=DURATION_MS,
         trajectories=[t["name"] for t in TRAJECTORIES],
+        **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
     save_accuracy_plots(
@@ -239,13 +241,21 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--preview", action="store_true")
     parser.add_argument("--models",  nargs="+", metavar="MODEL",
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
+    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
+                        help="Draw N stimuli (stratified by source)")
+    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
 
 def preview() -> None:
     engine.set_exp(EXP_NAME)
-    conds = build_conditions(SOURCES)
+    args = _parse_args()
+    all_conds = build_conditions(SOURCES)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
     print(f"Experiment   : {EXP_NAME}")
     print(f"Sources      : {SOURCES}")
     print(f"Trajectories : {[t['name'] for t in TRAJECTORIES]}")
@@ -255,7 +265,8 @@ def preview() -> None:
     print(f"Stimuli      : {len(conds)}  (generating …)")
     for c in conds:
         _get_wav(c)
-    print(f"Queries/model: {len(conds)}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     print("\nRun without --preview to query the model(s).")
 
 
@@ -263,14 +274,22 @@ def run() -> None:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
+    all_conds = build_conditions(SOURCES)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
 
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
+    print(f"Stimuli    : {len(conds)}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
 
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict] = {}
     for model_name in target_models:
-        all_summaries[model_name] = run_one_model(model_name, SOURCES, run_dir)
+        all_summaries[model_name] = run_one_model(model_name, conds, run_dir, s_meta)
     save_comparison(run_dir, all_summaries, EXP_NAME)
 
 
