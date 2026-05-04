@@ -3,9 +3,12 @@ Experiment runner — entry point for the ``pitchbench`` CLI.
 
 Usage::
 
+    pitchbench a1                               # shorthand for --id a1
     pitchbench pitchbench_a1_pitch_id           # run by full module name
     pitchbench --id a1                          # run by category+digit ID
-    pitchbench pitchbench_a1_pitch_id --preview # generate stimuli, skip queries
+    pitchbench a1 --preview                     # generate stimuli, skip queries
+    pitchbench --id a1 --download               # generate audio files for a1
+    pitchbench --download                       # generate audio for ALL experiments
     pitchbench all                              # run every experiment
     pitchbench --list                           # list available experiments
 
@@ -40,6 +43,8 @@ def _prompt_for_models() -> list[str]:
 
 # pitchbench_<id>_<desc>.py — capture the id (lowercase letter + digit(s))
 _NAME_RE = re.compile(r"^pitchbench_([a-z]+\d+)_(.+)$")
+# Bare experiment-id shorthand, e.g. "a1", "b3" — accepted as a positional arg.
+_ID_RE = re.compile(r"^[a-z]+\d+$")
 
 
 def _scripts_dir() -> Path:
@@ -101,6 +106,12 @@ def main() -> None:
         help="Generate stimuli, skip model queries",
     )
     parser.add_argument(
+        "--download", action="store_true",
+        help="Generate (download) every audio file for the experiment(s) without "
+             "querying any model. With no experiment specified, generates audio for "
+             "every experiment.",
+    )
+    parser.add_argument(
         "--list", action="store_true",
         help="List all available experiments and exit",
     )
@@ -118,25 +129,42 @@ def main() -> None:
             print(f"  {ident:>6}  {n}")
         return
 
+    # --download is a stimulus-only mode (no model queries) that also defaults to
+    # "all experiments" when no specific experiment is given. Internally it routes
+    # through each module's preview() — same as --preview — since preview() is the
+    # standard "generate stimuli, skip queries" entry point in every script.
+    stimulus_only = args.preview or args.download
+
     # If the user didn't pass --models, prompt with DEFAULT_MODEL (Enter accepts it).
-    # --preview skips the prompt since no model is queried in that path.
+    # Stimulus-only modes skip the prompt since no model is queried in that path.
     if args.models:
         models = args.models
-    elif args.preview or args.list:
+    elif stimulus_only or args.list:
         models = []
     else:
         models = _prompt_for_models()
 
     models_extra = (["--models"] + models) if models else []
-    extra        = (["--preview"] if args.preview else []) + models_extra + unknown
+    extra        = (["--preview"] if stimulus_only else []) + models_extra + unknown
 
-    if args.exp_id is not None:
-        name = _id_to_name(args.exp_id)
+    # Resolve which experiment to run. Three accepted forms for the positional:
+    #   "a1"                       → letter+digit shorthand (resolved via _id_to_name)
+    #   "pitchbench_a1_pitch_id"   → full module name
+    #   "all"                      → every experiment
+    exp_id = args.exp_id
+    if exp_id is None and args.experiment and _ID_RE.match(args.experiment.lower()):
+        exp_id = args.experiment.lower()
+
+    if exp_id is not None:
+        name = _id_to_name(exp_id)
         if name is None:
             ids = [_NAME_RE.match(n).group(1) for n in discover() if _NAME_RE.match(n)]
-            parser.error(f"Unknown experiment ID {args.exp_id!r}. Available: {ids}")
+            parser.error(f"Unknown experiment ID {exp_id!r}. Available: {ids}")
     elif args.experiment:
         name = args.experiment
+    elif args.download:
+        # Bare `--download` means "download every experiment".
+        name = "all"
     else:
         parser.error("provide an experiment name or --id <letter><digit> (or use --list)")
 
