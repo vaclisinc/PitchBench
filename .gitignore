@@ -1,0 +1,9 @@
+/_datasets/
+__pycache__/
+*.egg-info/
+data/
+/_archive/
+.env
+results/
+tests/
+logs/

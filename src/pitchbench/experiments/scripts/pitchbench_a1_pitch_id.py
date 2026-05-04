@@ -1,0 +1,220 @@
+"""
+Experiment 01 — Pitch recognition
+Tests whether models can identify a single musical note across all sources
+(4 programmatic waveforms + 15 GM instruments rendered with FluidSynth) and
+all 49 MIDI pitches in the standard range (C2–C6, MIDI 36–84).
+
+Three prompt variants per stimulus (one row per audio file in the CSV):
+  MIDI    — "Reply with ONLY the integer (0–127)."
+  ABC     — "Reply with ONLY the note name, e.g. C4, F#3."
+  Doremi  — "Reply with ONLY the solfège syllable."
+
+Instruments require FluidSynth; the experiment runs on waveform sources only
+if FluidSynth is unavailable.
+
+Usage:
+    python experiments/run.py exp_1_pitch
+    python experiments/run.py exp_1_pitch --preview
+    python experiments/run.py exp_1_pitch --models audio_flamingo_next_instruct
+    python experiments/run.py exp_1_pitch --sources sine piano violin
+"""
+
+import argparse
+from importlib.util import find_spec
+from pathlib import Path
+from typing import Any
+
+import pitchbench.config as config
+import pitchbench.generation.engine as engine
+from pitchbench.experiments.helpers.api import get_model_info, query_three_formats
+from pitchbench.experiments.helpers.music import (
+    PROMPT_ABC, PROMPT_DOREMI, PROMPT_MIDI,
+    midi_to_note, standard_pitch_record, wide_to_long_records,
+)
+from pitchbench.experiments.helpers.plots import save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots
+from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results
+
+EXP_NAME = Path(__file__).stem
+
+MIDI_MIN = 36
+MIDI_MAX = 84
+PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
+
+TONE_DURATION_MS = 4000
+
+ALL_SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+
+PROMPT_MIDI_FULL   = "This audio contains a single musical note. " + PROMPT_MIDI
+PROMPT_ABC_FULL    = "This audio contains a single musical note. " + PROMPT_ABC
+PROMPT_DOREMI_FULL = "This audio contains a single musical note. " + PROMPT_DOREMI
+
+
+# ── Run one model ─────────────────────────────────────────────────────────────
+
+def run_one_model(
+    model_name: str,
+    sources: list[str],
+    run_dir: Path,
+) -> tuple[dict[str, float], list[dict[str, Any]]]:
+    info = get_model_info(model_name)
+    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
+
+    records: list[dict[str, Any]] = []
+    for src in sources:
+        source_type = "waveform" if src in config.WAVEFORMS else "instrument"
+        for midi in PITCHES:
+            try:
+                wav = engine.tone(midi, src, TONE_DURATION_MS)
+            except ValueError as exc:
+                print(f"    [SKIP] {src} MIDI {midi}: {exc}")
+                continue
+
+            print(f"    {midi_to_note(midi):4s}  {src}")
+            raw_midi, raw_abc, raw_doremi = query_three_formats(
+                model_name, wav,
+                PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL,
+            )
+            rec = standard_pitch_record(
+                wav=wav, source=src, source_type=source_type,
+                midi_gt=midi,
+                raw_midi=raw_midi, raw_abc=raw_abc, raw_doremi=raw_doremi,
+                prompt_midi=PROMPT_MIDI_FULL,
+                prompt_abc=PROMPT_ABC_FULL,
+                prompt_doremi=PROMPT_DOREMI_FULL,
+            )
+            records.append(rec)
+
+    # ── Summary ───────────────────────────────────────────────────────────────
+    n = len(records)
+    per_fmt: dict[str, float] = {
+        fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, n), 4)
+        for fmt in ("midi", "abc", "doremi")
+    }
+
+    per_src: dict[str, dict[str, float]] = {}
+    for src in sources:
+        sub = [r for r in records if r["source"] == src]
+        if not sub:
+            continue
+        per_src[src] = {
+            fmt: round(sum(r[f"{fmt}_correct"] for r in sub) / max(1, len(sub)), 4)
+            for fmt in ("midi", "abc", "doremi")
+        }
+
+    summary_lines = [
+        f"  Sources: {sources}",
+        f"  Pitches: {MIDI_MIN}–{MIDI_MAX}  ({len(PITCHES)} notes)",
+        f"  Stimuli: {n}",
+        "",
+        f"  {'Format':>8}  {'Accuracy':>9}",
+        f"  {'─' * 20}",
+    ]
+    for fmt, acc in per_fmt.items():
+        summary_lines.append(f"  {fmt.upper():>8}  {acc:>9.1%}")
+    summary_lines += ["", "  Per source (ABC accuracy):"]
+    for src, d in per_src.items():
+        summary_lines.append(f"    {src:16s}: {d.get('abc', 0):.1%}")
+    summary_lines += ["", "  Per source (MIDI accuracy):"]
+    for src, d in per_src.items():
+        summary_lines.append(f"    {src:16s}: {d.get('midi', 0):.1%}")
+
+    print(f"\n{'=' * 60}")
+    print(f"SUMMARY — {model_name}")
+    for line in summary_lines:
+        print(line)
+
+    summary: dict[str, Any] = {"total": n, "per_format": per_fmt, "per_source": per_src}
+    metadata = get_run_metadata(
+        model_name=model_name, model_info=info,
+        sources=sources, pitches=PITCHES,
+        tone_duration_ms=TONE_DURATION_MS,
+        prompt_midi=PROMPT_MIDI_FULL, prompt_abc=PROMPT_ABC_FULL,
+        prompt_doremi=PROMPT_DOREMI_FULL,
+    )
+    save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
+
+    long_records = wide_to_long_records(records)
+    save_accuracy_plots(
+        long_records, run_dir, model_name,
+        instrument_key="source", pitch_key="midi_gt",
+        prompt_key="prompt_variant", accuracy_key="exact_match",
+    )
+    save_pitch_prediction_plots(
+        long_records, run_dir, model_name,
+        source_key="source", task_key="midi_gt",
+    )
+    return {f"acc_{fmt}": per_fmt[fmt] for fmt in per_fmt}, records
+
+
+# ── Entry points ──────────────────────────────────────────────────────────────
+
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--preview",  action="store_true")
+    parser.add_argument("--sources",  nargs="+", metavar="SRC", default=None,
+                        help=f"Sources to run (default: all). Available: {ALL_SOURCES}")
+    parser.add_argument("--models",   nargs="+", metavar="MODEL",
+                        help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
+    args, _ = parser.parse_known_args()
+    return args
+
+
+def preview() -> None:
+    engine.set_exp(EXP_NAME)
+    args = _parse_args()
+    sources = args.sources or list(config.WAVEFORMS)
+    n = len(sources) * len(PITCHES)
+    print(f"Experiment   : {EXP_NAME}")
+    print(f"Sources      : {sources}")
+    print(f"Pitches      : {MIDI_MIN}–{MIDI_MAX}  ({len(PITCHES)} MIDI notes)")
+    print(f"Audio files  : {n}  (generating in {config.AUDIO_DIR})")
+    print(f"Queries/model: {n * 3}  (MIDI + ABC + doremi)")
+    print("Generating audio …")
+    for src in sources:
+        for midi in PITCHES:
+            try:
+                engine.tone(midi, src, TONE_DURATION_MS)
+            except ValueError as exc:
+                print(f"  [SKIP] {src} MIDI {midi}: {exc}")
+    print("Done. Run without --preview to query the model(s).")
+
+
+def run() -> None:
+    engine.set_exp(EXP_NAME)
+    args = _parse_args()
+    target_models = args.models or list(config.MODELS)
+    sources = args.sources or ALL_SOURCES
+
+    available: list[str] = []
+    for src in sources:
+        if src in config.WAVEFORMS:
+            available.append(src)
+        else:
+            if find_spec("fluidsynth") is not None:
+                available.append(src)
+            else:
+                print(f"  [SKIP] Instrument {src!r}: FluidSynth not installed")
+
+    print(f"Experiment : {EXP_NAME}")
+    print(f"Models     : {', '.join(target_models)}")
+    print(f"Sources    : {available}")
+    print(f"Pitches    : {len(PITCHES)}  |  Formats: MIDI + ABC + doremi")
+
+    run_dir = make_run_dir(EXP_NAME)
+    all_summaries: dict[str, dict[str, float]] = {}
+    all_records: dict[str, list[dict[str, Any]]] = {}
+    for model_name in target_models:
+        summary, records = run_one_model(model_name, available, run_dir)
+        all_summaries[model_name] = summary
+        all_records[model_name] = records
+    save_comparison(run_dir, all_summaries, EXP_NAME)
+    long_all = {m: wide_to_long_records(r) for m, r in all_records.items()}
+    save_cross_model_pitch_plots(long_all, run_dir, source_key="source", task_key="midi_gt")
+
+
+if __name__ == "__main__":
+    args = _parse_args()
+    if args.preview:
+        preview()
+    else:
+        run()

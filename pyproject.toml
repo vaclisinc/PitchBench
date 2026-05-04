@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pitchbench"
+version = "0.1.0"
+description = "Benchmark suite for evaluating pitch and acoustic perception in audio language models"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "vaclis-CNMAT", email = "vaclis@berkeley.edu" },
+]
+keywords = ["audio", "language-model", "benchmark", "pitch", "music", "ALM"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "numpy>=2.0",
+    "soundfile>=0.12",
+    "matplotlib>=3.9",
+    "requests>=2.32",
+    "scikit-learn>=1.4",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+generation = [
+    "pretty-midi>=0.2",
+    "pyfluidsynth>=1.3",
+]
+model = [
+    "fastapi>=0.115",
+    "python-multipart>=0.0.9",
+    "uvicorn>=0.30",
+    "accelerate>=0.30",
+    "torch>=2.0",
+    "torchvision>=0.15",
+    "transformers>=4.40",
+    "qwen-omni-utils>=0.0.9",
+]
+all = [
+    "pitchbench[generation,model]",
+]
+
+[project.scripts]
+pitchbench = "pitchbench.experiments.run:main"
+
+[project.urls]
+Repository = "https://github.com/vaclis-CNMAT/PitchBench"
+
+[tool.setuptools.packages.find]
+where = ["src"]
