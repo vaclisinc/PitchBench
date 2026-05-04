@@ -39,10 +39,10 @@ EXP_NAME = Path(__file__).stem
 
 N_NOTES_OPTS:  list[int] = [3, 5]
 TOTAL_DUR_MS              = 20_000
-GAP_MIN_MS, GAP_MAX_MS    = 300, 1500
-DEFAULT_SEED              = 42
+GAP_MIN_MS, GAP_MAX_MS    = 30, 1500
+DEFAULT_SEED = config.DEFAULT_SEED
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 
 def _query_str(secs: float) -> str:

@@ -42,12 +42,12 @@ N_NOTES_OPTS:    list[int] = [3, 5, 8]
 RHYTHMS:         list[str] = ["regular", "irregular"]
 PITCH_PATTERNS:  list[str] = ["fixed_pitch", "varied_pitches"]
 TOTAL_DUR_MS = 30_000
-DEFAULT_SEED = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
 REG_GAP_MS              = 800
 IRR_GAP_MIN, IRR_GAP_MAX = 300, 2500
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "This audio contains a sequence of musical notes separated by silence. "

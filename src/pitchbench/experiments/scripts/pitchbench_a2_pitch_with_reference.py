@@ -33,15 +33,14 @@ from pitchbench.experiments.helpers.results import get_run_metadata, make_run_di
 EXP_NAME = Path(__file__).stem
 
 # Reference pitches spanning the middle range
-REFERENCE_PITCHES: list[int] = [52, 55, 60, 64, 67, 69, 72]
+REFERENCE_PITCHES: list[int] = config.DEFAULT_SELECTION
 #                               E3  G3  C4  E4  G4  A4  C5
 
 INTERVALS: list[int] = [-12, -7, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 7, 12]
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
-# TONE_DURATION_MS = 1_500
-TONE_DURATION_MS = 4_000
+TONE_DURATION_MS = config.DEFAULT_DURATION_MS
 GAP_MS           = 500    # silence between reference and target
 
 CONDITIONS: list[str] = ["anchored", "baseline"]   # with or without reference tone
@@ -63,7 +62,7 @@ def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
                     "Reply with ONLY the note name.")
         else:  # doremi
             return ("This audio contains a single musical note. "
-                    "What is the solfège syllable (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
+                    "What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
                     "Reply with the syllable and accidental (if necessary).")
     else:  # anchored
         if variant == "midi":
@@ -79,7 +78,7 @@ def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
         else:  # doremi
             return (f"You will hear two tones separated by a silence. "
                     f"The FIRST tone is '{ref_solfege}' (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
-                    f"What is the solfège syllable of the SECOND tone? "
+                    f"What is the solfège syllable and accidental (if needed) of the SECOND tone? "
                     f"Reply with the syllable and accidental (if necessary).")
 
 

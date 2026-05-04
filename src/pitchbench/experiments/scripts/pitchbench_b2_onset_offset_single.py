@@ -35,13 +35,13 @@ EXP_NAME = Path(__file__).stem
 
 POSITIONS_MS: list[int] = [2_000, 7_000, 14_000, 22_000, 27_000]
 TOTAL_DUR_MS  = 30_000
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "This audio is a 30-second clip that contains exactly ONE sustained "
     "musical note inside silence. Identify the onset and offset times of "
     "the note. Reply with ONLY two timestamps in MM:SS.cc format separated "
-    "by a comma, e.g. '0:05.20, 0:08.50'. Nothing else."
+    "by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Do not think."
 )
 
 

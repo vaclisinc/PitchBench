@@ -36,7 +36,7 @@ from pitchbench.experiments.helpers.results import (
 EXP_NAME = Path(__file__).stem
 
 INTERVALS_ST: list[int] = list(range(1, 13))                 # m2 .. P8
-SOURCES:      list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES:      list[str] = config.ALL_SOURCES
 SAME_INSTRUMENT_OPTS: list[bool] = [True, False]
 
 PROMPT = (

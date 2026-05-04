@@ -43,7 +43,7 @@ RESULTS_DIR = Path(__file__).parent / "results" / "embedding_distance"
 DEFAULT_MODEL  = "audio_flamingo_next_instruct"
 DEFAULT_BASE   = "A4"
 DEFAULT_N      = 3    # tone pairs per delta condition
-DEFAULT_SEED   = 42
+DEFAULT_SEED   = config.DEFAULT_SEED
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────

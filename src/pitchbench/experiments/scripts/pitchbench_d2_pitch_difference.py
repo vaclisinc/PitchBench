@@ -45,9 +45,9 @@ DELTA_CENTS: list[int] = [1, 2, 5, 10, 25, 50, 100, 200, 400, 700, 1200]
 
 SEPARATION_MS: list[int] = [200, 500, 1000, 2000]
 
-DEFAULT_DURATION_MS = 1000           # per tone — universal IV slot is "duration_ms"
+DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS           # per tone — universal IV slot is "duration_ms"
 DEFAULT_N_TRIALS    = 3
-DEFAULT_SEED        = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
 SOURCES: list[str] = list(config.WAVEFORMS)   # waveforms only — Hz tones unsupported on instruments
 

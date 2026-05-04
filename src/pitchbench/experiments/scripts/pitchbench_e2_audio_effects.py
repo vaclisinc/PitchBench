@@ -1,21 +1,31 @@
 """
-Experiment 07 — Pitch recognition under audio effects
-Tests whether models can identify pitch when audio is degraded with effects
-(white noise, reverb, hard clipping, added harmonics) that preserve the
-fundamental frequency but alter timbre, dynamics, or spectral content.
+Experiment e2 — Pitch recognition under audio effects
+Tests whether models can identify pitch when audio is processed with effects
+(reverb, hard clipping, EQ shelving) that preserve the fundamental frequency
+but alter timbre, dynamics, or spectral content.
 
-Stimuli: all waveforms × 11 representative pitches × 10 effect conditions.
+Stimuli: all waveforms + GM instruments × 11 representative pitches × effect conditions.
 Three prompts per stimulus:
   MIDI:   integer note number (0–127)
   ABC:    note name + octave (e.g. "C4")
-  Doremi: solfege syllable (e.g. "do", "sol#")
+  Doremi: solfege syllable and accidental (if needed) (e.g. "do", "sol#")
 
 All effects are applied deterministically (fixed seed per condition).
 
+Effects:
+  clean        — no processing
+  reverb_s/l   — comb-filter reverb (short / long)
+  clip_50/25   — hard-clip at 50 % / 25 % of peak amplitude
+  eq_lo_boost  — low-shelf  +12 dB at  500 Hz  (bass boost)
+  eq_hi_boost  — high-shelf +12 dB at 2000 Hz  (treble boost)
+  eq_lo_cut    — low-shelf  −12 dB at  500 Hz  (bass cut / thin)
+  eq_hi_cut    — high-shelf −12 dB at 2000 Hz  (telephone-warm)
+  eq_telephone — high-shelf −24 dB at 1000 Hz  (severe LP, telephone-like)
+
 Usage:
-    python experiments/run.py exp_7_effects
-    python experiments/run.py exp_7_effects --preview
-    python experiments/run.py exp_7_effects --models audio_flamingo_next_instruct
+    pitchbench e2
+    pitchbench e2 --preview
+    pitchbench --id e2 --models audio_flamingo_next_instruct
 """
 
 import argparse
@@ -42,30 +52,24 @@ PITCHES: list[int] = [48, 52, 55, 60, 64, 67, 69, 72, 76, 79, 84]
 TONE_DURATION = 2.0   # seconds
 TONE_MS = int(TONE_DURATION * 1000)
 
-# Effect definitions; "type" key selects the apply function in engine
-# noise:    add white Gaussian noise at given SNR (dB)
-# reverb:   recursive comb filter — delay_s seconds at given decay coefficient
-# clip:     hard-clip at (threshold × peak), renormalise
-# harmonic: add a sinusoidal partial at (ratio × f0) with relative amplitude level
 EFFECTS: dict[str, dict] = {
-    "clean":       {},
-    "noise_30":    {"type": "noise",    "snr_db": 30},
-    "noise_20":    {"type": "noise",    "snr_db": 20},
-    "noise_10":    {"type": "noise",    "snr_db": 10},
-    "noise_0":     {"type": "noise",    "snr_db":  0},
-    "reverb_s":    {"type": "reverb",   "delay_s": 0.05, "decay": 0.30},
-    "reverb_l":    {"type": "reverb",   "delay_s": 0.20, "decay": 0.70},
-    "clip_50":     {"type": "clip",     "threshold": 0.50},
-    "clip_25":     {"type": "clip",     "threshold": 0.25},
-    # "harm_oct":    {"type": "harmonic", "ratio": 2.000, "level": 0.50},
-    # "harm_fifth":  {"type": "harmonic", "ratio": 1.498, "level": 0.30},
+    "clean":        {},
+    "reverb_s":     {"type": "reverb",   "delay_s": 0.05, "decay": 0.30},
+    "reverb_l":     {"type": "reverb",   "delay_s": 0.20, "decay": 0.70},
+    "clip_50":      {"type": "clip",     "threshold": 0.50},
+    "clip_25":      {"type": "clip",     "threshold": 0.25},
+    "eq_lo_boost":  {"type": "eq_lo",    "cutoff_hz":  500, "gain_db":  12},
+    "eq_hi_boost":  {"type": "eq_hi",    "cutoff_hz": 2000, "gain_db":  12},
+    "eq_lo_cut":    {"type": "eq_lo",    "cutoff_hz":  500, "gain_db": -12},
+    "eq_hi_cut":    {"type": "eq_hi",    "cutoff_hz": 2000, "gain_db": -12},
+    "eq_telephone": {"type": "eq_hi",    "cutoff_hz": 1000, "gain_db": -24},
 }
 
 PROMPT_MIDI_FULL   = "Listen to this audio clip of a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "Listen to this audio clip of a single musical note. " + PROMPT_ABC
 PROMPT_DOREMI_FULL = "Listen to this audio clip of a single musical note. " + PROMPT_DOREMI
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 
 def build_conditions() -> list[dict]:

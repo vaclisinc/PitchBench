@@ -48,15 +48,15 @@ QUALITIES: dict[str, tuple[tuple[int, ...], str]] = {
 }
 
 ROOT_MIDIS:   list[int]  = list(range(48, 60))
-TASKS:        list[str]  = ["quality_only", "root_and_quality"]
+TASKS:        list[str]  = ["quality_only"]
 SAME_INSTRUMENT_OPTS:  list[bool] = [True, False]
-SOURCES:      list[str]  = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES:      list[str]  = config.ALL_SOURCES
 
 
 PROMPT_QUALITY_ONLY = (
     "This audio contains a chord (multiple simultaneous notes). "
     "What is its harmonic quality? "
-    "Examples: 'major', 'minor', 'diminished', 'augmented', "
+    "Options: 'major', 'minor', 'diminished', 'augmented', "
     "'dominant seventh', 'major seventh', 'minor seventh', "
     "'half diminished', 'sus2', 'sus4'. "
     "Reply with ONLY the quality."

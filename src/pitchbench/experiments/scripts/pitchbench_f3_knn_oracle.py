@@ -52,7 +52,7 @@ EXP13_NAME = "pitchbench_f1_embedding_geometry"   # may reuse embedding cache
 MIDI_MIN = config.DEFAULT_MIDI_MIN
 MIDI_MAX = config.DEFAULT_MIDI_MAX
 MIDI_PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
-SPLIT_SEED = 42
+SPLIT_SEED = config.DEFAULT_SEED
 DEFAULT_K  = 1
 
 VERBAL_PROMPTS: dict[str, str] = {
@@ -68,8 +68,8 @@ VERBAL_PROMPTS: dict[str, str] = {
     ),
     "doremi": (
         "This audio contains a single musical note. "
-        "What is the solfège syllable (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
-        "Reply with the syllable and accidental (if necessary)."
+        "What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
+        "Reply with the syllable and accidental (if needed) and accidental (if necessary)."
     ),
 }
 

@@ -43,7 +43,7 @@ from pitchbench.experiments.helpers.results import (
 
 EXP_NAME = Path(__file__).stem
 
-ALL_SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+ALL_SOURCES: list[str] = config.ALL_SOURCES
 N_DETUNE_LEVELS = 5
 DETUNE_FRACTION = 0.40    # |detune| ≤ 40 % of half-distance-to-neighbour, well inside the basin
 

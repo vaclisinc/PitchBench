@@ -7,7 +7,7 @@ all 49 MIDI pitches in the standard range (C2–C6, MIDI 36–84).
 Three prompt variants per stimulus (one row per audio file in the CSV):
   MIDI    — "Reply with ONLY the integer (0–127)."
   ABC     — "Reply with ONLY the note name, e.g. C4, F#3."
-  Doremi  — "Reply with ONLY the solfège syllable."
+  Doremi  — "Reply with ONLY the solfège syllable and accidental (if needed)."
 
 Instruments require FluidSynth; the experiment runs on waveform sources only
 if FluidSynth is unavailable.
@@ -41,9 +41,11 @@ MIDI_MAX = config.DEFAULT_MIDI_MAX
 
 PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
 
-TONE_DURATION_MS = 5000
 
-ALL_SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+
+TONE_DURATION_MS = config.DEFAULT_DURATION_MS
+
+ALL_SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT_MIDI_FULL   = "This audio contains a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "This audio contains a single musical note. " + PROMPT_ABC
@@ -57,6 +59,7 @@ def run_one_model(
     sources: list[str],
     run_dir: Path,
 ) -> tuple[dict[str, float], list[dict[str, Any]]]:
+    print('a1')
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
@@ -118,6 +121,9 @@ def run_one_model(
     summary_lines += ["", "  Per source (MIDI accuracy):"]
     for src, d in per_src.items():
         summary_lines.append(f"    {src:16s}: {d.get('midi', 0):.1%}")
+    summary_lines += ["", "  Per source (doremi accuracy):"]
+    for src, d in per_src.items():
+        summary_lines.append(f"    {src:16s}: {d.get('doremi', 0):.1%}")
 
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
@@ -181,6 +187,8 @@ def preview() -> None:
 
 
 def run() -> None:
+    print(f"Experiment : {EXP_NAME} with MIDI pitches {MIDI_MIN}–{MIDI_MAX} ({len(PITCHES)} notes)")
+
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     target_models = args.models or list(config.MODELS)

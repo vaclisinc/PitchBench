@@ -38,10 +38,9 @@ N_DISTRACTORS:  list[int] = [2, 4]
 TARGET_POS_OPTS: list[str] = ["first", "middle", "last"]
 TOTAL_DUR_MS = 30_000
 GAP_MIN_MS, GAP_MAX_MS = 500, 2000
-DEFAULT_N_TRIALS = 1
-DEFAULT_SEED     = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 
 def _prompt_for(target_note: str) -> str:
@@ -49,7 +48,7 @@ def _prompt_for(target_note: str) -> str:
         f"This audio contains a sequence of musical notes separated by silence. "
         f"Identify the onset and offset times of the note {target_note} "
         f"(it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc "
-        f"format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else."
+        f"format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Do not think."
     )
 
 

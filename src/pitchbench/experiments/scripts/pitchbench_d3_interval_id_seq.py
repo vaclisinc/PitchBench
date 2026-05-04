@@ -39,7 +39,7 @@ EXP_NAME = Path(__file__).stem
 INTERVALS_ST:  list[int] = list(range(1, 13))
 DIRECTIONS:    list[str] = ["ascending", "descending"]
 SEPARATIONS_MS: list[int] = [200, 500, 1000, 2000]
-SOURCES:       list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES:       list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "Two musical notes play in sequence, separated by a brief silence. "

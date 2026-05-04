@@ -30,7 +30,7 @@ Register ranges (top → bottom, one octave each):
   part 3  48–59  (C3–B3)
   part 4  36–47  (C2–B2)
 
-Prompt formats: MIDI integers · SPN note names · Solfège syllables
+Prompt formats: MIDI integers · SPN note names · Solfège syllable and accidental (if needed)s
 
 Scoring: per-position accuracy + full-sequence exact match, broken down by
          (n, x, tempo, instrument_config, source_label, format).
@@ -71,7 +71,7 @@ EXP_NAME = Path(__file__).stem
 N_NOTES       = 10
 N_PARTS_LIST  = [2, 3, 4]
 N_TRIALS      = 2
-DEFAULT_SEED  = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 DIST_N_MIN    = 1
 DIST_N_MAX    = 20
 DUR_JITTER    = 0.5      # ± fraction around mean duration for per-note jitter
@@ -295,7 +295,7 @@ def make_prompt_midi(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
         f"List all {N_NOTES} MIDI note numbers in order from first to last. "
-        "Reply with ONLY the integers separated by spaces. Nothing else."
+        "Reply with ONLY the integers separated by spaces. Nothing else. Do not think."
     )
 
 
@@ -303,16 +303,16 @@ def make_prompt_spn(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
         f"List all {N_NOTES} note names in order from first to last. "
-        "Reply with ONLY the note names separated by spaces (e.g. C5 D5 E5). Nothing else."
+        "Reply with ONLY the note names separated by spaces (e.g. C5 D5 E5). Nothing else. Do not think."
     )
 
 
 def make_prompt_doremi(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
-        f"List all {N_NOTES} solfège syllables in order from first to last "
+        f"List all {N_NOTES} solfège syllable and accidental (if needed)s in order from first to last "
         "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B; include sharps e.g. do# re#). "
-        "Reply with ONLY the syllables separated by spaces. Nothing else."
+        "Reply with ONLY the syllable and accidental (if needed)s separated by spaces. Nothing else. Do not think."
     )
 
 

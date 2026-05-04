@@ -8,7 +8,7 @@ Stimuli: pure sine waves at 11 representative MIDI pitches (C3–C6)
 Three prompts per stimulus:
   MIDI:   integer note number (0–127)
   ABC:    note name + octave (e.g. "C4")
-  Doremi: solfege syllable (e.g. "do", "sol#")
+  Doremi: solfege syllable and accidental (if needed) (e.g. "do", "sol#")
 
 Usage:
     python experiments/run.py exp_6_loudness
@@ -35,8 +35,7 @@ EXP_NAME = Path(__file__).stem
 # ── Test parameters ───────────────────────────────────────────────────────────
 
 # Representative pitches spanning C3–C6
-PITCHES: list[int] = [48, 52, 55, 60, 64, 67, 69, 72, 76, 79, 84]
-#                     C3  E3  G3  C4  E4  G4  A4  C5  E5  G5  C6
+PITCHES: list[int] = config.DEFAULT_PITCHES
 
 # dBFS levels; 0 = peak amplitude 0.9, each step ÷ ~3–4
 LOUDNESS_DB: list[int] = [-30, -20, -12, -6, -3, 0]
@@ -47,7 +46,7 @@ PROMPT_MIDI_FULL   = "Listen to this audio clip of a single musical note. " + PR
 PROMPT_ABC_FULL    = "Listen to this audio clip of a single musical note. " + PROMPT_ABC
 PROMPT_DOREMI_FULL = "Listen to this audio clip of a single musical note. " + PROMPT_DOREMI
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 TONE_MS = int(TONE_DURATION * 1000)
 
 

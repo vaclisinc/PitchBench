@@ -46,12 +46,12 @@ DELTA_CENTS: list[int]        = [25, 50, 100, 200, 400]
 N_TONES:     list[int]        = [3, 4, 5]
 RHYTHMS:     list[str]        = ["regular", "irregular"]
 
-DEFAULT_DURATION_MS = 1000   # per tone
+DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS   # per tone
 DEFAULT_GAP_MS      = 300    # base inter-tone silence (rhythm=regular)
 DEFAULT_N_TRIALS    = 3
-DEFAULT_SEED        = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
-ALL_SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+ALL_SOURCES: list[str] = config.ALL_SOURCES
 
 
 def _prompt(n: int) -> str:

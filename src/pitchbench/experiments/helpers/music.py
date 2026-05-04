@@ -10,7 +10,7 @@ NOTE_NAMES    = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
 FLAT_TO_SHARP = {"Db": "C#", "Eb": "D#", "Fb": "E", "Gb": "F#",
                  "Ab": "G#", "Bb": "A#", "Cb": "B"}
 
-# Solfege syllable -> pitch class index (0=C ... 11=B), fixed-do system.
+# Solfege syllable and accidental (if needed) -> pitch class index (0=C ... 11=B), fixed-do system.
 SOLFEGE_BASE_TO_PC: dict[str, int] = {
     "do": 0, "re": 2, "mi": 4, "fa": 5, "sol": 7, "la": 9, "si": 11, "ti": 11,
 }
@@ -125,7 +125,7 @@ def extract_midi(text: str) -> int | None:
 
 
 def extract_solfege(text: str) -> int | None:
-    """Parse a solfege syllable from text and return pitch class 0-11, or None."""
+    """Parse a solfege syllable and accidental (if needed) from text and return pitch class 0-11, or None."""
     match = _SOLFEGE_RE.search(text.strip().lower())
     if not match:
         return None
@@ -138,7 +138,7 @@ def extract_solfege(text: str) -> int | None:
 
 
 def extract_all_solfege(text: str) -> list[int]:
-    """Parse all solfege syllables in order and return pitch classes."""
+    """Parse all solfege syllable and accidental (if needed)s in order and return pitch classes."""
     pcs: list[int] = []
     for match in _SOLFEGE_RE.finditer(text.strip().lower()):
         base       = match.group(1).lower()
@@ -172,7 +172,7 @@ def solfege_midi_distance(reference_midi: int, pred_midi: int) -> int:
 
 
 def midi_to_solfege(midi: int) -> str:
-    """Return the fixed-do solfege syllable for a MIDI note number."""
+    """Return the fixed-do solfege syllable and accidental (if needed) for a MIDI note number."""
     return PC_TO_SOLFEGE.get(midi % 12, "?")
 
 
@@ -377,26 +377,26 @@ def extract_chord_quality(text: str) -> str | None:
 
 PROMPT_MIDI = (
     "What is the MIDI note number (an integer from 0 to 127)? "
-    "Reply with ONLY the integer. Nothing else."
+    "Reply with ONLY the integer. Nothing else. Don't think."
 )
 
 PROMPT_SPN = (
     "What is the note name and octave? "
-    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else."
+    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Don't think."
 )
 PROMPT_ABC = PROMPT_SPN   # legacy alias — many older scripts import PROMPT_ABC
 
 PROMPT_DOREMI = (
-    "What is the solfege syllable of this pitch? "
+    "What is the solfege syllable and accidental (if needed) of this pitch? "
     "Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). "
     "Include sharps or flats when needed (e.g. do#, reb, fa#, sib). "
-    "Do NOT include the octave. Reply with ONLY the syllable. Nothing else."
+    "Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Don't think."
 )
 PROMPT_SOLFEGE = PROMPT_DOREMI   # alias
 
 PROMPT_HZ = (
     "What is the pitch frequency in Hertz? "
-    "Reply with ONLY a number (the frequency in Hz). Nothing else."
+    "Reply with ONLY a number (the frequency in Hz). Nothing else. Don't think."
 )
 
 

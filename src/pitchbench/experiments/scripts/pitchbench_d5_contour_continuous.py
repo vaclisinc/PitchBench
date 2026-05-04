@@ -1,40 +1,30 @@
 """
-Experiment 11 — Pitch trajectory
+Experiment d5 — Pitch trajectory (open-response)
 A continuously varying (gliding) pitch is synthesised and the model must
-describe its trajectory: does the pitch go up, down, up then down, etc.?
+describe its trajectory as a comma-separated sequence of "higher", "lower",
+or "same".
 
-The experiment probes two capabilities:
-  (a) directional sensitivity — can the model detect the direction of change?
-  (b) shape discrimination    — can it distinguish linear, arch, and valley?
-
-Trajectories:
-  flat        — constant pitch (no change)              label: "flat"
-  up          — linearly rising                         label: "up"
-  down        — linearly falling                        label: "down"
-  arch        — rises then falls (peak in the middle)   label: "up_then_down"
-  valley      — falls then rises (trough in the middle) label: "down_then_up"
+Trajectories and their ground-truth sequences:
+  flat        → "same"
+  up          → "higher"
+  down        → "lower"
+  up_then_down → "higher, lower"
+  down_then_up → "lower, higher"
 
 Parameters:
-  start pitches  — 5 representative notes (C3, G3, C4, G4, C5)
+  start pitches  — 7 representative notes (F#1–G5)
   intervals      — small (4 st), medium (7 st), large (12 st)
                    for arch/valley the end = start (range = 2× interval)
   duration       — 3 s
   sources        — all waveforms (instruments excluded: FluidSynth glide
                    requires pitch-bend which not all presets support)
 
-Prompt (multiple-choice, forced single letter):
-  "Listen to this audio. The pitch of the sound changes over time.
-   Which best describes the pitch trajectory?
-   (A) goes up  (B) goes down  (C) goes up then down
-   (D) goes down then up  (E) stays the same
-   Reply with ONLY the letter A, B, C, D, or E."
-
-Scoring: exact match on trajectory label.
+Scoring: exact match on normalized token sequence.
 
 Usage:
-    python experiments/run.py exp_11_pitch_trajectory
-    python experiments/run.py exp_11_pitch_trajectory --preview
-    python experiments/run.py exp_11_pitch_trajectory --models audio_flamingo_next_instruct
+    pitchbench d5
+    pitchbench d5 --preview
+    pitchbench --id d5 --models audio_flamingo_next_instruct
 """
 
 import argparse
@@ -51,7 +41,6 @@ from pitchbench.experiments.helpers.results import get_run_metadata, make_run_di
 EXP_NAME = Path(__file__).stem
 
 START_PITCHES: list[int] = [30, 48, 55, 60, 67, 72, 82]   # F#1, C3, G3, C4, G4, C5, G5
-#       
 
 INTERVALS_ST: list[int] = [4, 7, 12]   # semitones of change
 
@@ -59,66 +48,101 @@ DURATION_MS = 3_000
 
 SOURCES: list[str] = list(config.WAVEFORMS)  # glide works best on waveforms
 
-# Trajectory definitions: (shape, answer_letter, answer_label)
-#   shape    → passed to engine.glide()
-#   label    → ground truth for scoring
-#   For "flat" we use engine.tone(); end_midi = start_midi, shape irrelevant
 TRAJECTORIES: list[dict] = [
-    {"name": "flat",         "letter": "E", "shape": "linear",  "interval_sign":  0},
-    {"name": "up",           "letter": "A", "shape": "linear",  "interval_sign": +1},
-    {"name": "down",         "letter": "B", "shape": "linear",  "interval_sign": -1},
-    {"name": "up_then_down", "letter": "C", "shape": "arch",    "interval_sign": +1},
-    {"name": "down_then_up", "letter": "D", "shape": "valley",  "interval_sign": -1},
+    {"name": "flat",         "shape": "linear",  "interval_sign":  0, "gt_seq": ["same"]},
+    {"name": "up",           "shape": "linear",  "interval_sign": +1, "gt_seq": ["higher"]},
+    {"name": "down",         "shape": "linear",  "interval_sign": -1, "gt_seq": ["lower"]},
+    {"name": "up_then_down", "shape": "arch",    "interval_sign": +1, "gt_seq": ["higher", "lower"]},
+    {"name": "down_then_up", "shape": "valley",  "interval_sign": -1, "gt_seq": ["lower", "higher"]},
 ]
 
 PROMPT = (
-    "Listen to this audio. The pitch of the sound changes (or stays the same) "
-    "over time. Which best describes the pitch trajectory?\n"
-    "(A) goes up\n"
-    "(B) goes down\n"
-    "(C) goes up then down\n"
-    "(D) goes down then up\n"
-    "(E) stays the same\n"
-    "Reply with ONLY the letter A, B, C, D, or E. Nothing else."
+    "Listen to this audio. Describe how the pitch changes over time as a "
+    "comma-separated list using only the words 'higher', 'lower', and 'same'.\n"
+    "Examples:\n"
+    "  'higher'         — pitch rises throughout\n"
+    "  'lower'          — pitch falls throughout\n"
+    "  'same'           — pitch stays constant\n"
+    "  'higher, lower'  — pitch rises then falls\n"
+    "  'lower, higher'  — pitch falls then rises\n"
+    "Reply with ONLY the comma-separated list. Nothing else."
 )
 
-_LETTER_RE = re.compile(r"\b([A-Ea-e])\b")
+# ── Response normalisation ────────────────────────────────────────────────────
+
+_SYNONYMS: dict[str, set[str]] = {
+    "higher": {
+        "higher", "up", "rise", "rises", "rising", "ascend", "ascending",
+        "increase", "increases", "increasing", "goes up", "went up",
+        "pitch goes up", "pitch rises", "pitch increases",
+    },
+    "lower": {
+        "lower", "down", "fall", "falls", "falling", "descend", "descending",
+        "decrease", "decreases", "decreasing", "goes down", "went down",
+        "pitch goes down", "pitch falls", "pitch decreases",
+    },
+    "same": {
+        "same", "flat", "constant", "steady", "unchanged", "stays",
+        "stable", "equal", "no change", "stays the same", "remains the same",
+        "remains constant", "stays constant", "pitch stays", "pitch remains",
+    },
+}
+
+_WORD_TO_TOKEN: dict[str, str] = {
+    s: canonical
+    for canonical, syns in _SYNONYMS.items()
+    for s in syns
+}
 
 
-def _parse_letter(raw: str) -> str | None:
-    m = _LETTER_RE.search(raw.strip())
-    return m.group(1).upper() if m else None
+def _normalize_token(tok: str) -> str | None:
+    return _WORD_TO_TOKEN.get(tok.strip().lower())
 
+
+def _parse_sequence(raw: str) -> list[str] | None:
+    """Return normalised token list, or None if any token is unrecognised."""
+    parts = [p.strip() for p in raw.strip().split(",") if p.strip()]
+    if not parts:
+        return None
+    result: list[str] = []
+    for p in parts:
+        norm = _normalize_token(p)
+        if norm is None:
+            return None
+        result.append(norm)
+    return result
+
+
+# ── Condition builder ─────────────────────────────────────────────────────────
 
 def build_conditions(sources: list[str]) -> list[dict]:
     rows: list[dict] = []
     for src in sources:
         for start_midi in START_PITCHES:
-            # flat — no interval
             traj = next(t for t in TRAJECTORIES if t["name"] == "flat")
             rows.append({
-                "source":       src,
-                "start_midi":   start_midi,
-                "end_midi":     start_midi,
-                "interval_st":  0,
-                "traj_name":    "flat",
-                "traj_letter":  traj["letter"],
-                "traj_shape":   traj["shape"],
+                "source":      src,
+                "start_midi":  start_midi,
+                "end_midi":    start_midi,
+                "interval_st": 0,
+                "traj_name":   "flat",
+                "traj_shape":  traj["shape"],
+                "gt_seq":      traj["gt_seq"],
             })
             for interval in INTERVALS_ST:
                 for traj in TRAJECTORIES:
                     if traj["name"] == "flat":
                         continue
                     end_midi = start_midi + traj["interval_sign"] * interval
-                    end_midi = max(12, min(115, end_midi))  # keep in audible range
+                    end_midi = max(12, min(115, end_midi))
                     rows.append({
                         "source":      src,
                         "start_midi":  start_midi,
                         "end_midi":    end_midi,
                         "interval_st": interval,
                         "traj_name":   traj["name"],
-                        "traj_letter": traj["letter"],
                         "traj_shape":  traj["shape"],
+                        "gt_seq":      traj["gt_seq"],
                     })
     return rows
 
@@ -132,6 +156,8 @@ def _get_wav(c: dict) -> Path:
     )
 
 
+# ── Run one model ─────────────────────────────────────────────────────────────
+
 def run_one_model(
     model_name: str,
     sources: list[str],
@@ -144,34 +170,37 @@ def run_one_model(
     records: list[dict] = []
 
     for c in conds:
-        wav = _get_wav(c)
-        raw = query_alm(model_name, str(wav)["result"], PROMPT)
-        pred_letter = _parse_letter(raw)
-        exact = int(pred_letter == c["traj_letter"]) if pred_letter else 0
+        wav  = _get_wav(c)
+        result = query_alm(model_name, wav, PROMPT)
+        raw  = result["result"] or ""
+
+        pred_seq = _parse_sequence(raw)
+        gt_str   = ", ".join(c["gt_seq"])
+        pred_str = ", ".join(pred_seq) if pred_seq is not None else None
+        exact    = int(pred_seq == c["gt_seq"]) if pred_seq is not None else 0
 
         records.append({
-            "source":            c["source"],
-            "source_type":       "waveform",
-            "start_midi":        c["start_midi"],
-            "end_midi":          c["end_midi"],
-            "start_note":        midi_to_note(c["start_midi"]),
-            "traj_name":         c["traj_name"],
-            "interval_st":       c["interval_st"],
-            "wav":               str(wav),
-            "prompt":            PROMPT,
-            "raw_response":      raw.strip(),
-            "trajectory_gt":     c["traj_letter"],
-            "trajectory_pred":   pred_letter,
-            "trajectory_correct": exact,
-            "within_1":          exact,   # for plot compat
+            "source":               c["source"],
+            "source_type":          "waveform",
+            "start_midi":           c["start_midi"],
+            "end_midi":             c["end_midi"],
+            "start_note":           midi_to_note(c["start_midi"]),
+            "traj_name":            c["traj_name"],
+            "interval_st":          c["interval_st"],
+            "wav":                  str(wav),
+            "prompt":               PROMPT,
+            "raw_response":         raw.strip(),
+            "trajectory_gt":        gt_str,
+            "trajectory_pred":      pred_str,
+            "trajectory_correct":   exact,
             # standard plot keys
-            "instrument":        c["source"],
-            "midi":              c["start_midi"],
-            "prompt_variant":    c["traj_name"],
+            "instrument":           c["source"],
+            "midi":                 c["start_midi"],
+            "prompt_variant":       c["traj_name"],
         })
-        sym = "✓" if exact else f"✗(pred={pred_letter or '?'})"
+        sym = "✓" if exact else f"✗(pred={pred_str or '?'})"
         print(f"    {c['traj_name']:14s} start={midi_to_note(c['start_midi']):4s} "
-              f"Δ={c['interval_st']:+2d}st {c['source']:10s}  {sym}  {Path(wav).name}")
+              f"Δ={c['interval_st']:+2d}st {c['source']:10s}  {sym}")
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)
@@ -222,6 +251,7 @@ def run_one_model(
         sources=sources, start_pitches=START_PITCHES,
         intervals_st=INTERVALS_ST, duration_ms=DURATION_MS,
         trajectories=[t["name"] for t in TRAJECTORIES],
+        prompt=PROMPT,
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
     save_accuracy_plots(
@@ -229,7 +259,10 @@ def run_one_model(
         instrument_key="source", pitch_key="midi",
         prompt_key="prompt_variant", accuracy_key="trajectory_correct",
     )
-    return {"overall": overall, **{f"acc_{t['name']}": per_traj.get(t["name"], {}).get("accuracy") for t in TRAJECTORIES}}
+    return {
+        "overall": overall,
+        **{f"acc_{t['name']}": per_traj.get(t["name"], {}).get("accuracy") for t in TRAJECTORIES},
+    }
 
 
 # ── Entry points ──────────────────────────────────────────────────────────────

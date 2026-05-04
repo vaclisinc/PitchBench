@@ -7,7 +7,7 @@ seventh chords (dom7/maj7/min7) across all 12 roots.
 Three prompt variants per stimulus:
   MIDI:    list all MIDI note numbers
   ABC:     list all note names
-  Solfège: list all solfège syllables
+  Solfège: list all solfège syllable and accidental (if needed)s
 
 Scoring: set-level exact match (order-agnostic) + per-note recall.
 
@@ -39,7 +39,7 @@ EXP_NAME = Path(__file__).stem
 
 TONE_DURATION_MS = 2_000
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 # Chord type definitions as semitone intervals above root
 CHORD_TYPES: dict[str, list[int]] = {
@@ -73,19 +73,19 @@ BASE_ROOTS: list[int] = list(range(60, 72))  # C4–B4 (all 12 pitch classes)
 PROMPT_MIDI = (
     "This audio contains multiple musical pitches played simultaneously. "
     "List ALL MIDI note numbers you hear, from lowest to highest. "
-    "Reply with ONLY the integers separated by spaces. Nothing else."
+    "Reply with ONLY the integers separated by spaces. Nothing else. Do not think."
 )
 
 PROMPT_ABC = (
     "This audio contains multiple musical pitches played simultaneously. "
     "List ALL note names you hear, from lowest to highest. "
-    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G4. Nothing else."
+    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G4#. Nothing else. Do not think."
 )
 
 PROMPT_DOREMI = (
     "This audio contains multiple musical pitches played simultaneously. "
-    "List ALL solfège syllables you hear (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
-    "Reply with ONLY the syllables separated by spaces, e.g. do mi sol. Nothing else."
+    "List ALL solfège syllable and accidental (if needed)s you hear (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B). "
+    "Reply with ONLY the syllables with accidental (if needed) separated by spaces, e.g. do mi sol#. Nothing else. Do not think."
 )
 
 PROMPTS: dict[str, str] = {

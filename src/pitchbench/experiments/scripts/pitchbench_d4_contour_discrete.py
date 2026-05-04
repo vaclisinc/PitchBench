@@ -42,9 +42,9 @@ N_TRANSITIONS_OPTS:  list[int] = [2, 3, 5, 7]
 STEP_SIZES_ST:       list[int] = [1, 2, 4, 7]
 NOTE_DURATIONS_MS:   list[int] = [250, 500, 1000]
 DEFAULT_TRIALS_PER_CELL = 2
-DEFAULT_SEED = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "Listen to this sequence of separate musical notes. For each TRANSITION "

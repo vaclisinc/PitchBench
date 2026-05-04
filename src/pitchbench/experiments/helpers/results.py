@@ -257,6 +257,23 @@ def _format_marginals_block(
 
 # ── Per-model results ─────────────────────────────────────────────────────────
 
+def save_format_accuracy_csv(
+    run_dir: Path,
+    model_name: str,
+    per_format: dict[str, float],
+) -> None:
+    """Write format_accuracy_<model>.csv — one row per prompt format.
+
+    Columns: Format, Accuracy  (e.g. "MIDI", "19.8%")
+    """
+    path = run_dir / f"format_accuracy_{model_name}.csv"
+    with open(path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Format", "Accuracy"])
+        for fmt, acc in per_format.items():
+            writer.writerow([fmt.upper(), f"{acc:.1%}"])
+
+
 def save_results(
     exp_name: str,
     model_name: str,
@@ -335,6 +352,11 @@ def save_results(
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(csv_records)
+
+    # ── Per-format accuracy summary ───────────────────────────────────────────
+    per_format = summary.get("per_format")
+    if per_format:
+        save_format_accuracy_csv(run_dir, model_name, per_format)
 
     print(f"\nResults saved → {run_dir}/{stem}.*")
     return run_dir

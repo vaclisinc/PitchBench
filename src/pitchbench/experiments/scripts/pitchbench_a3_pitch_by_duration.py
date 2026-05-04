@@ -29,12 +29,11 @@ from pitchbench.experiments.helpers.results import get_run_metadata, make_run_di
 
 EXP_NAME = Path(__file__).stem
 
-PITCHES: list[int] = [48, 52, 55, 60, 64, 67, 69, 72, 76, 79, 84]
-#                     C3  E3  G3  C4  E4  G4  A4  C5  E5  G5  C6
+PITCHES: list[int] = config.DEFAULT_SELECTION  # C3, F#3, A#3, C4, E4, G4, A4, C5, D#5, F5, G#5 — 11 pitches spanning common vocal/instrumental range
 
-DURATIONS_MS: list[int] = [50, 100, 250, 500, 1_000, 2_000, 4_000, 6_000]
+DURATIONS_MS: list[int] = [50, 100, 250, 500, 1_000, 2_000, 4_000, 6_000, 8_000]
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT_MIDI_FULL   = "This audio contains a single musical pitch. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "This audio contains a single musical pitch. " + PROMPT_ABC

@@ -59,18 +59,18 @@ SAME_INSTRUMENT_OPTS: list[bool] = [True, False]
 
 DEFAULT_N_TRIALS = 1                # per (n, quality, root, dur, source) cell
 RANDOM_TRIALS    = 3                # for random_set quality only
-DEFAULT_SEED     = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
 # Counts to test. The fixed qualities define ``n`` directly via len(intervals);
 # random_set sweeps n=1..6 explicitly.
 RANDOM_NS:         list[int] = [1, 2, 3, 4, 5, 6]
 RANDOM_PITCH_RANGE = (48, 84)        # pitch range for random_set draws
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are sounding "
-    "at the same time? Reply with ONLY a single integer. Nothing else."
+    "at the same time? Reply with ONLY a single integer. Nothing else. Do not think."
 )
 
 

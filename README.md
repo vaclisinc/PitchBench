@@ -77,6 +77,7 @@ Any OpenRouter slug can be passed via `--models openrouter/<slug>`. If the model
 | `d1–d7` | Sequences, contour, intervals |
 | `e1–e3` | Loudness, audio effects, background noise |
 | `f1–f3` | Embedding probes (PCA, kNN oracle, token logits) |
+| `g1–g2` | Melodic-line and voice identification in polyphony |
 | `z1`    | Real-recording datasets (NSynth) |
 
 ### Category A — Single-pitch identification
@@ -135,6 +136,13 @@ Any OpenRouter slug can be passed via `--models openrouter/<slug>`. If the model
 | f1 | `embedding_geometry` | PCA, linear probe, kNN, and cosine-similarity on encoder embeddings |
 | f2 | `token_logits` | Vocabulary probability mass on pitch tokens at generation step 1 |
 | f3 | `knn_oracle` | Compare 1-NN embedding accuracy vs. verbal output accuracy |
+
+### Category G — Melodic-line and voice identification in polyphony
+
+| ID | Name | What it tests |
+|----|------|---------------|
+| g1 | `melodic_line_id` | Transcribe one designated line from 2–4 simultaneous synthetic voices; sweeps n, register rank, tempo (slow/medium/fast), and instrument config (similar / mixed) |
+| g2 | `chorale_voice_id` | Same task on real Bach chorales (music21 corpus): transcribe the soprano, alto, tenor, or bass from the longest non-crossing segment; requires `music21` |
 
 ### Category Z — Real-recording datasets
 

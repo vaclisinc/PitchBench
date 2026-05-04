@@ -60,10 +60,10 @@ EXP_NAME = Path(__file__).stem
 # ── Fixed parameters ──────────────────────────────────────────────────────────
 
 N_VOICES        = 4               # SATB
-DEFAULT_SEED    = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 MIN_SEG_NOTES   = 4               # skip if target voice has fewer notes
 MAX_SEG_SEC     = 30.0            # hard cap on clip length
-DEFAULT_QPM     = 90.0            # used when chorale has no metronome mark
+DEFAULT_QPM     = 60.0            # used when chorale has no metronome mark
 
 VOICE_NAMES = ["soprano", "alto", "tenor", "bass"]
 
@@ -138,12 +138,12 @@ def _sort_by_register(
 
 
 def _get_qpm(piece) -> float:
-    try:
-        for tempo in piece.flat.getElementsByClass("MetronomeMark"):
-            if tempo.number is not None:
-                return float(tempo.number)
-    except Exception:
-        pass
+    # try:
+    #     for tempo in piece.flat.getElementsByClass("MetronomeMark"):
+    #         if tempo.number is not None:
+    #             return float(tempo.number)
+    # except Exception:
+    #     pass
     return DEFAULT_QPM
 
 
@@ -336,8 +336,7 @@ def _preamble(x: int, n_target: int, inst_cfg: str, sources: list[str]) -> str:
         timbre = "all four voices played on the same instrument"
     else:
         timbre = (
-            f"each voice played by a different instrument: "
-            f"{_instrument_list_str(sources)}"
+            f"each voice played by a different instrument"
         )
     return (
         f"You will hear an excerpt from a Bach four-part chorale (soprano, alto, "
@@ -351,7 +350,7 @@ def make_prompt_midi(x: int, n_target: int, inst_cfg: str, sources: list[str]) -
     return (
         f"{_preamble(x, n_target, inst_cfg, sources)} "
         f"List all {n_target} MIDI note numbers in order from first to last. "
-        "Reply with ONLY the integers separated by spaces. Nothing else."
+        "Reply with ONLY the integers separated by spaces. Nothing else. Do not think."
     )
 
 
@@ -359,16 +358,16 @@ def make_prompt_spn(x: int, n_target: int, inst_cfg: str, sources: list[str]) ->
     return (
         f"{_preamble(x, n_target, inst_cfg, sources)} "
         f"List all {n_target} note names in order from first to last. "
-        "Reply with ONLY the note names separated by spaces (e.g. C5 D5 E5). Nothing else."
+        "Reply with ONLY the note names separated by spaces (e.g. C5 D#5 E5). Nothing else. Do not think."
     )
 
 
 def make_prompt_doremi(x: int, n_target: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(x, n_target, inst_cfg, sources)} "
-        f"List all {n_target} solfège syllables in order from first to last "
+        f"List all {n_target} solfège syllable and accidental (if needed)s in order from first to last "
         "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B; include sharps e.g. do# re#). "
-        "Reply with ONLY the syllables separated by spaces. Nothing else."
+        "Reply with ONLY the syllable and accidental (if needed)s separated by spaces. Nothing else. Do not think."
     )
 
 

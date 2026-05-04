@@ -7,10 +7,14 @@ Edit SERVERS below to choose which script backs each model slug.
 Usage:
     python model/serve_all.py                    # start all 4 servers
     python model/serve_all.py --only audio_flamingo_3 audio_flamingo_next_instruct
+    python model/serve_all.py --only audio_flamingo_next_think --port 8012
     python model/serve_all.py --list             # list configs and exit
 
 Each server's stdout/stderr is prefixed with its name in a distinct colour.
 Press Ctrl+C to stop all servers cleanly.
+
+pip install --upgrade "git+https://github.com/lashahub/transformers.git@add_AudioFlamingoNext" accelerate
+
 """
 
 import argparse
@@ -92,6 +96,10 @@ def main() -> None:
         help="Start only these model servers (default: all)",
     )
     parser.add_argument(
+        "--port", type=int,
+        help="Override port for the selected model (requires exactly one --only slug)",
+    )
+    parser.add_argument(
         "--list", action="store_true",
         help="Print server configs and exit",
     )
@@ -104,6 +112,12 @@ def main() -> None:
             print(f"  {s['slug']:38s}  {port:6s}  {Path(s['script']).name}  {s['env']}")
         return
 
+    if args.port is not None:
+        if not args.only or len(args.only) != 1:
+            sys.exit("--port requires exactly one model slug via --only")
+        if args.port <= 0 or args.port > 65535:
+            sys.exit("--port must be in range 1..65535")
+
     active = _resolve_servers(args.only)
 
     import subprocess
@@ -113,7 +127,8 @@ def main() -> None:
     print(f"Starting {len(active)} model server(s)…\n")
 
     for idx, srv in enumerate(active):
-        port_str = config.MODEL_URLS.get(srv["slug"], "http://localhost:8000").rsplit(":", 1)[-1]
+        default_port = config.MODEL_URLS.get(srv["slug"], "http://localhost:8000").rsplit(":", 1)[-1]
+        port_str = str(args.port) if args.port is not None else default_port
         colour   = _COLOURS[idx % len(_COLOURS)]
         label    = srv["slug"].replace("audio_flamingo_", "af_")
 

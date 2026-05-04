@@ -5,7 +5,7 @@ Tests whether models can identify pitch from real instrument recordings.
 Three prompt conditions per sample:
   - MIDI:   ask for the MIDI note number    (e.g. 60, 54)
   - ABC:    ask for the note name + octave  (e.g. "C4", "F#3")
-  - Doremi: ask for the solfege syllable    (e.g. "do", "sol#")
+  - Doremi: ask for the solfege syllable and accidental (if needed)    (e.g. "do", "sol#")
 
 Usage:
     python experiments/run.py exp_3_nsynth
@@ -33,7 +33,7 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 EXP_NAME = Path(__file__).stem
 
 DEFAULT_N_PER_FAMILY = 10
-DEFAULT_SEED = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
 PROMPT_DOREMI_FULL = "Listen to this audio recording of a single musical note. " + PROMPT_DOREMI
 PROMPT_ABC_FULL    = "Listen to this audio recording of a single musical note. " + PROMPT_ABC

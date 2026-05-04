@@ -42,7 +42,7 @@ BACKGROUNDS: list[str] = [
     "church-bells", "crowd-noise", "rain", "street-noise",
 ]
 SNR_DB:      list[float] = [30.0, 20.0, 0.0, -6.0]
-SOURCES:     list[str]   = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES:     list[str]   = config.ALL_SOURCES
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note mixed with a "

@@ -10,6 +10,8 @@ works from any project root.  Override the base via the PITCHBENCH_ROOT env var.
 import os
 from pathlib import Path
 
+DEV = True
+
 # ── Runtime / project root ────────────────────────────────────────────────────
 # Running from a clone : PITCHBENCH_ROOT unset  → cwd == repo root  (unchanged)
 # Installed via pip    : set PITCHBENCH_ROOT to the desired project directory
@@ -26,9 +28,13 @@ SAMPLE_RATE = 16_000   # Hz
 # Universal IV defaults applied by every experiment (PitchBench v2):
 #   every experiment varies duration_ms, midi, and source as a minimum.
 DEFAULT_DURATIONS_MS: list[int] = [1000, 5000]
+DEFAULT_DURATION_MS = 5000   # ms per note (for experiments with a single duration IV slot)
 DEFAULT_PITCHES: list[int] = [36, 48, 52, 55, 60, 64, 67, 72, 84]   # 9 reps spanning C2..C6
-DEFAULT_MIDI_MIN = 29 # A0
-DEFAULT_MIDI_MAX = 89 # C8 (audible range)
+DEFAULT_MIDI_MIN = 29 if not DEV else 60 # A0
+DEFAULT_MIDI_MAX = 89 if not DEV else 62 # C8 (range that works for all sounds)
+DEFAULT_SELECTION = [30, 36, 43, 48, 54, 58, 60, 64, 67, 69, 73, 76, 79, 88] if not DEV else [60, 69]  # 14 reps spanning C1..F6, or just middle C for dev
+
+
 
 # ── Stimulus generation (FluidSynth) ──────────────────────────────────────────
 SF2_PATH = os.environ.get(
@@ -107,3 +113,7 @@ GM_PROGRAMS_V1: dict[str, int] = {
 
 # Programmatic waveforms for v1 (generated without FluidSynth)
 WAVEFORMS: list[str] = ["sine", "sawtooth", "square", "triangle"]
+
+ALL_SOURCES: list[str] = list(WAVEFORMS) + list(GM_PROGRAMS_V1.keys())
+
+DEFAULT_SEED = 100

@@ -47,12 +47,12 @@ PITCHES: list[int] = [24, 36, 48, 52, 55, 60, 64, 67, 72, 84, 96]
 # Positions where the tone is placed inside the silent clip (ms)
 TONE_POSITIONS_MS: list[int] = [5_000, 15_000, 30_000, 45_000, 55_000]
 
-TONE_DURATION_MS  = 4_000    # note duration
+TONE_DURATION_MS = config.DEFAULT_DURATION_MS    # note duration
 TOTAL_SILENCE_MS  = 60_000   # total clip length
 
 CONDITIONS: list[str] = ["hidden", "baseline"]   # with/without surrounding silence
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())    # instruments added when FluidSynth available
+SOURCES: list[str] = config.ALL_SOURCES    # instruments added when FluidSynth available
 
 
 def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, condition: str) -> str:
@@ -72,7 +72,7 @@ def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, conditio
                     "Reply with ONLY the note name.")
         else:  # doremi
             return ("This audio contains a single musical note. "
-                    "What is the solfège syllable (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
+                    "What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B)? "
                     "Reply with the syllable and accidental (if necessary).")
     else:  # hidden
         context = (
@@ -87,7 +87,7 @@ def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, conditio
             return context + ("What is the note name and octave of that note, e.g. C4, F#3? "
                               "Reply with ONLY the note name.")
         else:  # doremi
-            return context + ("What is the solfège syllable (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) "
+            return context + ("What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) "
                               "of that note? Reply with the syllable and accidental (if necessary).")
 
 

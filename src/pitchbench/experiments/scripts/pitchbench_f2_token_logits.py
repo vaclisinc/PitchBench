@@ -12,7 +12,7 @@ For each (source, MIDI, prompt_variant) triple the experiment:
   • Maps step-1 tokens to MIDI values (or pitch classes) depending on variant:
       - MIDI:    integer tokens 0–127
       - ABC:     note-name tokens e.g. "C4", "F#3" → MIDI distance
-      - Solfège: syllable tokens "do"/"re"/… → pitch-class distance (enharmonics merged)
+      - Solfège: syllable and accidental (if needed) tokens "do"/"re"/… → pitch-class distance (enharmonics merged)
   • Computes: P(exact), P(within±1), P(within±2), P(within±6), P(within±12),
               entropy over pitch tokens, and the argmax ("predicted") pitch
 
@@ -53,7 +53,7 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 
 EXP_NAME = Path(__file__).stem
 
-SELECTED_SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SELECTED_SOURCES: list[str] = config.ALL_SOURCES
 # F1=29, G2=43, A3=57, B4=71, C5=72
 SELECTED_MIDI_PITCHES: list[int] = [29, 43, 57, 71, 72]
 # SELECTED_MIDI_PITCHES: list[int] = [29]
@@ -65,18 +65,18 @@ MAX_NEW_TOKENS  = 32
 
 PROMPT_MIDI_EXP14 = (
     "What is the MIDI note number (an integer)? The note number of the played note is between 10 and 99."
-    "Reply with ONLY the integer. Nothing else."
+    "Reply with ONLY the integer. Nothing else. Do not think."
 )
 
 PROMPT_ABC_EXP14 = (
     "What is the note name and octave? "
-    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else."
+    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Do not think."
 )
 
 PROMPT_DOREMI_EXP14 = (
-    "What is the solfege syllable of this pitch? "
+    "What is the solfege syllable and accidental (if needed) of this pitch? "
     "Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). "
-    "Reply with the syllable and accidental (if necessary). Nothing else."
+    "Reply with the syllable and accidental (if needed) and accidental (if necessary). Nothing else. Do not think."
 )
 
 PROMPTS: dict[str, str] = {
@@ -153,7 +153,7 @@ def _token_to_midi_abc(token: str) -> int | None:
 
 
 def _token_to_pc_solfege(token: str) -> int | None:
-    """Map a solfège syllable token to pitch class (0–11), or None."""
+    """Map a solfège syllable and accidental (if needed) token to pitch class (0–11), or None."""
     tok = token.strip().lower()
     return SOLFEGE_TO_PC.get(tok)
 

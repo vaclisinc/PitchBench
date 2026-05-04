@@ -155,16 +155,25 @@ def main() -> None:
     if exp_id is None and args.experiment and _ID_RE.match(args.experiment.lower()):
         exp_id = args.experiment.lower()
 
+    known_names: list[str] = discover()
+
     if exp_id is not None:
         name = _id_to_name(exp_id)
         if name is None:
-            ids = [_NAME_RE.match(n).group(1) for n in discover() if _NAME_RE.match(n)]
+            ids = [_NAME_RE.match(n).group(1) for n in known_names if _NAME_RE.match(n)]
             parser.error(f"Unknown experiment ID {exp_id!r}. Available: {ids}")
-    elif args.experiment:
+    elif args.experiment and (args.experiment == "all" or args.experiment in known_names):
         name = args.experiment
     elif args.download:
         # Bare `--download` means "download every experiment".
+        # If argparse swallowed an unknown-flag value into the `experiment`
+        # positional, that token won't match any module name — fall through
+        # to "all" rather than reject the request.
         name = "all"
+    elif args.experiment:
+        # Fallback: pass through the unrecognised name; importlib will surface
+        # a clear ModuleNotFoundError so the user sees what was attempted.
+        name = args.experiment
     else:
         parser.error("provide an experiment name or --id <letter><digit> (or use --list)")
 

@@ -44,15 +44,15 @@ N_COUNTS:        list[int] = [1, 2, 3, 4, 5, 7, 10]
 RHYTHMS:         list[str] = ["regular", "irregular"]
 DEFAULT_GAP_MS               = 300
 DEFAULT_N_TRIALS             = 3
-DEFAULT_SEED                 = 42
+DEFAULT_SEED = config.DEFAULT_SEED
 
 PITCH_MIN, PITCH_MAX = 48, 84
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are played in "
-    "this sequence? Reply with ONLY a single integer. Nothing else."
+    "this sequence? Reply with ONLY a single integer. Nothing else. Do not think."
 )
 
 

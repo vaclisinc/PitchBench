@@ -10,7 +10,7 @@ Sequence lengths: N ∈ {3, 5, 10}, 5 random trials each.
 Three prompts per stimulus (one wide row per audio):
   MIDI:   list all MIDI integers in order
   ABC:    list all note names in order
-  Doremi: list all solfège syllables in order
+  Doremi: list all solfège syllable and accidental (if needed)s in order
 
 Scoring: per-note accuracy at each position + sequence-level (all correct).
 
@@ -44,12 +44,12 @@ EXP_NAME = Path(__file__).stem
 
 # ── Test parameters ───────────────────────────────────────────────────────────
 
-PITCH_MIN = 48   # C3
-PITCH_MAX = 84   # C6
+PITCH_MIN = config.DEFAULT_MIDI_MIN
+PITCH_MAX = config.DEFAULT_MIDI_MAX
 
 N_NOTES_LIST: list[int] = [3, 5, 10]
 DEFAULT_N_TRIALS = 5
-DEFAULT_SEED     = 42
+DEFAULT_SEED     = config.DEFAULT_SEED
 
 TONE_DURATION = 0.75   # seconds per note
 GAP_DURATION  = 0.25   # silence between notes
@@ -57,7 +57,7 @@ GAP_DURATION  = 0.25   # silence between notes
 TONE_MS = int(TONE_DURATION * 1000)
 GAP_MS  = int(GAP_DURATION  * 1000)
 
-SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
+SOURCES: list[str] = config.ALL_SOURCES
 
 
 def make_prompt_abc(n: int) -> str:
@@ -66,7 +66,7 @@ def make_prompt_abc(n: int) -> str:
         "each separated by a brief silence. "
         f"Identify all {n} notes in order from first to last. "
         "Reply with ONLY the note names separated by spaces "
-        "(e.g. C4 E4 G4). Nothing else."
+        "(e.g. C4 E4 G4). Nothing else. Do not think."
     )
 
 
@@ -76,7 +76,7 @@ def make_prompt_midi(n: int) -> str:
         "each separated by a brief silence. "
         f"Identify all {n} MIDI note numbers in order from first to last. "
         "Reply with ONLY the integers separated by spaces "
-        "(e.g. 60 64 67). Nothing else."
+        "(e.g. 60 64 67). Nothing else. Do not think."
     )
 
 
@@ -84,10 +84,10 @@ def make_prompt_doremi(n: int) -> str:
     return (
         f"You will hear {n} musical notes played one after another, "
         "each separated by a brief silence. "
-        f"Identify all {n} solfège syllables in order from first to last "
+        f"Identify all {n} solfège syllable and accidental (if needed)s in order from first to last "
         "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B; include sharps e.g. do# re#). "
-        "Reply with ONLY the syllables separated by spaces "
-        "(e.g. do mi sol). Nothing else."
+        "Reply with ONLY the syllable and accidental (if needed)s separated by spaces "
+        "(e.g. do mi sol). Nothing else. Do not think."
     )
 
 
