@@ -29,6 +29,7 @@ from pitchbench.experiments.helpers.music import (
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
 
@@ -73,6 +74,7 @@ def run_one_model(
     n_per_family: int,
     seed: int,
     run_dir: Path,
+    sample_info: dict | None = None,
 ) -> dict[str, Any]:
     info = get_model_info(model_name)
 
@@ -127,8 +129,8 @@ def run_one_model(
         "doremi_correct":  doremi_correct,
     }
 
-    summary_lines = [
-        f"  Total samples            : {n}  ({n_per_family}/family, seed={seed})",
+    summary_lines = sampling_summary_lines(sample_info or {}) + [
+        f"  Total samples            : {n}",
         f"",
         f"  [MIDI — integer]",
         f"    Exact match            : {midi_correct} / {n}  ({midi_correct/n:.1%})",
@@ -155,6 +157,7 @@ def run_one_model(
         prompt_midi=PROMPT_MIDI_FULL,
         prompt_abc=PROMPT_ABC_FULL,
         prompt_doremi=PROMPT_DOREMI_FULL,
+        **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
 
@@ -169,6 +172,27 @@ def run_one_model(
     return summary
 
 
+def _select_sample(
+    examples: dict, args: argparse.Namespace,
+) -> tuple[list[dict], dict]:
+    """Return (sample, s_meta). When ``--sample-n`` is set it supersedes
+    ``--n-per-family`` and draws from the full valid pool."""
+    all_items = [{**meta, "note_str": key} for key, meta in examples.items()]
+    if args.sample_n is not None:
+        sample = stratified_sample(
+            all_items, args.sample_n,
+            lambda c: c["instrument_family_str"],
+            seed=args.sample_seed,
+        )
+        s_meta = sampling_meta(
+            len(all_items), "instrument_family_str", args.sample_n, args.sample_seed,
+        )
+    else:
+        sample = sample_per_family(examples, args.n_per_family, args.seed)
+        s_meta = sampling_meta(len(all_items), "instrument_family_str", None, args.seed)
+    return sample, s_meta
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--preview", action="store_true",
@@ -179,6 +203,9 @@ def _parse_args() -> argparse.Namespace:
                         help=f"Samples per instrument family (default: {DEFAULT_N_PER_FAMILY})")
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED,
                         help=f"Random seed for sampling (default: {DEFAULT_SEED})")
+    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
+                        help="Draw N total stimuli from full NSynth valid pool (supersedes --n-per-family)")
+    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -187,25 +214,30 @@ def run() -> None:
     args = _parse_args()
     target_models = args.models or list(config.MODELS)
     examples = load_nsynth_examples()
-    sample = sample_per_family(examples, args.n_per_family, args.seed)
+    sample, s_meta = _select_sample(examples, args)
 
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
-    print(f"Samples    : {len(sample)}  ({args.n_per_family}/family, seed={args.seed})")
+    print(f"Samples    : {len(sample)}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
 
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict[str, Any]] = {}
     for model_name in target_models:
-        all_summaries[model_name] = run_one_model(model_name, sample, args.n_per_family, args.seed, run_dir)
+        all_summaries[model_name] = run_one_model(
+            model_name, sample, args.n_per_family, args.seed, run_dir, s_meta,
+        )
     save_comparison(run_dir, all_summaries, EXP_NAME)
 
 
 def preview() -> None:
     args = _parse_args()
     examples = load_nsynth_examples()
-    sample = sample_per_family(examples, args.n_per_family, args.seed)
-    print(f"NSynth preview — {len(sample)} samples "
-          f"({args.n_per_family} per family, seed={args.seed})\n")
+    sample, s_meta = _select_sample(examples, args)
+    print(f"NSynth preview — {len(sample)} samples\n")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     for item in sample:
         wav = config.NSYNTH_VALID_DIR / "audio" / f"{item['note_str']}.wav"
         status = "OK" if wav.exists() else "MISSING"

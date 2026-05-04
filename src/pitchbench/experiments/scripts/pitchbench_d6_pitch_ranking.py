@@ -36,6 +36,8 @@ from pitchbench.experiments.helpers.api import get_model_info, query_alm
 from pitchbench.experiments.helpers.results import (
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
+from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
+
 
 EXP_NAME = Path(__file__).stem
 
@@ -51,7 +53,7 @@ DEFAULT_GAP_MS      = 300    # base inter-tone silence (rhythm=regular)
 DEFAULT_N_TRIALS    = 3
 DEFAULT_SEED = config.DEFAULT_SEED
 
-ALL_SOURCES: list[str] = config.ALL_SOURCES
+SOURCES: list[str] = list(config.WAVEFORMS)   # Hz tones unsupported on instruments
 
 
 def _prompt(n: int) -> str:
@@ -173,7 +175,7 @@ def _kendall_tau(pred: list[int], gt: list[int]) -> float:
 
 # ── Run one model ─────────────────────────────────────────────────────────────
 
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path) -> dict:
+def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
@@ -222,7 +224,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path) -> dict:
         "kendall_tau": mean_tau,
     }
 
-    summary_lines = [
+    summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Sources       : {SOURCES}",
         f"  Stimuli       : {n}",
         f"  Exact match   : {n_ok}/{n}  ({n_ok/max(1,n):.1%})",
@@ -238,6 +240,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path) -> dict:
         sources=SOURCES, base_freqs=BASE_FREQS, delta_cents=DELTA_CENTS,
         n_tones=N_TONES, rhythms=RHYTHMS,
         durations_ms=config.DEFAULT_DURATIONS_MS,
+        **(sample_info or {}),
     )
     save_results(
         EXP_NAME, model_name, records, summary, metadata, summary_lines,
@@ -256,6 +259,9 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--models",   nargs="+", metavar="MODEL")
     parser.add_argument("--n-trials", type=int, default=DEFAULT_N_TRIALS)
     parser.add_argument("--seed",     type=int, default=DEFAULT_SEED)
+    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
+                        help="Draw N stimuli (stratified by source)")
+    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
@@ -263,13 +269,19 @@ def _parse_args() -> argparse.Namespace:
 def preview() -> None:
     engine.set_exp(EXP_NAME)
     args  = _parse_args()
-    conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
+    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
     print(f"Experiment : {EXP_NAME}")
     print(f"Sources    : {SOURCES}")
     print(f"Trials     : {len(conds)}")
     print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     print("\nRun without --preview to query the model(s).")
 
 
@@ -277,18 +289,24 @@ def run() -> None:
     engine.set_exp(EXP_NAME)
     args  = _parse_args()
     target_models = args.models or list(config.MODELS)
-    conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
+    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
     for c in conds:
         _wav_for(c)
 
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
     print(f"Stimuli    : {len(conds)}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
 
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict] = {}
     for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir)
+        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
     save_comparison(run_dir, all_summaries, EXP_NAME)
 
 

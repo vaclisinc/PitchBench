@@ -12,7 +12,12 @@ Usage::
     pitchbench all                              # run every experiment
     pitchbench --list                           # list available experiments
 
-Extra flags (e.g. --models, --seed) are forwarded to the experiment module.
+    # Random sub-sample (stratified, deterministic):
+    pitchbench --id a1 --sample-n 20 --sample-seed 42 --preview
+    pitchbench --id a1 --sample-n 20
+
+Extra flags (e.g. --models, --seed, --sample-n) are forwarded to the
+experiment module.
 """
 
 from __future__ import annotations
@@ -119,6 +124,14 @@ def main() -> None:
         "--models", nargs="+", metavar="MODEL",
         help="Model(s) to query (forwarded to the experiment module)",
     )
+    parser.add_argument(
+        "--sample-n", type=int, default=None, metavar="N",
+        help="Draw N stimuli per experiment (stratified; forwarded to the experiment module)",
+    )
+    parser.add_argument(
+        "--sample-seed", type=int, default=42, metavar="SEED",
+        help="RNG seed for --sample-n (default: 42; forwarded to the experiment module)",
+    )
 
     args, unknown = parser.parse_known_args()
 
@@ -144,8 +157,13 @@ def main() -> None:
     else:
         models = _prompt_for_models()
 
-    models_extra = (["--models"] + models) if models else []
-    extra        = (["--preview"] if stimulus_only else []) + models_extra + unknown
+    models_extra  = (["--models"] + models) if models else []
+    sample_extra  = (
+        ["--sample-n", str(args.sample_n)] if args.sample_n is not None else []
+    ) + (
+        ["--sample-seed", str(args.sample_seed)] if args.sample_n is not None else []
+    )
+    extra = (["--preview"] if stimulus_only else []) + models_extra + sample_extra + unknown
 
     # Resolve which experiment to run. Three accepted forms for the positional:
     #   "a1"                       → letter+digit shorthand (resolved via _id_to_name)

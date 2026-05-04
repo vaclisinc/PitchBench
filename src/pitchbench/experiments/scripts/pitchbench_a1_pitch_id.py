@@ -33,6 +33,7 @@ from pitchbench.experiments.helpers.music import (
 )
 from pitchbench.experiments.helpers.plots import save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results
+from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
 
@@ -52,41 +53,55 @@ PROMPT_ABC_FULL    = "This audio contains a single musical note. " + PROMPT_ABC
 PROMPT_DOREMI_FULL = "This audio contains a single musical note. " + PROMPT_DOREMI
 
 
+def build_conditions(sources: list[str]) -> list[dict]:
+    return [
+        {
+            "source":      src,
+            "source_type": "waveform" if src in config.WAVEFORMS else "instrument",
+            "midi":        midi,
+        }
+        for src in sources
+        for midi in PITCHES
+    ]
+
+
 # ── Run one model ─────────────────────────────────────────────────────────────
 
 def run_one_model(
     model_name: str,
-    sources: list[str],
+    conds: list[dict],
     run_dir: Path,
+    sample_info: dict | None = None,
 ) -> tuple[dict[str, float], list[dict[str, Any]]]:
     print('a1')
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
     records: list[dict[str, Any]] = []
-    for src in sources:
-        source_type = "waveform" if src in config.WAVEFORMS else "instrument"
-        for midi in PITCHES:
-            try:
-                wav = engine.tone(midi, src, TONE_DURATION_MS)
-            except ValueError as exc:
-                print(f"    [SKIP] {src} MIDI {midi}: {exc}")
-                continue
+    for c in conds:
+        src         = c["source"]
+        source_type = c["source_type"]
+        midi        = c["midi"]
+        try:
+            wav = engine.tone(midi, src, TONE_DURATION_MS)
+        except ValueError as exc:
+            print(f"    [SKIP] {src} MIDI {midi}: {exc}")
+            continue
 
-            print(f"    {midi_to_note(midi):4s}  {src}")
-            raw_midi, raw_abc, raw_doremi = query_three_formats(
-                model_name, wav,
-                PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL,
-            )
-            rec = standard_pitch_record(
-                wav=wav, source=src, source_type=source_type,
-                midi_gt=midi,
-                raw_midi=raw_midi, raw_abc=raw_abc, raw_doremi=raw_doremi,
-                prompt_midi=PROMPT_MIDI_FULL,
-                prompt_abc=PROMPT_ABC_FULL,
-                prompt_doremi=PROMPT_DOREMI_FULL,
-            )
-            records.append(rec)
+        print(f"    {midi_to_note(midi):4s}  {src}")
+        raw_midi, raw_abc, raw_doremi = query_three_formats(
+            model_name, wav,
+            PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL,
+        )
+        rec = standard_pitch_record(
+            wav=wav, source=src, source_type=source_type,
+            midi_gt=midi,
+            raw_midi=raw_midi, raw_abc=raw_abc, raw_doremi=raw_doremi,
+            prompt_midi=PROMPT_MIDI_FULL,
+            prompt_abc=PROMPT_ABC_FULL,
+            prompt_doremi=PROMPT_DOREMI_FULL,
+        )
+        records.append(rec)
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)
@@ -95,8 +110,9 @@ def run_one_model(
         for fmt in ("midi", "abc", "doremi")
     }
 
+    sources_seen = sorted({c["source"] for c in conds})
     per_src: dict[str, dict[str, float]] = {}
-    for src in sources:
+    for src in sources_seen:
         sub = [r for r in records if r["source"] == src]
         if not sub:
             continue
@@ -105,8 +121,8 @@ def run_one_model(
             for fmt in ("midi", "abc", "doremi")
         }
 
-    summary_lines = [
-        f"  Sources: {sources}",
+    summary_lines = sampling_summary_lines(sample_info or {}) + [
+        f"  Sources: {sources_seen}",
         f"  Pitches: {MIDI_MIN}–{MIDI_MAX}  ({len(PITCHES)} notes)",
         f"  Stimuli: {n}",
         "",
@@ -133,10 +149,11 @@ def run_one_model(
     summary: dict[str, Any] = {"total": n, "per_format": per_fmt, "per_source": per_src}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
-        sources=sources, pitches=PITCHES,
+        sources=sources_seen, pitches=PITCHES,
         tone_duration_ms=TONE_DURATION_MS,
         prompt_midi=PROMPT_MIDI_FULL, prompt_abc=PROMPT_ABC_FULL,
         prompt_doremi=PROMPT_DOREMI_FULL,
+        **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
 
@@ -157,32 +174,45 @@ def run_one_model(
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview",  action="store_true")
-    parser.add_argument("--sources",  nargs="+", metavar="SRC", default=None,
+    parser.add_argument("--preview",      action="store_true")
+    parser.add_argument("--sources",      nargs="+", metavar="SRC", default=None,
                         help=f"Sources to run (default: all). Available: {ALL_SOURCES}")
-    parser.add_argument("--models",   nargs="+", metavar="MODEL",
+    parser.add_argument("--models",       nargs="+", metavar="MODEL",
                         help=f"Model slugs (default: all). Available: {list(config.MODELS)}")
+    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
+                        help="Draw N stimuli (stratified by source)")
+    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
+
+
+def _apply_sampling(all_conds: list[dict], args: argparse.Namespace) -> tuple[list[dict], dict]:
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
+    if args.sample_n is not None:
+        return stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed), s_meta
+    return all_conds, s_meta
 
 
 def preview() -> None:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
     sources = args.sources or ALL_SOURCES
-    n = len(sources) * len(PITCHES)
+    all_conds = build_conditions(sources)
+    conds, s_meta = _apply_sampling(all_conds, args)
+    n = len(conds)
     print(f"Experiment   : {EXP_NAME}")
     print(f"Sources      : {sources}")
     print(f"Pitches      : {MIDI_MIN}–{MIDI_MAX}  ({len(PITCHES)} MIDI notes)")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     print(f"Audio files  : {n}  (generating in {config.AUDIO_DIR})")
     print(f"Queries/model: {n * 3}  (MIDI + ABC + doremi)")
     print("Generating audio …")
-    for src in sources:
-        for midi in PITCHES:
-            try:
-                engine.tone(midi, src, TONE_DURATION_MS)
-            except ValueError as exc:
-                print(f"  [SKIP] {src} MIDI {midi}: {exc}")
+    for c in conds:
+        try:
+            engine.tone(c["midi"], c["source"], TONE_DURATION_MS)
+        except ValueError as exc:
+            print(f"  [SKIP] {c['source']} MIDI {c['midi']}: {exc}")
     print("Done. Run without --preview to query the model(s).")
 
 
@@ -204,16 +234,21 @@ def run() -> None:
             else:
                 print(f"  [SKIP] Instrument {src!r}: FluidSynth not installed")
 
+    all_conds = build_conditions(available)
+    conds, s_meta = _apply_sampling(all_conds, args)
+
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
     print(f"Sources    : {available}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     print(f"Pitches    : {len(PITCHES)}  |  Formats: MIDI + ABC + doremi")
 
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict[str, float]] = {}
     all_records: dict[str, list[dict[str, Any]]] = {}
     for model_name in target_models:
-        summary, records = run_one_model(model_name, available, run_dir)
+        summary, records = run_one_model(model_name, conds, run_dir, s_meta)
         all_summaries[model_name] = summary
         all_records[model_name] = records
     save_comparison(run_dir, all_summaries, EXP_NAME)

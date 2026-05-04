@@ -30,6 +30,7 @@ from pitchbench.experiments.helpers.music import (
 from pitchbench.experiments.helpers.results import (
     get_run_metadata, make_run_dir, save_comparison, save_results,
 )
+from pitchbench.experiments.helpers.sampling import sampling_meta, sampling_summary_lines, stratified_sample
 
 EXP_NAME = Path(__file__).stem
 
@@ -113,7 +114,7 @@ def _wav_for(c: dict) -> Path:
 
 # ── Run one model ─────────────────────────────────────────────────────────────
 
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path) -> dict:
+def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
@@ -184,7 +185,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path) -> dict:
         "root_and_quality_root_acc":    round(sum(r["root_correct"]    for r in rq) / max(1, len(rq)), 4),
         "root_and_quality_joint_acc":   round(sum(r["joint_correct"]   for r in rq) / max(1, len(rq)), 4),
     }
-    summary_lines = [
+    summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli                   : {n}  ({len(qonly)} quality_only / {len(rq)} root+quality)",
         f"  Quality-only accuracy     : {summary['quality_only_acc']:.1%}",
         f"  R+Q  quality accuracy     : {summary['root_and_quality_quality_acc']:.1%}",
@@ -203,6 +204,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path) -> dict:
         durations_ms=config.DEFAULT_DURATIONS_MS,
         prompt_quality_only=PROMPT_QUALITY_ONLY,
         prompt_root_and_quality=PROMPT_ROOT_AND_QUALITY,
+        **(sample_info or {}),
     )
     save_results(
         EXP_NAME, model_name, records, summary, metadata, summary_lines,
@@ -217,13 +219,21 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--preview", action="store_true")
     parser.add_argument("--models",  nargs="+", metavar="MODEL")
+    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
+                        help="Draw N stimuli (stratified by source)")
+    parser.add_argument("--sample-seed",  type=int, default=42,   metavar="SEED")
     args, _ = parser.parse_known_args()
     return args
 
 
 def preview() -> None:
     engine.set_exp(EXP_NAME)
-    conds = build_conditions(config.DEFAULT_DURATIONS_MS)
+    args = _parse_args()
+    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
     for c in conds:
         try: _wav_for(c)
         except ValueError as exc:
@@ -232,6 +242,8 @@ def preview() -> None:
     print(f"Sources    : {SOURCES}")
     print(f"Stimuli    : {len(conds)}")
     print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
     print("\nRun without --preview to query the model(s).")
 
 
@@ -239,7 +251,11 @@ def run() -> None:
     engine.set_exp(EXP_NAME)
     args  = _parse_args()
     target_models = args.models or list(config.MODELS)
-    conds = build_conditions(config.DEFAULT_DURATIONS_MS)
+    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS)
+    conds = all_conds
+    if args.sample_n is not None:
+        conds = stratified_sample(all_conds, args.sample_n, lambda c: c["source"], seed=args.sample_seed)
+    s_meta = sampling_meta(len(all_conds), "source", args.sample_n, args.sample_seed)
     for c in conds:
         try: _wav_for(c)
         except ValueError: pass
@@ -247,11 +263,13 @@ def run() -> None:
     print(f"Experiment : {EXP_NAME}")
     print(f"Models     : {', '.join(target_models)}")
     print(f"Stimuli    : {len(conds)}")
+    for line in sampling_summary_lines(s_meta):
+        print(line)
 
     run_dir = make_run_dir(EXP_NAME)
     all_summaries: dict[str, dict] = {}
     for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir)
+        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
     save_comparison(run_dir, all_summaries, EXP_NAME)
 
 
