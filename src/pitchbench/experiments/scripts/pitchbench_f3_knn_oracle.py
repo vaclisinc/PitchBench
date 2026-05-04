@@ -49,8 +49,8 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 EXP_NAME = Path(__file__).stem
 EXP13_NAME = "pitchbench_f1_embedding_geometry"   # may reuse embedding cache
 
-MIDI_MIN = 36
-MIDI_MAX = 84
+MIDI_MIN = config.DEFAULT_MIDI_MIN
+MIDI_MAX = config.DEFAULT_MIDI_MAX
 MIDI_PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
 SPLIT_SEED = 42
 DEFAULT_K  = 1

@@ -31,6 +31,7 @@ import warnings
 from pathlib import Path
 
 import numpy as np
+from numpy.__config__ import CONFIG
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
@@ -38,8 +39,8 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 
 EXP_NAME = Path(__file__).stem
 
-MIDI_MIN = 36
-MIDI_MAX = 84
+MIDI_MIN = CONFIG.DEFAULT_MIDI_MIN
+MIDI_MAX = CONFIG.DEFAULT_MIDI_MAX
 MIDI_PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))   # 49 pitches
 
 # Colours for PCA scatter

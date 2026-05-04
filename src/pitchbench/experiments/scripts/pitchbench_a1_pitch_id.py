@@ -36,11 +36,12 @@ from pitchbench.experiments.helpers.results import get_run_metadata, make_run_di
 
 EXP_NAME = Path(__file__).stem
 
-MIDI_MIN = 36
-MIDI_MAX = 84
+MIDI_MIN = config.DEFAULT_MIDI_MIN
+MIDI_MAX = config.DEFAULT_MIDI_MAX
+
 PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
 
-TONE_DURATION_MS = 4000
+TONE_DURATION_MS = 5000
 
 ALL_SOURCES: list[str] = list(config.WAVEFORMS) + list(config.GM_PROGRAMS_V1.keys())
 
@@ -162,7 +163,7 @@ def _parse_args() -> argparse.Namespace:
 def preview() -> None:
     engine.set_exp(EXP_NAME)
     args = _parse_args()
-    sources = args.sources or list(config.WAVEFORMS)
+    sources = args.sources or ALL_SOURCES
     n = len(sources) * len(PITCHES)
     print(f"Experiment   : {EXP_NAME}")
     print(f"Sources      : {sources}")

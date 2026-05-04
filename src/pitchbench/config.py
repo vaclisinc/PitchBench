@@ -20,18 +20,15 @@ AUDIO_DIR    = DATA_DIR / "audio"           # central audio engine cache
 RESULTS_DIR  = _PROJECT_ROOT / "results"   # experiment outputs (never deleted)
 STIMULI_DIR  = _PROJECT_ROOT / "stimuli"   # reference stimuli
 
-# ── Model server (legacy single-model) ────────────────────────────────────────
-API_URL = os.environ.get("API_URL", "http://localhost:8000")
-
 # ── Audio defaults ────────────────────────────────────────────────────────────
 SAMPLE_RATE = 16_000   # Hz
-DURATION    = 2.0      # seconds per stimulus
 
 # Universal IV defaults applied by every experiment (PitchBench v2):
 #   every experiment varies duration_ms, midi, and source as a minimum.
 DEFAULT_DURATIONS_MS: list[int] = [1000, 5000]
-DEFAULT_LOUDNESS_DB: float = 0.0
 DEFAULT_PITCHES: list[int] = [36, 48, 52, 55, 60, 64, 67, 72, 84]   # 9 reps spanning C2..C6
+DEFAULT_MIDI_MIN = 29 # A0
+DEFAULT_MIDI_MAX = 89 # C8 (audible range)
 
 # ── Stimulus generation (FluidSynth) ──────────────────────────────────────────
 SF2_PATH = os.environ.get(
@@ -55,14 +52,6 @@ MODELS: dict[str, str] = {
     "audio_flamingo_next_think":     "Audio Flamingo Next – think",
     "audio_flamingo_next_captioner": "Audio Flamingo Next – captioner",
     "qwen3_omni":                    "Qwen3-Omni (30B-A3B-Instruct)",
-}
-
-MODEL_IDS: dict[int, str] = {
-    1: MODELS["music_flamingo"],
-    2: MODELS["audio_flamingo_next_instruct"],
-    3: MODELS["audio_flamingo_next_think"],
-    4: MODELS["audio_flamingo_next_captioner"],
-    5: MODELS["qwen3_omni"],
 }
 
 # Each model's server URL (override via env vars to run on different hosts/ports).
@@ -96,16 +85,6 @@ AF_NEXT_CHECKPOINTS = {
     "audio_flamingo_next_think":     "nvidia/audio-flamingo-next-think-hf",
     "audio_flamingo_next_captioner": "nvidia/audio-flamingo-next-captioner-hf",
 }
-AF_NEXT_DEFAULT_CHECKPOINT = os.environ.get("AF_NEXT_CHECKPOINT", "instruct")
-
-# General MIDI program numbers (v0 — legacy 3-instrument set)
-GM_PROGRAMS: dict[str, int] = {
-    "piano":   0,   # Acoustic Grand Piano
-    "violin":  40,  # Violin
-    "flute":   73,  # Flute
-    "guitar":  24,  # Acoustic Guitar (nylon)
-    "trumpet": 56,  # Trumpet
-}
 
 # Expanded instrument set for stimuli/v1 (used by exp_5 and exp_9–15)
 GM_PROGRAMS_V1: dict[str, int] = {
@@ -128,11 +107,3 @@ GM_PROGRAMS_V1: dict[str, int] = {
 
 # Programmatic waveforms for v1 (generated without FluidSynth)
 WAVEFORMS: list[str] = ["sine", "sawtooth", "square", "triangle"]
-
-# Standard three-prompt-variant labels used by all experiments
-PROMPT_VARIANTS: list[str] = ["midi", "abc", "solfege"]
-
-# Note: the legacy EXPERIMENTS dict (1..15 → exp_<N>_<desc>) was removed in v2;
-# the registry is now derived by globbing src/pitchbench/experiments/scripts/
-# for ``pitchbench_*.py`` files. ``EXP_NAME = Path(__file__).stem`` inside each
-# script is the single source of truth.

@@ -29,20 +29,22 @@ Without FluidSynth, GM instruments (piano, violin, …) are skipped and only wav
 
 ### 2. Model backend (pick one)
 
-**Option A — OpenRouter (easiest, no GPU needed)**
+**Option A — OpenRouter (default, no GPU needed)**
 
-Add your key to `.env`:
+Add your key to `.env` (or PitchBench will prompt for it on first run):
 ```
 OPENROUTER_KEY=sk-or-...
 ```
+
+If you run `pitchbench --id <X>` without `--models`, you'll be prompted to choose a model with `openrouter/google/gemini-3.1-flash-lite-preview` as the default — just press Enter to accept.
 
 **Option B — Local model servers**
 
 Requires `uv sync --extra model` (installs torch, transformers, fastapi). Start each server before running experiments:
 
 ```bash
-python -m pitchbench.model.api             # music_flamingo on :8000
-python -m pitchbench.model.api_fl_next     # audio_flamingo_next_instruct on :8001
+python -m pitchbench.model.api_music_fl       # music_flamingo on :8000
+python -m pitchbench.model.api_audio_fl_next  # audio_flamingo_next_instruct on :8001
 ```
 
 Model URLs are set in `config.MODEL_URLS` and overridable via env vars (`MF_URL`, `AF_NEXT_INST_URL`, …).
@@ -63,7 +65,7 @@ You can mix local and cloud models in one run — a `comparison.*` file is writt
 pitchbench --id a1 --models music_flamingo openrouter/google/gemini-2.5-flash
 ```
 
-Audio-capable OpenRouter slugs are whitelisted in `config.OPENROUTER_AUDIO_MODELS`.
+Any OpenRouter slug can be passed via `--models openrouter/<slug>`. If the model can't accept audio, OpenRouter's error message is surfaced verbatim — no local whitelist to maintain.
 
 ## Experiment categories
 

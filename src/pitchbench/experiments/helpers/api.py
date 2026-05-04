@@ -11,13 +11,11 @@ needed to reproduce the call (model name, endpoint, max tokens, temperature,
 audio sha256, prompt). This is the contract every experiment relies on for
 academic-paper reproducibility.
 
-A convenience wrapper ``query_four_formats`` issues the same audio through the
-four standard pitch-naming prompts (MIDI, SPN, Doremi, Hz) and returns four
-result dicts in that order.
-
-There is no backwards-compatibility layer. The previous helpers
-(``query_model_by_name``, ``query_three_formats``, ``query_model_with_probs``,
-``embed_audio``) have been removed; every script calls ``query_alm`` directly.
+Convenience wrappers:
+  - ``query_four_formats``: issue the same audio through MIDI / SPN / Doremi / Hz
+    prompts; returns four result dicts.
+  - ``query_three_formats``: legacy 3-prompt variant (MIDI / SPN / Doremi) used
+    by the older pitch-ID scripts; new experiments should use the 4-format one.
 """
 
 from __future__ import annotations
