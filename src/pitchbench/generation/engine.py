@@ -23,6 +23,7 @@ Instrument sources: require FluidSynth (pyfluidsynth + SF2 soundfont).
 
 from __future__ import annotations
 
+import hashlib
 import wave
 from pathlib import Path
 from typing import Sequence
@@ -494,6 +495,57 @@ def clip_with_notes(
         audio = audio / peak * 0.9
     _write_wav(path, audio)
     return path, gt
+
+
+def polyphonic_mix(
+    lines: Sequence[tuple[Sequence[tuple[int, int, int]], str]],
+    total_dur_ms: int,
+    name_hint: str = "",
+) -> Path:
+    """Render and mix multiple independent melodic lines into one clip.
+
+    Each element of ``lines`` is a ``(notes, source)`` pair where
+    ``notes`` is a sequence of ``(midi, onset_ms, dur_ms)`` triples and
+    ``source`` is a waveform name or GM instrument slug.  Each line is
+    normalised independently before mixing so no single part dominates.
+
+    Returns path to cached WAV.
+    """
+    key = repr((
+        [([(m, o, d) for m, o, d in notes], src) for notes, src in lines],
+        total_dur_ms,
+        name_hint,
+    ))
+    fp   = hashlib.sha256(key.encode()).hexdigest()[:14]
+    n    = len(lines)
+    sfx  = f"_{name_hint}" if name_hint else ""
+    path = _audio_dir() / f"poly{n}_{fp}{sfx}_total{total_dur_ms}ms.wav"
+    if path.exists():
+        return path
+
+    total_n = int(SR * total_dur_ms / 1000)
+    mixed   = np.zeros(total_n, dtype=np.float32)
+    for notes, source in lines:
+        line_buf = np.zeros(total_n, dtype=np.float32)
+        for midi, onset_ms, dur_ms in notes:
+            if dur_ms <= 0:
+                continue
+            seg   = _render_single(midi, dur_ms / 1000, source)
+            start = max(0, int(SR * onset_ms / 1000))
+            end   = min(start + len(seg), total_n)
+            if start >= total_n:
+                continue
+            line_buf[start:end] += seg[:end - start]
+        peak = float(np.max(np.abs(line_buf)))
+        if peak > 1e-10:
+            line_buf = line_buf / peak * (0.9 / n)
+        mixed += line_buf
+
+    peak = float(np.max(np.abs(mixed)))
+    if peak > 1e-10:
+        mixed = (mixed / peak * 0.9).astype(np.float32)
+    _write_wav(path, mixed)
+    return path
 
 
 def tone_in_silence(

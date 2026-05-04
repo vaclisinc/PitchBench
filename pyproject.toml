@@ -28,6 +28,7 @@ dependencies = [
     "requests>=2.32",
     "scikit-learn>=1.4",
     "python-dotenv>=1.0",
+    "music21>=9.9.1",
 ]
 
 [project.optional-dependencies]
