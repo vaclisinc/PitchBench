@@ -31,6 +31,7 @@ from typing import Any
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import seq_pitch_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PC_TO_SOLFEGE,
@@ -45,19 +46,15 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── Test parameters ───────────────────────────────────────────────────────────
-
-PITCH_MIN = config.DEFAULT_MIDI_MIN
-PITCH_MAX = config.DEFAULT_MIDI_MAX
-
-N_NOTES_LIST: list[int] = [3, 5, 10]
-DEFAULT_N_TRIALS = 5
-DEFAULT_SEED     = config.DEFAULT_SEED
-
-TONE_MS = config.DEFAULT_DURATION_MS
-GAP_MS  = 250   # ms silence between notes
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_d7_*)
+PITCH_MIN        = config.pitchbench_d7_PITCH_MIN
+PITCH_MAX        = config.pitchbench_d7_PITCH_MAX
+N_NOTES_LIST     = config.pitchbench_d7_N_NOTES_LIST
+DEFAULT_N_TRIALS = config.pitchbench_d7_N_TRIALS
+DEFAULT_SEED     = config.pitchbench_d7_SEED
+TONE_MS          = config.pitchbench_d7_TONE_MS
+GAP_MS           = config.pitchbench_d7_GAP_MS
+SOURCES          = config.pitchbench_d7_SOURCES
 
 
 def make_prompt_abc(n: int) -> str:
@@ -65,7 +62,7 @@ def make_prompt_abc(n: int) -> str:
         f"You will hear {n} musical notes played one after another, "
         "each separated by a brief silence. "
         f"Identify all {n} notes in order from first to last. "
-        "Reply with ONLY the note names separated by spaces "
+        "Reply with ONLY the note names expressed in Scientific Pitch Notation, separated by spaces "
         "(e.g. C4 E4 G#4). Nothing else. Output only the answer."
     )
 
@@ -315,6 +312,9 @@ def run_one_model(
         jobs, _query_one,
         model_name=model_name,
         label_fn=lambda j: f"n={j['cond']['n_notes']} t={j['cond']['trial']} {j['cond']['source']}",
+        result_label_fn=lambda j, r: seq_pitch_audit_str(
+            r, label=f"n={j['cond']['n_notes']} t={j['cond']['trial']} {j['cond']['source']}"
+        ),
     )
     records: list[dict[str, Any]] = [r for r in raw_results if r is not None]
 

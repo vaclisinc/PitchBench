@@ -42,6 +42,7 @@ import numpy as np
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     FLAT_TO_SHARP, NOTE_NAMES, SOLFEGE_TO_PC,
@@ -54,14 +55,12 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 
 EXP_NAME = Path(__file__).stem
 
-SELECTED_SOURCES: list[str] = config.ALL_SOURCES
-# F1=29, G2=43, A3=57, B4=71, C5=72
-SELECTED_MIDI_PITCHES: list[int] = [29, 43, 57, 71, 72]
-# SELECTED_MIDI_PITCHES: list[int] = [29]
-TONE_DURATION_MS = 2000
-
-DEFAULT_TOP_K   = 200
-MAX_NEW_TOKENS  = 32
+# Data-generation parameters (sourced from config.pitchbench_f2_*)
+SELECTED_SOURCES      = config.pitchbench_f2_SOURCES
+SELECTED_MIDI_PITCHES = config.pitchbench_f2_PITCHES
+TONE_DURATION_MS      = config.pitchbench_f2_TONE_DURATION_MS
+DEFAULT_TOP_K         = config.pitchbench_f2_TOP_K
+MAX_NEW_TOKENS        = config.pitchbench_f2_MAX_NEW_TOKENS
 
 
 PROMPT_MIDI_EXP14 = (
@@ -71,7 +70,7 @@ PROMPT_MIDI_EXP14 = (
 
 PROMPT_ABC_EXP14 = (
     "What is the note name and octave? "
-    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Output only the answer."
+    "Reply with ONLY the note name in Scientific Pitch Notation (e.g. C4, F#3, Bb5). Nothing else. Output only the answer."
 )
 
 PROMPT_DOREMI_EXP14 = (
@@ -626,6 +625,12 @@ def run_one_model(
         jobs, _query_one,
         model_name=model_name,
         label_fn=lambda j: f"[{j['variant']:6s}] {j['cond']['note']:4s} {j['cond']['source']:14s}",
+        result_label_fn=lambda j, r: audit_line(
+            f"[{j['variant']:6s}] {j['cond']['note']:4s} {j['cond']['source']:14s}",
+            gt=j['cond']['midi'],
+            pred=r.get('raw_response') or '?',
+            correct=bool(r.get('exact_match')),
+        ),
     )
     records: list[dict] = [r for r in raw_results if r is not None]
 

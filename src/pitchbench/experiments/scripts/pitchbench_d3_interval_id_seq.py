@@ -29,6 +29,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.results import (
@@ -40,10 +41,13 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-INTERVALS_ST:  list[int] = list(range(1, 13))
-DIRECTIONS:    list[str] = ["ascending", "descending"]
-SEPARATIONS_MS: list[int] = [200, 500, 1000, 2000]
-SOURCES:       list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_d3_*)
+INTERVALS_ST   = config.pitchbench_d3_INTERVALS_ST
+DIRECTIONS     = config.pitchbench_d3_DIRECTIONS
+SEPARATIONS_MS = config.pitchbench_d3_SEPARATIONS_MS
+SOURCES        = config.pitchbench_d3_SOURCES
+PITCHES        = config.pitchbench_d3_PITCHES
+DURATIONS_MS   = config.pitchbench_d3_DURATIONS_MS
 
 PROMPT = (
     "Two musical notes play in sequence, separated by a brief silence. "

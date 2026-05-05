@@ -51,6 +51,7 @@ from typing import Any
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import melody_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PC_TO_SOLFEGE,
@@ -70,34 +71,20 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── Fixed parameters ──────────────────────────────────────────────────────────
-
-N_NOTES       = 10
-N_PARTS_LIST  = [2, 3, 4]
-N_TRIALS      = 2
-DEFAULT_SEED = config.DEFAULT_SEED
-DIST_N_MIN    = 1
-DIST_N_MAX    = 20
-DUR_JITTER    = 0.5      # ± fraction around mean duration for per-note jitter
-
-TEMPOS: dict[str, int] = {
-    "slow":   1000,
-    "medium":  500,
-}
-
-# One-octave register ranges, top → bottom (index 0 = highest part)
-PART_RANGES: list[tuple[int, int]] = [
-    (72, 83),  # part 1 : C5–B5
-    (60, 71),  # part 2 : C4–B4
-    (48, 59),  # part 3 : C3–B3
-    (36, 47),  # part 4 : C2–B2
-]
-
-# Full source pool (waveforms + GM v1 instruments).
-SOURCES: list[str] = list(config.GM_PROGRAMS_V1.keys())
+# Data-generation parameters (sourced from config.pitchbench_g1_*)
+N_NOTES      = config.pitchbench_g1_N_NOTES
+N_PARTS_LIST = config.pitchbench_g1_N_PARTS_LIST
+N_TRIALS     = config.pitchbench_g1_N_TRIALS
+DEFAULT_SEED = config.pitchbench_g1_SEED
+DIST_N_MIN   = config.pitchbench_g1_DIST_N_MIN
+DIST_N_MAX   = config.pitchbench_g1_DIST_N_MAX
+DUR_JITTER   = config.pitchbench_g1_DUR_JITTER
+TEMPOS       = config.pitchbench_g1_TEMPOS
+PART_RANGES  = config.pitchbench_g1_PART_RANGES
+SOURCES      = config.pitchbench_g1_SOURCES
 
 # "Mixed" instrument groups — each group provides up to 4 distinct sources
-# assigned top→bottom across the n parts.
+# assigned top→bottom across the n parts. (Defined locally; not paramterised.)
 MIXED_GROUPS: dict[str, list[str]] = {
     "classical_quartet": ["flute", "violin", "cello", "bass"],
     "mixed_timbres":     ["piano", "trumpet", "clarinet", "guitar"],
@@ -306,7 +293,7 @@ def make_prompt_spn(n: int, x: int, inst_cfg: str, sources: list[str]) -> str:
     return (
         f"{_preamble(n, x, inst_cfg, sources)} "
         f"List all {N_NOTES} note names in order from first to last. "
-        "Reply with ONLY the note names separated by spaces (e.g. C5 D5 E5). Nothing else. Output only the answer."
+        "Reply with ONLY the note names expressed in Scientific Pitch Notation, separated by spaces (e.g. C5 D#5 E5). Nothing else. Output only the answer."
     )
 
 
@@ -580,6 +567,9 @@ def run_one_model(
         jobs, _query_one,
         model_name=model_name,
         label_fn=lambda j: f"n={j['cond']['n']} x={j['cond']['x']} {j['cond']['tempo']:6s} {j['cond']['inst_cfg']:7s} t={j['cond']['trial']}",
+        result_label_fn=lambda j, r: melody_audit_str(
+            r, label=f"n={j['cond']['n']} x={j['cond']['x']} {j['cond']['tempo']:6s} {j['cond']['inst_cfg']:7s} t={j['cond']['trial']}"
+        ),
     )
     records: list[dict[str, Any]] = [r for r in raw_results if r is not None]
 

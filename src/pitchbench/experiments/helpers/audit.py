@@ -109,3 +109,24 @@ def seq_pitch_audit_str(record: dict[str, Any], label: str = "") -> str:
         sym  = "✅" if ok else "❌"
         parts.append(f"{fmt}: gt={gt!s} pred={pred!s} {sym}")
     return "  | ".join(parts)
+
+
+_MELODY_FORMATS: tuple[tuple[str, str, str, str], ...] = (
+    ("midi",   "target_midi_gt",   "midi_pred",   "midi_seq_correct"),
+    ("spn",    "target_spn_gt",    "spn_pred",    "spn_seq_correct"),
+    ("doremi", "target_doremi_gt", "doremi_pred", "doremi_seq_correct"),
+)
+
+
+def melody_audit_str(record: dict[str, Any], label: str = "") -> str:
+    """One audit line for g1/g2-style melody/chorale records (3 formats)."""
+    parts: list[str] = [label.rstrip()] if label else []
+    for fmt, gk, pk, ck in _MELODY_FORMATS:
+        if gk not in record:
+            continue
+        gt   = record.get(gk)
+        pred = record.get(pk)
+        ok   = bool(record.get(ck))
+        sym  = "✅" if ok else "❌"
+        parts.append(f"{fmt}: gt={gt!s} pred={pred!s} {sym}")
+    return "  | ".join(parts)

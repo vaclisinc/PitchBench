@@ -111,17 +111,64 @@ def get_model_info(model_name: str) -> dict:
 
 # ── local server handlers ─────────────────────────────────────────────────────
 
+# Retry transient failures (5xx, connection drops, read timeouts) — shared GPU
+# servers OOM occasionally under concurrent load. Mirrors the OpenRouter path.
+_LOCAL_RETRY_STATUSES = (500, 502, 503, 504)
+_LOCAL_RETRY_ATTEMPTS = 3
+
+
+def _post_local_with_retry(
+    url: str, audio_path: str, *, data: dict | None, timeout_s: float,
+    accept_404_405: bool = False,
+) -> requests.Response:
+    """POST a multipart audio upload to a local model server with backoff retries.
+
+    Retries on connection errors, read timeouts, and 5xx responses. Surfaces the
+    server's response body (FastAPI puts the real exception in JSON ``detail``)
+    when the final attempt still fails, so logs aren't reduced to ``HTTP 500``.
+    """
+    last_err: str | None = None
+    for attempt in range(_LOCAL_RETRY_ATTEMPTS):
+        try:
+            with open(audio_path, "rb") as f:
+                resp = requests.post(
+                    url,
+                    data=data or {},
+                    files={"file": (os.path.basename(audio_path), f, "audio/wav")},
+                    timeout=timeout_s,
+                )
+            if accept_404_405 and resp.status_code in (404, 405):
+                return resp
+            if resp.status_code in _LOCAL_RETRY_STATUSES:
+                last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
+                if attempt < _LOCAL_RETRY_ATTEMPTS - 1:
+                    time.sleep(2 ** attempt)
+                    continue
+                raise RuntimeError(f"Local server {url} failed after retries: {last_err}")
+            if not resp.ok:
+                raise RuntimeError(
+                    f"Local server {url} HTTP {resp.status_code}: {resp.text[:500]}"
+                )
+            return resp
+        except (requests.exceptions.ConnectionError,
+                requests.exceptions.ReadTimeout) as e:
+            last_err = str(e)
+            if attempt < _LOCAL_RETRY_ATTEMPTS - 1:
+                time.sleep(2 ** attempt)
+                continue
+            raise RuntimeError(f"Local server {url} failed after retries: {last_err}")
+    # Unreachable — every branch above either returns or raises.
+    raise RuntimeError(f"Local server {url} failed after retries: {last_err}")
+
+
 def _local_text(model_name: str, audio_path: str, prompt: str,
                 max_new_tokens: int, timeout_s: float) -> dict:
     url = config.MODEL_URLS[model_name]
-    with open(audio_path, "rb") as f:
-        resp = requests.post(
-            f"{url}/analyze/upload",
-            data={"prompt": prompt, "max_new_tokens": max_new_tokens},
-            files={"file": (os.path.basename(audio_path), f, "audio/wav")},
-            timeout=timeout_s,
-        )
-    resp.raise_for_status()
+    resp = _post_local_with_retry(
+        f"{url}/analyze/upload", audio_path,
+        data={"prompt": prompt, "max_new_tokens": max_new_tokens},
+        timeout_s=timeout_s,
+    )
     raw = resp.json()
     return {"result": raw.get("result", ""), "raw_response": raw,
             "top_tokens": None, "embedding": None, "usage": None}
@@ -130,14 +177,11 @@ def _local_text(model_name: str, audio_path: str, prompt: str,
 def _local_probs(model_name: str, audio_path: str, prompt: str,
                  max_new_tokens: int, top_k: int, timeout_s: float) -> dict:
     url = config.MODEL_URLS[model_name]
-    with open(audio_path, "rb") as f:
-        resp = requests.post(
-            f"{url}/generate_with_probs",
-            data={"prompt": prompt, "max_new_tokens": max_new_tokens, "top_k": top_k},
-            files={"file": (os.path.basename(audio_path), f, "audio/wav")},
-            timeout=timeout_s,
-        )
-    resp.raise_for_status()
+    resp = _post_local_with_retry(
+        f"{url}/generate_with_probs", audio_path,
+        data={"prompt": prompt, "max_new_tokens": max_new_tokens, "top_k": top_k},
+        timeout_s=timeout_s,
+    )
     raw = resp.json()
     return {"result": raw.get("result", ""), "raw_response": raw,
             "top_tokens": raw.get("top_tokens"), "embedding": None, "usage": None}
@@ -145,17 +189,14 @@ def _local_probs(model_name: str, audio_path: str, prompt: str,
 
 def _local_embed(model_name: str, audio_path: str, timeout_s: float) -> dict:
     url = config.MODEL_URLS[model_name]
-    with open(audio_path, "rb") as f:
-        resp = requests.post(
-            f"{url}/embed",
-            files={"file": (os.path.basename(audio_path), f, "audio/wav")},
-            timeout=timeout_s,
-        )
+    resp = _post_local_with_retry(
+        f"{url}/embed", audio_path, data=None,
+        timeout_s=timeout_s, accept_404_405=True,
+    )
     if resp.status_code in (404, 405):
         raise NotImplementedError(
             f"{model_name} does not expose /embed (HTTP {resp.status_code})"
         )
-    resp.raise_for_status()
     raw = resp.json()
     return {"result": None, "raw_response": raw,
             "top_tokens": None, "embedding": raw.get("embedding"), "usage": None}

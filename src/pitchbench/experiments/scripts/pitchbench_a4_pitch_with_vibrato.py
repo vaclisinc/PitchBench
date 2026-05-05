@@ -46,21 +46,17 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── IVs ───────────────────────────────────────────────────────────────────────
-
-VIBRATO_RATES_HZ:    list[float] = [0, 3, 5, 7, 10]
-VIBRATO_DEPTHS_CENTS: list[float] = [0, 25, 50, 100, 200]
-
-DURATIONS_MS = [config.DEFAULT_DURATION_MS]
-
-SOURCES: list[str] = list(config.WAVEFORMS)        # vibrato is waveform-only
+# Data-generation parameters (sourced from config.pitchbench_a4_*)
+VIBRATO_RATES_HZ     = config.pitchbench_a4_VIBRATO_RATES_HZ
+VIBRATO_DEPTHS_CENTS = config.pitchbench_a4_VIBRATO_DEPTHS_CENTS
+DURATIONS_MS         = config.pitchbench_a4_DURATIONS_MS
+SOURCES              = config.pitchbench_a4_SOURCES
+PITCHES              = config.pitchbench_a4_PITCHES
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note that may have vibrato. "
     "Identify the nominal CENTRE pitch (ignore the vibrato modulation). "
 )
-
-PITCHES: list[int] = config.DEFAULT_PITCHES
 
 PROMPT_MIDI_FULL   = PROMPT_PREFIX + PROMPT_MIDI
 PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
@@ -178,8 +174,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="vibrato_depth_cents", iv_label="Vibrato depth (cents)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="vibrato_depth_cents", iv_label="Vibrato depth (cents)")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="vibrato_depth_cents",
+                             iv_label="Vibrato depth (cents)", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="vibrato_depth_cents",
+                          iv_label="Vibrato depth (cents)")
     return summary
 
 

@@ -23,7 +23,7 @@ Scoring strategy (academic-paper-friendly):
 """
 
 from __future__ import annotations
-
+     
 import argparse
 import random
 from pathlib import Path
@@ -31,6 +31,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note, parse_mm_ss_cc
 from pitchbench.experiments.helpers.results import (
@@ -41,22 +42,24 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-N_NOTES_OPTS:    list[int] = [3, 5, 8]
-RHYTHMS:         list[str] = ["regular", "irregular"]
-PITCH_PATTERNS:  list[str] = ["fixed_pitch", "varied_pitches"]
-TOTAL_DUR_MS = config.DEFAULT_TOTAL_DUR_MS
-DEFAULT_SEED = config.DEFAULT_SEED
-
-IRR_GAP_MIN, IRR_GAP_MAX = 300, 2500
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_b5_*)
+N_NOTES_OPTS   = config.pitchbench_b5_N_NOTES_OPTS
+RHYTHMS        = config.pitchbench_b5_RHYTHMS
+PITCH_PATTERNS = config.pitchbench_b5_PITCH_PATTERNS
+TOTAL_DUR_MS   = config.pitchbench_b5_TOTAL_DUR_MS
+DEFAULT_SEED   = config.pitchbench_b5_SEED
+IRR_GAP_MIN    = config.pitchbench_b5_IRR_GAP_MIN_MS
+IRR_GAP_MAX    = config.pitchbench_b5_IRR_GAP_MAX_MS
+SOURCES        = config.pitchbench_b5_SOURCES
+PITCHES        = config.pitchbench_b5_PITCHES
+DURATIONS_MS   = config.pitchbench_b5_DURATIONS_MS
 
 PROMPT = (
     "This audio contains a sequence of musical notes separated by silence. "
     "List the onset and offset of EVERY note in order, as comma-separated "
     "MM:SS.cc timestamps (onset, offset, onset, offset, …). "
     "Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. "
-    "Reply with the timestamp list only."
+    "Reply with the timestamp list only, ordered chronologically."
 )
 
 
@@ -166,6 +169,21 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         precision = len(matches) / len(pred_pairs) if pred_pairs else 0.0
         recall    = len(matches) / len(gt_pairs)
         mean_iou  = sum(ious) / len(matches) if matches else 0.0
+        # PitchBench timestamp criterion: a timestamp is correct iff within
+        # ±BENCHMARK_TIMESTAMP_TOLERANCE_MS of GT (in either direction). A
+        # multi-note stimulus is correct iff every GT note is matched AND
+        # every matched pair has BOTH onset and offset within that tolerance.
+        tol_s = config.BENCHMARK_TIMESTAMP_TOLERANCE_MS / 1000.0
+        all_within = (
+            recall    == 1.0
+            and precision == 1.0
+            and all(e <= tol_s for e in on_err)
+            and all(e <= tol_s for e in off_err)
+        )
+        n_notes_correct = sum(
+            1 for ge, oe in zip(on_err, off_err)
+            if ge <= tol_s and oe <= tol_s
+        )
         return {
             "source":         c["source"],
             "source_type":    "waveform" if c["source"] in config.WAVEFORMS else "instrument",
@@ -178,6 +196,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "onsets_ms":      str(c["onsets_ms"]),
             "n_pred":         len(pred_pairs),
             "n_matched":      len(matches),
+            "n_notes_correct": n_notes_correct,    # notes within tolerance on both sides
+            "correct":        int(all_within),     # primary binary score (config tolerance)
             "wav":            job["wav"],
             "raw_response":   raw,
             "prompt":         PROMPT,
@@ -197,25 +217,34 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         result_label_fn=lambda j, r: audit_line(
             f"{j['cond']['source']:<10} n={j['cond']['n_notes']} {j['cond']['rhythm']:>9} {j['cond']['pitch_pattern']}",
             gt=f"n={r['n_notes']}",
-            pred=f"n={r['n_pred']} matched={r['n_matched']}",
+            pred=f"n={r['n_pred']} matched={r['n_matched']} within_tol={r['n_notes_correct']}",
             score=r.get('mean_iou'),
-            correct=r.get('recall', 0) >= 1.0,
+            correct=bool(r.get('correct')),
         ),
     )
     records: list[dict] = [r for r in raw_results if r is not None]
 
     n = len(records)
+    total_gt_notes = sum(r["n_notes"] for r in records) or 1
+    note_acc       = sum(r["n_notes_correct"] for r in records) / total_gt_notes
     summary = {
-        "total":     n,
-        "mean_iou":  round(sum(r["mean_iou"]  for r in records) / max(1, n), 4),
-        "precision": round(sum(r["precision"] for r in records) / max(1, n), 4),
-        "recall":    round(sum(r["recall"]    for r in records) / max(1, n), 4),
+        "total":         n,
+        "accuracy":      round(sum(r["correct"]   for r in records) / max(1, n), 4),
+        "note_accuracy": round(note_acc, 4),
+        "mean_iou":      round(sum(r["mean_iou"]  for r in records) / max(1, n), 4),
+        "precision":     round(sum(r["precision"] for r in records) / max(1, n), 4),
+        "recall":        round(sum(r["recall"]    for r in records) / max(1, n), 4),
     }
+    tol_ms = config.BENCHMARK_TIMESTAMP_TOLERANCE_MS
     summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Stimuli   : {n}",
-        f"  Mean IoU  : {summary['mean_iou']:.3f}",
-        f"  Precision : {summary['precision']:.3f}",
-        f"  Recall    : {summary['recall']:.3f}",
+        f"  Stimuli       : {n}",
+        f"  Accuracy      : {summary['accuracy']:.1%}   "
+        f"(all notes within ±{tol_ms} ms; full recall+precision)",
+        f"  Note accuracy : {summary['note_accuracy']:.1%}   "
+        f"(fraction of GT notes matched within ±{tol_ms} ms on both sides)",
+        f"  Mean IoU      : {summary['mean_iou']:.3f}",
+        f"  Precision     : {summary['precision']:.3f}",
+        f"  Recall        : {summary['recall']:.3f}",
     ]
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
@@ -234,7 +263,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         EXP_NAME, model_name, records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=("mean_iou", "precision", "recall"),
+        extra_metrics=("correct", "n_notes_correct", "mean_iou", "precision", "recall"),
     )
     return summary
 

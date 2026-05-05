@@ -16,7 +16,7 @@ import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers import cost as cost_tracker
@@ -410,6 +410,92 @@ def write_aggregate_format_accuracies(
         writer.writerows(rows)
 
 
+# ── Session-wide scalar-metric aggregation ────────────────────────────────────
+
+# Top-level summary keys that are non-scalar or already covered elsewhere; we
+# skip these when flattening summaries into the metric-aggregate CSV.
+_AGGREGATE_SKIP_KEYS = frozenset({
+    "total", "valid",
+    "marginals",
+    "cost_usd", "total_tokens",
+    "per_format", "per_source", "per_duration", "per_cond", "per_cond_var",
+    "per_loudness_db", "per_effect", "per_chord", "per_variant",
+    "per_trajectory", "per_interval", "per_n", "per_position",
+    "per_interval", "per_chord_quality",
+})
+
+
+def aggregate_session_metrics(
+    session_dir: Path,
+    output_path: Path,
+    only_categories: Iterable[str] | None = None,
+) -> Path | None:
+    """Walk session_dir, collect every scalar summary metric, write long-form CSV.
+
+    For each ``<session_dir>/<exp_name>/run_*/results_<model>.json`` (latest
+    run dir per experiment), reads ``summary`` and emits one row per scalar
+    metric: ``experiment, model, n_samples, metric, value``.
+
+    Args:
+        session_dir:     top-level session dir (typically ``config.RESULTS_DIR``).
+        output_path:     destination CSV.
+        only_categories: optional set of category prefixes (e.g. ``{"b"}``) to
+                         filter the experiments included.
+
+    Returns the output path if any rows were written, else ``None``.
+    """
+    if not session_dir.exists():
+        return None
+
+    rows: list[dict[str, Any]] = []
+    for exp_dir in sorted(session_dir.iterdir()):
+        if not exp_dir.is_dir() or exp_dir.name.startswith("_"):
+            continue
+        m = re.match(r"^pitchbench_([a-z]+)\d+_", exp_dir.name)
+        if only_categories and (not m or m.group(1) not in set(only_categories)):
+            continue
+
+        runs = sorted(d for d in exp_dir.iterdir() if d.is_dir() and d.name.startswith("run_"))
+        if not runs:
+            continue
+        latest = runs[-1]
+
+        for json_path in sorted(latest.glob("results_*.json")):
+            try:
+                payload = json.loads(json_path.read_text())
+            except (OSError, json.JSONDecodeError):
+                continue
+            metadata = payload.get("metadata", {}) or {}
+            summary  = payload.get("summary", {}) or {}
+            model = metadata.get("model_name") or json_path.stem.replace("results_", "")
+            n     = summary.get("total")
+            for key, value in summary.items():
+                if key in _AGGREGATE_SKIP_KEYS:
+                    continue
+                if not isinstance(value, (int, float)) or isinstance(value, bool):
+                    continue
+                rows.append({
+                    "experiment": exp_dir.name,
+                    "model":      model,
+                    "n_samples":  n if n is not None else "",
+                    "metric":     key,
+                    "value":      round(float(value), 6),
+                })
+
+    if not rows:
+        return None
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=["experiment", "model", "n_samples", "metric", "value"],
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+    return output_path
+
+
 # ── Session-level cost summary (across multiple experiments) ──────────────────
 
 def write_session_cost_summary(
@@ -501,6 +587,82 @@ def save_format_accuracy_csv(
         writer.writerow(["Format", "n_samples", "Accuracy"])
         for fmt, acc in per_format.items():
             writer.writerow([fmt.upper(), n_samples if n_samples is not None else "", f"{acc:.1%}"])
+
+
+# Summary keys whose value is metadata/cost rather than a measured score.
+_NON_METRIC_KEYS = frozenset({
+    "total", "valid", "marginals", "cost_usd", "total_tokens",
+    "chance",
+})
+
+
+def _looks_like_pct(value: Any) -> bool:
+    """A scalar in [0, 1] is treated as a probability and rendered as %."""
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and 0.0 <= value <= 1.0
+
+
+def _flatten_summary(
+    summary: dict[str, Any],
+    prefix: str = "",
+    inherited_n: int | None = None,
+) -> list[tuple[str, Any, int | None]]:
+    """Walk ``summary`` and emit ``(metric_name, value, n_samples)`` rows.
+
+    Nested dicts get flattened with dotted keys (e.g. ``per_source.sine.midi``).
+    ``n_samples`` resolution per row:
+      1. The closest enclosing dict that has its own ``n`` key (e.g.
+         ``summary["per_duration"]["500"]["n"] = 12``).
+      2. The top-level ``summary["total"]`` otherwise.
+    Lists, tuples, and non-scalar values are skipped.
+    """
+    rows: list[tuple[str, Any, int | None]] = []
+    if not prefix and inherited_n is None:
+        inherited_n = summary.get("total") if isinstance(summary.get("total"), int) else None
+
+    # A literal 'n' key inside the dict overrides the inherited count for
+    # this dict's scalars and any deeper nested dicts.
+    own_n  = summary.get("n") if isinstance(summary.get("n"), int) else None
+    eff_n  = own_n if own_n is not None else inherited_n
+
+    for key, val in summary.items():
+        if key in _NON_METRIC_KEYS or key == "n":
+            continue
+        full = f"{prefix}.{key}" if prefix else key
+        if isinstance(val, dict):
+            rows.extend(_flatten_summary(val, prefix=full, inherited_n=eff_n))
+        elif isinstance(val, (int, float)) and not isinstance(val, bool):
+            rows.append((full, val, eff_n))
+    return rows
+
+
+def save_accuracies_csv(
+    run_dir: Path,
+    model_name: str,
+    summary: dict[str, Any],
+) -> Path:
+    """Write accuracies_<model>.csv: one row per scalar summary metric.
+
+    Columns: ``metric, n_samples, value, value_pct``.
+
+    - ``metric`` is the (dot-flattened) summary key.
+    - ``value`` is the raw scalar.
+    - ``value_pct`` renders ``[0, 1]`` floats as percentages (e.g. ``19.8%``);
+      other scalars repeat the raw value.
+
+    Both top-level scalars and flattened nested dicts (e.g.
+    ``per_source.sine.midi``) are emitted, so the file is a complete audit of
+    every scalar metric a run produced — including the per-source / per-IV
+    breakdowns shown in the TXT summary.
+    """
+    rows = _flatten_summary(summary)
+    path = run_dir / f"accuracies_{_safe_stem(model_name)}.csv"
+    with open(path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["metric", "n_samples", "value", "value_pct"])
+        for metric, value, n in rows:
+            pct = f"{value:.1%}" if _looks_like_pct(value) else str(value)
+            writer.writerow([metric, n if n is not None else "", value, pct])
+    return path
 
 
 def save_results(
@@ -596,10 +758,24 @@ def save_results(
             writer.writeheader()
             writer.writerows(csv_records)
 
-    # ── Per-format accuracy summary ───────────────────────────────────────────
+    # ── Per-format accuracy summary (legacy, kept for callers that read it) ──
     per_format = summary.get("per_format")
     if per_format:
         save_format_accuracy_csv(run_dir, model_name, per_format, n_samples=summary.get("total"))
+
+    # ── Uniform accuracies CSV (every experiment) ─────────────────────────────
+    save_accuracies_csv(run_dir, model_name, summary)
+
+    # ── Uniform plots (every experiment) ──────────────────────────────────────
+    # by_source_<model>.png + by_<iv>_<model>.png for each strata IV, with JSON.
+    # All plots live under <run_dir>/plots/ for consistency across experiments.
+    try:
+        from pitchbench.experiments.helpers.plots import save_uniform_plots
+        plots_dir = run_dir / "plots"
+        plots_dir.mkdir(exist_ok=True)
+        save_uniform_plots(records, plots_dir, model_name, exp_name)
+    except Exception as exc:
+        print(f"  [warn] uniform plots failed: {exc!r}")
 
     print(f"\nResults saved → {run_dir}/{stem}.*")
     return run_dir

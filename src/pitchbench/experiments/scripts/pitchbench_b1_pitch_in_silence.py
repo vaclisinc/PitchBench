@@ -35,28 +35,23 @@ from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note, midi_to_solfege,
-    standard_pitch_record, wide_to_long_records,
+    standard_pitch_record,
 )
 from pitchbench.experiments.helpers.plots import (
-    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+    save_combined_iv_plot, save_per_format_iv_plots,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-# Representative pitches — wide range
-PITCHES: list[int] = config.DEFAULT_PITCHES
-
-# Positions where the tone is placed inside the silent clip (ms)
-TONE_POSITIONS_MS: list[int] = config.DEFAULT_TONE_POSITIONS_MS
-
-TONE_DURATION_MS = config.DEFAULT_DURATION_MS    # note duration
-TOTAL_SILENCE_MS  = config.DEFAULT_TOTAL_DUR_MS  # total clip length
-
-CONDITIONS: list[str] = ["hidden", "baseline"]   # with/without surrounding silence
-
-SOURCES: list[str] = config.ALL_SOURCES    # instruments added when FluidSynth available
+# Data-generation parameters (sourced from config.pitchbench_b1_*)
+PITCHES           = config.pitchbench_b1_PITCHES
+TONE_POSITIONS_MS = config.pitchbench_b1_TONE_POSITIONS_MS
+TONE_DURATION_MS  = config.pitchbench_b1_TONE_DURATION_MS
+TOTAL_SILENCE_MS  = config.pitchbench_b1_TOTAL_SILENCE_MS
+CONDITIONS        = config.pitchbench_b1_CONDITIONS
+SOURCES           = config.pitchbench_b1_SOURCES
 
 
 def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, condition: str) -> str:
@@ -80,7 +75,7 @@ def _make_prompt(variant: str, pos_ms: int, dur_ms: int, total_ms: int, conditio
                     "Reply with the syllable and accidental (if necessary).")
         else:  # hz
             return ("This audio contains a single musical note. "
-                    "What is the pitch frequency in Hertz? "
+                    "What is the main pitch frequency, expressed in Hertz? "
                     "Reply with ONLY a number (the frequency in Hz). Nothing else.")
     else:  # hidden
         context = (
@@ -252,13 +247,11 @@ def run_one_model(
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    save_accuracy_plots(
-        wide_to_long_records(records), run_dir, model_name,
-        instrument_key="source", pitch_key="midi_gt",
-        prompt_key="prompt_variant", accuracy_key="exact_match",
-    )
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="condition", iv_label="Condition")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="condition", iv_label="Condition")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="condition",
+                             iv_label="Condition", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="condition",
+                          iv_label="Condition")
     return {
         f"hidden_{v}":   per_cond.get("hidden",   {}).get(v, 0.0) for v in ("midi", "abc", "doremi", "hz")
     } | {

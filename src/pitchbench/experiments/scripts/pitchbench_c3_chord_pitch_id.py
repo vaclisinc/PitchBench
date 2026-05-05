@@ -25,6 +25,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     SOLFEGE_TO_PC,
@@ -39,38 +40,11 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-TONE_DURATION_MS = config.DEFAULT_DURATION_MS
-
-SOURCES: list[str] = config.ALL_SOURCES
-
-# Chord type definitions as semitone intervals above root
-CHORD_TYPES: dict[str, list[int]] = {
-    # Dyads — all 13 intervals (unison through octave)
-    "dyad_m2":  [0, 1],
-    "dyad_M2":  [0, 2],
-    "dyad_m3":  [0, 3],
-    "dyad_M3":  [0, 4],
-    "dyad_p4":  [0, 5],
-    "dyad_tt":  [0, 6],
-    "dyad_p5":  [0, 7],
-    "dyad_m6":  [0, 8],
-    "dyad_M6":  [0, 9],
-    "dyad_m7":  [0, 10],
-    "dyad_M7":  [0, 11],
-    "dyad_oct": [0, 12],
-    "dyad_uni": [0, 0],
-    # Triads
-    "triad_maj": [0, 4, 7],
-    "triad_min": [0, 3, 7],
-    "triad_dim": [0, 3, 6],
-    "triad_aug": [0, 4, 8],
-    # Seventh chords
-    "seventh_dom": [0, 4, 7, 10],
-    "seventh_maj": [0, 4, 7, 11],
-    "seventh_min": [0, 3, 7, 10],
-}
-
-BASE_ROOTS: list[int] = config.DEFAULT_SELECTION
+# Data-generation parameters (sourced from config.pitchbench_c3_*)
+TONE_DURATION_MS = config.pitchbench_c3_TONE_DURATION_MS
+SOURCES          = config.pitchbench_c3_SOURCES
+CHORD_TYPES      = config.pitchbench_c3_CHORD_TYPES
+BASE_ROOTS       = config.pitchbench_c3_BASE_ROOTS
 
 PROMPT_MIDI = (
     "This audio contains multiple musical pitches played simultaneously. "
@@ -80,8 +54,8 @@ PROMPT_MIDI = (
 
 PROMPT_ABC = (
     "This audio contains multiple musical pitches played simultaneously. "
-    "List ALL note names you hear, from lowest to highest. "
-    "Reply with ONLY the note names separated by spaces, e.g. C4 E4 G#4. Nothing else. Output only the answer."
+    "List ALL note names you hear, from lowest to highest, expressed in Scientific Pitch Notation. "
+    "Reply with ONLY the note names expressed in Scientific Pitch Notation, separated by spaces, e.g. C4 E4 G#4. Nothing else. Output only the answer."
 )
 
 PROMPT_DOREMI = (
@@ -231,7 +205,7 @@ def run_one_model(
             f"[{j['variant']:6s}] {j['cond']['chord_type']:12s} r={j['cond']['root_note']:3s} {j['cond']['source']:12s}",
             gt=r['midi_notes'],
             pred=r.get('raw_response'),
-            score=r.get('recall'),
+            score=r.get('exact_match'),
             correct=bool(r.get('exact_match')),
         ),
     )

@@ -34,22 +34,21 @@ from pitchbench.experiments.helpers.music import (
     midi_to_note, standard_pitch_record, wide_to_long_records,
 )
 from pitchbench.experiments.helpers.plots import (
-    save_accuracy_plots, save_cross_model_pitch_plots, save_pitch_prediction_plots,
-    save_per_format_iv_plots, save_combined_iv_plot,
+    save_accuracy_plots, save_bar_plot_by_key, save_combined_iv_plot,
+    save_cross_model_pitch_plots, save_per_format_iv_plots,
+    save_pitch_prediction_plots,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-MIDI_MIN = config.DEFAULT_MIDI_MIN
-MIDI_MAX = config.DEFAULT_MIDI_MAX
-
-PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
-
-TONE_DURATION_MS = config.DEFAULT_DURATION_MS
-
-ALL_SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_a1_*)
+PITCHES          = config.pitchbench_a1_PITCHES
+TONE_DURATION_MS = config.pitchbench_a1_TONE_DURATION_MS
+ALL_SOURCES      = config.pitchbench_a1_SOURCES
+MIDI_MIN         = min(PITCHES)
+MIDI_MAX         = max(PITCHES)
 
 PROMPT_MIDI_FULL   = "This audio contains a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "This audio contains a single musical note. " + PROMPT_ABC
@@ -176,18 +175,45 @@ def run_one_model(
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
 
+    # All plots + their JSON sidecars live under <run_dir>/plots/.
+    plots_dir = run_dir / "plots"
+    plots_dir.mkdir(exist_ok=True)
+
     long_records = wide_to_long_records(records)
     save_accuracy_plots(
-        long_records, run_dir, model_name,
+        long_records, plots_dir, model_name,
         instrument_key="source", pitch_key="midi_gt",
         prompt_key="prompt_variant", accuracy_key="exact_match",
     )
     save_pitch_prediction_plots(
-        long_records, run_dir, model_name,
+        long_records, plots_dir, model_name,
         source_key="source", task_key="midi_gt",
     )
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
+    # Combined accuracy-vs-IV bar plots: one with pitch on the x-axis, one with source.
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="midi_gt", iv_label="Pitch (MIDI)")
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="source",  iv_label="Instrument")
+    # MIDI-only single-format bar plots (instrument × accuracy and pitch × accuracy).
+    save_bar_plot_by_key(
+        records, group_key="source", score_key="midi_correct",
+        score_label="MIDI accuracy (%)",
+        title=f"MIDI accuracy by instrument — {model_name}",
+        xlabel="Instrument",
+        out_path=plots_dir / f"midi_accuracy_by_source_{model_name}.png",
+    )
+    try:
+        from pitchbench.experiments.helpers.music import midi_to_note as _m2n
+        _label = lambda v: f"{v}\n({_m2n(int(v))})" if isinstance(v, int) else str(v)
+    except Exception:
+        _label = None
+    save_bar_plot_by_key(
+        records, group_key="midi_gt", score_key="midi_correct",
+        score_label="MIDI accuracy (%)",
+        title=f"MIDI accuracy by pitch — {model_name}",
+        xlabel="Pitch (MIDI)",
+        out_path=plots_dir / f"midi_accuracy_by_pitch_{model_name}.png",
+        label_formatter=_label,
+    )
     return {f"acc_{fmt}": per_fmt[fmt] for fmt in per_fmt}, records
 
 

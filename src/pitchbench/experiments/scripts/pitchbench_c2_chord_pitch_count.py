@@ -31,6 +31,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.results import (
@@ -41,35 +42,19 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── IVs ───────────────────────────────────────────────────────────────────────
-
-CHORD_INTERVALS: dict[str, tuple[int, ...]] = {
-    "maj":         (0, 4, 7),
-    "min":         (0, 3, 7),
-    "dim":         (0, 3, 6),
-    "aug":         (0, 4, 8),
-    "dom7":        (0, 4, 7, 10),
-    "maj7":        (0, 4, 7, 11),
-    "min7":        (0, 3, 7, 10),
-    # "random_set" is handled specially per trial
-}
-
-QUALITIES_FIXED:   list[str] = list(CHORD_INTERVALS.keys())
-QUALITIES:         list[str] = QUALITIES_FIXED + ["random_set"]
-
-ROOT_MIDIS:        list[int] = config.DEFAULT_SELECTION
-SAME_INSTRUMENT_OPTS: list[bool] = [True, False]
-
-DEFAULT_N_TRIALS = 1                # per (n, quality, root, dur, source) cell
-RANDOM_TRIALS    = 3                # for random_set quality only
-DEFAULT_SEED = config.DEFAULT_SEED
-
-# Counts to test. The fixed qualities define ``n`` directly via len(intervals);
-# random_set sweeps n=1..6 explicitly.
-RANDOM_NS:         list[int] = [1, 2, 3, 4, 5, 6]
-RANDOM_PITCH_RANGE = (48, 84)        # pitch range for random_set draws
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_c2_*)
+CHORD_INTERVALS      = config.pitchbench_c2_CHORD_INTERVALS
+QUALITIES_FIXED      = list(CHORD_INTERVALS.keys())
+QUALITIES            = config.pitchbench_c2_QUALITIES
+ROOT_MIDIS           = config.pitchbench_c2_ROOT_MIDIS
+SAME_INSTRUMENT_OPTS = config.pitchbench_c2_SAME_INSTRUMENT_OPTS
+DEFAULT_N_TRIALS     = config.pitchbench_c2_N_TRIALS
+RANDOM_TRIALS        = config.pitchbench_c2_RANDOM_TRIALS
+DEFAULT_SEED         = config.pitchbench_c2_SEED
+RANDOM_NS            = config.pitchbench_c2_RANDOM_NS
+RANDOM_PITCH_RANGE   = config.pitchbench_c2_RANDOM_PITCH_RANGE
+SOURCES              = config.pitchbench_c2_SOURCES
+DURATIONS_MS         = config.pitchbench_c2_DURATIONS_MS
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are sounding "

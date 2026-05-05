@@ -1,25 +1,29 @@
 """
 Experiment d5 — Pitch trajectory (open-response)
+
 A continuously varying (gliding) pitch is synthesised and the model must
-describe its trajectory as a comma-separated sequence of "higher", "lower",
-or "same".
+describe its trajectory as a comma-separated sequence of ``up`` / ``down``
+tokens — the same vocabulary as d4. The sequence MUST strictly alternate
+(``up, down, up, down`` is valid; ``up, up, down`` is not), so the experiment
+measures whether the model correctly counts direction changes.
 
 Trajectories and their ground-truth sequences:
-  flat        → "same"
-  up          → "higher"
-  down        → "lower"
-  up_then_down → "higher, lower"
-  down_then_up → "lower, higher"
+  up           → "up"
+  down         → "down"
+  up_then_down → "up, down"
+  down_then_up → "down, up"
 
 Parameters:
-  start pitches  — 7 representative notes (F#1–G5)
-  intervals      — small (4 st), medium (7 st), large (12 st)
-                   for arch/valley the end = start (range = 2× interval)
-  duration       — 3 s
+  start pitches  — representative notes (configurable via
+                   ``config.pitchbench_d5_START_PITCHES``)
+  intervals      — small / medium / large semitones; for arch/valley the
+                   end = start (range = 2× interval)
+  duration       — single per-clip glide duration
   sources        — all waveforms (instruments excluded: FluidSynth glide
                    requires pitch-bend which not all presets support)
 
-Scoring: exact match on normalized token sequence.
+Scoring: ``trajectory_correct`` — binary exact match on the alternating
+``up``/``down`` sequence.
 
 Usage:
     pitchbench d5
@@ -34,6 +38,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
@@ -42,51 +47,38 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-START_PITCHES: list[int] = config.DEFAULT_PITCHES 
-
-INTERVALS_ST: list[int] = [1, 4, 7, 12]   # semitones of change
-
-DURATION_MS = config.DEFAULT_DURATION_MS
-
-SOURCES: list[str] = list(config.WAVEFORMS)  # glide works best on waveforms
-
-TRAJECTORIES: list[dict] = [
-    {"name": "flat",         "shape": "linear",  "interval_sign":  0, "gt_seq": ["same"]},
-    {"name": "up",           "shape": "linear",  "interval_sign": +1, "gt_seq": ["higher"]},
-    {"name": "down",         "shape": "linear",  "interval_sign": -1, "gt_seq": ["lower"]},
-    {"name": "up_then_down", "shape": "arch",    "interval_sign": +1, "gt_seq": ["higher", "lower"]},
-    {"name": "down_then_up", "shape": "valley",  "interval_sign": -1, "gt_seq": ["lower", "higher"]},
-]
+# Data-generation parameters (sourced from config.pitchbench_d5_*)
+START_PITCHES = config.pitchbench_d5_START_PITCHES
+INTERVALS_ST  = config.pitchbench_d5_INTERVALS_ST
+DURATION_MS   = config.pitchbench_d5_DURATION_MS
+SOURCES       = config.pitchbench_d5_SOURCES
+TRAJECTORIES  = config.pitchbench_d5_TRAJECTORIES
 
 PROMPT = (
     "Listen to this audio. Describe how the pitch changes over time as a "
-    "comma-separated list using only the words 'higher', 'lower', and 'same'.\n"
+    "comma-separated list using ONLY the words 'up' and 'down', alternating. "
+    "Never write the same direction twice in a row — count each change of "
+    "direction as one token.\n"
     "Examples:\n"
-    "  'higher'         — pitch rises throughout\n"
-    "  'lower'          — pitch falls throughout\n"
-    "  'same'           — pitch stays constant\n"
-    "  'higher, lower'  — pitch rises then falls\n"
-    "  'lower, higher'  — pitch falls then rises\n"
+    "  'up'           — pitch rises throughout\n"
+    "  'down'         — pitch falls throughout\n"
+    "  'up, down'     — pitch rises then falls\n"
+    "  'down, up'     — pitch falls then rises\n"
     "Reply with ONLY the comma-separated list. Nothing else."
 )
 
 # ── Response normalisation ────────────────────────────────────────────────────
 
 _SYNONYMS: dict[str, set[str]] = {
-    "higher": {
-        "higher", "up", "rise", "rises", "rising", "ascend", "ascending",
+    "up": {
+        "up", "higher", "rise", "rises", "rising", "ascend", "ascending",
         "increase", "increases", "increasing", "goes up", "went up",
         "pitch goes up", "pitch rises", "pitch increases",
     },
-    "lower": {
-        "lower", "down", "fall", "falls", "falling", "descend", "descending",
+    "down": {
+        "down", "lower", "fall", "falls", "falling", "descend", "descending",
         "decrease", "decreases", "decreasing", "goes down", "went down",
         "pitch goes down", "pitch falls", "pitch decreases",
-    },
-    "same": {
-        "same", "flat", "constant", "steady", "unchanged", "stays",
-        "stable", "equal", "no change", "stays the same", "remains the same",
-        "remains constant", "stays constant", "pitch stays", "pitch remains",
     },
 }
 
@@ -121,20 +113,8 @@ def build_conditions(sources: list[str]) -> list[dict]:
     rows: list[dict] = []
     for src in sources:
         for start_midi in START_PITCHES:
-            traj = next(t for t in TRAJECTORIES if t["name"] == "flat")
-            rows.append({
-                "source":      src,
-                "start_midi":  start_midi,
-                "end_midi":    start_midi,
-                "interval_st": 0,
-                "traj_name":   "flat",
-                "traj_shape":  traj["shape"],
-                "gt_seq":      traj["gt_seq"],
-            })
             for interval in INTERVALS_ST:
                 for traj in TRAJECTORIES:
-                    if traj["name"] == "flat":
-                        continue
                     end_midi = start_midi + traj["interval_sign"] * interval
                     end_midi = max(12, min(115, end_midi))
                     rows.append({
@@ -150,8 +130,6 @@ def build_conditions(sources: list[str]) -> list[dict]:
 
 
 def _get_wav(c: dict) -> Path:
-    if c["traj_name"] == "flat":
-        return engine.tone(c["start_midi"], c["source"], DURATION_MS)
     return engine.glide(
         c["start_midi"], c["end_midi"],
         c["source"], DURATION_MS, c["traj_shape"],

@@ -27,27 +27,23 @@ from pitchbench.experiments.helpers.audit import pitch_record_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     midi_to_freq, midi_to_note, midi_to_solfege,
-    standard_pitch_record, wide_to_long_records,
+    standard_pitch_record,
 )
 from pitchbench.experiments.helpers.plots import (
-    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+    save_combined_iv_plot, save_per_format_iv_plots,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-# Reference pitches spanning the middle range
-REFERENCE_PITCHES: list[int] = config.DEFAULT_SELECTION
-
-INTERVALS: list[int] = [-12, -7, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 7, 12]
-
-SOURCES: list[str] = config.ALL_SOURCES
-
-TONE_DURATION_MS = config.DEFAULT_DURATION_MS
-GAP_MS           = 500    # silence between reference and target
-
-CONDITIONS: list[str] = ["anchored", "baseline"]   # with or without reference tone
+# Data-generation parameters (sourced from config.pitchbench_a2_*)
+REFERENCE_PITCHES = config.pitchbench_a2_REFERENCE_PITCHES
+INTERVALS         = config.pitchbench_a2_INTERVALS
+SOURCES           = config.pitchbench_a2_SOURCES
+TONE_DURATION_MS  = config.pitchbench_a2_TONE_DURATION_MS
+GAP_MS            = config.pitchbench_a2_GAP_MS
+CONDITIONS        = config.pitchbench_a2_CONDITIONS
 
 
 def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
@@ -71,7 +67,7 @@ def _make_prompt(variant: str, ref_midi: int, condition: str) -> str:
                     "Reply with the syllable and accidental (if necessary).")
         else:  # hz
             return ("This audio contains a single musical note. "
-                    "What is the pitch frequency in Hertz? "
+                    "What is the main pitch frequency, expressed in Hertz? "
                     "Reply with ONLY a number (the frequency in Hz). Nothing else.")
     else:  # anchored
         if variant == "midi":
@@ -250,15 +246,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    save_accuracy_plots(
-        wide_to_long_records(records), run_dir, model_name,
-        instrument_key="source",
-        pitch_key="midi_gt",
-        prompt_key="prompt_variant",
-        accuracy_key="exact_match",
-    )
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="condition", iv_label="Reference condition")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="condition", iv_label="Reference condition")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="condition",
+                             iv_label="Reference condition", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="condition",
+                          iv_label="Reference condition")
     return summary
 
 

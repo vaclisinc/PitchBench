@@ -39,42 +39,27 @@ from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note,
-    standard_pitch_record, wide_to_long_records,
+    standard_pitch_record,
 )
 from pitchbench.experiments.helpers.plots import (
-    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+    save_combined_iv_plot, save_per_format_iv_plots,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-# ── Test parameters ───────────────────────────────────────────────────────────
-
-PITCHES: list[int] = [48, 52, 55, 60, 64, 67, 69, 72, 76, 79, 84]
-#                     C3  E3  G3  C4  E4  G4  A4  C5  E5  G5  C6
-
-TONE_MS = config.DEFAULT_DURATION_MS
-
-EFFECTS: dict[str, dict] = {
-    "clean":        {},
-    "reverb_s":     {"type": "reverb",   "delay_s": 0.05, "decay": 0.30},
-    "reverb_l":     {"type": "reverb",   "delay_s": 0.20, "decay": 0.70},
-    "clip_50":      {"type": "clip",     "threshold": 0.50},
-    "clip_25":      {"type": "clip",     "threshold": 0.25},
-    "eq_lo_boost":  {"type": "eq_lo",    "cutoff_hz":  500, "gain_db":  12},
-    "eq_hi_boost":  {"type": "eq_hi",    "cutoff_hz": 2000, "gain_db":  12},
-    "eq_lo_cut":    {"type": "eq_lo",    "cutoff_hz":  500, "gain_db": -12},
-    "eq_hi_cut":    {"type": "eq_hi",    "cutoff_hz": 2000, "gain_db": -12},
-    "eq_telephone": {"type": "eq_hi",    "cutoff_hz": 1000, "gain_db": -24},
-}
+# Data-generation parameters (sourced from config.pitchbench_e2_*)
+PITCHES = config.pitchbench_e2_PITCHES
+TONE_MS = config.pitchbench_e2_TONE_MS
+EFFECTS = config.pitchbench_e2_EFFECTS
 
 PROMPT_MIDI_FULL   = "Listen to this audio clip of a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "Listen to this audio clip of a single musical note. " + PROMPT_ABC
 PROMPT_DOREMI_FULL = "Listen to this audio clip of a single musical note. " + PROMPT_DOREMI
 PROMPT_HZ_FULL     = "Listen to this audio clip of a single musical note. " + PROMPT_HZ
 
-SOURCES: list[str] = config.ALL_SOURCES
+SOURCES = config.pitchbench_e2_SOURCES
 
 
 def build_conditions() -> list[dict]:
@@ -225,16 +210,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
     _save_plot(records, run_dir, model_name)
 
-    long_records = wide_to_long_records(records)
-    save_accuracy_plots(
-        long_records, run_dir, model_name,
-        instrument_key="source",
-        pitch_key="midi_gt",
-        prompt_key="prompt_variant",
-        accuracy_key="exact_match",
-    )
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="effect", iv_label="Effect")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="effect", iv_label="Effect")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="effect",
+                             iv_label="Effect", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="effect",
+                          iv_label="Effect")
     return summary
 
 

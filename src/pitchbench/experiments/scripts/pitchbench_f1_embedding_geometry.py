@@ -39,9 +39,11 @@ from pitchbench.experiments.helpers.results import _safe_stem, exp_data_dir, get
 
 EXP_NAME = Path(__file__).stem
 
-MIDI_MIN = config.DEFAULT_MIDI_MIN
-MIDI_MAX = config.DEFAULT_MIDI_MAX
-MIDI_PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))   # 49 pitches
+# Data-generation parameters (sourced from config.pitchbench_f1_*)
+MIDI_PITCHES = config.pitchbench_f1_PITCHES
+SOURCES      = config.pitchbench_f1_SOURCES
+MIDI_MIN     = min(MIDI_PITCHES)
+MIDI_MAX     = max(MIDI_PITCHES)
 
 # Colours for PCA scatter
 try:

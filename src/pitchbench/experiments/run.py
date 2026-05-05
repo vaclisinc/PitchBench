@@ -35,7 +35,8 @@ from typing import Any
 import pitchbench.config as config
 from pitchbench.experiments.helpers import cost as cost_tracker
 from pitchbench.experiments.helpers.results import (
-    write_aggregate_format_accuracies, write_session_cost_summary,
+    aggregate_session_metrics, write_aggregate_format_accuracies,
+    write_session_cost_summary,
 )
 
 
@@ -252,6 +253,29 @@ def main() -> None:
             output_path = config.RESULTS_DIR / f"format_accuracy_aggregate_{ts}.csv"
             write_aggregate_format_accuracies(output_path, all_runs)
             print(f"\nAggregate format accuracies → {output_path}")
+
+        if not stimulus_only:
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            # Full scalar-metric aggregate (every experiment in the session)
+            metrics_path = aggregate_session_metrics(
+                config.RESULTS_DIR,
+                config.RESULTS_DIR / f"all_metrics_aggregate_{ts}.csv",
+            )
+            if metrics_path is not None:
+                print(f"All scalar metrics → {metrics_path}")
+            # Per-category focused aggregates (one CSV per non-trivial category)
+            ran_categories = sorted({
+                m.group(1) for m in (_NAME_RE.match(n) for n in (names_to_run or []))
+                if m
+            })
+            for cat in ran_categories:
+                cat_path = aggregate_session_metrics(
+                    config.RESULTS_DIR,
+                    config.RESULTS_DIR / f"metrics_{cat}_aggregate_{ts}.csv",
+                    only_categories={cat},
+                )
+                if cat_path is not None:
+                    print(f"Category-{cat} metrics → {cat_path}")
 
         if not stimulus_only:
             ts        = datetime.now().strftime("%Y%m%d_%H%M%S")

@@ -26,6 +26,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     INTERVAL_NAMES, extract_interval, midi_to_note,
@@ -38,9 +39,12 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-INTERVALS_ST: list[int] = list(range(1, 13))                 # m2 .. P8
-SOURCES:      list[str] = config.ALL_SOURCES
-SAME_INSTRUMENT_OPTS: list[bool] = [True, False]
+# Data-generation parameters (sourced from config.pitchbench_c1_*)
+INTERVALS_ST         = config.pitchbench_c1_INTERVALS_ST
+SOURCES              = config.pitchbench_c1_SOURCES
+SAME_INSTRUMENT_OPTS = config.pitchbench_c1_SAME_INSTRUMENT_OPTS
+DURATIONS_MS         = config.pitchbench_c1_DURATIONS_MS
+PITCHES              = config.pitchbench_c1_PITCHES
 
 PROMPT = (
     "This audio contains two simultaneous musical notes. "

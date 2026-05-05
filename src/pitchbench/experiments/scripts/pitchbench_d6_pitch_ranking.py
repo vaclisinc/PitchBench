@@ -33,6 +33,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
@@ -43,19 +44,16 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── IVs ───────────────────────────────────────────────────────────────────────
-
-BASE_FREQS:  dict[str, float] = {"A3": 220.00, "A4": 440.00, "A5": 880.00}
-DELTA_CENTS: list[int]        = [25, 50, 100, 200, 400]
-N_TONES:     list[int]        = [3, 4, 5, 7]
-RHYTHMS:     list[str]        = ["regular", "irregular"]
-
-DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS   # per tone
-DEFAULT_GAP_MS      = config.DEFAULT_GAP_MS    # base inter-tone silence (rhythm=regular)
-DEFAULT_N_TRIALS    = config.DEFAULT_N_TRIALS
-DEFAULT_SEED = config.DEFAULT_SEED
-
-SOURCES: list[str] = config.WAVEFORMS   # Hz tones unsupported on instruments
+# Data-generation parameters (sourced from config.pitchbench_d6_*)
+BASE_FREQS          = config.pitchbench_d6_BASE_FREQS
+DELTA_CENTS         = config.pitchbench_d6_DELTA_CENTS
+N_TONES             = config.pitchbench_d6_N_TONES
+RHYTHMS             = config.pitchbench_d6_RHYTHMS
+DEFAULT_DURATION_MS = config.pitchbench_d6_DURATION_MS
+DEFAULT_GAP_MS      = config.pitchbench_d6_GAP_MS
+DEFAULT_N_TRIALS    = config.pitchbench_d6_N_TRIALS
+DEFAULT_SEED        = config.pitchbench_d6_SEED
+SOURCES             = config.pitchbench_d6_SOURCES
 
 
 def _prompt(n: int) -> str:

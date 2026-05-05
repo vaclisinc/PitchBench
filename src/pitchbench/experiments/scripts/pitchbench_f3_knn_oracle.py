@@ -39,6 +39,7 @@ import numpy as np
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     extract_midi, extract_note, extract_solfege,
@@ -50,11 +51,13 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 EXP_NAME = Path(__file__).stem
 EXP13_NAME = "pitchbench_f1_embedding_geometry"   # may reuse embedding cache
 
-MIDI_MIN = config.DEFAULT_MIDI_MIN
-MIDI_MAX = config.DEFAULT_MIDI_MAX
-MIDI_PITCHES: list[int] = list(range(MIDI_MIN, MIDI_MAX + 1))
-SPLIT_SEED = config.DEFAULT_SEED
-DEFAULT_K  = 1
+# Data-generation parameters (sourced from config.pitchbench_f3_*)
+MIDI_PITCHES = config.pitchbench_f3_PITCHES
+SOURCES      = config.pitchbench_f3_SOURCES
+SPLIT_SEED   = config.pitchbench_f3_SPLIT_SEED
+DEFAULT_K    = config.pitchbench_f3_K
+MIDI_MIN     = min(MIDI_PITCHES)
+MIDI_MAX     = max(MIDI_PITCHES)
 
 VERBAL_PROMPTS: dict[str, str] = {
     "midi": (
@@ -276,12 +279,19 @@ def run_verbal_baseline(
         variant = job["variant"]
         prompt  = job["prompt"]
         raw = query_alm(model_name, c["wav"], prompt)["result"]
-        return {"variant": variant, "score": _score_verbal(variant, raw, c["midi"])}
+        return {"variant": variant, "score": _score_verbal(variant, raw, c["midi"]),
+                "raw": (raw or "").strip(), "midi_gt": c["midi"]}
 
     raw_results = dispatch(
         jobs, _query_one,
         model_name=model_name,
         label_fn=lambda j: f"verbal[{j['variant']:6s}] {j['cond']['note']:4s} {j['cond']['source']:14s}",
+        result_label_fn=lambda j, r: audit_line(
+            f"verbal[{j['variant']:6s}] {j['cond']['note']:4s} {j['cond']['source']:14s}",
+            gt=r['midi_gt'],
+            pred=r['raw'],
+            correct=bool(r['score']),
+        ),
     )
 
     results: dict[str, list[int]] = {v: [] for v in VERBAL_PROMPTS}

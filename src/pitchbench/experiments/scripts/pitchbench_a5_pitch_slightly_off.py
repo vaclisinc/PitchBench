@@ -47,9 +47,12 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-SOURCES: list[str] = config.ALL_SOURCES
-N_DETUNE_LEVELS = 5
-DETUNE_FRACTION = 0.40    # |detune| ≤ 40 % of half-distance-to-neighbour, well inside the basin
+# Data-generation parameters (sourced from config.pitchbench_a5_*)
+SOURCES         = config.pitchbench_a5_SOURCES
+N_DETUNE_LEVELS = config.pitchbench_a5_N_DETUNE_LEVELS
+DETUNE_FRACTION = config.pitchbench_a5_DETUNE_FRACTION
+PITCHES         = config.pitchbench_a5_PITCHES
+DURATIONS_MS    = config.pitchbench_a5_DURATIONS_MS
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note that may be slightly "
@@ -188,8 +191,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="detune_hz", iv_label="Detune (Hz)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="detune_hz", iv_label="Detune (Hz)")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="detune_hz",
+                             iv_label="Detune (Hz)", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="detune_hz",
+                          iv_label="Detune (Hz)")
     return summary
 
 

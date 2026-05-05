@@ -41,6 +41,7 @@ from typing import Any
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import melody_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PC_TO_SOLFEGE,
@@ -60,30 +61,16 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── Fixed parameters ──────────────────────────────────────────────────────────
-
-N_VOICES        = 4               # SATB
-DEFAULT_SEED = config.DEFAULT_SEED
-MIN_SEG_NOTES   = 4               # skip if target voice has fewer notes
-MAX_SEG_SEC     = 30.0            # hard cap on clip length
-DEFAULT_QPM     = 60.0            # used when chorale has no metronome mark
-
-VOICE_NAMES = ["soprano", "alto", "tenor", "bass"]
-
-DEFAULT_CHORALES: list[str] = [
-    "bach/bwv66.6",
-    "bach/bwv4.8",
-    "bach/bwv7.7",
-    "bach/bwv26.6",
-    "bach/bwv57.8",
-]
-
-SOURCES: list[str] = list(config.GM_PROGRAMS_V1.keys())
-
-MIXED_GROUPS: dict[str, list[str]] = {
-    "classical_quartet": ["flute", "violin", "cello", "bass"],
-    "mixed_timbres":     ["piano", "trumpet", "clarinet", "guitar"],
-}
+# Data-generation parameters (sourced from config.pitchbench_g2_*)
+N_VOICES         = config.pitchbench_g2_N_VOICES
+DEFAULT_SEED     = config.pitchbench_g2_SEED
+MIN_SEG_NOTES    = config.pitchbench_g2_MIN_SEG_NOTES
+MAX_SEG_SEC      = config.pitchbench_g2_MAX_SEG_SEC
+DEFAULT_QPM      = config.pitchbench_g2_QPM
+VOICE_NAMES      = config.pitchbench_g2_VOICE_NAMES
+DEFAULT_CHORALES = config.pitchbench_g2_DEFAULT_CHORALES
+SOURCES          = config.pitchbench_g2_SOURCES
+MIXED_GROUPS     = config.pitchbench_g2_MIXED_GROUPS
 
 
 # ── music21 helpers ───────────────────────────────────────────────────────────
@@ -360,7 +347,7 @@ def make_prompt_spn(x: int, n_target: int, inst_cfg: str, sources: list[str]) ->
     return (
         f"{_preamble(x, n_target, inst_cfg, sources)} "
         f"List all {n_target} note names in order from first to last. "
-        "Reply with ONLY the note names separated by spaces (e.g. C5 D#5 E5). Nothing else. Output only the answer."
+        "Reply with ONLY the note names expressed in Scientific Pitch Notation, separated by spaces (e.g. C5 D#5 E5). Nothing else. Output only the answer."
     )
 
 
@@ -619,6 +606,9 @@ def run_one_model(
         jobs, _query_one,
         model_name=model_name,
         label_fn=lambda j: f"{j['cond']['chorale_id']:16s} x={j['cond']['x']}({j['cond']['voice_name']:7s}) {j['cond']['inst_cfg']:7s} {j['cond']['source_label']:18s} [{j['cond']['n_target']} notes]",
+        result_label_fn=lambda j, r: melody_audit_str(
+            r, label=f"{j['cond']['chorale_id']:16s} x={j['cond']['x']}({j['cond']['voice_name']:7s}) {j['cond']['inst_cfg']:7s}"
+        ),
     )
     records: list[dict[str, Any]] = [r for r in raw_results if r is not None]
 

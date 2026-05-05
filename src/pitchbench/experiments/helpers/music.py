@@ -395,24 +395,37 @@ def timing_metrics(
     gt_on: float, gt_off: float,
     pred_on: float | None, pred_off: float | None,
 ) -> dict[str, float | int | None]:
-    """Onset/offset accuracy: abs error, IoU, and ±100/250/500 ms thresholds.
+    """Onset/offset accuracy: abs error, IoU, the primary ``correct`` flag,
+    plus fixed ±100 / 250 / 500 ms diagnostic thresholds.
+
+    The primary ``correct`` field is binary: 1 iff BOTH endpoints are within
+    ±``config.BENCHMARK_TIMESTAMP_TOLERANCE_MS`` ms of GT (default 250 ms).
+    The ``within_{100,250,500}ms_both`` fields stay fixed at their named
+    thresholds so cross-tolerance comparisons keep working even if the global
+    tolerance is changed.
 
     Returns a dict with::
         abs_error_on, abs_error_off            float seconds
         iou                                    float in [0, 1]
-        within_100ms_on / off                  0 / 1
-        within_250ms_on / off                  0 / 1
-        within_500ms_on / off                  0 / 1
-        within_250ms_both                      1 iff BOTH endpoints ≤ 250 ms
-        within_500ms_both                      1 iff BOTH endpoints ≤ 500 ms
+        correct                                0 / 1 — at the configured tolerance
+        within_100ms_both                      0 / 1 — fixed diagnostic
+        within_250ms_both                      0 / 1 — fixed diagnostic
+        within_500ms_both                      0 / 1 — fixed diagnostic
         valid                                  bool — both endpoints parsed
     """
+    # Lazy import to avoid a circular dependency on config at module load.
+    import pitchbench.config as _config
+    tol_s = _config.BENCHMARK_TIMESTAMP_TOLERANCE_MS / 1000.0
+
     if pred_on is None or pred_off is None:
-        return {"valid": False, "iou": 0.0,
-                "abs_error_on": None,  "abs_error_off": None,
-                "within_100ms_on": 0,  "within_100ms_off": 0,  "within_100ms_both": 0,
-                "within_250ms_on": 0,  "within_250ms_off": 0,  "within_250ms_both": 0,
-                "within_500ms_on": 0,  "within_500ms_off": 0,  "within_500ms_both": 0}
+        return {
+            "valid": False, "iou": 0.0,
+            "abs_error_on": None, "abs_error_off": None,
+            "correct": 0,
+            "within_100ms_both": 0,
+            "within_250ms_both": 0,
+            "within_500ms_both": 0,
+        }
 
     if pred_off < pred_on:                       # tolerate reversed predictions
         pred_on, pred_off = pred_off, pred_on
@@ -427,15 +440,10 @@ def timing_metrics(
         "iou":               round(iou, 4),
         "abs_error_on":      round(abs_on, 4),
         "abs_error_off":     round(abs_off, 4),
-        "within_100ms_on":   int(abs_on  <= 0.100),
-        "within_100ms_off":  int(abs_off <= 0.100),
-        "within_100ms_both": int(abs_on  <= 0.100 and abs_off <= 0.100),
-        "within_250ms_on":   int(abs_on  <= 0.250),
-        "within_250ms_off":  int(abs_off <= 0.250),
-        "within_250ms_both": int(abs_on  <= 0.250 and abs_off <= 0.250),
-        "within_500ms_on":   int(abs_on  <= 0.500),
-        "within_500ms_off":  int(abs_off <= 0.500),
-        "within_500ms_both": int(abs_on  <= 0.500 and abs_off <= 0.500),
+        "correct":           int(abs_on <= tol_s and abs_off <= tol_s),
+        "within_100ms_both": int(abs_on <= 0.100 and abs_off <= 0.100),
+        "within_250ms_both": int(abs_on <= 0.250 and abs_off <= 0.250),
+        "within_500ms_both": int(abs_on <= 0.500 and abs_off <= 0.500),
     }
 
 
@@ -553,7 +561,7 @@ PROMPT_MIDI = (
 
 PROMPT_SPN = (
     "What is the note name and octave? "
-    "Reply with ONLY the note name, for example: C4, F#3, Bb5. Nothing else. Output only the answer."
+    "Reply with ONLY the note name in Scientific Pitch Notation (e.g. C4, F#3, Bb5). Nothing else. Output only the answer."
 )
 PROMPT_ABC = PROMPT_SPN   # legacy alias — many older scripts import PROMPT_ABC
 
@@ -566,7 +574,7 @@ PROMPT_DOREMI = (
 PROMPT_SOLFEGE = PROMPT_DOREMI   # alias
 
 PROMPT_HZ = (
-    "What is the pitch frequency in Hertz? "
+    "What is the main pitch frequency, expressed in Hertz? "
     "Reply with ONLY a number (the frequency in Hz). Nothing else. Output only the answer."
 )
 
@@ -605,8 +613,9 @@ def standard_pitch_record(
     | spn_pc_correct         | predicted note letter+accidental matches GT      |
     | spn_octave_correct     | predicted octave digit matches GT                |
     | doremi_correct         | predicted solfège pitch class matches GT mod 12  |
-    | hz_correct             | |pred Hz − GT Hz| ≤ 1.0 Hz                       |
+    | hz_correct             | 0.99 ≤ pred / gt ≤ 1.01  (binary, ±1% ratio)     |
     | hz_abs_error           | |pred Hz − GT Hz|                                |
+    | hz_ratio               | pred / gt                                         |
 
     The ``raw_abc`` / ``prompt_abc`` kwargs are accepted as drop-in aliases for
     ``raw_spn`` / ``prompt_spn`` so existing scripts that haven't migrated to
@@ -638,8 +647,10 @@ def standard_pitch_record(
     doremi_dist     = solfege_pc_distance(midi_gt, doremi_pred_pc) if doremi_pred_pc is not None else None
 
     # ── Hz ────────────────────────────────────────────────────────────────────
-    hz_pred  = extract_freq(raw_hz) if raw_hz else None
-    hz_abs   = abs(hz_pred - hz_gt) if hz_pred is not None else None
+    hz_pred   = extract_freq(raw_hz) if raw_hz else None
+    hz_abs    = abs(hz_pred - hz_gt) if hz_pred is not None else None
+    hz_ratio  = (hz_pred / hz_gt) if (hz_pred is not None and hz_gt > 0) else None
+    hz_ok     = int(hz_ratio is not None and 0.99 <= hz_ratio <= 1.01)
 
     return {
         **extra_meta,
@@ -663,10 +674,15 @@ def standard_pitch_record(
         "doremi_pred":         doremi_pred_str,
         "doremi_correct":      int(doremi_dist == 0) if doremi_dist is not None else 0,
         # ── Hz format ─────────────────────────────────────────────────────────
+        # hz_correct is binary: pred / gt within [0.99, 1.01] (±1% tolerance).
+        # The legacy ≤1Hz absolute-error rule was scale-dependent (lenient at
+        # high pitches, strict at low) — the ratio is scale-invariant and
+        # roughly equivalent to ±17 cents.
         "hz_gt":               round(hz_gt, 4),
         "hz_pred":             hz_pred,
-        "hz_correct":          int(hz_abs is not None and hz_abs <= 1.0),
+        "hz_correct":          hz_ok,
         "hz_abs_error":        round(hz_abs, 4) if hz_abs is not None else None,
+        "hz_ratio":            round(hz_ratio, 6) if hz_ratio is not None else None,
         # ── Legacy aliases (kept so existing plot helpers/aggregations work) ──
         "abc_gt":              note_gt,
         "abc_pred":            spn_pred,

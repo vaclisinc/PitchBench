@@ -66,12 +66,18 @@ def sampling_meta(
 
 
 def sampling_summary_lines(meta: dict[str, Any]) -> list[str]:
-    """Human-readable sampling lines for the .txt summary."""
+    """Human-readable sampling lines for the .txt summary.
+
+    Tolerant of partial/empty ``meta`` dicts — callers (notably tests that
+    bypass ``apply_default_sampling``) sometimes pass ``{}``.
+    """
+    total = meta.get("total_available", "?")
     if meta.get("sample_n") is None:
-        return [f"  Sampling     : none (full set of {meta['total_available']})"]
+        return [f"  Sampling     : none (full set of {total})"]
     return [
-        f"  Sampling     : {meta['sample_n']} of {meta['total_available']} "
-        f"(stratified by {meta['stratified_by']!r}, seed={meta['sample_seed']})",
+        f"  Sampling     : {meta['sample_n']} of {total} "
+        f"(stratified by {meta.get('stratified_by', '?')!r}, "
+        f"seed={meta.get('sample_seed', '?')})",
     ]
 
 

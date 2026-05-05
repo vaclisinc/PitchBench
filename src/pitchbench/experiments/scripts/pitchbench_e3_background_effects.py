@@ -42,12 +42,11 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-BACKGROUNDS: list[str] = [
-    "white_noise",
-    "church-bells", "crowd-noise", "rain", "street-noise",
-]
-SNR_DB:      list[float] = [30.0, 20.0, 0.0, -6.0]
-SOURCES:     list[str]   = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_e3_*)
+BACKGROUNDS = config.pitchbench_e3_BACKGROUNDS
+SNR_DB      = config.pitchbench_e3_SNR_DB
+SOURCES     = config.pitchbench_e3_SOURCES
+PITCHES     = config.pitchbench_e3_PITCHES
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note mixed with a "
@@ -59,7 +58,7 @@ PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
 PROMPT_DOREMI_FULL = PROMPT_PREFIX + PROMPT_DOREMI
 PROMPT_HZ_FULL     = PROMPT_PREFIX + PROMPT_HZ
 
-DURATIONS_MS = [config.DEFAULT_DURATION_MS]
+DURATIONS_MS = config.pitchbench_e3_DURATIONS_MS
 
 
 def build_conditions(durations_ms: list[int], pitches: list[int], sources: list[str]) -> list[dict]:
@@ -164,8 +163,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="snr_db", iv_label="SNR (dB)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="snr_db", iv_label="SNR (dB)")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="snr_db",
+                             iv_label="SNR (dB)", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="snr_db",
+                          iv_label="SNR (dB)")
     return summary
 
 

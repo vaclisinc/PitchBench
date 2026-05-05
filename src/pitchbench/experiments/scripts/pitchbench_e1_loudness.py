@@ -27,31 +27,27 @@ from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note,
-    standard_pitch_record, wide_to_long_records,
+    standard_pitch_record,
 )
 from pitchbench.experiments.helpers.plots import (
-    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+    save_combined_iv_plot, save_per_format_iv_plots,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-# ── Test parameters ───────────────────────────────────────────────────────────
-
-# Representative pitches spanning C3–C6
-PITCHES: list[int] = config.DEFAULT_PITCHES
-
-# dBFS levels; 0 = peak amplitude 0.9, each step ÷ ~3–4
-LOUDNESS_DB: list[int] = [-30, -20, -12, -6, -3, 0]
+# Data-generation parameters (sourced from config.pitchbench_e1_*)
+PITCHES     = config.pitchbench_e1_PITCHES
+LOUDNESS_DB = config.pitchbench_e1_LOUDNESS_DB
 
 PROMPT_MIDI_FULL   = "Listen to this audio clip of a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "Listen to this audio clip of a single musical note. " + PROMPT_ABC
 PROMPT_DOREMI_FULL = "Listen to this audio clip of a single musical note. " + PROMPT_DOREMI
 PROMPT_HZ_FULL     = "Listen to this audio clip of a single musical note. " + PROMPT_HZ
 
-SOURCES: list[str] = config.ALL_SOURCES
-TONE_MS = config.DEFAULT_DURATION_MS
+SOURCES = config.pitchbench_e1_SOURCES
+TONE_MS = config.pitchbench_e1_TONE_MS
 
 
 def build_conditions() -> list[dict]:
@@ -184,16 +180,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
     _save_plot(records, run_dir, model_name)
 
-    long_records = wide_to_long_records(records)
-    save_accuracy_plots(
-        long_records, run_dir, model_name,
-        instrument_key="source",
-        pitch_key="midi_gt",
-        prompt_key="prompt_variant",
-        accuracy_key="exact_match",
-    )
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="loudness_db", iv_label="Loudness (dB)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="loudness_db", iv_label="Loudness (dB)")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="loudness_db",
+                             iv_label="Loudness (dB)", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="loudness_db",
+                          iv_label="Loudness (dB)")
     return summary
 
 

@@ -24,6 +24,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     extract_chord_quality, extract_note, midi_to_note,
@@ -36,39 +37,27 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# Quality → (intervals over the root, canonical full-name)
-QUALITIES: dict[str, tuple[tuple[int, ...], str]] = {
-    "major":      ((0, 4, 7),     "major"),
-    "minor":      ((0, 3, 7),     "minor"),
-    "diminished": ((0, 3, 6),     "diminished"),
-    "augmented":  ((0, 4, 8),     "augmented"),
-    "dom7":       ((0, 4, 7, 10), "dominant seventh"),
-    "maj7":       ((0, 4, 7, 11), "major seventh"),
-    "min7":       ((0, 3, 7, 10), "minor seventh"),
-    "m7b5":       ((0, 3, 6, 10), "half diminished"),
-    "sus2":       ((0, 2, 7),     "sus2"),
-    "sus4":       ((0, 5, 7),     "sus4"),
-}
-
-ROOT_MIDIS:   list[int]  = list(range(48, 60))
-TASKS:        list[str]  = ["quality_only"]
-SAME_INSTRUMENT_OPTS:  list[bool] = [True, False]
-SOURCES:      list[str]  = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_c4_*)
+QUALITIES            = config.pitchbench_c4_QUALITIES
+ROOT_MIDIS           = config.pitchbench_c4_ROOT_MIDIS
+TASKS                = config.pitchbench_c4_TASKS
+SAME_INSTRUMENT_OPTS = config.pitchbench_c4_SAME_INSTRUMENT_OPTS
+SOURCES              = config.pitchbench_c4_SOURCES
+DURATIONS_MS         = config.pitchbench_c4_DURATIONS_MS
 
 
 PROMPT_QUALITY_ONLY = (
     "This audio contains a chord (multiple simultaneous notes). "
     "What is its harmonic quality? "
-    "Options: 'major', 'minor', 'diminished', 'augmented', "
-    "'dominant seventh', 'major seventh', 'minor seventh', "
-    "'half diminished', 'sus2', 'sus4'. "
+    f"Choose one of the following: {', '.join(QUALITIES.items().keys())}. "
     "Reply with ONLY the quality."
 )
 
 PROMPT_ROOT_AND_QUALITY = (
     "This audio contains a chord (multiple simultaneous notes). "
     "Identify both the root note and the harmonic quality. "
-    "Reply as <NOTE> <QUALITY>, e.g. 'C major', 'F# minor seventh', 'B half diminished'. "
+    "Reply as <NOTE> <QUALITY>, e.g. 'C major', 'F# minor seventh', 'B half diminished'. The note should be expressed in scientific pitch notation (C4, F#3, etc.) and the quality should be one of: "
+    f"{', '.join(QUALITIES.keys())}. "
     "Reply with ONLY the chord name."
 )
 

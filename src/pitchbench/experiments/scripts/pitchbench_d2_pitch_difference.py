@@ -30,6 +30,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
@@ -40,19 +41,14 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── IVs ───────────────────────────────────────────────────────────────────────
-
-BASE_FREQS: dict[str, float] = {"A3": 220.00, "A4": 440.00, "A5": 880.00}
-
-DELTA_CENTS: list[int] = [1, 2, 5, 10, 25, 50, 100, 200, 400, 700, 1200]
-
-SEPARATION_MS: list[int] = [200, 500, 1000, 2000]
-
-DEFAULT_DURATION_MS = config.DEFAULT_DURATION_MS           # per tone — universal IV slot is "duration_ms"
-DEFAULT_N_TRIALS    = config.DEFAULT_N_TRIALS
-DEFAULT_SEED = config.DEFAULT_SEED
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_d2_*)
+BASE_FREQS          = config.pitchbench_d2_BASE_FREQS
+DELTA_CENTS         = config.pitchbench_d2_DELTA_CENTS
+SEPARATION_MS       = config.pitchbench_d2_SEPARATION_MS
+DEFAULT_DURATION_MS = config.pitchbench_d2_DURATION_MS
+DEFAULT_N_TRIALS    = config.pitchbench_d2_N_TRIALS
+DEFAULT_SEED        = config.pitchbench_d2_SEED
+SOURCES             = config.pitchbench_d2_SOURCES
 
 PROMPT = (
     "Two tones play one after another, separated by a brief silence. "

@@ -42,12 +42,15 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-N_NOTES_OPTS:  list[int] = [5, 10]
-TOTAL_DUR_MS              = config.DEFAULT_TOTAL_DUR_MS
-GAP_MIN_MS, GAP_MAX_MS    = 30, 1500
-DEFAULT_SEED = config.DEFAULT_SEED
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_b4_*)
+N_NOTES_OPTS = config.pitchbench_b4_N_NOTES_OPTS
+TOTAL_DUR_MS = config.pitchbench_b4_TOTAL_DUR_MS
+GAP_MIN_MS   = config.pitchbench_b4_GAP_MIN_MS
+GAP_MAX_MS   = config.pitchbench_b4_GAP_MAX_MS
+DEFAULT_SEED = config.pitchbench_b4_SEED
+SOURCES      = config.pitchbench_b4_SOURCES
+PITCHES      = config.pitchbench_b4_PITCHES
+DURATIONS_MS = config.pitchbench_b4_DURATIONS_MS
 
 
 def _query_str(secs: float) -> str:
@@ -184,8 +187,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         **(sample_info or {}),
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="query_time_s", iv_label="Query time (s)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="query_time_s", iv_label="Query time (s)")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="query_time_s",
+                             iv_label="Query time (s)", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="query_time_s",
+                          iv_label="Query time (s)")
     return summary
 
 

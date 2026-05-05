@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import pitchbench.config as config
 import argparse
 
-checkpoint_name = "audio_flamingo_next_think"
+checkpoint_name = "audio_flamingo_next_instruct"
 model_id = config.AF_NEXT_CHECKPOINTS[checkpoint_name]
 
 processor = AutoProcessor.from_pretrained(model_id)

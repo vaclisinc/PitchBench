@@ -26,6 +26,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note, parse_mm_ss_cc, timing_metrics
 from pitchbench.experiments.helpers.results import (
@@ -36,9 +37,12 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-POSITIONS_MS: list[int] = config.DEFAULT_TONE_POSITIONS_MS  # note positions inside the clip (ms)
-TOTAL_DUR_MS  = config.DEFAULT_TOTAL_DUR_MS 
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_b2_*)
+POSITIONS_MS = config.pitchbench_b2_POSITIONS_MS
+TOTAL_DUR_MS = config.pitchbench_b2_TOTAL_DUR_MS
+SOURCES      = config.pitchbench_b2_SOURCES
+PITCHES      = config.pitchbench_b2_PITCHES
+DURATIONS_MS = config.pitchbench_b2_DURATIONS_MS
 
 PROMPT = (
     "This audio is a 60-second clip that contains exactly ONE sustained "
@@ -98,6 +102,9 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         ts  = parse_mm_ss_cc(raw)
         on_p, off_p = (ts[0], ts[1]) if len(ts) >= 2 else (None, None)
         m   = timing_metrics(on_gt, off_gt, on_p, off_p)
+        # PitchBench timestamp criterion: a timestamp is correct iff it's
+        # within ±250 ms of GT. A stimulus has 2 timestamps (onset, offset);
+        # ``correct`` = both within 250 ms.
         return {
             "source":         c["source"],
             "source_type":    "waveform" if c["source"] in config.WAVEFORMS else "instrument",
@@ -115,15 +122,9 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "iou":            m["iou"],
             "abs_error_on":   m["abs_error_on"],
             "abs_error_off":  m["abs_error_off"],
-            "within_100ms_on":   m["within_100ms_on"],
-            "within_100ms_off":  m["within_100ms_off"],
-            "within_100ms_both": m["within_100ms_both"],
-            "within_250ms_on":   m["within_250ms_on"],
-            "within_250ms_off":  m["within_250ms_off"],
-            "within_250ms_both": m["within_250ms_both"],
-            "within_500ms_on":   m["within_500ms_on"],
-            "within_500ms_off":  m["within_500ms_off"],
-            "within_500ms_both": m["within_500ms_both"],
+            "correct":        m["correct"],                # primary binary score (config tolerance)
+            "within_100ms_both": m["within_100ms_both"],    # fixed diagnostic
+            "within_500ms_both": m["within_500ms_both"],    # fixed diagnostic
             "valid":          int(m["valid"]),
             "model_params":   out["model_params"],
         }
@@ -137,7 +138,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             gt=f"({r['onset_s_gt']},{r['offset_s_gt']})",
             pred=f"({r['onset_s_pred']},{r['offset_s_pred']})",
             score=r.get('iou'),
-            correct=bool(r.get('within_100ms_both')),
+            correct=bool(r.get('correct')),
         ),
     )
     records: list[dict] = [r for r in raw_results if r is not None]
@@ -147,29 +148,18 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     summary = {
         "total":        n,
         "valid":        len(valid),
-        "mean_iou":     sum(r["iou"] for r in valid) / max(1, n),
-        "within_100ms_on":   round(sum(r["within_100ms_on"]   for r in records) / max(1, n), 4),
-        "within_100ms_off":  round(sum(r["within_100ms_off"]  for r in records) / max(1, n), 4),
-        "within_100ms_both": round(sum(r["within_100ms_both"] for r in records) / max(1, n), 4),
-        "within_250ms_on":   round(sum(r["within_250ms_on"]   for r in records) / max(1, n), 4),
-        "within_250ms_off":  round(sum(r["within_250ms_off"]  for r in records) / max(1, n), 4),
-        "within_250ms_both": round(sum(r["within_250ms_both"] for r in records) / max(1, n), 4),
-        "within_500ms_on":   round(sum(r["within_500ms_on"]   for r in records) / max(1, n), 4),
-        "within_500ms_off":  round(sum(r["within_500ms_off"]  for r in records) / max(1, n), 4),
-        "within_500ms_both": round(sum(r["within_500ms_both"] for r in records) / max(1, n), 4),
+        "accuracy":          round(sum(r["correct"]            for r in records) / max(1, n), 4),
+        "mean_iou":          round(sum(r["iou"]                for r in valid)   / max(1, n), 4),
+        "within_100ms_both": round(sum(r["within_100ms_both"]  for r in records) / max(1, n), 4),
+        "within_500ms_both": round(sum(r["within_500ms_both"]  for r in records) / max(1, n), 4),
     }
+    tol_ms = config.BENCHMARK_TIMESTAMP_TOLERANCE_MS
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli       : {n}  (parsable: {len(valid)})",
+        f"  Accuracy      : {summary['accuracy']:.1%}   (both endpoints within ±{tol_ms} ms)",
         f"  Mean IoU      : {summary['mean_iou']:.3f}",
-        f"  ±100 ms onset : {summary['within_100ms_on']:.1%}",
-        f"  ±100 ms offset: {summary['within_100ms_off']:.1%}",
-        f"  ±100 ms both  : {summary['within_100ms_both']:.1%}",
-        f"  ±250 ms onset : {summary['within_250ms_on']:.1%}",
-        f"  ±250 ms offset: {summary['within_250ms_off']:.1%}",
-        f"  ±250 ms both  : {summary['within_250ms_both']:.1%}",
-        f"  ±500 ms onset : {summary['within_500ms_on']:.1%}",
-        f"  ±500 ms offset: {summary['within_500ms_off']:.1%}",
-        f"  ±500 ms both  : {summary['within_500ms_both']:.1%}",
+        f"  ±100 ms both  : {summary['within_100ms_both']:.1%}   (stricter diagnostic)",
+        f"  ±500 ms both  : {summary['within_500ms_both']:.1%}   (looser diagnostic)",
     ]
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
@@ -188,10 +178,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         EXP_NAME, model_name, records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=("iou",
-                       "within_100ms_on", "within_100ms_off", "within_100ms_both",
-                       "within_250ms_on", "within_250ms_off", "within_250ms_both",
-                       "within_500ms_on", "within_500ms_off", "within_500ms_both"),
+        extra_metrics=("correct", "iou", "within_100ms_both", "within_500ms_both"),
     )
     return summary
 

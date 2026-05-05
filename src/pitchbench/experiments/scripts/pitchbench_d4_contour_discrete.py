@@ -17,8 +17,9 @@ Fixed conditions: notes are separated by silence = note_duration / 4. The
 contour is a deterministic seeded sequence of ``up``/``down`` moves.
 
 Scoring:
-    transition_accuracy  — per-transition correctness, averaged
-    sequence_correct     — full match across all transitions
+    sequence_correct     — binary: full match across all transitions.
+                           Per-transition continuous credit was removed so all
+                           experiment scores in PitchBench are right-or-wrong.
 """
 
 from __future__ import annotations
@@ -31,6 +32,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.results import (
@@ -42,13 +44,14 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-N_TRANSITIONS_OPTS:  list[int] = [2, 3, 5, 7]
-STEP_SIZES_ST:       list[int] = [1, 2, 4, 7]
-NOTE_DURATIONS_MS:   list[int] = [250, 500, 1000]
-DEFAULT_TRIALS_PER_CELL = 2
-DEFAULT_SEED = config.DEFAULT_SEED
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_d4_*)
+N_TRANSITIONS_OPTS      = config.pitchbench_d4_N_TRANSITIONS_OPTS
+STEP_SIZES_ST           = config.pitchbench_d4_STEP_SIZES_ST
+NOTE_DURATIONS_MS       = config.pitchbench_d4_NOTE_DURATIONS_MS
+DEFAULT_TRIALS_PER_CELL = config.pitchbench_d4_TRIALS_PER_CELL
+DEFAULT_SEED            = config.pitchbench_d4_SEED
+SOURCES                 = config.pitchbench_d4_SOURCES
+PITCHES                 = config.pitchbench_d4_PITCHES
 
 PROMPT = (
     "Listen to this sequence of separate musical notes. For each TRANSITION "
@@ -128,9 +131,6 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         raw  = (out["result"] or "").strip()
         pred = _parse_pattern(raw)
         gt   = c["pattern"]
-        # Per-transition accuracy: align by index, missing tokens count as wrong
-        n_corr = sum(1 for i, g in enumerate(gt) if i < len(pred) and pred[i] == g)
-        per_trans = n_corr / max(1, len(gt))
         seq_ok = (pred == gt)
         return {
             "duration_ms":          c["note_duration_ms"],
@@ -144,7 +144,6 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "note_seq":             ",".join(midi_to_note(m) for m in c["midis"]),
             "pattern_gt":           ",".join(gt),
             "pattern_pred":         ",".join(pred),
-            "transition_accuracy":  round(per_trans, 4),
             "sequence_correct":     int(seq_ok),
             "wav":                  job["wav"],
             "raw_response":         raw,
@@ -161,7 +160,6 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             f"nT={j['cond']['n_transitions']} step={j['cond']['step_size_st']}st {j['cond']['source']}",
             gt=r['pattern_gt'],
             pred=r['pattern_pred'],
-            score=r.get('transition_accuracy'),
             correct=bool(r['sequence_correct']),
         ),
     )
@@ -169,14 +167,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
 
     n = len(records)
     summary = {
-        "total":               n,
-        "transition_accuracy": round(sum(r["transition_accuracy"] for r in records) / max(1, n), 4),
-        "sequence_correct":    round(sum(r["sequence_correct"]    for r in records) / max(1, n), 4),
+        "total":            n,
+        "sequence_correct": round(sum(r["sequence_correct"] for r in records) / max(1, n), 4),
     }
     summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Stimuli              : {n}",
-        f"  Per-transition acc   : {summary['transition_accuracy']:.1%}",
-        f"  Full-sequence acc    : {summary['sequence_correct']:.1%}",
+        f"  Stimuli           : {n}",
+        f"  Sequence accuracy : {summary['sequence_correct']:.1%}",
     ]
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
@@ -197,7 +193,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         EXP_NAME, model_name, records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=("transition_accuracy", "sequence_correct"),
+        extra_metrics=("sequence_correct",),
     )
     return summary
 

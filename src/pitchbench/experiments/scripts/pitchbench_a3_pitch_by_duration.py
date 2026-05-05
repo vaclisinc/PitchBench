@@ -24,21 +24,20 @@ from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note,
-    standard_pitch_record, wide_to_long_records,
+    standard_pitch_record,
 )
 from pitchbench.experiments.helpers.plots import (
-    save_accuracy_plots, save_combined_iv_plot, save_per_format_iv_plots,
+    save_combined_iv_plot, save_per_format_iv_plots,
 )
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
 EXP_NAME = Path(__file__).stem
 
-PITCHES: list[int] = config.DEFAULT_SELECTION 
-
-DURATIONS_MS: list[int] = [50, 100, 250, 500, 1_000, 2_000, 4_000, 5_000, 15_000, 60_000]
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_a3_*)
+PITCHES      = config.pitchbench_a3_PITCHES
+DURATIONS_MS = config.pitchbench_a3_DURATIONS_MS
+SOURCES      = config.pitchbench_a3_SOURCES
 
 PROMPT_MIDI_FULL   = "This audio contains a single musical pitch. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "This audio contains a single musical pitch. " + PROMPT_ABC
@@ -180,16 +179,11 @@ def run_one_model(
     )
     save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
 
-    long_records = wide_to_long_records(records)
-    save_accuracy_plots(
-        long_records, run_dir, model_name,
-        instrument_key="source",
-        pitch_key="midi_gt",
-        prompt_key="prompt_variant",
-        accuracy_key="exact_match",
-    )
-    save_per_format_iv_plots(records, run_dir, model_name, iv_key="duration_ms", iv_label="Duration (ms)")
-    save_combined_iv_plot(records, run_dir, model_name, iv_key="duration_ms", iv_label="Duration (ms)")
+    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
+    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="duration_ms",
+                             iv_label="Duration (ms)", group_by_source=False)
+    save_combined_iv_plot(records, plots_dir, model_name, iv_key="duration_ms",
+                          iv_label="Duration (ms)")
     return summary
 
 

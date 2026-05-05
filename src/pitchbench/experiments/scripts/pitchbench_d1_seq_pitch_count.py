@@ -31,6 +31,7 @@ import numpy as np
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.results import (
@@ -42,17 +43,16 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling, samp
 
 EXP_NAME = Path(__file__).stem
 
-# ── IVs ───────────────────────────────────────────────────────────────────────
-
-N_COUNTS:        list[int] = [1, 2, 3, 4, 5, 7, 10]
-RHYTHMS:         list[str] = ["regular", "irregular"]
-DEFAULT_GAP_MS               = config.DEFAULT_GAP_MS
-DEFAULT_N_TRIALS             = config.DEFAULT_N_TRIALS
-DEFAULT_SEED = config.DEFAULT_SEED
-
-PITCH_MIN, PITCH_MAX = 48, 84
-
-SOURCES: list[str] = config.ALL_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_d1_*)
+N_COUNTS         = config.pitchbench_d1_N_COUNTS
+RHYTHMS          = config.pitchbench_d1_RHYTHMS
+DEFAULT_GAP_MS   = config.pitchbench_d1_GAP_MS
+DEFAULT_N_TRIALS = config.pitchbench_d1_N_TRIALS
+DEFAULT_SEED     = config.pitchbench_d1_SEED
+PITCH_MIN        = config.pitchbench_d1_PITCH_MIN
+PITCH_MAX        = config.pitchbench_d1_PITCH_MAX
+SOURCES          = config.pitchbench_d1_SOURCES
+DURATIONS_MS     = config.pitchbench_d1_DURATIONS_MS
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are played in "
