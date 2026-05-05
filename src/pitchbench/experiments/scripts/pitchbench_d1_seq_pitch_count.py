@@ -31,6 +31,7 @@ import numpy as np
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
@@ -135,20 +136,25 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         try:
             wav = str(_wav_for(c))
         except ValueError as exc:
             print(f"    [SKIP] {exc}")
             continue
-        out  = query_alm(model_name, wav, PROMPT)
+        jobs.append({"wav": wav, "cond": c})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c    = job["cond"]
+        out  = query_alm(model_name, job["wav"], PROMPT)
         raw  = (out["result"] or "").strip()
         pred = _parse_count(raw)
         ok   = (pred == c["n"]) if pred is not None else False
         off  = abs(pred - c["n"]) if pred is not None else None
-
-        records.append({
+        return {
             "source":        c["source"],
             "duration_ms":   c["duration_ms"],
             "n":             c["n"],
@@ -157,16 +163,27 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "midi_set":      str(c["midi_set"]),
             "note_set":      ", ".join(midi_to_note(m) for m in c["midi_set"]),
             "presented":     str(c["presented"]),
-            "wav":           wav,
+            "wav":           job["wav"],
             "raw_response":  raw,
             "count_pred":    pred,
             "count_correct": int(ok),
             "off_by":        off,
             "prompt":        PROMPT,
             "model_params":  out["model_params"],
-        })
-        sym = "✓" if ok else (f"✗(pred={pred})" if pred is not None else "✗(?)")
-        print(f"    n={c['n']:>2} {c['rhythm']:>9} {c['source']:>10} dur={c['duration_ms']:>5}ms t={c['trial']}  {sym}")
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"n={j['cond']['n']:>2} {j['cond']['rhythm']:>9} {j['cond']['source']:>10} dur={j['cond']['duration_ms']:>5}ms t={j['cond']['trial']}",
+        result_label_fn=lambda j, r: audit_line(
+            f"{j['cond']['rhythm']:>9} {j['cond']['source']:>10} dur={j['cond']['duration_ms']:>5}ms",
+            gt=r['n'],
+            pred=r['count_pred'],
+            correct=bool(r['count_correct']),
+        ),
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     n_total = len(records)
     n_ok    = sum(r["count_correct"] for r in records)

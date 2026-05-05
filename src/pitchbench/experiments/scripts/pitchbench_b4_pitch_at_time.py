@@ -27,6 +27,8 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import pitch_record_audit_str
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
     midi_to_note, standard_pitch_record,
@@ -119,25 +121,43 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         wav = str(_wav_for(c))
         p_m, p_s, p_d, p_h = _prompt_set(c["query_time_s"])
-        r_m, r_s, r_d, r_h = query_four_formats(model_name, wav, p_m, p_s, p_d, p_h)
+        jobs.append({"wav": wav, "cond": c, "p_m": p_m, "p_s": p_s, "p_d": p_d, "p_h": p_h})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c = job["cond"]
+        r_m, r_s, r_d, r_h = query_four_formats(
+            model_name, job["wav"],
+            job["p_m"], job["p_s"], job["p_d"], job["p_h"],
+            verbose=False,
+        )
         rec = standard_pitch_record(
-            wav=wav, source=c["source"],
+            wav=job["wav"], source=c["source"],
             source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["midi"],
             raw_midi=r_m["result"], raw_spn=r_s["result"],
             raw_doremi=r_d["result"], raw_hz=r_h["result"],
-            prompt_midi=p_m, prompt_spn=p_s, prompt_doremi=p_d, prompt_hz=p_h,
+            prompt_midi=job["p_m"], prompt_spn=job["p_s"], prompt_doremi=job["p_d"], prompt_hz=job["p_h"],
             duration_ms=c["duration_ms"],
             n_notes=c["n_notes"],
             query_time_s=c["query_time_s"],
             seed=c["seed"],
         )
         rec["model_params_midi"] = r_m["model_params"]
-        records.append(rec)
+        return rec
+
+    raw = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{midi_to_note(j['cond']['midi']):>4}/{j['cond']['source']:<10} n={j['cond']['n_notes']} qt={j['cond']['query_time_s']:.2f}s",
+        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{midi_to_note(j['cond']['midi']):>4}/{j['cond']['source']:<10} n={j['cond']['n_notes']} qt={j['cond']['query_time_s']:.2f}s"),
+    )
+    records: list[dict] = [r for r in raw if r is not None]
 
     n = len(records)
     summary: dict[str, float | int] = {"total": n}

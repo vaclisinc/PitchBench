@@ -42,6 +42,7 @@ import numpy as np
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     FLAT_TO_SHARP, NOTE_NAMES, SOLFEGE_TO_PC,
     extract_midi, extract_note, extract_solfege,
@@ -567,57 +568,66 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
     sources = sorted({c["source"] for c in conds})
 
+    # Phase 1: build job list (one per cond × variant). Audio is already cached
+    # in `c["wav"]` from build_conditions().
+    jobs: list[dict] = []
     for c in conds:
-        wav = c["wav"]
         for variant, prompt in PROMPTS.items():
-            all_steps: list[list[dict[str, Any]]] = []
-            step1:     list[dict[str, Any]]        = []
-            try:
-                resp      = query_alm(
-                    model_name, wav, prompt,
-                    max_new_tokens=MAX_NEW_TOKENS, top_k=top_k, mode="probs",
-                )
-                raw       = resp.get("result") or ""
-                all_steps = resp.get("top_tokens") or []
-                step1     = all_steps[0] if all_steps else []
-                mass      = _pitch_mass_metrics(all_steps, c["midi"], variant)
-                verbal    = _score_response(variant, raw, c["midi"])
-            except Exception as exc:
-                print(f"    [WARN] {model_name} / {variant}: {exc}")
-                raw    = ""
-                mass   = {k: None for k in [
-                    "n_pitch_tokens", "total_pitch_mass", "p_exact", "p_within_1",
-                    "p_within_2", "p_within_6", "p_within_12", "entropy_pitch",
-                    "argmax_dist", "argmax_token",
-                ]}
-                verbal = {"exact_match": 0, "within_1": 0}
+            jobs.append({"cond": c, "variant": variant, "prompt": prompt})
 
-            rec = {
-                "source":           c["source"],
-                "source_type":      c["source_type"],
-                "midi":             c["midi"],
-                "note":             c["note"],
-                "wav":              wav,
-                "raw_response":     raw.strip() if raw else "",
-                "prompt_variant":   variant,
-                "prompt":           prompt,
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c       = job["cond"]
+        variant = job["variant"]
+        prompt  = job["prompt"]
+        wav     = c["wav"]
+        all_steps: list[list[dict[str, Any]]] = []
+        step1:     list[dict[str, Any]]        = []
+        try:
+            resp      = query_alm(
+                model_name, wav, prompt,
+                max_new_tokens=MAX_NEW_TOKENS, top_k=top_k, mode="probs",
+            )
+            raw       = resp.get("result") or ""
+            all_steps = resp.get("top_tokens") or []
+            step1     = all_steps[0] if all_steps else []
+            mass      = _pitch_mass_metrics(all_steps, c["midi"], variant)
+            verbal    = _score_response(variant, raw, c["midi"])
+        except Exception as exc:
+            raw    = ""
+            mass   = {k: None for k in [
+                "n_pitch_tokens", "total_pitch_mass", "p_exact", "p_within_1",
+                "p_within_2", "p_within_6", "p_within_12", "entropy_pitch",
+                "argmax_dist", "argmax_token",
+            ]}
+            verbal = {"exact_match": 0, "within_1": 0}
 
-                "step1_tokens":     step1,
-                "all_step_tokens":  all_steps,
-                # standard plot keys
-                "instrument":       c["source"],
-                "exact_match":      verbal["exact_match"],
-                **mass,
-            }
-            records.append(rec)
+        return {
+            "source":           c["source"],
+            "source_type":      c["source_type"],
+            "midi":             c["midi"],
+            "note":             c["note"],
+            "wav":              wav,
+            "raw_response":     raw.strip() if raw else "",
+            "prompt_variant":   variant,
+            "prompt":           prompt,
 
-            sym = "✓" if verbal["exact_match"] else "✗"
-            ent = f"H={mass.get('entropy_pitch', '?'):.2f}" if mass.get("entropy_pitch") is not None else "H=?"
-            p_ex = f"p={mass.get('p_exact', 0.0):.2f}" if mass.get("p_exact") is not None else "p=?"
-            print(f"    [{variant:6s}] {c['note']:4s} {c['source']:14s}  {sym}  {p_ex}  {ent}  {Path(wav).name}")
+            "step1_tokens":     step1,
+            "all_step_tokens":  all_steps,
+            # standard plot keys
+            "instrument":       c["source"],
+            "exact_match":      verbal["exact_match"],
+            **mass,
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"[{j['variant']:6s}] {j['cond']['note']:4s} {j['cond']['source']:14s}",
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     per_variant: dict[str, dict] = {}

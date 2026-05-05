@@ -31,6 +31,7 @@ from typing import Any
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PC_TO_SOLFEGE,
     extract_all_notes,
@@ -191,7 +192,8 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict[str, Any]] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict[str, Any]] = []
     for c in conds:
         n   = c["n_notes"]
         src = c["source"]
@@ -199,12 +201,25 @@ def run_one_model(
         prompt_abc    = make_prompt_abc(n)
         prompt_doremi = make_prompt_doremi(n)
         prompt_hz     = make_prompt_hz(n)
-
         wav = str(engine.sequence(c["midi_sequence"], src, TONE_MS, GAP_MS))
+        jobs.append({
+            "wav": wav, "cond": c,
+            "prompt_midi": prompt_midi, "prompt_abc": prompt_abc,
+            "prompt_doremi": prompt_doremi, "prompt_hz": prompt_hz,
+        })
 
-        print(f"    n={n} t={c['trial']} {src}")
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict[str, Any]) -> dict[str, Any]:
+        c   = job["cond"]
+        n   = c["n_notes"]
+        src = c["source"]
+        prompt_midi   = job["prompt_midi"]
+        prompt_abc    = job["prompt_abc"]
+        prompt_doremi = job["prompt_doremi"]
+        prompt_hz     = job["prompt_hz"]
         r_m, r_a, r_d, r_h = query_four_formats(
-            model_name, wav, prompt_midi, prompt_abc, prompt_doremi, prompt_hz,
+            model_name, job["wav"], prompt_midi, prompt_abc, prompt_doremi, prompt_hz,
+            verbose=False,
         )
         raw_midi   = r_m["result"] or ""
         raw_abc    = r_a["result"] or ""
@@ -254,7 +269,7 @@ def run_one_model(
                 hz_per_pos.append(abs(pred_hz - gt_hz) <= 1.0)
         n_hz_correct = sum(1 for v in hz_per_pos if v is True)
 
-        records.append({
+        return {
             "source":               src,
             "source_type":          "waveform" if src in config.WAVEFORMS else "instrument",
             "n_notes":              n,
@@ -263,7 +278,7 @@ def run_one_model(
             "abc_sequence_gt":      str(c["note_sequence"]),
             "doremi_sequence_gt":   str(c["doremi_sequence"]),
             "hz_sequence_gt":       str(c["hz_sequence"]),
-            "wav":                  wav,
+            "wav":                  job["wav"],
             # MIDI format
             "midi_pred":            str(pred_midi_seq),
             "midi_per_pos":         str(midi_per_pos),
@@ -294,7 +309,14 @@ def run_one_model(
             "prompt_abc":           prompt_abc,
             "prompt_doremi":        prompt_doremi,
             "prompt_hz":            prompt_hz,
-        })
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"n={j['cond']['n_notes']} t={j['cond']['trial']} {j['cond']['source']}",
+    )
+    records: list[dict[str, Any]] = [r for r in raw_results if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     per_n: dict[int, dict[str, Any]] = {}

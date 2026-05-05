@@ -27,6 +27,8 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import pitch_record_audit_str
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
     midi_to_note, standard_pitch_record,
@@ -87,19 +89,26 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         try:
             wav = str(_wav_for(c))
         except ValueError as exc:
             print(f"    [SKIP] {exc}")
             continue
+        jobs.append({"wav": wav, "cond": c})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c = job["cond"]
         r_m, r_s, r_d, r_h = query_four_formats(
-            model_name, wav,
+            model_name, job["wav"],
             PROMPT_MIDI_FULL, PROMPT_SPN_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
+            verbose=False,
         )
         rec = standard_pitch_record(
-            wav=wav,
+            wav=job["wav"],
             source=c["source"],
             source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["midi"],
@@ -112,7 +121,15 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             snr_db=c["snr_db"],
         )
         rec["model_params_midi"] = r_m["model_params"]
-        records.append(rec)
+        return rec
+
+    raw = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} bg={j['cond']['background']:>13s} snr={j['cond']['snr_db']:>+5.0f}dB",
+        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} bg={j['cond']['background']:>13s} snr={j['cond']['snr_db']:>+5.0f}dB"),
+    )
+    records: list[dict] = [r for r in raw if r is not None]
 
     n = len(records)
     summary: dict[str, float | int] = {"total": n}

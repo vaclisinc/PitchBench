@@ -19,6 +19,8 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import pitch_record_audit_str
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note,
@@ -77,19 +79,22 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         wav = str(engine.tone(c["midi"], c["source"], c["duration_ms"]))
+        jobs.append({"wav": wav, "cond": c})
 
-        print(f"    {c['note']:4s} {c['duration_ms']:>5}ms {c['source']:10s}")
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c = job["cond"]
         r_m, r_a, r_d, r_h = query_four_formats(
-            model_name, wav,
+            model_name, job["wav"],
             PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
-            verbose=True,
+            verbose=False,
         )
-
-        record = standard_pitch_record(
-            wav=wav,
+        return standard_pitch_record(
+            wav=job["wav"],
             source=c["source"],
             source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["midi"],
@@ -103,7 +108,14 @@ def run_one_model(
             prompt_hz=PROMPT_HZ_FULL,
             duration_ms=c["duration_ms"],
         )
-        records.append(record)
+
+    raw = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{j['cond']['note']:4s} {j['cond']['duration_ms']:>5}ms {j['cond']['source']:10s}",
+        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{j['cond']['note']:4s} {j['cond']['duration_ms']:>5}ms {j['cond']['source']:10s}"),
+    )
+    records: list[dict] = [r for r in raw if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)

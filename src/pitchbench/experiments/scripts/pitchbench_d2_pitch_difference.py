@@ -30,6 +30,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
@@ -116,26 +117,41 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
-        wav  = str(_wav_for(c))
-        out  = query_alm(model_name, wav, PROMPT)
+        wav = str(_wav_for(c))
+        jobs.append({"wav": wav, "cond": c})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c    = job["cond"]
+        out  = query_alm(model_name, job["wav"], PROMPT)
         raw  = (out["result"] or "").strip()
         pred = _parse_binary(raw)
         ok   = (pred == c["answer_gt"]) if pred else False
-
-        records.append({
+        return {
             **c,
-            "wav":            wav,
+            "wav":            job["wav"],
             "raw_response":   raw,
             "answer_pred":    pred,
             "answer_correct": int(ok),
             "prompt":         PROMPT,
             "model_params":   out["model_params"],
-        })
-        sym = "✓" if ok else "✗"
-        print(f"    {sym} {c['base_name']} Δ={c['delta_cents']:>5}c sep={c['separation_ms']:>4}ms "
-              f"dur={c['duration_ms']:>4}ms  [{c['answer_gt']}]  → {pred or '???'}")
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{j['cond']['base_name']} Δ={j['cond']['delta_cents']:>5}c sep={j['cond']['separation_ms']:>4}ms dur={j['cond']['duration_ms']:>4}ms",
+        result_label_fn=lambda j, r: audit_line(
+            f"{j['cond']['base_name']} Δ={j['cond']['delta_cents']:>5}c sep={j['cond']['separation_ms']:>4}ms",
+            gt=r['answer_gt'],
+            pred=r['answer_pred'],
+            correct=bool(r['answer_correct']),
+        ),
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     n        = len(records)
     n_corr   = sum(r["answer_correct"] for r in records)

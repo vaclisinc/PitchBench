@@ -23,6 +23,8 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import pitch_record_audit_str
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     midi_to_freq, midi_to_note, midi_to_solfege,
     standard_pitch_record, wide_to_long_records,
@@ -138,30 +140,51 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         wav = str(_get_wav(c))
-        print(f"    {c['condition']:8s} r={c['ref_note']:3s} i={c['interval']:+3d} {c['source']}")
         prompt_midi   = _make_prompt("midi",   c["ref_midi"], c["condition"])
         prompt_abc    = _make_prompt("abc",    c["ref_midi"], c["condition"])
         prompt_doremi = _make_prompt("doremi", c["ref_midi"], c["condition"])
         prompt_hz     = _make_prompt("hz",     c["ref_midi"], c["condition"])
+        jobs.append({
+            "wav": wav,
+            "cond": c,
+            "prompt_midi": prompt_midi,
+            "prompt_abc": prompt_abc,
+            "prompt_doremi": prompt_doremi,
+            "prompt_hz": prompt_hz,
+        })
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c = job["cond"]
         r_m, r_a, r_d, r_h = query_four_formats(
-            model_name, wav, prompt_midi, prompt_abc, prompt_doremi, prompt_hz,
+            model_name, job["wav"],
+            job["prompt_midi"], job["prompt_abc"], job["prompt_doremi"], job["prompt_hz"],
+            verbose=False,
         )
-        rec = standard_pitch_record(
-            wav=wav, source=c["source"],
+        return standard_pitch_record(
+            wav=job["wav"], source=c["source"],
             source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
             midi_gt=c["tgt_midi"],
             raw_midi=r_m["result"], raw_abc=r_a["result"],
             raw_doremi=r_d["result"], raw_hz=r_h["result"],
-            prompt_midi=prompt_midi, prompt_abc=prompt_abc,
-            prompt_doremi=prompt_doremi, prompt_hz=prompt_hz,
+            prompt_midi=job["prompt_midi"], prompt_abc=job["prompt_abc"],
+            prompt_doremi=job["prompt_doremi"], prompt_hz=job["prompt_hz"],
             condition=c["condition"],
             ref_midi=c["ref_midi"], ref_note=c["ref_note"],
             interval=c["interval"],
         )
-        records.append(rec)
+
+    raw = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{j['cond']['condition']:8s} r={j['cond']['ref_note']:3s} i={j['cond']['interval']:+3d} {j['cond']['source']}",
+        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{j['cond']['condition']:8s} r={j['cond']['ref_note']:3s} i={j['cond']['interval']:+3d} {j['cond']['source']}"),
+    )
+    records: list[dict] = [r for r in raw if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)

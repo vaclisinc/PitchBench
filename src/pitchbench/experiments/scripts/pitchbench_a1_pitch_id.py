@@ -27,6 +27,8 @@ from typing import Any
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import pitch_record_audit_str
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI,
     midi_to_note, standard_pitch_record, wide_to_long_records,
@@ -79,7 +81,9 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict[str, Any]] = []
+    # Phase 1: generate all audio sequentially (engine.tone caches; FluidSynth
+    # is not safe to fan out, and these calls are fast on a warm cache).
+    jobs: list[dict[str, Any]] = []
     for c in conds:
         src         = c["source"]
         source_type = c["source_type"]
@@ -89,15 +93,18 @@ def run_one_model(
         except ValueError as exc:
             print(f"    [SKIP] {src} MIDI {midi}: {exc}")
             continue
+        jobs.append({"source": src, "source_type": source_type, "midi": midi, "wav": wav})
 
-        print(f"    {midi_to_note(midi):4s}  {src}")
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict[str, Any]) -> dict[str, Any]:
         r_m, r_a, r_d, r_h = query_four_formats(
-            model_name, wav,
+            model_name, job["wav"],
             PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
+            verbose=False,
         )
-        rec = standard_pitch_record(
-            wav=wav, source=src, source_type=source_type,
-            midi_gt=midi,
+        return standard_pitch_record(
+            wav=job["wav"], source=job["source"], source_type=job["source_type"],
+            midi_gt=job["midi"],
             raw_midi=r_m["result"], raw_abc=r_a["result"],
             raw_doremi=r_d["result"], raw_hz=r_h["result"],
             prompt_midi=PROMPT_MIDI_FULL,
@@ -105,7 +112,16 @@ def run_one_model(
             prompt_doremi=PROMPT_DOREMI_FULL,
             prompt_hz=PROMPT_HZ_FULL,
         )
-        records.append(rec)
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{midi_to_note(j['midi']):4s}  {j['source']}",
+        result_label_fn=lambda j, r: pitch_record_audit_str(
+            r, label=f"{midi_to_note(j['midi']):4s}  {j['source']:<10s}"
+        ),
+    )
+    records: list[dict[str, Any]] = [r for r in raw_results if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)

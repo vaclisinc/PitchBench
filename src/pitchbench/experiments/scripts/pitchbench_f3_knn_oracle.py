@@ -39,6 +39,7 @@ import numpy as np
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     extract_midi, extract_note, extract_solfege,
     midi_to_note, midi_to_solfege,
@@ -143,16 +144,28 @@ def _load_or_collect_embeddings(
             print(f"    Cache size mismatch ({len(X)} vs {len(conds)}) — re-collecting.")
 
     print(f"  Collecting {len(conds)} embeddings …")
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency. (Phase 1 — audio
+    # gen — is already done; stimuli are on disk in `c["wav"]`.)
+    def _query_one(c: dict) -> dict:
+        vec = query_alm(model_name, c["wav"], mode="embed")["embedding"]
+        return {"vec": vec, "midi": c["midi"], "source": c["source"]}
+
+    raw_results = dispatch(
+        conds, _query_one,
+        model_name=model_name,
+        label_fn=lambda c: f"{c['source']:10s} midi={c['midi']:>3}",
+    )
+
     vecs: list[list[float]] = []
     midi_labels: list[int] = []
     source_labels: list[str] = []
-    for i, c in enumerate(conds):
-        if (i + 1) % 50 == 0:
-            print(f"    {i + 1}/{len(conds)}")
-        vec = query_alm(model_name, c["wav"], mode="embed")["embedding"]
-        vecs.append(vec)
-        midi_labels.append(c["midi"])
-        source_labels.append(c["source"])
+    for r in raw_results:
+        if r is None:
+            continue
+        vecs.append(r["vec"])
+        midi_labels.append(r["midi"])
+        source_labels.append(r["source"])
 
     X = np.array(vecs, dtype=np.float32)
     np.savez_compressed(
@@ -251,13 +264,31 @@ def run_verbal_baseline(
     query_conds: list[dict],
 ) -> dict[str, float]:
     """Return exact-match accuracy per variant for the query set."""
-    results: dict[str, list[int]] = {v: [] for v in VERBAL_PROMPTS}
+    # Phase 1: build job list (one per cond × variant).
+    jobs: list[dict] = []
     for c in query_conds:
         for variant, prompt in VERBAL_PROMPTS.items():
-            raw = query_alm(model_name, c["wav"], prompt)["result"]
-            results[variant].append(_score_verbal(variant, raw, c["midi"]))
-        print(f"    verbal: {c['note']:4s} {c['source']:14s}  "
-              + "  ".join(f"{v}={'✓' if results[v][-1] else '✗'}" for v in VERBAL_PROMPTS))
+            jobs.append({"cond": c, "variant": variant, "prompt": prompt})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c       = job["cond"]
+        variant = job["variant"]
+        prompt  = job["prompt"]
+        raw = query_alm(model_name, c["wav"], prompt)["result"]
+        return {"variant": variant, "score": _score_verbal(variant, raw, c["midi"])}
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"verbal[{j['variant']:6s}] {j['cond']['note']:4s} {j['cond']['source']:14s}",
+    )
+
+    results: dict[str, list[int]] = {v: [] for v in VERBAL_PROMPTS}
+    for r in raw_results:
+        if r is None:
+            continue
+        results[r["variant"]].append(r["score"])
 
     return {
         v: round(sum(acc) / len(acc), 4) if acc else 0.0

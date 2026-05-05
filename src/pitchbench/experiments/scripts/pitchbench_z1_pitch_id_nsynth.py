@@ -22,6 +22,8 @@ from typing import Any
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
+from pitchbench.experiments.helpers.audit import pitch_record_audit_str
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
     midi_to_note,
@@ -85,21 +87,24 @@ def run_one_model(
     print(f"  URL   : {config.MODEL_URLS[model_name]}")
 
     audio_dir = config.NSYNTH_VALID_DIR / "audio"
-    records: list[dict] = []
 
+    # Phase 1: NSynth audio is already on disk; just resolve paths.
+    jobs: list[dict] = []
     for item in sample:
         wav = str(audio_dir / f"{item['note_str']}.wav")
+        jobs.append({"wav": wav, "item": item})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        item    = job["item"]
         gt_midi = item["pitch"]
-
-        print(f"    {item['note_str']}")
         r_m, r_a, r_d, r_h = query_four_formats(
-            model_name, wav,
+            model_name, job["wav"],
             PROMPT_MIDI_FULL, PROMPT_ABC_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
-            verbose=True,
+            verbose=False,
         )
-
-        record = standard_pitch_record(
-            wav=wav,
+        return standard_pitch_record(
+            wav=job["wav"],
             source=item["note_str"],
             source_type="instrument",
             midi_gt=gt_midi,
@@ -115,7 +120,14 @@ def run_one_model(
             instrument_family=item["instrument_family_str"],
             instrument_source=item["instrument_source_str"],
         )
-        records.append(record)
+
+    raw = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{j['item']['note_str']}",
+        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{j['item']['note_str']:>14s}"),
+    )
+    records: list[dict] = [r for r in raw if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)

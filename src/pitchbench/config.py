@@ -110,6 +110,37 @@ OPENROUTER_BASE_URL: str = os.environ.get(
     "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
 )
 
+# ── Dispatcher concurrency caps ───────────────────────────────────────────────
+# Max in-flight HTTP queries per model. The dispatcher uses concurrency_for(model_name)
+# to size its ThreadPoolExecutor; one experiment finishes before the next starts.
+# OpenRouter tolerates many parallel calls; local GPU servers usually serve one
+# request at a time, so 2 is a safe default. Manual mode must stay at 1.
+# Override via env vars: PITCHBENCH_CONCURRENCY_DEFAULT, _OPENROUTER, or _<MODEL_SLUG_UPPER>.
+CONCURRENCY: dict[str, int] = {
+    "default":    int(os.environ.get("PITCHBENCH_CONCURRENCY_DEFAULT",    "2")),
+    "openrouter": int(os.environ.get("PITCHBENCH_CONCURRENCY_OPENROUTER", "20")),
+    "manual":     1,
+}
+
+
+def concurrency_for(model_name: str) -> int:
+    """Return the configured max-workers cap for ``model_name``.
+
+    Resolution order:
+      1. ``PITCHBENCH_CONCURRENCY_<SLUG>`` env var (slug uppercased, slashes→_)
+      2. CONCURRENCY['openrouter'] for any ``openrouter/...`` model
+      3. CONCURRENCY['manual'] for the manual model
+      4. CONCURRENCY['default']
+    """
+    slug_env = "PITCHBENCH_CONCURRENCY_" + model_name.replace("/", "_").replace("-", "_").upper()
+    if slug_env in os.environ:
+        return max(1, int(os.environ[slug_env]))
+    if model_name == "manual":
+        return CONCURRENCY["manual"]
+    if model_name.startswith("openrouter/"):
+        return CONCURRENCY["openrouter"]
+    return CONCURRENCY["default"]
+
 # Cheap OpenRouter model used as a fallback parser when regex fails to
 # extract a solfège pitch class from a model's free-text response.
 # Set PITCHBENCH_DOREMI_LLM=0 to disable; the fallback also no-ops if no

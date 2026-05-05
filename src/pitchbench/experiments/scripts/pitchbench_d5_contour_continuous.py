@@ -34,6 +34,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
 from pitchbench.experiments.helpers.plots import save_accuracy_plots
 from pitchbench.experiments.helpers.results import get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
@@ -168,19 +169,22 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
-
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
-        wav  = _get_wav(c)
-        result = query_alm(model_name, wav, PROMPT)
-        raw  = result["result"] or ""
+        wav = _get_wav(c)
+        jobs.append({"wav": wav, "cond": c})
 
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c = job["cond"]
+        result = query_alm(model_name, job["wav"], PROMPT)
+        raw  = result["result"] or ""
         pred_seq = _parse_sequence(raw)
         gt_str   = ", ".join(c["gt_seq"])
         pred_str = ", ".join(pred_seq) if pred_seq is not None else None
         exact    = int(pred_seq == c["gt_seq"]) if pred_seq is not None else 0
-
-        records.append({
+        return {
             "source":               c["source"],
             "source_type":          "waveform",
             "start_midi":           c["start_midi"],
@@ -188,7 +192,7 @@ def run_one_model(
             "start_note":           midi_to_note(c["start_midi"]),
             "traj_name":            c["traj_name"],
             "interval_st":          c["interval_st"],
-            "wav":                  str(wav),
+            "wav":                  str(job["wav"]),
             "prompt":               PROMPT,
             "raw_response":         raw.strip(),
             "trajectory_gt":        gt_str,
@@ -198,10 +202,20 @@ def run_one_model(
             "instrument":           c["source"],
             "midi":                 c["start_midi"],
             "prompt_variant":       c["traj_name"],
-        })
-        sym = "✓" if exact else f"✗(pred={pred_str or '?'})"
-        print(f"    {c['traj_name']:14s} start={midi_to_note(c['start_midi']):4s} "
-              f"Δ={c['interval_st']:+2d}st {c['source']:10s}  {sym}")
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{j['cond']['traj_name']:14s} start={midi_to_note(j['cond']['start_midi']):4s} Δ={j['cond']['interval_st']:+2d}st {j['cond']['source']:10s}",
+        result_label_fn=lambda j, r: audit_line(
+            f"{j['cond']['traj_name']:14s} start={midi_to_note(j['cond']['start_midi']):4s} Δ={j['cond']['interval_st']:+2d}st {j['cond']['source']:10s}",
+            gt=r['trajectory_gt'],
+            pred=r['trajectory_pred'],
+            correct=bool(r['trajectory_correct']),
+        ),
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)

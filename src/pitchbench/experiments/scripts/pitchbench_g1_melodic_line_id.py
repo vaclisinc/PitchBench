@@ -51,6 +51,7 @@ from typing import Any
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PC_TO_SOLFEGE,
     extract_all_notes,
@@ -491,7 +492,8 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model: {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict[str, Any]] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict[str, Any]] = []
     for c in conds:
         lines = list(zip(c["all_notes"], c["sources"]))
         try:
@@ -504,12 +506,23 @@ def run_one_model(
         prompt_midi   = make_prompt_midi(n, x, c["inst_cfg"], c["sources"])
         prompt_spn    = make_prompt_spn(n, x, c["inst_cfg"], c["sources"])
         prompt_doremi = make_prompt_doremi(n, x, c["inst_cfg"], c["sources"])
+        jobs.append({
+            "wav": wav, "cond": c,
+            "prompt_midi": prompt_midi, "prompt_spn": prompt_spn,
+            "prompt_doremi": prompt_doremi,
+        })
 
-        print(f"    n={n} x={x} {c['tempo']:6s} {c['inst_cfg']:7s} t={c['trial']}")
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict[str, Any]) -> dict[str, Any]:
+        c   = job["cond"]
+        n, x = c["n"], c["x"]
+        prompt_midi   = job["prompt_midi"]
+        prompt_spn    = job["prompt_spn"]
+        prompt_doremi = job["prompt_doremi"]
 
-        raw_midi   = query_alm(model_name, wav, prompt_midi)["result"]   or ""
-        raw_spn    = query_alm(model_name, wav, prompt_spn)["result"]    or ""
-        raw_doremi = query_alm(model_name, wav, prompt_doremi)["result"] or ""
+        raw_midi   = query_alm(model_name, job["wav"], prompt_midi)["result"]   or ""
+        raw_spn    = query_alm(model_name, job["wav"], prompt_spn)["result"]    or ""
+        raw_doremi = query_alm(model_name, job["wav"], prompt_doremi)["result"] or ""
 
         tgt = c["target_pitches"]
         tgt_spn    = [midi_to_note(m) for m in tgt]
@@ -523,7 +536,7 @@ def run_one_model(
         spn_pos,  spn_sc  = _score_spn(tgt, pred_spn)
         dor_pos,  dor_sc  = _score_doremi(tgt, pred_doremi)
 
-        records.append({
+        return {
             # ── condition ─────────────────────────────────────────────────────
             "n":              n,
             "x":              x,
@@ -540,7 +553,7 @@ def run_one_model(
             "target_midi_gt":   str(tgt),
             "target_spn_gt":    str(tgt_spn),
             "target_doremi_gt": str(tgt_doremi),
-            "wav":              wav,
+            "wav":              job["wav"],
             # ── MIDI ─────────────────────────────────────────────────────────
             "midi_pred":        str(pred_midi),
             "midi_per_pos":     str(midi_pos),
@@ -561,7 +574,14 @@ def run_one_model(
             "prompt_midi":      prompt_midi,
             "prompt_spn":       prompt_spn,
             "prompt_doremi":    prompt_doremi,
-        })
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"n={j['cond']['n']} x={j['cond']['x']} {j['cond']['tempo']:6s} {j['cond']['inst_cfg']:7s} t={j['cond']['trial']}",
+    )
+    records: list[dict[str, Any]] = [r for r in raw_results if r is not None]
 
     summary      = _compute_summary(records)
     summary_lines = sampling_summary_lines(sample_info or {}) + _format_summary(records, summary)

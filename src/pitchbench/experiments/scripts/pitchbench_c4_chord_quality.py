@@ -24,6 +24,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     extract_chord_quality, extract_note, midi_to_note,
 )
@@ -119,7 +120,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         try:
             wav = str(_wav_for(c))
@@ -127,8 +129,14 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             print(f"    [SKIP] {exc}")
             continue
         prompt = PROMPT_QUALITY_ONLY if c["task"] == "quality_only" else PROMPT_ROOT_AND_QUALITY
-        out    = query_alm(model_name, wav, prompt)
-        raw    = (out["result"] or "").strip()
+        jobs.append({"wav": wav, "cond": c, "prompt": prompt})
+
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c       = job["cond"]
+        prompt  = job["prompt"]
+        out     = query_alm(model_name, job["wav"], prompt)
+        raw     = (out["result"] or "").strip()
 
         quality_pred = extract_chord_quality(raw)
         quality_ok   = (quality_pred == c["chord_quality"])
@@ -156,7 +164,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             root_ok   = int(pred_letter is not None and pred_letter == gt_letter)
             joint_ok  = int(quality_ok and root_ok)
 
-        records.append({
+        return {
             "duration_ms":      c["duration_ms"],
             "source":           c["source"],
             "same_instrument":  c["same_instrument"],
@@ -165,7 +173,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "chord_quality_gt": c["chord_quality"],
             "task":             c["task"],
             "midi_set":         "+".join(str(m) for m in c["midis"]),
-            "wav":              wav,
+            "wav":              job["wav"],
             "raw_response":     raw,
             "quality_pred":     quality_pred,
             "quality_correct":  int(quality_ok),
@@ -174,7 +182,20 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "joint_correct":    joint_ok,
             "prompt":           prompt,
             "model_params":     out["model_params"],
-        })
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{j['cond']['chord_quality']:11s} root={midi_to_note(j['cond']['root_midi']):4s} same={str(j['cond']['same_instrument']):5s} {j['cond']['task']}",
+        result_label_fn=lambda j, r: audit_line(
+            f"{j['cond']['chord_quality']:11s} root={midi_to_note(j['cond']['root_midi']):4s} {j['cond']['task']}",
+            gt=r['chord_quality_gt'],
+            pred=r['quality_pred'],
+            correct=bool(r['quality_correct']),
+        ),
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     n = len(records)
     qonly = [r for r in records if r["task"] == "quality_only"]

@@ -34,6 +34,7 @@ import numpy as np
 
 import pitchbench.config as config
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.results import _safe_stem, exp_data_dir, get_run_metadata, make_run_dir, save_comparison, extract_format_accuracies
 
 EXP_NAME = Path(__file__).stem
@@ -120,23 +121,31 @@ def collect_embeddings(
         return z["X"], list(z["midi_labels"]), list(z["source_labels"])
 
     print(f"  Collecting {len(conds)} embeddings …")
+
+    # Phase 1 (no audio gen needed — stimuli already on disk).
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(c: dict) -> dict | None:
+        vec = query_alm(model_name, c["wav"], mode="embed")["embedding"]
+        return {"vec": vec, "midi": c["midi"], "source": c["source"]}
+
+    raw_results = dispatch(
+        conds, _query_one,
+        model_name=model_name,
+        label_fn=lambda c: f"{c['source']:10s} midi={c['midi']:>3}",
+    )
+    # Note: NotImplementedError raised inside the worker propagates through the
+    # dispatcher's exception handling (recorded as None and traceback printed).
+    # Other failures also become None and are silently dropped.
+
     vecs: list[list[float]] = []
     midi_labels: list[int] = []
     source_labels: list[str] = []
-
-    for i, c in enumerate(conds):
-        if (i + 1) % 50 == 0:
-            print(f"    {i + 1}/{len(conds)}")
-        try:
-            vec = query_alm(model_name, c["wav"], mode="embed")["embedding"]
-        except NotImplementedError as exc:
-            raise
-        except Exception as exc:
-            print(f"    [WARN] embed failed for {c['wav']}: {exc}")
+    for r in raw_results:
+        if r is None:
             continue
-        vecs.append(vec)
-        midi_labels.append(c["midi"])
-        source_labels.append(c["source"])
+        vecs.append(r["vec"])
+        midi_labels.append(r["midi"])
+        source_labels.append(r["source"])
 
     if not vecs:
         raise RuntimeError(

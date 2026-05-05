@@ -25,6 +25,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     SOLFEGE_TO_PC,
     extract_all_notes,
@@ -176,51 +177,65 @@ def run_one_model(
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially. One job per (cond, variant).
+    jobs: list[dict] = []
     for c in conds:
         try:
             wav = str(engine.chord(c["midi_notes"], c["source"], TONE_DURATION_MS))
         except ValueError as exc:
             print(f"    [SKIP] {exc}")
             continue
-
         for variant, prompt in PROMPTS.items():
-            raw = query_alm(model_name, wav, prompt)["result"]
-            print(f"        raw → {raw.strip()!r}")
+            jobs.append({"wav": wav, "cond": c, "variant": variant, "prompt": prompt})
 
-            if variant == "midi":
-                pred = parse_midi_list(raw)
-                scores = score_set(c["midi_notes"], pred)
-            elif variant == "abc":
-                pred_notes = parse_abc_list(raw)
-                pred_midi  = [note_to_midi(n) for n in pred_notes if note_to_midi(n) is not None]
-                scores = score_set(c["midi_notes"], pred_midi)
-            else:  # doremi — compare pitch classes
-                pred_pcs = parse_solfege_list(raw)
-                gt_pcs   = [m % 12 for m in c["midi_notes"]]
-                scores = score_set(gt_pcs, pred_pcs)
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c       = job["cond"]
+        variant = job["variant"]
+        prompt  = job["prompt"]
+        raw = query_alm(model_name, job["wav"], prompt)["result"]
+        if variant == "midi":
+            pred = parse_midi_list(raw)
+            scores = score_set(c["midi_notes"], pred)
+        elif variant == "abc":
+            pred_notes = parse_abc_list(raw)
+            pred_midi  = [note_to_midi(n) for n in pred_notes if note_to_midi(n) is not None]
+            scores = score_set(c["midi_notes"], pred_midi)
+        else:  # doremi — compare pitch classes
+            pred_pcs = parse_solfege_list(raw)
+            gt_pcs   = [m % 12 for m in c["midi_notes"]]
+            scores = score_set(gt_pcs, pred_pcs)
+        return {
+            "chord_type":     c["chord_type"],
+            "n_notes":        c["n_notes"],
+            "root_midi":      c["root_midi"],
+            "root_note":      c["root_note"],
+            "midi_notes":     str(c["midi_notes"]),
+            "note_names":     str(c["note_names"]),
+            "source":         c["source"],
+            "wav":            job["wav"],
+            "prompt_variant": variant,
+            "prompt":         prompt,
+            "raw_response":   raw.strip(),
+            # standard plot keys
+            "instrument":     c["source"],
+            "midi":           c["root_midi"],
+            **scores,
+        }
 
-            records.append({
-                "chord_type":     c["chord_type"],
-                "n_notes":        c["n_notes"],
-                "root_midi":      c["root_midi"],
-                "root_note":      c["root_note"],
-                "midi_notes":     str(c["midi_notes"]),
-                "note_names":     str(c["note_names"]),
-                "source":         c["source"],
-                "wav":            wav,
-                "prompt_variant": variant,
-                "prompt":         prompt,
-                "raw_response":   raw.strip(),
-                # standard plot keys
-                "instrument":     c["source"],
-                "midi":           c["root_midi"],
-                **scores,
-            })
-
-            sym = "✓" if scores["exact_match"] else f"✗(R={scores['recall']:.0%})"
-            print(f"    [{variant:6s}] {c['chord_type']:12s} r={c['root_note']:3s} "
-                  f"{c['source']:12s}  {sym}  {Path(wav).name}")
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"[{j['variant']:6s}] {j['cond']['chord_type']:12s} r={j['cond']['root_note']:3s} {j['cond']['source']:12s}",
+        result_label_fn=lambda j, r: audit_line(
+            f"[{j['variant']:6s}] {j['cond']['chord_type']:12s} r={j['cond']['root_note']:3s} {j['cond']['source']:12s}",
+            gt=r['midi_notes'],
+            pred=r.get('raw_response'),
+            score=r.get('recall'),
+            correct=bool(r.get('exact_match')),
+        ),
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     # ── Summary ───────────────────────────────────────────────────────────────
     n = len(records)

@@ -26,6 +26,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
+from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note, parse_mm_ss_cc, timing_metrics
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
@@ -78,21 +79,26 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     info = get_model_info(model_name)
     print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
 
-    records: list[dict] = []
+    # Phase 1: generate audio sequentially.
+    jobs: list[dict] = []
     for c in conds:
         try:
             wav_path, (on_gt, off_gt) = _wav_for(c)
         except ValueError as exc:
             print(f"    [SKIP] {exc}")
             continue
-        wav  = str(wav_path)
-        out  = query_alm(model_name, wav, PROMPT)
-        raw  = (out["result"] or "").strip()
-        ts   = parse_mm_ss_cc(raw)
-        on_p, off_p = (ts[0], ts[1]) if len(ts) >= 2 else (None, None)
-        m    = timing_metrics(on_gt, off_gt, on_p, off_p)
+        jobs.append({"wav": str(wav_path), "cond": c, "on_gt": on_gt, "off_gt": off_gt})
 
-        records.append({
+    # Phase 2: dispatch HTTP queries with bounded concurrency.
+    def _query_one(job: dict) -> dict:
+        c = job["cond"]
+        on_gt, off_gt = job["on_gt"], job["off_gt"]
+        out = query_alm(model_name, job["wav"], PROMPT)
+        raw = (out["result"] or "").strip()
+        ts  = parse_mm_ss_cc(raw)
+        on_p, off_p = (ts[0], ts[1]) if len(ts) >= 2 else (None, None)
+        m   = timing_metrics(on_gt, off_gt, on_p, off_p)
+        return {
             "source":         c["source"],
             "source_type":    "waveform" if c["source"] in config.WAVEFORMS else "instrument",
             "midi":           c["midi"],
@@ -103,7 +109,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "offset_s_gt":    round(off_gt, 4),
             "onset_s_pred":   on_p,
             "offset_s_pred": off_p,
-            "wav":            wav,
+            "wav":            job["wav"],
             "raw_response":   raw,
             "prompt":         PROMPT,
             "iou":            m["iou"],
@@ -120,12 +126,21 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
             "within_500ms_both": m["within_500ms_both"],
             "valid":          int(m["valid"]),
             "model_params":   out["model_params"],
-        })
-        if m["valid"]:
-            print(f"    {midi_to_note(c['midi']):>4}/{c['source']:<10} pos={c['pos_ms']/1000:>5.1f}s "
-                  f"IoU={m['iou']:.2f}  Δon={m['abs_error_on']:.2f}s  Δoff={m['abs_error_off']:.2f}s")
-        else:
-            print(f"    {midi_to_note(c['midi']):>4}/{c['source']:<10} INVALID  raw={raw[:40]!r}")
+        }
+
+    raw_results = dispatch(
+        jobs, _query_one,
+        model_name=model_name,
+        label_fn=lambda j: f"{midi_to_note(j['cond']['midi']):>4}/{j['cond']['source']:<10} pos={j['cond']['pos_ms']/1000:>5.1f}s",
+        result_label_fn=lambda j, r: audit_line(
+            f"{midi_to_note(j['cond']['midi']):>4}/{j['cond']['source']:<10} pos={j['cond']['pos_ms']/1000:>5.1f}s",
+            gt=f"({r['onset_s_gt']},{r['offset_s_gt']})",
+            pred=f"({r['onset_s_pred']},{r['offset_s_pred']})",
+            score=r.get('iou'),
+            correct=bool(r.get('within_100ms_both')),
+        ),
+    )
+    records: list[dict] = [r for r in raw_results if r is not None]
 
     n   = len(records)
     valid = [r for r in records if r["valid"]]
