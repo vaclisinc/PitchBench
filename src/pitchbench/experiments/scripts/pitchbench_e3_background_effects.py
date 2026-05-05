@@ -6,8 +6,8 @@ impair the ALM's absolute pitch hearing?
 
 Universal IVs: duration_ms, midi, source.
 Experiment-specific IVs:
-    background:  {white_noise, church-bells, crowd-noise, rain, street-noise}
-    snr_db:      {30, 20, 0, -6}
+    background:  ∈ {white_noise, church-bells, crowd-noise, rain, street-noise}
+    snr_db:      ∈ {30, 20, 0, −6}
 
 Backgrounds:
     white_noise           — Gaussian, deterministic per seed=0
@@ -21,208 +21,72 @@ Each mix is normalised to peak 0.9 after combining tone + scaled background.
 
 from __future__ import annotations
 
-import argparse
 from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
-from pitchbench.experiments.helpers.audit import pitch_record_audit_str
-from pitchbench.experiments.helpers.dispatcher import dispatch
-from pitchbench.experiments.helpers.music import (
-    PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
-    midi_to_note, standard_pitch_record,
-)
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.plots import save_combined_iv_plot, save_per_format_iv_plots
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
+from pitchbench.experiments.helpers.cat_e import CatESpec, run_cat_e_experiment
+from pitchbench.experiments.helpers.music import midi_to_note
 
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_e3_*)
-BACKGROUNDS = config.pitchbench_e3_BACKGROUNDS
-SNR_DB      = config.pitchbench_e3_SNR_DB
-SOURCES     = config.pitchbench_e3_SOURCES
-PITCHES     = config.pitchbench_e3_PITCHES
+EXP_NAME     = Path(__file__).stem
+BACKGROUNDS  = config.pitchbench_e3_BACKGROUNDS
+SNR_DB       = config.pitchbench_e3_SNR_DB
+SOURCES      = config.pitchbench_e3_SOURCES
+PITCHES      = config.pitchbench_e3_PITCHES
+DURATIONS_MS = config.pitchbench_e3_DURATIONS_MS
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note mixed with a "
     "background sound. Identify the PITCH of the note, ignoring the "
     "background. "
 )
-PROMPT_MIDI_FULL   = PROMPT_PREFIX + PROMPT_MIDI
-PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
-PROMPT_DOREMI_FULL = PROMPT_PREFIX + PROMPT_DOREMI
-PROMPT_HZ_FULL     = PROMPT_PREFIX + PROMPT_HZ
-
-DURATIONS_MS = config.pitchbench_e3_DURATIONS_MS
 
 
-def build_conditions(durations_ms: list[int], pitches: list[int], sources: list[str]) -> list[dict]:
+def build_conditions() -> list[dict]:
     rows: list[dict] = []
-    for src in sources:
-        for midi in pitches:
-            for dur in durations_ms:
+    for src in SOURCES:
+        for midi in PITCHES:
+            for dur in DURATIONS_MS:
                 for bg in BACKGROUNDS:
                     for snr in SNR_DB:
                         rows.append({
                             "source":      src,
-                            "duration_ms": dur,
+                            "source_type": "waveform" if src in config.WAVEFORMS else "instrument",
                             "midi":        midi,
+                            "duration_ms": dur,
                             "background":  bg,
                             "snr_db":      snr,
                         })
     return rows
 
 
-def _wav_for(c: dict) -> Path:
+def wav_for(c: dict) -> Path:
     return engine.tone_with_background(
         c["midi"], c["source"], c["duration_ms"], c["background"], c["snr_db"],
     )
 
 
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
-
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        try:
-            wav = str(_wav_for(c))
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-            continue
-        jobs.append({"wav": wav, "cond": c})
-
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c = job["cond"]
-        r_m, r_s, r_d, r_h = query_four_formats(
-            model_name, job["wav"],
-            PROMPT_MIDI_FULL, PROMPT_SPN_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
-            verbose=False,
-        )
-        rec = standard_pitch_record(
-            wav=job["wav"],
-            source=c["source"],
-            source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
-            midi_gt=c["midi"],
-            raw_midi=r_m["result"], raw_spn=r_s["result"],
-            raw_doremi=r_d["result"], raw_hz=r_h["result"],
-            prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
-            prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
-            duration_ms=c["duration_ms"],
-            background=c["background"],
-            snr_db=c["snr_db"],
-        )
-        rec["model_params_midi"] = r_m["model_params"]
-        return rec
-
-    raw = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} bg={j['cond']['background']:>13s} snr={j['cond']['snr_db']:>+5.0f}dB",
-        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} bg={j['cond']['background']:>13s} snr={j['cond']['snr_db']:>+5.0f}dB"),
-    )
-    records: list[dict] = [r for r in raw if r is not None]
-
-    n = len(records)
-    accuracy: dict[str, float] = {
-        fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, n), 4)
-        for fmt in ("midi", "spn", "doremi", "hz")
-    }
-    summary = {"total": n, "accuracy": accuracy}
-
-    summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Stimuli   : {n}",
-        f"  Backgrnds : {BACKGROUNDS}",
-        f"  SNR (dB)  : {SNR_DB}",
-        "",
-    ]
-    for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"  {fmt.upper():>6}  n={n:>4}  {accuracy[fmt]:.1%}")
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
-
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, pitches=config.DEFAULT_PITCHES,
-        durations_ms=DURATIONS_MS,
-        backgrounds=BACKGROUNDS, snr_db=SNR_DB,
-        prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
-        prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
-        **(sample_info or {}),
-    )
-    save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
-    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="snr_db",
-                             iv_label="SNR (dB)", group_by_source=False)
-    save_combined_iv_plot(records, plots_dir, model_name, iv_key="snr_db",
-                          iv_label="SNR (dB)")
-    return summary
-
-
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview", action="store_true")
-    parser.add_argument("--models",  nargs="+", metavar="MODEL")
-    parser.add_argument("--sources", nargs="+", metavar="SRC", default=None)
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by (source, background))")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatESpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    prompt_prefix=PROMPT_PREFIX,
+    record_extras=("duration_ms", "background", "snr_db"),
+    label_fn=lambda j: (
+        f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} "
+        f"bg={j['cond']['background']:>13s} "
+        f"snr={j['cond']['snr_db']:>+5.0f}dB"
+    ),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args    = _parse_args()
-    sources = args.sources or SOURCES
-    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try: _wav_for(c)
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Sources    : {sources}")
-    print(f"Stimuli    : {len(conds)}")
-    print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_e_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args    = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    sources = args.sources or SOURCES
-    all_conds = build_conditions(DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try: _wav_for(c)
-        except ValueError: pass
+def run() -> dict | None:
+    return run_cat_e_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

@@ -90,6 +90,14 @@ def _interval_label(iv: int) -> str:
     return INTERVAL_NAMES[iv][0] if iv in INTERVAL_NAMES else str(iv)
 
 
+def _ordinal(n: int) -> str:
+    if 10 <= (n % 100) <= 20:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
 def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
     raw  = responses["main"]
     pred = extract_interval(raw)
@@ -119,7 +127,7 @@ SPEC = CatCSpec(
     headline_metrics=("interval",),
     record_extras=("duration_ms", "same_instrument", "root_midi", "interval_st"),
     label_fn=lambda j: (
-        f"iv={j['cond']['interval_st']:>2}st "
+        f"iv={_ordinal(j['cond']['interval_st']):>4s} "
         f"root={midi_to_note(j['cond']['root_midi']):4s} "
         f"same_instrumentation={str(j['cond']['same_instrument']):5s} "
         f"dur={j['cond']['duration_ms']:>5}ms"
