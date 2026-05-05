@@ -35,7 +35,6 @@ from typing import Any, Callable
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import get_model_info, query_alm
-from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies, get_run_metadata, make_run_dir,
@@ -280,18 +279,23 @@ def run_one_model(
         record.setdefault("wav", job["wav"])
         return record
 
+    def _audit_str(record: dict) -> str:
+        """Per-metric ``<name>=<pred> ✅|❌`` blocks. The label already carries
+        cond info, so the audit just shows the prediction + correctness symbol
+        per headline metric."""
+        blocks: list[str] = []
+        for m in spec.headline_metrics:
+            pred = record.get(f"{m}_pred")
+            ok   = bool(record.get(f"{m}_correct"))
+            sym  = "✅" if ok else "❌"
+            blocks.append(f"{m}={pred!s} {sym}")
+        return "  | ".join(blocks)
+
     raw = dispatch(
         jobs, _query_one,
         model_name=model_name,
         label_fn=lambda j: label(j),
-        result_label_fn=lambda j, r: audit_line(
-            label(j),
-            gt=", ".join(f"{m}_correct={r.get(f'{m}_correct')}" for m in spec.headline_metrics),
-            pred="",
-            correct=bool(
-                r.get(f"{spec.headline_metrics[0]}_correct")
-            ),
-        ),
+        result_label_fn=lambda j, r: f"{label(j)}  {_audit_str(r)}",
     )
     full_records: list[dict] = [r for r in raw if r is not None]
 
