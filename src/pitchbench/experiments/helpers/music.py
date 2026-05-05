@@ -148,8 +148,10 @@ def format_accuracy_dict(
         if vals:
             present_cols.append(col)
     if include_all and present_cols:
+        # doremi is a reduced/pitch-class task — excluded from 'any'
+        any_cols = [col for col in present_cols if not col.startswith("doremi")]
         any_vals = [
-            any_format_correct(r.get(col) for col in present_cols)
+            any_format_correct(r.get(col) for col in any_cols)
             for r in records
         ]
         out["any"] = round(sum(any_vals) / len(any_vals), 4) if any_vals else 0.0
@@ -218,6 +220,7 @@ def _doremi_llm_enabled() -> bool:
 @lru_cache(maxsize=2048)
 def _doremi_llm_call(text: str, expect_many: bool) -> str | None:
     """Single OpenRouter call to parse a solfège answer. Returns content string or None."""
+    print("asking llm for solfege parse of:", repr(text))
     try:
         import requests
     except ImportError:
@@ -253,7 +256,7 @@ def _doremi_llm_call(text: str, expect_many: bool) -> str | None:
             'JSON object: {"pc": <int|null>} where the integer is a pitch class '
             '0..11 with do=0, do#/reb=1, re=2, re#/mib=3, mi=4, fa=5, fa#/solb=6, '
             'sol=7, sol#/lab=8, la=9, la#/sib=10, si/ti=11. If no solfège is '
-            'present, return {"pc": null}. Reply with ONLY the JSON object, '
+            'present, return {"pc": null}. The solfège notation has to be in strict format (syllable with accidental, not more, not less). Reply with ONLY the JSON object, '
             'nothing else.'
         )
 
@@ -692,7 +695,7 @@ def standard_pitch_record(
     midi_ok   = int(midi_err == 0) if midi_err is not None else 0
     spn_ok    = int(spn_pred == note_gt)
     doremi_ok = int(doremi_dist == 0) if doremi_dist is not None else 0
-    any_ok    = any_format_correct((midi_ok, spn_ok, doremi_ok, hz_ok))
+    any_ok    = any_format_correct((midi_ok, spn_ok, hz_ok))
 
     return {
         **extra_meta,

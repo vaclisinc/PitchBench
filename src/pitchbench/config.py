@@ -133,47 +133,58 @@ def concurrency_for(model_name: str) -> int:
 DEFAULT_SAMPLE_SEED = 42
 
 EXPERIMENT_DEFAULTS: dict[str, dict] = {
+    # Strata design rule of thumb:
+    # 1) Include only factors that should be evenly represented in every run.
+    # 2) Exclude paired/ablation toggles and constant fields (they add noise).
+    # 3) Prefer 1-2 primary axes to keep total sample size tractable.
+    # Total sampled items = per_stratum x num_distinct_strata_cells.
     # Single-pitch ID (a)
-    "pitchbench_a1_pitch_id":              {"per_stratum": 5, "strata": ("midi",)},
-    # a2: do NOT stratify by `condition` or `interval` — both conditions
-    # always run together as a matched pair (see CatASpec.pair_key).
-    # Sampling runs on anchored records only; baseline twins come along.
-    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 5, "strata": ("ref_midi",)},
-    "pitchbench_a3_pitch_by_duration":     {"per_stratum": 5, "strata": ("midi", "duration_ms")},
-    # a4: do NOT stratify by `is_control` — control records are an ablation,
-    # not a separate stratum.
-    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 5, "strata": ("midi",)},
+    # Single-pitch ID (a)
+    # a1: balance pitch *and* timbre family (waveform vs instrument);
+    # full `source` would explode strata to ≈19 levels.
+    "pitchbench_a1_pitch_id":              {"per_stratum": 1, "strata": ("midi", "source")},
+    # a2: do NOT stratify by `condition` (anchored vs baseline) — both
+    # always run as a matched pair via CatASpec.pair_key. `interval` IS
+    # the experimental factor (does the reference help across intervals?).
+    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 1, "strata": ("ref_midi", "interval")},
+    "pitchbench_a3_pitch_by_duration":     {"per_stratum": 5, "strata": ("duration_ms",)},
+    # a4: the experiment IS about vibrato — stratify by the manipulation,
+    # not by pitch. is_control is an ablation, not a stratum.
+    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 5, "strata": ("vibrato_rate_hz", "vibrato_depth_cents")},
     "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 5, "strata": ("midi", "detune_hz")},
     # Onsets / offsets (b)
-    # b1: do NOT stratify by `condition` — hidden + baseline always run as a
-    # matched pair (see CatBSpec.pair_key in pitchbench_b1_pitch_in_silence.py).
+    # b1: hidden + baseline run as a matched pair via CatBSpec.pair_key.
     "pitchbench_b1_pitch_in_silence":      {"per_stratum": 5, "strata": ("midi", "pos_ms")},
-    "pitchbench_b2_onset_offset_single":   {"per_stratum": 5,   "strata": ("midi", "pos_ms")},
-    "pitchbench_b3_onset_offset_specific": {"per_stratum": 5,   "strata": ("target_pos", "n_distractors")},
-    "pitchbench_b4_pitch_at_time":         {"per_stratum": 5,   "strata": ("n_notes", "target_idx")},
-    "pitchbench_b5_onset_offset_each":     {"per_stratum": 5,   "strata": ("rhythm", "n_notes")},
+    # b2 is a *timing* task — stratify on timing factors, not pitch identity.
+    "pitchbench_b2_onset_offset_single":   {"per_stratum": 5, "strata": ("pos_ms", "duration_ms")},
+    "pitchbench_b3_onset_offset_specific": {"per_stratum": 5, "strata": ("target_pos", "n_distractors")},
+    "pitchbench_b4_pitch_at_time":         {"per_stratum": 5, "strata": ("n_notes", "target_idx")},
+    "pitchbench_b5_onset_offset_each":     {"per_stratum": 5, "strata": ("rhythm", "n_notes")},
     # Chords (c)
-    "pitchbench_c1_dyad_interval":         {"per_stratum": 5,   "strata": ("interval_st",)},
-    "pitchbench_c2_chord_pitch_count":     {"per_stratum": 5,   "strata": ("n", "chord_quality")},
-    "pitchbench_c3_chord_pitch_id":        {"per_stratum": 5,   "strata": ("chord_type",)},
-    "pitchbench_c4_chord_quality":         {"per_stratum": 5,   "strata": ("chord_quality_gt", "task")},
+    # c1 / c4: same_instrument (single-timbre vs mixed-timbre) is a real DV.
+    "pitchbench_c1_dyad_interval":         {"per_stratum": 5, "strata": ("interval_st", "same_instrument")},
+    "pitchbench_c2_chord_pitch_count":     {"per_stratum": 5, "strata": ("n", "chord_quality")},
+    "pitchbench_c3_chord_pitch_id":        {"per_stratum": 5, "strata": ("chord_type",)},
+    "pitchbench_c4_chord_quality":         {"per_stratum": 5, "strata": ("chord_quality_gt", "same_instrument")},
     # Sequences (d)
-    "pitchbench_d1_seq_pitch_count":       {"per_stratum": 5,   "strata": ("n", "rhythm")},
-    "pitchbench_d2_pitch_difference":      {"per_stratum": 5,   "strata": ("delta_cents", "order")},
-    "pitchbench_d3_interval_id_seq":       {"per_stratum": 5,   "strata": ("signed_st",)},
-    "pitchbench_d4_contour_discrete":      {"per_stratum": 5,   "strata": ("n_transitions", "step_size_st")},
+    "pitchbench_d1_seq_pitch_count":       {"per_stratum": 5, "strata": ("n", "rhythm")},
+    "pitchbench_d2_pitch_difference":      {"per_stratum": 5, "strata": ("delta_cents", "order")},
+    "pitchbench_d3_interval_id_seq":       {"per_stratum": 5, "strata": ("signed_st",)},
+    "pitchbench_d4_contour_discrete":      {"per_stratum": 5, "strata": ("n_transitions", "step_size_st")},
     "pitchbench_d5_contour_continuous":    {"per_stratum": 5, "strata": ("traj_name",)},
-    "pitchbench_d6_pitch_ranking":         {"per_stratum": 5,   "strata": ("rhythm", "n_notes")},
-    "pitchbench_d7_seq_pitch_id":          {"per_stratum": 5,   "strata": ("n_notes",)},
-    # Effects (e)
-    "pitchbench_e1_loudness":              {"per_stratum": 5,   "strata": ("midi", "loudness_db")},
-    "pitchbench_e2_audio_effects":         {"per_stratum": 5,   "strata": ("effect_type", "midi")},
-    "pitchbench_e3_background_effects":    {"per_stratum": 5,   "strata": ("background", "snr_db")},
-    "pitchbench_e4_harmonic_saturation":   {"per_stratum": 5,   "strata": ("saturation_level", "midi")},
-    "pitchbench_e5_time_stretch":          {"per_stratum": 5,   "strata": ("condition", "midi")},
-    # Polyphony (g)
-    "pitchbench_f1_melodic_line_id":       {"per_stratum": 5,   "strata": ("n", "source_label")},
-    "pitchbench_f2_chorale_voice_id":      {"per_stratum": 5, "strata": ("chorale_slug",)},
+    # d6: spacing (delta_cents) is the core difficulty axis for ranking.
+    "pitchbench_d6_pitch_ranking":         {"per_stratum": 5, "strata": ("n_notes", "delta_cents")},
+    "pitchbench_d7_seq_pitch_id":          {"per_stratum": 5, "strata": ("n_notes",)},
+    # Effects (e) — manipulation × pitch curves.
+    "pitchbench_e1_loudness":              {"per_stratum": 5, "strata": ("midi", "loudness_db")},
+    "pitchbench_e2_audio_effects":         {"per_stratum": 5, "strata": ("effect_type", "midi")},
+    "pitchbench_e3_background_effects":    {"per_stratum": 5, "strata": ("background", "snr_db")},
+    "pitchbench_e4_harmonic_saturation":   {"per_stratum": 5, "strata": ("saturation_level", "midi")},
+    "pitchbench_e5_time_stretch":          {"per_stratum": 5, "strata": ("condition", "midi")},
+    # Polyphony (f)
+    "pitchbench_f1_melodic_line_id":       {"per_stratum": 5, "strata": ("n", "source_label")},
+    # f2: voice position (x ∈ {soprano, alto, tenor, bass}) is a core DV.
+    "pitchbench_f2_chorale_voice_id":      {"per_stratum": 5, "strata": ("chorale_slug", "x")},
 }
 
 
@@ -183,9 +194,11 @@ EXPERIMENT_DEFAULTS: dict[str, dict] = {
 # ═══════════════════════════════════════════════════════════════════════════
 
 BENCHMARK_PITCHES_FULL_RANGE = list(range(29, 90))   # F1–F6
-BENCHMARK_PITCHES_SELECTION  = [30, 36, 43, 48, 54, 58, 60, 64, 67, 69,
-                                73, 76, 79, 88]      # 14 hand-picked
+BENCHMARK_PITCHES_SELECTION  = [30, 36, 43, 48, 54, 60, 64, 69, 79, 88]      # 10 hand-picked
+BENCHMARK_PITCHES_SELECTION_REDUCED = [30, 43, 54, 64, 79] # smaller set for faster runs
+BENCHMARK_PITCHES_SELECTION_COMPACT = [42, 53, 60, 67, 77]
 
+BENCHMARK_INTERVALS = [-12, -7, -5, -4, -3, -1, 0, 1,  3,  4,  5,  7, 12] # 13
 BENCHMARK_DURATION_MS              = 5000
 BENCHMARK_DURATIONS_MS_SHORT_LONG  = [1000, 5000]
 BENCHMARK_DURATIONS_MS_FULL_SWEEP  = [50, 100, 250, 500, 1000, 2000,
@@ -344,9 +357,8 @@ if EVAL:
     pitchbench_a1_SOURCES          = BENCHMARK_ALL_SOURCES
 
     # ── a2: pitch with reference ──────────────────────────────────────────
-    pitchbench_a2_REFERENCE_PITCHES = [42, 54, 60, 67, 69, 76, 79] # needs to be within a fixed rate
-    pitchbench_a2_INTERVALS         = [-12, -7, -5, -4, -3, -2, -1, 0,
-                                        1,  2,  3,  4,  5,  7, 12]
+    pitchbench_a2_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION_COMPACT # smaller range since intervals can push the notes out of the audible MIDI range
+    pitchbench_a2_INTERVALS         = BENCHMARK_INTERVALS
     pitchbench_a2_TONE_DURATION_MS  = BENCHMARK_DURATION_MS
     pitchbench_a2_GAP_MS            = 500
     pitchbench_a2_SOURCES           = BENCHMARK_ALL_SOURCES
@@ -360,7 +372,7 @@ if EVAL:
     pitchbench_a4_VIBRATO_RATES_HZ     = [0, 3, 5, 7, 10]
     pitchbench_a4_VIBRATO_DEPTHS_CENTS = [0, 25, 50, 100, 200]
     pitchbench_a4_DURATIONS_MS         = [BENCHMARK_DURATION_MS]
-    pitchbench_a4_PITCHES              = BENCHMARK_PITCHES_SELECTION
+    pitchbench_a4_PITCHES              = BENCHMARK_PITCHES_SELECTION_REDUCED
     pitchbench_a4_SOURCES              = BENCHMARK_WAVEFORMS
 
     # ── a5: pitch slightly off ────────────────────────────────────────────
