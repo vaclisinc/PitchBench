@@ -1,0 +1,137 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 110 items, max_workers=1
+    [   1/110] A4 Δ=    1c sep=1000ms dur=5000ms  answer=first ❌
+    [   2/110] A3 Δ=    1c sep=1000ms dur=5000ms  answer=first ❌
+    [   3/110] A5 Δ=    1c sep= 200ms dur=1000ms  answer=first ❌
+    [   4/110] A5 Δ=    1c sep=2000ms dur=5000ms  answer=first ❌
+    [   5/110] A3 Δ=    1c sep= 200ms dur=5000ms  answer=first ❌
+    [   6/110] A3 Δ=    1c sep=2000ms dur=1000ms  answer=first ✅
+    [   7/110] A5 Δ=    1c sep= 500ms dur=1000ms  answer=first ✅
+    [   8/110] A5 Δ=    1c sep=2000ms dur=1000ms  answer=first ✅
+    [   9/110] A5 Δ=    1c sep=2000ms dur=1000ms  answer=first ✅
+    [  10/110] A5 Δ=    1c sep=1000ms dur=5000ms  answer=first ✅
+    [  11/110] A3 Δ=   10c sep= 500ms dur=5000ms  answer=first ❌
+    [  12/110] A4 Δ=   10c sep=1000ms dur=1000ms  answer=first ❌
+    [  13/110] A3 Δ=   10c sep=2000ms dur=1000ms  answer=first ❌
+    [  14/110] A5 Δ=   10c sep=1000ms dur=1000ms  answer=first ❌
+    [  15/110] A5 Δ=   10c sep=1000ms dur=1000ms  answer=first ❌
+    [  16/110] A5 Δ=   10c sep=2000ms dur=1000ms  answer=second ❌
+    [  17/110] A5 Δ=   10c sep=1000ms dur=1000ms  answer=first ✅
+    [  18/110] A3 Δ=   10c sep= 200ms dur=5000ms  answer=first ✅
+    [  19/110] A5 Δ=   10c sep= 200ms dur=5000ms  answer=first ✅
+    [  20/110] A4 Δ=   10c sep=1000ms dur=5000ms  answer=first ✅
+    [  21/110] A5 Δ=  100c sep=1000ms dur=1000ms  answer=first ❌
+    [  22/110] A5 Δ=  100c sep=2000ms dur=5000ms  answer=first ❌
+    [  23/110] A5 Δ=  100c sep=2000ms dur=5000ms  answer=first ❌
+    [  24/110] A3 Δ=  100c sep=2000ms dur=5000ms  answer=first ❌
+    [  25/110] A4 Δ=  100c sep=1000ms dur=5000ms  answer=second ✅
+    [  26/110] A5 Δ=  100c sep= 500ms dur=1000ms  answer=first ✅
+    [  27/110] A5 Δ=  100c sep=1000ms dur=5000ms  answer=first ✅
+    [  28/110] A5 Δ=  100c sep= 200ms dur=1000ms  answer=second ❌
+    [  29/110] A5 Δ=  100c sep=2000ms dur=1000ms  answer=first ✅
+    [  30/110] A4 Δ=  100c sep= 500ms dur=1000ms  answer=first ✅
+    [  31/110] A3 Δ= 1200c sep=2000ms dur=1000ms  answer=first ❌
+    [  32/110] A4 Δ= 1200c sep= 200ms dur=5000ms  answer=first ❌
+    [  33/110] A3 Δ= 1200c sep=2000ms dur=1000ms  answer=first ❌
+    [  34/110] A3 Δ= 1200c sep= 500ms dur=5000ms  answer=first ❌
+    [  35/110] A4 Δ= 1200c sep= 500ms dur=5000ms  answer=first ❌
+    [  36/110] A4 Δ= 1200c sep=1000ms dur=1000ms  answer=second ❌
+    [  37/110] A4 Δ= 1200c sep=1000ms dur=5000ms  answer=first ✅
+    [  38/110] A3 Δ= 1200c sep=1000ms dur=5000ms  answer=first ✅
+    [  39/110] A3 Δ= 1200c sep= 500ms dur=1000ms  answer=first ✅
+    [  40/110] A5 Δ= 1200c sep=1000ms dur=1000ms  answer=second ❌
+    [  41/110] A5 Δ=    2c sep=1000ms dur=1000ms  answer=first ❌
+    [  42/110] A4 Δ=    2c sep=1000ms dur=1000ms  answer=first ❌
+    [  43/110] A3 Δ=    2c sep= 500ms dur=1000ms  answer=first ❌
+    [  44/110] A4 Δ=    2c sep= 500ms dur=5000ms  answer=first ❌
+    [  45/110] A3 Δ=    2c sep= 200ms dur=5000ms  answer=first ❌
+    [  46/110] A4 Δ=    2c sep=2000ms dur=5000ms  answer=first ✅
+    [  47/110] A4 Δ=    2c sep=2000ms dur=1000ms  answer=first ✅
+    [  48/110] A3 Δ=    2c sep= 200ms dur=5000ms  answer=first ✅
+    [  49/110] A3 Δ=    2c sep=2000ms dur=5000ms  answer=first ✅
+    [  50/110] A4 Δ=    2c sep=2000ms dur=5000ms  answer=first ✅
+    [  51/110] A3 Δ=  200c sep=2000ms dur=5000ms  answer=first ❌
+    [  52/110] A3 Δ=  200c sep= 200ms dur=5000ms  answer=first ❌
+    [  53/110] A3 Δ=  200c sep= 200ms dur=1000ms  answer=first ❌
+    [  54/110] A3 Δ=  200c sep=1000ms dur=1000ms  answer=first ❌
+    [  55/110] A3 Δ=  200c sep=2000ms dur=5000ms  answer=first ❌
+    [  56/110] A3 Δ=  200c sep= 200ms dur=1000ms  answer=first ✅
+    [  57/110] A5 Δ=  200c sep= 200ms dur=1000ms  answer=second ❌
+    [  58/110] A5 Δ=  200c sep=1000ms dur=5000ms  answer=first ✅
+    [  59/110] A4 Δ=  200c sep= 500ms dur=5000ms  answer=first ✅
+    [  60/110] A3 Δ=  200c sep= 500ms dur=1000ms  answer=first ✅
+    [  61/110] A4 Δ=   25c sep= 200ms dur=5000ms  answer=first ❌
+    [  62/110] A5 Δ=   25c sep= 200ms dur=1000ms  answer=first ❌
+    [  63/110] A4 Δ=   25c sep=1000ms dur=1000ms  answer=first ❌
+    [  64/110] A4 Δ=   25c sep= 500ms dur=1000ms  answer=first ❌
+    [  65/110] A5 Δ=   25c sep= 500ms dur=5000ms  answer=first ❌
+    [  66/110] A5 Δ=   25c sep=1000ms dur=1000ms  answer=first ✅
+    [  67/110] A4 Δ=   25c sep= 500ms dur=1000ms  answer=first ✅
+    [  68/110] A4 Δ=   25c sep= 500ms dur=5000ms  answer=first ✅
+    [  69/110] A3 Δ=   25c sep= 500ms dur=5000ms  answer=first ✅
+    [  70/110] A3 Δ=   25c sep=1000ms dur=1000ms  answer=first ✅
+    [  71/110] A4 Δ=  400c sep=2000ms dur=5000ms  answer=first ❌
+    [  72/110] A5 Δ=  400c sep=1000ms dur=5000ms  answer=first ❌
+    [  73/110] A5 Δ=  400c sep= 200ms dur=5000ms  answer=first ❌
+    [  74/110] A3 Δ=  400c sep=2000ms dur=5000ms  answer=first ❌
+    [  75/110] A3 Δ=  400c sep= 500ms dur=5000ms  answer=first ❌
+    [  76/110] A3 Δ=  400c sep=2000ms dur=5000ms  answer=first ✅
+    [  77/110] A5 Δ=  400c sep= 500ms dur=1000ms  answer=second ❌
+    [  78/110] A3 Δ=  400c sep= 200ms dur=1000ms  answer=first ✅
+    [  79/110] A4 Δ=  400c sep=2000ms dur=5000ms  answer=first ✅
+    [  80/110] A4 Δ=  400c sep= 200ms dur=1000ms  answer=second ❌
+    [  81/110] A3 Δ=    5c sep= 500ms dur=5000ms  answer=first ❌
+    [  82/110] A5 Δ=    5c sep= 200ms dur=5000ms  answer=first ❌
+    [  83/110] A4 Δ=    5c sep=1000ms dur=1000ms  answer=first ❌
+    [  84/110] A3 Δ=    5c sep= 500ms dur=1000ms  answer=first ❌
+    [  85/110] A5 Δ=    5c sep=1000ms dur=5000ms  answer=first ❌
+    [  86/110] A3 Δ=    5c sep= 200ms dur=1000ms  answer=first ✅
+    [  87/110] A3 Δ=    5c sep= 500ms dur=5000ms  answer=first ✅
+    [  88/110] A4 Δ=    5c sep= 200ms dur=1000ms  answer=first ✅
+    [  89/110] A5 Δ=    5c sep= 200ms dur=1000ms  answer=first ✅
+    [  90/110] A3 Δ=    5c sep= 500ms dur=1000ms  answer=first ✅
+    [  91/110] A3 Δ=   50c sep=2000ms dur=5000ms  answer=first ❌
+    [  92/110] A3 Δ=   50c sep= 200ms dur=5000ms  answer=first ❌
+    [  93/110] A4 Δ=   50c sep=1000ms dur=1000ms  answer=first ❌
+    [  94/110] A4 Δ=   50c sep= 500ms dur=5000ms  answer=first ❌
+    [  95/110] A5 Δ=   50c sep= 200ms dur=5000ms  answer=first ❌
+    [  96/110] A3 Δ=   50c sep= 200ms dur=1000ms  answer=first ✅
+    [  97/110] A5 Δ=   50c sep= 200ms dur=1000ms  answer=first ✅
+    [  98/110] A4 Δ=   50c sep=1000ms dur=5000ms  answer=first ✅
+    [  99/110] A5 Δ=   50c sep= 500ms dur=5000ms  answer=first ✅
+    [ 100/110] A5 Δ=   50c sep=2000ms dur=5000ms  answer=first ✅
+    [ 101/110] A3 Δ=  700c sep=2000ms dur=1000ms  answer=first ❌
+    [ 102/110] A5 Δ=  700c sep=1000ms dur=5000ms  answer=first ❌
+    [ 103/110] A3 Δ=  700c sep= 200ms dur=5000ms  answer=first ❌
+    [ 104/110] A5 Δ=  700c sep= 200ms dur=1000ms  answer=second ✅
+    [ 105/110] A3 Δ=  700c sep=1000ms dur=5000ms  answer=first ❌
+    [ 106/110] A3 Δ=  700c sep=2000ms dur=1000ms  answer=first ✅
+    [ 107/110] A3 Δ=  700c sep=2000ms dur=5000ms  answer=first ✅
+    [ 108/110] A3 Δ=  700c sep=1000ms dur=1000ms  answer=first ✅
+    [ 109/110] A5 Δ=  700c sep=2000ms dur=5000ms  answer=first ✅
+    [ 110/110] A4 Δ=  700c sep=2000ms dur=1000ms  answer=first ✅
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : 110 of 15048 (stratified by '(delta_cents, order)', seed=42)
+  Stimuli (total)     : 110
+  Stimuli (condition) : 110  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER      45.5%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → results/run_20260505_112814/pitchbench_d2_pitch_difference/run_001_20260505_120449/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_d3_interval_id_seq
+############################################################
+
+Experiment : pitchbench_d3_interval_id_seq
+Models     : audio_flamingo_next_instruct
+Stimuli    : 120
+  Sampling     : 120 of 35872 (stratified by 'signed_st', seed=42)

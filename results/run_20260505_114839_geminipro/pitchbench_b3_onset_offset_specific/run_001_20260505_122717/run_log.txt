@@ -1,0 +1,66 @@
+
+  Model : openrouter/google/gemini-3.1-pro-preview
+    [dispatch] 30 items, max_workers=20
+    [   1/30]   G2 guitar  gt=n_gt=2  pred=n_pred=1  ❌
+    [   2/30]   G5 square  gt=n_gt=2  pred=n_pred=1  ❌
+    [   3/30]   C4 triangle  gt=n_gt=2  pred=n_pred=1  ❌
+    [   4/30]   C3 synth_pad  gt=n_gt=2  pred=n_pred=1  ❌
+    [   5/30]   E4 sine  gt=n_gt=2  pred=n_pred=1  ❌
+    [   6/30]   G2 square  gt=n_gt=2  pred=n_pred=1  ❌
+    [   7/30]  F#1 flute  gt=n_gt=2  pred=n_pred=1  ❌
+    [   8/30]   C3 synth_lead  gt=n_gt=2  pred=n_pred=1  ❌
+    [   9/30]   C4 electric_keyboard  gt=n_gt=2  pred=n_pred=1  ❌
+    [  10/30]   G5 clarinet  gt=n_gt=2  pred=n_pred=1  ❌
+    [  11/30]   G5 voice  gt=n_gt=2  pred=n_pred=1  ❌
+    [  12/30]   C2 bass  gt=n_gt=2  pred=n_pred=1  ❌
+    [  13/30]   C3 square  gt=n_gt=2  pred=n_pred=1  ❌
+    [  14/30]   G5 sine  gt=n_gt=2  pred=n_pred=1  ❌
+    [  15/30]   E6 voice  gt=n_gt=2  pred=n_pred=1  ❌
+    [  16/30]   E6 cello  gt=n_gt=2  pred=n_pred=1  ❌
+    [  17/30]   E6 voice  gt=n_gt=2  pred=n_pred=1  ❌
+    [  18/30]   A4 sine  gt=n_gt=2  pred=n_pred=1  ❌
+    [  19/30]   A4 electric_keyboard  gt=n_gt=2  pred=n_pred=1  ❌
+    [  20/30]   E4 square  gt=n_gt=2  pred=n_pred=1  ❌
+    [  21/30]   E6 violin  gt=n_gt=2  pred=n_pred=1  ❌
+    [  22/30]   E6 electric_keyboard  gt=n_gt=2  pred=n_pred=1  ❌
+    [  23/30]   E6 cello  gt=n_gt=2  pred=n_pred=1  ❌
+    [  24/30]   C3 organ  gt=n_gt=2  pred=n_pred=1  ❌
+    [  25/30]  F#3 bass  gt=n_gt=2  pred=n_pred=1  ❌
+    [  26/30]   C3 voice  gt=n_gt=2  pred=n_pred=1  ❌
+    [  27/30]  F#1 electric_keyboard  gt=n_gt=2  pred=n_pred=1  ❌
+    [  28/30]   E6 synth_pad  gt=n_gt=2  pred=n_pred=1  ❌
+    [  29/30]   E4 synth_lead  gt=n_gt=2  pred=n_pred=1  ❌
+    [  30/30]   E4 sine  gt=n_gt=2  pred=n_pred=1  ❌
+
+============================================================
+SUMMARY — openrouter/google/gemini-3.1-pro-preview
+  Sampling     : 30 of 2280 (stratified by '(target_pos, n_distractors)', seed=42)
+  Stimuli (total)     : 30
+  Stimuli (condition) : 30  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                            30
+  prompt tokens                47,433
+  completion tokens             3,720
+  total tokens                 51,153
+  cost (USD)                $0.139506
+
+Results saved → results/run_20260505_114839/pitchbench_b3_onset_offset_specific/run_001_20260505_122717/results_openrouter_google_gemini_3_1_pro_preview.*
+
+############################################################
+# pitchbench_b4_pitch_at_time
+############################################################
+
+Experiment : pitchbench_b4_pitch_at_time
+Models     : openrouter/google/gemini-3.1-pro-preview
+Stimuli    : 75
+  Sampling     : 75 of 733 (stratified by '(n_notes, target_idx)', seed=42)

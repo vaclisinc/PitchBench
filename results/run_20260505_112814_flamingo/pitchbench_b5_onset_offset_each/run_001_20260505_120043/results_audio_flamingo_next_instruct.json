@@ -1,0 +1,591 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-05T12:01:55.744320",
+    "argv": [
+      ".venv/bin/pitchbench",
+      "all",
+      "--models",
+      "audio_flamingo_next_instruct"
+    ],
+    "git_commit": "29bd3055db72f1762f3fb0bdf423a65a228c984d",
+    "git_dirty": true,
+    "model_name": "audio_flamingo_next_instruct",
+    "model_info": {
+      "status": "ok",
+      "model": "nvidia/audio-flamingo-next-hf",
+      "checkpoint": "audio_flamingo_next_instruct",
+      "device": "cuda:0"
+    },
+    "task_type": "timing",
+    "tolerance_ms": 250,
+    "primary_filter_set": false,
+    "record_extras": [
+      "n_notes",
+      "rhythm",
+      "pitch_pattern",
+      "duration_ms"
+    ],
+    "sample_n": 30,
+    "sample_seed": 42,
+    "total_available": 456,
+    "stratified_by": "(rhythm, n_notes)",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0
+    }
+  },
+  "summary": {
+    "total": 30,
+    "condition_n": 30,
+    "accuracy": {
+      "n": 30,
+      "correct": 0.0
+    },
+    "marginals": {
+      "duration_ms": {
+        "1000": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "5000": {
+          "n": 21,
+          "correct": 0.0
+        }
+      },
+      "source": {
+        "triangle": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "sine": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "trumpet": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "flute": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "piano": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "synth_pad": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "square": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "voice": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "cello": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "sawtooth": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "guitar": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "synth_lead": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "organ": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "electric_keyboard": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "clarinet": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "source_type": {
+        "waveform": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "instrument": {
+          "n": 21,
+          "correct": 0.0
+        }
+      },
+      "n_notes": {
+        "3": {
+          "n": 10,
+          "correct": 0.0
+        },
+        "5": {
+          "n": 10,
+          "correct": 0.0
+        },
+        "8": {
+          "n": 10,
+          "correct": 0.0
+        }
+      },
+      "rhythm": {
+        "irregular": {
+          "n": 15,
+          "correct": 0.0
+        },
+        "regular": {
+          "n": 15,
+          "correct": 0.0
+        }
+      },
+      "pitch_pattern": {
+        "varied_pitches": {
+          "n": 16,
+          "correct": 0.0
+        },
+        "fixed_pitch": {
+          "n": 14,
+          "correct": 0.0
+        }
+      }
+    },
+    "cost_usd": 0.0,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.60, 0:01.70, 0:08.90, 0:09.90, 0:11.00, 0:12.00, 0:13.00, 0:14.00, 0:15.00, 0:16.00, 0:17.00, 0:18.00, 0:19.00, 0:20.00, 0:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_G2@2197+1000-C4@3573+1000-E4@5791+1000_triangle_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.71-2.32], [2.54-3.15], [3.37-3.98], [4.19-4.80], [5.02-5.63], [5.84-6.45], [6.67-7.28], [7.49-8.10], [8.32-8.93], [9.14-9",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_A4@1517+5000-C3@8044+5000-C2@14024+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:19.00, 0:20.00, 0:21.00, 0:22.00, 0:23.00, 0:24.00, 0:25.00, 0:26.00, 0:27.00, 0:28.00, 0:29.00, 0:30.00, 0:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_Fs1@808+5000-C4@7342+5000-C3@14639+5000_trumpet_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_Fs1@1714+5000-C3@7750+5000-C2@13196+5000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C3@1161+1000-C3@4019+1000-C3@6802+1000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "[0:06.78, 0:09.00]",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_A4@1348+5000-A4@7702+5000-A4@14876+5000-A4@20786+5000-A4@26534+5000_piano_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.56], [1.78-2.45], [2.67-3.34], [3.56-4.23], [4.45-5.12], [5.34-6.01], [6.23-6.90], [7.12-7.79], [7.91-8.58], [8.79-9.46], [9.68-1",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_Fs3@731+5000-Fs3@7072+5000-Fs3@14087+5000-Fs3@20329+5000-Fs3@26469+5000_triangle_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_Fs1@2196+5000-Fs1@8334+5000-Fs1@14738+5000-Fs1@22040+5000-Fs1@28336+5000_synth_pad_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.87], [6.90-10.00], [10.00-10.00]",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C4@2433+5000-Fs1@8962+5000-A4@14844+5000-G2@21038+5000-C2@27987+5000_square_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C2@551+5000-Fs1@6279+5000-C4@12637+5000-Fs3@19920+5000-G2@26135+5000_voice_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C4@2120+1000-G5@4056+1000-E4@7012+1000-E6@8685+1000-C2@10024+1000-Fs1@12841+1000-G2@14950+1000-Fs3@17316+1000_cello_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C3@2265+1000-C3@5323+1000-C3@8717+1000-C3@10747+1000-C3@14240+1000-C3@17617+1000-C3@21096+1000-C3@23103+1000_sawtooth_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.87], [9.00-10.00], [10.00-11.00], [11.00-12.00], [12.00-13.00], [13.00-14.00], [14.00-15.00], [15.00-16.00], [16.00-17.00], [17.00-18.00], [",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C2@1848+5000-G5@8561+5000-C4@15131+5000-Fs1@21632+5000-C3@27733+5000-E4@34728+5000-Fs3@41274+5000-G2@48664+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:06.78, 0:19.00, 0:20.00, 0:21.00, 0:22.00, 0:23.00, 0:24.00, 0:25.00, 0:26.00, 0:27.00, 0:28.00, 0:29.00, 0:30.00, 0:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C2@850+5000-E4@8186+5000-C4@14603+5000-G2@22079+5000-E6@29196+5000-A4@34747+5000-Fs1@41382+5000-Fs3@48604+5000_square_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.71-2.32], [2.53-3.14], [3.35-3.96], [4.17-4.78], [4.99-5.60], [5.81-6.42], [6.63-7.24], [7.45-8.06], [8.27-8.88], [9.09-9",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_A4@2208+5000-E6@8023+5000-C4@15516+5000-C3@22793+5000-G5@28836+5000-Fs1@34577+5000-E4@41420+5000-C2@48644+5000_guitar_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.97] A flute plays a single sustained note.\n[6.97-8.00] silence\n[8.00-10.00] A flute plays a single sustained note.\n[10.00-10.00] silence",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_G5@11250+5000-G5@27500+5000-G5@43750+5000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[6.87-9.00] A high-pitched electronic tone begins.\n[9.00-10.00] Silence.\n[10.00-11.00] The same high-pitched electronic tone continues.\n[11.00-12.00] Silence.\n[12.00-13.00] The same high-pitched electronic tone ends abruptly.\n[13.00-14.00] Silence.\n[14.00-15.00] A low-frequency synthesized bass note starts",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C4@14250+1000-C4@29500+1000-C4@44750+1000_synth_lead_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.97] A low-pitched electronic tone.\n[6.97-8.00] silence\n[8.00-10.00] A high-pitched electronic beep.\n[10.00-10.00] silence",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C4@11250+5000-G5@27500+5000-C3@43750+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:08.60, 0:17.90, 0:26.50, 0:35.00, 0:43.50, 0:52.00, 1:00.50, 1:09.00, 1:17.50, 1:26.00, 1:34.50, 1:43.00, 1:51.50, 2:00.00, 2:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_A4@11250+5000-Fs3@27500+5000-G2@43750+5000_synth_pad_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "[0:06.78, 0:09.00]",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_G5@11250+5000-G5@27500+5000-G5@43750+5000_guitar_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.78], [9.00-10.00], [10.00-11.00]",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_A4@5833+5000-A4@16666+5000-A4@27499+5000-A4@38332+5000-A4@49165+5000_synth_pad_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.78], [9.00-10.00], [10.50-11.50], [12.00-13.00], [13.50-14.50], [15.00-16.00], [16.50-17.50], [18.00-19.00], [19.50-20.50], [21.00-22.00], [",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_E6@5833+5000-E6@16666+5000-E6@27499+5000-E6@38332+5000-E6@49165+5000_cello_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.62-2.23], [2.44-3.05], [3.27-3.88], [4.09-4.70], [4.91-5.52], [5.73-6.34], [6.55-7.16], [7.37-7.98], [8.19-8.80], [9.01-9",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C4@9166+1000-C4@19332+1000-C4@29498+1000-C4@39664+1000-C4@49830+1000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-6.97] A high-pitched electronic tone.\n[6.97-8.00] silence\n[8.00-10.00] A low-frequency rumble that gradually increases in volume.\n[10.00-10.00] silence",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_E6@5833+5000-E6@16666+5000-E6@27499+5000-E6@38332+5000-E6@49165+5000_organ_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.61-2.22], [2.34-3.00], [3.11-3.72], [3.84-4.45], [4.56-5.17], [5.28-5.90], [6.01-6.62], [6.74-7.35], [7.46-8.07], [8.18-8",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_G2@5833+5000-G5@16666+5000-C2@27499+5000-C3@38332+5000-E4@49165+5000_voice_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.62-2.23], [2.35-3.00], [3.12-3.73], [3.85-4.46], [4.58-5.19], [5.31-5.92], [6.04-6.65], [6.77-7.38], [7.50-8.11], [8.23-8",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_G2@2222+5000-Fs1@9444+5000-E6@16666+5000-C4@23888+5000-A4@31110+5000-G5@38332+5000-Fs3@45554+5000-C2@52776+5000_trumpet_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C2@5777+1000-C2@12554+1000-C2@19331+1000-C2@26108+1000-C2@32885+1000-C2@39662+1000-C2@46439+1000-C2@53216+1000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.62-2.23], [2.35-3.00], [3.12-3.73], [3.85-4.46], [4.58-5.20], [5.32-5.93], [6.05-6.66], [6.78-7.40], [7.52-8.13], [8.25-8",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_G5@5777+1000-G5@12554+1000-G5@19331+1000-G5@26108+1000-G5@32885+1000-G5@39662+1000-G5@46439+1000-G5@53216+1000_electric_keyboard_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "[0.00-0.67], [0.89-1.50], [1.61-2.22], [2.34-2.95], [3.07-3.68], [3.80-4.41], [4.53-5.14], [5.26-5.87], [5.99-6.60], [6.72-7.33], [7.45-8.06], [8.18-8",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_C2@5777+1000-G5@12554+1000-Fs3@19331+1000-A4@26108+1000-C3@32885+1000-Fs1@39662+1000-E4@46439+1000-E6@53216+1000_cello_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 14,
+      "correct": 0,
+      "raw_response": "0:00.80, 0:06.70, 0:12.90, 0:18.80, 0:24.80, 0:30.80, 0:36.80, 0:42.80, 0:48.80, 0:54.80, 1:00.80, 1:06.80, 1:12.80, 1:18.80, 1:",
+      "wav": "data/audio/pitchbench_b5_onset_offset_each/clip_E6@2222+5000-G5@9444+5000-C4@16666+5000-Fs3@23888+5000-G2@31110+5000-E4@38332+5000-Fs1@45554+5000-C3@52776+5000_clarinet_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    }
+  ]
+}

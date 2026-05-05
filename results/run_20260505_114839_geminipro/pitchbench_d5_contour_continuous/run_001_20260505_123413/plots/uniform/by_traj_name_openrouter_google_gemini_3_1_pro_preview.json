@@ -1,0 +1,29 @@
+{
+  "group_key": "traj_name",
+  "score_key": "trajectory_correct",
+  "score_label": "Trajectory accuracy (%)",
+  "x_values": [
+    "down",
+    "down_then_up",
+    "up",
+    "up_then_down"
+  ],
+  "x_labels": [
+    "down",
+    "down_then_up",
+    "up",
+    "up_then_down"
+  ],
+  "mean_pct": [
+    60.0,
+    0.0,
+    80.0,
+    60.0
+  ],
+  "n_samples": [
+    5,
+    5,
+    5,
+    5
+  ]
+}

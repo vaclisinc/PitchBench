@@ -1,0 +1,239 @@
+
+  Model : openrouter/google/gemini-3.1-pro-preview
+    [dispatch] 200 items, max_workers=20
+    [   1/200] trumpet     clean         F#1  | midi: gt=30 pred=36 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=46.2493 pred=65.41 ❌
+    [   2/200] guitar      clean         C3  | midi: gt=48 pred=40 ❌  | spn: gt=C3 pred=C3 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=None ❌
+    [   3/200] cello       clean         C2  | midi: gt=36 pred=40 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=None ❌
+    [   4/200] triangle    clean         C2  | midi: gt=36 pred=41 ❌  | spn: gt=C2 pred=C5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [   5/200] triangle    clean         C3  | midi: gt=48 pred=96 ❌  | spn: gt=C3 pred=C6 ❌  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [   6/200] triangle    clean         F#1  | midi: gt=30 pred=36 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa ❌  | hz: gt=46.2493 pred=55.0 ❌
+    [   7/200] cello       clean         C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=65.0 ❌
+    [   8/200] square      clean         C2  | midi: gt=36 pred=31 ❌  | spn: gt=C2 pred=C4 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=130.0 ❌
+    [   9/200] sine        clean         F#1  | midi: gt=30 pred=None ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=fa ❌  | hz: gt=46.2493 pred=440.0 ❌
+    [  10/200] sine        clean         C3  | midi: gt=48 pred=4 ❌  | spn: gt=C3 pred=C3 ✅  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [  11/200] trumpet     clean         G2  | midi: gt=43 pred=36 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=97.9989 pred=65.41 ❌
+    [  12/200] sine        clean         G2  | midi: gt=43 pred=36 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=440.0 ❌
+    [  13/200] sine        clean         C2  | midi: gt=36 pred=40 ❌  | spn: gt=C2 pred=C6 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [  14/200] square      clean         G2  | midi: gt=43 pred=83 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=100.0 ❌
+    [  15/200] synth_pad   clean         C3  | midi: gt=48 pred=40 ❌  | spn: gt=C3 pred=C4 ❌  | doremi: gt=do pred=do# ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [  16/200] flute       clean         F#1  | midi: gt=30 pred=36 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=65.4 ❌
+    [  17/200] piano       clean         C2  | midi: gt=36 pred=24 ❌  | spn: gt=C2 pred=C3 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [  18/200] voice       clean         F#1  | midi: gt=30 pred=41 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=None ❌
+    [  19/200] flute       clean         G2  | midi: gt=43 pred=36 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=65.41 ❌
+    [  20/200] guitar      clean         G2  | midi: gt=43 pred=40 ❌  | spn: gt=G2 pred=G2 ✅  | doremi: gt=sol pred=None ❌  | hz: gt=97.9989 pred=65.41 ❌
+    [  21/200] piano       clean         C4  | midi: gt=60 pred=84 ❌  | spn: gt=C4 pred=C6 ❌  | doremi: gt=do pred=do ✅  | hz: gt=261.6256 pred=52.0 ❌
+    [  22/200] trumpet     clean         F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=F2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=65.41 ❌
+    [  23/200] square      clean         E4  | midi: gt=64 pred=101 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=329.6276 pred=1000.0 ❌
+    [  24/200] oboe        clean         A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=si ❌  | hz: gt=440.0 pred=880.0 ❌
+    [  25/200] triangle    clean         C4  | midi: gt=60 pred=83 ❌  | spn: gt=C4 pred=C5 ❌  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  26/200] clarinet    clean         E4  | midi: gt=64 pred=101 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=523.25 ❌
+    [  27/200] cello       clean         C4  | midi: gt=60 pred=84 ❌  | spn: gt=C4 pred=F4 ❌  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=523.0 ❌
+    [  28/200] sine        clean         F#3  | midi: gt=54 pred=83 ❌  | spn: gt=F#3 pred=C3 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=440.0 ❌
+    [  29/200] triangle    clean         E4  | midi: gt=64 pred=71 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=1760.0 ❌
+    [  30/200] clarinet    clean         C4  | midi: gt=60 pred=81 ❌  | spn: gt=C4 pred=C3 ❌  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=1760.0 ❌
+    [  31/200] trumpet     clean         C4  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=C3 ❌  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=523.25 ❌
+    [  32/200] electric_keyboard  clean         F#3  | midi: gt=54 pred=36 ❌  | spn: gt=F#3 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=41.2 ❌
+    [  33/200] violin      clean         E4  | midi: gt=64 pred=84 ❌  | spn: gt=E4 pred=B5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=523.25 ❌
+    [  34/200] oboe        clean         F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=F2 ❌  | doremi: gt=fa# pred=si ❌  | hz: gt=184.9972 pred=65.4 ❌
+    [  35/200] voice       clean         A4  | midi: gt=69 pred=8 ❌  | spn: gt=A4 pred=A5 ❌  | doremi: gt=la pred=None ❌  | hz: gt=440.0 pred=261.0 ❌
+    [  36/200] sawtooth    clean         E4  | midi: gt=64 pred=71 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=None ❌
+    [  37/200] trumpet     clean         A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=440.0 ✅
+    [  38/200] organ       clean         F#3  | midi: gt=54 pred=90 ❌  | spn: gt=F#3 pred=F#5 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=184.9972 pred=156.0 ❌
+    [  39/200] sawtooth    clean         A4  | midi: gt=69 pred=101 ❌  | spn: gt=A4 pred=None ❌  | doremi: gt=la pred=None ❌  | hz: gt=440.0 pred=1000.0 ❌
+    [  40/200] synth_pad   clean         A4  | midi: gt=69 pred=105 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=sol ❌  | hz: gt=440.0 pred=440.0 ✅
+    [  41/200] organ       clean         G5  | midi: gt=79 pred=101 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=1568.0 ❌
+    [  42/200] synth_pad   clean         G5  | midi: gt=79 pred=88 ❌  | spn: gt=G5 pred=F#4 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=523.0 ❌
+    [  43/200] trombone    clean         E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=do ❌  | hz: gt=1318.5102 pred=440.0 ❌
+    [  44/200] sawtooth    clean         G5  | midi: gt=79 pred=91 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1046.5 ❌
+    [  45/200] synth_pad   clean         E6  | midi: gt=88 pred=1 ❌  | spn: gt=E6 pred=C5 ❌  | doremi: gt=mi pred=si ❌  | hz: gt=1318.5102 pred=523.0 ❌
+    [  46/200] oboe        clean         E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=A5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=1318.5102 pred=1000.0 ❌
+    [  47/200] triangle    clean         G5  | midi: gt=79 pred=45 ❌  | spn: gt=G5 pred=A2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=783.9909 pred=1000.0 ❌
+    [  48/200] synth_lead  clean         E6  | midi: gt=88 pred=None ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=880.0 ❌
+    [  49/200] sawtooth    sat_heavy     F#1  | midi: gt=30 pred=60 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=46.2493 pred=440.0 ❌
+    [  50/200] violin      clean         G5  | midi: gt=79 pred=103 ❌  | spn: gt=G5 pred=G6 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=1568.0 ❌
+    [  51/200] guitar      clean         E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=F5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=1318.5102 pred=440.0 ❌
+    [  52/200] square      sat_heavy     F#1  | midi: gt=30 pred=30 ✅  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=46.2493 pred=130.8 ❌
+    [  53/200] trombone    sat_heavy     F#1  | midi: gt=30 pred=36 ❌  | spn: gt=F#1 pred=F1 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=46.2493 pred=65.41 ❌
+    [  54/200] flute       sat_heavy     F#1  | midi: gt=30 pred=24 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=46.2493 pred=65.41 ❌
+    [  55/200] violin      sat_heavy     C2  | midi: gt=36 pred=36 ✅  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=65.41 ✅
+    [  56/200] flute       sat_heavy     C2  | midi: gt=36 pred=36 ✅  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=None ❌  | hz: gt=65.4064 pred=130.8 ❌
+    [  57/200] trumpet     sat_heavy     C2  | midi: gt=36 pred=36 ✅  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=65.41 ✅
+    [  58/200] triangle    sat_heavy     C2  | midi: gt=36 pred=88 ❌  | spn: gt=C2 pred=C6 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=65.0 ✅
+    [  59/200] synth_pad   sat_heavy     F#1  | midi: gt=30 pred=36 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=mi ❌  | hz: gt=46.2493 pred=349.2 ❌
+    [  60/200] voice       sat_heavy     C2  | midi: gt=36 pred=36 ✅  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=None ❌  | hz: gt=65.4064 pred=33.0 ❌
+    [  61/200] oboe        sat_heavy     G2  | midi: gt=43 pred=30 ❌  | spn: gt=G2 pred=G1 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=65.0 ❌
+    [  62/200] triangle    sat_heavy     G2  | midi: gt=43 pred=41 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=440.0 ❌
+    [  63/200] voice       sat_heavy     G2  | midi: gt=43 pred=36 ❌  | spn: gt=G2 pred=D2 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=97.9989 pred=65.4 ❌
+    [  64/200] electric_keyboard  sat_heavy     G2  | midi: gt=43 pred=24 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=65.4 ❌
+    [  65/200] square      sat_heavy     C3  | midi: gt=48 pred=41 ❌  | spn: gt=C3 pred=C4 ❌  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [  66/200] synth_pad   sat_heavy     C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=do# ❌  | hz: gt=130.8128 pred=32.703 ❌
+    [  67/200] synth_lead  sat_heavy     G2  | midi: gt=43 pred=41 ❌  | spn: gt=G2 pred=F2 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=97.9989 pred=44.0 ❌
+    [  68/200] electric_keyboard  sat_heavy     C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=82.41 ❌
+    [  69/200] trumpet     sat_heavy     F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=None ❌  | doremi: gt=fa# pred=fa ❌  | hz: gt=184.9972 pred=65.41 ❌
+    [  70/200] trumpet     sat_heavy     C3  | midi: gt=48 pred=31 ❌  | spn: gt=C3 pred=F2 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=65.4 ❌
+    [  71/200] synth_pad   sat_heavy     C4  | midi: gt=60 pred=36 ❌  | spn: gt=C4 pred=C5 ❌  | doremi: gt=do pred=do# ❌  | hz: gt=261.6256 pred=65.0 ❌
+    [  72/200] violin      sat_heavy     F#3  | midi: gt=54 pred=36 ❌  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=311.0 ❌
+    [  73/200] clarinet    sat_heavy     F#3  | midi: gt=54 pred=34 ❌  | spn: gt=F#3 pred=None ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=65.41 ❌
+    [  74/200] clarinet    sat_heavy     C4  | midi: gt=60 pred=41 ❌  | spn: gt=C4 pred=None ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=261.6256 pred=None ❌
+    [  75/200] organ       sat_heavy     F#3  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=None ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=440.0 ❌
+    [  76/200] violin      sat_heavy     C4  | midi: gt=60 pred=83 ❌  | spn: gt=C4 pred=C6 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=None ❌
+    [  77/200] flute       sat_heavy     C4  | midi: gt=60 pred=72 ❌  | spn: gt=C4 pred=C4 ✅  | doremi: gt=do pred=do# ❌  | hz: gt=261.6256 pred=103.83 ❌
+    [  78/200] sawtooth    sat_heavy     C4  | midi: gt=60 pred=88 ❌  | spn: gt=C4 pred=C4 ✅  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=523.2 ❌
+    [  79/200] flute       sat_heavy     F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=F2 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=184.9972 pred=174.0 ❌
+    [  80/200] flute       sat_heavy     C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=65.41 ❌
+    [  81/200] square      sat_heavy     E4  | midi: gt=64 pred=10 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  82/200] clarinet    sat_heavy     E4  | midi: gt=64 pred=83 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  83/200] bass        sat_heavy     A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=440.0 ✅
+    [  84/200] triangle    sat_heavy     E4  | midi: gt=64 pred=83 ❌  | spn: gt=E4 pred=None ❌  | doremi: gt=mi pred=None ❌  | hz: gt=329.6276 pred=1046.0 ❌
+    [  85/200] clarinet    sat_heavy     A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A5 ❌  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=880.0 ❌
+    [  86/200] trumpet     sat_heavy     E4  | midi: gt=64 pred=None ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  87/200] voice       sat_heavy     A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A5 ❌  | doremi: gt=la pred=None ❌  | hz: gt=440.0 pred=440.0 ✅
+    [  88/200] organ       sat_heavy     G5  | midi: gt=79 pred=79 ✅  | spn: gt=G5 pred=G6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=783.99 ✅
+    [  89/200] guitar      sat_heavy     A4  | midi: gt=69 pred=69 ✅  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=1760.0 ❌
+    [  90/200] violin      sat_heavy     E4  | midi: gt=64 pred=71 ❌  | spn: gt=E4 pred=F5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=329.6276 pred=440.0 ❌
+    [  91/200] synth_lead  sat_heavy     A4  | midi: gt=69 pred=101 ❌  | spn: gt=A4 pred=A6 ❌  | doremi: gt=la pred=None ❌  | hz: gt=440.0 pred=None ❌
+    [  92/200] trumpet     sat_heavy     G5  | midi: gt=79 pred=10 ❌  | spn: gt=G5 pred=G6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1046.0 ❌
+    [  93/200] piano       sat_heavy     G5  | midi: gt=79 pred=101 ❌  | spn: gt=G5 pred=C7 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=104.0 ❌
+    [  94/200] triangle    sat_heavy     G5  | midi: gt=79 pred=101 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=1000.0 ❌
+    [  95/200] synth_pad   sat_heavy     G5  | midi: gt=79 pred=91 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [  96/200] cello       sat_heavy     E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=1318.5102 pred=52.0 ❌
+    [  97/200] synth_pad   sat_heavy     E6  | midi: gt=88 pred=108 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=do# ❌  | hz: gt=1318.5102 pred=1046.0 ❌
+    [  98/200] voice       sat_heavy     E6  | midi: gt=88 pred=105 ❌  | spn: gt=E6 pred=None ❌  | doremi: gt=mi pred=None ❌  | hz: gt=1318.5102 pred=1000.0 ❌
+    [  99/200] trumpet     sat_heavy     E6  | midi: gt=88 pred=81 ❌  | spn: gt=E6 pred=C4 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=440.0 ❌
+    [ 100/200] organ       sat_heavy     E6  | midi: gt=88 pred=83 ❌  | spn: gt=E6 pred=A4 ❌  | doremi: gt=mi pred=do# ❌  | hz: gt=1318.5102 pred=1046.5 ❌
+    [ 101/200] oboe        sat_light     F#1  | midi: gt=30 pred=36 ❌  | spn: gt=F#1 pred=F2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=65.41 ❌
+    [ 102/200] voice       sat_light     F#1  | midi: gt=30 pred=23 ❌  | spn: gt=F#1 pred=None ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=65.41 ❌
+    [ 103/200] flute       sat_light     F#1  | midi: gt=30 pred=24 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=33.0 ❌
+    [ 104/200] bass        sat_light     C2  | midi: gt=36 pred=2 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=None ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [ 105/200] square      sat_light     F#1  | midi: gt=30 pred=45 ❌  | spn: gt=F#1 pred=None ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=65.41 ❌
+    [ 106/200] square      sat_light     C2  | midi: gt=36 pred=48 ❌  | spn: gt=C2 pred=F2 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [ 107/200] violin      sat_light     F#1  | midi: gt=30 pred=26 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=46.2493 pred=65.4 ❌
+    [ 108/200] synth_lead  sat_light     C2  | midi: gt=36 pred=36 ✅  | spn: gt=C2 pred=C3 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=65.0 ✅
+    [ 109/200] cello       sat_light     C2  | midi: gt=36 pred=31 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [ 110/200] triangle    sat_light     G2  | midi: gt=43 pred=41 ❌  | spn: gt=G2 pred=F2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=440.0 ❌
+    [ 111/200] trombone    sat_light     G2  | midi: gt=43 pred=41 ❌  | spn: gt=G2 pred=None ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=97.9989 pred=65.4 ❌
+    [ 112/200] square      sat_light     C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C6 ❌  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [ 113/200] violin      sat_light     C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=65.41 ❌
+    [ 114/200] electric_keyboard  sat_light     G2  | midi: gt=43 pred=36 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=97.9989 pred=41.2 ❌
+    [ 115/200] sawtooth    sat_light     C2  | midi: gt=36 pred=36 ✅  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=None ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [ 116/200] synth_pad   sat_light     C3  | midi: gt=48 pred=None ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [ 117/200] cello       sat_light     G2  | midi: gt=43 pred=41 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=65.0 ❌
+    [ 118/200] organ       sat_light     C3  | midi: gt=48 pred=96 ❌  | spn: gt=C3 pred=C5 ❌  | doremi: gt=do pred=None ❌  | hz: gt=130.8128 pred=523.2 ❌
+    [ 119/200] trumpet     sat_light     C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=65.41 ❌
+    [ 120/200] piano       sat_light     G2  | midi: gt=43 pred=36 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=97.9989 pred=65.4 ❌
+    [ 121/200] synth_pad   sat_light     F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=65.41 ❌
+    [ 122/200] trumpet     sat_light     F#3  | midi: gt=54 pred=53 ❌  | spn: gt=F#3 pred=F2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=130.81 ❌
+    [ 123/200] triangle    sat_light     F#3  | midi: gt=54 pred=40 ❌  | spn: gt=F#3 pred=C5 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=523.25 ❌
+    [ 124/200] sine        sat_light     F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=440.0 ❌
+    [ 125/200] triangle    sat_light     C4  | midi: gt=60 pred=69 ❌  | spn: gt=C4 pred=D4 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [ 126/200] trumpet     sat_light     C4  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=C5 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [ 127/200] synth_pad   sat_light     C4  | midi: gt=60 pred=24 ❌  | spn: gt=C4 pred=C3 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=130.8 ❌
+    [ 128/200] clarinet    sat_light     C4  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=A4 ❌  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=523.2 ❌
+    [ 129/200] clarinet    sat_light     F#3  | midi: gt=54 pred=None ❌  | spn: gt=F#3 pred=A2 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=184.9972 pred=440.0 ❌
+    [ 130/200] organ       sat_light     E4  | midi: gt=64 pred=96 ❌  | spn: gt=E4 pred=C#6 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=329.6276 pred=1046.0 ❌
+    [ 131/200] sine        sat_light     E4  | midi: gt=64 pred=101 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [ 132/200] piano       sat_light     C4  | midi: gt=60 pred=84 ❌  | spn: gt=C4 pred=C6 ❌  | doremi: gt=do pred=do ✅  | hz: gt=261.6256 pred=261.63 ✅
+    [ 133/200] cello       sat_light     E4  | midi: gt=64 pred=8 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=fa ❌  | hz: gt=329.6276 pred=None ❌
+    [ 134/200] electric_keyboard  sat_light     A4  | midi: gt=69 pred=83 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=440.0 ✅
+    [ 135/200] trumpet     sat_light     A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=None ❌  | hz: gt=440.0 pred=440.0 ✅
+    [ 136/200] oboe        sat_light     E4  | midi: gt=64 pred=83 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=329.6276 pred=1046.0 ❌
+    [ 137/200] synth_lead  sat_light     A4  | midi: gt=69 pred=83 ❌  | spn: gt=A4 pred=A4 ✅  | doremi: gt=la pred=si ❌  | hz: gt=440.0 pred=None ❌
+    [ 138/200] electric_keyboard  sat_light     E4  | midi: gt=64 pred=79 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [ 139/200] triangle    sat_light     A4  | midi: gt=69 pred=101 ❌  | spn: gt=A4 pred=None ❌  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=440.0 ✅
+    [ 140/200] cello       sat_light     A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A5 ❌  | doremi: gt=la pred=la# ❌  | hz: gt=440.0 pred=880.0 ❌
+    [ 141/200] synth_pad   sat_light     E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=C5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=1318.5102 pred=None ❌
+    [ 142/200] piano       sat_light     G5  | midi: gt=79 pred=108 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=1046.0 ❌
+    [ 143/200] synth_lead  sat_light     G5  | midi: gt=79 pred=103 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1046.0 ❌
+    [ 144/200] trombone    sat_light     G5  | midi: gt=79 pred=103 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=440.0 ❌
+    [ 145/200] synth_lead  sat_light     E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=fa ❌  | hz: gt=1318.5102 pred=None ❌
+    [ 146/200] clarinet    sat_medium    F#1  | midi: gt=30 pred=21 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa ❌  | hz: gt=46.2493 pred=65.41 ❌
+    [ 147/200] trombone    sat_light     E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=A5 ❌  | doremi: gt=mi pred=la ❌  | hz: gt=1318.5102 pred=None ❌
+    [ 148/200] guitar      sat_light     G5  | midi: gt=79 pred=108 ❌  | spn: gt=G5 pred=None ❌  | doremi: gt=sol pred=mi ❌  | hz: gt=783.9909 pred=1046.5 ❌
+    [ 149/200] electric_keyboard  sat_light     G5  | midi: gt=79 pred=101 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=392.0 ❌
+    [ 150/200] organ       sat_medium    F#1  | midi: gt=30 pred=31 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=311.0 ❌
+    [ 151/200] sine        sat_light     E6  | midi: gt=88 pred=None ❌  | spn: gt=E6 pred=C5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=1318.5102 pred=440.0 ❌
+    [ 152/200] bass        sat_medium    F#1  | midi: gt=30 pred=61 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=46.2493 pred=440.0 ❌
+    [ 153/200] oboe        sat_medium    C2  | midi: gt=36 pred=11 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=None ❌
+    [ 154/200] triangle    sat_medium    F#1  | midi: gt=30 pred=2 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=440.0 ❌
+    [ 155/200] sine        sat_medium    F#1  | midi: gt=30 pred=60 ❌  | spn: gt=F#1 pred=C6 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=440.0 ❌
+    [ 156/200] trombone    sat_medium    C2  | midi: gt=36 pred=38 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=None ❌  | hz: gt=65.4064 pred=130.0 ❌
+    [ 157/200] sawtooth    sat_medium    C2  | midi: gt=36 pred=24 ❌  | spn: gt=C2 pred=F1 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=65.41 ✅
+    [ 158/200] flute       sat_medium    C2  | midi: gt=36 pred=2 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=65.41 ✅
+    [ 159/200] electric_keyboard  sat_light     E6  | midi: gt=88 pred=83 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=do ❌  | hz: gt=1318.5102 pred=440.0 ❌
+    [ 160/200] triangle    sat_medium    C2  | midi: gt=36 pred=64 ❌  | spn: gt=C2 pred=C4 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=65.4064 pred=440.0 ❌
+    [ 161/200] bass        sat_medium    G2  | midi: gt=43 pred=60 ❌  | spn: gt=G2 pred=C5 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=None ❌
+    [ 162/200] cello       sat_medium    G2  | midi: gt=43 pred=29 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=97.9989 pred=None ❌
+    [ 163/200] square      sat_medium    G2  | midi: gt=43 pred=6 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=523.0 ❌
+    [ 164/200] square      sat_medium    C3  | midi: gt=48 pred=60 ❌  | spn: gt=C3 pred=C4 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [ 165/200] synth_pad   sat_medium    C3  | midi: gt=48 pred=36 ❌  | spn: gt=C3 pred=None ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [ 166/200] voice       sat_medium    G2  | midi: gt=43 pred=38 ❌  | spn: gt=G2 pred=D2 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=65.41 ❌
+    [ 167/200] synth_pad   sat_medium    G2  | midi: gt=43 pred=31 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=97.9989 pred=440.0 ❌
+    [ 168/200] clarinet    sat_medium    C3  | midi: gt=48 pred=41 ❌  | spn: gt=C3 pred=None ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [ 169/200] piano       sat_medium    C3  | midi: gt=48 pred=24 ❌  | spn: gt=C3 pred=C2 ❌  | doremi: gt=do pred=do ✅  | hz: gt=130.8128 pred=130.8 ✅
+    [ 170/200] synth_lead  sat_medium    C3  | midi: gt=48 pred=57 ❌  | spn: gt=C3 pred=D#2 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [ 171/200] bass        sat_medium    F#3  | midi: gt=54 pred=34 ❌  | spn: gt=F#3 pred=A#3 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=65.0 ❌
+    [ 172/200] trumpet     sat_medium    F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=440.0 ❌
+    [ 173/200] electric_keyboard  sat_medium    F#3  | midi: gt=54 pred=40 ❌  | spn: gt=F#3 pred=E2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=82.0 ❌
+    [ 174/200] synth_pad   sat_medium    F#3  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C2 ❌  | doremi: gt=fa# pred=None ❌  | hz: gt=184.9972 pred=82.41 ❌
+    [ 175/200] synth_pad   sat_medium    C4  | midi: gt=60 pred=48 ❌  | spn: gt=C4 pred=E2 ❌  | doremi: gt=do pred=do ✅  | hz: gt=261.6256 pred=44.0 ❌
+    [ 176/200] voice       sat_medium    F#3  | midi: gt=54 pred=41 ❌  | spn: gt=F#3 pred=F3 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=174.0 ❌
+    [ 177/200] cello       sat_medium    C4  | midi: gt=60 pred=53 ❌  | spn: gt=C4 pred=C4 ✅  | doremi: gt=do pred=do ✅  | hz: gt=261.6256 pred=65.41 ❌
+    [ 178/200] guitar      sat_medium    C4  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=C5 ❌  | doremi: gt=do pred=do ✅  | hz: gt=261.6256 pred=261.0 ✅
+    [ 179/200] trombone    sat_medium    C4  | midi: gt=60 pred=72 ❌  | spn: gt=C4 pred=C4 ✅  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=523.2 ❌
+    [ 180/200] synth_lead  sat_medium    C4  | midi: gt=60 pred=3 ❌  | spn: gt=C4 pred=C2 ❌  | doremi: gt=do pred=None ❌  | hz: gt=261.6256 pred=65.0 ❌
+    [ 181/200] oboe        sat_medium    E4  | midi: gt=64 pred=8 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=None ❌
+    [ 182/200] voice       sat_medium    A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=C6 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=440.0 pred=440.0 ✅
+    [ 183/200] synth_pad   sat_medium    E4  | midi: gt=64 pred=64 ✅  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [ 184/200] synth_lead  sat_medium    E4  | midi: gt=64 pred=92 ❌  | spn: gt=E4 pred=G6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=1046.0 ❌
+    [ 185/200] flute       sat_medium    A4  | midi: gt=69 pred=105 ❌  | spn: gt=A4 pred=A5 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=440.0 pred=440.0 ✅
+    [ 186/200] organ       sat_medium    E4  | midi: gt=64 pred=8 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=329.6276 pred=440.0 ❌
+    [ 187/200] sawtooth    sat_medium    E4  | midi: gt=64 pred=83 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [ 188/200] square      sat_medium    A4  | midi: gt=69 pred=101 ❌  | spn: gt=A4 pred=A6 ❌  | doremi: gt=la pred=None ❌  | hz: gt=440.0 pred=100.0 ❌
+    [ 189/200] clarinet    sat_medium    A4  | midi: gt=69 pred=81 ❌  | spn: gt=A4 pred=A5 ❌  | doremi: gt=la pred=la ✅  | hz: gt=440.0 pred=None ❌
+    [ 190/200] sine        sat_medium    A4  | midi: gt=69 pred=101 ❌  | spn: gt=A4 pred=C6 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=440.0 pred=1000.0 ❌
+    [ 191/200] synth_pad   sat_medium    G5  | midi: gt=79 pred=84 ❌  | spn: gt=G5 pred=G3 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=None ❌
+    [ 192/200] synth_lead  sat_medium    G5  | midi: gt=79 pred=103 ❌  | spn: gt=G5 pred=A5 ❌  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=2637.0 ❌
+    [ 193/200] voice       sat_medium    G5  | midi: gt=79 pred=101 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1568.0 ❌
+    [ 194/200] flute       sat_medium    G5  | midi: gt=79 pred=None ❌  | spn: gt=G5 pred=G6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=1046.0 ❌
+    [ 195/200] sawtooth    sat_medium    E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=A5 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=1000.0 ❌
+    [ 196/200] sine        sat_medium    G5  | midi: gt=79 pred=108 ❌  | spn: gt=G5 pred=G5 ✅  | doremi: gt=sol pred=None ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [ 197/200] square      sat_medium    E6  | midi: gt=88 pred=None ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=1318.5102 pred=440.0 ❌
+    [ 198/200] flute       sat_medium    E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=None ❌  | hz: gt=1318.5102 pred=1046.5 ❌
+    [ 199/200] voice       sat_medium    E6  | midi: gt=88 pred=101 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=la ❌  | hz: gt=1318.5102 pred=523.0 ❌
+    [ 200/200] organ       sat_medium    E6  | midi: gt=88 pred=80 ❌  | spn: gt=E6 pred=C#6 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=1318.5102 pred=440.0 ❌
+
+============================================================
+SUMMARY — openrouter/google/gemini-3.1-pro-preview
+  Sampling     : 200 of 760 (stratified by '(saturation_level, midi)', seed=42)
+  Stimuli (total)     : 200
+  Stimuli (condition) : 200  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       8.0%
+     SPN      17.5%
+  DOREMI      22.0%
+      HZ       9.5%
+     ANY      41.5%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           800
+  prompt tokens               148,216
+  completion tokens            97,736
+  total tokens                245,952
+  cost (USD)                $1.469264
+
+Results saved → results/run_20260505_114839/pitchbench_e4_harmonic_saturation/run_001_20260505_124514/results_openrouter_google_gemini_3_1_pro_preview.*
+
+############################################################
+# pitchbench_e5_time_stretch
+############################################################
+
+Experiment : pitchbench_e5_time_stretch
+Models     : openrouter/google/gemini-3.1-pro-preview
+Stimuli    : 300
+  Sampling     : 300 of 1140 (stratified by '(condition, midi)', seed=42)

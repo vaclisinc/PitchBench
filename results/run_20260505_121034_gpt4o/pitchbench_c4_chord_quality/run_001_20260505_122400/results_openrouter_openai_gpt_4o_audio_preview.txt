@@ -1,0 +1,128 @@
+Experiment : pitchbench_c4_chord_quality
+Model      : openrouter/openai/gpt-4o-audio-preview
+timestamp  : 2026-05-05T12:24:14.551029
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/openai/gpt-4o-audio-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/openai/gpt-4o-audio-preview
+model_info : {'model': 'openrouter/openai/gpt-4o-audio-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'openai/gpt-4o-audio-preview'}
+task_type  : quality
+headline_metrics : ['quality']
+primary_filter_set : False
+record_extras : ['duration_ms', 'same_instrument', 'root_midi', 'chord_quality_gt', 'task']
+sample_n   : 100
+sample_seed : 42
+total_available : 7296
+stratified_by : (chord_quality_gt, same_instrument)
+
+SUMMARY
+==================================================
+  Sampling     : 100 of 7296 (stratified by '(chord_quality_gt, same_instrument)', seed=42)
+  Stimuli (total)     : 100
+  Stimuli (condition) : 100  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+     QUALITY      11.0%
+
+== Marginal accuracy ==
+
+duration_ms     quality_correct    n
+──────────────  ───────  ────
+1000             15.91%    44
+5000              7.14%    56
+
+source          quality_correct    n
+──────────────  ───────  ────
+bass             33.33%     3
+bass+synth_lead+synth_pad    0.00%     2
+cello             0.00%     1
+cello+organ+bass    0.00%     2
+cello+organ+bass+synth_lead    0.00%     1
+clarinet          0.00%     2
+clarinet+oboe+violin    0.00%     2
+clarinet+oboe+violin+cello    0.00%     1
+electric_keyboard   20.00%     5
+electric_keyboard+guitar+flute   33.33%     3
+flute             0.00%     3
+flute+trumpet+trombone    0.00%     1
+guitar            0.00%     6
+guitar+flute+trumpet   50.00%     2
+guitar+flute+trumpet+trombone    0.00%     2
+oboe              0.00%     1
+oboe+violin+cello    0.00%     2
+oboe+violin+cello+organ    0.00%     1
+organ             0.00%     2
+organ+bass+synth_lead    0.00%     2
+organ+bass+synth_lead+synth_pad    0.00%     1
+piano            33.33%     3
+piano+electric_keyboard+guitar    0.00%     3
+piano+electric_keyboard+guitar+flute    0.00%     2
+sawtooth          0.00%     2
+sawtooth+square+triangle   50.00%     2
+sawtooth+square+triangle+piano    0.00%     1
+sine              0.00%     2
+sine+sawtooth+square   50.00%     2
+square            0.00%     4
+square+triangle+piano+electric_keyboard    0.00%     2
+synth_lead        0.00%     3
+synth_pad         0.00%     2
+synth_pad+voice+sine    0.00%     2
+synth_pad+voice+sine+sawtooth    0.00%     2
+triangle          0.00%     1
+triangle+piano+electric_keyboard+guitar    0.00%     2
+trombone         60.00%     5
+trombone+clarinet+oboe    0.00%     1
+trombone+clarinet+oboe+violin    0.00%     2
+trumpet           0.00%     1
+trumpet+trombone+clarinet  100.00%     1
+trumpet+trombone+clarinet+oboe    0.00%     2
+violin            0.00%     1
+violin+cello+organ+bass    0.00%     1
+voice             0.00%     3
+voice+sine+sawtooth    0.00%     3
+
+source_type     quality_correct    n
+──────────────  ───────  ────
+instrument       12.09%    91
+waveform          0.00%     9
+
+chord_quality_gt  quality_correct    n
+──────────────  ───────  ────
+augmented         0.00%    10
+diminished        0.00%    10
+dom7              0.00%    10
+m7b5              0.00%    10
+maj7              0.00%    10
+major            20.00%    10
+min7              0.00%    10
+minor            90.00%    10
+sus2              0.00%    10
+sus4              0.00%    10
+
+same_instrument  quality_correct    n
+──────────────  ───────  ────
+False            10.00%    50
+True             12.00%    50
+
+root_midi       quality_correct    n
+──────────────  ───────  ────
+30                0.00%     7
+36               25.00%     8
+43                7.14%    14
+48               16.67%    12
+54                7.69%    13
+60                8.33%    12
+64               22.22%     9
+69                7.69%    13
+79                0.00%     6
+88               16.67%     6
+
+
+LLM USAGE
+==================================================
+  calls                           100
+  prompt tokens                 9,940
+  completion tokens               100
+  total tokens                 10,040
+  cost (USD)                $0.147350

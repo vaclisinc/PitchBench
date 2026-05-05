@@ -1,0 +1,36 @@
+PitchBench session cost summary
+Timestamp : 2026-05-05T12:55:09.207360
+
+Experiment                                calls        tokens      cost (USD)
+─────────────────────────────────────────────────────────────────────────────
+pitchbench_a1_pitch_id                    4,636     1,410,852       $8.480324
+pitchbench_a2_pitch_with_reference          520       187,825       $1.009110
+pitchbench_a3_pitch_by_duration             200        79,858       $0.403756
+pitchbench_a4_pitch_with_vibrato            640       206,301       $1.193842
+pitchbench_a5_pitch_slightly_off          1,600       448,084       $2.852628
+pitchbench_b1_pitch_in_silence            3,200     3,147,963      $10.203286
+pitchbench_b2_onset_offset_single            80       136,054       $0.371038
+pitchbench_b3_onset_offset_specific          30        51,153       $0.139506
+pitchbench_b4_pitch_at_time                 300       510,120       $1.386680
+pitchbench_b5_onset_offset_each              30        51,630       $0.140460
+pitchbench_c1_dyad_interval                 120        27,470       $0.200030
+pitchbench_c2_chord_pitch_count              80        18,913       $0.134356
+pitchbench_c3_chord_pitch_id                300        93,044       $0.557528
+pitchbench_c4_chord_quality                 100        25,698       $0.171356
+pitchbench_d1_seq_pitch_count                70        42,005       $0.168750
+pitchbench_d2_pitch_difference              110        36,775       $0.206100
+pitchbench_d3_interval_id_seq               120        44,584       $0.235118
+pitchbench_d4_contour_discrete              100        27,875       $0.179300
+pitchbench_d5_contour_continuous             20         7,456       $0.039272
+pitchbench_d6_pitch_ranking                 100        65,495       $0.254890
+pitchbench_d7_seq_pitch_id                   60        59,316       $0.192892
+pitchbench_e1_loudness                    1,200       368,839       $2.203048
+pitchbench_e2_audio_effects               1,400       430,388       $2.570876
+pitchbench_e3_background_effects            400       129,012       $0.746944
+pitchbench_e4_harmonic_saturation           800       245,952       $1.469264
+pitchbench_e5_time_stretch                1,200       357,436       $2.182942
+pitchbench_f1_melodic_line_id               520       239,709       $1.124148
+pitchbench_f2_chorale_voice_id              400       296,689       $1.089368
+─────────────────────────────────────────────────────────────────────────────
+TOTAL                                    18,336     8,746,496      $39.906812
+

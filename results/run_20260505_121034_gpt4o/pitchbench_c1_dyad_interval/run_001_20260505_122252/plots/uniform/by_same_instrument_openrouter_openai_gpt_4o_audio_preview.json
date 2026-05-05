@@ -1,0 +1,21 @@
+{
+  "group_key": "same_instrument",
+  "score_key": "interval_correct",
+  "score_label": "Interval accuracy (%)",
+  "x_values": [
+    false,
+    true
+  ],
+  "x_labels": [
+    "False",
+    "True"
+  ],
+  "mean_pct": [
+    5.0,
+    3.3333333333333335
+  ],
+  "n_samples": [
+    60,
+    60
+  ]
+}

@@ -1,0 +1,515 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-05T12:07:28.578244",
+    "argv": [
+      ".venv/bin/pitchbench",
+      "all",
+      "--models",
+      "audio_flamingo_next_instruct"
+    ],
+    "git_commit": "29bd3055db72f1762f3fb0bdf423a65a228c984d",
+    "git_dirty": true,
+    "model_name": "audio_flamingo_next_instruct",
+    "model_info": {
+      "status": "ok",
+      "model": "nvidia/audio-flamingo-next-hf",
+      "checkpoint": "audio_flamingo_next_instruct",
+      "device": "cuda:0"
+    },
+    "task_type": "trajectory",
+    "headline_metrics": [
+      "trajectory"
+    ],
+    "primary_filter_set": false,
+    "record_extras": [
+      "start_midi",
+      "end_midi",
+      "interval_st",
+      "traj_name"
+    ],
+    "sample_n": 20,
+    "sample_seed": 42,
+    "total_available": 640,
+    "stratified_by": "traj_name",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0
+    }
+  },
+  "summary": {
+    "total": 20,
+    "condition_n": 20,
+    "accuracy": {
+      "n": 20,
+      "trajectory": 0.0
+    },
+    "marginals": {
+      "source": {
+        "sine": {
+          "n": 9,
+          "trajectory_correct": 0.0
+        },
+        "sawtooth": {
+          "n": 5,
+          "trajectory_correct": 0.0
+        },
+        "triangle": {
+          "n": 5,
+          "trajectory_correct": 0.0
+        },
+        "square": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        }
+      },
+      "interval_st": {
+        "1": {
+          "n": 3,
+          "trajectory_correct": 0.0
+        },
+        "7": {
+          "n": 7,
+          "trajectory_correct": 0.0
+        },
+        "4": {
+          "n": 2,
+          "trajectory_correct": 0.0
+        },
+        "12": {
+          "n": 8,
+          "trajectory_correct": 0.0
+        }
+      },
+      "end_midi": {
+        "68": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "29": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "62": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "53": {
+          "n": 2,
+          "trajectory_correct": 0.0
+        },
+        "50": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "67": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "57": {
+          "n": 2,
+          "trajectory_correct": 0.0
+        },
+        "42": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "70": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "44": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "48": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "72": {
+          "n": 2,
+          "trajectory_correct": 0.0
+        },
+        "60": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "66": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "47": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "86": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "43": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        }
+      },
+      "start_midi": {
+        "69": {
+          "n": 4,
+          "trajectory_correct": 0.0
+        },
+        "36": {
+          "n": 3,
+          "trajectory_correct": 0.0
+        },
+        "60": {
+          "n": 4,
+          "trajectory_correct": 0.0
+        },
+        "54": {
+          "n": 3,
+          "trajectory_correct": 0.0
+        },
+        "79": {
+          "n": 2,
+          "trajectory_correct": 0.0
+        },
+        "64": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        },
+        "43": {
+          "n": 2,
+          "trajectory_correct": 0.0
+        },
+        "48": {
+          "n": 1,
+          "trajectory_correct": 0.0
+        }
+      },
+      "traj_name": {
+        "down": {
+          "n": 5,
+          "trajectory_correct": 0.0
+        },
+        "down_then_up": {
+          "n": 5,
+          "trajectory_correct": 0.0
+        },
+        "up": {
+          "n": 5,
+          "trajectory_correct": 0.0
+        },
+        "up_then_down": {
+          "n": 5,
+          "trajectory_correct": 0.0
+        }
+      }
+    },
+    "cost_usd": 0.0,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 69,
+      "end_midi": 68,
+      "start_note": "A4",
+      "traj_name": "down",
+      "interval_st": 1,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "down",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/A4~Gs4_sine_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 36,
+      "end_midi": 29,
+      "start_note": "C2",
+      "traj_name": "down",
+      "interval_st": 7,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "down",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C2~F1_sine_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "start_midi": 69,
+      "end_midi": 62,
+      "start_note": "A4",
+      "traj_name": "down",
+      "interval_st": 7,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "down",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/A4~D4_sawtooth_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "start_midi": 60,
+      "end_midi": 53,
+      "start_note": "C4",
+      "traj_name": "down",
+      "interval_st": 7,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "down",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C4~F3_sawtooth_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "start_midi": 54,
+      "end_midi": 50,
+      "start_note": "F#3",
+      "traj_name": "down",
+      "interval_st": 4,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "down",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/Fs3~D3_sawtooth_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 79,
+      "end_midi": 67,
+      "start_note": "G5",
+      "traj_name": "down_then_up",
+      "interval_st": 12,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "down, up",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/G5~G4_sine_glide_5000ms_valley.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 64,
+      "end_midi": 57,
+      "start_note": "E4",
+      "traj_name": "down_then_up",
+      "interval_st": 7,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "down, up",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/E4~A3_sine_glide_5000ms_valley.wav"
+    },
+    {
+      "source": "triangle",
+      "source_type": "waveform",
+      "start_midi": 54,
+      "end_midi": 42,
+      "start_note": "F#3",
+      "traj_name": "down_then_up",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "down, up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/Fs3~Fs2_triangle_glide_5000ms_valley.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 60,
+      "end_midi": 53,
+      "start_note": "C4",
+      "traj_name": "down_then_up",
+      "interval_st": 7,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "down, up",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C4~F3_sine_glide_5000ms_valley.wav"
+    },
+    {
+      "source": "triangle",
+      "source_type": "waveform",
+      "start_midi": 69,
+      "end_midi": 57,
+      "start_note": "A4",
+      "traj_name": "down_then_up",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "down, up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/A4~A3_triangle_glide_5000ms_valley.wav"
+    },
+    {
+      "source": "square",
+      "source_type": "waveform",
+      "start_midi": 69,
+      "end_midi": 70,
+      "start_note": "A4",
+      "traj_name": "up",
+      "interval_st": 1,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/A4~As4_square_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 43,
+      "end_midi": 44,
+      "start_note": "G2",
+      "traj_name": "up",
+      "interval_st": 1,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/G2~Gs2_sine_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 36,
+      "end_midi": 48,
+      "start_note": "C2",
+      "traj_name": "up",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C2~C3_sine_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 60,
+      "end_midi": 72,
+      "start_note": "C4",
+      "traj_name": "up",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C4~C5_sine_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "start_midi": 48,
+      "end_midi": 60,
+      "start_note": "C3",
+      "traj_name": "up",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C3~C4_sawtooth_glide_5000ms_linear.wav"
+    },
+    {
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "start_midi": 54,
+      "end_midi": 66,
+      "start_note": "F#3",
+      "traj_name": "up_then_down",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up, down",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/Fs3~Fs4_sawtooth_glide_5000ms_arch.wav"
+    },
+    {
+      "source": "triangle",
+      "source_type": "waveform",
+      "start_midi": 43,
+      "end_midi": 47,
+      "start_note": "G2",
+      "traj_name": "up_then_down",
+      "interval_st": 4,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up, down",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/G2~B2_triangle_glide_5000ms_arch.wav"
+    },
+    {
+      "source": "triangle",
+      "source_type": "waveform",
+      "start_midi": 79,
+      "end_midi": 86,
+      "start_note": "G5",
+      "traj_name": "up_then_down",
+      "interval_st": 7,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up, down",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/G5~D6_triangle_glide_5000ms_arch.wav"
+    },
+    {
+      "source": "sine",
+      "source_type": "waveform",
+      "start_midi": 36,
+      "end_midi": 43,
+      "start_note": "C2",
+      "traj_name": "up_then_down",
+      "interval_st": 7,
+      "raw_response": "'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_gt": "up, down",
+      "trajectory_pred": null,
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C2~G2_sine_glide_5000ms_arch.wav"
+    },
+    {
+      "source": "triangle",
+      "source_type": "waveform",
+      "start_midi": 60,
+      "end_midi": 72,
+      "start_note": "C4",
+      "traj_name": "up_then_down",
+      "interval_st": 12,
+      "raw_response": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",
+      "trajectory_gt": "up, down",
+      "trajectory_pred": "up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",
+      "trajectory_correct": 0,
+      "prompt_main": "Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row \u2014 count each movement as a single 'up' or 'down'. A change of direction asks for a new token.\nExamples:\n  'up'           \u2014 pitch rises throughout\n  'down'         \u2014 pitch falls throughout\n  'up, down'     \u2014 pitch rises then falls\n  'down, up'     \u2014 pitch falls then rises\nReply with ONLY the comma-separated list. Nothing else.",
+      "wav": "data/audio/pitchbench_d5_contour_continuous/C4~C5_triangle_glide_5000ms_arch.wav"
+    }
+  ]
+}
