@@ -203,7 +203,7 @@ def score_polyphonic_record(
     spn_pos,  spn_sc  = _score_spn(target_pitches, pred_spn)
     dor_pos,  dor_sc  = _score_doremi(target_pitches, pred_doremi)
     hz_pos,   hz_sc   = _score_hz(target_pitches, pred_hz)
-    any_sc = any_format_correct((midi_sc, spn_sc, dor_sc, hz_sc))
+    any_sc = any_format_correct((midi_sc, spn_sc, hz_sc))  # doremi excluded — pitch-class only
 
     target_spn    = [midi_to_note(m) for m in target_pitches]
     target_doremi = [PC_TO_SOLFEGE[m % 12] for m in target_pitches]

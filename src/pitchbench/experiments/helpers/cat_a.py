@@ -107,7 +107,7 @@ def _build_prompts(spec: CatASpec, cond: dict) -> dict[str, str]:
 
 # ── CSV record filtering ─────────────────────────────────────────────────────
 
-# Continuous-valued columns and legacy ABC aliases are stripped before the
+# Continuous-valued columns and ABC aliases are stripped before the
 # per-stimulus CSV is written. The unstripped records remain in memory for
 # the plot helper.
 _CSV_DROP_KEYS: frozenset[str] = frozenset({

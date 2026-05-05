@@ -238,6 +238,10 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
         "hz_per_pos":              str(hz_per_pos),
         "hz_n_pos_match":          n_hz_match,
         "hz_sequence_correct":     int(n_hz_match == n),
+        # Any format correct (doremi excluded — pitch-class only, reduced task)
+        "any_sequence_correct":    int(
+            n_midi_match == n or n_spn_match == n or n_hz_match == n
+        ),
         # Raw
         "raw_midi":                (raw_midi or "").strip(),
         "raw_spn":                 (raw_spn or "").strip(),
@@ -255,6 +259,7 @@ SPEC = CatDSpec(
     record_fn=record_for,
     headline_metrics=(
         "midi_sequence", "spn_sequence", "doremi_sequence", "hz_sequence",
+        "any_sequence",
     ),
     record_extras=("n_notes", "trial"),
     label_fn=lambda j: (

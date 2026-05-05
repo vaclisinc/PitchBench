@@ -143,7 +143,7 @@ SPEC = CatCSpec(
     task_type="quality",
     prompts_fn=prompts_for,
     record_fn=record_for,
-    headline_metrics=("quality", "root", "joint"),
+    headline_metrics=("quality",),
     record_extras=(
         "duration_ms", "same_instrument", "root_midi",
         "chord_quality_gt", "task",

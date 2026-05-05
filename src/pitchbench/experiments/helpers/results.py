@@ -848,7 +848,33 @@ def save_accuracies_csv(
     Partial-credit marginals (octave-only, pitch-class-only, within-tolerance)
     are intentionally omitted here so the file stays focused on exact accuracy.
     """
-    flat_rows = [r for r in _flatten_summary(summary) if not r[0].startswith("by_")]
+    # "accuracy.correct" is a timing-task artefact (b2/b3/b5); the per-IV
+    # breakdowns already carry correctness, so suppress the redundant rollup.
+    flat_rows = [
+        r for r in _flatten_summary(summary)
+        if not r[0].startswith("by_") and r[0] != "accuracy.correct"
+    ]
+
+    # Normalise accuracy metric names:
+    # 1. Strip "_sequence" suffix  (accuracy.midi_sequence → accuracy.midi)
+    # 2. Collapse a single non-format metric to bare "accuracy"
+    #    (accuracy.interval, accuracy.count, accuracy.answer, … → accuracy)
+    _FORMAT_NAMES = frozenset({"midi", "spn", "doremi", "hz", "any"})
+    acc_rows   = [(m, v, n) for m, v, n in flat_rows if m.startswith("accuracy.")]
+    other_rows = [(m, v, n) for m, v, n in flat_rows if not m.startswith("accuracy.")]
+    acc_rows   = [
+        (
+            m[: -len("_sequence")] if m.endswith("_sequence") else
+            m[: -len("_seq")]      if m.endswith("_seq")      else
+            m,
+            v, n,
+        )
+        for m, v, n in acc_rows
+    ]
+    if len(acc_rows) == 1 and acc_rows[0][0].split(".")[-1] not in _FORMAT_NAMES:
+        acc_rows = [("accuracy", acc_rows[0][1], acc_rows[0][2])]
+    flat_rows = other_rows + acc_rows
+
     marginal_rows = _marginal_csv_rows(summary.get("marginals", {}) or {})
 
     path = run_dir / f"accuracies_{_safe_stem(model_name)}.csv"
