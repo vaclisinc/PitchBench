@@ -119,7 +119,7 @@ _MELODY_FORMATS: tuple[tuple[str, str, str, str], ...] = (
 
 
 def melody_audit_str(record: dict[str, Any], label: str = "") -> str:
-    """One audit line for g1/g2-style melody/chorale records (3 formats)."""
+    """One audit line for f1/f2-style melody/chorale records (3 formats)."""
     parts: list[str] = [label.rstrip()] if label else []
     for fmt, gk, pk, ck in _MELODY_FORMATS:
         if gk not in record:

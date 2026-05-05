@@ -38,6 +38,7 @@ from pitchbench.experiments.helpers.audit import pitch_record_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
+    format_accuracy_dict,
     midi_to_note, standard_pitch_record,
 )
 from pitchbench.experiments.helpers.plots import save_combined_iv_plot, save_per_format_iv_plots
@@ -53,6 +54,13 @@ PITCHES    = config.pitchbench_e5_PITCHES
 TONE_MS    = config.pitchbench_e5_TONE_MS
 CONDITIONS = config.pitchbench_e5_CONDITIONS
 SOURCES    = config.pitchbench_e5_SOURCES
+
+FORMAT_METRICS = {
+    "midi": "midi_correct",
+    "spn": "spn_correct",
+    "doremi": "doremi_correct",
+    "hz": "hz_correct",
+}
 
 PROMPT_PREFIX      = (
     "Listen to this audio clip of a single musical note. The recording "
@@ -170,30 +178,17 @@ def run_one_model(
         sub = [r for r in records if r["condition"] == cond_name]
         per_cond[cond_name] = {
             "n":      len(sub),
-            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "spn":    round(sum(r["spn_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            **format_accuracy_dict(sub, FORMAT_METRICS),
         }
 
     per_source: dict[str, dict] = {}
     for src in SOURCES:
         sub = [r for r in records if r["source"] == src]
-        per_source[src] = {
-            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "spn":    round(sum(r["spn_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
-        }
+        per_source[src] = format_accuracy_dict(sub, FORMAT_METRICS)
 
     summary = {
         "total":          n,
-        "accuracy":   {
-            "midi":   round(sum(r["midi_correct"]   for r in records) / max(1, n), 4),
-            "spn":    round(sum(r["spn_correct"]    for r in records) / max(1, n), 4),
-            "doremi": round(sum(r["doremi_correct"] for r in records) / max(1, n), 4),
-            "hz":     round(sum(r["hz_correct"]     for r in records) / max(1, n), 4),
-        },
+        "accuracy":   format_accuracy_dict(records, FORMAT_METRICS),
         "by_condition":  per_cond,
         "by_source":     per_source,
     }
@@ -203,19 +198,19 @@ def run_one_model(
         f"  Stimuli     : {n}  ({len(SOURCES)} sources × {len(PITCHES)} pitches × {len(CONDITIONS)} conditions)",
         f"  Base dur.   : {TONE_MS} ms  (output length varies with speed factor)",
         f"",
-        f"  {'Condition':14s}  {'n':>5}  {'MIDI':>7}  {'SPN':>7}  {'Doremi':>8}  {'Hz':>6}",
-        f"  {'─' * 58}",
+        f"  {'Condition':14s}  {'n':>5}  {'MIDI':>7}  {'SPN':>7}  {'Doremi':>8}  {'Hz':>6}  {'All':>6}",
+        f"  {'─' * 67}",
     ]
     for cond_name, d in per_cond.items():
         summary_lines.append(
             f"  {cond_name:14s}  {d['n']:>5}  {d['midi']:>7.1%}  {d['spn']:>7.1%}  "
-            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}"
+            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}  {d['all']:>6.1%}"
         )
-    summary_lines += ["", "  Per source (MIDI | SPN | Doremi | Hz):"]
+    summary_lines += ["", "  Per source (MIDI | SPN | Doremi | Hz | All):"]
     for src, d in per_source.items():
         summary_lines.append(
             f"    {src:12s}: {d['midi']:.1%} | {d['spn']:.1%} | "
-            f"{d['doremi']:.1%} | {d['hz']:.1%}"
+            f"{d['doremi']:.1%} | {d['hz']:.1%} | {d['all']:.1%}"
         )
 
     print(f"\n{'=' * 60}")

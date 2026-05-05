@@ -135,12 +135,19 @@ DEFAULT_SAMPLE_SEED = 42
 EXPERIMENT_DEFAULTS: dict[str, dict] = {
     # Single-pitch ID (a)
     "pitchbench_a1_pitch_id":              {"per_stratum": 5, "strata": ("midi",)},
-    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 5,   "strata": ("condition", "interval")},
-    "pitchbench_a3_pitch_by_duration":     {"per_stratum": 5,   "strata": ("midi", "duration_ms")},
-    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 5,   "strata": ("midi", "is_control")},
-    "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 5,   "strata": ("midi", "detune_hz")},
+    # a2: do NOT stratify by `condition` or `interval` — both conditions
+    # always run together as a matched pair (see CatASpec.pair_key).
+    # Sampling runs on anchored records only; baseline twins come along.
+    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 5, "strata": ("ref_midi",)},
+    "pitchbench_a3_pitch_by_duration":     {"per_stratum": 5, "strata": ("midi", "duration_ms")},
+    # a4: do NOT stratify by `is_control` — control records are an ablation,
+    # not a separate stratum.
+    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 5, "strata": ("midi",)},
+    "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 5, "strata": ("midi", "detune_hz")},
     # Onsets / offsets (b)
-    "pitchbench_b1_pitch_in_silence":      {"per_stratum": 5,   "strata": ("condition", "midi")},
+    # b1: do NOT stratify by `condition` — hidden + baseline always run as a
+    # matched pair (see CatBSpec.pair_key in pitchbench_b1_pitch_in_silence.py).
+    "pitchbench_b1_pitch_in_silence":      {"per_stratum": 5, "strata": ("midi", "pos_ms")},
     "pitchbench_b2_onset_offset_single":   {"per_stratum": 5,   "strata": ("midi", "pos_ms")},
     "pitchbench_b3_onset_offset_specific": {"per_stratum": 5,   "strata": ("target_pos", "n_distractors")},
     "pitchbench_b4_pitch_at_time":         {"per_stratum": 5,   "strata": ("n_notes", "target_idx")},
@@ -149,7 +156,7 @@ EXPERIMENT_DEFAULTS: dict[str, dict] = {
     "pitchbench_c1_dyad_interval":         {"per_stratum": 5,   "strata": ("interval_st",)},
     "pitchbench_c2_chord_pitch_count":     {"per_stratum": 5,   "strata": ("n", "chord_quality")},
     "pitchbench_c3_chord_pitch_id":        {"per_stratum": 5,   "strata": ("chord_type",)},
-    "pitchbench_c4_chord_quality":         {"per_stratum": 5,   "strata": ("chord_quality", "task")},
+    "pitchbench_c4_chord_quality":         {"per_stratum": 5,   "strata": ("chord_quality_gt", "task")},
     # Sequences (d)
     "pitchbench_d1_seq_pitch_count":       {"per_stratum": 5,   "strata": ("n", "rhythm")},
     "pitchbench_d2_pitch_difference":      {"per_stratum": 5,   "strata": ("delta_cents", "order")},
@@ -165,8 +172,8 @@ EXPERIMENT_DEFAULTS: dict[str, dict] = {
     "pitchbench_e4_harmonic_saturation":   {"per_stratum": 5,   "strata": ("saturation_level", "midi")},
     "pitchbench_e5_time_stretch":          {"per_stratum": 5,   "strata": ("condition", "midi")},
     # Polyphony (g)
-    "pitchbench_g1_melodic_line_id":       {"per_stratum": 5,   "strata": ("n", "source_label")},
-    "pitchbench_g2_chorale_voice_id":      {"per_stratum": 5, "strata": ("chorale_slug",)},
+    "pitchbench_f1_melodic_line_id":       {"per_stratum": 5,   "strata": ("n", "source_label")},
+    "pitchbench_f2_chorale_voice_id":      {"per_stratum": 5, "strata": ("chorale_slug",)},
 }
 
 
@@ -202,8 +209,32 @@ BENCHMARK_TIMESTAMP_TOLERANCE_MS = 250
 BENCHMARK_ALL_SOURCES    = ALL_SOURCES
 BENCHMARK_WAVEFORMS      = WAVEFORMS
 BENCHMARK_GM_INSTRUMENTS = list(GM_PROGRAMS_V1.keys())
+BENCHMARK_CONTINUOUS_GM_INSTRUMENTS = [
+    "flute",
+    "trumpet",
+    "trombone",
+    "clarinet",
+    "oboe",
+    "violin",
+    "cello",
+    "organ",
+    "synth_lead",
+    "synth_pad",
+    "voice",
+]
+
+BENCHMARK_F1_MIXED_GROUPS: dict[str, list[str]] = {
+    "winds_and_strings": ["flute", "violin", "cello", "clarinet"],
+    "brass_reeds_synth": ["trumpet", "trombone", "oboe", "synth_pad"],
+}
 
 BENCHMARK_BASE_FREQS_A   = {"A3": 220.00, "A4": 440.00, "A5": 880.00}
+
+# When True, every cat-A condition stim is paired 1:1 with a matched
+# baseline (no-vibrato / no-detune / no-reference) twin and the baseline
+# numbers are reported alongside the headline accuracy. Set to False to
+# skip baselines entirely (faster runs, no `accuracy_baseline` block).
+INCLUDE_BASELINES: bool = True
 
 # Large literal dicts/lists kept here so per-experiment blocks below stay scannable.
 
@@ -256,6 +287,7 @@ BENCHMARK_C4_QUALITIES: dict[str, tuple[tuple[int, ...], str]] = {
     "sus4":       ((0, 5, 7),     "sus4"),
 }
 
+
 BENCHMARK_D5_TRAJECTORIES: list[dict] = [
     # gt_seq tokens are strictly alternating up/down — never two of the same in a row.
     # The "flat"/"same" trajectory was removed: this experiment counts direction
@@ -267,21 +299,19 @@ BENCHMARK_D5_TRAJECTORIES: list[dict] = [
 ]
 
 BENCHMARK_E2_EFFECTS: dict[str, dict] = {
-    "clean":        {},
-    "reverb_s":     {"type": "reverb",      "delay_s": 0.05,  "decay": 0.30},
-    "reverb_l":     {"type": "reverb",      "delay_s": 0.20,  "decay": 0.70},
-    "clip_50":      {"type": "clip",        "threshold": 0.50},
-    "clip_25":      {"type": "clip",        "threshold": 0.25},
-    "eq_lo_boost":  {"type": "eq_lo",       "cutoff_hz":  500, "gain_db":  12},
-    "eq_hi_boost":  {"type": "eq_hi",       "cutoff_hz": 2000, "gain_db":  12},
-    "eq_lo_cut":    {"type": "eq_lo",       "cutoff_hz":  500, "gain_db": -12},
-    "eq_hi_cut":    {"type": "eq_hi",       "cutoff_hz": 2000, "gain_db": -12},
-    "eq_telephone": {"type": "eq_hi",       "cutoff_hz": 1000, "gain_db": -24},
-    # Timbral effects — pitch unchanged, waveform shape changes substantially
-    "sat_light":    {"type": "saturation",  "drive":  2.0},   # mild tube warmth, adds odd harmonics
-    "sat_heavy":    {"type": "saturation",  "drive": 10.0},   # heavy distortion, dense harmonic spectrum
-    "harmonic_2nd": {"type": "harmonic",    "ratio": 2.0, "level": 0.5},  # adds octave partial (+12 st)
-    "harmonic_5th": {"type": "harmonic",    "ratio": 1.5, "level": 0.5},  # adds fifth partial (+7 st)
+    # Effects that genuinely threaten pitch perception. All RMS-matched to the
+    # dry signal in engine._apply_effect, so loudness does not leak in.
+    "clean":             {},
+    # f0-relative steep Butterworth filters
+    "highpass_above_f0": {"type": "highpass",    "cutoff_ratio": 1.5, "order": 6},   # removes fundamental → "missing fundamental" probe
+    "lowpass_at_f0":     {"type": "lowpass",     "cutoff_ratio": 1.2, "order": 6},   # strips harmonics, leaves fundamental
+    # Digital degradation
+    "bitcrush_4bit":     {"type": "bitcrush",    "bit_depth": 4},
+    # Plugin-quality non-linear / spatial / modulated
+    "distortion_heavy":  {"type": "saturation",  "drive_db": 30.0},                  # fundamental drops, harmonics dominate
+    "reverb_long":       {"type": "reverb_room", "room_size": 0.9, "damping": 0.4,
+                          "wet_level": 0.6, "dry_level": 0.4},                       # algorithmic tail, smears attack
+    "chorus_heavy":      {"type": "chorus",      "rate_hz": 1.2, "depth": 0.9, "mix": 0.6},  # detuned copies near f0
 }
 
 BENCHMARK_E4_SATURATIONS: dict[str, dict] = {
@@ -314,12 +344,11 @@ if EVAL:
     pitchbench_a1_SOURCES          = BENCHMARK_ALL_SOURCES
 
     # ── a2: pitch with reference ──────────────────────────────────────────
-    pitchbench_a2_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION
+    pitchbench_a2_REFERENCE_PITCHES = [42, 54, 60, 67, 69, 76, 79] # needs to be within a fixed rate
     pitchbench_a2_INTERVALS         = [-12, -7, -5, -4, -3, -2, -1, 0,
                                         1,  2,  3,  4,  5,  7, 12]
     pitchbench_a2_TONE_DURATION_MS  = BENCHMARK_DURATION_MS
     pitchbench_a2_GAP_MS            = 500
-    pitchbench_a2_CONDITIONS        = ["anchored", "baseline"]
     pitchbench_a2_SOURCES           = BENCHMARK_ALL_SOURCES
 
     # ── a3: pitch by duration ─────────────────────────────────────────────
@@ -346,7 +375,6 @@ if EVAL:
     pitchbench_b1_TONE_POSITIONS_MS = BENCHMARK_TONE_POSITIONS_MS
     pitchbench_b1_TONE_DURATION_MS  = BENCHMARK_DURATION_MS
     pitchbench_b1_TOTAL_SILENCE_MS  = BENCHMARK_TOTAL_DUR_MS
-    pitchbench_b1_CONDITIONS        = ["hidden", "baseline"]
     pitchbench_b1_SOURCES           = BENCHMARK_ALL_SOURCES
 
     # ── b2: onset/offset single ──────────────────────────────────────────
@@ -520,50 +548,51 @@ if EVAL:
     pitchbench_e5_CONDITIONS   = BENCHMARK_E5_CONDITIONS
     pitchbench_e5_SOURCES      = BENCHMARK_ALL_SOURCES
 
-    # ── f1: embedding geometry ───────────────────────────────────────────
-    pitchbench_f1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
-    pitchbench_f1_SOURCES = BENCHMARK_ALL_SOURCES
+    # # ── f1: embedding geometry ───────────────────────────────────────────
+    # pitchbench_f1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
+    # pitchbench_f1_SOURCES = BENCHMARK_ALL_SOURCES
 
-    # ── f2: token logits ─────────────────────────────────────────────────
-    pitchbench_f2_PITCHES          = [29, 43, 57, 71, 72]
-    pitchbench_f2_SOURCES          = BENCHMARK_ALL_SOURCES
-    pitchbench_f2_TONE_DURATION_MS = 2000
-    pitchbench_f2_TOP_K            = 200
-    pitchbench_f2_MAX_NEW_TOKENS   = 32
+    # # ── f2: token logits ─────────────────────────────────────────────────
+    # pitchbench_f2_PITCHES          = [29, 43, 57, 71, 72]
+    # pitchbench_f2_SOURCES          = BENCHMARK_ALL_SOURCES
+    # pitchbench_f2_TONE_DURATION_MS = 2000
+    # pitchbench_f2_TOP_K            = 200
+    # pitchbench_f2_MAX_NEW_TOKENS   = 32
 
-    # ── f3: knn oracle ───────────────────────────────────────────────────
-    pitchbench_f3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE
-    pitchbench_f3_SOURCES    = BENCHMARK_ALL_SOURCES
-    pitchbench_f3_K          = 1
-    pitchbench_f3_SPLIT_SEED = BENCHMARK_SEED
+    # # ── f3: knn oracle ───────────────────────────────────────────────────
+    # pitchbench_f3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE
+    # pitchbench_f3_SOURCES    = BENCHMARK_ALL_SOURCES
+    # pitchbench_f3_K          = 1
+    # pitchbench_f3_SPLIT_SEED = BENCHMARK_SEED
 
-    # ── g1: melodic line id ──────────────────────────────────────────────
-    pitchbench_g1_N_NOTES      = 10
-    pitchbench_g1_N_PARTS_LIST = [2, 3, 4]
-    pitchbench_g1_N_TRIALS     = 2
-    pitchbench_g1_DIST_N_MIN   = 1
-    pitchbench_g1_DIST_N_MAX   = 20
-    pitchbench_g1_DUR_JITTER   = 0.5
-    pitchbench_g1_TEMPOS       = {"slow": 1000, "medium": 500}
-    pitchbench_g1_PART_RANGES  = [(72, 83), (60, 71), (48, 59), (36, 47)]
-    pitchbench_g1_SEED         = BENCHMARK_SEED
-    pitchbench_g1_SOURCES      = BENCHMARK_GM_INSTRUMENTS
+    # ── f1: melodic line id ──────────────────────────────────────────────
+    pitchbench_f1_N_NOTES      = 10
+    pitchbench_f1_N_PARTS_LIST = [2, 3]
+    pitchbench_f1_N_TRIALS     = 2
+    pitchbench_f1_DIST_N_MIN   = 1
+    pitchbench_f1_DIST_N_MAX   = 20
+    pitchbench_f1_DUR_JITTER   = 0.5
+    pitchbench_f1_TEMPOS       = {"slow": 1000, "medium": 500}
+    pitchbench_f1_PART_RANGES  = [(72, 83), (60, 71), (48, 59), (36, 47)]
+    pitchbench_f1_MIXED_GROUPS = BENCHMARK_F1_MIXED_GROUPS
+    pitchbench_f1_SEED         = BENCHMARK_SEED
+    pitchbench_f1_SOURCES      = BENCHMARK_CONTINUOUS_GM_INSTRUMENTS
 
-    # ── g2: chorale voice id ─────────────────────────────────────────────
-    pitchbench_g2_N_VOICES         = 4
-    pitchbench_g2_MIN_SEG_NOTES    = 4
-    pitchbench_g2_MAX_SEG_SEC      = 30.0
-    pitchbench_g2_QPM              = 60.0
-    pitchbench_g2_VOICE_NAMES      = ["soprano", "alto", "tenor", "bass"]
-    pitchbench_g2_DEFAULT_CHORALES = ["bach/bwv66.6", "bach/bwv4.8",
+    # ── f2: chorale voice id ─────────────────────────────────────────────
+    pitchbench_f2_N_VOICES         = 4
+    pitchbench_f2_MIN_SEG_NOTES    = 4
+    pitchbench_f2_MAX_SEG_SEC      = 30.0
+    pitchbench_f2_QPM              = 60.0
+    pitchbench_f2_VOICE_NAMES      = ["soprano", "alto", "tenor", "bass"]
+    pitchbench_f2_DEFAULT_CHORALES = ["bach/bwv66.6", "bach/bwv4.8",
                                      "bach/bwv7.7", "bach/bwv26.6",
                                      "bach/bwv57.8"]
-    pitchbench_g2_MIXED_GROUPS     = {
+    pitchbench_f2_MIXED_GROUPS     = {
         "classical_quartet": ["flute", "violin", "cello", "bass"],
         "mixed_timbres":     ["piano", "trumpet", "clarinet", "guitar"],
     }
-    pitchbench_g2_SEED             = BENCHMARK_SEED
-    pitchbench_g2_SOURCES          = BENCHMARK_GM_INSTRUMENTS
+    pitchbench_f2_SEED             = BENCHMARK_SEED
+    pitchbench_f2_SOURCES          = BENCHMARK_GM_INSTRUMENTS
 
     # ── z1: NSynth pitch id ──────────────────────────────────────────────
     pitchbench_z1_N_PER_FAMILY = 10
@@ -587,7 +616,6 @@ else:
                                         1,  2,  3,  4,  5,  7, 12]   # ← edit me
     pitchbench_a2_TONE_DURATION_MS  = BENCHMARK_DURATION_MS          # ← edit me
     pitchbench_a2_GAP_MS            = 500                            # ← edit me
-    pitchbench_a2_CONDITIONS        = ["anchored", "baseline"]       # ← edit me
     pitchbench_a2_SOURCES           = BENCHMARK_ALL_SOURCES          # ← edit me
 
     # ── a3: pitch by duration ─────────────────────────────────────────────
@@ -614,7 +642,6 @@ else:
     pitchbench_b1_TONE_POSITIONS_MS = BENCHMARK_TONE_POSITIONS_MS    # ← edit me
     pitchbench_b1_TONE_DURATION_MS  = BENCHMARK_DURATION_MS          # ← edit me
     pitchbench_b1_TOTAL_SILENCE_MS  = BENCHMARK_TOTAL_DUR_MS         # ← edit me
-    pitchbench_b1_CONDITIONS        = ["hidden", "baseline"]         # ← edit me
     pitchbench_b1_SOURCES           = BENCHMARK_ALL_SOURCES          # ← edit me
 
     # ── b2: onset/offset single ──────────────────────────────────────────
@@ -788,50 +815,34 @@ else:
     pitchbench_e5_CONDITIONS  = BENCHMARK_E5_CONDITIONS              # ← edit me
     pitchbench_e5_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
 
-    # ── f1: embedding geometry ───────────────────────────────────────────
-    pitchbench_f1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE             # ← edit me
-    pitchbench_f1_SOURCES = BENCHMARK_ALL_SOURCES                    # ← edit me
+    # ── f1: melodic line id ──────────────────────────────────────────────
+    pitchbench_f1_N_NOTES      = 10                                  # ← edit me
+    pitchbench_f1_N_PARTS_LIST = [2, 3, 4]                           # ← edit me
+    pitchbench_f1_N_TRIALS     = 2                                   # ← edit me
+    pitchbench_f1_DIST_N_MIN   = 1                                   # ← edit me
+    pitchbench_f1_DIST_N_MAX   = 20                                  # ← edit me
+    pitchbench_f1_DUR_JITTER   = 0.5                                 # ← edit me
+    pitchbench_f1_TEMPOS       = {"slow": 1000, "medium": 500}       # ← edit me
+    pitchbench_f1_PART_RANGES  = [(72, 83), (60, 71), (48, 59), (36, 47)] # ← edit me
+    pitchbench_f1_MIXED_GROUPS = BENCHMARK_F1_MIXED_GROUPS           # ← edit me
+    pitchbench_f1_SEED         = BENCHMARK_SEED                      # ← edit me
+    pitchbench_f1_SOURCES      = BENCHMARK_CONTINUOUS_GM_INSTRUMENTS # ← edit me
 
-    # ── f2: token logits ─────────────────────────────────────────────────
-    pitchbench_f2_PITCHES          = [29, 43, 57, 71, 72]            # ← edit me
-    pitchbench_f2_SOURCES          = BENCHMARK_ALL_SOURCES           # ← edit me
-    pitchbench_f2_TONE_DURATION_MS = 2000                            # ← edit me
-    pitchbench_f2_TOP_K            = 200                             # ← edit me
-    pitchbench_f2_MAX_NEW_TOKENS   = 32                              # ← edit me
-
-    # ── f3: knn oracle ───────────────────────────────────────────────────
-    pitchbench_f3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE          # ← edit me
-    pitchbench_f3_SOURCES    = BENCHMARK_ALL_SOURCES                 # ← edit me
-    pitchbench_f3_K          = 1                                     # ← edit me
-    pitchbench_f3_SPLIT_SEED = BENCHMARK_SEED                        # ← edit me
-
-    # ── g1: melodic line id ──────────────────────────────────────────────
-    pitchbench_g1_N_NOTES      = 10                                  # ← edit me
-    pitchbench_g1_N_PARTS_LIST = [2, 3, 4]                           # ← edit me
-    pitchbench_g1_N_TRIALS     = 2                                   # ← edit me
-    pitchbench_g1_DIST_N_MIN   = 1                                   # ← edit me
-    pitchbench_g1_DIST_N_MAX   = 20                                  # ← edit me
-    pitchbench_g1_DUR_JITTER   = 0.5                                 # ← edit me
-    pitchbench_g1_TEMPOS       = {"slow": 1000, "medium": 500}       # ← edit me
-    pitchbench_g1_PART_RANGES  = [(72, 83), (60, 71), (48, 59), (36, 47)] # ← edit me
-    pitchbench_g1_SEED         = BENCHMARK_SEED                      # ← edit me
-    pitchbench_g1_SOURCES      = BENCHMARK_GM_INSTRUMENTS            # ← edit me
-
-    # ── g2: chorale voice id ─────────────────────────────────────────────
-    pitchbench_g2_N_VOICES         = 4                               # ← edit me
-    pitchbench_g2_MIN_SEG_NOTES    = 4                               # ← edit me
-    pitchbench_g2_MAX_SEG_SEC      = 30.0                            # ← edit me
-    pitchbench_g2_QPM              = 60.0                            # ← edit me
-    pitchbench_g2_VOICE_NAMES      = ["soprano", "alto", "tenor", "bass"]   # ← edit me
-    pitchbench_g2_DEFAULT_CHORALES = ["bach/bwv66.6", "bach/bwv4.8",
+    # ── f2: chorale voice id ─────────────────────────────────────────────
+    pitchbench_f2_N_VOICES         = 4                               # ← edit me
+    pitchbench_f2_MIN_SEG_NOTES    = 4                               # ← edit me
+    pitchbench_f2_MAX_SEG_SEC      = 30.0                            # ← edit me
+    pitchbench_f2_QPM              = 60.0                            # ← edit me
+    pitchbench_f2_VOICE_NAMES      = ["soprano", "alto", "tenor", "bass"]   # ← edit me
+    pitchbench_f2_DEFAULT_CHORALES = ["bach/bwv66.6", "bach/bwv4.8",
                                      "bach/bwv7.7", "bach/bwv26.6",
                                      "bach/bwv57.8"]                # ← edit me
-    pitchbench_g2_MIXED_GROUPS     = {
+    pitchbench_f2_MIXED_GROUPS     = {
         "classical_quartet": ["flute", "violin", "cello", "bass"],
         "mixed_timbres":     ["piano", "trumpet", "clarinet", "guitar"],
     }                                                                # ← edit me
-    pitchbench_g2_SEED             = BENCHMARK_SEED                  # ← edit me
-    pitchbench_g2_SOURCES          = BENCHMARK_GM_INSTRUMENTS        # ← edit me
+    pitchbench_f2_SEED             = BENCHMARK_SEED                  # ← edit me
+    pitchbench_f2_SOURCES          = BENCHMARK_GM_INSTRUMENTS        # ← edit me
 
     # ── z1: NSynth pitch id ──────────────────────────────────────────────
     pitchbench_z1_N_PER_FAMILY = 10                                  # ← edit me

@@ -4,44 +4,26 @@ d2 — Pitch difference (binary higher/lower).
 Question: given two sequential tones, which one is higher in pitch, as a
 function of the cents difference between them and the absolute base frequency?
 
-Universal IVs (per the v2 contract): duration_ms, source, base_midi.
+Universal IVs: duration_ms, source.
 Experiment-specific IVs:
-    base_freq_hz:    {220, 440, 880}  (A3 / A4 / A5)
+    base_name:       {A3, A4, A5}
     delta_cents:     {1, 2, 5, 10, 25, 50, 100, 200, 400, 700, 1200}
-    separation_ms:   {200, 500, 1000, 2000}   (silence between the two tones)
-    order:           {first_higher, second_higher}
-
-Fixed conditions: equal level; deterministic randomised order seeded by
-`--seed`; instruments use MIDI pitch bend for fractional-cent detuning.
+    separation_ms:   {200, 500, 1000, 2000}
+    order:           {0=low first, 1=high first}
 
 The model is asked a single binary question; chance = 50 %.
-
-Usage::
-    pitchbench --id d2 --preview
-    pitchbench --id d2 --models audio_flamingo_next_instruct
 """
 
 from __future__ import annotations
 
-import argparse
 import random
 from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_alm
-from pitchbench.experiments.helpers.audit import audit_line
-from pitchbench.experiments.helpers.dispatcher import dispatch
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
+from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 
-
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_d2_*)
+EXP_NAME            = Path(__file__).stem
 BASE_FREQS          = config.pitchbench_d2_BASE_FREQS
 DELTA_CENTS         = config.pitchbench_d2_DELTA_CENTS
 SEPARATION_MS       = config.pitchbench_d2_SEPARATION_MS
@@ -57,47 +39,44 @@ PROMPT = (
 )
 
 
-# ── Conditions ────────────────────────────────────────────────────────────────
-
 def _cents_above(base_hz: float, cents: float) -> float:
     return base_hz * (2 ** (cents / 1200))
 
 
-def build_conditions(
-    durations_ms: list[int],
-    separations_ms: list[int],
-    n_trials: int,
-    seed: int,
-) -> list[dict]:
-    rng = random.Random(seed)
+def build_conditions() -> list[dict]:
+    rng = random.Random(DEFAULT_SEED)
     rows: list[dict] = []
     for src in SOURCES:
         for base_name, base_hz in BASE_FREQS.items():
             for delta in DELTA_CENTS:
                 high_hz = _cents_above(base_hz, delta)
-                for dur_ms in durations_ms:
-                    for sep_ms in separations_ms:
-                        for trial in range(n_trials):
-                            order = rng.randint(0, 1)   # 0 = low first, 1 = high first
+                for dur_ms in config.DEFAULT_DURATIONS_MS:
+                    for sep_ms in SEPARATION_MS:
+                        for trial in range(DEFAULT_N_TRIALS):
+                            order = rng.randint(0, 1)
                             rows.append({
-                                "source":       src,
-                                "duration_ms":  dur_ms,
+                                "source":        src,
+                                "duration_ms":   dur_ms,
                                 "separation_ms": sep_ms,
-                                "base_name":    base_name,
-                                "base_hz":      round(base_hz, 4),
-                                "delta_cents":  delta,
-                                "high_hz":      round(high_hz, 4),
-                                "order":        order,
-                                "answer_gt":    "first" if order == 1 else "second",
-                                "trial":        trial,
+                                "base_name":     base_name,
+                                "base_hz":       round(base_hz, 4),
+                                "delta_cents":   delta,
+                                "high_hz":       round(high_hz, 4),
+                                "order":         order,
+                                "answer_gt":     "first" if order == 1 else "second",
+                                "trial":         trial,
                             })
     return rows
 
 
-def _wav_for(c: dict) -> Path:
+def wav_for(c: dict) -> Path:
     freqs = ([c["base_hz"], c["high_hz"]] if c["order"] == 0
              else [c["high_hz"], c["base_hz"]])
     return engine.sequence_hz(freqs, c["source"], c["duration_ms"], c["separation_ms"])
+
+
+def prompts_for(_: dict) -> dict[str, str]:
+    return {"main": PROMPT}
 
 
 def _parse_binary(text: str) -> str | None:
@@ -107,140 +86,53 @@ def _parse_binary(text: str) -> str | None:
     return None
 
 
-# ── Run one model ─────────────────────────────────────────────────────────────
-
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
-
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        wav = str(_wav_for(c))
-        jobs.append({"wav": wav, "cond": c})
-
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c    = job["cond"]
-        out  = query_alm(model_name, job["wav"], PROMPT)
-        raw  = (out["result"] or "").strip()
-        pred = _parse_binary(raw)
-        ok   = (pred == c["answer_gt"]) if pred else False
-        return {
-            **c,
-            "wav":            job["wav"],
-            "raw_response":   raw,
-            "answer_pred":    pred,
-            "answer_correct": int(ok),
-            "prompt":         PROMPT,
-            "model_params":   out["model_params"],
-        }
-
-    raw_results = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"{j['cond']['base_name']} Δ={j['cond']['delta_cents']:>5}c sep={j['cond']['separation_ms']:>4}ms dur={j['cond']['duration_ms']:>4}ms",
-        result_label_fn=lambda j, r: audit_line(
-            f"{j['cond']['base_name']} Δ={j['cond']['delta_cents']:>5}c sep={j['cond']['separation_ms']:>4}ms",
-            gt=r['answer_gt'],
-            pred=r['answer_pred'],
-            correct=bool(r['answer_correct']),
-        ),
-    )
-    records: list[dict] = [r for r in raw_results if r is not None]
-
-    n        = len(records)
-    n_corr   = sum(r["answer_correct"] for r in records)
-    overall  = round(n_corr / n, 4) if n else None
-    summary  = {"total": n, "accuracy": overall, "chance": 0.5}
-
-    summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Sources : {SOURCES}",
-        f"  Stimuli : {n}",
-        f"  Overall : {overall:.1%}  (chance = 50 %)" if overall is not None else "  Overall : N/A",
-    ]
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
-
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, base_freqs=BASE_FREQS,
-        delta_cents=DELTA_CENTS, separations_ms=SEPARATION_MS,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
-        prompt=PROMPT,
-        **(sample_info or {}),
-    )
-    save_results(
-        EXP_NAME, model_name, records, summary, metadata, summary_lines,
-        run_dir=run_dir,
-        formats=(),                  # binary, no four-format pitch scoring
-        extra_metrics=("answer_correct",),
-    )
-    return summary
+def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
+    raw  = responses["main"]
+    pred = _parse_binary(raw)
+    ok   = (pred == c["answer_gt"]) if pred else False
+    return {
+        "source":         c["source"],
+        "duration_ms":    c["duration_ms"],
+        "separation_ms":  c["separation_ms"],
+        "base_name":      c["base_name"],
+        "base_hz":        c["base_hz"],
+        "delta_cents":    c["delta_cents"],
+        "high_hz":        c["high_hz"],
+        "order":          c["order"],
+        "trial":          c["trial"],
+        "answer_gt":      c["answer_gt"],
+        "raw_response":   raw,
+        "answer_pred":    pred,
+        "answer_correct": int(ok),
+    }
 
 
-# ── Entry points ──────────────────────────────────────────────────────────────
-
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview",   action="store_true")
-    parser.add_argument("--models",    nargs="+", metavar="MODEL")
-    parser.add_argument("--n-trials",  type=int, default=DEFAULT_N_TRIALS)
-    parser.add_argument("--seed",      type=int, default=DEFAULT_SEED)
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatDSpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    task_type="binary",
+    prompts_fn=prompts_for,
+    record_fn=record_for,
+    headline_metrics=("answer",),
+    record_extras=(
+        "duration_ms", "separation_ms", "base_name", "delta_cents", "order", "trial",
+    ),
+    label_fn=lambda j: (
+        f"{j['cond']['base_name']} Δ={j['cond']['delta_cents']:>5}c "
+        f"sep={j['cond']['separation_ms']:>4}ms "
+        f"dur={j['cond']['duration_ms']:>4}ms"
+    ),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    all_conds = build_conditions(
-        config.DEFAULT_DURATIONS_MS, SEPARATION_MS, args.n_trials, args.seed,
-    )
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        _wav_for(c)
-    print(f"Experiment  : {EXP_NAME}")
-    print(f"Sources     : {SOURCES}")
-    print(f"Seed        : {args.seed}")
-    print(f"Trials      : {len(conds)}  "
-          f"({len(SOURCES)} sources × {len(BASE_FREQS)} bases × {len(DELTA_CENTS)} deltas × "
-          f"{len(config.DEFAULT_DURATIONS_MS)} durs × {len(SEPARATION_MS)} seps × {args.n_trials} trials)")
-    print(f"Audio dir   : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_d_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    all_conds = build_conditions(
-        config.DEFAULT_DURATIONS_MS, SEPARATION_MS, args.n_trials, args.seed,
-    )
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        _wav_for(c)
+def run() -> dict | None:
+    return run_cat_d_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

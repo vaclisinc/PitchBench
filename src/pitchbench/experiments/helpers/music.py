@@ -7,7 +7,7 @@ import os
 import re
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 NOTE_NAMES    = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 FLAT_TO_SHARP = {"Db": "C#", "Eb": "D#", "Fb": "E", "Gb": "F#",
@@ -116,6 +116,44 @@ def extract_freq(text: str) -> float | None:
         v = float(m.group(1))
         return v if 16.0 <= v <= 20000.0 else None
     return None
+
+
+POINT_PITCH_FORMATS: tuple[str, ...] = ("midi", "spn", "doremi", "hz", "any")
+
+
+def any_format_correct(values: Iterable[Any]) -> int:
+    """Return 1 iff any provided format score counts as correct."""
+    for value in values:
+        if isinstance(value, (int, float, bool)) and bool(value):
+            return 1
+    return 0
+
+
+def format_accuracy_dict(
+    records: list[dict[str, Any]],
+    metric_map: dict[str, str],
+    *,
+    include_all: bool = True,
+) -> dict[str, float]:
+    """Average the binary correctness columns listed in ``metric_map``.
+
+    When ``include_all`` is true, also emit ``any`` = fraction of records for
+    which any listed format was correct.
+    """
+    out: dict[str, float] = {}
+    present_cols: list[str] = []
+    for fmt, col in metric_map.items():
+        vals = [r[col] for r in records if isinstance(r.get(col), (int, float, bool))]
+        out[fmt] = round(sum(vals) / len(vals), 4) if vals else 0.0
+        if vals:
+            present_cols.append(col)
+    if include_all and present_cols:
+        any_vals = [
+            any_format_correct(r.get(col) for col in present_cols)
+            for r in records
+        ]
+        out["any"] = round(sum(any_vals) / len(any_vals), 4) if any_vals else 0.0
+    return out
 
 
 def extract_midi(text: str) -> int | None:
@@ -651,6 +689,10 @@ def standard_pitch_record(
     hz_abs    = abs(hz_pred - hz_gt) if hz_pred is not None else None
     hz_ratio  = (hz_pred / hz_gt) if (hz_pred is not None and hz_gt > 0) else None
     hz_ok     = int(hz_ratio is not None and 0.99 <= hz_ratio <= 1.01)
+    midi_ok   = int(midi_err == 0) if midi_err is not None else 0
+    spn_ok    = int(spn_pred == note_gt)
+    doremi_ok = int(doremi_dist == 0) if doremi_dist is not None else 0
+    any_ok    = any_format_correct((midi_ok, spn_ok, doremi_ok, hz_ok))
 
     return {
         **extra_meta,
@@ -659,20 +701,20 @@ def standard_pitch_record(
         # ── MIDI format ───────────────────────────────────────────────────────
         "midi_gt":             midi_gt,
         "midi_pred":           midi_pred,
-        "midi_correct":        int(midi_err == 0) if midi_err is not None else 0,
+        "midi_correct":        midi_ok,
         "midi_within_1":       int(midi_err is not None and midi_err <= 1),
         "midi_pc_correct":     int(midi_pred is not None and midi_pred % 12 == midi_gt % 12),
         "midi_octave_correct": int(midi_pred is not None and midi_pred // 12 == midi_gt // 12),
         # ── SPN format ────────────────────────────────────────────────────────
         "spn_gt":              note_gt,
         "spn_pred":            spn_pred,
-        "spn_correct":         int(spn_pred == note_gt),
+        "spn_correct":         spn_ok,
         "spn_pc_correct":      int(spn_letter is not None and spn_letter == gt_letter),
         "spn_octave_correct":  int(spn_octave is not None and spn_octave == gt_octave),
         # ── Doremi format ─────────────────────────────────────────────────────
         "doremi_gt":           doremi_gt_str,
         "doremi_pred":         doremi_pred_str,
-        "doremi_correct":      int(doremi_dist == 0) if doremi_dist is not None else 0,
+        "doremi_correct":      doremi_ok,
         # ── Hz format ─────────────────────────────────────────────────────────
         # hz_correct is binary: pred / gt within [0.99, 1.01] (±1% tolerance).
         # The legacy ≤1Hz absolute-error rule was scale-dependent (lenient at
@@ -681,12 +723,13 @@ def standard_pitch_record(
         "hz_gt":               round(hz_gt, 4),
         "hz_pred":             hz_pred,
         "hz_correct":          hz_ok,
+        "any_correct":         any_ok,
         "hz_abs_error":        round(hz_abs, 4) if hz_abs is not None else None,
         "hz_ratio":            round(hz_ratio, 6) if hz_ratio is not None else None,
         # ── Legacy aliases (kept so existing plot helpers/aggregations work) ──
         "abc_gt":              note_gt,
         "abc_pred":            spn_pred,
-        "abc_correct":         int(spn_pred == note_gt),
+        "abc_correct":         spn_ok,
         # ── Raw responses ─────────────────────────────────────────────────────
         "raw_midi":            (raw_midi or "").strip(),
         "raw_spn":             (raw_spn or "").strip(),

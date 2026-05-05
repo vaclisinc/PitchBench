@@ -45,8 +45,8 @@ EXP_DESCRIPTIONS = {
     "pitchbench_e3_background_effects":    "Pitch ID embedded in real-world background noise (rain, crowd, …).",
     "pitchbench_e4_harmonic_saturation":   "Pitch ID under increasing harmonic-saturation drive.",
     "pitchbench_e5_time_stretch":          "Pitch ID with resample (pitch-shift) vs time-stretch (pitch preserved).",
-    "pitchbench_g1_melodic_line_id":       "Identify the pitch sequence of one part within a polyphonic mix.",
-    "pitchbench_g2_chorale_voice_id":      "Identify a target voice in a four-part Bach chorale rendering.",
+    "pitchbench_f1_melodic_line_id":       "Identify the pitch sequence of one part within a polyphonic mix.",
+    "pitchbench_f2_chorale_voice_id":      "Identify a target voice in a four-part Bach chorale rendering.",
 }
 
 
@@ -76,7 +76,7 @@ def write_readme(staging: Path) -> Path:
         f"  - config_name: {c['name']}\n"
         f"    data_files:\n"
         f"      - split: test\n"
-        f"        path: {c['name']}/**\n"
+        f"        path: {c['name']}/*\n"
         for c in configs
     )
 
@@ -90,7 +90,7 @@ def write_readme(staging: Path) -> Path:
 license: cc-by-4.0
 task_categories:
   - audio-classification
-  - audio-to-text
+  - audio-text-to-text
 language:
   - en
 tags:
@@ -179,6 +179,7 @@ Released under **CC-BY-4.0**.
 
 
 def upload(staging: Path, repo_id: str, private: bool, token: str | None) -> None:
+    import shutil
     from huggingface_hub import HfApi, create_repo
 
     api = HfApi(token=token)
@@ -190,21 +191,46 @@ def upload(staging: Path, repo_id: str, private: bool, token: str | None) -> Non
         token=token,
     )
 
+    # upload_large_folder caches resume state at <staging>/.cache/huggingface/upload/.
+    # That cache is keyed per-folder, not per-repo: if the target repo has
+    # changed since the last attempt, the cache will incorrectly mark files as
+    # already committed and the upload will silently push only the README.
+    # Stamp the target repo and invalidate when it changes.
+    cache_dir = staging / ".cache" / "huggingface" / "upload"
+    stamp = staging / ".cache" / "huggingface" / "_target_repo"
+    prev = stamp.read_text().strip() if stamp.exists() else None
+    if prev and prev != repo_id and cache_dir.exists():
+        print(f"Target repo changed ({prev} → {repo_id}); clearing resume cache.")
+        shutil.rmtree(cache_dir)
+    stamp.parent.mkdir(parents=True, exist_ok=True)
+    stamp.write_text(repo_id)
+
     print(f"Uploading {staging} → {repo_id} (this can take a while)…")
-    # upload_large_folder handles parallelism, retries, and resumption.
     api.upload_large_folder(
         folder_path=str(staging),
         repo_id=repo_id,
         repo_type="dataset",
     )
-    print(f"\nDone. Dataset is at https://huggingface.co/datasets/{repo_id}")
+
+    # Verify: list the repo and ensure files actually landed.
+    files = api.list_repo_files(repo_id, repo_type="dataset")
+    n_wav = sum(1 for f in files if f.endswith(".wav"))
+    n_meta = sum(1 for f in files if f.endswith("metadata.jsonl"))
+    print(f"\nRepo now contains: {len(files)} files ({n_wav} wav, {n_meta} metadata.jsonl).")
+    if n_wav == 0:
+        raise SystemExit(
+            "No WAV files in the remote repo — upload silently failed. "
+            "Try removing the resume cache and re-running:\n"
+            f"  rm -rf {cache_dir}\n  python upload_to_hf.py"
+        )
+    print(f"Done. Dataset is at https://huggingface.co/datasets/{repo_id}")
 
 
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--staging", type=Path, default=Path("pitchbench_hf"))
-    p.add_argument("--repo", default="vaclis/PitchBench",
-                   help="Target HF repo (default: vaclis/PitchBench)")
+    p.add_argument("--repo", default="pitchbench-authors/PitchBench",
+                   help="Target HF repo (default: pitchbench-authors/PitchBench)")
     p.add_argument("--private", action="store_true",
                    help="Create the repo as private (flip to public later in the UI).")
     p.add_argument("--token", default=None,

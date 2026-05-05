@@ -26,6 +26,7 @@ from pitchbench.experiments.helpers.audit import pitch_record_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
+    format_accuracy_dict,
     midi_to_note,
     standard_pitch_record,
 )
@@ -48,6 +49,13 @@ PROMPT_HZ_FULL     = "Listen to this audio clip of a single musical note. " + PR
 
 SOURCES = config.pitchbench_e1_SOURCES
 TONE_MS = config.pitchbench_e1_TONE_MS
+
+FORMAT_METRICS = {
+    "midi": "midi_correct",
+    "abc": "abc_correct",
+    "doremi": "doremi_correct",
+    "hz": "hz_correct",
+}
 
 
 def build_conditions() -> list[dict]:
@@ -121,20 +129,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         sub = [r for r in records if r["loudness_db"] == db]
         per_loudness[db] = {
             "n":      len(sub),
-            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "abc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            **format_accuracy_dict(sub, FORMAT_METRICS),
         }
 
     summary = {
         "total":          n,
-        "accuracy":   {
-            "midi":   round(sum(r["midi_correct"]   for r in records) / max(1, n), 4),
-            "abc":    round(sum(r["abc_correct"]    for r in records) / max(1, n), 4),
-            "doremi": round(sum(r["doremi_correct"] for r in records) / max(1, n), 4),
-            "hz":     round(sum(r["hz_correct"]     for r in records) / max(1, n), 4),
-        },
+        "accuracy":   format_accuracy_dict(records, FORMAT_METRICS),
         "by_loudness": per_loudness,
     }
 
@@ -147,14 +147,15 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  {'ABC':>6}  {summary['accuracy']['abc']:>9.1%}",
         f"  {'Doremi':>6}  {summary['accuracy']['doremi']:>9.1%}",
         f"  {'Hz':>6}  {summary['accuracy']['hz']:>9.1%}",
+        f"  {'All':>6}  {summary['accuracy']['all']:>9.1%}",
         f"",
-        f"  {'dBFS':>6}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
-        f"  {'─' * 50}",
+        f"  {'dBFS':>6}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}  {'All':>6}",
+        f"  {'─' * 59}",
     ]
     for db, d in per_loudness.items():
         summary_lines.append(
             f"  {db:>6}  {d['n']:>5}  {d['midi']:>7.1%}  {d['abc']:>7.1%}  "
-            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}"
+            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}  {d['all']:>6.1%}"
         )
 
     print(f"\n{'=' * 60}")
@@ -197,6 +198,7 @@ def _save_plot(records: list[dict], run_dir: Path, model_name: str) -> None:
         ("ABC (note name)", "abc_correct"),
         ("Doremi (solfege)", "doremi_correct"),
         ("Hz (frequency)", "hz_correct"),
+        ("Any format", "any_correct"),
     ]:
         accs = []
         for db in LOUDNESS_DB:

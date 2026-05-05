@@ -191,7 +191,7 @@ _IV_CANONICAL: dict[str, str] = {
     "duration_ms":          "duration",
     "note_duration_ms":     "duration",
     "tone_ms":              "duration",
-    # Source-label aliases (g1/g2 use source_label; rest use source)
+    # Source-label aliases (f1/f2 use source_label; rest use source)
     "source_label":         "source",
     # Reference / anchor pitches
     "ref_midi":             "ref_pitch",
@@ -220,7 +220,7 @@ _IV_CANONICAL: dict[str, str] = {
     "separation_ms":        "separation",
     # Chord / harmony
     "chord_quality_gt":     "chord_quality",
-    # G1 / G2
+    # f1 / G2
     "x":                    "voice",
     "chorale_id":           "chorale",
     "inst_cfg":             "instrumentation",
@@ -236,12 +236,20 @@ _METRIC_CANONICAL: dict[str, str] = {
     "spn_correct":             "spn",
     "doremi_correct":          "doremi",
     "hz_correct":              "hz",
+    "any_correct":             "any",
     # Sequence-level format scoring (d7)
     "midi_sequence_correct":   "midi",
     "abc_sequence_correct":    "abc",
     "spn_sequence_correct":    "spn",
     "doremi_sequence_correct": "doremi",
     "hz_sequence_correct":     "hz",
+    "any_sequence_correct":    "any",
+    # Sequence-level format scoring (f1 / f2)
+    "midi_seq_correct":        "midi",
+    "spn_seq_correct":         "spn",
+    "doremi_seq_correct":      "doremi",
+    "hz_seq_correct":          "hz",
+    "any_seq_correct":         "any",
     # Tolerance / single-metric scores
     "midi_within_1":           "midi_within_1",
     "interval_within_1":       "interval_within_1",
@@ -281,7 +289,7 @@ def _is_iv_column(name: str) -> bool:
 
 def summarise_marginals(
     records: list[dict[str, Any]],
-    formats: tuple[str, ...] = ("midi", "spn", "doremi", "hz"),
+    formats: tuple[str, ...] = ("midi", "spn", "doremi", "hz", "any"),
     *,
     extra_metrics: tuple[str, ...] = (),
 ) -> dict[str, dict[Any, dict[str, Any]]]:
@@ -721,6 +729,10 @@ def save_format_accuracy_csv(
 _NON_METRIC_KEYS = frozenset({
     "total", "valid", "marginals", "cost_usd", "total_tokens",
     "chance",
+    # cat-A condition/baseline split counts — not accuracy metrics
+    "condition_n", "baseline_n",
+    # legacy names kept for backward compatibility with older result files
+    "primary_n", "secondary_n",
 })
 
 
@@ -774,6 +786,17 @@ def _marginal_csv_rows(
     format-independent tasks emit ``by_n_notes.5`` rather than
     ``by_n_notes.5.count``).
     """
+    def _include_metric(metric_name: str) -> bool:
+        # `accuracies_<model>.csv` is meant to report exact-match headline
+        # accuracies, not auxiliary partial-credit or tolerance slices.
+        excluded_suffixes = ("_pc_correct", "_octave_correct", "_within_1")
+        excluded_exact = {"within_100ms_both", "within_500ms_both"}
+        if metric_name.endswith(excluded_suffixes):
+            return False
+        if metric_name in excluded_exact:
+            return False
+        return True
+
     rows: list[tuple[str, Any, int]] = []
     for var, groups in marginals.items():
         canon_var = _canon_iv(var)
@@ -781,7 +804,7 @@ def _marginal_csv_rows(
         present_metrics: set[str] = set()
         for entry in groups.values():
             for k, v in entry.items():
-                if k != "n" and v is not None:
+                if k != "n" and v is not None and _include_metric(k):
                     present_metrics.add(k)
         if not present_metrics:
             continue
@@ -822,6 +845,8 @@ def save_accuracies_csv(
     :func:`summarise_marginals` so naming is consistent across experiments.
     Manually-defined ``by_*`` keys in the summary dict are filtered out of
     the CSV (they remain in the JSON record for backwards compatibility).
+    Partial-credit marginals (octave-only, pitch-class-only, within-tolerance)
+    are intentionally omitted here so the file stays focused on exact accuracy.
     """
     flat_rows = [r for r in _flatten_summary(summary) if not r[0].startswith("by_")]
     marginal_rows = _marginal_csv_rows(summary.get("marginals", {}) or {})
@@ -851,7 +876,7 @@ def save_results(
     summary_lines: list[str] | None = None,
     run_dir: Path | None = None,
     *,
-    formats: tuple[str, ...] = ("midi", "spn", "doremi", "hz"),
+    formats: tuple[str, ...] = ("midi", "spn", "doremi", "hz", "any"),
     extra_metrics: tuple[str, ...] = (),
 ) -> Path:
     """
