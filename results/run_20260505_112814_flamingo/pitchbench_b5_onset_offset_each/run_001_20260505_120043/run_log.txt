@@ -1,0 +1,58 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 30 items, max_workers=1
+    [   1/30]  C-1 triangle  gt=n_gt=6  pred=n_pred=14  ❌
+    [   2/30]  C-1 sine  gt=n_gt=6  pred=n_pred=0  ❌
+    [   3/30]  C-1 trumpet  gt=n_gt=6  pred=n_pred=14  ❌
+    [   4/30]  C-1 flute  gt=n_gt=6  pred=n_pred=14  ❌
+    [   5/30]  C-1 flute  gt=n_gt=6  pred=n_pred=14  ❌
+    [   6/30]  C-1 piano  gt=n_gt=10  pred=n_pred=2  ❌
+    [   7/30]  C-1 triangle  gt=n_gt=10  pred=n_pred=0  ❌
+    [   8/30]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=14  ❌
+    [   9/30]  C-1 square  gt=n_gt=10  pred=n_pred=0  ❌
+    [  10/30]  C-1 voice  gt=n_gt=10  pred=n_pred=14  ❌
+    [  11/30]  C-1 cello  gt=n_gt=16  pred=n_pred=14  ❌
+    [  12/30]  C-1 sawtooth  gt=n_gt=16  pred=n_pred=14  ❌
+    [  13/30]  C-1 sine  gt=n_gt=16  pred=n_pred=0  ❌
+    [  14/30]  C-1 square  gt=n_gt=16  pred=n_pred=14  ❌
+    [  15/30]  C-1 guitar  gt=n_gt=16  pred=n_pred=0  ❌
+    [  16/30]  C-1 flute  gt=n_gt=6  pred=n_pred=0  ❌
+    [  17/30]  C-1 synth_lead  gt=n_gt=6  pred=n_pred=0  ❌
+    [  18/30]  C-1 sine  gt=n_gt=6  pred=n_pred=0  ❌
+    [  19/30]  C-1 synth_pad  gt=n_gt=6  pred=n_pred=14  ❌
+    [  20/30]  C-1 guitar  gt=n_gt=6  pred=n_pred=2  ❌
+    [  21/30]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=0  ❌
+    [  22/30]  C-1 cello  gt=n_gt=10  pred=n_pred=0  ❌
+    [  23/30]  C-1 flute  gt=n_gt=10  pred=n_pred=0  ❌
+    [  24/30]  C-1 organ  gt=n_gt=10  pred=n_pred=0  ❌
+    [  25/30]  C-1 voice  gt=n_gt=10  pred=n_pred=0  ❌
+    [  26/30]  C-1 trumpet  gt=n_gt=16  pred=n_pred=0  ❌
+    [  27/30]  C-1 sine  gt=n_gt=16  pred=n_pred=14  ❌
+    [  28/30]  C-1 electric_keyboard  gt=n_gt=16  pred=n_pred=0  ❌
+    [  29/30]  C-1 cello  gt=n_gt=16  pred=n_pred=0  ❌
+    [  30/30]  C-1 clarinet  gt=n_gt=16  pred=n_pred=14  ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : 30 of 456 (stratified by '(rhythm, n_notes)', seed=42)
+  Stimuli (total)     : 30
+  Stimuli (condition) : 30  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260505_112814/pitchbench_b5_onset_offset_each/run_001_20260505_120043/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_c1_dyad_interval
+############################################################
+
+Experiment : pitchbench_c1_dyad_interval
+Models     : audio_flamingo_next_instruct
+Stimuli    : 120
+  Sampling     : 120 of 8816 (stratified by '(interval_st, same_instrument)', seed=42)

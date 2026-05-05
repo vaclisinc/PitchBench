@@ -1,0 +1,288 @@
+{
+  "timestamp": "2026-05-05T12:36:21.985635",
+  "experiments": {
+    "pitchbench_a1_pitch_id": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 4636,
+        "prompt_tokens": 542412,
+        "completion_tokens": 6023,
+        "total_tokens": 548435,
+        "cached_tokens": 0,
+        "cost_usd": 10.10876
+      }
+    },
+    "pitchbench_a2_pitch_with_reference": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 520,
+        "prompt_tokens": 68861,
+        "completion_tokens": 6222,
+        "total_tokens": 75083,
+        "cached_tokens": 0,
+        "cost_usd": 1.745622
+      }
+    },
+    "pitchbench_a3_pitch_by_duration": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 180,
+        "prompt_tokens": 29604,
+        "completion_tokens": 338,
+        "total_tokens": 29942,
+        "cached_tokens": 0,
+        "cost_usd": 0.73529
+      }
+    },
+    "pitchbench_a4_pitch_with_vibrato": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 640,
+        "prompt_tokens": 87040,
+        "completion_tokens": 928,
+        "total_tokens": 87968,
+        "cached_tokens": 0,
+        "cost_usd": 1.42688
+      }
+    },
+    "pitchbench_a5_pitch_slightly_off": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1600,
+        "prompt_tokens": 192960,
+        "completion_tokens": 3089,
+        "total_tokens": 196049,
+        "cached_tokens": 0,
+        "cost_usd": 2.34929
+      }
+    },
+    "pitchbench_b1_pitch_in_silence": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 3200,
+        "prompt_tokens": 1225200,
+        "completion_tokens": 20831,
+        "total_tokens": 1246031,
+        "cached_tokens": 0,
+        "cost_usd": 42.27131
+      }
+    },
+    "pitchbench_b2_onset_offset_single": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 80,
+        "prompt_tokens": 54400,
+        "completion_tokens": 952,
+        "total_tokens": 55352,
+        "cached_tokens": 0,
+        "cost_usd": 1.94552
+      }
+    },
+    "pitchbench_b3_onset_offset_specific": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 30,
+        "prompt_tokens": 20583,
+        "completion_tokens": 353,
+        "total_tokens": 20936,
+        "cached_tokens": 0,
+        "cost_usd": 0.729988
+      }
+    },
+    "pitchbench_b4_pitch_at_time": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 300,
+        "prompt_tokens": 205800,
+        "completion_tokens": 409,
+        "total_tokens": 206209,
+        "cached_tokens": 0,
+        "cost_usd": 7.26859
+      }
+    },
+    "pitchbench_b5_onset_offset_each": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 30,
+        "prompt_tokens": 20970,
+        "completion_tokens": 1746,
+        "total_tokens": 22716,
+        "cached_tokens": 0,
+        "cost_usd": 0.744885
+      }
+    },
+    "pitchbench_c1_dyad_interval": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 120,
+        "prompt_tokens": 8520,
+        "completion_tokens": 2453,
+        "total_tokens": 10973,
+        "cached_tokens": 0,
+        "cost_usd": 0.18983
+      }
+    },
+    "pitchbench_c2_chord_pitch_count": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 80,
+        "prompt_tokens": 6120,
+        "completion_tokens": 80,
+        "total_tokens": 6200,
+        "cached_tokens": 0,
+        "cost_usd": 0.1166
+      }
+    },
+    "pitchbench_c3_chord_pitch_id": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 300,
+        "prompt_tokens": 36400,
+        "completion_tokens": 2317,
+        "total_tokens": 38717,
+        "cached_tokens": 0,
+        "cost_usd": 0.67667
+      }
+    },
+    "pitchbench_c4_chord_quality": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 100,
+        "prompt_tokens": 9940,
+        "completion_tokens": 100,
+        "total_tokens": 10040,
+        "cached_tokens": 0,
+        "cost_usd": 0.14735
+      }
+    },
+    "pitchbench_d1_seq_pitch_count": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 70,
+        "prompt_tokens": 15837,
+        "completion_tokens": 70,
+        "total_tokens": 15907,
+        "cached_tokens": 0,
+        "cost_usd": 0.495055
+      }
+    },
+    "pitchbench_d2_pitch_difference": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 110,
+        "prompt_tokens": 12984,
+        "completion_tokens": 136,
+        "total_tokens": 13120,
+        "cached_tokens": 0,
+        "cost_usd": 0.326845
+      }
+    },
+    "pitchbench_d3_interval_id_seq": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 120,
+        "prompt_tokens": 18271,
+        "completion_tokens": 347,
+        "total_tokens": 18618,
+        "cached_tokens": 0,
+        "cost_usd": 0.37431
+      }
+    },
+    "pitchbench_d4_contour_discrete": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 100,
+        "prompt_tokens": 10797,
+        "completion_tokens": 1204,
+        "total_tokens": 12001,
+        "cached_tokens": 0,
+        "cost_usd": 0.18517
+      }
+    },
+    "pitchbench_d5_contour_continuous": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 20,
+        "prompt_tokens": 3660,
+        "completion_tokens": 208,
+        "total_tokens": 3868,
+        "cached_tokens": 0,
+        "cost_usd": 0.04873
+      }
+    },
+    "pitchbench_d6_pitch_ranking": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 100,
+        "prompt_tokens": 26280,
+        "completion_tokens": 1092,
+        "total_tokens": 27372,
+        "cached_tokens": 0,
+        "cost_usd": 0.767745
+      }
+    },
+    "pitchbench_d7_seq_pitch_id": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 60,
+        "prompt_tokens": 24140,
+        "completion_tokens": 681,
+        "total_tokens": 24821,
+        "cached_tokens": 0,
+        "cost_usd": 0.76991
+      }
+    },
+    "pitchbench_e1_loudness": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1200,
+        "prompt_tokens": 144000,
+        "completion_tokens": 2123,
+        "total_tokens": 146123,
+        "cached_tokens": 0,
+        "cost_usd": 2.63123
+      }
+    },
+    "pitchbench_e2_audio_effects": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1400,
+        "prompt_tokens": 168000,
+        "completion_tokens": 1979,
+        "total_tokens": 169979,
+        "cached_tokens": 0,
+        "cost_usd": 3.06479
+      }
+    },
+    "pitchbench_e3_background_effects": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 400,
+        "prompt_tokens": 54000,
+        "completion_tokens": 574,
+        "total_tokens": 54574,
+        "cached_tokens": 0,
+        "cost_usd": 0.89074
+      }
+    },
+    "pitchbench_e4_harmonic_saturation": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 800,
+        "prompt_tokens": 96000,
+        "completion_tokens": 1141,
+        "total_tokens": 97141,
+        "cached_tokens": 0,
+        "cost_usd": 1.75141
+      }
+    },
+    "pitchbench_e5_time_stretch": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1200,
+        "prompt_tokens": 157200,
+        "completion_tokens": 2269,
+        "total_tokens": 159469,
+        "cached_tokens": 0,
+        "cost_usd": 2.03569
+      }
+    },
+    "pitchbench_f1_melodic_line_id": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 520,
+        "prompt_tokens": 119292,
+        "completion_tokens": 9651,
+        "total_tokens": 128943,
+        "cached_tokens": 0,
+        "cost_usd": 1.88724
+      }
+    },
+    "pitchbench_f2_chorale_voice_id": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 400,
+        "prompt_tokens": 131368,
+        "completion_tokens": 19014,
+        "total_tokens": 150382,
+        "cached_tokens": 0,
+        "cost_usd": 3.48106
+      }
+    }
+  },
+  "total_calls": 18316,
+  "total_tokens": 3576969,
+  "total_cost_usd": 89.16651
+}

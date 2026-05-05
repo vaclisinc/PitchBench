@@ -1,0 +1,66 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 30 items, max_workers=20
+    [   1/30]  C-1 piano  gt=n_gt=10  pred=n_pred=8  ❌
+    [   2/30]  C-1 triangle  gt=n_gt=6  pred=n_pred=6  ❌
+    [   3/30]  C-1 flute  gt=n_gt=6  pred=n_pred=6  ❌
+    [   4/30]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=8  ❌
+    [   5/30]  C-1 square  gt=n_gt=16  pred=n_pred=10  ❌
+    [   6/30]  C-1 guitar  gt=n_gt=16  pred=n_pred=10  ❌
+    [   7/30]  C-1 sawtooth  gt=n_gt=16  pred=n_pred=10  ❌
+    [   8/30]  C-1 synth_pad  gt=n_gt=6  pred=n_pred=6  ❌
+    [   9/30]  C-1 voice  gt=n_gt=10  pred=n_pred=8  ❌
+    [  10/30]  C-1 synth_lead  gt=n_gt=6  pred=n_pred=10  ❌
+    [  11/30]  C-1 sine  gt=n_gt=6  pred=n_pred=6  ❌
+    [  12/30]  C-1 square  gt=n_gt=10  pred=n_pred=10  ❌
+    [  13/30]  C-1 cello  gt=n_gt=16  pred=n_pred=12  ❌
+    [  14/30]  C-1 flute  gt=n_gt=6  pred=n_pred=6  ❌
+    [  15/30]  C-1 flute  gt=n_gt=6  pred=n_pred=6  ❌
+    [  16/30]  C-1 guitar  gt=n_gt=6  pred=n_pred=8  ❌
+    [  17/30]  C-1 trumpet  gt=n_gt=6  pred=n_pred=6  ❌
+    [  18/30]  C-1 sine  gt=n_gt=16  pred=n_pred=10  ❌
+    [  19/30]  C-1 triangle  gt=n_gt=10  pred=n_pred=10  ❌
+    [  20/30]  C-1 organ  gt=n_gt=10  pred=n_pred=8  ❌
+    [  21/30]  C-1 voice  gt=n_gt=10  pred=n_pred=8  ❌
+    [  22/30]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=8  ❌
+    [  23/30]  C-1 flute  gt=n_gt=10  pred=n_pred=8  ❌
+    [  24/30]  C-1 sine  gt=n_gt=16  pred=n_pred=10  ❌
+    [  25/30]  C-1 sine  gt=n_gt=6  pred=n_pred=8  ❌
+    [  26/30]  C-1 trumpet  gt=n_gt=16  pred=n_pred=10  ❌
+    [  27/30]  C-1 cello  gt=n_gt=10  pred=n_pred=8  ❌
+    [  28/30]  C-1 electric_keyboard  gt=n_gt=16  pred=n_pred=10  ❌
+    [  29/30]  C-1 cello  gt=n_gt=16  pred=n_pred=12  ❌
+    [  30/30]  C-1 clarinet  gt=n_gt=16  pred=n_pred=12  ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 30 of 456 (stratified by '(rhythm, n_notes)', seed=42)
+  Stimuli (total)     : 30
+  Stimuli (condition) : 30  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                            30
+  prompt tokens                20,970
+  completion tokens             1,746
+  total tokens                 22,716
+  cost (USD)                $0.744885
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260505_121034/pitchbench_b5_onset_offset_each/run_001_20260505_122240/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_c1_dyad_interval
+############################################################
+
+Experiment : pitchbench_c1_dyad_interval
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 120
+  Sampling     : 120 of 8816 (stratified by '(interval_st, same_instrument)', seed=42)

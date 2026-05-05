@@ -1,0 +1,21 @@
+{
+  "group_key": "n",
+  "score_key": "midi_seq_correct",
+  "score_label": "Sequence accuracy (%)",
+  "x_values": [
+    2,
+    3
+  ],
+  "x_labels": [
+    "2",
+    "3"
+  ],
+  "mean_pct": [
+    0.0,
+    0.0
+  ],
+  "n_samples": [
+    65,
+    65
+  ]
+}

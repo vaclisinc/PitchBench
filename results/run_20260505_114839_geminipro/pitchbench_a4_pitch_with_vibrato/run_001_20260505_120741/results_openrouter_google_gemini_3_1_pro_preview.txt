@@ -1,0 +1,81 @@
+Experiment : pitchbench_a4_pitch_with_vibrato
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-05T12:10:11.473363
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+primary_filter_set : True
+record_extras : ['duration_ms', 'vibrato_rate_hz', 'vibrato_depth_cents', 'is_control']
+sample_n   : 80
+sample_seed : 42
+total_available : 640
+stratified_by : (vibrato_rate_hz, vibrato_depth_cents)
+pair_key   : ['pair_id']
+sampled_primary : 80
+sampled_total : 160
+
+SUMMARY
+==================================================
+  Sampling     : 80 of 640 (stratified by '(vibrato_rate_hz, vibrato_depth_cents)', seed=42)
+  Stimuli (total)     : 159
+  Stimuli (condition) : 79
+  Stimuli (baseline)  : 80
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI       0.0%       1.2%
+     SPN       3.8%       0.0%
+  DOREMI       7.6%       6.2%
+      HZ       0.0%       0.0%
+     ANY      11.4%       7.5%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+sawtooth          0.00%    2.08%   10.42%    0.00%   12.50%    48
+sine              0.00%    0.00%   13.64%    0.00%   13.64%    44
+square            0.00%    5.13%    0.00%    0.00%    5.13%    39
+triangle          3.57%    0.00%    0.00%    0.00%    3.57%    28
+
+vibrato_rate_hz     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 1.25%    0.00%    6.25%    0.00%    7.50%    80
+3                 0.00%   10.00%    0.00%    0.00%   10.00%    20
+5                 0.00%    5.00%   10.00%    0.00%   15.00%    20
+7                 0.00%    0.00%   15.00%    0.00%   15.00%    20
+10                0.00%    0.00%    5.26%    0.00%    5.26%    19
+
+vibrato_depth_cents     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 1.25%    0.00%    6.25%    0.00%    7.50%    80
+25                0.00%    0.00%   15.00%    0.00%   15.00%    20
+50                0.00%    5.00%    0.00%    0.00%    5.00%    20
+100               0.00%    5.00%    0.00%    0.00%    5.00%    20
+200               0.00%    5.26%   15.79%    0.00%   21.05%    19
+
+is_control         midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 0.00%    3.80%    7.59%    0.00%   11.39%    79
+1                 1.25%    0.00%    6.25%    0.00%    7.50%    80
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%    0.00%    4.55%    0.00%    4.55%    22
+43                0.00%    3.33%    3.33%    0.00%    6.67%    30
+54                0.00%    0.00%   19.57%    0.00%   19.57%    46
+64                0.00%    0.00%    0.00%    0.00%    0.00%    33
+79                3.57%    7.14%    0.00%    0.00%   10.71%    28
+
+
+LLM USAGE
+==================================================
+  calls                           640
+  prompt tokens               128,177
+  completion tokens            78,124
+  total tokens                206,301
+  cost (USD)                $1.193842

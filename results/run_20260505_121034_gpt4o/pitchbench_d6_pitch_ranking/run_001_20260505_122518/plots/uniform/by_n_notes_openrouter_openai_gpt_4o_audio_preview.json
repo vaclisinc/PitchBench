@@ -1,0 +1,29 @@
+{
+  "group_key": "n_notes",
+  "score_key": "answer_correct",
+  "score_label": "Answer accuracy (%)",
+  "x_values": [
+    3,
+    4,
+    5,
+    7
+  ],
+  "x_labels": [
+    "3",
+    "4",
+    "5",
+    "7"
+  ],
+  "mean_pct": [
+    12.0,
+    0.0,
+    4.0,
+    0.0
+  ],
+  "n_samples": [
+    25,
+    25,
+    25,
+    25
+  ]
+}
