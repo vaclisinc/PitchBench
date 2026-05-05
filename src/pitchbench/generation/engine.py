@@ -979,6 +979,21 @@ def _synth_background(name: str, n: int, seed: int) -> np.ndarray:
 
 # ── Effect implementations (mirrors exp_7 logic) ─────────────────────────────
 
+def _rms_match(dry: np.ndarray, wet: np.ndarray) -> np.ndarray:
+    """Scale `wet` so its RMS matches `dry`'s, then peak-limit to 0.99 if needed.
+
+    Used by every pedalboard-based effect so that loudness does not leak into
+    the experiment as effect strength increases.
+    """
+    rms_in  = float(np.sqrt(np.mean(dry.astype(np.float64) ** 2))) + 1e-9
+    rms_out = float(np.sqrt(np.mean(wet.astype(np.float64) ** 2))) + 1e-9
+    out = (wet * (rms_in / rms_out)).astype(np.float32)
+    peak = float(np.max(np.abs(out)))
+    if peak > 0.99:
+        out = (out * (0.99 / peak)).astype(np.float32)
+    return out
+
+
 def _apply_effect(
     audio: np.ndarray,
     freq_hz: float,
@@ -1067,8 +1082,6 @@ def _apply_effect(
         # Plugin-style harmonic saturation via pedalboard's tanh waveshaper,
         # wrapped in 4× oversampling (resample_poly applies an anti-alias FIR)
         # so harmonics above Nyquist do not fold back as inharmonic junk.
-        # Output is RMS-matched to the dry signal so loudness does not leak
-        # into the experiment as drive_db increases.
         from pedalboard import Distortion, Pedalboard
         from scipy.signal import resample_poly
 
@@ -1077,13 +1090,54 @@ def _apply_effect(
         up       = resample_poly(audio.astype(np.float32), OS, 1).astype(np.float32)
         shaped   = Pedalboard([Distortion(drive_db=drive_db)])(up, sample_rate=SR * OS)
         out      = resample_poly(shaped, 1, OS).astype(np.float32)
+        return _rms_match(audio, out)
 
-        rms_in  = float(np.sqrt(np.mean(audio.astype(np.float64) ** 2))) + 1e-9
-        rms_out = float(np.sqrt(np.mean(out.astype(np.float64) ** 2))) + 1e-9
-        out     = (out * (rms_in / rms_out)).astype(np.float32)
-        peak    = float(np.max(np.abs(out)))
-        if peak > 0.99:
-            out = (out * (0.99 / peak)).astype(np.float32)
-        return out
+    if eff == "highpass":
+        # Steep zero-phase Butterworth HP (default order 6 → 36 dB/oct after
+        # filtfilt). Cutoff is either absolute (cutoff_hz) or relative to f0
+        # (cutoff_ratio · freq_hz). cutoff_ratio > 1 removes the fundamental.
+        from scipy.signal import butter, sosfiltfilt
+        cutoff_hz = float(params.get("cutoff_hz", 0.0)) or freq_hz * float(params["cutoff_ratio"])
+        order     = int(params.get("order", 6))
+        sos       = butter(order, cutoff_hz / (SR / 2), btype="highpass", output="sos")
+        out       = sosfiltfilt(sos, audio.astype(np.float64)).astype(np.float32)
+        return _rms_match(audio, out)
+
+    if eff == "lowpass":
+        # Steep zero-phase Butterworth LP. cutoff_ratio close to 1 strips
+        # all harmonics and leaves only the fundamental.
+        from scipy.signal import butter, sosfiltfilt
+        cutoff_hz = float(params.get("cutoff_hz", 0.0)) or freq_hz * float(params["cutoff_ratio"])
+        order     = int(params.get("order", 6))
+        sos       = butter(order, cutoff_hz / (SR / 2), btype="lowpass", output="sos")
+        out       = sosfiltfilt(sos, audio.astype(np.float64)).astype(np.float32)
+        return _rms_match(audio, out)
+
+    if eff == "bitcrush":
+        from pedalboard import Bitcrush, Pedalboard
+        bit_depth = float(params.get("bit_depth", 4))
+        out = Pedalboard([Bitcrush(bit_depth=bit_depth)])(audio.astype(np.float32), sample_rate=SR)
+        return _rms_match(audio, out)
+
+    if eff == "reverb_room":
+        # Algorithmic plate-style reverb (pedalboard wraps JUCE's Reverb).
+        # Distinct from the legacy single-tap "reverb" branch above.
+        from pedalboard import Pedalboard, Reverb
+        out = Pedalboard([Reverb(
+            room_size=float(params.get("room_size", 0.5)),
+            damping=float(params.get("damping", 0.5)),
+            wet_level=float(params.get("wet_level", 0.5)),
+            dry_level=float(params.get("dry_level", 0.5)),
+        )])(audio.astype(np.float32), sample_rate=SR)
+        return _rms_match(audio, out)
+
+    if eff == "chorus":
+        from pedalboard import Chorus, Pedalboard
+        out = Pedalboard([Chorus(
+            rate_hz=float(params.get("rate_hz", 1.0)),
+            depth=float(params.get("depth", 0.5)),
+            mix=float(params.get("mix", 0.5)),
+        )])(audio.astype(np.float32), sample_rate=SR)
+        return _rms_match(audio, out)
 
     return audio.copy()

@@ -1,56 +1,39 @@
 """
 b4 — Pitch identification at a specific time within a sequence.
 
-Question: among multiple non-overlapping notes, can the ALM correctly
-identify the pitch sounding at a queried time?
+Given a sequence of N non-overlapping notes, the prompt asks for the pitch
+sounding at a queried time (computed at the midpoint of one designated
+target note). 4-format pitch scoring — same shape as cat-A.
 
-Universal IVs: duration_ms (per note), midi (the queried target pitch),
-                source.
-Experiment-specific IVs:
-    n_notes:         {3, 5}
-    query_pos:       index of the queried note within the sequence
-                     (always within the note interior — query_time = onset
-                     of the note + duration/2)
+Universal IVs: source, source_type, midi (the target pitch).
+Experiment-specific IVs: n_notes, duration_ms, query_time_s.
 
-Fixed conditions: 20 s clip; non-overlapping; equal level; gaps drawn from
-[300, 1500] ms with a per-cell seed; 4 pitch-ID prompt variants.
-
-Scoring: standard 4-format (MIDI / SPN / Doremi / Hz).
+Usage::
+    pitchbench --id b4 --preview
+    pitchbench --id b4 --models audio_flamingo_next_instruct
 """
 
 from __future__ import annotations
 
-import argparse
 import random
 from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
-from pitchbench.experiments.helpers.audit import pitch_record_audit_str
-from pitchbench.experiments.helpers.dispatcher import dispatch
+from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
 from pitchbench.experiments.helpers.music import (
     PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
-    midi_to_note, standard_pitch_record,
 )
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.plots import save_combined_iv_plot, save_per_format_iv_plots
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_b4_*)
+EXP_NAME     = Path(__file__).stem
+SOURCES      = config.pitchbench_b4_SOURCES
+PITCHES      = config.pitchbench_b4_PITCHES
+DURATIONS_MS = config.pitchbench_b4_DURATIONS_MS
 N_NOTES_OPTS = config.pitchbench_b4_N_NOTES_OPTS
 TOTAL_DUR_MS = config.pitchbench_b4_TOTAL_DUR_MS
 GAP_MIN_MS   = config.pitchbench_b4_GAP_MIN_MS
 GAP_MAX_MS   = config.pitchbench_b4_GAP_MAX_MS
-DEFAULT_SEED = config.pitchbench_b4_SEED
-SOURCES      = config.pitchbench_b4_SOURCES
-PITCHES      = config.pitchbench_b4_PITCHES
-DURATIONS_MS = config.pitchbench_b4_DURATIONS_MS
+SEED         = config.pitchbench_b4_SEED
 
 
 def _query_str(secs: float) -> str:
@@ -59,199 +42,81 @@ def _query_str(secs: float) -> str:
     return f"{minutes}:{seconds:05.2f}"
 
 
-def _prompt_set(query_time_s: float) -> tuple[str, str, str, str]:
-    qs = _query_str(query_time_s)
-    prefix = (
-        f"This audio contains a sequence of musical notes separated by silence. "
-        f"Identify the pitch that is sounding at exactly {qs}. "
-    )
-    return (
-        prefix + PROMPT_MIDI,
-        prefix + PROMPT_SPN,
-        prefix + PROMPT_DOREMI,
-        prefix + PROMPT_HZ,
-    )
-
-
-def build_conditions(
-    durations_ms: list[int], pitches: list[int], sources: list[str], seed: int,
-) -> list[dict]:
-    rng_seed = seed
+def build_conditions() -> list[dict]:
     rows: list[dict] = []
-    for src in sources:
-        for tgt in pitches:
+    for src in SOURCES:
+        for tgt in PITCHES:
             for n in N_NOTES_OPTS:
-                for dur in durations_ms:
-                    cell_seed = (rng_seed ^ hash((src, tgt, n, dur))) & 0xFFFFFFFF
+                for dur in DURATIONS_MS:
+                    cell_seed = (SEED ^ hash((src, tgt, n, dur))) & 0xFFFFFFFF
                     sub_rng   = random.Random(cell_seed)
-                    distractors = [p for p in pitches if p != tgt]
+                    distractors = [p for p in PITCHES if p != tgt]
                     other_pitches = sub_rng.sample(distractors, n - 1)
                     midis_seq = list(other_pitches)
                     insert_at = sub_rng.randint(0, n - 1)
                     midis_seq.insert(insert_at, tgt)
                     gaps = [sub_rng.randint(GAP_MIN_MS, GAP_MAX_MS) for _ in range(n + 1)]
-                    total = sum(gaps) + dur * n
-                    if total > TOTAL_DUR_MS:
+                    if sum(gaps) + dur * n > TOTAL_DUR_MS:
                         continue
                     onsets: list[int] = []
                     cursor = gaps[0]
                     for _ in range(n):
                         onsets.append(cursor)
                         cursor += dur + gaps[len(onsets)]
-                    target_idx = midis_seq.index(tgt)
-                    query_time_s = (onsets[target_idx] + dur / 2) / 1000
+                    target_idx   = midis_seq.index(tgt)
+                    query_time_s = round((onsets[target_idx] + dur / 2) / 1000.0, 3)
                     rows.append({
                         "source":       src,
+                        "source_type":  "waveform" if src in config.WAVEFORMS else "instrument",
                         "midi":         tgt,
                         "duration_ms":  dur,
                         "n_notes":      n,
                         "midi_seq":     midis_seq,
                         "onsets_ms":    onsets,
                         "target_idx":   target_idx,
-                        "query_time_s": round(query_time_s, 3),
+                        "query_time_s": query_time_s,
                         "seed":         cell_seed,
                     })
     return rows
 
 
-def _wav_for(c: dict) -> Path:
+def wav_for(c: dict) -> Path:
     triples = [(m, c["onsets_ms"][i], c["duration_ms"]) for i, m in enumerate(c["midi_seq"])]
     path, _ = engine.clip_with_notes(triples, c["source"], TOTAL_DUR_MS, name_hint="b4")
     return path
 
 
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
-
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        wav = str(_wav_for(c))
-        p_m, p_s, p_d, p_h = _prompt_set(c["query_time_s"])
-        jobs.append({"wav": wav, "cond": c, "p_m": p_m, "p_s": p_s, "p_d": p_d, "p_h": p_h})
-
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c = job["cond"]
-        r_m, r_s, r_d, r_h = query_four_formats(
-            model_name, job["wav"],
-            job["p_m"], job["p_s"], job["p_d"], job["p_h"],
-            verbose=False,
-        )
-        rec = standard_pitch_record(
-            wav=job["wav"], source=c["source"],
-            source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
-            midi_gt=c["midi"],
-            raw_midi=r_m["result"], raw_spn=r_s["result"],
-            raw_doremi=r_d["result"], raw_hz=r_h["result"],
-            prompt_midi=job["p_m"], prompt_spn=job["p_s"], prompt_doremi=job["p_d"], prompt_hz=job["p_h"],
-            duration_ms=c["duration_ms"],
-            n_notes=c["n_notes"],
-            query_time_s=c["query_time_s"],
-            seed=c["seed"],
-        )
-        rec["model_params_midi"] = r_m["model_params"]
-        return rec
-
-    raw = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"{midi_to_note(j['cond']['midi']):>4}/{j['cond']['source']:<10} n={j['cond']['n_notes']} qt={j['cond']['query_time_s']:.2f}s",
-        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{midi_to_note(j['cond']['midi']):>4}/{j['cond']['source']:<10} n={j['cond']['n_notes']} qt={j['cond']['query_time_s']:.2f}s"),
+def prompts_for(c: dict) -> dict[str, str]:
+    qs = _query_str(c["query_time_s"])
+    prefix = (
+        f"This audio contains a sequence of musical notes separated by silence. "
+        f"Identify the pitch that is sounding at exactly {qs}. "
     )
-    records: list[dict] = [r for r in raw if r is not None]
-
-    n = len(records)
-    accuracy: dict[str, float] = {
-        fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, n), 4)
-        for fmt in ("midi", "spn", "doremi", "hz")
+    return {
+        "midi":   prefix + PROMPT_MIDI,
+        "spn":    prefix + PROMPT_SPN,
+        "doremi": prefix + PROMPT_DOREMI,
+        "hz":     prefix + PROMPT_HZ,
     }
-    midi_within_1 = round(sum(r["midi_within_1"] for r in records) / max(1, n), 4)
-    summary = {"total": n, "accuracy": accuracy, "midi_within_1": midi_within_1}
-
-    summary_lines = sampling_summary_lines(sample_info or {}) + [f"  Stimuli : {n}", ""]
-    for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"  {fmt.upper():>6}  n={n:>4}  {accuracy[fmt]:.1%}")
-    summary_lines.append(f"  MIDI±1  n={n:>4}  {midi_within_1:.1%}")
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
-
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, pitches=config.DEFAULT_PITCHES,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
-        n_notes_opts=N_NOTES_OPTS, total_dur_ms=TOTAL_DUR_MS,
-        gap_range_ms=[GAP_MIN_MS, GAP_MAX_MS],
-        **(sample_info or {}),
-    )
-    save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
-    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="query_time_s",
-                             iv_label="Query time (s)", group_by_source=False)
-    save_combined_iv_plot(records, plots_dir, model_name, iv_key="query_time_s",
-                          iv_label="Query time (s)")
-    return summary
 
 
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview", action="store_true")
-    parser.add_argument("--models",  nargs="+", metavar="MODEL")
-    parser.add_argument("--sources", nargs="+", metavar="SRC", default=None)
-    parser.add_argument("--seed",    type=int, default=DEFAULT_SEED)
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatBSpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    task_type="pitch",
+    prompts_fn=prompts_for,
+    record_extras=("n_notes", "duration_ms", "query_time_s"),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args = _parse_args()
-    sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources, args.seed)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try: _wav_for(c)
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Sources    : {sources}")
-    print(f"Stimuli    : {len(conds)}")
-    print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_b_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources, args.seed)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try: _wav_for(c)
-        except ValueError: pass
+def run() -> dict | None:
+    return run_cat_b_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

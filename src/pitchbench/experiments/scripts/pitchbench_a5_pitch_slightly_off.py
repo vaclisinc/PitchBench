@@ -1,22 +1,16 @@
 """
 a5 — Pitch slightly off (nearest in-tune pitch).
 
-Question: when a tone is slightly detuned, will the ALM snap to the nearest
-in-tune pitch?
+When a tone is slightly detuned, does the ALM snap to the nearest in-tune
+pitch? Each (pitch, duration) cell sweeps a symmetric set of detunes
+bounded inside the basin of the target pitch (so the answer remains
+unambiguous).
 
-Universal IVs: duration_ms, midi (the in-tune target), source.
-Experiment-specific IVs:
-    detune_hz: per-pitch detune values, with |detune| < 50 % of distance to
-               the nearest neighbouring semitone (so the answer is unambiguous).
-               Each pitch gets the same number of detune levels symmetrically
-               around 0; e.g. {-Δmax, -Δmax/2, 0, +Δmax/2, +Δmax}.
+Universal IVs: source, source_type, midi, duration_ms.
+Experiment-specific IV: detune_hz.
 
-Fixed conditions: equal level. Prompt asks for the nearest in-tune pitch in
-4 formats; we also record whether the model leaked the off-tune Hz value.
-
-Scoring:
-    nearest_correct: predicted MIDI == in-tune target
-    midi_within_1, midi_correct, hz_correct, etc. — full 4-format scoring.
+The ``detune_hz == 0`` records are the in-tune control; the headline
+accuracy is reported on detuned records only (``detune_hz != 0``).
 
 Usage::
     pitchbench --id a5 --preview
@@ -25,236 +19,105 @@ Usage::
 
 from __future__ import annotations
 
-import argparse
 from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_four_formats
-from pitchbench.experiments.helpers.audit import pitch_record_audit_str
-from pitchbench.experiments.helpers.dispatcher import dispatch
-from pitchbench.experiments.helpers.music import (
-    PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
-    midi_to_freq, midi_to_note,
-    standard_pitch_record, wide_to_long_records,
+from pitchbench.experiments.helpers.cat_a import (
+    CatASpec, run_cat_a_experiment,
 )
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.plots import save_combined_iv_plot, save_per_format_iv_plots
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
+from pitchbench.experiments.helpers.music import midi_to_freq
 
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_a5_*)
+EXP_NAME        = Path(__file__).stem
 SOURCES         = config.pitchbench_a5_SOURCES
-N_DETUNE_LEVELS = config.pitchbench_a5_N_DETUNE_LEVELS
-DETUNE_FRACTION = config.pitchbench_a5_DETUNE_FRACTION
 PITCHES         = config.pitchbench_a5_PITCHES
 DURATIONS_MS    = config.pitchbench_a5_DURATIONS_MS
+N_DETUNE_LEVELS = config.pitchbench_a5_N_DETUNE_LEVELS
+DETUNE_FRACTION = config.pitchbench_a5_DETUNE_FRACTION
 
 PROMPT_PREFIX = (
-    "This audio contains a single sustained musical note that may be slightly "
-    "out of tune. Identify the NEAREST in-tune pitch (the closest standard "
-    "musical note). "
+    "This audio contains a single sustained musical note that may be "
+    "slightly out of tune. Identify the NEAREST in-tune pitch (the "
+    "closest standard musical note). "
 )
-PROMPT_MIDI_FULL   = PROMPT_PREFIX + PROMPT_MIDI
-PROMPT_SPN_FULL    = PROMPT_PREFIX + PROMPT_SPN
-PROMPT_DOREMI_FULL = PROMPT_PREFIX + PROMPT_DOREMI
-PROMPT_HZ_FULL     = PROMPT_PREFIX + PROMPT_HZ
 
 
-# ── Conditions ────────────────────────────────────────────────────────────────
+def _detune_grid_nonzero(midi: int) -> list[float]:
+    """Symmetric NON-ZERO detune values bounded inside the basin of the pitch.
 
-def _detune_grid(midi: int) -> list[float]:
-    """Symmetric detune values bounded inside the basin of the target pitch."""
-    f0 = midi_to_freq(midi)
-    f_lo = midi_to_freq(midi - 1)
-    f_hi = midi_to_freq(midi + 1)
-    half_lo = (f0 - f_lo) / 2     # half-distance to neighbour below
-    half_hi = (f_hi - f0) / 2     # half-distance to neighbour above
+    The 0-detune control is no longer part of the IV grid — it is emitted
+    as an explicit baseline twin per condition (see ``build_conditions``).
+    """
+    f0      = midi_to_freq(midi)
+    half_lo = (f0 - midi_to_freq(midi - 1)) / 2
+    half_hi = (midi_to_freq(midi + 1) - f0) / 2
     max_neg = -half_lo * DETUNE_FRACTION
     max_pos =  half_hi * DETUNE_FRACTION
-    if N_DETUNE_LEVELS == 1:
-        return [0.0]
     out: list[float] = []
     half = N_DETUNE_LEVELS // 2
     for i in range(-half, half + 1):
+        if i == 0:
+            continue
         if i < 0:
             out.append(round(max_neg * (i / -half), 4))
-        elif i == 0:
-            out.append(0.0)
         else:
-            out.append(round(max_pos * (i / half), 4))
+            out.append(round(max_pos * (i /  half), 4))
     return out
 
 
-def build_conditions(
-    durations_ms: list[int],
-    pitches:      list[int],
-    sources:      list[str],
-) -> list[dict]:
+def build_conditions() -> list[dict]:
+    """Detuned condition stims plus (optionally) a 1:1 in-tune baseline twin.
+
+    For every (source, midi, duration_ms, detune_hz!=0) cell we emit one
+    condition record. When ``config.INCLUDE_BASELINES`` is set we also emit a
+    paired baseline (detune_hz=0, same other fields) sharing the same
+    ``pair_id``. Result: ``condition_n == baseline_n``.
+    """
     rows: list[dict] = []
-    for src in sources:
-        for midi in pitches:
-            for dur in durations_ms:
-                for detune_hz in _detune_grid(midi):
-                    rows.append({
+    pair_id = 0
+    for src in SOURCES:
+        for midi in PITCHES:
+            for dur in DURATIONS_MS:
+                for detune_hz in _detune_grid_nonzero(midi):
+                    base = {
                         "source":      src,
-                        "duration_ms": dur,
+                        "source_type": "waveform" if src in config.WAVEFORMS else "instrument",
                         "midi":        midi,
-                        "detune_hz":   detune_hz,
-                    })
+                        "duration_ms": dur,
+                        "pair_id":     pair_id,
+                    }
+                    rows.append({**base, "detune_hz": detune_hz})
+                    if config.INCLUDE_BASELINES:
+                        rows.append({**base, "detune_hz": 0.0})
+                    pair_id += 1
     return rows
 
 
-def _wav_for(c: dict) -> Path:
-    f = midi_to_freq(c["midi"]) + c["detune_hz"]
-    return engine.tone_hz(f, c["source"], c["duration_ms"])
+def wav_for(c: dict) -> Path:
+    return engine.tone_hz(midi_to_freq(c["midi"]) + c["detune_hz"], c["source"], c["duration_ms"])
 
 
-# ── Run one model ─────────────────────────────────────────────────────────────
-
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
-
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        wav = str(_wav_for(c))
-        jobs.append({"wav": wav, "cond": c})
-
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c = job["cond"]
-        r_m, r_s, r_d, r_h = query_four_formats(
-            model_name, job["wav"],
-            PROMPT_MIDI_FULL, PROMPT_SPN_FULL, PROMPT_DOREMI_FULL, PROMPT_HZ_FULL,
-            verbose=False,
-        )
-        rec = standard_pitch_record(
-            wav=job["wav"], source=c["source"],
-            source_type="waveform" if c["source"] in config.WAVEFORMS else "instrument",
-            midi_gt=c["midi"],
-            raw_midi=r_m["result"], raw_spn=r_s["result"],
-            raw_doremi=r_d["result"], raw_hz=r_h["result"],
-            prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
-            prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
-            duration_ms=c["duration_ms"],
-            detune_hz=c["detune_hz"],
-        )
-        rec["nearest_correct"] = rec["midi_correct"]      # alias for clarity in plots
-        rec["model_params_midi"] = r_m["model_params"]
-        return rec
-
-    raw = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} dur={j['cond']['duration_ms']:>4}ms detune={j['cond']['detune_hz']:+.2f}hz",
-        result_label_fn=lambda j, r: pitch_record_audit_str(r, label=f"{midi_to_note(j['cond']['midi']):4s} {j['cond']['source']:8s} detune={j['cond']['detune_hz']:+.2f}hz"),
-    )
-    records: list[dict] = [r for r in raw if r is not None]
-
-    n = len(records)
-    summary: dict[str, float | int] = {"total": n, "accuracy": {}}
-    for fmt in ("midi", "spn", "doremi", "hz"):
-        col = f"{fmt}"
-        summary["accuracy"][fmt] = round(sum(r[col] for r in records) / max(1, n), 4)
-    summary["accuracy"]["nearest"]      = summary["accuracy"]["midi"]
-    summary["accuracy"]["midi_within_1"] = round(
-        sum(r["midi_within_1"] for r in records) / max(1, n), 4
-    )
-
-    summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Stimuli : {n}",
-        f"  Sources : {SOURCES}",
-        f"",
-        f"  Nearest-pitch accuracy (4 formats):",
-    ]
-    for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"    {fmt.upper():>6}  n={n:>4}  {summary['accuracy'][fmt]:.1%}")
-    summary_lines.append(f"    MIDI±1  n={n:>4}  {summary['accuracy']['midi_within_1']:.1%}")
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
-
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, pitches=config.DEFAULT_PITCHES,
-        durations_ms=[config.DEFAULT_DURATION_MS],
-        n_detune_levels=N_DETUNE_LEVELS, detune_fraction=DETUNE_FRACTION,
-        prompt_midi=PROMPT_MIDI_FULL, prompt_spn=PROMPT_SPN_FULL,
-        prompt_doremi=PROMPT_DOREMI_FULL, prompt_hz=PROMPT_HZ_FULL,
-        **(sample_info or {}),
-    )
-    save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
-    plots_dir = run_dir / "plots"; plots_dir.mkdir(exist_ok=True)
-    save_per_format_iv_plots(records, plots_dir, model_name, iv_key="detune_hz",
-                             iv_label="Detune (Hz)", group_by_source=False)
-    save_combined_iv_plot(records, plots_dir, model_name, iv_key="detune_hz",
-                          iv_label="Detune (Hz)")
-    return summary
-
-
-# ── Entry points ──────────────────────────────────────────────────────────────
-
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview", action="store_true")
-    parser.add_argument("--models",  nargs="+", metavar="MODEL")
-    parser.add_argument("--sources", nargs="+", metavar="SRC", default=None)
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatASpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    prompt_prefix=PROMPT_PREFIX,
+    record_extras=("duration_ms", "detune_hz"),
+    primary_filter=lambda r: r.get("detune_hz") != 0,
+    # Detuned condition stim and its in-tune baseline twin share a pair_id
+    # assigned in build_conditions(). Sampling on detuned records auto-pulls
+    # the matched baseline.
+    pair_key=("pair_id",),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args    = _parse_args()
-    sources = args.sources or SOURCES
-    all_conds = build_conditions([config.DEFAULT_DURATION_MS], config.DEFAULT_PITCHES, sources)
-    conds = all_conds  # rename: save the full list
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        _wav_for(c)
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Sources    : {sources}")
-    print(f"Stimuli    : {len(conds)}")
-    print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_a_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args    = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    sources = args.sources or SOURCES
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, sources)
-    conds = all_conds  # rename: save the full list
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        _wav_for(c)
+def run() -> dict | None:
+    return run_cat_a_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

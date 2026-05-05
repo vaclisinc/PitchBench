@@ -1,30 +1,34 @@
 """
 Experiment e2 — Pitch recognition under audio effects
 Tests whether models can identify pitch when audio is processed with effects
-(reverb, hard clipping, EQ shelving) that preserve the fundamental frequency
-but alter timbre, dynamics, or spectral content.
+that genuinely threaten pitch cues. Effects use plugin-quality DSP (pedalboard
++ scipy Butterworth) and every output is RMS-matched to the dry signal so
+loudness does not leak into the experiment as effect strength increases.
 
 Stimuli: all waveforms + GM instruments × 11 representative pitches × effect conditions.
-Three prompts per stimulus:
+Four prompts per stimulus:
   MIDI:   integer note number (0–127)
   ABC:    note name + octave (e.g. "C4")
   Doremi: solfege syllable and accidental (if needed) (e.g. "do", "sol#")
+  Hz:     fundamental frequency
 
 All effects are applied deterministically (fixed seed per condition).
 
 Effects:
-  clean        — no processing
-  reverb_s/l   — comb-filter reverb (short / long)
-  clip_50/25   — hard-clip at 50 % / 25 % of peak amplitude
-  eq_lo_boost  — low-shelf  +12 dB at  500 Hz  (bass boost)
-  eq_hi_boost  — high-shelf +12 dB at 2000 Hz  (treble boost)
-  eq_lo_cut    — low-shelf  −12 dB at  500 Hz  (bass cut / thin)
-  eq_hi_cut    — high-shelf −12 dB at 2000 Hz  (telephone-warm)
-  eq_telephone — high-shelf −24 dB at 1000 Hz  (severe LP, telephone-like)
-  sat_light    — tanh waveshaping drive=2  (mild tube warmth, adds harmonics)
-  sat_heavy    — tanh waveshaping drive=10 (heavy distortion, dense spectrum)
-  harmonic_2nd — adds octave partial at 50 % level (+12 st above fundamental)
-  harmonic_5th — adds fifth partial at 50 % level  (+7 st above fundamental)
+  clean             — no processing
+  highpass_above_f0 — Butterworth HP at 1.5·f0 (order 6) — removes the fundamental,
+                      probing whether the model can recover pitch from harmonic spacing.
+                      Note: collapses to silence on pure-sine sources by design.
+  lowpass_at_f0     — Butterworth LP at 1.2·f0 (order 6) — strips all harmonics,
+                      leaving only the fundamental.
+  bitcrush_4bit     — pedalboard.Bitcrush, 4-bit depth: quantization noise floor
+                      competes with the fundamental.
+  distortion_heavy  — pedalboard.Distortion @ 30 dB drive (oversampled 4×): fundamental
+                      drops as energy redistributes into harmonics.
+  reverb_long       — pedalboard.Reverb (room_size=0.9): algorithmic tail smears attack
+                      and adds late energy.
+  chorus_heavy      — pedalboard.Chorus (depth=0.9, rate=1.2 Hz): detuned modulated
+                      copies near f0 — tests whether the model locks onto a single pitch.
 
 Usage:
     pitchbench e2
@@ -42,6 +46,7 @@ from pitchbench.experiments.helpers.audit import pitch_record_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import (
     PROMPT_ABC, PROMPT_HZ, PROMPT_MIDI, PROMPT_DOREMI,
+    format_accuracy_dict,
     midi_to_note,
     standard_pitch_record,
 )
@@ -57,6 +62,13 @@ EXP_NAME = Path(__file__).stem
 PITCHES = config.pitchbench_e2_PITCHES
 TONE_MS = config.pitchbench_e2_TONE_MS
 EFFECTS = config.pitchbench_e2_EFFECTS
+
+FORMAT_METRICS = {
+    "midi": "midi_correct",
+    "abc": "abc_correct",
+    "doremi": "doremi_correct",
+    "hz": "hz_correct",
+}
 
 PROMPT_MIDI_FULL   = "Listen to this audio clip of a single musical note. " + PROMPT_MIDI
 PROMPT_ABC_FULL    = "Listen to this audio clip of a single musical note. " + PROMPT_ABC
@@ -150,10 +162,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         sub = [r for r in records if r["effect"] == eff_name]
         per_effect[eff_name] = {
             "n":          len(sub),
-            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "abc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            **format_accuracy_dict(sub, FORMAT_METRICS),
         }
 
     per_source: dict[str, dict] = {}
@@ -161,20 +170,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         sub = [r for r in records if r["source"] == src]
         per_source[src] = {
             "n":          len(sub),
-            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "abc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            **format_accuracy_dict(sub, FORMAT_METRICS),
         }
 
     summary = {
         "total":          n,
-        "accuracy":   {
-            "midi":   round(sum(r["midi_correct"]   for r in records) / max(1, n), 4),
-            "abc":    round(sum(r["abc_correct"]    for r in records) / max(1, n), 4),
-            "doremi": round(sum(r["doremi_correct"] for r in records) / max(1, n), 4),
-            "hz":     round(sum(r["hz_correct"]     for r in records) / max(1, n), 4),
-        },
+        "accuracy":   format_accuracy_dict(records, FORMAT_METRICS),
         "by_effect":     per_effect,
         "by_source":     per_source,
     }
@@ -183,19 +184,19 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  Sources : {SOURCES}",
         f"  Stimuli : {n}  ({len(SOURCES)} sources × {len(PITCHES)} pitches × {len(EFFECTS)} effects)",
         f"",
-        f"  {'Effect':12s}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
-        f"  {'─' * 54}",
+        f"  {'Effect':12s}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}  {'All':>6}",
+        f"  {'─' * 63}",
     ]
     for eff_name, d in per_effect.items():
         summary_lines.append(
             f"  {eff_name:12s}  {d['n']:>5}  {d['midi']:>7.1%}  {d['abc']:>7.1%}  "
-            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}"
+            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}  {d['all']:>6.1%}"
         )
-    summary_lines += ["", "  Per source (MIDI | ABC | Doremi | Hz):"]
+    summary_lines += ["", "  Per source (MIDI | ABC | Doremi | Hz | All):"]
     for src, d in per_source.items():
         summary_lines.append(
             f"    {src:12s}: {d['midi']:.1%} | {d['abc']:.1%} | "
-            f"{d['doremi']:.1%} | {d['hz']:.1%}"
+            f"{d['doremi']:.1%} | {d['hz']:.1%} | {d['all']:.1%}"
         )
 
     print(f"\n{'=' * 60}")
@@ -233,21 +234,23 @@ def _save_plot(records: list[dict], run_dir: Path, model_name: str) -> None:
         return
 
     eff_names = list(EFFECTS.keys())
-    midi_accs, abc_accs, doremi_accs, hz_accs = [], [], [], []
+    midi_accs, abc_accs, doremi_accs, hz_accs, all_accs = [], [], [], [], []
     for eff_name in eff_names:
         sub = [r for r in records if r["effect"] == eff_name]
         midi_accs.append(sum(r["midi_correct"]   for r in sub) / len(sub) * 100 if sub else 0)
         abc_accs.append( sum(r["abc_correct"]    for r in sub) / len(sub) * 100 if sub else 0)
         doremi_accs.append(sum(r["doremi_correct"] for r in sub) / len(sub) * 100 if sub else 0)
         hz_accs.append(  sum(r["hz_correct"]     for r in sub) / len(sub) * 100 if sub else 0)
+        all_accs.append( sum(r["any_correct"]    for r in sub) / len(sub) * 100 if sub else 0)
 
     x = list(range(len(eff_names)))
-    width = 0.20
+    width = 0.16
     fig, ax = plt.subplots(figsize=(max(10, len(eff_names) * 1.2), 4))
-    ax.bar([xi - 1.5 * width for xi in x], midi_accs,   width, label="MIDI (integer)")
-    ax.bar([xi - 0.5 * width for xi in x], abc_accs,    width, label="ABC (note name)")
-    ax.bar([xi + 0.5 * width for xi in x], doremi_accs, width, label="Doremi (solfege)")
-    ax.bar([xi + 1.5 * width for xi in x], hz_accs,     width, label="Hz (frequency)")
+    ax.bar([xi - 2.0 * width for xi in x], midi_accs,   width, label="MIDI (integer)")
+    ax.bar([xi - 1.0 * width for xi in x], abc_accs,    width, label="ABC (note name)")
+    ax.bar([xi + 0.0 * width for xi in x], doremi_accs, width, label="Doremi (solfege)")
+    ax.bar([xi + 1.0 * width for xi in x], hz_accs,     width, label="Hz (frequency)")
+    ax.bar([xi + 2.0 * width for xi in x], all_accs,    width, label="Any format")
     ax.set_xticks(x)
     ax.set_xticklabels(eff_names, rotation=30, ha="right", fontsize=9)
     ax.set_ylabel("Exact match accuracy (%)")

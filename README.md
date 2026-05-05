@@ -80,7 +80,7 @@ With no `--sample-n`, each experiment reads its entry in `config.EXPERIMENT_DEFA
 ```
 
 - `per_stratum` is **per stratum cell**. Total drawn = `per_stratum × num_distinct_strata_keys`, computed from the actual condition list.
-- `per_stratum: None` → run the full grid (no sub-sampling). Used for `a1`, `d5`, `g2`, and the embedding probes (`f1`/`f2`/`f3`, which never sub-sample).
+- `per_stratum: None` → run the full grid (no sub-sampling). Used for `a1`, `d5`, `f2`, and the embedding probes (`f1`/`f2`/`f3`, which never sub-sample).
 
 This is the mode used to produce paper results — tune sample sizes by editing `config.py`, not by passing flags.
 
@@ -130,7 +130,7 @@ For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the f
 | `d1–d7` | Sequences, contour, intervals |
 | `e1–e3` | Loudness, audio effects, background noise |
 | `f1–f3` | Embedding probes (PCA, kNN oracle, token logits) |
-| `g1–g2` | Melodic-line and voice identification in polyphony |
+| `f1–f2` | Melodic-line and voice identification in polyphony |
 | `z1`    | Real-recording datasets (NSynth) |
 
 ### Category A — Single-pitch identification
@@ -194,8 +194,8 @@ For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the f
 
 | ID | Name | What it tests |
 |----|------|---------------|
-| g1 | `melodic_line_id` | Transcribe one designated line from 2–4 simultaneous synthetic voices; sweeps n, register rank, tempo (slow/medium/fast), and instrument config (similar / mixed) |
-| g2 | `chorale_voice_id` | Same task on real Bach chorales (music21 corpus): transcribe the soprano, alto, tenor, or bass from the longest non-crossing segment; requires `music21` |
+| f1 | `melodic_line_id` | Transcribe one designated line from 2–4 simultaneous synthetic voices; sweeps n, register rank, tempo (slow/medium/fast), and instrument config (similar / mixed) |
+| f2 | `chorale_voice_id` | Same task on real Bach chorales (music21 corpus): transcribe the soprano, alto, tenor, or bass from the longest non-crossing segment; requires `music21` |
 
 ### Category Z — Real-recording datasets
 

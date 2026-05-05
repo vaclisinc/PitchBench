@@ -1,50 +1,36 @@
 """
 d6 — Pitch ranking.
 
-Question: given N tones in sequence, can the model rank them low→high? Tests
+Given N tones in sequence, can the model rank them low→high? Tests
 comparison across time beyond the pairwise case (d2).
 
 Universal IVs: duration_ms, source.
 Experiment-specific IVs:
-    n:              {3, 4, 5}                (number of tones to rank)
-    rhythm:         {regular, irregular}     (irregular = seeded random gaps)
-    delta_cents:    spacing between adjacent rank levels {25, 50, 100, 200, 400}
-    base_name:      {A3, A4, A5}             (anchor frequency for the spacing)
+    n_notes:        {3, 4, 5}
+    rhythm:         {regular, irregular}
+    delta_cents:    {25, 50, 100, 200, 400}
+    base_name:      {A3, A4, A5}
 
-Fixed conditions: pure-sine waveforms only (Hz tones unsupported on
-instruments); equal level. The presented order of the N tones is permuted
-deterministically per trial via a seeded RNG.
-
-Scoring: ``answer_correct`` = exact match of the predicted permutation.
-``kendall_tau`` and ``spearman_rho`` are also recorded for partial credit.
-
-Usage::
-    pitchbench --id d6 --preview
-    pitchbench --id d6 --models audio_flamingo_next_instruct
+Headline metric: ``answer_correct`` — exact match of the predicted
+permutation. ``kendall_tau`` is recorded as a per-stim diagnostic only
+(continuous float, doesn't end in ``_correct``, so invisible to the
+auto-marginals / accuracies CSV).
 """
 
 from __future__ import annotations
 
-import argparse
 import random
 import re
+import wave
 from pathlib import Path
+
+import numpy as np
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_alm
-from pitchbench.experiments.helpers.audit import audit_line
-from pitchbench.experiments.helpers.dispatcher import dispatch
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
+from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 
-
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_d6_*)
+EXP_NAME            = Path(__file__).stem
 BASE_FREQS          = config.pitchbench_d6_BASE_FREQS
 DELTA_CENTS         = config.pitchbench_d6_DELTA_CENTS
 N_TONES             = config.pitchbench_d6_N_TONES
@@ -66,31 +52,24 @@ def _prompt(n: int) -> str:
     )
 
 
-# ── Conditions ────────────────────────────────────────────────────────────────
-
 def _cents_above(base_hz: float, cents: float) -> float:
     return base_hz * (2 ** (cents / 1200))
 
 
-def build_conditions(
-    durations_ms: list[int],
-    n_trials: int,
-    seed: int,
-) -> list[dict]:
-    rng = random.Random(seed)
+def build_conditions() -> list[dict]:
+    rng = random.Random(DEFAULT_SEED)
     rows: list[dict] = []
     for src in SOURCES:
         for base_name, base_hz in BASE_FREQS.items():
             for delta in DELTA_CENTS:
                 for n in N_TONES:
                     sorted_freqs = [_cents_above(base_hz, delta * i) for i in range(n)]
-                    for dur_ms in durations_ms:
+                    for dur_ms in config.DEFAULT_DURATIONS_MS:
                         for rhythm in RHYTHMS:
-                            for trial in range(n_trials):
+                            for trial in range(DEFAULT_N_TRIALS):
                                 perm = list(range(n))
                                 rng.shuffle(perm)
                                 presented = [sorted_freqs[p] for p in perm]
-                                # answer_gt: positions sorted by ascending pitch (1-indexed)
                                 gt = " ".join(
                                     str(i + 1) for i in sorted(range(n), key=lambda i: presented[i])
                                 )
@@ -117,15 +96,12 @@ def build_conditions(
     return rows
 
 
-def _wav_for(c: dict) -> Path:
-    """Manually concatenate Hz tones with per-position gaps (engine.sequence_hz uses constant gap)."""
-    import numpy as np
+def wav_for(c: dict) -> Path:
+    """Manually concatenate Hz tones with per-position gaps."""
     SR = engine.SR
     parts: list = []
     for i, f in enumerate(c["presented_hz"]):
-        # render via tone_hz then read the WAV back; cheaper: synth inline.
         wav_path = engine.tone_hz(f, c["source"], c["duration_ms"])
-        import wave
         with wave.open(str(wav_path), "rb") as wf:
             n   = wf.getnframes()
             raw = wf.readframes(n)
@@ -146,6 +122,10 @@ def _wav_for(c: dict) -> Path:
     return out
 
 
+def prompts_for(c: dict) -> dict[str, str]:
+    return {"main": _prompt(c["n_notes"])}
+
+
 def _parse_perm(text: str, n: int) -> str | None:
     nums = [int(x) for x in re.findall(r"\b([1-9])\b", text or "")]
     seen: list[int] = []
@@ -158,7 +138,6 @@ def _parse_perm(text: str, n: int) -> str | None:
 
 
 def _kendall_tau(pred: list[int], gt: list[int]) -> float:
-    """Normalised Kendall tau in [-1, 1]. ``pred`` and ``gt`` are 1-indexed permutations."""
     if len(pred) != len(gt):
         return 0.0
     n = len(pred)
@@ -168,158 +147,61 @@ def _kendall_tau(pred: list[int], gt: list[int]) -> float:
     concord = 0
     for i in range(n):
         for j in range(i + 1, n):
-            if (pred.index(gt[i]) < pred.index(gt[j])):
+            if pred.index(gt[i]) < pred.index(gt[j]):
                 concord += 1
     return (2 * concord - pairs) / pairs
 
 
-# ── Run one model ─────────────────────────────────────────────────────────────
-
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
-
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        wav    = str(_wav_for(c))
-        prompt = _prompt(c["n_notes"])
-        jobs.append({"wav": wav, "cond": c, "prompt": prompt})
-
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c       = job["cond"]
-        prompt  = job["prompt"]
-        out     = query_alm(model_name, job["wav"], prompt)
-        raw     = (out["result"] or "").strip()
-        pred    = _parse_perm(raw, c["n_notes"])
-        exact   = (pred == c["answer_gt"]) if pred else False
-        tau     = _kendall_tau(
-            [int(x) for x in pred.split()] if pred else [],
-            [int(x) for x in c["answer_gt"].split()],
-        ) if pred else 0.0
-        return {
-            "source":         c["source"],
-            "duration_ms":    c["duration_ms"],
-            "n_notes":        c["n_notes"],
-            "rhythm":         c["rhythm"],
-            "base_name":      c["base_name"],
-            "delta_cents":    c["delta_cents"],
-            "trial":          c["trial"],
-            "presented_hz":   str(c["presented_hz"]),
-            "wav":            job["wav"],
-            "raw_response":   raw,
-            "answer_gt":      c["answer_gt"],
-            "answer_pred":    pred,
-            "answer_correct": int(exact),
-            "kendall_tau":    round(tau, 4),
-            "prompt":         prompt,
-            "model_params":   out["model_params"],
-        }
-
-    raw_results = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"n={j['cond']['n_notes']} {j['cond']['base_name']} Δ={j['cond']['delta_cents']}c {j['cond']['rhythm']:>9}",
-        result_label_fn=lambda j, r: audit_line(
-            f"n={j['cond']['n_notes']} {j['cond']['base_name']} Δ={j['cond']['delta_cents']}c {j['cond']['rhythm']:>9}",
-            gt=r['answer_gt'],
-            pred=r['answer_pred'],
-            score=r.get('kendall_tau'),
-            correct=bool(r['answer_correct']),
-        ),
-    )
-    records: list[dict] = [r for r in raw_results if r is not None]
-
-    n     = len(records)
-    n_ok  = sum(r["answer_correct"] for r in records)
-    mean_tau = round(sum(r["kendall_tau"] for r in records) / max(1, n), 4)
-    summary = {
-        "total":       n,
-        "accuracy":    round(n_ok / n, 4) if n else None,
-        "kendall_tau": mean_tau,
+def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
+    raw   = responses["main"]
+    pred  = _parse_perm(raw, c["n_notes"])
+    exact = (pred == c["answer_gt"]) if pred else False
+    tau   = _kendall_tau(
+        [int(x) for x in pred.split()] if pred else [],
+        [int(x) for x in c["answer_gt"].split()],
+    ) if pred else 0.0
+    return {
+        "source":         c["source"],
+        "duration_ms":    c["duration_ms"],
+        "n_notes":        c["n_notes"],
+        "rhythm":         c["rhythm"],
+        "base_name":      c["base_name"],
+        "delta_cents":    c["delta_cents"],
+        "trial":          c["trial"],
+        "presented_hz":   str(c["presented_hz"]),
+        "answer_gt":      c["answer_gt"],
+        "raw_response":   raw,
+        "answer_pred":    pred,
+        "answer_correct": int(exact),
+        "kendall_tau":    round(tau, 4),
     }
 
-    summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Sources       : {SOURCES}",
-        f"  Stimuli       : {n}",
-        f"  Exact match   : {n_ok}/{n}  ({n_ok/max(1,n):.1%})",
-        f"  Mean τ        : {mean_tau:+.3f}",
-    ]
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
 
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, base_freqs=BASE_FREQS, delta_cents=DELTA_CENTS,
-        n_tones=N_TONES, rhythms=RHYTHMS,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
-        **(sample_info or {}),
-    )
-    save_results(
-        EXP_NAME, model_name, records, summary, metadata, summary_lines,
-        run_dir=run_dir,
-        formats=(),
-        extra_metrics=("answer_correct", "kendall_tau"),
-    )
-    return summary
-
-
-# ── Entry points ──────────────────────────────────────────────────────────────
-
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview",  action="store_true")
-    parser.add_argument("--models",   nargs="+", metavar="MODEL")
-    parser.add_argument("--n-trials", type=int, default=DEFAULT_N_TRIALS)
-    parser.add_argument("--seed",     type=int, default=DEFAULT_SEED)
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatDSpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    task_type="ranking",
+    prompts_fn=prompts_for,
+    record_fn=record_for,
+    headline_metrics=("answer",),
+    record_extras=(
+        "duration_ms", "n_notes", "rhythm", "base_name", "delta_cents", "trial",
+    ),
+    label_fn=lambda j: (
+        f"n={j['cond']['n_notes']} {j['cond']['base_name']} "
+        f"Δ={j['cond']['delta_cents']}c {j['cond']['rhythm']:>9}"
+    ),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        _wav_for(c)
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Sources    : {SOURCES}")
-    print(f"Trials     : {len(conds)}")
-    print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_d_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        _wav_for(c)
+def run() -> dict | None:
+    return run_cat_d_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

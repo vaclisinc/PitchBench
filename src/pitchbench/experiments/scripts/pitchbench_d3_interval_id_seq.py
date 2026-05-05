@@ -12,37 +12,23 @@ Experiment-specific IVs:
     direction:       {ascending, descending}
     separation_ms:   {200, 500, 1000, 2000}
 
-Fixed conditions: non-overlapping notes; equal level; pure waveforms or
-instruments (the model should be timbre-agnostic for interval ID).
-
-Scoring:
-    interval_correct  → predicted signed semitones == ground truth
-    interval_within_1 → |pred − gt| ≤ 1
+Headline metric: ``interval_correct`` (exact match on the signed integer).
+``interval_within_1`` (off-by-one tolerance) is a per-stimulus diagnostic
+auto-excluded from the headline accuracies CSV by the ``_within_1``
+exclusion rule in ``_marginal_csv_rows``.
 """
 
 from __future__ import annotations
 
-import argparse
 import re
 from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_alm
-from pitchbench.experiments.helpers.audit import audit_line
-from pitchbench.experiments.helpers.dispatcher import dispatch
+from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
-from pitchbench.experiments.helpers.plots import save_bar_plot_by_key
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
-
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_d3_*)
+EXP_NAME       = Path(__file__).stem
 INTERVALS_ST   = config.pitchbench_d3_INTERVALS_ST
 DIRECTIONS     = config.pitchbench_d3_DIRECTIONS
 SEPARATIONS_MS = config.pitchbench_d3_SEPARATIONS_MS
@@ -69,16 +55,16 @@ def _parse_signed_st(text: str) -> int | None:
     return v if -36 <= v <= 36 else None
 
 
-def build_conditions(durations_ms: list[int], pitches: list[int]) -> list[dict]:
+def build_conditions() -> list[dict]:
     rows: list[dict] = []
     for src in SOURCES:
-        for base in pitches:
+        for base in PITCHES:
             for iv in INTERVALS_ST:
                 for direction in DIRECTIONS:
                     other = base + iv if direction == "ascending" else base - iv
                     if other < 12 or other > 96:
                         continue
-                    for dur in durations_ms:
+                    for dur in DURATIONS_MS:
                         for sep in SEPARATIONS_MS:
                             rows.append({
                                 "source":        src,
@@ -93,163 +79,63 @@ def build_conditions(durations_ms: list[int], pitches: list[int]) -> list[dict]:
     return rows
 
 
-def _wav_for(c: dict) -> Path:
+def wav_for(c: dict) -> Path:
     return engine.sequence(c["midis"], c["source"], c["duration_ms"], c["separation_ms"])
 
 
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
+def prompts_for(_: dict) -> dict[str, str]:
+    return {"main": PROMPT}
 
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        try:
-            wav = str(_wav_for(c))
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-            continue
-        jobs.append({"wav": wav, "cond": c})
 
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c    = job["cond"]
-        out  = query_alm(model_name, job["wav"], PROMPT)
-        raw  = (out["result"] or "").strip()
-        pred = _parse_signed_st(raw)
-        ok        = (pred == c["signed_st"]) if pred is not None else False
-        within_1  = (pred is not None and abs(pred - c["signed_st"]) <= 1)
-        return {
-            "duration_ms":       c["duration_ms"],
-            "source":            c["source"],
-            "source_type":       "waveform" if c["source"] in config.WAVEFORMS else "instrument",
-            "base_midi":         c["base_midi"],
-            "base_note":         midi_to_note(c["base_midi"]),
-            "interval_st":       c["interval_st"],
-            "direction":         c["direction"],
-            "separation_ms":     c["separation_ms"],
-            "midis":             "+".join(str(m) for m in c["midis"]),
-            "wav":               job["wav"],
-            "raw_response":      raw,
-            "interval_pred":     pred,
-            "interval_correct":  int(ok),
-            "interval_within_1": int(within_1),
-            "prompt":            PROMPT,
-            "model_params":      out["model_params"],
-        }
-
-    raw_results = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"iv={j['cond']['signed_st']:+3d}st base={midi_to_note(j['cond']['base_midi']):4s} sep={j['cond']['separation_ms']:>4}ms {j['cond']['source']}",
-        result_label_fn=lambda j, r: audit_line(
-            f"base={midi_to_note(j['cond']['base_midi']):4s} sep={j['cond']['separation_ms']:>4}ms {j['cond']['source']}",
-            gt=r['interval_st'],
-            pred=r['interval_pred'],
-            correct=bool(r['interval_correct']),
-        ),
-    )
-    records: list[dict] = [r for r in raw_results if r is not None]
-
-    n = len(records)
-    summary = {
-        "total":             n,
-        "accuracy":  round(sum(r["interval_correct"]  for r in records) / max(1, n), 4),
-        "interval_within_1": round(sum(r["interval_within_1"] for r in records) / max(1, n), 4),
+def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
+    raw  = responses["main"]
+    pred = _parse_signed_st(raw)
+    ok        = (pred == c["signed_st"]) if pred is not None else False
+    within_1  = (pred is not None and abs(pred - c["signed_st"]) <= 1)
+    return {
+        "duration_ms":       c["duration_ms"],
+        "source":            c["source"],
+        "base_midi":         c["base_midi"],
+        "base_note":         midi_to_note(c["base_midi"]),
+        "interval_st":       c["interval_st"],
+        "direction":         c["direction"],
+        "separation_ms":     c["separation_ms"],
+        "signed_st":         c["signed_st"],
+        "midis":             "+".join(str(m) for m in c["midis"]),
+        "raw_response":      raw,
+        "interval_pred":     pred,
+        "interval_correct":  int(ok),
+        "interval_within_1": int(within_1),
     }
-    summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Stimuli       : {n}",
-        f"  Exact accuracy: {summary['accuracy']:.1%}",
-        f"  ±1 semitone   : {summary['interval_within_1']:.1%}",
-    ]
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
-
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, intervals_st=INTERVALS_ST, directions=DIRECTIONS,
-        separations_ms=SEPARATIONS_MS,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
-        prompt=PROMPT,
-        **(sample_info or {}),
-    )
-    save_results(
-        EXP_NAME, model_name, records, summary, metadata, summary_lines,
-        run_dir=run_dir,
-        formats=(),
-        extra_metrics=("interval_correct", "interval_within_1"),
-    )
-
-    uniform_dir = run_dir / "uniform"
-    uniform_dir.mkdir(parents=True, exist_ok=True)
-    model_slug = re.sub(r"[^a-z0-9]+", "_", model_name.lower()).strip("_")
-    save_bar_plot_by_key(
-        records,  # type: ignore[arg-type]
-        group_key="interval_st",
-        score_key="interval_correct",
-        score_label="Interval accuracy (%)",
-        title=f"Accuracy by interval size (absolute) — {model_name}",
-        xlabel="Interval (semitones, absolute value)",
-        out_path=uniform_dir / f"by_interval_st_{model_slug}.png",
-    )
-
-    return summary
 
 
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview", action="store_true")
-    parser.add_argument("--models",  nargs="+", metavar="MODEL")
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatDSpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    task_type="interval",
+    prompts_fn=prompts_for,
+    record_fn=record_for,
+    headline_metrics=("interval",),
+    record_extras=(
+        "duration_ms", "base_midi", "interval_st", "direction",
+        "separation_ms", "signed_st",
+    ),
+    label_fn=lambda j: (
+        f"iv={j['cond']['signed_st']:+3d}st "
+        f"base={midi_to_note(j['cond']['base_midi']):4s} "
+        f"sep={j['cond']['separation_ms']:>4}ms {j['cond']['source']}"
+    ),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args = _parse_args()
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try: _wav_for(c)
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Sources    : {SOURCES}")
-    print(f"Stimuli    : {len(conds)}")
-    print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_d_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try: _wav_for(c)
-        except ValueError: pass
+def run() -> dict | None:
+    return run_cat_d_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

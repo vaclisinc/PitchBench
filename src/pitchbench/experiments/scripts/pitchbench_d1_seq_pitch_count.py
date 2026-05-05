@@ -9,10 +9,6 @@ Experiment-specific IVs:
     n:                {1..10}                  (sequence length)
     rhythm:           {regular, irregular}     (irregular gaps drawn from a
                                                 seeded uniform distribution)
-    pitch_set_seed:   trial index — selects a different seeded random pitch set
-
-Fixed conditions: equal level; non-overlapping notes; pitch range C3..C6;
-single integer-count prompt.
 
 Usage::
     pitchbench --id d1 --preview
@@ -21,29 +17,19 @@ Usage::
 
 from __future__ import annotations
 
-import argparse
 import random
 import re
+import wave
 from pathlib import Path
 
 import numpy as np
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
-from pitchbench.experiments.helpers.api import get_model_info, query_alm
-from pitchbench.experiments.helpers.audit import audit_line
-from pitchbench.experiments.helpers.dispatcher import dispatch
+from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
-from pitchbench.experiments.helpers.results import (
-    extract_format_accuracies,
-    get_run_metadata, make_run_dir, save_comparison, save_results,
-)
-from pitchbench.experiments.helpers.sampling import apply_default_sampling, sampling_summary_lines
 
-
-EXP_NAME = Path(__file__).stem
-
-# Data-generation parameters (sourced from config.pitchbench_d1_*)
+EXP_NAME         = Path(__file__).stem
 N_COUNTS         = config.pitchbench_d1_N_COUNTS
 RHYTHMS          = config.pitchbench_d1_RHYTHMS
 DEFAULT_GAP_MS   = config.pitchbench_d1_GAP_MS
@@ -61,17 +47,14 @@ PROMPT = (
 )
 
 
-# ── Conditions ────────────────────────────────────────────────────────────────
-
-def build_conditions(durations_ms: list[int], n_trials: int, seed: int) -> list[dict]:
-    rng = random.Random(seed)
+def build_conditions() -> list[dict]:
+    rng = random.Random(DEFAULT_SEED)
     rows: list[dict] = []
     for src in SOURCES:
-        for dur in durations_ms:
+        for dur in DURATIONS_MS:
             for n in N_COUNTS:
-                for trial in range(n_trials):
+                for trial in range(DEFAULT_N_TRIALS):
                     midis = sorted(rng.sample(range(PITCH_MIN, PITCH_MAX + 1), n))
-                    # Distinct presented order: shuffled, but length == n (no repeats by construction)
                     presented = list(midis)
                     rng.shuffle(presented)
                     for rhythm in RHYTHMS:
@@ -95,14 +78,12 @@ def build_conditions(durations_ms: list[int], n_trials: int, seed: int) -> list[
     return rows
 
 
-def _wav_for(c: dict) -> Path:
+def wav_for(c: dict) -> Path:
     """Concatenate per-position tones with per-gap silences."""
     SR = engine.SR
     parts: list[np.ndarray] = []
     for i, m in enumerate(c["presented"]):
-        # tone() caches its own wav; read it back, then tile gaps inline
         wav_path = engine.tone(m, c["source"], c["duration_ms"])
-        import wave
         with wave.open(str(wav_path), "rb") as wf:
             raw = wf.readframes(wf.getnframes())
         arr = (np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32767.0)
@@ -126,154 +107,60 @@ def _wav_for(c: dict) -> Path:
     return out
 
 
+def prompts_for(_: dict) -> dict[str, str]:
+    return {"main": PROMPT}
+
+
 def _parse_count(text: str) -> int | None:
     m = re.search(r"\b(\d+)\b", (text or "").strip())
     return int(m.group(1)) if m else None
 
 
-# ── Run one model ─────────────────────────────────────────────────────────────
-
-def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info: dict | None = None) -> dict:
-    info = get_model_info(model_name)
-    print(f"\n  Model : {config.MODELS.get(model_name, model_name)}")
-
-    # Phase 1: generate audio sequentially.
-    jobs: list[dict] = []
-    for c in conds:
-        try:
-            wav = str(_wav_for(c))
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-            continue
-        jobs.append({"wav": wav, "cond": c})
-
-    # Phase 2: dispatch HTTP queries with bounded concurrency.
-    def _query_one(job: dict) -> dict:
-        c    = job["cond"]
-        out  = query_alm(model_name, job["wav"], PROMPT)
-        raw  = (out["result"] or "").strip()
-        pred = _parse_count(raw)
-        ok   = (pred == c["n"]) if pred is not None else False # correct if exactly equal vvv
-        off  = abs(pred - c["n"]) if pred is not None else None
-        return {
-            "source":        c["source"],
-            "duration_ms":   c["duration_ms"],
-            "n":             c["n"],
-            "rhythm":        c["rhythm"],
-            "trial":         c["trial"],
-            "midi_set":      str(c["midi_set"]),
-            "note_set":      ", ".join(midi_to_note(m) for m in c["midi_set"]),
-            "presented":     str(c["presented"]),
-            "wav":           job["wav"],
-            "raw_response":  raw,
-            "count_pred":    pred,
-            "count_correct": int(ok),
-            "off_by":        off,
-            "prompt":        PROMPT,
-            "model_params":  out["model_params"],
-        }
-
-    raw_results = dispatch(
-        jobs, _query_one,
-        model_name=model_name,
-        label_fn=lambda j: f"n={j['cond']['n']:>2} {j['cond']['rhythm']:>9} {j['cond']['source']:>10} dur={j['cond']['duration_ms']:>5}ms t={j['cond']['trial']}",
-        result_label_fn=lambda j, r: audit_line(
-            f"{j['cond']['rhythm']:>9} {j['cond']['source']:>10} dur={j['cond']['duration_ms']:>5}ms",
-            gt=r['n'],
-            pred=r['count_pred'],
-            correct=bool(r['count_correct']),
-        ),
-    )
-    records: list[dict] = [r for r in raw_results if r is not None]
-
-    n_total = len(records)
-    n_ok    = sum(r["count_correct"] for r in records)
-    summary = {
-        "total":    n_total,
-        "accuracy": round(n_ok / n_total, 4) if n_total else None,
+def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
+    raw  = responses["main"]
+    pred = _parse_count(raw)
+    ok   = (pred == c["n"]) if pred is not None else False
+    off  = abs(pred - c["n"]) if pred is not None else None
+    return {
+        "source":        c["source"],
+        "duration_ms":   c["duration_ms"],
+        "n":             c["n"],
+        "rhythm":        c["rhythm"],
+        "trial":         c["trial"],
+        "midi_set":      str(c["midi_set"]),
+        "note_set":      ", ".join(midi_to_note(m) for m in c["midi_set"]),
+        "presented":     str(c["presented"]),
+        "raw_response":  raw,
+        "count_pred":    pred,
+        "count_correct": int(ok),
+        "off_by":        off,
     }
-    summary_lines = sampling_summary_lines(sample_info or {}) + [
-        f"  Stimuli  : {n_total}",
-        f"  Accuracy : {n_ok}/{n_total} ({n_ok/max(1,n_total):.1%})",
-    ]
-    print(f"\n{'=' * 60}")
-    print(f"SUMMARY — {model_name}")
-    for line in summary_lines:
-        print(line)
-
-    metadata = get_run_metadata(
-        model_name=model_name, model_info=info,
-        sources=SOURCES, n_counts=N_COUNTS, rhythms=RHYTHMS,
-        durations_ms=config.DEFAULT_DURATIONS_MS,
-        gap_ms=DEFAULT_GAP_MS,
-        prompt=PROMPT,
-        **(sample_info or {}),
-    )
-    save_results(
-        EXP_NAME, model_name, records, summary, metadata, summary_lines,
-        run_dir=run_dir,
-        formats=(),
-        extra_metrics=("count_correct",),
-    )
-    return summary
 
 
-# ── Entry points ──────────────────────────────────────────────────────────────
-
-def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preview",  action="store_true")
-    parser.add_argument("--models",   nargs="+", metavar="MODEL")
-    parser.add_argument("--n-trials", type=int, default=DEFAULT_N_TRIALS)
-    parser.add_argument("--seed",     type=int, default=DEFAULT_SEED)
-    parser.add_argument("--sample-n",     type=int, default=None, metavar="N",
-                        help="Draw N stimuli (stratified by source)")
-    parser.add_argument("--sample-seed",  type=int, default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
-    args, _ = parser.parse_known_args()
-    return args
+SPEC = CatDSpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    task_type="count",
+    prompts_fn=prompts_for,
+    record_fn=record_for,
+    headline_metrics=("count",),
+    record_extras=("duration_ms", "n", "rhythm", "trial"),
+    label_fn=lambda j: (
+        f"n={j['cond']['n']:>2} {j['cond']['rhythm']:>9} "
+        f"{j['cond']['source']:>10} dur={j['cond']['duration_ms']:>5}ms "
+        f"t={j['cond']['trial']}"
+    ),
+)
 
 
 def preview() -> None:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try:    _wav_for(c)
-        except ValueError as exc:
-            print(f"    [SKIP] {exc}")
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Sources    : {SOURCES}")
-    print(f"Stimuli    : {len(conds)}")
-    print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-    print("\nRun without --preview to query the model(s).")
+    run_cat_d_experiment(SPEC, mode="preview")
 
 
-def run() -> dict:
-    engine.set_exp(EXP_NAME)
-    args  = _parse_args()
-    target_models = args.models or list(config.MODELS)
-    all_conds = build_conditions(config.DEFAULT_DURATIONS_MS, args.n_trials, args.seed)
-    conds, s_meta = apply_default_sampling(EXP_NAME, all_conds, args.sample_n, args.sample_seed)
-    for c in conds:
-        try:    _wav_for(c)
-        except ValueError: pass
+def run() -> dict | None:
+    return run_cat_d_experiment(SPEC, mode="run")
 
-    print(f"Experiment : {EXP_NAME}")
-    print(f"Models     : {', '.join(target_models)}")
-    print(f"Stimuli    : {len(conds)}")
-    for line in sampling_summary_lines(s_meta):
-        print(line)
-
-    run_dir = make_run_dir(EXP_NAME)
-    all_summaries: dict[str, dict] = {}
-    for m in target_models:
-        all_summaries[m] = run_one_model(m, conds, run_dir, s_meta)
-    save_comparison(run_dir, all_summaries, EXP_NAME)
-    return extract_format_accuracies(run_dir, list(all_summaries.keys()))
 
 if __name__ == "__main__":
-    args = _parse_args()
-    (preview if args.preview else run)()
+    run()

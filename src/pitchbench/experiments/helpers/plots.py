@@ -236,6 +236,7 @@ FORMAT_METRIC: dict[str, str] = {
     "spn":    "Exact-match accuracy (%)",
     "doremi": "Exact-match accuracy (%)",
     "hz":     "Hz accuracy (%, ±1% tolerance)",
+    "any":    "Any-format accuracy (%)",
 }
 
 FORMAT_CORRECT_KEY: dict[str, str | None] = {
@@ -243,6 +244,7 @@ FORMAT_CORRECT_KEY: dict[str, str | None] = {
     "spn":    "spn_correct",
     "doremi": "doremi_correct",
     "hz":     "hz_correct",
+    "any":    "any_correct",
 }
 
 FORMAT_COLORS: dict[str, str] = {
@@ -250,6 +252,7 @@ FORMAT_COLORS: dict[str, str] = {
     "spn":    "#DD8452",
     "doremi": "#55A868",
     "hz":     "#C44E52",
+    "any":    "#8172B3",
 }
 
 FORMAT_DISPLAY: dict[str, str] = {
@@ -257,6 +260,7 @@ FORMAT_DISPLAY: dict[str, str] = {
     "spn":    "SPN / ABC",
     "doremi": "Doremi",
     "hz":     "Hz",
+    "any":    "Any",
 }
 
 
@@ -330,7 +334,7 @@ def save_per_format_iv_plots(
                 sub    = [r for r in records if r.get(iv_key) == iv]
                 scores = [s for r in sub for s in [_format_score(r, fmt)] if s is not None]
                 vals.append(float(np.mean(scores) * 100) if scores else float("nan"))
-            series["all"] = vals
+            series["any"] = vals
 
         cmap  = plt.get_cmap("tab20")
 
@@ -349,7 +353,7 @@ def save_per_format_iv_plots(
                 )
             ax.legend(fontsize=7, ncol=max(1, k // 4 + 1))
         else:
-            ax.bar(x, series["all"], 0.7, color=FORMAT_COLORS[fmt], alpha=0.85)
+            ax.bar(x, series["any"], 0.7, color=FORMAT_COLORS[fmt], alpha=0.85)
 
         ax.set_xticks(x)
         ax.set_xticklabels(iv_lbls, rotation=35, ha="right", fontsize=8)
