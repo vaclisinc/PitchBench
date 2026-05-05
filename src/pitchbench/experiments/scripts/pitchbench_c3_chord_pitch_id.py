@@ -188,12 +188,9 @@ def run_one_model(
             "note_names":     str(c["note_names"]),
             "source":         c["source"],
             "wav":            job["wav"],
-            "prompt_variant": variant,
+            "format":         variant,
             "prompt":         prompt,
             "raw_response":   raw.strip(),
-            # standard plot keys
-            "instrument":     c["source"],
-            "midi":           c["root_midi"],
             **scores,
         }
 
@@ -226,8 +223,9 @@ def run_one_model(
         }
 
     per_variant: dict[str, dict] = {}
+    aggregate: dict[str, list[float]] = {}
     for variant in PROMPTS:
-        sub = [r for r in records if r["prompt_variant"] == variant]
+        sub = [r for r in records if r["format"] == variant]
         if not sub:
             continue
         recall_vals = [r["recall"] for r in sub]
@@ -236,11 +234,14 @@ def run_one_model(
             "exact_accuracy": round(sum(r["exact_match"] for r in sub) / len(sub), 4),
             "mean_recall":    round(sum(recall_vals) / len(recall_vals), 4),
         }
+        aggregate[variant] = round(sum(r["exact_match"] for r in sub) / len(sub), 4)
+
 
     summary = {
         "total":       n,
-        "per_chord":   per_chord,
-        "per_variant": per_variant,
+        "accuracy":    aggregate,
+        "by_chord":    per_chord,
+        "by_format":   per_variant,
     }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
@@ -270,12 +271,17 @@ def run_one_model(
         prompts=PROMPTS,
         **(sample_info or {}),
     )
-    save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
+    save_results(
+        EXP_NAME, model_name, records, summary, metadata, summary_lines,
+        run_dir=run_dir,
+        formats=(),
+        extra_metrics=("exact_match", "recall", "precision"),
+    )
     save_accuracy_plots(
         records, run_dir, model_name,
         instrument_key="source",
         pitch_key="n_notes",
-        prompt_key="prompt_variant",
+        prompt_key="format",
         accuracy_key="exact_match",
     )
     return summary

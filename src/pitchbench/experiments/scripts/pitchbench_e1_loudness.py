@@ -120,46 +120,41 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     for db in LOUDNESS_DB:
         sub = [r for r in records if r["loudness_db"] == db]
         per_loudness[db] = {
-            "n":          len(sub),
-            "midi_acc":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "abc_acc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi_acc": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz_acc":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            "n":      len(sub),
+            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
+            "abc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
+            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
+            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
         }
 
     summary = {
         "total":          n,
-        "midi_correct":   sum(r["midi_correct"]   for r in records),
-        "midi_within_1":  sum(r["midi_within_1"]  for r in records),
-        "abc_correct":    sum(r["abc_correct"]    for r in records),
-        "doremi_correct": sum(r["doremi_correct"] for r in records),
-        "hz_correct":     sum(r["hz_correct"]     for r in records),
-        "per_loudness_db": per_loudness,
+        "accuracy":   {
+            "midi":   round(sum(r["midi_correct"]   for r in records) / max(1, n), 4),
+            "abc":    round(sum(r["abc_correct"]    for r in records) / max(1, n), 4),
+            "doremi": round(sum(r["doremi_correct"] for r in records) / max(1, n), 4),
+            "hz":     round(sum(r["hz_correct"]     for r in records) / max(1, n), 4),
+        },
+        "by_loudness": per_loudness,
     }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli : {n}  ({len(PITCHES)} pitches × {len(LOUDNESS_DB)} loudness levels)",
         f"",
-        f"  [MIDI — integer]",
-        f"    Exact match   : {summary['midi_correct']} / {n}  ({summary['midi_correct']/n:.1%})",
-        f"    Within 1      : {summary['midi_within_1']} / {n}",
-        f"",
-        f"  [ABC — note name]",
-        f"    Exact match   : {summary['abc_correct']} / {n}  ({summary['abc_correct']/n:.1%})",
-        f"",
-        f"  [Doremi — solfege]",
-        f"    Exact match   : {summary['doremi_correct']} / {n}  ({summary['doremi_correct']/n:.1%})",
-        f"",
-        f"  [Hz — frequency]",
-        f"    Exact match (≤1 Hz)  : {summary['hz_correct']} / {n}  ({summary['hz_correct']/n:.1%})",
+        f"  {'Format':>6}  {'Accuracy':>9}",
+        f"  {'─' * 20}",
+        f"  {'MIDI':>6}  {summary['accuracy']['midi']:>9.1%}",
+        f"  {'ABC':>6}  {summary['accuracy']['abc']:>9.1%}",
+        f"  {'Doremi':>6}  {summary['accuracy']['doremi']:>9.1%}",
+        f"  {'Hz':>6}  {summary['accuracy']['hz']:>9.1%}",
         f"",
         f"  {'dBFS':>6}  {'n':>5}  {'MIDI':>7}  {'ABC':>7}  {'Doremi':>8}  {'Hz':>6}",
         f"  {'─' * 50}",
     ]
     for db, d in per_loudness.items():
         summary_lines.append(
-            f"  {db:>6}  {d['n']:>5}  {d['midi_acc']:>7.1%}  {d['abc_acc']:>7.1%}  "
-            f"{d['doremi_acc']:>8.1%}  {d['hz_acc']:>6.1%}"
+            f"  {db:>6}  {d['n']:>5}  {d['midi']:>7.1%}  {d['abc']:>7.1%}  "
+            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}"
         )
 
     print(f"\n{'=' * 60}")

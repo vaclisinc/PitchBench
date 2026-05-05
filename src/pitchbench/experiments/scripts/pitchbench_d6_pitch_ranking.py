@@ -59,9 +59,9 @@ SOURCES             = config.pitchbench_d6_SOURCES
 def _prompt(n: int) -> str:
     example = " ".join(str(i) for i in range(n, 0, -1))
     return (
-        f"{n} pure tones play one after another, separated by brief silences. "
+        f"{n} tones play one after another, separated by brief silences. "
         f"Rank them from lowest pitch to highest pitch. "
-        f'Reply with ONLY the order as positions (1..{n}), e.g. "{example}" '
+        f'Reply with ONLY the order as positions (1..{n}), space-separated, e.g. "{example}" '
         f"means the {n}th tone played is lowest and the 1st is highest."
     )
 
@@ -236,7 +236,6 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     mean_tau = round(sum(r["kendall_tau"] for r in records) / max(1, n), 4)
     summary = {
         "total":       n,
-        "correct":     n_ok,
         "accuracy":    round(n_ok / n, 4) if n else None,
         "kendall_tau": mean_tau,
     }

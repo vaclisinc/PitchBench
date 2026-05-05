@@ -21,6 +21,10 @@ Effects:
   eq_lo_cut    — low-shelf  −12 dB at  500 Hz  (bass cut / thin)
   eq_hi_cut    — high-shelf −12 dB at 2000 Hz  (telephone-warm)
   eq_telephone — high-shelf −24 dB at 1000 Hz  (severe LP, telephone-like)
+  sat_light    — tanh waveshaping drive=2  (mild tube warmth, adds harmonics)
+  sat_heavy    — tanh waveshaping drive=10 (heavy distortion, dense spectrum)
+  harmonic_2nd — adds octave partial at 50 % level (+12 st above fundamental)
+  harmonic_5th — adds fifth partial at 50 % level  (+7 st above fundamental)
 
 Usage:
     pitchbench e2
@@ -146,31 +150,33 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         sub = [r for r in records if r["effect"] == eff_name]
         per_effect[eff_name] = {
             "n":          len(sub),
-            "midi_acc":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "abc_acc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi_acc": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz_acc":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
+            "abc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
+            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
+            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
         }
 
     per_source: dict[str, dict] = {}
     for src in SOURCES:
         sub = [r for r in records if r["source"] == src]
         per_source[src] = {
-            "midi_acc":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
-            "abc_acc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
-            "doremi_acc": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
-            "hz_acc":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
+            "n":          len(sub),
+            "midi":   round(sum(r["midi_correct"]   for r in sub) / len(sub), 4) if sub else 0.0,
+            "abc":    round(sum(r["abc_correct"]    for r in sub) / len(sub), 4) if sub else 0.0,
+            "doremi": round(sum(r["doremi_correct"] for r in sub) / len(sub), 4) if sub else 0.0,
+            "hz":     round(sum(r["hz_correct"]     for r in sub) / len(sub), 4) if sub else 0.0,
         }
 
     summary = {
         "total":          n,
-        "midi_correct":   sum(r["midi_correct"]   for r in records),
-        "midi_within_1":  sum(r["midi_within_1"]  for r in records),
-        "abc_correct":    sum(r["abc_correct"]    for r in records),
-        "doremi_correct": sum(r["doremi_correct"] for r in records),
-        "hz_correct":     sum(r["hz_correct"]     for r in records),
-        "per_effect":     per_effect,
-        "per_source":     per_source,
+        "accuracy":   {
+            "midi":   round(sum(r["midi_correct"]   for r in records) / max(1, n), 4),
+            "abc":    round(sum(r["abc_correct"]    for r in records) / max(1, n), 4),
+            "doremi": round(sum(r["doremi_correct"] for r in records) / max(1, n), 4),
+            "hz":     round(sum(r["hz_correct"]     for r in records) / max(1, n), 4),
+        },
+        "by_effect":     per_effect,
+        "by_source":     per_source,
     }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
@@ -182,14 +188,14 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     ]
     for eff_name, d in per_effect.items():
         summary_lines.append(
-            f"  {eff_name:12s}  {d['n']:>5}  {d['midi_acc']:>7.1%}  {d['abc_acc']:>7.1%}  "
-            f"{d['doremi_acc']:>8.1%}  {d['hz_acc']:>6.1%}"
+            f"  {eff_name:12s}  {d['n']:>5}  {d['midi']:>7.1%}  {d['abc']:>7.1%}  "
+            f"{d['doremi']:>8.1%}  {d['hz']:>6.1%}"
         )
     summary_lines += ["", "  Per source (MIDI | ABC | Doremi | Hz):"]
     for src, d in per_source.items():
         summary_lines.append(
-            f"    {src:12s}: {d['midi_acc']:.1%} | {d['abc_acc']:.1%} | "
-            f"{d['doremi_acc']:.1%} | {d['hz_acc']:.1%}"
+            f"    {src:12s}: {d['midi']:.1%} | {d['abc']:.1%} | "
+            f"{d['doremi']:.1%} | {d['hz']:.1%}"
         )
 
     print(f"\n{'=' * 60}")

@@ -153,15 +153,123 @@ _NON_IV_PREFIXES: tuple[str, ...] = (
 _NON_IV_SUFFIXES: tuple[str, ...] = (
     "_pred", "_correct", "_within_1", "_pc_correct", "_octave_correct",
     "_abs_error", "_gt", "_err",
+    # High-cardinality / list-as-string / params columns:
+    "_seq", "_sequence", "_set", "_pair", "_params", "_seed",
 )
+
+# `_gt`-suffixed columns are excluded by default (they're typically alternative
+# representations of the same ground truth — spn_gt / doremi_gt / hz_gt all
+# alias midi_gt). The few that are real IVs are listed here.
+_IV_ALLOW_OVERRIDE: set[str] = {
+    "midi_gt",          # the per-stimulus pitch (IV → by_pitch)
+    "chord_quality_gt", # the per-stimulus chord quality (IV → by_chord_quality)
+}
 _NON_IV_EXACT: set[str] = {
     "wav", "audio_url", "audio_file",
     "raw_response", "raw_midi", "raw_spn", "raw_abc", "raw_doremi", "raw_hz",
-    "elapsed_s", "model_name", "model_info",
+    "elapsed_s", "model_name", "model_info", "model_params",
+    "presented", "midis", "onsets_ms", "target_pos",
+    "tp", "fp", "fn", "valid", "off_by",
+    "answer_gt", "seed", "noise_seed",
+    # Note-name / frequency aliases (redundant with the integer pitch IV):
+    "note", "base_note", "ref_note", "root_note",
+    "start_note", "end_note", "original_note",
+    "base_name", "presented_hz", "base_hz", "high_hz",
+    # Plot-helper aliases injected by some scripts (duplicate underlying IVs):
+    "instrument",
+}
+
+# Canonical names for cross-experiment CSV consistency. Any IV column listed
+# here is renamed to the canonical form before being emitted as `by_<name>` in
+# accuracies_<model>.csv. Identity-mapped names (already canonical) are not
+# listed; their column name is used verbatim.
+_IV_CANONICAL: dict[str, str] = {
+    # Pitch (single-pitch tasks)
+    "midi":                 "pitch",
+    "midi_gt":              "pitch",
+    # Duration (per-tone)
+    "duration_ms":          "duration",
+    "note_duration_ms":     "duration",
+    "tone_ms":              "duration",
+    # Source-label aliases (g1/g2 use source_label; rest use source)
+    "source_label":         "source",
+    # Reference / anchor pitches
+    "ref_midi":             "ref_pitch",
+    "root_midi":            "root_pitch",
+    "base_midi":            "base_pitch",
+    "original_midi":        "original_pitch",
+    "start_midi":           "start_pitch",
+    "end_midi":             "end_pitch",
+    # Intervals
+    "interval_st":          "interval",
+    # Counts / sequence shape
+    "n":                    "n_notes",
+    "step_size_st":         "step_size",
+    # Effects / robustness conditions
+    "loudness_db":          "loudness",
+    "snr_db":               "snr",
+    "detune_hz":            "detune",
+    "delta_cents":          "delta",
+    "vibrato_rate_hz":      "vibrato_rate",
+    "vibrato_depth_cents":  "vibrato_depth",
+    "saturation_level":     "saturation",
+    "speed_factor":         "speed",
+    # Position / time
+    "pos_ms":               "position",
+    "query_time_s":         "query_time",
+    "separation_ms":        "separation",
+    # Chord / harmony
+    "chord_quality_gt":     "chord_quality",
+    # G1 / G2
+    "x":                    "voice",
+    "chorale_id":           "chorale",
+    "inst_cfg":             "instrumentation",
+    # D5
+    "traj_name":            "trajectory",
+}
+
+# Canonical metric names (the trailing `.<metric>` suffix on `by_<var>.<val>.<metric>`).
+_METRIC_CANONICAL: dict[str, str] = {
+    # Format-based pitch identification
+    "midi_correct":            "midi",
+    "abc_correct":             "abc",
+    "spn_correct":             "spn",
+    "doremi_correct":          "doremi",
+    "hz_correct":              "hz",
+    # Sequence-level format scoring (d7)
+    "midi_sequence_correct":   "midi",
+    "abc_sequence_correct":    "abc",
+    "spn_sequence_correct":    "spn",
+    "doremi_sequence_correct": "doremi",
+    "hz_sequence_correct":     "hz",
+    # Tolerance / single-metric scores
+    "midi_within_1":           "midi_within_1",
+    "interval_within_1":       "interval_within_1",
+    "count_correct":           "count",
+    "answer_correct":          "answer",
+    "sequence_correct":        "sequence",
+    "interval_correct":        "interval",
+    "trajectory_correct":      "trajectory",
+    "exact_match":             "exact",
+    "quality_correct":         "quality",
+    "root_correct":            "root",
+    "joint_correct":           "joint",
+    "within_100ms_both":       "within_100ms",
+    "within_500ms_both":       "within_500ms",
 }
 
 
+def _canon_iv(name: str) -> str:
+    return _IV_CANONICAL.get(name, name)
+
+
+def _canon_metric(name: str) -> str:
+    return _METRIC_CANONICAL.get(name, name)
+
+
 def _is_iv_column(name: str) -> bool:
+    if name in _IV_ALLOW_OVERRIDE:
+        return True
     if name in _NON_IV_EXACT:
         return False
     if any(name.startswith(p) for p in _NON_IV_PREFIXES):
@@ -191,11 +299,28 @@ def summarise_marginals(
     if not records:
         return {}
 
-    # Discover IV columns + count distinct values
+    # Auto-detect metric columns FIRST so we can exclude them from IV candidates
+    # (e.g. exact_match is a metric with values 0/1, but it'd otherwise look
+    # like a 2-valued IV).
+    metric_set: set[str] = set()
+    for r in records:
+        for k, v in r.items():
+            if isinstance(v, (int, float, bool)) and k.endswith("_correct"):
+                metric_set.add(k)
+    for fmt in formats:
+        col = f"{fmt}_correct"
+        if any(col in r for r in records):
+            metric_set.add(col)
+    for m in extra_metrics:
+        if any(m in r for r in records):
+            metric_set.add(m)
+    metric_cols = sorted(metric_set)
+
+    # Discover IV columns + count distinct values, skipping metric columns.
     candidates: dict[str, set] = {}
     for r in records:
         for k, v in r.items():
-            if not _is_iv_column(k):
+            if k in metric_set or not _is_iv_column(k):
                 continue
             try:
                 hash(v)
@@ -203,15 +328,18 @@ def summarise_marginals(
                 continue
             candidates.setdefault(k, set()).add(v)
 
-    iv_cols = [k for k, vs in candidates.items() if len(vs) >= 2]
+    # Drop columns where every record has a unique value (per-record IDs):
+    # those produce useless n=1 breakdowns that explode the CSV.
+    n_records = len(records)
+    iv_cols = [
+        k for k, vs in candidates.items()
+        if 2 <= len(vs) and (len(vs) < n_records or n_records <= 4)
+    ]
 
     # Order: prefer the order in _GT_ANCHORS, append remaining.
     anchors    = [c for c in _GT_ANCHORS if c in iv_cols]
-    remaining  = [c for c in iv_cols if c not in anchors]
+    remaining  = sorted(c for c in iv_cols if c not in anchors)
     ordered    = anchors + remaining
-
-    metric_cols = [f"{fmt}_correct" for fmt in formats] + list(extra_metrics)
-    metric_cols = [m for m in metric_cols if any(m in r for r in records)]
 
     out: dict[str, dict[Any, dict[str, Any]]] = {}
     for col in ordered:
@@ -627,11 +755,50 @@ def _flatten_summary(
     for key, val in summary.items():
         if key in _NON_METRIC_KEYS or key == "n":
             continue
-        full = f"{prefix}.{key}" if prefix else key
+        emit_key = f"by_{key[4:]}" if key.startswith("per_") else key
+        full = f"{prefix}.{emit_key}" if prefix else emit_key
         if isinstance(val, dict):
             rows.extend(_flatten_summary(val, prefix=full, inherited_n=eff_n))
         elif isinstance(val, (int, float)) and not isinstance(val, bool):
             rows.append((full, val, eff_n))
+    return rows
+
+
+def _marginal_csv_rows(
+    marginals: dict[str, dict[Any, dict[str, Any]]],
+) -> list[tuple[str, Any, int]]:
+    """Convert a marginals dict into ``(metric, value, n)`` rows for the CSV.
+
+    Names follow ``by_<canonical_iv>.<value>[.<canonical_metric>]``. The metric
+    suffix is omitted when the IV has exactly one underlying metric (so
+    format-independent tasks emit ``by_n_notes.5`` rather than
+    ``by_n_notes.5.count``).
+    """
+    rows: list[tuple[str, Any, int]] = []
+    for var, groups in marginals.items():
+        canon_var = _canon_iv(var)
+        # Which metric keys appear (with at least one non-None value) across this IV?
+        present_metrics: set[str] = set()
+        for entry in groups.values():
+            for k, v in entry.items():
+                if k != "n" and v is not None:
+                    present_metrics.add(k)
+        if not present_metrics:
+            continue
+        single_metric = (len(present_metrics) == 1)
+        sorted_metrics = sorted(present_metrics)
+        for value in sorted(groups.keys(), key=lambda x: (str(type(x).__name__), x)):
+            entry = groups[value]
+            n = int(entry.get("n", 0) or 0)
+            for m_key in sorted_metrics:
+                m_val = entry.get(m_key)
+                if m_val is None:
+                    continue
+                if single_metric:
+                    name = f"by_{canon_var}.{value}"
+                else:
+                    name = f"by_{canon_var}.{value}.{_canon_metric(m_key)}"
+                rows.append((name, m_val, n))
     return rows
 
 
@@ -640,28 +807,38 @@ def save_accuracies_csv(
     model_name: str,
     summary: dict[str, Any],
 ) -> Path:
-    """Write accuracies_<model>.csv: one row per scalar summary metric.
+    """Write accuracies_<model>.csv in the canonical PitchBench format.
 
     Columns: ``metric, n_samples, value, value_pct``.
 
-    - ``metric`` is the (dot-flattened) summary key.
-    - ``value`` is the raw scalar.
-    - ``value_pct`` renders ``[0, 1]`` floats as percentages (e.g. ``19.8%``);
-      other scalars repeat the raw value.
+    Layout (in order)::
 
-    Both top-level scalars and flattened nested dicts (e.g.
-    ``per_source.sine.midi``) are emitted, so the file is a complete audit of
-    every scalar metric a run produced — including the per-source / per-IV
-    breakdowns shown in the TXT summary.
+        total,N,,
+        accuracy[.<format>],N,val,pct      — overall, from summary["accuracy"]
+        <other top-level scalar metrics>,N,val,pct
+        by_<canonical_var>.<value>[.<metric>],n,val,pct   — from summary["marginals"]
+
+    All `by_*` entries come from the auto-marginalisation in
+    :func:`summarise_marginals` so naming is consistent across experiments.
+    Manually-defined ``by_*`` keys in the summary dict are filtered out of
+    the CSV (they remain in the JSON record for backwards compatibility).
     """
-    rows = _flatten_summary(summary)
+    flat_rows = [r for r in _flatten_summary(summary) if not r[0].startswith("by_")]
+    marginal_rows = _marginal_csv_rows(summary.get("marginals", {}) or {})
+
     path = run_dir / f"accuracies_{_safe_stem(model_name)}.csv"
+    total = summary.get("total") or summary.get("total_sequences")
     with open(path, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["metric", "n_samples", "value", "value_pct"])
-        for metric, value, n in rows:
+        if total is not None:
+            writer.writerow(["total", total, "", ""])
+        for metric, value, n in flat_rows:
             pct = f"{value:.1%}" if _looks_like_pct(value) else str(value)
             writer.writerow([metric, n if n is not None else "", value, pct])
+        for metric, value, n in marginal_rows:
+            pct = f"{value:.1%}" if _looks_like_pct(value) else str(value)
+            writer.writerow([metric, n, value, pct])
     return path
 
 

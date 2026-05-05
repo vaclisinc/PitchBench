@@ -755,6 +755,125 @@ def glide_chain(
     return path
 
 
+def _resample_audio(audio: np.ndarray, duration_factor: float) -> np.ndarray:
+    """Change duration and pitch by linear interpolation (simulates tape speed change).
+
+    duration_factor is the output/input length ratio:
+        > 1 → longer output (slower playback), pitch falls by 12·log2(duration_factor) semitones.
+        < 1 → shorter output (faster playback), pitch rises.
+    """
+    n_in  = len(audio)
+    n_out = max(1, int(round(n_in * duration_factor)))
+    if n_in == n_out:
+        return audio.copy()
+    x_in  = np.linspace(0.0, 1.0, n_in,  endpoint=False)
+    x_out = np.linspace(0.0, 1.0, n_out, endpoint=False)
+    out   = np.interp(x_out, x_in, audio.astype(np.float64)).astype(np.float32)
+    peak  = float(np.max(np.abs(out)))
+    return (out / peak * 0.9).astype(np.float32) if peak > 1e-8 else out
+
+
+def _time_stretch_pv(
+    audio: np.ndarray,
+    duration_factor: float,
+    n_fft: int = 1024,
+    hop_in: int = 256,
+) -> np.ndarray:
+    """Phase-vocoder time stretch: change duration without changing pitch.
+
+    duration_factor is the output/input length ratio:
+        > 1 → longer output (slower tempo), pitch unchanged.
+        < 1 → shorter output (faster tempo), pitch unchanged.
+    Pure numpy — no librosa dependency.
+    """
+    n       = len(audio)
+    hop_out = max(1, int(round(hop_in * duration_factor)))
+    n_fft_h = n_fft // 2 + 1
+    window  = np.hanning(n_fft).astype(np.float64)
+    omega   = 2.0 * np.pi * np.arange(n_fft_h) / n_fft
+
+    n_frames = max(1, (n + hop_in - 1) // hop_in)
+    out_len  = n_frames * hop_out + n_fft
+    output   = np.zeros(out_len, dtype=np.float64)
+    norm_buf = np.zeros(out_len, dtype=np.float64)
+
+    phase_acc:  np.ndarray       = np.zeros(n_fft_h, dtype=np.float64)
+    prev_phase: np.ndarray | None = None
+
+    for i in range(n_frames):
+        start = i * hop_in
+        frame = np.zeros(n_fft, dtype=np.float64)
+        end   = min(start + n_fft, n)
+        frame[:end - start] = audio[start:end].astype(np.float64)
+
+        spec  = np.fft.rfft(frame * window)
+        mag   = np.abs(spec)
+        phase = np.angle(spec)
+
+        if prev_phase is None:
+            phase_acc = phase.copy()
+        else:
+            delta = phase - prev_phase - omega * hop_in
+            delta -= 2.0 * np.pi * np.round(delta / (2.0 * np.pi))
+            phase_acc += (omega + delta / hop_in) * hop_out
+
+        prev_phase = phase.copy()
+
+        frame_out = np.real(np.fft.irfft(mag * np.exp(1j * phase_acc), n=n_fft))
+        out_start = i * hop_out
+        output[out_start:out_start + n_fft] += frame_out * window
+        norm_buf[out_start:out_start + n_fft] += window ** 2
+
+    norm_buf = np.maximum(norm_buf, 1e-8)
+    output  /= norm_buf
+    expected = max(1, int(round(n * duration_factor)))
+    out      = output[:expected].astype(np.float32)
+    peak     = float(np.max(np.abs(out)))
+    return (out / peak * 0.9).astype(np.float32) if peak > 1e-8 else out
+
+
+def tone_time_modified(
+    midi: int,
+    source: str,
+    duration_ms: int,
+    mode: str,
+    factor: float,
+) -> Path:
+    """Tone with time modification applied.
+
+    ``factor`` is the output/input duration ratio (e.g. 2.0 = twice as long):
+        ``'clean'``    — no modification (factor ignored)
+        ``'resample'`` — change duration + pitch (longer → lower; shorter → higher)
+        ``'stretch'``  — phase-vocoder: change duration, pitch unchanged
+
+    Pitch shift from resampling: ``semitones = round(-12 * log2(factor))``
+        factor=2.0 → −12 st (octave down); factor=0.5 → +12 st (octave up)
+    """
+    slug     = _note_slug(midi)
+    factor_s = f"{factor:.2f}x".replace(".", "p")
+    name     = f"{slug}_{source}_{duration_ms}ms_{mode}_{factor_s}.wav"
+    path     = _audio_dir() / name
+    if path.exists():
+        return path
+
+    audio = _render_single(midi, duration_ms / 1000, source)
+
+    if mode == "clean" or factor == 1.0:
+        out = audio.copy()
+    elif mode == "resample":
+        out = _resample_audio(audio, factor)
+    elif mode == "stretch":
+        out = _time_stretch_pv(audio, factor)
+    else:
+        raise ValueError(f"Unknown time-modification mode: {mode!r}")
+
+    peak = float(np.max(np.abs(out)))
+    if peak > 1e-10:
+        out = (out / peak * 0.9).astype(np.float32)
+    _write_wav(path, out)
+    return path
+
+
 def tone_with_background(
     midi: int,
     source: str,
@@ -943,5 +1062,28 @@ def _apply_effect(
         out          = (audio * gain).astype(np.float32)
         peak = float(np.max(np.abs(out)))
         return (out / peak * 0.9).astype(np.float32) if peak > 1e-8 else out
+
+    if eff == "saturation":
+        # Plugin-style harmonic saturation via pedalboard's tanh waveshaper,
+        # wrapped in 4× oversampling (resample_poly applies an anti-alias FIR)
+        # so harmonics above Nyquist do not fold back as inharmonic junk.
+        # Output is RMS-matched to the dry signal so loudness does not leak
+        # into the experiment as drive_db increases.
+        from pedalboard import Distortion, Pedalboard
+        from scipy.signal import resample_poly
+
+        drive_db = float(params.get("drive_db", 12.0))
+        OS       = 4
+        up       = resample_poly(audio.astype(np.float32), OS, 1).astype(np.float32)
+        shaped   = Pedalboard([Distortion(drive_db=drive_db)])(up, sample_rate=SR * OS)
+        out      = resample_poly(shaped, 1, OS).astype(np.float32)
+
+        rms_in  = float(np.sqrt(np.mean(audio.astype(np.float64) ** 2))) + 1e-9
+        rms_out = float(np.sqrt(np.mean(out.astype(np.float64) ** 2))) + 1e-9
+        out     = (out * (rms_in / rms_out)).astype(np.float32)
+        peak    = float(np.max(np.abs(out)))
+        if peak > 0.99:
+            out = (out * (0.99 / peak)).astype(np.float32)
+        return out
 
     return audio.copy()

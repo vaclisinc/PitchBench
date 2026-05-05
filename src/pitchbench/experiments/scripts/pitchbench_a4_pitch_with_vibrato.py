@@ -140,13 +140,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     records: list[dict] = [r for r in raw if r is not None]
 
     n = len(records)
-    summary: dict[str, float | int] = {"total": n}
-    for fmt in ("midi", "spn", "doremi", "hz"):
-        col = f"{fmt}_correct"
-        summary[f"acc_{fmt}"] = round(sum(r[col] for r in records) / max(1, n), 4)
-    summary["acc_midi_within_1"] = round(
-        sum(r["midi_within_1"] for r in records) / max(1, n), 4
-    )
+    accuracy: dict[str, float] = {
+        fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, n), 4)
+        for fmt in ("midi", "spn", "doremi", "hz")
+    }
+    summary = {"total": n,
+                "accuracy": accuracy, "by_vibrato_depth": {str(depth): {fmt: round(sum(r[f"{fmt}_correct"] for r in records if r["vibrato_depth_cents"] == depth) / max(1, sum(1 for r in records if r["vibrato_depth_cents"] == depth)), 4) for fmt in ("midi", "spn", "doremi", "hz")} for depth in VIBRATO_DEPTHS_CENTS}}
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli : {n}",
@@ -156,8 +155,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  {'─' * 32}",
     ]
     for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"  {fmt.upper():>10}  {n:>5}  {summary[f'acc_{fmt}']:>10.1%}")
-    summary_lines.append(f"  {'MIDI±1':>10}  {n:>5}  {summary['acc_midi_within_1']:>10.1%}")
+        summary_lines.append(f"  {fmt.upper():>10}  {n:>5}  {summary['accuracy'][fmt]:>10.1%}")
+
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
     for line in summary_lines:

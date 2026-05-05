@@ -158,12 +158,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     records: list[dict] = [r for r in raw if r is not None]
 
     n = len(records)
-    summary: dict[str, float | int] = {"total": n}
+    summary: dict[str, float | int] = {"total": n, "accuracy": {}}
     for fmt in ("midi", "spn", "doremi", "hz"):
-        col = f"{fmt}_correct"
-        summary[f"acc_{fmt}"] = round(sum(r[col] for r in records) / max(1, n), 4)
-    summary["acc_nearest"]      = summary["acc_midi"]
-    summary["acc_midi_within_1"] = round(
+        col = f"{fmt}"
+        summary["accuracy"][fmt] = round(sum(r[col] for r in records) / max(1, n), 4)
+    summary["accuracy"]["nearest"]      = summary["accuracy"]["midi"]
+    summary["accuracy"]["midi_within_1"] = round(
         sum(r["midi_within_1"] for r in records) / max(1, n), 4
     )
 
@@ -174,8 +174,8 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         f"  Nearest-pitch accuracy (4 formats):",
     ]
     for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"    {fmt.upper():>6}  n={n:>4}  {summary[f'acc_{fmt}']:.1%}")
-    summary_lines.append(f"    MIDI±1  n={n:>4}  {summary['acc_midi_within_1']:.1%}")
+        summary_lines.append(f"    {fmt.upper():>6}  n={n:>4}  {summary['accuracy'][fmt]:.1%}")
+    summary_lines.append(f"    MIDI±1  n={n:>4}  {summary['accuracy']['midi_within_1']:.1%}")
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
     for line in summary_lines:

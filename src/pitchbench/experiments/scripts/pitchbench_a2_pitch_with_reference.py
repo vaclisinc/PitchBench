@@ -207,8 +207,14 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
 
     summary = {
         "total":        n,
-        "per_cond_var": per_cond_var,
-        "per_interval": {str(k): v for k, v in per_interval.items()},
+        "accuracy": {
+            "midi":   round(sum(r["midi_correct"]   for r in records) / n, 4) if n else 0.0,
+            "abc":    round(sum(r["abc_correct"]    for r in records) / n, 4) if n else 0.0,
+            "doremi": round(sum(r["doremi_correct"] for r in records) / n, 4) if n else 0.0,
+            "hz":     round(sum(r["hz_correct"]     for r in records) / n, 4) if n else 0.0,
+        },
+        "by_condition": per_cond_var,
+        "by_interval": {str(k): v for k, v in per_interval.items()},
     }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [

@@ -1,9 +1,10 @@
-/_datasets/
+_datasets/
 __pycache__/
 *.egg-info/
 data/
-/_archive/
+_archive/
 .env
 results/
 tests/
 logs/
+/pitchbench_hf/

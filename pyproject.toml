@@ -35,6 +35,8 @@ dependencies = [
 generation = [
     "pretty-midi>=0.2",
     "pyfluidsynth>=1.3",
+    "pedalboard>=0.9",
+    "scipy>=1.13",
 ]
 model = [
     "fastapi>=0.115",

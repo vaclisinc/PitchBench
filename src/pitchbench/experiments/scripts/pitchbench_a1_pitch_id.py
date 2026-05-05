@@ -68,6 +68,7 @@ def build_conditions(sources: list[str]) -> list[dict]:
     ]
 
 
+
 # ── Run one model ─────────────────────────────────────────────────────────────
 
 def run_one_model(
@@ -164,7 +165,12 @@ def run_one_model(
     for line in summary_lines:
         print(line)
 
-    summary: dict[str, Any] = {"total": n, "per_format": per_fmt, "per_source": per_src}
+    summary: dict[str, Any] = {"total": n, 
+                               "accuracy": per_fmt, 
+                               "by_source": per_src, 
+                               "by_pitch": 
+                               {str(p): 
+                                {fmt: round(sum(r[f"{fmt}_correct"] for r in records if r["midi_gt"] == p) / max(1, sum(1 for r in records if r["midi_gt"] == p)), 4) for fmt in ("midi", "abc", "doremi", "hz")} for p in PITCHES}}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
         sources=sources_seen, pitches=PITCHES,

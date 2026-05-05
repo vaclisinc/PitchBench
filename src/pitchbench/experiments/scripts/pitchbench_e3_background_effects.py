@@ -131,13 +131,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     records: list[dict] = [r for r in raw if r is not None]
 
     n = len(records)
-    summary: dict[str, float | int] = {"total": n}
-    for fmt in ("midi", "spn", "doremi", "hz"):
-        col = f"{fmt}_correct"
-        summary[f"acc_{fmt}"] = round(sum(r[col] for r in records) / max(1, n), 4)
-    summary["acc_midi_within_1"] = round(
-        sum(r["midi_within_1"] for r in records) / max(1, n), 4
-    )
+    accuracy: dict[str, float] = {
+        fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, n), 4)
+        for fmt in ("midi", "spn", "doremi", "hz")
+    }
+    summary = {"total": n, "accuracy": accuracy}
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli   : {n}",
@@ -146,8 +144,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         "",
     ]
     for fmt in ("midi", "spn", "doremi", "hz"):
-        summary_lines.append(f"  {fmt.upper():>6}  n={n:>4}  {summary[f'acc_{fmt}']:.1%}")
-    summary_lines.append(f"  MIDI±1  n={n:>4}  {summary['acc_midi_within_1']:.1%}")
+        summary_lines.append(f"  {fmt.upper():>6}  n={n:>4}  {accuracy[fmt]:.1%}")
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")
     for line in summary_lines:

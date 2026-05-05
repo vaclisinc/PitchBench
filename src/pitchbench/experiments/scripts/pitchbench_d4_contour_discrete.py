@@ -168,11 +168,11 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     n = len(records)
     summary = {
         "total":            n,
-        "sequence_correct": round(sum(r["sequence_correct"] for r in records) / max(1, n), 4),
+        "accuracy": round(sum(r["sequence_correct"] for r in records) / max(1, n), 4),
     }
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli           : {n}",
-        f"  Sequence accuracy : {summary['sequence_correct']:.1%}",
+        f"  Accuracy : {summary['accuracy']:.1%}",
     ]
     print(f"\n{'=' * 60}")
     print(f"SUMMARY — {model_name}")

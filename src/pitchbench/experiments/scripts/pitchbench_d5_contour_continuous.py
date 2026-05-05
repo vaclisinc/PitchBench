@@ -57,8 +57,8 @@ TRAJECTORIES  = config.pitchbench_d5_TRAJECTORIES
 PROMPT = (
     "Listen to this audio. Describe how the pitch changes over time as a "
     "comma-separated list using ONLY the words 'up' and 'down', alternating. "
-    "Never write the same direction twice in a row — count each change of "
-    "direction as one token.\n"
+    "Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of "
+    "direction asks for a new token.\n"
     "Examples:\n"
     "  'up'           — pitch rises throughout\n"
     "  'down'         — pitch falls throughout\n"
@@ -235,9 +235,10 @@ def run_one_model(
         print(line)
 
     summary = {
-        "total": n, "overall": overall,
-        "per_trajectory": per_traj,
-        "per_interval": {str(k): v for k, v in per_interval.items()},
+        "total": n, 
+        "accuracy": overall,
+        # "per_trajectory": per_traj,
+        # "per_interval": {str(k): v for k, v in per_interval.items()},
     }
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
@@ -254,7 +255,7 @@ def run_one_model(
         prompt_key="prompt_variant", accuracy_key="trajectory_correct",
     )
     return {
-        "overall": overall,
+        "accuracy": overall,
         **{f"acc_{t['name']}": per_traj.get(t["name"], {}).get("accuracy") for t in TRAJECTORIES},
     }
 

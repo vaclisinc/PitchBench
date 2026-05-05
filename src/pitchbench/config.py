@@ -32,7 +32,9 @@ _PROJECT_ROOT = Path(os.environ.get("PITCHBENCH_ROOT", ".")).resolve()
 
 DATA_DIR     = _PROJECT_ROOT / "data"
 AUDIO_DIR    = DATA_DIR / "audio"
-RESULTS_DIR  = _PROJECT_ROOT / "results" / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+RESULTS_DIR  = _PROJECT_ROOT / "results" / os.environ.get(
+    "PITCHBENCH_RUN", f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+)
 STIMULI_DIR  = _PROJECT_ROOT / "stimuli"
 
 # ── Audio infrastructure (engine-level; not data-gen) ─────────────────────────
@@ -132,37 +134,39 @@ DEFAULT_SAMPLE_SEED = 42
 
 EXPERIMENT_DEFAULTS: dict[str, dict] = {
     # Single-pitch ID (a)
-    "pitchbench_a1_pitch_id":              {"per_stratum": None, "strata": ("midi",)},
-    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 10,   "strata": ("condition", "interval")},
-    "pitchbench_a3_pitch_by_duration":     {"per_stratum":  5,   "strata": ("midi", "duration_ms")},
-    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 10,   "strata": ("midi", "is_control")},
-    "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 10,   "strata": ("midi", "detune_hz")},
+    "pitchbench_a1_pitch_id":              {"per_stratum": 5, "strata": ("midi",)},
+    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 5,   "strata": ("condition", "interval")},
+    "pitchbench_a3_pitch_by_duration":     {"per_stratum": 5,   "strata": ("midi", "duration_ms")},
+    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 5,   "strata": ("midi", "is_control")},
+    "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 5,   "strata": ("midi", "detune_hz")},
     # Onsets / offsets (b)
-    "pitchbench_b1_pitch_in_silence":      {"per_stratum": 10,   "strata": ("condition", "midi")},
-    "pitchbench_b2_onset_offset_single":   {"per_stratum":  5,   "strata": ("midi", "pos_ms")},
-    "pitchbench_b3_onset_offset_specific": {"per_stratum": 20,   "strata": ("target_pos", "n_distractors")},
-    "pitchbench_b4_pitch_at_time":         {"per_stratum": 20,   "strata": ("n_notes", "target_idx")},
-    "pitchbench_b5_onset_offset_each":     {"per_stratum": 25,   "strata": ("rhythm", "n_notes")},
+    "pitchbench_b1_pitch_in_silence":      {"per_stratum": 5,   "strata": ("condition", "midi")},
+    "pitchbench_b2_onset_offset_single":   {"per_stratum": 5,   "strata": ("midi", "pos_ms")},
+    "pitchbench_b3_onset_offset_specific": {"per_stratum": 5,   "strata": ("target_pos", "n_distractors")},
+    "pitchbench_b4_pitch_at_time":         {"per_stratum": 5,   "strata": ("n_notes", "target_idx")},
+    "pitchbench_b5_onset_offset_each":     {"per_stratum": 5,   "strata": ("rhythm", "n_notes")},
     # Chords (c)
-    "pitchbench_c1_dyad_interval":         {"per_stratum": 20,   "strata": ("interval_st",)},
-    "pitchbench_c2_chord_pitch_count":     {"per_stratum": 15,   "strata": ("n", "chord_quality")},
-    "pitchbench_c3_chord_pitch_id":        {"per_stratum": 20,   "strata": ("chord_type",)},
-    "pitchbench_c4_chord_quality":         {"per_stratum": 25,   "strata": ("chord_quality",)},
+    "pitchbench_c1_dyad_interval":         {"per_stratum": 5,   "strata": ("interval_st",)},
+    "pitchbench_c2_chord_pitch_count":     {"per_stratum": 5,   "strata": ("n", "chord_quality")},
+    "pitchbench_c3_chord_pitch_id":        {"per_stratum": 5,   "strata": ("chord_type",)},
+    "pitchbench_c4_chord_quality":         {"per_stratum": 5,   "strata": ("chord_quality", "task")},
     # Sequences (d)
-    "pitchbench_d1_seq_pitch_count":       {"per_stratum": 20,   "strata": ("n", "rhythm")},
-    "pitchbench_d2_pitch_difference":      {"per_stratum": 15,   "strata": ("delta_cents", "order")},
-    "pitchbench_d3_interval_id_seq":       {"per_stratum": 12,   "strata": ("signed_st",)},
-    "pitchbench_d4_contour_discrete":      {"per_stratum": 15,   "strata": ("n_transitions", "step_size_st")},
-    "pitchbench_d5_contour_continuous":    {"per_stratum": None, "strata": ("traj_name",)},
-    "pitchbench_d6_pitch_ranking":         {"per_stratum": 20,   "strata": ("rhythm", "n_notes")},
-    "pitchbench_d7_seq_pitch_id":          {"per_stratum": 25,   "strata": ("n_notes",)},
+    "pitchbench_d1_seq_pitch_count":       {"per_stratum": 5,   "strata": ("n", "rhythm")},
+    "pitchbench_d2_pitch_difference":      {"per_stratum": 5,   "strata": ("delta_cents", "order")},
+    "pitchbench_d3_interval_id_seq":       {"per_stratum": 5,   "strata": ("signed_st",)},
+    "pitchbench_d4_contour_discrete":      {"per_stratum": 5,   "strata": ("n_transitions", "step_size_st")},
+    "pitchbench_d5_contour_continuous":    {"per_stratum": 5, "strata": ("traj_name",)},
+    "pitchbench_d6_pitch_ranking":         {"per_stratum": 5,   "strata": ("rhythm", "n_notes")},
+    "pitchbench_d7_seq_pitch_id":          {"per_stratum": 5,   "strata": ("n_notes",)},
     # Effects (e)
-    "pitchbench_e1_loudness":              {"per_stratum":  5,   "strata": ("midi", "loudness_db")},
-    "pitchbench_e2_audio_effects":         {"per_stratum": 10,   "strata": ("effect_type", "midi")},
-    "pitchbench_e3_background_effects":    {"per_stratum": 10,   "strata": ("background", "snr_db")},
+    "pitchbench_e1_loudness":              {"per_stratum": 5,   "strata": ("midi", "loudness_db")},
+    "pitchbench_e2_audio_effects":         {"per_stratum": 5,   "strata": ("effect_type", "midi")},
+    "pitchbench_e3_background_effects":    {"per_stratum": 5,   "strata": ("background", "snr_db")},
+    "pitchbench_e4_harmonic_saturation":   {"per_stratum": 5,   "strata": ("saturation_level", "midi")},
+    "pitchbench_e5_time_stretch":          {"per_stratum": 5,   "strata": ("condition", "midi")},
     # Polyphony (g)
-    "pitchbench_g1_melodic_line_id":       {"per_stratum": 20,   "strata": ("n", "source_label")},
-    "pitchbench_g2_chorale_voice_id":      {"per_stratum": None, "strata": ("chorale_slug",)},
+    "pitchbench_g1_melodic_line_id":       {"per_stratum": 5,   "strata": ("n", "source_label")},
+    "pitchbench_g2_chorale_voice_id":      {"per_stratum": 5, "strata": ("chorale_slug",)},
 }
 
 
@@ -264,16 +268,39 @@ BENCHMARK_D5_TRAJECTORIES: list[dict] = [
 
 BENCHMARK_E2_EFFECTS: dict[str, dict] = {
     "clean":        {},
-    "reverb_s":     {"type": "reverb", "delay_s": 0.05, "decay": 0.30},
-    "reverb_l":     {"type": "reverb", "delay_s": 0.20, "decay": 0.70},
-    "clip_50":      {"type": "clip",   "threshold": 0.50},
-    "clip_25":      {"type": "clip",   "threshold": 0.25},
-    "eq_lo_boost":  {"type": "eq_lo",  "cutoff_hz":  500, "gain_db":  12},
-    "eq_hi_boost":  {"type": "eq_hi",  "cutoff_hz": 2000, "gain_db":  12},
-    "eq_lo_cut":    {"type": "eq_lo",  "cutoff_hz":  500, "gain_db": -12},
-    "eq_hi_cut":    {"type": "eq_hi",  "cutoff_hz": 2000, "gain_db": -12},
-    "eq_telephone": {"type": "eq_hi",  "cutoff_hz": 1000, "gain_db": -24},
+    "reverb_s":     {"type": "reverb",      "delay_s": 0.05,  "decay": 0.30},
+    "reverb_l":     {"type": "reverb",      "delay_s": 0.20,  "decay": 0.70},
+    "clip_50":      {"type": "clip",        "threshold": 0.50},
+    "clip_25":      {"type": "clip",        "threshold": 0.25},
+    "eq_lo_boost":  {"type": "eq_lo",       "cutoff_hz":  500, "gain_db":  12},
+    "eq_hi_boost":  {"type": "eq_hi",       "cutoff_hz": 2000, "gain_db":  12},
+    "eq_lo_cut":    {"type": "eq_lo",       "cutoff_hz":  500, "gain_db": -12},
+    "eq_hi_cut":    {"type": "eq_hi",       "cutoff_hz": 2000, "gain_db": -12},
+    "eq_telephone": {"type": "eq_hi",       "cutoff_hz": 1000, "gain_db": -24},
+    # Timbral effects — pitch unchanged, waveform shape changes substantially
+    "sat_light":    {"type": "saturation",  "drive":  2.0},   # mild tube warmth, adds odd harmonics
+    "sat_heavy":    {"type": "saturation",  "drive": 10.0},   # heavy distortion, dense harmonic spectrum
+    "harmonic_2nd": {"type": "harmonic",    "ratio": 2.0, "level": 0.5},  # adds octave partial (+12 st)
+    "harmonic_5th": {"type": "harmonic",    "ratio": 1.5, "level": 0.5},  # adds fifth partial (+7 st)
 }
+
+BENCHMARK_E4_SATURATIONS: dict[str, dict] = {
+    "clean":      {},
+    "sat_light":  {"type": "saturation", "drive_db":  6.0},
+    "sat_medium": {"type": "saturation", "drive_db": 15.0},
+    "sat_heavy":  {"type": "saturation", "drive_db": 30.0},
+}
+
+# Restricted to MIDI 36–84 so ±12 semitone shifts from resampling stay audible
+BENCHMARK_PITCHES_E5 = [36, 43, 48, 54, 58, 60, 64, 67, 69, 72, 77, 84]
+
+BENCHMARK_E5_CONDITIONS: list[dict] = [
+    {"name": "clean",         "mode": "clean",    "factor": 1.0},
+    {"name": "resample_0.5x", "mode": "resample", "factor": 0.5},  # 2× speed → pitch +12
+    {"name": "resample_2x",   "mode": "resample", "factor": 2.0},  # ½× speed → pitch −12
+    {"name": "stretch_0.5x",  "mode": "stretch",  "factor": 0.5},  # 2× speed, pitch unchanged
+    {"name": "stretch_2x",    "mode": "stretch",  "factor": 2.0},  # ½× speed, pitch unchanged
+]
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -370,12 +397,12 @@ if EVAL:
     pitchbench_c1_SOURCES              = BENCHMARK_ALL_SOURCES
 
     # ── c2: chord pitch count ────────────────────────────────────────────
-    pitchbench_c2_CHORD_INTERVALS      = BENCHMARK_C2_CHORD_INTERVALS
-    pitchbench_c2_QUALITIES            = list(BENCHMARK_C2_CHORD_INTERVALS.keys()) + ["random_set"]
+    pitchbench_c2_CHORD_INTERVALS      = {q: BENCHMARK_C4_QUALITIES[q][0] for q in BENCHMARK_C4_QUALITIES}
+    pitchbench_c2_QUALITIES            = list(BENCHMARK_C4_QUALITIES.keys()) + ["random_set"]
     pitchbench_c2_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION
     pitchbench_c2_SAME_INSTRUMENT_OPTS = [True, False]
     pitchbench_c2_RANDOM_NS            = [1, 2, 3, 4, 5, 6]
-    pitchbench_c2_RANDOM_PITCH_RANGE   = (48, 84)
+    pitchbench_c2_RANDOM_PITCH_RANGE   = (BENCHMARK_PITCHES_FULL_RANGE[0], BENCHMARK_PITCHES_FULL_RANGE[-1])
     pitchbench_c2_N_TRIALS             = 1
     pitchbench_c2_RANDOM_TRIALS        = 3
     pitchbench_c2_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG
@@ -399,8 +426,8 @@ if EVAL:
     # ── d1: seq pitch count ──────────────────────────────────────────────
     pitchbench_d1_N_COUNTS     = [1, 2, 3, 4, 5, 7, 10]
     pitchbench_d1_RHYTHMS      = ["regular", "irregular"]
-    pitchbench_d1_PITCH_MIN    = 48
-    pitchbench_d1_PITCH_MAX    = 84
+    pitchbench_d1_PITCH_MIN    = 29
+    pitchbench_d1_PITCH_MAX    = 89
     pitchbench_d1_GAP_MS       = BENCHMARK_GAP_MS
     pitchbench_d1_N_TRIALS     = BENCHMARK_N_TRIALS
     pitchbench_d1_SEED         = BENCHMARK_SEED
@@ -426,7 +453,7 @@ if EVAL:
 
     # ── d4: contour discrete ─────────────────────────────────────────────
     pitchbench_d4_N_TRANSITIONS_OPTS = [2, 3, 5, 7]
-    pitchbench_d4_STEP_SIZES_ST      = [1, 2, 4, 7]
+    pitchbench_d4_STEP_SIZES_ST      = [1, 2, 4, 7, 11]
     pitchbench_d4_NOTE_DURATIONS_MS  = BENCHMARK_NOTE_DURATIONS_MS_D4
     pitchbench_d4_TRIALS_PER_CELL    = 2
     pitchbench_d4_PITCHES            = BENCHMARK_PITCHES_SELECTION
@@ -480,6 +507,18 @@ if EVAL:
     pitchbench_e3_PITCHES      = BENCHMARK_PITCHES_SELECTION
     pitchbench_e3_DURATIONS_MS = [BENCHMARK_DURATION_MS]
     pitchbench_e3_SOURCES      = BENCHMARK_ALL_SOURCES
+
+    # ── e4: harmonic saturation ──────────────────────────────────────────
+    pitchbench_e4_PITCHES      = BENCHMARK_PITCHES_SELECTION
+    pitchbench_e4_TONE_MS      = BENCHMARK_DURATION_MS
+    pitchbench_e4_SATURATIONS  = BENCHMARK_E4_SATURATIONS
+    pitchbench_e4_SOURCES      = BENCHMARK_ALL_SOURCES
+
+    # ── e5: time stretch vs resample ─────────────────────────────────────
+    pitchbench_e5_PITCHES      = BENCHMARK_PITCHES_E5
+    pitchbench_e5_TONE_MS      = 3000
+    pitchbench_e5_CONDITIONS   = BENCHMARK_E5_CONDITIONS
+    pitchbench_e5_SOURCES      = BENCHMARK_ALL_SOURCES
 
     # ── f1: embedding geometry ───────────────────────────────────────────
     pitchbench_f1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
@@ -736,6 +775,18 @@ else:
     pitchbench_e3_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
     pitchbench_e3_DURATIONS_MS = [BENCHMARK_DURATION_MS]             # ← edit me
     pitchbench_e3_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
+
+    # ── e4: harmonic saturation ──────────────────────────────────────────
+    pitchbench_e4_PITCHES     = BENCHMARK_PITCHES_SELECTION          # ← edit me
+    pitchbench_e4_TONE_MS     = BENCHMARK_DURATION_MS                # ← edit me
+    pitchbench_e4_SATURATIONS = BENCHMARK_E4_SATURATIONS             # ← edit me
+    pitchbench_e4_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
+
+    # ── e5: time stretch vs resample ─────────────────────────────────────
+    pitchbench_e5_PITCHES     = BENCHMARK_PITCHES_E5                 # ← edit me
+    pitchbench_e5_TONE_MS     = 3000                                 # ← edit me
+    pitchbench_e5_CONDITIONS  = BENCHMARK_E5_CONDITIONS              # ← edit me
+    pitchbench_e5_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
 
     # ── f1: embedding geometry ───────────────────────────────────────────
     pitchbench_f1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE             # ← edit me

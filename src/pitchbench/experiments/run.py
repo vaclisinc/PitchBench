@@ -119,6 +119,18 @@ def run_experiment(name: str, extra_argv: list[str]) -> dict[str, dict[str, Any]
     return mod.run()
 
 
+def _launch_servers(launch_args: list[str]) -> None:
+    """Dispatch `pitchbench launch ...` to the model server launcher."""
+    from pitchbench.model import serve_all
+
+    old_argv = sys.argv
+    try:
+        sys.argv = [f"{old_argv[0]} launch", *launch_args]
+        serve_all.main()
+    finally:
+        sys.argv = old_argv
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -155,8 +167,34 @@ def main() -> None:
         "--sample-seed", type=int, default=42, metavar="SEED",
         help="RNG seed for --sample-n (default: 42; forwarded to the experiment module)",
     )
+    parser.add_argument(
+        "--run-name", type=str, default=None, metavar="NAME",
+        help="Override the results subdirectory name (e.g. 'pilot_01'). "
+             "Results land in results/<NAME>/. Also settable via PITCHBENCH_RUN env var.",
+    )
 
     args, unknown = parser.parse_known_args()
+
+    # Dedicated model-launch path:
+    #   pitchbench launch                          -> launch all servers
+    #   pitchbench launch audio_flamingo_next_*    -> launch one server
+    #   pitchbench launch --only ... --port ...    -> forwarded to serve_all
+    # Handle this before model-prompt logic so it never asks "Model?".
+    if args.experiment == "launch":
+        launch_args: list[str] = []
+        if args.list:
+            launch_args.append("--list")
+        if unknown:
+            if unknown[0].startswith("-"):
+                launch_args.extend(unknown)
+            else:
+                launch_args.extend(["--only", unknown[0]])
+                launch_args.extend(unknown[1:])
+        _launch_servers(launch_args)
+        return
+
+    if args.run_name:
+        config.RESULTS_DIR = config._PROJECT_ROOT / "results" / args.run_name
 
     if args.list:
         for n in discover():

@@ -32,6 +32,7 @@ from pitchbench.experiments.helpers.api import get_model_info, query_alm
 from pitchbench.experiments.helpers.audit import audit_line
 from pitchbench.experiments.helpers.dispatcher import dispatch
 from pitchbench.experiments.helpers.music import midi_to_note
+from pitchbench.experiments.helpers.plots import save_bar_plot_by_key
 from pitchbench.experiments.helpers.results import (
     extract_format_accuracies,
     get_run_metadata, make_run_dir, save_comparison, save_results,
@@ -153,12 +154,12 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     n = len(records)
     summary = {
         "total":             n,
-        "interval_correct":  round(sum(r["interval_correct"]  for r in records) / max(1, n), 4),
+        "accuracy":  round(sum(r["interval_correct"]  for r in records) / max(1, n), 4),
         "interval_within_1": round(sum(r["interval_within_1"] for r in records) / max(1, n), 4),
     }
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli       : {n}",
-        f"  Exact accuracy: {summary['interval_correct']:.1%}",
+        f"  Exact accuracy: {summary['accuracy']:.1%}",
         f"  ±1 semitone   : {summary['interval_within_1']:.1%}",
     ]
     print(f"\n{'=' * 60}")
@@ -180,6 +181,20 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         formats=(),
         extra_metrics=("interval_correct", "interval_within_1"),
     )
+
+    uniform_dir = run_dir / "uniform"
+    uniform_dir.mkdir(parents=True, exist_ok=True)
+    model_slug = re.sub(r"[^a-z0-9]+", "_", model_name.lower()).strip("_")
+    save_bar_plot_by_key(
+        records,  # type: ignore[arg-type]
+        group_key="interval_st",
+        score_key="interval_correct",
+        score_label="Interval accuracy (%)",
+        title=f"Accuracy by interval size (absolute) — {model_name}",
+        xlabel="Interval (semitones, absolute value)",
+        out_path=uniform_dir / f"by_interval_st_{model_slug}.png",
+    )
+
     return summary
 
 

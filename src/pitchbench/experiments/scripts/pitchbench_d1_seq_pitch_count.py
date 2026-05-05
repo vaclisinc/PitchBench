@@ -56,7 +56,8 @@ DURATIONS_MS     = config.pitchbench_d1_DURATIONS_MS
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are played in "
-    "this sequence? Reply with ONLY a single integer. Nothing else. Output only the answer."
+    "this sequence? No note is played twice-so don't worry about duplicates. "
+    "Reply with ONLY a single integer. Nothing else. Output only the answer."
 )
 
 
@@ -152,7 +153,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
         out  = query_alm(model_name, job["wav"], PROMPT)
         raw  = (out["result"] or "").strip()
         pred = _parse_count(raw)
-        ok   = (pred == c["n"]) if pred is not None else False
+        ok   = (pred == c["n"]) if pred is not None else False # correct if exactly equal vvv
         off  = abs(pred - c["n"]) if pred is not None else None
         return {
             "source":        c["source"],
@@ -189,7 +190,6 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     n_ok    = sum(r["count_correct"] for r in records)
     summary = {
         "total":    n_total,
-        "correct":  n_ok,
         "accuracy": round(n_ok / n_total, 4) if n_total else None,
     }
     summary_lines = sampling_summary_lines(sample_info or {}) + [

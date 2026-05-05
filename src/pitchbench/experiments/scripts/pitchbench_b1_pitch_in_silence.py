@@ -236,6 +236,7 @@ def run_one_model(
 
     summary = {
         "total":        len(records),
+        "accuracy":     {fmt: round(sum(r[f"{fmt}_correct"] for r in records) / max(1, len(records)), 4) for fmt in ("midi", "abc", "doremi", "hz")},
         "per_cond":     per_cond,
         "per_position": {str(k): v for k, v in per_position.items()},
     }

@@ -402,11 +402,8 @@ def _compute_summary(records: list[dict]) -> dict[str, Any]:
 
     return {
         "total":       len(records),
-        # `per_format` is what helpers/results.save_results uses to write the
-        # cross-experiment format_accuracy_<model>.csv aggregate.
-        "per_format":  overall,
-        "overall":     overall,
-        "by_inst_cfg": {
+        "accuracy":     overall,
+        "by_instrumentation": {
             cfg: breakdown([r for r in records if r["inst_cfg"] == cfg])
             for cfg in ("similar", "mixed")
             if any(r["inst_cfg"] == cfg for r in records)
@@ -416,16 +413,16 @@ def _compute_summary(records: list[dict]) -> dict[str, Any]:
             for t in TEMPOS
             if any(r["tempo"] == t for r in records)
         },
-        "by_n":        {
+        "by_parts":        {
             n: breakdown([r for r in records if r["n"] == n])
             for n in N_PARTS_LIST
             if any(r["n"] == n for r in records)
         },
-        "by_source_label": {
+        "by_source": {
             label: breakdown([r for r in records if r["source_label"] == label])
             for label in labels_seen
         },
-        "by_nx":       by_nx,
+        "by_parts_voice":       by_nx,
     }
 
 
@@ -446,11 +443,11 @@ def _format_summary(records: list[dict], summary: dict) -> list[str]:
 
     for section, key in [
         ("Overall", "overall"),
-        ("By instrument config", "by_inst_cfg"),
+        ("By instrument config", "by_instrumentation"),
         ("By tempo", "by_tempo"),
-        ("By number of parts (n)", "by_n"),
-        ("By source label", "by_source_label"),
-        ("By (n, x)", "by_nx"),
+        ("By number of parts (n)", "by_parts"),
+        ("By source", "by_source"),
+        ("By (n, x)", "by_parts_voice"),
     ]:
         data = summary.get(key)
         if not data:

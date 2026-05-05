@@ -141,13 +141,14 @@ def run_one_model(
 
     summary = {
         "total":        n,
-        "midi_correct":   sum(r["midi_correct"]   for r in records),
-        "midi_within_1":  sum(r["midi_within_1"]  for r in records),
-        "abc_correct":    sum(r["abc_correct"]    for r in records),
-        "doremi_correct": sum(r["doremi_correct"] for r in records),
-        "hz_correct":     sum(r["hz_correct"]     for r in records),
-        "per_duration": {str(k): v for k, v in per_duration.items()},
-        "per_source":   per_source,
+        "accuracy":   {
+            "midi":   round(sum(r["midi_correct"]   for r in records) / max(1, n), 4),
+            "abc":    round(sum(r["abc_correct"]    for r in records) / max(1, n), 4),
+            "doremi": round(sum(r["doremi_correct"] for r in records) / max(1, n), 4),
+            "hz":     round(sum(r["hz_correct"]     for r in records) / max(1, n), 4),
+        },
+        "by_duration": {str(k): v for k, v in per_duration.items()},
+        "by_source":   per_source,
     }
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [

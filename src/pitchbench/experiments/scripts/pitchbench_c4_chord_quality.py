@@ -49,7 +49,7 @@ DURATIONS_MS         = config.pitchbench_c4_DURATIONS_MS
 PROMPT_QUALITY_ONLY = (
     "This audio contains a chord (multiple simultaneous notes). "
     "What is its harmonic quality? "
-    f"Choose one of the following: {', '.join(QUALITIES.items().keys())}. "
+    f"Choose one of the following: {', '.join(QUALITIES.keys())}. "
     "Reply with ONLY the quality."
 )
 

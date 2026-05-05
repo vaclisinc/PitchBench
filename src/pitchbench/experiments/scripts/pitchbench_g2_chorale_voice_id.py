@@ -442,21 +442,18 @@ def _compute_summary(records: list[dict]) -> dict[str, Any]:
 
     return {
         "total":           len(records),
-        # `per_format` is what helpers/results.save_results uses to write the
-        # cross-experiment format_accuracy_<model>.csv aggregate.
-        "per_format":      overall,
-        "overall":         overall,
+        "accuracy":         overall,
         "by_voice": {
             VOICE_NAMES[x - 1]: breakdown([r for r in records if r["x"] == x])
             for x in range(1, N_VOICES + 1)
             if any(r["x"] == x for r in records)
         },
-        "by_inst_cfg": {
+        "by_instrumentation": {
             cfg: breakdown([r for r in records if r["inst_cfg"] == cfg])
             for cfg in ("similar", "mixed")
             if any(r["inst_cfg"] == cfg for r in records)
         },
-        "by_source_label": {
+        "by_source": {
             lab: breakdown([r for r in records if r["source_label"] == lab])
             for lab in labels
         },
@@ -483,8 +480,8 @@ def _format_summary(records: list[dict], summary: dict) -> list[str]:
     for section, key in [
         ("Overall",              "overall"),
         ("By voice",             "by_voice"),
-        ("By instrument config", "by_inst_cfg"),
-        ("By source label",      "by_source_label"),
+        ("By instrument config", "by_instrumentation"),
+        ("By source",             "by_source"),
         ("By chorale",           "by_chorale"),
     ]:
         data = summary.get(key)

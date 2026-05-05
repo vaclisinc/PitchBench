@@ -92,7 +92,7 @@ def make_prompt_hz(n: int) -> str:
     return (
         f"You will hear {n} musical notes played one after another, "
         "each separated by a brief silence. "
-        f"Identify the pitch frequency in Hertz of all {n} notes in order from first to last. "
+        f"Identify the main pitch frequency, the one that characterizes the note, in Hertz of all {n} notes in order from first to last. "
         "Reply with ONLY the frequencies in Hz separated by spaces "
         "(e.g. 261.6 329.6 392.0). Nothing else. Output only the answer."
     )
@@ -363,10 +363,17 @@ def run_one_model(
                 "hz":     round(sum(hz_vals)     / len(hz_vals),     4) if hz_vals     else 0.0,
             }
 
+    n_rec = max(1, len(records))
     summary: dict[str, Any] = {
-        "total_sequences": len(records),
-        "per_n":           per_n,
-        "per_position":    per_position,
+        "total": len(records),
+        "accuracy": {
+            "midi":   round(sum(r["midi_sequence_correct"]   for r in records) / n_rec, 4),
+            "abc":    round(sum(r["abc_sequence_correct"]    for r in records) / n_rec, 4),
+            "doremi": round(sum(r["doremi_sequence_correct"] for r in records) / n_rec, 4),
+            "hz":     round(sum(r["hz_sequence_correct"]     for r in records) / n_rec, 4),
+        },
+        "by_n":        per_n,
+        "by_position": per_position,
     }
 
     summary_lines: list[str] = sampling_summary_lines(sample_info or {}) + [
@@ -399,7 +406,14 @@ def run_one_model(
         prompt_doremi=make_prompt_doremi(3), prompt_hz=make_prompt_hz(3),
         **(sample_info or {}),
     )
-    save_results(EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir)
+    save_results(
+        EXP_NAME, model_name, records, summary, metadata, summary_lines, run_dir=run_dir,
+        formats=(),
+        extra_metrics=(
+            "midi_sequence_correct", "abc_sequence_correct",
+            "doremi_sequence_correct", "hz_sequence_correct",
+        ),
+    )
     _save_plot(records, run_dir, model_name)
     return summary
 

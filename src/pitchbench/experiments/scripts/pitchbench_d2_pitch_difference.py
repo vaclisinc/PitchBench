@@ -152,7 +152,7 @@ def run_one_model(model_name: str, conds: list[dict], run_dir: Path, sample_info
     n        = len(records)
     n_corr   = sum(r["answer_correct"] for r in records)
     overall  = round(n_corr / n, 4) if n else None
-    summary  = {"total": n, "correct": n_corr, "accuracy": overall, "chance": 0.5}
+    summary  = {"total": n, "accuracy": overall, "chance": 0.5}
 
     summary_lines = sampling_summary_lines(sample_info or {}) + [
         f"  Sources : {SOURCES}",
