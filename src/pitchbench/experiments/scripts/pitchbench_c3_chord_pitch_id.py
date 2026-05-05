@@ -93,22 +93,43 @@ def _parse_midi_list(text: str) -> list[int]:
     return [int(m) for m in re.findall(r"\b(\d{1,3})\b", text) if 0 <= int(m) <= 127]
 
 
-def _parse_spn_list(text: str) -> list[int]:
-    notes = extract_all_notes(text)
-    out: list[int] = []
-    for n in notes:
-        m = note_to_midi(n)
-        if m is not None:
-            out.append(m)
+def _parse_spn_strings(text: str) -> list[str]:
+    """Return the SPN tokens the model emitted, in order, as strings.
+
+    Internal scoring goes via ``note_to_midi`` (see :func:`record_for`); the
+    string list is preserved so the audit / records CSV shows what the model
+    actually said (e.g. ``["C4", "E4", "G4"]`` rather than ``[60, 64, 67]``).
+    """
+    return list(extract_all_notes(text or ""))
+
+
+_DOREMI_SYL_RE = re.compile(
+    r"\b(do|re|mi|fa|sol|la|si|ti)\s*(?:(#|♯|sharp)|(b|♭|flat))?\b",
+    re.IGNORECASE,
+)
+
+
+def _parse_doremi_syllables(text: str) -> list[str]:
+    """Return the solfège tokens the model emitted, normalised to lowercase
+    base + ``#`` / ``b`` (e.g. ``do``, ``sol#``, ``mib``).
+    """
+    out: list[str] = []
+    for m in _DOREMI_SYL_RE.finditer((text or "").lower()):
+        base    = m.group(1)
+        sharp   = m.group(2)
+        flat    = m.group(3)
+        if sharp:
+            out.append(f"{base}#")
+        elif flat:
+            out.append(f"{base}b")
+        else:
+            out.append(base)
     return out
 
 
-def _parse_doremi_pcs(text: str) -> list[int]:
-    out: list[int] = []
-    for syl, pc in SOLFEGE_TO_PC.items():
-        if re.search(rf"\b{re.escape(syl)}\b", (text or "").lower()):
-            out.append(pc)
-    return list(dict.fromkeys(out))  # preserve order, deduplicate
+def _syllable_to_pc(syl: str) -> int | None:
+    """Map a normalised syllable token to a pitch class via SOLFEGE_TO_PC."""
+    return SOLFEGE_TO_PC.get(syl)
 
 
 def _set_exact(gt: list, pred: list) -> int:
@@ -117,9 +138,16 @@ def _set_exact(gt: list, pred: list) -> int:
 
 def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
     raw_m, raw_s, raw_d = responses["midi"], responses["spn"], responses["doremi"]
-    midi_pred   = _parse_midi_list(raw_m)
-    spn_pred    = _parse_spn_list(raw_s)
-    doremi_pcs  = _parse_doremi_pcs(raw_d)
+    midi_pred       = _parse_midi_list(raw_m)
+    spn_strings     = _parse_spn_strings(raw_s)
+    doremi_syllables = _parse_doremi_syllables(raw_d)
+
+    # Convert to comparable scalars for set-exact-match scoring.
+    spn_midis = [m for n in spn_strings if (m := note_to_midi(n)) is not None]
+    doremi_pcs = list(dict.fromkeys(
+        pc for syl in doremi_syllables if (pc := _syllable_to_pc(syl)) is not None
+    ))
+
     gt_midis = list(c["midi_notes"])
     gt_pcs   = [m % 12 for m in gt_midis]
     return {
@@ -129,15 +157,18 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
         "root_note":      c["root_note"],
         "midi_set":       str(gt_midis),
         "note_set":       ", ".join(c["note_names"]),
+        "doremi_set":     ", ".join(c["doremi_seq"]),
         "source":         c["source"],
         "raw_midi":       raw_m,
         "raw_spn":        raw_s,
         "raw_doremi":     raw_d,
+        # Display the model's tokens as the model emitted them.
         "midi_pred":      str(midi_pred),
-        "spn_pred":       str(spn_pred),
-        "doremi_pred":    str(doremi_pcs),
+        "spn_pred":       str(spn_strings),
+        "doremi_pred":    str(doremi_syllables),
+        # Scoring uses the converted scalars.
         "midi_correct":   _set_exact(gt_midis, midi_pred),
-        "spn_correct":    _set_exact(gt_midis, spn_pred),
+        "spn_correct":    _set_exact(gt_midis, spn_midis),
         "doremi_correct": _set_exact(gt_pcs,   doremi_pcs),
     }
 
