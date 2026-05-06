@@ -1,0 +1,241 @@
+effect,effect_params,effect_type,midi,noise_seed,source,source_type
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,30,2030,organ,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,30,2030,electric_keyboard,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,30,2030,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,30,2030,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,36,2036,trumpet,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,36,2036,flute,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,36,2036,sawtooth,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,36,2036,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,43,2043,bass,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,43,2043,electric_keyboard,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,43,2043,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,43,2043,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,48,2048,clarinet,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,48,2048,piano,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,48,2048,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,48,2048,triangle,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,54,2054,flute,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,54,2054,voice,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,54,2054,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,54,2054,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,60,2060,flute,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,60,2060,bass,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,60,2060,triangle,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,60,2060,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,64,2064,oboe,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,64,2064,cello,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,64,2064,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,64,2064,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,69,2069,synth_lead,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,69,2069,voice,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,69,2069,sawtooth,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,69,2069,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,79,2079,clarinet,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,79,2079,trombone,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,79,2079,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,79,2079,sine,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,88,2088,flute,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,88,2088,synth_lead,instrument
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,88,2088,square,waveform
+bitcrush_4bit,"{'type': 'bitcrush', 'bit_depth': 4}",bitcrush,88,2088,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,30,5030,electric_keyboard,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,30,5030,clarinet,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,30,5030,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,30,5030,sawtooth,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,36,5036,synth_pad,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,36,5036,trombone,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,36,5036,square,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,36,5036,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,43,5043,bass,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,43,5043,oboe,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,43,5043,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,43,5043,sawtooth,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,48,5048,electric_keyboard,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,48,5048,violin,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,48,5048,square,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,48,5048,triangle,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,54,5054,cello,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,54,5054,synth_pad,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,54,5054,square,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,54,5054,triangle,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,60,5060,flute,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,60,5060,bass,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,60,5060,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,60,5060,triangle,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,64,5064,organ,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,64,5064,flute,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,64,5064,square,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,64,5064,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,69,5069,synth_pad,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,69,5069,flute,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,69,5069,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,69,5069,sawtooth,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,79,5079,trumpet,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,79,5079,oboe,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,79,5079,square,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,79,5079,sine,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,88,5088,trombone,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,88,5088,voice,instrument
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,88,5088,sawtooth,waveform
+chorus_heavy,"{'type': 'chorus', 'rate_hz': 1.2, 'depth': 0.9, 'mix': 0.6}",chorus,88,5088,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,30,30,trumpet,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,30,30,bass,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,30,30,sine,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,30,30,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,36,36,organ,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,36,36,guitar,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,36,36,sawtooth,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,36,36,sine,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,43,43,oboe,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,43,43,clarinet,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,43,43,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,43,43,triangle,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,48,48,bass,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,48,48,violin,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,48,48,sawtooth,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,48,48,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,54,54,trombone,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,54,54,synth_pad,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,54,54,sine,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,54,54,triangle,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,60,60,synth_pad,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,60,60,piano,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,60,60,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,60,60,sawtooth,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,64,64,trumpet,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,64,64,electric_keyboard,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,64,64,sawtooth,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,64,64,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,69,69,voice,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,69,69,bass,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,69,69,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,69,69,sine,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,79,79,organ,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,79,79,oboe,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,79,79,triangle,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,79,79,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,88,88,oboe,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,88,88,guitar,instrument
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,88,88,square,waveform
+highpass_above_f0,"{'type': 'highpass', 'cutoff_ratio': 1.5, 'order': 6}",highpass,88,88,sine,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,30,1030,flute,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,30,1030,bass,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,30,1030,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,30,1030,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,36,1036,cello,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,36,1036,clarinet,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,36,1036,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,36,1036,sawtooth,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,43,1043,flute,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,43,1043,guitar,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,43,1043,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,43,1043,sine,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,48,1048,synth_lead,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,48,1048,piano,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,48,1048,sine,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,48,1048,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,54,1054,organ,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,54,1054,guitar,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,54,1054,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,54,1054,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,60,1060,electric_keyboard,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,60,1060,clarinet,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,60,1060,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,60,1060,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,64,1064,oboe,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,64,1064,violin,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,64,1064,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,64,1064,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,69,1069,synth_pad,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,69,1069,piano,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,69,1069,sine,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,69,1069,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,79,1079,voice,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,79,1079,violin,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,79,1079,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,79,1079,triangle,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,88,1088,trombone,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,88,1088,electric_keyboard,instrument
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,88,1088,square,waveform
+lowpass_at_f0,"{'type': 'lowpass', 'cutoff_ratio': 1.2, 'order': 6}",lowpass,88,1088,sawtooth,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,30,4030,guitar,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,30,4030,oboe,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,30,4030,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,30,4030,square,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,36,4036,voice,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,36,4036,bass,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,36,4036,square,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,36,4036,triangle,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,43,4043,synth_lead,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,43,4043,guitar,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,43,4043,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,43,4043,square,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,48,4048,trumpet,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,48,4048,synth_pad,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,48,4048,sawtooth,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,48,4048,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,54,4054,trombone,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,54,4054,synth_lead,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,54,4054,sawtooth,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,54,4054,square,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,60,4060,synth_lead,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,60,4060,violin,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,60,4060,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,60,4060,square,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,64,4064,trombone,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,64,4064,oboe,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,64,4064,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,64,4064,triangle,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,69,4069,voice,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,69,4069,trombone,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,69,4069,square,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,69,4069,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,79,4079,piano,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,79,4079,flute,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,79,4079,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,79,4079,triangle,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,88,4088,bass,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,88,4088,oboe,instrument
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,88,4088,sine,waveform
+reverb_long,"{'type': 'reverb_room', 'room_size': 0.9, 'damping': 0.4, 'wet_level': 0.6, 'dry_level': 0.4}",reverb_room,88,4088,square,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,30,3030,synth_lead,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,30,3030,guitar,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,30,3030,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,30,3030,square,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,36,3036,oboe,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,36,3036,violin,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,36,3036,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,36,3036,triangle,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,43,3043,violin,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,43,3043,synth_pad,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,43,3043,triangle,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,43,3043,sine,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,48,3048,voice,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,48,3048,violin,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,48,3048,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,48,3048,square,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,54,3054,trumpet,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,54,3054,clarinet,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,54,3054,square,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,54,3054,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,60,3060,voice,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,60,3060,violin,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,60,3060,triangle,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,60,3060,sine,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,64,3064,flute,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,64,3064,voice,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,64,3064,sine,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,64,3064,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,69,3069,piano,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,69,3069,cello,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,69,3069,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,69,3069,square,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,79,3079,flute,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,79,3079,piano,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,79,3079,sine,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,79,3079,square,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,88,3088,organ,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,88,3088,piano,instrument
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,88,3088,sawtooth,waveform
+distortion_heavy,"{'type': 'saturation', 'drive_db': 30.0}",saturation,88,3088,sine,waveform
