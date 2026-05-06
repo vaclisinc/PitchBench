@@ -345,8 +345,11 @@ def plot_accuracy_by_notation(
         raise ImportError("matplotlib and numpy are required for plotting")
 
     input_path = Path(input_csv).expanduser().resolve()
-    out_dir = Path(output_dir) if output_dir else input_path.parent
-
+    out_dir = Path(output_dir) if output_dir else input_path.parent / "paper" / datetime.now().strftime("%Y%m%d_%H%M%S")
+    mkdir_kwargs = {"parents": True, "exist_ok": True}
+    if hasattr(out_dir, "mkdir"):
+        out_dir.mkdir(**mkdir_kwargs)
+        
     with input_path.open("r", newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
 
@@ -397,8 +400,9 @@ def plot_accuracy_by_notation(
 
     n_models = len(models)
     n_formats = len(FORMATS)
-    bar_width = 0.8 / n_formats
+    bar_width = 0.8 / max(1, n_formats)
     x = np.arange(n_models)
+    hatches = ["", "//", "..", "xx", "++"]
 
     fig, ax = plt.subplots(figsize=(max(8, n_models * 3), 6))
     for i, fmt in enumerate(FORMATS):
@@ -407,9 +411,18 @@ def plot_accuracy_by_notation(
             for model in models
         ]
         offset = (i - (n_formats - 1) / 2) * bar_width
-        ax.bar(x + offset, accuracies, bar_width * 0.9,
-               label=fmt,
-               color=FORMAT_COLORS.get(fmt, f"C{i}"))
+        colors = [MODEL_COLORS.get(model, f"C{j}") for j, model in enumerate(models)]
+        bars = ax.bar(
+            x + offset,
+            accuracies,
+            bar_width * 0.9,
+            label=fmt.upper(),
+            color=colors,
+            edgecolor="black",
+            linewidth=0.4,
+        )
+        for b in bars:
+            b.set_hatch(hatches[i % len(hatches)])
 
     ax.set_xticks(x)
     ax.set_xticklabels([_short_model(m) for m in models], fontsize=10)
@@ -443,11 +456,14 @@ def main() -> None:
     print(per_model_path)
 
     if _HAS_MATPLOTLIB:
-        csv_inst, plot_inst = plot_accuracy_by_instrument(args.input_csv)
+        input_path = Path(args.input_csv).expanduser().resolve()
+        plot_out_dir = input_path.parent / "paper" / datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        csv_inst, plot_inst = plot_accuracy_by_instrument(args.input_csv, output_dir=plot_out_dir)
         print(csv_inst)
         print(plot_inst)
 
-        csv_nota, plot_nota = plot_accuracy_by_notation(args.input_csv)
+        csv_nota, plot_nota = plot_accuracy_by_notation(args.input_csv, output_dir=plot_out_dir)
         print(csv_nota)
         print(plot_nota)
     else:

@@ -45,4 +45,4 @@ tmux new-session -d -s analysis_gpt "cd /home/hsnu2/PitchBench && source .venv/b
 
 qwen - david
 
-tmux new-session -d -s qwen3-omni "cd /home/hsnu2/PitchBench && source .venv/bin/activate && mkdir -p logs && pitchbench all --models qwen3_omni 2>&1 | tee logs/pitchbench_all_qwen3_omni_$(date +%Y%m%d_%H%M%S).log"
+tmux new-session -d -s qwen3-omni "cd /home/hsnu2/PitchBench && source .venv/bin/activate && mkdir -p logs && LOCAL_CONCURRENCY 1 pitchbench all --models qwen3_omni 2>&1 | tee logs/pitchbench_all_qwen3_omni_$(date +%Y%m%d_%H%M%S).log"
