@@ -34,8 +34,12 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import os
 import sys
 from pathlib import Path
+
+# Force analysis config selection before pitchbench.config initializes.
+os.environ["PITCHBENCH_MODE"] = "ANALYSIS"
 
 # Config must be imported before analysis_config / user_config so that
 # BENCHMARK_* constants are available to those modules at import time.

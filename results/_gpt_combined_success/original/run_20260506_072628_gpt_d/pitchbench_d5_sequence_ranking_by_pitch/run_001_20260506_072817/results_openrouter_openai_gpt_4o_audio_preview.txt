@@ -1,0 +1,102 @@
+Experiment : pitchbench_d5_sequence_ranking_by_pitch
+Model      : openrouter/openai/gpt-4o-audio-preview
+timestamp  : 2026-05-06T07:28:25.675768
+argv       : ['.venv/bin/pitchbench', 'd', '--models', 'openrouter/openai/gpt-4o-audio-preview']
+git_commit : 75e459dd14de603cce07062e48a5bd8e65be560b
+git_dirty  : True
+model_name : openrouter/openai/gpt-4o-audio-preview
+model_info : {'model': 'openrouter/openai/gpt-4o-audio-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'openai/gpt-4o-audio-preview'}
+task_type  : ranking
+headline_metrics : ['answer']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n_notes', 'rhythm', 'base_name', 'delta_cents', 'trial']
+sample_n   : 120
+sample_seed : 42
+total_available : 2880
+stratified_by : (n_notes, delta_cents, rhythm, base_name)
+
+SUMMARY
+==================================================
+  Sampling     : 120 of 2880 (stratified by '(n_notes, delta_cents, rhythm, base_name)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER       1.7%
+
+== Marginal accuracy ==
+
+duration_ms     answer_correct    n
+──────────────  ───────  ────
+1000              1.45%    69
+5000              1.96%    51
+
+source          answer_correct    n
+──────────────  ───────  ────
+sawtooth          0.00%    37
+sine              0.00%    29
+square            4.76%    21
+triangle          3.03%    33
+
+n_notes         answer_correct    n
+──────────────  ───────  ────
+3                 3.33%    30
+4                 3.33%    30
+5                 0.00%    30
+7                 0.00%    30
+
+rhythm          answer_correct    n
+──────────────  ───────  ────
+irregular         3.33%    60
+regular           0.00%    60
+
+delta_cents     answer_correct    n
+──────────────  ───────  ────
+25                0.00%    24
+50                8.33%    24
+100               0.00%    24
+200               0.00%    24
+400               0.00%    24
+
+kendall_tau     answer_correct    n
+──────────────  ───────  ────
+-1.0              0.00%     8
+-0.9048           0.00%     1
+-0.6667           0.00%     3
+-0.6              0.00%     5
+-0.4286           0.00%     6
+-0.4              0.00%     1
+-0.3333           0.00%    13
+-0.2381           0.00%     3
+-0.2              0.00%     6
+-0.1429           0.00%     3
+-0.0476           0.00%     2
+0.0               0.00%    14
+0.0476            0.00%     3
+0.1429            0.00%     3
+0.2               0.00%     8
+0.2381            0.00%     4
+0.3333            0.00%    20
+0.4               0.00%     2
+0.5238            0.00%     2
+0.6               0.00%     4
+0.619             0.00%     1
+0.6667            0.00%     4
+0.8               0.00%     2
+1.0             100.00%     2
+
+trial           answer_correct    n
+──────────────  ───────  ────
+0                 0.00%    34
+1                 2.78%    36
+2                 2.00%    50
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                26,568
+  completion tokens             1,251
+  total tokens                 27,819
+  cost (USD)                $0.721980

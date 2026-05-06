@@ -18,7 +18,9 @@ import sys as _sys
 from pathlib import Path
 
 # ── Mode ──────────────────────────────────────────────────────────────────────
-MODE = "EVAL"           # "EVAL" | "ANALYSIS" | "USER"
+MODE = os.environ.get("PITCHBENCH_MODE", "EVAL").upper()  # "EVAL" | "ANALYSIS" | "USER"
+if MODE not in {"EVAL", "ANALYSIS", "USER"}:
+    raise ValueError(f"Invalid PITCHBENCH_MODE={MODE!r}; expected EVAL, ANALYSIS, or USER")
 EVAL = (MODE == "EVAL") # backward compat for code that checks `if EVAL:`
 
 # ── Runtime / project root ────────────────────────────────────────────────────

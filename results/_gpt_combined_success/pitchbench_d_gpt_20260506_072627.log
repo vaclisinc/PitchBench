@@ -1,0 +1,1752 @@
+Running in MODE=EVAL
+
+############################################################
+# pitchbench_d7a_pitch_with_reference
+############################################################
+
+Experiment : pitchbench_d7a_pitch_with_reference
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 130
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 130 items, max_workers=20
+    [   1/130] anchored r=F#2 i= -7 sawtooth  | midi: gt=35 pred=42 ❌  | spn: gt=B1 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=61.7354 pred=185.0 ❌
+    [   2/130] anchored r=F#2 i= -4 synth_pad  | midi: gt=38 pred=42 ❌  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=None ❌
+    [   3/130] anchored r=F#2 i=-12 trumpet  | midi: gt=30 pred=42 ❌  | spn: gt=F#1 pred=G1 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=55.0 ❌
+    [   4/130] anchored r=F#2 i= -3 piano  | midi: gt=39 pred=42 ❌  | spn: gt=D#2 pred=G#2 ❌  | doremi: gt=re# pred=sol ❌  | hz: gt=77.7817 pred=185.0 ❌
+    [   5/130] anchored r=F#2 i=-12 flute  | midi: gt=30 pred=42 ❌  | spn: gt=F#1 pred=G2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=110.0 ❌
+    [   6/130] anchored r=F#2 i= -1 sine  | midi: gt=41 pred=42 ❌  | spn: gt=F2 pred=G#2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=185.0 ❌
+    [   7/130] anchored r=F#2 i= +1 synth_lead  | midi: gt=43 pred=42 ❌  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=185.0 ❌
+    [   8/130] anchored r=F#2 i= -5 cello  | midi: gt=37 pred=42 ❌  | spn: gt=C#2 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=69.2957 pred=110.0 ❌
+    [   9/130] anchored r=F#2 i= -7 sine  | midi: gt=35 pred=42 ❌  | spn: gt=B1 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=61.7354 pred=185.0 ❌
+    [  10/130] anchored r=F#2 i= -4 triangle  | midi: gt=38 pred=42 ❌  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=185.0 ❌
+    [  11/130] anchored r=F#2 i= +0 square  | midi: gt=42 pred=42 ✅  | spn: gt=F#2 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=92.4986 pred=185.0 ❌
+    [  12/130] anchored r=F#2 i= +0 guitar  | midi: gt=42 pred=42 ✅  | spn: gt=F#2 pred=G2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=92.4986 pred=110.0 ❌
+    [  13/130] anchored r=F#2 i= +3 synth_pad  | midi: gt=45 pred=42 ❌  | spn: gt=A2 pred=G#2 ❌  | doremi: gt=la pred=sol ❌  | hz: gt=110.0 pred=185.0 ❌
+    [  14/130] anchored r=F#2 i= +4 cello  | midi: gt=46 pred=42 ❌  | spn: gt=A#2 pred=G#2 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=185.0 ❌
+    [  15/130] anchored r=F#2 i= -3 flute  | midi: gt=39 pred=42 ❌  | spn: gt=D#2 pred=G#2 ❌  | doremi: gt=re# pred=sol ❌  | hz: gt=77.7817 pred=110.0 ❌
+    [  16/130] anchored r=F#2 i= +3 guitar  | midi: gt=45 pred=42 ❌  | spn: gt=A2 pred=G2 ❌  | doremi: gt=la pred=sol ❌  | hz: gt=110.0 pred=110.0 ✅
+    [  17/130] anchored r=F#2 i= -1 triangle  | midi: gt=41 pred=42 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=185.0 ❌
+    [  18/130] anchored r=F#2 i= +1 flute  | midi: gt=43 pred=42 ❌  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=110.0 ❌
+    [  19/130] anchored r=F#2 i= +4 flute  | midi: gt=46 pred=42 ❌  | spn: gt=A#2 pred=G2 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=110.0 ❌
+    [  20/130] anchored r=F#2 i= -5 square  | midi: gt=37 pred=42 ❌  | spn: gt=C#2 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=69.2957 pred=185.0 ❌
+    [  21/130] anchored r=F#2 i= +5 trumpet  | midi: gt=47 pred=42 ❌  | spn: gt=B2 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=92.5 ❌
+    [  22/130] anchored r=F#2 i= +7 electric_keyboard  | midi: gt=49 pred=42 ❌  | spn: gt=C#3 pred=G2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=110.0 ❌
+    [  23/130] anchored r=F#2 i= +5 organ  | midi: gt=47 pred=42 ❌  | spn: gt=B2 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=185.0 ❌
+    [  24/130] anchored r=F#2 i=+12 synth_pad  | midi: gt=54 pred=42 ❌  | spn: gt=F#3 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=185.0 ✅
+    [  25/130] anchored r= F3 i= -4 square  | midi: gt=49 pred=53 ❌  | spn: gt=C#3 pred=G3 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=440.0 ❌
+    [  26/130] anchored r=F#2 i=+12 sine  | midi: gt=54 pred=42 ❌  | spn: gt=F#3 pred=D#3 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=185.0 ✅
+    [  27/130] anchored r= F3 i= -5 triangle  | midi: gt=48 pred=53 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=fa ❌  | hz: gt=130.8128 pred=349.23 ❌
+    [  28/130] anchored r= F3 i= -3 guitar  | midi: gt=50 pred=53 ❌  | spn: gt=D3 pred=G3 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=146.8324 pred=220.0 ❌
+    [  29/130] anchored r= F3 i= -4 triangle  | midi: gt=49 pred=53 ❌  | spn: gt=C#3 pred=G3 ❌  | doremi: gt=do# pred=mi ❌  | hz: gt=138.5913 pred=349.23 ❌
+    [  30/130] anchored r= F3 i= -5 violin  | midi: gt=48 pred=53 ❌  | spn: gt=C3 pred=G2 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=130.8128 pred=196.0 ❌
+    [  31/130] anchored r= F3 i= -7 voice  | midi: gt=46 pred=53 ❌  | spn: gt=A#2 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=349.23 ❌
+    [  32/130] anchored r= F3 i= -7 oboe  | midi: gt=46 pred=53 ❌  | spn: gt=A#2 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=196.0 ❌
+    [  33/130] anchored r= F3 i= -1 clarinet  | midi: gt=52 pred=53 ❌  | spn: gt=E3 pred=G3 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=164.8138 pred=349.23 ❌
+    [  34/130] anchored r= F3 i= -3 clarinet  | midi: gt=50 pred=53 ❌  | spn: gt=D3 pred=G3 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=146.8324 pred=349.23 ❌
+    [  35/130] anchored r=F#2 i= +7 sine  | midi: gt=49 pred=42 ❌  | spn: gt=C#3 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=185.0 ❌
+    [  36/130] anchored r= F3 i= +0 sawtooth  | midi: gt=53 pred=57 ❌  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=174.6141 pred=349.23 ❌
+    [  37/130] anchored r= F3 i= -1 cello  | midi: gt=52 pred=53 ❌  | spn: gt=E3 pred=G3 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=164.8138 pred=220.0 ❌
+    [  38/130] anchored r= F3 i=-12 trumpet  | midi: gt=41 pred=53 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=87.3071 pred=196.0 ❌
+    [  39/130] anchored r= F3 i=-12 piano  | midi: gt=41 pred=53 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=87.3071 pred=196.0 ❌
+    [  40/130] anchored r= F3 i= +0 trumpet  | midi: gt=53 pred=53 ✅  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=174.6141 pred=174.61 ✅
+    [  41/130] anchored r= F3 i= +1 organ  | midi: gt=54 pred=53 ❌  | spn: gt=F#3 pred=G3 ❌  | doremi: gt=fa# pred=mi ❌  | hz: gt=184.9972 pred=220.0 ❌
+    [  42/130] anchored r= F3 i= +3 synth_pad  | midi: gt=56 pred=53 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=207.6523 pred=220.0 ❌
+    [  43/130] anchored r= F3 i= +3 square  | midi: gt=56 pred=53 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=349.23 ❌
+    [  44/130] anchored r= C4 i=-12 flute  | midi: gt=48 pred=60 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=130.8128 pred=196.0 ❌
+    [  45/130] anchored r= F3 i= +7 sawtooth  | midi: gt=60 pred=53 ❌  | spn: gt=C4 pred=G3 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  46/130] anchored r= F3 i= +5 voice  | midi: gt=58 pred=53 ❌  | spn: gt=A#3 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=233.0819 pred=349.23 ❌
+    [  47/130] anchored r= C4 i= -7 voice  | midi: gt=53 pred=60 ❌  | spn: gt=F3 pred=G4 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=174.6141 pred=392.0 ❌
+    [  48/130] anchored r= F3 i= +4 oboe  | midi: gt=57 pred=53 ❌  | spn: gt=A3 pred=G3 ❌  | doremi: gt=la pred=fa# ❌  | hz: gt=220.0 pred=174.61 ❌
+    [  49/130] anchored r= F3 i= +4 trombone  | midi: gt=57 pred=53 ❌  | spn: gt=A3 pred=G3 ❌  | doremi: gt=la pred=mi ❌  | hz: gt=220.0 pred=196.0 ❌
+    [  50/130] anchored r= F3 i= +7 square  | midi: gt=60 pred=53 ❌  | spn: gt=C4 pred=G3 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  51/130] anchored r= C4 i= -5 oboe  | midi: gt=55 pred=60 ❌  | spn: gt=G3 pred=G3 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=195.9977 pred=293.66 ❌
+    [  52/130] anchored r= C4 i=-12 square  | midi: gt=48 pred=60 ❌  | spn: gt=C3 pred=G4 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [  53/130] anchored r= C4 i= -7 oboe  | midi: gt=53 pred=60 ❌  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=174.6141 pred=220.0 ❌
+    [  54/130] anchored r= C4 i= -5 electric_keyboard  | midi: gt=55 pred=60 ❌  | spn: gt=G3 pred=G4 ❌  | doremi: gt=sol pred=mi ❌  | hz: gt=195.9977 pred=440.0 ❌
+    [  55/130] anchored r= C4 i= -4 trumpet  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G4 ❌  | doremi: gt=sol# pred=re ❌  | hz: gt=207.6523 pred=293.66 ❌
+    [  56/130] anchored r= F3 i=+12 triangle  | midi: gt=65 pred=53 ❌  | spn: gt=F4 pred=G3 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=349.23 ✅
+    [  57/130] anchored r= F3 i= +1 synth_pad  | midi: gt=54 pred=53 ❌  | spn: gt=F#3 pred=G3 ❌  | doremi: gt=fa# pred=mi ❌  | hz: gt=184.9972 pred=349.23 ❌
+    [  58/130] anchored r= C4 i= -4 organ  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G4 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=207.6523 pred=392.0 ❌
+    [  59/130] anchored r= F3 i=+12 violin  | midi: gt=65 pred=57 ❌  | spn: gt=F4 pred=G3 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=220.0 ❌
+    [  60/130] anchored r= F3 i= +5 guitar  | midi: gt=58 pred=53 ❌  | spn: gt=A#3 pred=G3 ❌  | doremi: gt=la# pred=mi ❌  | hz: gt=233.0819 pred=196.0 ❌
+    [  61/130] anchored r= C4 i= -3 violin  | midi: gt=57 pred=60 ❌  | spn: gt=A3 pred=D4 ❌  | doremi: gt=la pred=do ❌  | hz: gt=220.0 pred=392.0 ❌
+    [  62/130] anchored r= C4 i= -1 flute  | midi: gt=59 pred=60 ❌  | spn: gt=B3 pred=G4 ❌  | doremi: gt=si pred=re ❌  | hz: gt=246.9417 pred=392.0 ❌
+    [  63/130] anchored r= C4 i= -3 triangle  | midi: gt=57 pred=60 ❌  | spn: gt=A3 pred=G4 ❌  | doremi: gt=la pred=re ❌  | hz: gt=220.0 pred=440.0 ❌
+    [  64/130] anchored r= C4 i= -1 trombone  | midi: gt=59 pred=60 ❌  | spn: gt=B3 pred=G3 ❌  | doremi: gt=si pred=do# ❌  | hz: gt=246.9417 pred=349.23 ❌
+    [  65/130] anchored r= C4 i= +0 guitar  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=re ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  66/130] anchored r= C4 i= +1 electric_keyboard  | midi: gt=61 pred=60 ❌  | spn: gt=C#4 pred=G4 ❌  | doremi: gt=do# pred=re ❌  | hz: gt=277.1826 pred=261.63 ❌
+    [  67/130] anchored r= C4 i= +4 violin  | midi: gt=64 pred=60 ❌  | spn: gt=E4 pred=D4 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=329.6276 pred=392.0 ❌
+    [  68/130] anchored r= C4 i= +3 organ  | midi: gt=63 pred=60 ❌  | spn: gt=D#4 pred=G4 ❌  | doremi: gt=re# pred=mi ❌  | hz: gt=311.127 pred=261.63 ❌
+    [  69/130] anchored r= C4 i= +0 trumpet  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  70/130] anchored r= C4 i= +5 synth_pad  | midi: gt=65 pred=60 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=392.0 ❌
+    [  71/130] anchored r= C4 i= +4 trumpet  | midi: gt=64 pred=60 ❌  | spn: gt=E4 pred=D4 ❌  | doremi: gt=mi pred=re ❌  | hz: gt=329.6276 pred=293.66 ❌
+    [  72/130] anchored r= C4 i= +3 electric_keyboard  | midi: gt=63 pred=60 ❌  | spn: gt=D#4 pred=G4 ❌  | doremi: gt=re# pred=re ❌  | hz: gt=311.127 pred=392.0 ❌
+    [  73/130] anchored r= C4 i= +1 square  | midi: gt=61 pred=60 ❌  | spn: gt=C#4 pred=G4 ❌  | doremi: gt=do# pred=mi ❌  | hz: gt=277.1826 pred=440.0 ❌
+    [  74/130] anchored r= C4 i= +5 flute  | midi: gt=65 pred=60 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=re ❌  | hz: gt=349.2282 pred=392.0 ❌
+    [  75/130] anchored r= C4 i= +7 sawtooth  | midi: gt=67 pred=60 ❌  | spn: gt=G4 pred=G4 ✅  | doremi: gt=sol pred=re ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  76/130] anchored r= G4 i=-12 clarinet  | midi: gt=55 pred=67 ❌  | spn: gt=G3 pred=D4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=195.9977 pred=349.0 ❌
+    [  77/130] anchored r= C4 i= +7 clarinet  | midi: gt=67 pred=60 ❌  | spn: gt=G4 pred=D4 ❌  | doremi: gt=sol pred=re ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  78/130] anchored r= C4 i=+12 flute  | midi: gt=72 pred=60 ❌  | spn: gt=C5 pred=D4 ❌  | doremi: gt=do pred=re ❌  | hz: gt=523.2511 pred=392.0 ❌
+    [  79/130] anchored r= G4 i=-12 violin  | midi: gt=55 pred=67 ❌  | spn: gt=G3 pred=E4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=195.9977 pred=440.0 ❌
+    [  80/130] anchored r= G4 i= -7 violin  | midi: gt=60 pred=67 ❌  | spn: gt=C4 pred=A4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  81/130] anchored r= G4 i= -5 guitar  | midi: gt=62 pred=67 ❌  | spn: gt=D4 pred=D4 ✅  | doremi: gt=re pred=la ❌  | hz: gt=293.6648 pred=440.0 ❌
+    [  82/130] anchored r= G4 i= -4 guitar  | midi: gt=63 pred=67 ❌  | spn: gt=D#4 pred=A4 ❌  | doremi: gt=re# pred=fa ❌  | hz: gt=311.127 pred=440.0 ❌
+    [  83/130] anchored r= G4 i= -7 organ  | midi: gt=60 pred=67 ❌  | spn: gt=C4 pred=E4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  84/130] anchored r= G4 i= -5 bass  | midi: gt=62 pred=67 ❌  | spn: gt=D4 pred=E4 ❌  | doremi: gt=re pred=la ❌  | hz: gt=293.6648 pred=440.0 ❌
+    [  85/130] anchored r= G4 i= -4 clarinet  | midi: gt=63 pred=67 ❌  | spn: gt=D#4 pred=D4 ❌  | doremi: gt=re# pred=fa ❌  | hz: gt=311.127 pred=440.0 ❌
+    [  86/130] anchored r= C4 i=+12 synth_pad  | midi: gt=72 pred=60 ❌  | spn: gt=C5 pred=G4 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=523.2511 pred=392.0 ❌
+    [  87/130] anchored r= G4 i= -3 square  | midi: gt=64 pred=67 ❌  | spn: gt=E4 pred=E4 ✅  | doremi: gt=mi pred=la ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  88/130] anchored r= G4 i= -3 trumpet  | midi: gt=64 pred=67 ❌  | spn: gt=E4 pred=A4 ❌  | doremi: gt=mi pred=fa ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  89/130] anchored r= G4 i= -1 sawtooth  | midi: gt=66 pred=67 ❌  | spn: gt=F#4 pred=E4 ❌  | doremi: gt=fa# pred=la ❌  | hz: gt=369.9944 pred=440.0 ❌
+    [  90/130] anchored r= G4 i= +0 piano  | midi: gt=67 pred=67 ✅  | spn: gt=G4 pred=E4 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  91/130] anchored r= G4 i= +3 trumpet  | midi: gt=70 pred=67 ❌  | spn: gt=A#4 pred=A4 ❌  | doremi: gt=la# pred=fa ❌  | hz: gt=466.1638 pred=440.0 ❌
+    [  92/130] anchored r= G4 i= +1 flute  | midi: gt=68 pred=67 ❌  | spn: gt=G#4 pred=E4 ❌  | doremi: gt=sol# pred=la ❌  | hz: gt=415.3047 pred=440.0 ❌
+    [  93/130] anchored r= G4 i= +1 piano  | midi: gt=68 pred=67 ❌  | spn: gt=G#4 pred=E4 ❌  | doremi: gt=sol# pred=fa ❌  | hz: gt=415.3047 pred=440.0 ❌
+    [  94/130] anchored r= G4 i= +3 cello  | midi: gt=70 pred=67 ❌  | spn: gt=A#4 pred=A4 ❌  | doremi: gt=la# pred=la ❌  | hz: gt=466.1638 pred=440.0 ❌
+    [  95/130] anchored r= G4 i= -1 flute  | midi: gt=66 pred=67 ❌  | spn: gt=F#4 pred=A4 ❌  | doremi: gt=fa# pred=la ❌  | hz: gt=369.9944 pred=440.0 ❌
+    [  96/130] anchored r= G4 i= +5 flute  | midi: gt=72 pred=67 ❌  | spn: gt=C5 pred=A4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=523.2511 pred=440.0 ❌
+    [  97/130] anchored r= G4 i= +0 trumpet  | midi: gt=67 pred=67 ✅  | spn: gt=G4 pred=A4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  98/130] anchored r= G4 i= +5 oboe  | midi: gt=72 pred=67 ❌  | spn: gt=C5 pred=A4 ❌  | doremi: gt=do pred=fa ❌  | hz: gt=523.2511 pred=440.0 ❌
+    [  99/130] anchored r= G4 i= +4 voice  | midi: gt=71 pred=67 ❌  | spn: gt=B4 pred=A4 ❌  | doremi: gt=si pred=la ❌  | hz: gt=493.8833 pred=440.0 ❌
+    [ 100/130] anchored r= G4 i= +4 violin  | midi: gt=71 pred=67 ❌  | spn: gt=B4 pred=E4 ❌  | doremi: gt=si pred=fa ❌  | hz: gt=493.8833 pred=440.0 ❌
+    [ 101/130] anchored r= G4 i= +7 synth_lead  | midi: gt=74 pred=67 ❌  | spn: gt=D5 pred=A4 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 102/130] anchored r= G4 i= +7 piano  | midi: gt=74 pred=67 ❌  | spn: gt=D5 pred=E4 ❌  | doremi: gt=re pred=fa ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 103/130] anchored r= G4 i=+12 synth_pad  | midi: gt=79 pred=67 ❌  | spn: gt=G5 pred=A4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [ 104/130] anchored r= F5 i= -7 synth_lead  | midi: gt=70 pred=77 ❌  | spn: gt=A#4 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=466.1638 pred=987.77 ❌
+    [ 105/130] anchored r= F5 i=-12 sawtooth  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [ 106/130] anchored r= G4 i=+12 voice  | midi: gt=79 pred=67 ❌  | spn: gt=G5 pred=A4 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [ 107/130] anchored r= F5 i= -5 violin  | midi: gt=72 pred=77 ❌  | spn: gt=C5 pred=G5 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=523.2511 pred=880.0 ❌
+    [ 108/130] anchored r= F5 i=-12 triangle  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=880.0 ❌
+    [ 109/130] anchored r= F5 i= -5 voice  | midi: gt=72 pred=77 ❌  | spn: gt=C5 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=523.2511 pred=880.0 ❌
+    [ 110/130] anchored r= F5 i= -4 square  | midi: gt=73 pred=77 ❌  | spn: gt=C#5 pred=G5 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=554.3653 pred=880.0 ❌
+    [ 111/130] anchored r= F5 i= -4 cello  | midi: gt=73 pred=77 ❌  | spn: gt=C#5 pred=G5 ❌  | doremi: gt=do# pred=mi ❌  | hz: gt=554.3653 pred=880.0 ❌
+    [ 112/130] anchored r= F5 i= -1 square  | midi: gt=76 pred=77 ❌  | spn: gt=E5 pred=G5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=659.2551 pred=880.0 ❌
+    [ 113/130] anchored r= F5 i= -7 organ  | midi: gt=70 pred=77 ❌  | spn: gt=A#4 pred=G5 ❌  | doremi: gt=la# pred=mi ❌  | hz: gt=466.1638 pred=880.0 ❌
+    [ 114/130] anchored r= F5 i= -1 bass  | midi: gt=76 pred=77 ❌  | spn: gt=E5 pred=G5 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=659.2551 pred=440.0 ❌
+    [ 115/130] anchored r= F5 i= -3 piano  | midi: gt=74 pred=77 ❌  | spn: gt=D5 pred=G5 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=587.3295 pred=880.0 ❌
+    [ 116/130] anchored r= F5 i= +0 trumpet  | midi: gt=77 pred=77 ✅  | spn: gt=F5 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=698.4565 pred=440.0 ❌
+    [ 117/130] anchored r= F5 i= +1 sine  | midi: gt=78 pred=77 ❌  | spn: gt=F#5 pred=G5 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=739.9888 pred=880.0 ❌
+    [ 118/130] anchored r= F5 i= +1 triangle  | midi: gt=78 pred=77 ❌  | spn: gt=F#5 pred=G5 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=739.9888 pred=880.0 ❌
+    [ 119/130] anchored r= F5 i= -3 electric_keyboard  | midi: gt=74 pred=77 ❌  | spn: gt=D5 pred=G5 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=587.3295 pred=880.0 ❌
+    [ 120/130] anchored r= F5 i= +3 triangle  | midi: gt=80 pred=77 ❌  | spn: gt=G#5 pred=G5 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=830.6094 pred=880.0 ❌
+    [ 121/130] anchored r= F5 i= +0 synth_pad  | midi: gt=77 pred=77 ✅  | spn: gt=F5 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=698.4565 pred=880.0 ❌
+    [ 122/130] anchored r= F5 i= +7 sine  | midi: gt=84 pred=77 ❌  | spn: gt=C6 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=1046.5023 pred=880.0 ❌
+    [ 123/130] anchored r= F5 i= +4 cello  | midi: gt=81 pred=77 ❌  | spn: gt=A5 pred=G5 ❌  | doremi: gt=la pred=mi ❌  | hz: gt=880.0 pred=880.0 ✅
+    [ 124/130] anchored r= F5 i= +5 organ  | midi: gt=82 pred=77 ❌  | spn: gt=A#5 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=932.3275 pred=880.0 ❌
+    [ 125/130] anchored r= F5 i= +3 clarinet  | midi: gt=80 pred=77 ❌  | spn: gt=G#5 pred=D#5 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=830.6094 pred=880.0 ❌
+    [ 126/130] anchored r= F5 i= +4 trombone  | midi: gt=81 pred=77 ❌  | spn: gt=A5 pred=G5 ❌  | doremi: gt=la pred=mi ❌  | hz: gt=880.0 pred=880.0 ✅
+    [ 127/130] anchored r= F5 i= +7 trumpet  | midi: gt=84 pred=77 ❌  | spn: gt=C6 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=1046.5023 pred=880.0 ❌
+    [ 128/130] anchored r= F5 i= +5 electric_keyboard  | midi: gt=82 pred=77 ❌  | spn: gt=A#5 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=932.3275 pred=880.0 ❌
+    [ 129/130] anchored r= F5 i=+12 synth_pad  | midi: gt=89 pred=77 ❌  | spn: gt=F6 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=1396.9129 pred=880.0 ❌
+    [ 130/130] anchored r= F5 i=+12 trumpet  | midi: gt=89 pred=77 ❌  | spn: gt=F6 pred=G5 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=1396.9129 pred=880.0 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+  Stimuli (total)     : 130
+  Stimuli (condition) : 130
+  Stimuli (baseline)  : 0
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI       6.9%       0.0%
+     SPN       3.1%       0.0%
+  DOREMI       5.4%       0.0%
+      HZ       5.4%       0.0%
+     ANY      14.6%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           520
+  prompt tokens                85,982
+  completion tokens            10,203
+  total tokens                 96,185
+  cost (USD)                $2.364485
+
+Results saved → results/run_20260506_072628/pitchbench_d7a_pitch_with_reference/run_001_20260506_072628/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d7b_pitch_with_reference_split
+############################################################
+
+Experiment : pitchbench_d7b_pitch_with_reference_split
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 130
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+
+Probing multi-audio support...
+  openrouter/openai/gpt-4o-audio-preview             OK
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 130 items, max_workers=20
+    [   1/130] r=F#2 i= +0 square  | midi: gt=42 pred=2 ❌  | spn: gt=F#2 pred=G#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=92.4986 pred=87.5 ❌
+    [   2/130] r=F#2 i=+12 synth_pad  | midi: gt=54 pred=2 ❌  | spn: gt=F#3 pred=G#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=87.31 ❌
+    [   3/130] r=F#2 i= -4 triangle  | midi: gt=38 pred=2 ❌  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=185.0 ❌
+    [   4/130] r=F#2 i= -5 cello  | midi: gt=37 pred=2 ❌  | spn: gt=C#2 pred=G#2 ❌  | doremi: gt=do# pred=sol# ❌  | hz: gt=69.2957 pred=110.0 ❌
+    [   5/130] r=F#2 i= -1 triangle  | midi: gt=41 pred=2 ❌  | spn: gt=F2 pred=G#2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=110.0 ❌
+    [   6/130] r=F#2 i=-12 trumpet  | midi: gt=30 pred=2 ❌  | spn: gt=F#1 pred=G#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=46.2493 pred=185.0 ❌
+    [   7/130] r=F#2 i= -7 sine  | midi: gt=35 pred=2 ❌  | spn: gt=B1 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=61.7354 pred=110.0 ❌
+    [   8/130] r=F#2 i=-12 flute  | midi: gt=30 pred=2 ❌  | spn: gt=F#1 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=110.0 ❌
+    [   9/130] r=F#2 i= +3 guitar  | midi: gt=45 pred=2 ❌  | spn: gt=A2 pred=A2 ✅  | doremi: gt=la pred=sol# ❌  | hz: gt=110.0 pred=87.31 ❌
+    [  10/130] r=F#2 i= +1 synth_lead  | midi: gt=43 pred=2 ❌  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=87.0 ❌
+    [  11/130] r=F#2 i=+12 sine  | midi: gt=54 pred=42 ❌  | spn: gt=F#3 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=110.0 ❌
+    [  12/130] r=F#2 i= +1 flute  | midi: gt=43 pred=2 ❌  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=87.0 ❌
+    [  13/130] r=F#2 i= +0 guitar  | midi: gt=42 pred=50 ❌  | spn: gt=F#2 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=92.4986 pred=110.0 ❌
+    [  14/130] r=F#2 i= +3 synth_pad  | midi: gt=45 pred=2 ❌  | spn: gt=A2 pred=A2 ✅  | doremi: gt=la pred=fa# ❌  | hz: gt=110.0 pred=185.0 ❌
+    [  15/130] r=F#2 i= -3 flute  | midi: gt=39 pred=2 ❌  | spn: gt=D#2 pred=G#2 ❌  | doremi: gt=re# pred=sol ❌  | hz: gt=77.7817 pred=110.0 ❌
+    [  16/130] r=F#2 i= -5 square  | midi: gt=37 pred=1 ❌  | spn: gt=C#2 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=69.2957 pred=185.0 ❌
+    [  17/130] r=F#2 i= -4 synth_pad  | midi: gt=38 pred=48 ❌  | spn: gt=D2 pred=A2 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=87.0 ❌
+    [  18/130] r=F#2 i= -3 piano  | midi: gt=39 pred=2 ❌  | spn: gt=D#2 pred=G#2 ❌  | doremi: gt=re# pred=sol ❌  | hz: gt=77.7817 pred=185.0 ❌
+    [  19/130] r=F#2 i= -7 sawtooth  | midi: gt=35 pred=2 ❌  | spn: gt=B1 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=61.7354 pred=87.0 ❌
+    [  20/130] r=F#2 i= -1 sine  | midi: gt=41 pred=2 ❌  | spn: gt=F2 pred=G#2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=110.0 ❌
+    [  21/130] r=F#2 i= +5 organ  | midi: gt=47 pred=2 ❌  | spn: gt=B2 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=185.0 ❌
+    [  22/130] r=F#2 i= +5 trumpet  | midi: gt=47 pred=2 ❌  | spn: gt=B2 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [  23/130] r=F#2 i= +7 sine  | midi: gt=49 pred=2 ❌  | spn: gt=C#3 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=110.0 ❌
+    [  24/130] r= F3 i= -1 clarinet  | midi: gt=52 pred=2 ❌  | spn: gt=E3 pred=G3 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=164.8138 pred=185.0 ❌
+    [  25/130] r= F3 i= -1 cello  | midi: gt=52 pred=2 ❌  | spn: gt=E3 pred=G3 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=164.8138 pred=196.0 ❌
+    [  26/130] r=F#2 i= +7 electric_keyboard  | midi: gt=49 pred=2 ❌  | spn: gt=C#3 pred=G#2 ❌  | doremi: gt=do# pred=fa# ❌  | hz: gt=138.5913 pred=110.0 ❌
+    [  27/130] r= F3 i= -3 guitar  | midi: gt=50 pred=2 ❌  | spn: gt=D3 pred=G3 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=146.8324 pred=196.0 ❌
+    [  28/130] r= F3 i= -4 square  | midi: gt=49 pred=2 ❌  | spn: gt=C#3 pred=G3 ❌  | doremi: gt=do# pred=sol# ❌  | hz: gt=138.5913 pred=185.0 ❌
+    [  29/130] r=F#2 i= +4 cello  | midi: gt=46 pred=2 ❌  | spn: gt=A#2 pred=G#2 ❌  | doremi: gt=la# pred=sol# ❌  | hz: gt=116.5409 pred=110.0 ❌
+    [  30/130] r= F3 i= -5 triangle  | midi: gt=48 pred=2 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=130.8128 pred=349.23 ❌
+    [  31/130] r= F3 i=-12 trumpet  | midi: gt=41 pred=2 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=87.3071 pred=196.0 ❌
+    [  32/130] r= F3 i= -7 voice  | midi: gt=46 pred=2 ❌  | spn: gt=A#2 pred=G3 ❌  | doremi: gt=la# pred=sol# ❌  | hz: gt=116.5409 pred=196.0 ❌
+    [  33/130] r=F#2 i= +4 flute  | midi: gt=46 pred=2 ❌  | spn: gt=A#2 pred=G#2 ❌  | doremi: gt=la# pred=sol# ❌  | hz: gt=116.5409 pred=110.0 ❌
+    [  34/130] r= F3 i=-12 piano  | midi: gt=41 pred=53 ❌  | spn: gt=F2 pred=G3 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=349.23 ❌
+    [  35/130] r= F3 i= -4 triangle  | midi: gt=49 pred=2 ❌  | spn: gt=C#3 pred=G3 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=349.0 ❌
+    [  36/130] r= F3 i= -5 violin  | midi: gt=48 pred=2 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=130.8128 pred=185.0 ❌
+    [  37/130] r= F3 i= -3 clarinet  | midi: gt=50 pred=2 ❌  | spn: gt=D3 pred=G3 ❌  | doremi: gt=re pred=fa ❌  | hz: gt=146.8324 pred=196.0 ❌
+    [  38/130] r= F3 i= +0 sawtooth  | midi: gt=53 pred=2 ❌  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=174.6141 pred=196.0 ❌
+    [  39/130] r= F3 i= +0 trumpet  | midi: gt=53 pred=2 ❌  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=174.6141 pred=185.0 ❌
+    [  40/130] r= F3 i= -7 oboe  | midi: gt=46 pred=53 ❌  | spn: gt=A#2 pred=G3 ❌  | doremi: gt=la# pred=sol# ❌  | hz: gt=116.5409 pred=196.0 ❌
+    [  41/130] r= F3 i= +1 synth_pad  | midi: gt=54 pred=2 ❌  | spn: gt=F#3 pred=G3 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=185.0 ✅
+    [  42/130] r= F3 i= +1 organ  | midi: gt=54 pred=2 ❌  | spn: gt=F#3 pred=G3 ❌  | doremi: gt=fa# pred=fa ❌  | hz: gt=184.9972 pred=185.0 ✅
+    [  43/130] r= F3 i=+12 violin  | midi: gt=65 pred=2 ❌  | spn: gt=F4 pred=G3 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=349.2282 pred=349.0 ✅
+    [  44/130] r= F3 i= +3 synth_pad  | midi: gt=56 pred=59 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=165.0 ❌
+    [  45/130] r= F3 i= +3 square  | midi: gt=56 pred=2 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=349.0 ❌
+    [  46/130] r= F3 i= +4 trombone  | midi: gt=57 pred=2 ❌  | spn: gt=A3 pred=G3 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=220.0 pred=180.0 ❌
+    [  47/130] r= F3 i= +5 voice  | midi: gt=58 pred=2 ❌  | spn: gt=A#3 pred=G3 ❌  | doremi: gt=la# pred=sol# ❌  | hz: gt=233.0819 pred=165.0 ❌
+    [  48/130] r= C4 i= -1 trombone  | midi: gt=59 pred=2 ❌  | spn: gt=B3 pred=G3 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=246.9417 pred=293.66 ❌
+    [  49/130] r= F3 i= +5 guitar  | midi: gt=58 pred=2 ❌  | spn: gt=A#3 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=233.0819 pred=220.0 ❌
+    [  50/130] r= F3 i= +7 sawtooth  | midi: gt=60 pred=2 ❌  | spn: gt=C4 pred=G3 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  51/130] r= F3 i= +7 square  | midi: gt=60 pred=2 ❌  | spn: gt=C4 pred=G3 ❌  | doremi: gt=do pred=fa ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  52/130] r= C4 i=-12 square  | midi: gt=48 pred=2 ❌  | spn: gt=C3 pred=G4 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=130.8128 pred=392.0 ❌
+    [  53/130] r= F3 i=+12 triangle  | midi: gt=65 pred=2 ❌  | spn: gt=F4 pred=G3 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=220.0 ❌
+    [  54/130] r= F3 i= +4 oboe  | midi: gt=57 pred=2 ❌  | spn: gt=A3 pred=G3 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=220.0 pred=196.0 ❌
+    [  55/130] r= C4 i= -1 flute  | midi: gt=59 pred=2 ❌  | spn: gt=B3 pred=G4 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=246.9417 pred=294.0 ❌
+    [  56/130] r= C4 i= -3 triangle  | midi: gt=57 pred=2 ❌  | spn: gt=A3 pred=G4 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=220.0 pred=392.0 ❌
+    [  57/130] r= C4 i=-12 flute  | midi: gt=48 pred=60 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=130.8128 pred=246.0 ❌
+    [  58/130] r= C4 i= -3 violin  | midi: gt=57 pred=2 ❌  | spn: gt=A3 pred=A4 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=220.0 pred=293.66 ❌
+    [  59/130] r= C4 i= -4 trumpet  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G4 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=293.66 ❌
+    [  60/130] r= C4 i= -7 oboe  | midi: gt=53 pred=2 ❌  | spn: gt=F3 pred=G4 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=174.6141 pred=293.66 ❌
+    [  61/130] r= C4 i= +0 guitar  | midi: gt=60 pred=2 ❌  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=293.66 ❌
+    [  62/130] r= C4 i= -5 electric_keyboard  | midi: gt=55 pred=2 ❌  | spn: gt=G3 pred=G4 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=195.9977 pred=293.66 ❌
+    [  63/130] r= C4 i= -4 organ  | midi: gt=56 pred=67 ❌  | spn: gt=G#3 pred=G4 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=392.0 ❌
+    [  64/130] r= C4 i= -7 voice  | midi: gt=53 pred=4 ❌  | spn: gt=F3 pred=G4 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=174.6141 pred=392.0 ❌
+    [  65/130] r= C4 i= +0 trumpet  | midi: gt=60 pred=1 ❌  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=261.6256 pred=293.66 ❌
+    [  66/130] r= C4 i= +1 square  | midi: gt=61 pred=2 ❌  | spn: gt=C#4 pred=G4 ❌  | doremi: gt=do# pred=sol# ❌  | hz: gt=277.1826 pred=293.66 ❌
+    [  67/130] r= C4 i= +3 electric_keyboard  | midi: gt=63 pred=2 ❌  | spn: gt=D#4 pred=G4 ❌  | doremi: gt=re# pred=mi ❌  | hz: gt=311.127 pred=293.66 ❌
+    [  68/130] r= C4 i= +1 electric_keyboard  | midi: gt=61 pred=60 ❌  | spn: gt=C#4 pred=G4 ❌  | doremi: gt=do# pred=sol# ❌  | hz: gt=277.1826 pred=293.66 ❌
+    [  69/130] r= C4 i=+12 flute  | midi: gt=72 pred=60 ❌  | spn: gt=C5 pred=G4 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=523.2511 pred=293.66 ❌
+    [  70/130] r= C4 i= +3 organ  | midi: gt=63 pred=64 ❌  | spn: gt=D#4 pred=G4 ❌  | doremi: gt=re# pred=la ❌  | hz: gt=311.127 pred=293.66 ❌
+    [  71/130] r= C4 i=+12 synth_pad  | midi: gt=72 pred=4 ❌  | spn: gt=C5 pred=G4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=523.2511 pred=293.66 ❌
+    [  72/130] r= C4 i= -5 oboe  | midi: gt=55 pred=60 ❌  | spn: gt=G3 pred=G4 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=195.9977 pred=293.0 ❌
+    [  73/130] r= C4 i= +5 synth_pad  | midi: gt=65 pred=2 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=349.2282 pred=349.0 ✅
+    [  74/130] r= C4 i= +4 violin  | midi: gt=64 pred=2 ❌  | spn: gt=E4 pred=G4 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=293.66 ❌
+    [  75/130] r= C4 i= +5 flute  | midi: gt=65 pred=2 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=349.2282 pred=293.66 ❌
+    [  76/130] r= C4 i= +7 sawtooth  | midi: gt=67 pred=67 ✅  | spn: gt=G4 pred=G4 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=391.9954 pred=349.0 ❌
+    [  77/130] r= G4 i= -1 sawtooth  | midi: gt=66 pred=2 ❌  | spn: gt=F#4 pred=C5 ❌  | doremi: gt=fa# pred=la ❌  | hz: gt=369.9944 pred=440.0 ❌
+    [  78/130] r= G4 i= -1 flute  | midi: gt=66 pred=2 ❌  | spn: gt=F#4 pred=F4 ❌  | doremi: gt=fa# pred=la ❌  | hz: gt=369.9944 pred=440.0 ❌
+    [  79/130] r= C4 i= +4 trumpet  | midi: gt=64 pred=2 ❌  | spn: gt=E4 pred=G4 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=293.66 ❌
+    [  80/130] r= C4 i= +7 clarinet  | midi: gt=67 pred=2 ❌  | spn: gt=G4 pred=G4 ✅  | doremi: gt=sol pred=mi ❌  | hz: gt=391.9954 pred=392.0 ✅
+    [  81/130] r= G4 i=-12 clarinet  | midi: gt=55 pred=2 ❌  | spn: gt=G3 pred=D4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=195.9977 pred=440.0 ❌
+    [  82/130] r= G4 i= -4 clarinet  | midi: gt=63 pred=2 ❌  | spn: gt=D#4 pred=A4 ❌  | doremi: gt=re# pred=la ❌  | hz: gt=311.127 pred=440.0 ❌
+    [  83/130] r= G4 i= -3 square  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=C5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=329.6276 pred=440.0 ❌
+    [  84/130] r= G4 i= -5 guitar  | midi: gt=62 pred=2 ❌  | spn: gt=D4 pred=E4 ❌  | doremi: gt=re pred=la ❌  | hz: gt=293.6648 pred=440.0 ❌
+    [  85/130] r= G4 i= -7 violin  | midi: gt=60 pred=72 ❌  | spn: gt=C4 pred=A4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  86/130] r= G4 i= -4 guitar  | midi: gt=63 pred=2 ❌  | spn: gt=D#4 pred=A4 ❌  | doremi: gt=re# pred=la ❌  | hz: gt=311.127 pred=440.0 ❌
+    [  87/130] r= G4 i=-12 violin  | midi: gt=55 pred=67 ❌  | spn: gt=G3 pred=C5 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=195.9977 pred=440.0 ❌
+    [  88/130] r= G4 i= +1 flute  | midi: gt=68 pred=69 ❌  | spn: gt=G#4 pred=F4 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=415.3047 pred=440.0 ❌
+    [  89/130] r= G4 i= +0 piano  | midi: gt=67 pred=2 ❌  | spn: gt=G4 pred=G4 ✅  | doremi: gt=sol pred=la ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  90/130] r= G4 i= +1 piano  | midi: gt=68 pred=1 ❌  | spn: gt=G#4 pred=A4 ❌  | doremi: gt=sol# pred=fa ❌  | hz: gt=415.3047 pred=440.0 ❌
+    [  91/130] r= G4 i= -7 organ  | midi: gt=60 pred=2 ❌  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  92/130] r= G4 i= -5 bass  | midi: gt=62 pred=2 ❌  | spn: gt=D4 pred=C5 ❌  | doremi: gt=re pred=la ❌  | hz: gt=293.6648 pred=440.0 ❌
+    [  93/130] r= G4 i= +0 trumpet  | midi: gt=67 pred=1 ❌  | spn: gt=G4 pred=F4 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  94/130] r= G4 i=+12 voice  | midi: gt=79 pred=2 ❌  | spn: gt=G5 pred=D4 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [  95/130] r= G4 i= +3 trumpet  | midi: gt=70 pred=67 ❌  | spn: gt=A#4 pred=F4 ❌  | doremi: gt=la# pred=la ❌  | hz: gt=466.1638 pred=440.0 ❌
+    [  96/130] r= G4 i=+12 synth_pad  | midi: gt=79 pred=1 ❌  | spn: gt=G5 pred=C5 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [  97/130] r= G4 i= +3 cello  | midi: gt=70 pred=67 ❌  | spn: gt=A#4 pred=F4 ❌  | doremi: gt=la# pred=la ❌  | hz: gt=466.1638 pred=440.0 ❌
+    [  98/130] r= G4 i= +4 voice  | midi: gt=71 pred=2 ❌  | spn: gt=B4 pred=G4 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=493.8833 pred=440.0 ❌
+    [  99/130] r= G4 i= +4 violin  | midi: gt=71 pred=69 ❌  | spn: gt=B4 pred=A4 ❌  | doremi: gt=si pred=la ❌  | hz: gt=493.8833 pred=440.0 ❌
+    [ 100/130] r= G4 i= +5 oboe  | midi: gt=72 pred=72 ✅  | spn: gt=C5 pred=F4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=523.2511 pred=440.0 ❌
+    [ 101/130] r= G4 i= +7 synth_lead  | midi: gt=74 pred=2 ❌  | spn: gt=D5 pred=F4 ❌  | doremi: gt=re pred=la ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 102/130] r= G4 i= -3 trumpet  | midi: gt=64 pred=2 ❌  | spn: gt=E4 pred=F4 ❌  | doremi: gt=mi pred=la ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [ 103/130] r= G4 i= +7 piano  | midi: gt=74 pred=2 ❌  | spn: gt=D5 pred=C5 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 104/130] r= F5 i= -1 bass  | midi: gt=76 pred=2 ❌  | spn: gt=E5 pred=G5 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=659.2551 pred=880.0 ❌
+    [ 105/130] r= G4 i= +5 flute  | midi: gt=72 pred=72 ✅  | spn: gt=C5 pred=F4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=523.2511 pred=440.0 ❌
+    [ 106/130] r= F5 i= -3 electric_keyboard  | midi: gt=74 pred=72 ❌  | spn: gt=D5 pred=G5 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=587.3295 pred=660.0 ❌
+    [ 107/130] r= F5 i=-12 sawtooth  | midi: gt=65 pred=72 ❌  | spn: gt=F4 pred=G5 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=349.2282 pred=660.0 ❌
+    [ 108/130] r= F5 i= -3 piano  | midi: gt=74 pred=1 ❌  | spn: gt=D5 pred=G5 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=587.3295 pred=880.0 ❌
+    [ 109/130] r= F5 i= -1 square  | midi: gt=76 pred=2 ❌  | spn: gt=E5 pred=F4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=659.2551 pred=660.0 ✅
+    [ 110/130] r= F5 i= -5 violin  | midi: gt=72 pred=2 ❌  | spn: gt=C5 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=523.2511 pred=660.0 ❌
+    [ 111/130] r= F5 i=-12 triangle  | midi: gt=65 pred=2 ❌  | spn: gt=F4 pred=G5 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=880.0 ❌
+    [ 112/130] r= F5 i= -4 square  | midi: gt=73 pred=2 ❌  | spn: gt=C#5 pred=G5 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=554.3653 pred=740.0 ❌
+    [ 113/130] r= F5 i= -5 voice  | midi: gt=72 pred=2 ❌  | spn: gt=C5 pred=G5 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=523.2511 pred=880.0 ❌
+    [ 114/130] r= F5 i= -7 synth_lead  | midi: gt=70 pred=72 ❌  | spn: gt=A#4 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=466.1638 pred=880.0 ❌
+    [ 115/130] r= F5 i= +0 trumpet  | midi: gt=77 pred=72 ❌  | spn: gt=F5 pred=G5 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=698.4565 pred=784.0 ❌
+    [ 116/130] r= F5 i= +0 synth_pad  | midi: gt=77 pred=72 ❌  | spn: gt=F5 pred=F5 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=698.4565 pred=784.0 ❌
+    [ 117/130] r= F5 i=+12 trumpet  | midi: gt=89 pred=2 ❌  | spn: gt=F6 pred=G5 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=1396.9129 pred=880.0 ❌
+    [ 118/130] r= F5 i= +1 triangle  | midi: gt=78 pred=72 ❌  | spn: gt=F#5 pred=G5 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=739.9888 pred=523.0 ❌
+    [ 119/130] r= F5 i= +3 clarinet  | midi: gt=80 pred=72 ❌  | spn: gt=G#5 pred=G5 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=830.6094 pred=660.0 ❌
+    [ 120/130] r= F5 i= +1 sine  | midi: gt=78 pred=72 ❌  | spn: gt=F#5 pred=G5 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=739.9888 pred=660.0 ❌
+    [ 121/130] r= F5 i= -7 organ  | midi: gt=70 pred=72 ❌  | spn: gt=A#4 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=466.1638 pred=880.0 ❌
+    [ 122/130] r= F5 i= +3 triangle  | midi: gt=80 pred=2 ❌  | spn: gt=G#5 pred=G5 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=830.6094 pred=784.0 ❌
+    [ 123/130] r= F5 i= +4 trombone  | midi: gt=81 pred=72 ❌  | spn: gt=A5 pred=G5 ❌  | doremi: gt=la pred=sol ❌  | hz: gt=880.0 pred=880.0 ✅
+    [ 124/130] r= F5 i=+12 synth_pad  | midi: gt=89 pred=2 ❌  | spn: gt=F6 pred=G5 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=1396.9129 pred=660.0 ❌
+    [ 125/130] r= F5 i= +4 cello  | midi: gt=81 pred=2 ❌  | spn: gt=A5 pred=G5 ❌  | doremi: gt=la pred=sol# ❌  | hz: gt=880.0 pred=698.46 ❌
+    [ 126/130] r= F5 i= +5 organ  | midi: gt=82 pred=1 ❌  | spn: gt=A#5 pred=G5 ❌  | doremi: gt=la# pred=sol# ❌  | hz: gt=932.3275 pred=660.0 ❌
+    [ 127/130] r= F5 i= +7 trumpet  | midi: gt=84 pred=2 ❌  | spn: gt=C6 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=1046.5023 pred=698.46 ❌
+    [ 128/130] r= F5 i= +7 sine  | midi: gt=84 pred=72 ❌  | spn: gt=C6 pred=G5 ❌  | doremi: gt=do pred=sol# ❌  | hz: gt=1046.5023 pred=784.0 ❌
+    [ 129/130] r= F5 i= +5 electric_keyboard  | midi: gt=82 pred=1 ❌  | spn: gt=A#5 pred=G5 ❌  | doremi: gt=la# pred=fa ❌  | hz: gt=932.3275 pred=440.0 ❌
+    [ 130/130] r= F5 i= -4 cello  | midi: gt=73 pred=1 ❌  | spn: gt=C#5 pred=G5 ❌  | doremi: gt=do# pred=sol# ❌  | hz: gt=554.3653 pred=784.0 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+  Stimuli : 130
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       2.3%
+     SPN       4.6%
+  DOREMI       6.9%
+      HZ       5.4%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           520
+  prompt tokens                97,032
+  completion tokens             5,926
+  total tokens                102,958
+  cost (USD)                $2.251840
+
+Results saved → results/run_20260506_072628/pitchbench_d7b_pitch_with_reference_split/run_001_20260506_072702/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d1_sequence_count_pitches
+############################################################
+
+Experiment : pitchbench_d1_sequence_count_pitches
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 140
+  Sampling     : 140 of 1596 (stratified by '(n, rhythm, duration_ms)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 140 items, max_workers=20
+    [   1/140] n= 1 irregular     square dur= 1000ms t=1  count=4 ❌
+    [   2/140] n= 1 irregular      cello dur= 1000ms t=1  count=4 ❌
+    [   3/140] n= 1   regular       bass dur= 1000ms t=2  count=4 ❌
+    [   4/140] n= 1   regular      organ dur= 1000ms t=1  count=4 ❌
+    [   5/140] n= 1   regular      piano dur= 5000ms t=1  count=5 ❌
+    [   6/140] n= 1   regular       oboe dur= 1000ms t=1  count=4 ❌
+    [   7/140] n= 1   regular     violin dur= 1000ms t=1  count=6 ❌
+    [   8/140] n= 1 irregular       sine dur= 1000ms t=1  count=4 ❌
+    [   9/140] n= 1   regular   sawtooth dur= 1000ms t=2  count=4 ❌
+    [  10/140] n= 1 irregular       bass dur= 5000ms t=2  count=7 ❌
+    [  11/140] n= 1 irregular      piano dur= 5000ms t=2  count=2 ❌
+    [  12/140] n= 1 irregular     square dur= 5000ms t=2  count=7 ❌
+    [  13/140] n= 1 irregular       bass dur= 1000ms t=2  count=4 ❌
+    [  14/140] n= 1 irregular electric_keyboard dur= 5000ms t=0  count=4 ❌
+    [  15/140] n= 1   regular       sine dur= 5000ms t=1  count=5 ❌
+    [  16/140] n= 1 irregular     square dur= 5000ms t=0  count=7 ❌
+    [  17/140] n= 1   regular   trombone dur= 5000ms t=0  count=5 ❌
+    [  18/140] n= 1 irregular electric_keyboard dur= 1000ms t=2  count=4 ❌
+    [  19/140] n= 1   regular   sawtooth dur= 5000ms t=2  count=7 ❌
+    [  20/140] n=10 irregular      piano dur= 1000ms t=2  count=6 ❌
+    [  21/140] n=10 irregular     violin dur= 1000ms t=2  count=7 ❌
+    [  22/140] n= 1   regular       sine dur= 5000ms t=2  count=6 ❌
+    [  23/140] n=10 irregular   clarinet dur= 1000ms t=2  count=7 ❌
+    [  24/140] n=10 irregular       oboe dur= 1000ms t=2  count=6 ❌
+    [  25/140] n=10   regular electric_keyboard dur= 1000ms t=2  count=6 ❌
+    [  26/140] n=10   regular    trumpet dur= 1000ms t=2  count=6 ❌
+    [  27/140] n=10   regular      piano dur= 1000ms t=2  count=6 ❌
+    [  28/140] n=10   regular   trombone dur= 1000ms t=1  count=7 ❌
+    [  29/140] n=10 irregular       sine dur= 1000ms t=1  count=6 ❌
+    [  30/140] n=10 irregular      organ dur= 5000ms t=2  count=7 ❌
+    [  31/140] n=10   regular     violin dur= 1000ms t=1  count=6 ❌
+    [  32/140] n=10 irregular      piano dur= 5000ms t=0  count=5 ❌
+    [  33/140] n=10 irregular      cello dur= 5000ms t=2  count=7 ❌
+    [  34/140] n= 2 irregular   trombone dur= 1000ms t=0  count=2 ✅
+    [  35/140] n=10   regular      voice dur= 5000ms t=1  count=2 ❌
+    [  36/140] n= 2 irregular electric_keyboard dur= 1000ms t=2  count=3 ❌
+    [  37/140] n=10   regular  synth_pad dur= 5000ms t=0  count=7 ❌
+    [  38/140] n=10 irregular       oboe dur= 5000ms t=1  count=7 ❌
+    [  39/140] n= 2 irregular      organ dur= 1000ms t=2  count=7 ❌
+    [  40/140] n=10   regular synth_lead dur= 5000ms t=0  count=7 ❌
+    [  41/140] n= 2 irregular      piano dur= 5000ms t=1  count=7 ❌
+    [  42/140] n=10   regular       sine dur= 5000ms t=0  count=5 ❌
+    [  43/140] n=10 irregular       bass dur= 5000ms t=0  count=7 ❌
+    [  44/140] n= 2 irregular      flute dur= 1000ms t=0  count=4 ❌
+    [  45/140] n= 2 irregular synth_lead dur= 5000ms t=0  count=4 ❌
+    [  46/140] n= 2 irregular   triangle dur= 1000ms t=0  count=5 ❌
+    [  47/140] n=10   regular   triangle dur= 5000ms t=1  count=7 ❌
+    [  48/140] n= 2   regular      flute dur= 1000ms t=1  count=4 ❌
+    [  49/140] n= 2 irregular      flute dur= 5000ms t=0  count=4 ❌
+    [  50/140] n= 2   regular    trumpet dur= 1000ms t=0  count=5 ❌
+    [  51/140] n= 2   regular     square dur= 1000ms t=0  count=5 ❌
+    [  52/140] n= 2 irregular   sawtooth dur= 5000ms t=2  count=7 ❌
+    [  53/140] n= 2 irregular     square dur= 5000ms t=0  count=5 ❌
+    [  54/140] n= 2   regular     violin dur= 1000ms t=2  count=7 ❌
+    [  55/140] n= 3 irregular     square dur= 1000ms t=1  count=4 ❌
+    [  56/140] n= 2   regular  synth_pad dur= 5000ms t=0  count=4 ❌
+    [  57/140] n= 2   regular electric_keyboard dur= 5000ms t=1  count=7 ❌
+    [  58/140] n= 2   regular       bass dur= 5000ms t=1  count=3 ❌
+    [  59/140] n= 3 irregular    trumpet dur= 1000ms t=0  count=4 ❌
+    [  60/140] n= 2   regular      voice dur= 1000ms t=0  count=4 ❌
+    [  61/140] n= 3 irregular       oboe dur= 1000ms t=2  count=2 ❌
+    [  62/140] n= 2   regular   trombone dur= 5000ms t=2  count=2 ✅
+    [  63/140] n= 3 irregular     guitar dur= 5000ms t=0  count=4 ❌
+    [  64/140] n= 3   regular      voice dur= 1000ms t=1  count=3 ✅
+    [  65/140] n= 3 irregular   sawtooth dur= 1000ms t=2  count=3 ✅
+    [  66/140] n= 2   regular       sine dur= 5000ms t=2  count=5 ❌
+    [  67/140] n= 3   regular      flute dur= 1000ms t=2  count=4 ❌
+    [  68/140] n= 3 irregular      cello dur= 5000ms t=0  count=5 ❌
+    [  69/140] n= 3 irregular  synth_pad dur= 5000ms t=2  count=7 ❌
+    [  70/140] n= 3   regular      piano dur= 1000ms t=0  count=4 ❌
+    [  71/140] n= 3 irregular      cello dur= 5000ms t=1  count=2 ❌
+    [  72/140] n= 3   regular       bass dur= 1000ms t=0  count=5 ❌
+    [  73/140] n= 3   regular     violin dur= 1000ms t=0  count=2 ❌
+    [  74/140] n= 3   regular synth_lead dur= 5000ms t=1  count=4 ❌
+    [  75/140] n= 4 irregular      piano dur= 1000ms t=2  count=4 ✅
+    [  76/140] n= 3   regular       sine dur= 5000ms t=2  count=4 ❌
+    [  77/140] n= 4 irregular      voice dur= 1000ms t=0  count=4 ✅
+    [  78/140] n= 3   regular   sawtooth dur= 5000ms t=1  count=4 ❌
+    [  79/140] n= 4 irregular   sawtooth dur= 1000ms t=2  count=4 ✅
+    [  80/140] n= 3 irregular      voice dur= 5000ms t=2  count=3 ✅
+    [  81/140] n= 4 irregular      voice dur= 1000ms t=1  count=4 ✅
+    [  82/140] n= 3   regular      piano dur= 5000ms t=2  count=4 ❌
+    [  83/140] n= 4 irregular electric_keyboard dur= 5000ms t=2  count=5 ❌
+    [  84/140] n= 4 irregular    trumpet dur= 5000ms t=0  count=4 ✅
+    [  85/140] n= 4   regular  synth_pad dur= 1000ms t=2  count=4 ✅
+    [  86/140] n= 4 irregular     guitar dur= 1000ms t=0  count=4 ✅
+    [  87/140] n= 4 irregular      cello dur= 5000ms t=1  count=2 ❌
+    [  88/140] n= 4 irregular     square dur= 5000ms t=0  count=7 ❌
+    [  89/140] n= 4   regular   triangle dur= 1000ms t=1  count=5 ❌
+    [  90/140] n= 3   regular      organ dur= 5000ms t=0  count=7 ❌
+    [  91/140] n= 4 irregular   trombone dur= 5000ms t=2  count=4 ✅
+    [  92/140] n= 4   regular      flute dur= 1000ms t=2  count=4 ✅
+    [  93/140] n= 3 irregular       oboe dur= 1000ms t=1  count=5 ❌
+    [  94/140] n= 4   regular electric_keyboard dur= 5000ms t=2  count=6 ❌
+    [  95/140] n= 4   regular      organ dur= 5000ms t=0  count=5 ❌
+    [  96/140] n= 5 irregular     violin dur= 1000ms t=2  count=4 ❌
+    [  97/140] n= 4   regular      cello dur= 5000ms t=2  count=4 ✅
+    [  98/140] n= 4   regular      piano dur= 1000ms t=1  count=4 ✅
+    [  99/140] n= 4   regular      flute dur= 1000ms t=1  count=4 ✅
+    [ 100/140] n= 5 irregular   sawtooth dur= 1000ms t=1  count=4 ❌
+    [ 101/140] n= 5 irregular   triangle dur= 1000ms t=1  count=5 ✅
+    [ 102/140] n= 5 irregular      cello dur= 1000ms t=1  count=4 ❌
+    [ 103/140] n= 4   regular      organ dur= 5000ms t=2  count=5 ❌
+    [ 104/140] n= 5 irregular       oboe dur= 1000ms t=1  count=4 ❌
+    [ 105/140] n= 4   regular      organ dur= 5000ms t=1  count=7 ❌
+    [ 106/140] n= 5   regular      organ dur= 1000ms t=2  count=7 ❌
+    [ 107/140] n= 5 irregular   trombone dur= 5000ms t=2  count=5 ✅
+    [ 108/140] n= 5   regular       oboe dur= 1000ms t=2  count=4 ❌
+    [ 109/140] n= 5 irregular       bass dur= 5000ms t=1  count=4 ❌
+    [ 110/140] n= 5 irregular    trumpet dur= 5000ms t=0  count=6 ❌
+    [ 111/140] n= 5   regular electric_keyboard dur= 1000ms t=2  count=4 ❌
+    [ 112/140] n= 5   regular      cello dur= 1000ms t=1  count=4 ❌
+    [ 113/140] n= 5 irregular   triangle dur= 5000ms t=1  count=5 ✅
+    [ 114/140] n= 5   regular     guitar dur= 5000ms t=2  count=4 ❌
+    [ 115/140] n= 5   regular synth_lead dur= 5000ms t=1  count=5 ✅
+    [ 116/140] n= 7 irregular  synth_pad dur= 1000ms t=0  count=6 ❌
+    [ 117/140] n= 5   regular   sawtooth dur= 5000ms t=0  count=5 ✅
+    [ 118/140] n= 5   regular  synth_pad dur= 5000ms t=2  count=4 ❌
+    [ 119/140] n= 7 irregular  synth_pad dur= 1000ms t=1  count=5 ❌
+    [ 120/140] n= 7 irregular       sine dur= 1000ms t=2  count=5 ❌
+    [ 121/140] n= 7 irregular     guitar dur= 1000ms t=2  count=5 ❌
+    [ 122/140] n= 5 irregular electric_keyboard dur= 5000ms t=0  count=5 ✅
+    [ 123/140] n= 5   regular      organ dur= 5000ms t=1  count=5 ✅
+    [ 124/140] n= 5   regular      piano dur= 1000ms t=2  count=4 ❌
+    [ 125/140] n= 7 irregular    trumpet dur= 5000ms t=1  count=3 ❌
+    [ 126/140] n= 7   regular      piano dur= 1000ms t=1  count=5 ❌
+    [ 127/140] n= 7   regular     guitar dur= 1000ms t=2  count=4 ❌
+    [ 128/140] n= 7 irregular      piano dur= 1000ms t=2  count=4 ❌
+    [ 129/140] n= 7 irregular     violin dur= 5000ms t=0  count=5 ❌
+    [ 130/140] n= 7   regular      voice dur= 1000ms t=2  count=6 ❌
+    [ 131/140] n= 7   regular       bass dur= 1000ms t=0  count=5 ❌
+    [ 132/140] n= 7 irregular electric_keyboard dur= 5000ms t=2  count=7 ✅
+    [ 133/140] n= 7 irregular   sawtooth dur= 5000ms t=1  count=4 ❌
+    [ 134/140] n= 7   regular      cello dur= 1000ms t=2  count=7 ✅
+    [ 135/140] n= 7 irregular      piano dur= 5000ms t=1  count=5 ❌
+    [ 136/140] n= 7   regular   clarinet dur= 5000ms t=1  count=7 ✅
+    [ 137/140] n= 7   regular    trumpet dur= 5000ms t=1  count=3 ❌
+    [ 138/140] n= 7   regular   trombone dur= 5000ms t=2  count=6 ❌
+    [ 139/140] n= 7   regular      voice dur= 5000ms t=2  count=4 ❌
+    [ 140/140] n= 7   regular      cello dur= 5000ms t=2  count=7 ✅
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 140 of 1596 (stratified by '(n, rhythm, duration_ms)', seed=42)
+  Stimuli (total)     : 140
+  Stimuli (condition) : 140  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+           COUNT      20.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           140
+  prompt tokens                28,633
+  completion tokens               140
+  total tokens                 28,773
+  cost (USD)                $0.868470
+
+Results saved → results/run_20260506_072628/pitchbench_d1_sequence_count_pitches/run_001_20260506_072740/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d2_dyad_lower_higher_difference
+############################################################
+
+Experiment : pitchbench_d2_dyad_lower_higher_difference
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 132
+  Sampling     : 132 of 15048 (stratified by '(delta_cents, order, duration_ms, base_name)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 132 items, max_workers=20
+    [   1/132] A5 Δ=   10c sep= 500ms dur=1000ms  answer=second ✅
+    [   2/132] A5 Δ=    1c sep=2000ms dur=1000ms  answer=second ❌
+    [   3/132] A3 Δ=    1c sep= 500ms dur=1000ms  answer=second ❌
+    [   4/132] A4 Δ=    1c sep= 500ms dur=1000ms  answer=second ❌
+    [   5/132] A3 Δ=   10c sep=2000ms dur=1000ms  answer=second ✅
+    [   6/132] A4 Δ=   10c sep=2000ms dur=1000ms  answer=second ❌
+    [   7/132] A5 Δ=   10c sep= 500ms dur=5000ms  answer=second ✅
+    [   8/132] A5 Δ=    1c sep= 200ms dur=5000ms  answer=second ✅
+    [   9/132] A4 Δ=   10c sep=2000ms dur=5000ms  answer=second ✅
+    [  10/132] A3 Δ=    1c sep= 500ms dur=5000ms  answer=second ❌
+    [  11/132] A4 Δ=    1c sep= 200ms dur=5000ms  answer=second ❌
+    [  12/132] A5 Δ=    1c sep= 500ms dur=1000ms  answer=second ✅
+    [  13/132] A3 Δ=   10c sep= 500ms dur=1000ms  answer=second ❌
+    [  14/132] A4 Δ=    1c sep=1000ms dur=5000ms  answer=second ✅
+    [  15/132] A4 Δ=   10c sep=2000ms dur=1000ms  answer=second ✅
+    [  16/132] A3 Δ=   10c sep=1000ms dur=5000ms  answer=second ✅
+    [  17/132] A5 Δ=    1c sep=2000ms dur=5000ms  answer=second ❌
+    [  18/132] A4 Δ=  100c sep=1000ms dur=1000ms  answer=second ✅
+    [  19/132] A3 Δ=    1c sep=2000ms dur=5000ms  answer=second ✅
+    [  20/132] A5 Δ=   10c sep=2000ms dur=5000ms  answer=second ❌
+    [  21/132] A5 Δ=   10c sep= 200ms dur=1000ms  answer=second ❌
+    [  22/132] A3 Δ=   10c sep= 200ms dur=5000ms  answer=second ❌
+    [  23/132] A4 Δ=   10c sep= 500ms dur=5000ms  answer=second ❌
+    [  24/132] A3 Δ=  100c sep=2000ms dur=1000ms  answer=second ❌
+    [  25/132] A5 Δ=  100c sep= 500ms dur=1000ms  answer=second ✅
+    [  26/132] A3 Δ=  100c sep= 500ms dur=1000ms  answer=second ✅
+    [  27/132] A4 Δ=  100c sep= 200ms dur=5000ms  answer=second ✅
+    [  28/132] A3 Δ=    1c sep=1000ms dur=1000ms  answer=second ✅
+    [  29/132] A4 Δ=  100c sep= 200ms dur=1000ms  answer=second ❌
+    [  30/132] A5 Δ=  100c sep= 200ms dur=5000ms  answer=first ❌
+    [  31/132] A3 Δ=  100c sep= 200ms dur=5000ms  answer=second ❌
+    [  32/132] A3 Δ=  100c sep= 500ms dur=5000ms  answer=second ✅
+    [  33/132] A5 Δ=  100c sep= 500ms dur=1000ms  answer=second ❌
+    [  34/132] A4 Δ=  100c sep= 500ms dur=5000ms  answer=second ❌
+    [  35/132] A4 Δ= 1200c sep= 500ms dur=1000ms  answer=second ✅
+    [  36/132] A3 Δ= 1200c sep=1000ms dur=1000ms  answer=second ✅
+    [  37/132] A3 Δ=    2c sep= 200ms dur=1000ms  answer=second ✅
+    [  38/132] A4 Δ= 1200c sep=2000ms dur=1000ms  answer=second ❌
+    [  39/132] A3 Δ= 1200c sep= 200ms dur=1000ms  answer=second ❌
+    [  40/132] A5 Δ= 1200c sep=1000ms dur=1000ms  answer=second ❌
+    [  41/132] A3 Δ= 1200c sep= 500ms dur=5000ms  answer=second ❌
+    [  42/132] A5 Δ= 1200c sep= 500ms dur=5000ms  answer=second ✅
+    [  43/132] A4 Δ= 1200c sep=1000ms dur=5000ms  answer=second ❌
+    [  44/132] A4 Δ= 1200c sep= 500ms dur=5000ms  answer=second ✅
+    [  45/132] A5 Δ= 1200c sep=2000ms dur=1000ms  answer=second ✅
+    [  46/132] A5 Δ= 1200c sep=1000ms dur=5000ms  answer=second ❌
+    [  47/132] A3 Δ= 1200c sep=2000ms dur=5000ms  answer=second ✅
+    [  48/132] A4 Δ=    2c sep=1000ms dur=1000ms  answer=second ✅
+    [  49/132] A5 Δ=  100c sep= 500ms dur=5000ms  answer=second ❌
+    [  50/132] A4 Δ=    2c sep= 500ms dur=1000ms  answer=second ❌
+    [  51/132] A4 Δ=    1c sep=2000ms dur=1000ms  answer=second ✅
+    [  52/132] A5 Δ=    2c sep= 500ms dur=1000ms  answer=second ✅
+    [  53/132] A3 Δ=    2c sep=2000ms dur=5000ms  answer=second ✅
+    [  54/132] A5 Δ=    2c sep=2000ms dur=1000ms  answer=second ❌
+    [  55/132] A3 Δ=    2c sep=2000ms dur=5000ms  answer=second ❌
+    [  56/132] A4 Δ=  200c sep=1000ms dur=1000ms  answer=second ✅
+    [  57/132] A3 Δ=  200c sep=2000ms dur=1000ms  answer=second ✅
+    [  58/132] A3 Δ=    2c sep=2000ms dur=1000ms  answer=second ❌
+    [  59/132] A5 Δ=  200c sep= 200ms dur=1000ms  answer=second ✅
+    [  60/132] A5 Δ=    2c sep= 200ms dur=5000ms  answer=second ✅
+    [  61/132] A5 Δ=  200c sep=1000ms dur=5000ms  answer=second ✅
+    [  62/132] A4 Δ=  200c sep=2000ms dur=1000ms  answer=second ❌
+    [  63/132] A5 Δ=    2c sep= 200ms dur=5000ms  answer=second ❌
+    [  64/132] A3 Δ=  200c sep=2000ms dur=1000ms  answer=second ❌
+    [  65/132] A4 Δ=  200c sep= 200ms dur=5000ms  answer=second ❌
+    [  66/132] A3 Δ=  200c sep=2000ms dur=5000ms  answer=second ✅
+    [  67/132] A5 Δ=  200c sep= 500ms dur=1000ms  answer=second ❌
+    [  68/132] A3 Δ=  200c sep= 200ms dur=5000ms  answer=second ❌
+    [  69/132] A4 Δ=    2c sep=2000ms dur=5000ms  answer=second ❌
+    [  70/132] A4 Δ=   25c sep=1000ms dur=1000ms  answer=second ✅
+    [  71/132] A4 Δ=  200c sep= 500ms dur=5000ms  answer=second ✅
+    [  72/132] A3 Δ=   25c sep=2000ms dur=1000ms  answer=second ✅
+    [  73/132] A5 Δ=  200c sep=2000ms dur=5000ms  answer=first ✅
+    [  74/132] A5 Δ=   25c sep=2000ms dur=1000ms  answer=second ✅
+    [  75/132] A5 Δ=   25c sep=1000ms dur=1000ms  answer=second ❌
+    [  76/132] A4 Δ=    2c sep= 500ms dur=5000ms  answer=second ✅
+    [  77/132] A3 Δ=   25c sep=1000ms dur=1000ms  answer=second ❌
+    [  78/132] A4 Δ=  400c sep=2000ms dur=1000ms  answer=second ✅
+    [  79/132] A4 Δ=   25c sep=2000ms dur=1000ms  answer=second ❌
+    [  80/132] A4 Δ=   25c sep=2000ms dur=5000ms  answer=second ✅
+    [  81/132] A5 Δ=   25c sep=1000ms dur=5000ms  answer=second ❌
+    [  82/132] A5 Δ=  400c sep= 500ms dur=1000ms  answer=second ✅
+    [  83/132] A5 Δ=   25c sep=1000ms dur=5000ms  answer=second ✅
+    [  84/132] A3 Δ=  400c sep=1000ms dur=1000ms  answer=second ✅
+    [  85/132] A3 Δ=   25c sep= 500ms dur=5000ms  answer=second ✅
+    [  86/132] A4 Δ=   25c sep=1000ms dur=5000ms  answer=second ❌
+    [  87/132] A3 Δ=  400c sep= 500ms dur=5000ms  answer=second ✅
+    [  88/132] A4 Δ=  400c sep= 500ms dur=5000ms  answer=second ✅
+    [  89/132] A3 Δ=  400c sep=2000ms dur=1000ms  answer=second ❌
+    [  90/132] A5 Δ=  400c sep= 500ms dur=5000ms  answer=second ✅
+    [  91/132] A4 Δ=  400c sep= 200ms dur=1000ms  answer=second ❌
+    [  92/132] A3 Δ=  400c sep=1000ms dur=5000ms  answer=second ❌
+    [  93/132] A4 Δ=    5c sep= 500ms dur=1000ms  answer=second ✅
+    [  94/132] A3 Δ=    5c sep=1000ms dur=1000ms  answer=second ✅
+    [  95/132] A5 Δ=  400c sep= 500ms dur=1000ms  answer=second ❌
+    [  96/132] A5 Δ=    5c sep= 200ms dur=1000ms  answer=second ✅
+    [  97/132] A3 Δ=    5c sep=1000ms dur=5000ms  answer=second ✅
+    [  98/132] A4 Δ=    5c sep= 500ms dur=1000ms  answer=second ❌
+    [  99/132] A4 Δ=    5c sep= 500ms dur=5000ms  answer=second ✅
+    [ 100/132] A4 Δ=  400c sep=2000ms dur=5000ms  answer=second ❌
+    [ 101/132] A3 Δ=   25c sep= 200ms dur=5000ms  answer=second ❌
+    [ 102/132] A5 Δ=    5c sep=2000ms dur=1000ms  answer=second ❌
+    [ 103/132] A5 Δ=  400c sep= 200ms dur=5000ms  answer=second ❌
+    [ 104/132] A3 Δ=    5c sep= 500ms dur=1000ms  answer=second ❌
+    [ 105/132] A5 Δ=    5c sep=1000ms dur=5000ms  answer=second ✅
+    [ 106/132] A3 Δ=    5c sep= 500ms dur=5000ms  answer=second ❌
+    [ 107/132] A5 Δ=   50c sep=2000ms dur=1000ms  answer=second ✅
+    [ 108/132] A5 Δ=    5c sep=1000ms dur=5000ms  answer=second ❌
+    [ 109/132] A4 Δ=   50c sep= 200ms dur=1000ms  answer=second ✅
+    [ 110/132] A3 Δ=   50c sep=2000ms dur=1000ms  answer=second ✅
+    [ 111/132] A3 Δ=   50c sep=1000ms dur=5000ms  answer=second ✅
+    [ 112/132] A5 Δ=   50c sep=1000ms dur=1000ms  answer=second ❌
+    [ 113/132] A4 Δ=   50c sep=2000ms dur=5000ms  answer=second ✅
+    [ 114/132] A5 Δ=   50c sep=2000ms dur=5000ms  answer=second ✅
+    [ 115/132] A4 Δ=   50c sep= 500ms dur=1000ms  answer=second ❌
+    [ 116/132] A4 Δ=    5c sep= 200ms dur=5000ms  answer=second ❌
+    [ 117/132] A3 Δ=   50c sep=1000ms dur=1000ms  answer=second ❌
+    [ 118/132] A5 Δ=  700c sep=2000ms dur=1000ms  answer=second ✅
+    [ 119/132] A3 Δ=  700c sep=1000ms dur=1000ms  answer=second ✅
+    [ 120/132] A3 Δ=  700c sep=1000ms dur=5000ms  answer=second ✅
+    [ 121/132] A4 Δ=   50c sep= 500ms dur=5000ms  answer=second ❌
+    [ 122/132] A4 Δ=  700c sep= 500ms dur=1000ms  answer=second ✅
+    [ 123/132] A3 Δ=   50c sep= 200ms dur=5000ms  answer=second ❌
+    [ 124/132] A4 Δ=  700c sep=1000ms dur=1000ms  answer=second ❌
+    [ 125/132] A5 Δ=   50c sep= 500ms dur=5000ms  answer=second ❌
+    [ 126/132] A5 Δ=  700c sep= 200ms dur=1000ms  answer=second ❌
+    [ 127/132] A3 Δ=  700c sep=2000ms dur=1000ms  answer=second ❌
+    [ 128/132] A4 Δ=  700c sep= 500ms dur=5000ms  answer=second ✅
+    [ 129/132] A5 Δ=  700c sep=1000ms dur=5000ms  answer=second ✅
+    [ 130/132] A5 Δ=  700c sep= 200ms dur=5000ms  answer=second ❌
+    [ 131/132] A4 Δ=  700c sep=1000ms dur=5000ms  answer=second ❌
+    [ 132/132] A3 Δ=  700c sep= 500ms dur=5000ms  answer=second ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 132 of 15048 (stratified by '(delta_cents, order, duration_ms, base_name)', seed=42)
+  Stimuli (total)     : 132
+  Stimuli (condition) : 132  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER      50.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           132
+  prompt tokens                15,422
+  completion tokens               164
+  total tokens                 15,586
+  cost (USD)                $0.385870
+
+Results saved → results/run_20260506_072628/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_072749/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d3_contour_discrete
+############################################################
+
+Experiment : pitchbench_d3_contour_discrete
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 180
+  Sampling     : 180 of 21614 (stratified by '(n_transitions, step_size_st, note_duration_ms)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 180 items, max_workers=20
+    [   1/180] nT=2 step=1st dur= 250ms voice  sequence=None ❌
+    [   2/180] nT=2 step=11st dur=1000ms organ  sequence=None ❌
+    [   3/180] nT=2 step=2st dur=1000ms electric_keyboard  sequence=None ❌
+    [   4/180] nT=2 step=11st dur= 250ms square  sequence=None ❌
+    [   5/180] nT=2 step=1st dur= 250ms guitar  sequence=None ❌
+    [   6/180] nT=2 step=11st dur=1000ms voice  sequence=None ❌
+    [   7/180] nT=2 step=1st dur= 250ms flute  sequence=None ❌
+    [   8/180] nT=2 step=11st dur= 500ms sine  sequence=None ❌
+    [   9/180] nT=2 step=11st dur= 500ms square  sequence=None ❌
+    [  10/180] nT=2 step=1st dur= 500ms voice  sequence=None ❌
+    [  11/180] nT=2 step=2st dur=1000ms electric_keyboard  sequence=None ❌
+    [  12/180] nT=2 step=11st dur=1000ms square  sequence=None ❌
+    [  13/180] nT=2 step=1st dur=1000ms sine  sequence=None ❌
+    [  14/180] nT=2 step=1st dur= 500ms electric_keyboard  sequence=None ❌
+    [  15/180] nT=2 step=1st dur=1000ms square  sequence=None ❌
+    [  16/180] nT=2 step=11st dur= 500ms sine  sequence=None ❌
+    [  17/180] nT=2 step=11st dur= 250ms oboe  sequence=None ❌
+    [  18/180] nT=2 step=2st dur= 250ms bass  sequence=None ❌
+    [  19/180] nT=2 step=2st dur= 250ms organ  sequence=None ❌
+    [  20/180] nT=2 step=2st dur= 500ms electric_keyboard  sequence=None ❌
+    [  21/180] nT=2 step=2st dur= 500ms synth_lead  sequence=None ❌
+    [  22/180] nT=2 step=2st dur= 500ms voice  sequence=None ❌
+    [  23/180] nT=2 step=2st dur=1000ms violin  sequence=None ❌
+    [  24/180] nT=2 step=4st dur=1000ms synth_pad  sequence=None ❌
+    [  25/180] nT=2 step=4st dur=1000ms cello  sequence=None ❌
+    [  26/180] nT=2 step=4st dur=1000ms clarinet  sequence=None ❌
+    [  27/180] nT=2 step=1st dur= 500ms triangle  sequence=None ❌
+    [  28/180] nT=2 step=4st dur= 250ms electric_keyboard  sequence=None ❌
+    [  29/180] nT=2 step=2st dur= 250ms sine  sequence=None ❌
+    [  30/180] nT=2 step=4st dur= 250ms bass  sequence=None ❌
+    [  31/180] nT=2 step=7st dur=1000ms synth_pad  sequence=None ❌
+    [  32/180] nT=2 step=4st dur= 500ms sine  sequence=None ❌
+    [  33/180] nT=2 step=4st dur= 250ms oboe  sequence=None ❌
+    [  34/180] nT=2 step=4st dur= 500ms piano  sequence=None ❌
+    [  35/180] nT=2 step=7st dur=1000ms trumpet  sequence=None ❌
+    [  36/180] nT=2 step=7st dur= 250ms flute  sequence=None ❌
+    [  37/180] nT=2 step=4st dur= 500ms flute  sequence=None ❌
+    [  38/180] nT=2 step=7st dur=1000ms clarinet  sequence=None ❌
+    [  39/180] nT=2 step=7st dur= 500ms trumpet  sequence=None ❌
+    [  40/180] nT=2 step=7st dur= 500ms square  sequence=None ❌
+    [  41/180] nT=3 step=1st dur=1000ms trombone  sequence=None ❌
+    [  42/180] nT=2 step=11st dur= 250ms bass  sequence=None ❌
+    [  43/180] nT=3 step=1st dur=1000ms trombone  sequence=None ❌
+    [  44/180] nT=3 step=1st dur= 250ms trumpet  sequence=None ❌
+    [  45/180] nT=3 step=1st dur=1000ms square  sequence=None ❌
+    [  46/180] nT=3 step=1st dur= 250ms bass  sequence=None ❌
+    [  47/180] nT=2 step=7st dur= 250ms electric_keyboard  sequence=None ❌
+    [  48/180] nT=3 step=1st dur= 250ms guitar  sequence=None ❌
+    [  49/180] nT=2 step=7st dur= 250ms triangle  sequence=None ❌
+    [  50/180] nT=3 step=1st dur= 500ms voice  sequence=None ❌
+    [  51/180] nT=3 step=11st dur= 250ms square  sequence=None ❌
+    [  52/180] nT=3 step=1st dur= 500ms oboe  sequence=None ❌
+    [  53/180] nT=3 step=11st dur= 250ms trumpet  sequence=None ❌
+    [  54/180] nT=3 step=11st dur=1000ms bass  sequence=None ❌
+    [  55/180] nT=3 step=11st dur= 250ms bass  sequence=None ❌
+    [  56/180] nT=3 step=11st dur= 500ms clarinet  sequence=None ❌
+    [  57/180] nT=3 step=1st dur= 500ms sawtooth  sequence=None ❌
+    [  58/180] nT=3 step=11st dur=1000ms clarinet  sequence=None ❌
+    [  59/180] nT=3 step=11st dur=1000ms triangle  sequence=None ❌
+    [  60/180] nT=2 step=7st dur= 500ms square  sequence=None ❌
+    [  61/180] nT=3 step=11st dur= 500ms synth_pad  sequence=None ❌
+    [  62/180] nT=3 step=11st dur= 500ms synth_pad  sequence=None ❌
+    [  63/180] nT=3 step=2st dur=1000ms piano  sequence=None ❌
+    [  64/180] nT=3 step=2st dur=1000ms organ  sequence=None ❌
+    [  65/180] nT=3 step=2st dur= 250ms sawtooth  sequence=None ❌
+    [  66/180] nT=3 step=2st dur=1000ms voice  sequence=None ❌
+    [  67/180] nT=3 step=2st dur= 250ms sawtooth  sequence=None ❌
+    [  68/180] nT=3 step=2st dur= 250ms synth_lead  sequence=None ❌
+    [  69/180] nT=3 step=2st dur= 500ms flute  sequence=None ❌
+    [  70/180] nT=3 step=2st dur= 500ms electric_keyboard  sequence=None ❌
+    [  71/180] nT=3 step=4st dur= 250ms flute  sequence=None ❌
+    [  72/180] nT=3 step=4st dur=1000ms electric_keyboard  sequence=None ❌
+    [  73/180] nT=2 step=1st dur=1000ms synth_lead  sequence=None ❌
+    [  74/180] nT=3 step=4st dur= 250ms synth_lead  sequence=None ❌
+    [  75/180] nT=3 step=4st dur= 500ms trombone  sequence=None ❌
+    [  76/180] nT=3 step=7st dur=1000ms electric_keyboard  sequence=None ❌
+    [  77/180] nT=3 step=4st dur=1000ms trombone  sequence=None ❌
+    [  78/180] nT=3 step=2st dur= 500ms square  sequence=None ❌
+    [  79/180] nT=3 step=4st dur= 250ms oboe  sequence=None ❌
+    [  80/180] nT=3 step=7st dur=1000ms synth_pad  sequence=None ❌
+    [  81/180] nT=3 step=4st dur= 500ms trombone  sequence=None ❌
+    [  82/180] nT=3 step=7st dur= 250ms synth_pad  sequence=None ❌
+    [  83/180] nT=3 step=7st dur=1000ms trombone  sequence=None ❌
+    [  84/180] nT=3 step=7st dur= 500ms synth_lead  sequence=None ❌
+    [  85/180] nT=3 step=7st dur= 250ms guitar  sequence=None ❌
+    [  86/180] nT=3 step=7st dur= 250ms voice  sequence=None ❌
+    [  87/180] nT=3 step=4st dur= 500ms piano  sequence=None ❌
+    [  88/180] nT=3 step=4st dur=1000ms square  sequence=None ❌
+    [  89/180] nT=3 step=7st dur= 500ms sawtooth  sequence=None ❌
+    [  90/180] nT=5 step=1st dur=1000ms piano  sequence=None ❌
+    [  91/180] nT=3 step=7st dur= 500ms bass  sequence=None ❌
+    [  92/180] nT=5 step=1st dur=1000ms synth_lead  sequence=None ❌
+    [  93/180] nT=5 step=1st dur= 250ms voice  sequence=None ❌
+    [  94/180] nT=5 step=1st dur=1000ms cello  sequence=None ❌
+    [  95/180] nT=5 step=1st dur= 250ms guitar  sequence=None ❌
+    [  96/180] nT=5 step=1st dur= 250ms piano  sequence=None ❌
+    [  97/180] nT=5 step=11st dur= 250ms trumpet  sequence=None ❌
+    [  98/180] nT=5 step=11st dur= 500ms cello  sequence=None ❌
+    [  99/180] nT=5 step=11st dur= 250ms square  sequence=None ❌
+    [ 100/180] nT=5 step=11st dur= 500ms clarinet  sequence=None ❌
+    [ 101/180] nT=5 step=11st dur=1000ms flute  sequence=None ❌
+    [ 102/180] nT=5 step=1st dur= 500ms guitar  sequence=None ❌
+    [ 103/180] nT=5 step=11st dur=1000ms clarinet  sequence=None ❌
+    [ 104/180] nT=5 step=11st dur= 250ms sawtooth  sequence=None ❌
+    [ 105/180] nT=5 step=11st dur=1000ms voice  sequence=None ❌
+    [ 106/180] nT=5 step=11st dur= 500ms trombone  sequence=None ❌
+    [ 107/180] nT=5 step=1st dur= 500ms trombone  sequence=None ❌
+    [ 108/180] nT=5 step=1st dur= 500ms oboe  sequence=None ❌
+    [ 109/180] nT=5 step=2st dur=1000ms organ  sequence=None ❌
+    [ 110/180] nT=5 step=2st dur=1000ms electric_keyboard  sequence=None ❌
+    [ 111/180] nT=5 step=2st dur= 250ms electric_keyboard  sequence=None ❌
+    [ 112/180] nT=5 step=2st dur=1000ms sawtooth  sequence=None ❌
+    [ 113/180] nT=5 step=2st dur= 500ms violin  sequence=None ❌
+    [ 114/180] nT=5 step=2st dur= 250ms voice  sequence=None ❌
+    [ 115/180] nT=5 step=2st dur= 250ms trumpet  sequence=None ❌
+    [ 116/180] nT=5 step=4st dur= 250ms guitar  sequence=None ❌
+    [ 117/180] nT=5 step=2st dur= 500ms clarinet  sequence=None ❌
+    [ 118/180] nT=5 step=4st dur= 500ms organ  sequence=None ❌
+    [ 119/180] nT=5 step=4st dur= 250ms guitar  sequence=None ❌
+    [ 120/180] nT=5 step=4st dur= 250ms triangle  sequence=None ❌
+    [ 121/180] nT=5 step=4st dur=1000ms triangle  sequence=None ❌
+    [ 122/180] nT=5 step=4st dur=1000ms synth_lead  sequence=None ❌
+    [ 123/180] nT=5 step=7st dur=1000ms synth_lead  sequence=None ❌
+    [ 124/180] nT=5 step=4st dur= 500ms guitar  sequence=None ❌
+    [ 125/180] nT=5 step=7st dur=1000ms oboe  sequence=None ❌
+    [ 126/180] nT=5 step=7st dur=1000ms synth_lead  sequence=None ❌
+    [ 127/180] nT=5 step=7st dur= 250ms oboe  sequence=None ❌
+    [ 128/180] nT=5 step=7st dur= 250ms guitar  sequence=None ❌
+    [ 129/180] nT=5 step=4st dur= 500ms cello  sequence=None ❌
+    [ 130/180] nT=5 step=7st dur= 500ms triangle  sequence=None ❌
+    [ 131/180] nT=7 step=1st dur=1000ms square  sequence=None ❌
+    [ 132/180] nT=5 step=7st dur= 500ms cello  sequence=None ❌
+    [ 133/180] nT=5 step=7st dur= 500ms organ  sequence=None ❌
+    [ 134/180] nT=5 step=7st dur= 250ms clarinet  sequence=None ❌
+    [ 135/180] nT=7 step=1st dur= 500ms synth_pad  sequence=None ❌
+    [ 136/180] nT=7 step=1st dur= 250ms triangle  sequence=None ❌
+    [ 137/180] nT=5 step=2st dur= 500ms synth_lead  sequence=None ❌
+    [ 138/180] nT=7 step=1st dur= 250ms synth_lead  sequence=None ❌
+    [ 139/180] nT=7 step=1st dur= 500ms bass  sequence=None ❌
+    [ 140/180] nT=7 step=1st dur= 500ms clarinet  sequence=None ❌
+    [ 141/180] nT=7 step=1st dur=1000ms square  sequence=None ❌
+    [ 142/180] nT=7 step=1st dur= 250ms piano  sequence=None ❌
+    [ 143/180] nT=7 step=11st dur=1000ms flute  sequence=None ❌
+    [ 144/180] nT=7 step=11st dur= 250ms clarinet  sequence=None ❌
+    [ 145/180] nT=7 step=11st dur=1000ms sawtooth  sequence=None ❌
+    [ 146/180] nT=7 step=11st dur= 500ms synth_pad  sequence=None ❌
+    [ 147/180] nT=7 step=11st dur= 500ms clarinet  sequence=None ❌
+    [ 148/180] nT=7 step=11st dur= 250ms violin  sequence=None ❌
+    [ 149/180] nT=7 step=1st dur=1000ms sawtooth  sequence=None ❌
+    [ 150/180] nT=7 step=11st dur= 500ms piano  sequence=None ❌
+    [ 151/180] nT=7 step=2st dur=1000ms sine  sequence=None ❌
+    [ 152/180] nT=7 step=2st dur=1000ms voice  sequence=None ❌
+    [ 153/180] nT=7 step=2st dur= 250ms square  sequence=None ❌
+    [ 154/180] nT=7 step=2st dur= 500ms guitar  sequence=None ❌
+    [ 155/180] nT=5 step=4st dur=1000ms oboe  sequence=None ❌
+    [ 156/180] nT=7 step=2st dur=1000ms synth_pad  sequence=None ❌
+    [ 157/180] nT=7 step=4st dur=1000ms oboe  sequence=None ❌
+    [ 158/180] nT=7 step=2st dur= 500ms trumpet  sequence=None ❌
+    [ 159/180] nT=7 step=4st dur=1000ms triangle  sequence=None ❌
+    [ 160/180] nT=7 step=11st dur= 250ms trombone  sequence=None ❌
+    [ 161/180] nT=7 step=2st dur= 250ms synth_pad  sequence=None ❌
+    [ 162/180] nT=7 step=2st dur= 500ms synth_lead  sequence=None ❌
+    [ 163/180] nT=7 step=4st dur=1000ms flute  sequence=None ❌
+    [ 164/180] nT=7 step=4st dur= 250ms sine  sequence=None ❌
+    [ 165/180] nT=7 step=2st dur= 250ms cello  sequence=None ❌
+    [ 166/180] nT=7 step=4st dur= 500ms flute  sequence=None ❌
+    [ 167/180] nT=7 step=4st dur= 250ms violin  sequence=None ❌
+    [ 168/180] nT=7 step=4st dur= 500ms piano  sequence=None ❌
+    [ 169/180] nT=7 step=4st dur= 250ms piano  sequence=None ❌
+    [ 170/180] nT=7 step=7st dur= 250ms trumpet  sequence=None ❌
+    [ 171/180] nT=7 step=7st dur=1000ms organ  sequence=None ❌
+    [ 172/180] nT=7 step=4st dur= 500ms cello  sequence=None ❌
+    [ 173/180] nT=7 step=7st dur=1000ms triangle  sequence=None ❌
+    [ 174/180] nT=7 step=11st dur=1000ms flute  sequence=None ❌
+    [ 175/180] nT=7 step=7st dur= 250ms voice  sequence=None ❌
+    [ 176/180] nT=7 step=7st dur= 500ms electric_keyboard  sequence=None ❌
+    [ 177/180] nT=7 step=7st dur=1000ms voice  sequence=None ❌
+    [ 178/180] nT=7 step=7st dur= 500ms piano  sequence=None ❌
+    [ 179/180] nT=7 step=7st dur= 500ms synth_pad  sequence=None ❌
+    [ 180/180] nT=7 step=7st dur= 250ms organ  sequence=None ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 180 of 21614 (stratified by '(n_transitions, step_size_st, note_duration_ms)', seed=42)
+  Stimuli (total)     : 180
+  Stimuli (condition) : 180  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        SEQUENCE       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           180
+  prompt tokens                18,960
+  completion tokens             2,287
+  total tokens                 21,247
+  cost (USD)                $0.315520
+
+Results saved → results/run_20260506_072628/pitchbench_d3_contour_discrete/run_001_20260506_072756/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d4_contour_continuous
+############################################################
+
+Experiment : pitchbench_d4_contour_continuous
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 160
+  Sampling     : 160 of 640 (stratified by '(traj_name, interval_st, start_midi)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 160 items, max_workers=20
+    [   1/160] down           start=F#3  Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [   2/160] down           start=C3   Δ=+12st sawtooth    trajectory=down ✅
+    [   3/160] down           start=G2   Δ=+12st sawtooth    trajectory=up, down, up, down ❌
+    [   4/160] down           start=E4   Δ=+12st triangle    trajectory=up, down, up, down ❌
+    [   5/160] down           start=F#1  Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [   6/160] down           start=C2   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [   7/160] down           start=C3   Δ=+1st sawtooth    trajectory=down, up, down ❌
+    [   8/160] down           start=C4   Δ=+1st sawtooth    trajectory=down ✅
+    [   9/160] down           start=G5   Δ=+1st triangle    trajectory=up, down, up, down, up, down ❌
+    [  10/160] down           start=G2   Δ=+1st square      trajectory=up, down, up, down, up, down ❌
+    [  11/160] down           start=F#3  Δ=+1st sawtooth    trajectory=down, up, down, up, down, up, down, up ❌
+    [  12/160] down           start=G5   Δ=+12st triangle    trajectory=up, down, up, down, up ❌
+    [  13/160] down           start=E6   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [  14/160] down           start=E6   Δ=+12st square      trajectory=up, down, up, down, up, down ❌
+    [  15/160] down           start=C4   Δ=+12st sawtooth    trajectory=down, up, down ❌
+    [  16/160] down           start=C2   Δ=+12st sine        trajectory=down, up, down, up, down ❌
+    [  17/160] down           start=E4   Δ=+1st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [  18/160] down           start=A4   Δ=+12st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  19/160] down           start=F#1  Δ=+12st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [  20/160] down           start=A4   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [  21/160] down           start=G2   Δ=+4st triangle    trajectory=up, down, up, down, up, down, up, down ❌
+    [  22/160] down           start=C2   Δ=+4st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  23/160] down           start=C3   Δ=+4st square      trajectory=up, down, up, down, up, down, up, down ❌
+    [  24/160] down           start=C4   Δ=+4st sawtooth    trajectory=down ✅
+    [  25/160] down           start=E4   Δ=+4st sawtooth    trajectory=down, up, down, up ❌
+    [  26/160] down           start=E6   Δ=+4st sine        trajectory=up, down, up, down, up ❌
+    [  27/160] down           start=A4   Δ=+4st square      trajectory=up, down, up, down, up, down ❌
+    [  28/160] down           start=F#1  Δ=+4st sine        trajectory=up, down, up, down, up, down ❌
+    [  29/160] down           start=F#3  Δ=+4st square      trajectory=up, down, up, down, up, down ❌
+    [  30/160] down           start=G5   Δ=+4st sine        trajectory=down, up, down, up, down ❌
+    [  31/160] down           start=F#3  Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [  32/160] down           start=G2   Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [  33/160] down           start=C4   Δ=+7st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [  34/160] down           start=F#1  Δ=+7st triangle    trajectory=down, up, down, up, down ❌
+    [  35/160] down           start=E4   Δ=+7st triangle    trajectory=up, down, up, down, up, down ❌
+    [  36/160] down           start=C3   Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [  37/160] down_then_up   start=C3   Δ=+1st sine        trajectory=up, down, up, down, up ❌
+    [  38/160] down_then_up   start=C2   Δ=+1st square      trajectory=down, up, down ❌
+    [  39/160] down_then_up   start=C4   Δ=+1st sawtooth    trajectory=down ❌
+    [  40/160] down           start=E6   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [  41/160] down_then_up   start=E4   Δ=+1st square      trajectory=down, up, down, up ❌
+    [  42/160] down           start=A4   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [  43/160] down_then_up   start=G5   Δ=+1st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  44/160] down_then_up   start=E6   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [  45/160] down           start=G5   Δ=+7st triangle    trajectory=up, down, up, down, up, down ❌
+    [  46/160] down_then_up   start=F#3  Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [  47/160] down_then_up   start=F#1  Δ=+1st square      trajectory=down, up, down, up, down, up, down, up ❌
+    [  48/160] down_then_up   start=G2   Δ=+1st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  49/160] down_then_up   start=A4   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [  50/160] down_then_up   start=G2   Δ=+12st triangle    trajectory=up, down, up, down, up, down ❌
+    [  51/160] down           start=C2   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [  52/160] down_then_up   start=C3   Δ=+12st square      trajectory=up, down, up, down, up, down ❌
+    [  53/160] down_then_up   start=F#3  Δ=+12st sawtooth    trajectory=up ❌
+    [  54/160] down_then_up   start=A4   Δ=+12st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  55/160] down_then_up   start=C2   Δ=+12st square      trajectory=down, up, down, up ❌
+    [  56/160] down_then_up   start=F#1  Δ=+4st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  57/160] down_then_up   start=E4   Δ=+12st square      trajectory=down, up, down, up ❌
+    [  58/160] down_then_up   start=C4   Δ=+12st square      trajectory=down, up, down ❌
+    [  59/160] down_then_up   start=G5   Δ=+12st square      trajectory=up, down, up, down, up, down ❌
+    [  60/160] down_then_up   start=C4   Δ=+4st square      trajectory=up, down, up, down, up, down, up, down ❌
+    [  61/160] down_then_up   start=E4   Δ=+4st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  62/160] down_then_up   start=E6   Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [  63/160] down_then_up   start=A4   Δ=+4st square      trajectory=down, up, down, up ❌
+    [  64/160] down_then_up   start=F#3  Δ=+4st triangle    trajectory=up, down, up, down ❌
+    [  65/160] down_then_up   start=G2   Δ=+4st sawtooth    trajectory=up, down, up, down ❌
+    [  66/160] down_then_up   start=C3   Δ=+4st triangle    trajectory=up, down, up, down, up, down ❌
+    [  67/160] down_then_up   start=E6   Δ=+4st sawtooth    trajectory=down, up, down ❌
+    [  68/160] down_then_up   start=F#1  Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [  69/160] down_then_up   start=G5   Δ=+4st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [  70/160] down_then_up   start=C2   Δ=+7st square      trajectory=up, down, up, down ❌
+    [  71/160] down_then_up   start=C2   Δ=+4st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  72/160] down_then_up   start=G2   Δ=+7st triangle    trajectory=down, up, down, up ❌
+    [  73/160] down_then_up   start=C3   Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [  74/160] down_then_up   start=E4   Δ=+7st square      trajectory=down, up, down, up ❌
+    [  75/160] down_then_up   start=F#3  Δ=+7st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [  76/160] down_then_up   start=A4   Δ=+7st sawtooth    trajectory=down ❌
+    [  77/160] down_then_up   start=G5   Δ=+7st triangle    trajectory=up, down, up, down, up, down ❌
+    [  78/160] down_then_up   start=E6   Δ=+7st triangle    trajectory=up, down, up, down, up ❌
+    [  79/160] up             start=C2   Δ=+1st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  80/160] up             start=G2   Δ=+1st square      trajectory=up, down, up, down ❌
+    [  81/160] up             start=A4   Δ=+1st triangle    trajectory=up, down, up, down, up, down ❌
+    [  82/160] up             start=G5   Δ=+1st square      trajectory=up, down, up, down, up, down ❌
+    [  83/160] up             start=F#3  Δ=+1st sawtooth    trajectory=down ❌
+    [  84/160] up             start=E4   Δ=+1st triangle    trajectory=up, down, up, down, up, down ❌
+    [  85/160] up             start=F#1  Δ=+1st triangle    trajectory=down, up, down ❌
+    [  86/160] up             start=C4   Δ=+1st square      trajectory=up, down, up, down, up, down ❌
+    [  87/160] up             start=C3   Δ=+1st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  88/160] up             start=G2   Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [  89/160] up             start=F#3  Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [  90/160] up             start=C3   Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [  91/160] up             start=E4   Δ=+12st sawtooth    trajectory=up, down, up, down, up, down, up, down ❌
+    [  92/160] up             start=A4   Δ=+12st triangle    trajectory=up, down, up, down, up, down ❌
+    [  93/160] up             start=E6   Δ=+12st triangle    trajectory=up ✅
+    [  94/160] up             start=F#1  Δ=+12st sawtooth    trajectory=up, down, up, down ❌
+    [  95/160] up             start=C4   Δ=+12st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [  96/160] up             start=C4   Δ=+4st square      trajectory=up, down, up, down, up, down ❌
+    [  97/160] up             start=C3   Δ=+4st sine        trajectory=up, down, up, down, up, down ❌
+    [  98/160] up             start=F#1  Δ=+4st triangle    trajectory=up, down, up, down, up, down ❌
+    [  99/160] up             start=E6   Δ=+1st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 100/160] up             start=C2   Δ=+4st triangle    trajectory=up, down, up, down ❌
+    [ 101/160] up             start=G5   Δ=+12st sine        trajectory=up, down, up, down, up ❌
+    [ 102/160] up             start=F#3  Δ=+4st sine        trajectory=up, down, up, down, up, down ❌
+    [ 103/160] up             start=E6   Δ=+4st triangle    trajectory=up ✅
+    [ 104/160] up             start=E4   Δ=+4st square      trajectory=up, down, up, down, up, down ❌
+    [ 105/160] up             start=G2   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [ 106/160] down_then_up   start=C4   Δ=+7st sawtooth    trajectory=up ❌
+    [ 107/160] up             start=F#1  Δ=+7st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 108/160] up             start=G2   Δ=+4st square      trajectory=down, up, down, up, down, up ❌
+    [ 109/160] up             start=C2   Δ=+7st triangle    trajectory=up, down, up, down, up, down ❌
+    [ 110/160] up             start=F#3  Δ=+7st sawtooth    trajectory=down, up, down ❌
+    [ 111/160] up             start=C4   Δ=+7st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [ 112/160] up_then_down   start=F#1  Δ=+1st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 113/160] up             start=G5   Δ=+7st sawtooth    trajectory=up, down, up, down, up, down, up, down ❌
+    [ 114/160] up             start=C3   Δ=+7st square      trajectory=up, down, up, down, up, down, up, down ❌
+    [ 115/160] up             start=A4   Δ=+7st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 116/160] up_then_down   start=G2   Δ=+1st square      trajectory=up, down, up, down, up, down ❌
+    [ 117/160] up_then_down   start=F#3  Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [ 118/160] up_then_down   start=C3   Δ=+1st triangle    trajectory=up, down, up, down, up, down, up, down ❌
+    [ 119/160] up_then_down   start=G5   Δ=+1st sawtooth    trajectory=up, down, up, down ❌
+    [ 120/160] up_then_down   start=E4   Δ=+1st square      trajectory=up, down, up, down, up, down ❌
+    [ 121/160] up_then_down   start=E6   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [ 122/160] up_then_down   start=C4   Δ=+1st sine        trajectory=up, down, up, down, up ❌
+    [ 123/160] up_then_down   start=A4   Δ=+1st square      trajectory=down, up, down, up ❌
+    [ 124/160] up_then_down   start=C2   Δ=+1st sine        trajectory=up, down, up, down, up, down ❌
+    [ 125/160] up             start=E6   Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [ 126/160] up             start=G5   Δ=+4st square      trajectory=down, up, down, up, down ❌
+    [ 127/160] up             start=E4   Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [ 128/160] up_then_down   start=C2   Δ=+12st sine        trajectory=down, up, down, up, down ❌
+    [ 129/160] up_then_down   start=C3   Δ=+12st triangle    trajectory=up, down, up, down, up, down ❌
+    [ 130/160] up_then_down   start=F#1  Δ=+12st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 131/160] up_then_down   start=C4   Δ=+12st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 132/160] up             start=A4   Δ=+4st sine        trajectory=up, down, up, down, up, down ❌
+    [ 133/160] up_then_down   start=G2   Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [ 134/160] down_then_up   start=F#1  Δ=+12st triangle    trajectory=up, down, up, down, up, down ❌
+    [ 135/160] up_then_down   start=E4   Δ=+12st sawtooth    trajectory=up, down, up, down ❌
+    [ 136/160] up_then_down   start=A4   Δ=+12st triangle    trajectory=up, down, up, down ❌
+    [ 137/160] up_then_down   start=F#3  Δ=+12st sine        trajectory=up, down, up, down, up, down ❌
+    [ 138/160] up_then_down   start=G5   Δ=+12st sawtooth    trajectory=up ❌
+    [ 139/160] up_then_down   start=C2   Δ=+4st sawtooth    trajectory=up, down, up, down ❌
+    [ 140/160] up_then_down   start=G2   Δ=+4st sawtooth    trajectory=down, up, down ❌
+    [ 141/160] up_then_down   start=E6   Δ=+12st square      trajectory=up, down, up, down, up, down ❌
+    [ 142/160] up_then_down   start=F#1  Δ=+4st triangle    trajectory=up, down, up, down, up, down ❌
+    [ 143/160] up_then_down   start=C4   Δ=+4st square      trajectory=up, down, up, down ❌
+    [ 144/160] up_then_down   start=F#3  Δ=+4st triangle    trajectory=up, down, up, down ❌
+    [ 145/160] up_then_down   start=A4   Δ=+4st triangle    trajectory=up, down, up, down, up, down ❌
+    [ 146/160] up_then_down   start=C2   Δ=+7st sine        trajectory=up, down, up, down, up, down, up, down ❌
+    [ 147/160] up_then_down   start=G5   Δ=+4st sine        trajectory=down, up, down, up, down ❌
+    [ 148/160] up_then_down   start=F#3  Δ=+7st sawtooth    trajectory=down ❌
+    [ 149/160] up_then_down   start=C3   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [ 150/160] up_then_down   start=E4   Δ=+4st triangle    trajectory=up, down, up, down, up, down ❌
+    [ 151/160] up_then_down   start=C3   Δ=+4st square      trajectory=up, down, up, down, up, down ❌
+    [ 152/160] up_then_down   start=G2   Δ=+7st square      trajectory=up, down, up, down, up, down ❌
+    [ 153/160] up_then_down   start=C4   Δ=+7st sawtooth    trajectory=down ❌
+    [ 154/160] up_then_down   start=A4   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [ 155/160] up_then_down   start=E6   Δ=+4st sawtooth    trajectory=up, down, up, down ❌
+    [ 156/160] up_then_down   start=E4   Δ=+7st sine        trajectory=up, down, up, down, up, down ❌
+    [ 157/160] up_then_down   start=F#1  Δ=+7st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 158/160] up_then_down   start=G5   Δ=+7st sine        trajectory=down ❌
+    [ 159/160] up_then_down   start=E6   Δ=+7st sawtooth    trajectory=up, down, up, down, up, down ❌
+    [ 160/160] up             start=C2   Δ=+12st triangle    trajectory=up, down, up, down, up, down ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 160 of 640 (stratified by '(traj_name, interval_st, start_midi)', seed=42)
+  Stimuli (total)     : 160
+  Stimuli (condition) : 160  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+      TRAJECTORY       3.1%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           160
+  prompt tokens                29,280
+  completion tokens             1,520
+  total tokens                 30,800
+  cost (USD)                $0.388400
+
+Results saved → results/run_20260506_072628/pitchbench_d4_contour_continuous/run_001_20260506_072806/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d5_sequence_ranking_by_pitch
+############################################################
+
+Experiment : pitchbench_d5_sequence_ranking_by_pitch
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 120
+  Sampling     : 120 of 2880 (stratified by '(n_notes, delta_cents, rhythm, base_name)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 120 items, max_workers=20
+    [   1/120] n=3 A5 Δ=100c irregular  answer=2 1 3 ❌
+    [   2/120] n=3 A4 Δ=100c   regular  answer=1 2 3 ❌
+    [   3/120] n=3 A4 Δ=25c   regular  answer=1 2 3 ❌
+    [   4/120] n=3 A4 Δ=200c   regular  answer=1 2 3 ❌
+    [   5/120] n=3 A4 Δ=25c irregular  answer=1 2 3 ❌
+    [   6/120] n=3 A5 Δ=25c   regular  answer=1 2 3 ❌
+    [   7/120] n=3 A5 Δ=200c   regular  answer=1 2 3 ❌
+    [   8/120] n=3 A3 Δ=400c irregular  answer=1 2 3 ❌
+    [   9/120] n=3 A3 Δ=200c irregular  answer=2 1 3 ❌
+    [  10/120] n=3 A3 Δ=25c irregular  answer=1 2 3 ❌
+    [  11/120] n=3 A3 Δ=25c   regular  answer=2 1 3 ❌
+    [  12/120] n=3 A3 Δ=100c irregular  answer=1 2 3 ❌
+    [  13/120] n=3 A5 Δ=25c irregular  answer=1 2 3 ❌
+    [  14/120] n=3 A4 Δ=400c irregular  answer=1 2 3 ❌
+    [  15/120] n=3 A5 Δ=200c irregular  answer=2 1 3 ❌
+    [  16/120] n=3 A3 Δ=200c   regular  answer=1 2 3 ❌
+    [  17/120] n=3 A5 Δ=100c   regular  answer=2 1 3 ❌
+    [  18/120] n=3 A4 Δ=100c irregular  answer=1 2 3 ❌
+    [  19/120] n=3 A3 Δ=100c   regular  answer=1 2 3 ❌
+    [  20/120] n=3 A4 Δ=200c irregular  answer=1 2 3 ❌
+    [  21/120] n=3 A5 Δ=400c irregular  answer=2 1 3 ❌
+    [  22/120] n=3 A4 Δ=400c   regular  answer=1 2 3 ❌
+    [  23/120] n=3 A3 Δ=50c   regular  answer=1 2 3 ❌
+    [  24/120] n=3 A5 Δ=400c   regular  answer=1 2 3 ❌
+    [  25/120] n=3 A4 Δ=50c irregular  answer=2 1 3 ❌
+    [  26/120] n=3 A3 Δ=400c   regular  answer=1 2 3 ❌
+    [  27/120] n=4 A4 Δ=100c irregular  answer=3 1 2 4 ❌
+    [  28/120] n=3 A5 Δ=50c   regular  answer=2 1 3 ❌
+    [  29/120] n=3 A4 Δ=50c   regular  answer=1 2 3 ❌
+    [  30/120] n=3 A3 Δ=50c irregular  answer=1 2 3 ❌
+    [  31/120] n=4 A5 Δ=100c irregular  answer=3 1 2 4 ❌
+    [  32/120] n=4 A3 Δ=100c irregular  answer=3 1 2 4 ❌
+    [  33/120] n=4 A3 Δ=100c   regular  answer=3 1 2 4 ❌
+    [  34/120] n=4 A5 Δ=100c   regular  answer=3 1 2 4 ❌
+    [  35/120] n=4 A3 Δ=200c irregular  answer=1 2 3 4 ❌
+    [  36/120] n=4 A4 Δ=100c   regular  answer=1 2 3 4 ❌
+    [  37/120] n=3 A5 Δ=50c irregular  answer=1 2 3 ✅
+    [  38/120] n=4 A5 Δ=200c irregular  answer=3 1 2 4 ❌
+    [  39/120] n=4 A3 Δ=200c   regular  answer=1 2 3 4 ❌
+    [  40/120] n=4 A4 Δ=200c irregular  answer=3 1 2 4 ❌
+    [  41/120] n=4 A3 Δ=25c irregular  answer=1 2 3 4 ❌
+    [  42/120] n=4 A5 Δ=200c   regular  answer=3 1 2 4 ❌
+    [  43/120] n=4 A3 Δ=400c   regular  answer=3 1 2 4 ❌
+    [  44/120] n=4 A4 Δ=200c   regular  answer=1 2 3 4 ❌
+    [  45/120] n=4 A3 Δ=25c   regular  answer=3 1 2 4 ❌
+    [  46/120] n=4 A5 Δ=25c irregular  answer=3 1 2 4 ❌
+    [  47/120] n=4 A4 Δ=25c irregular  answer=1 2 3 4 ❌
+    [  48/120] n=4 A4 Δ=25c   regular  answer=3 1 2 4 ❌
+    [  49/120] n=4 A3 Δ=400c irregular  answer=1 2 3 4 ❌
+    [  50/120] n=4 A5 Δ=400c irregular  answer=3 1 2 4 ❌
+    [  51/120] n=4 A5 Δ=400c   regular  answer=3 1 2 4 ❌
+    [  52/120] n=4 A3 Δ=50c irregular  answer=3 1 2 4 ✅
+    [  53/120] n=4 A4 Δ=400c   regular  answer=3 1 2 4 ❌
+    [  54/120] n=4 A4 Δ=400c irregular  answer=1 2 3 4 ❌
+    [  55/120] n=4 A4 Δ=50c irregular  answer=1 2 3 4 ❌
+    [  56/120] n=4 A3 Δ=50c   regular  answer=3 1 2 4 ❌
+    [  57/120] n=4 A5 Δ=50c   regular  answer=3 1 2 4 ❌
+    [  58/120] n=5 A5 Δ=100c   regular  answer=3 1 2 4 5 ❌
+    [  59/120] n=5 A4 Δ=100c   regular  answer=3 1 2 4 5 ❌
+    [  60/120] n=5 A5 Δ=100c irregular  answer=1 2 3 4 5 ❌
+    [  61/120] n=5 A4 Δ=100c irregular  answer=1 2 3 4 5 ❌
+    [  62/120] n=5 A5 Δ=200c irregular  answer=3 1 2 4 5 ❌
+    [  63/120] n=5 A4 Δ=200c   regular  answer=1 2 3 4 5 ❌
+    [  64/120] n=5 A3 Δ=100c irregular  answer=1 2 3 4 5 ❌
+    [  65/120] n=5 A3 Δ=25c irregular  answer=1 2 3 4 5 ❌
+    [  66/120] n=4 A4 Δ=50c   regular  answer=3 1 2 4 ❌
+    [  67/120] n=5 A4 Δ=200c irregular  answer=3 1 2 4 5 ❌
+    [  68/120] n=4 A5 Δ=50c irregular  answer=3 1 2 4 ❌
+    [  69/120] n=5 A3 Δ=100c   regular  answer=1 2 3 4 5 ❌
+    [  70/120] n=5 A3 Δ=25c   regular  answer=3 1 2 4 5 ❌
+    [  71/120] n=5 A5 Δ=200c   regular  answer=3 1 2 4 5 ❌
+    [  72/120] n=5 A4 Δ=25c   regular  answer=3 1 2 4 5 ❌
+    [  73/120] n=5 A4 Δ=25c irregular  answer=3 1 2 4 5 ❌
+    [  74/120] n=5 A5 Δ=25c irregular  answer=3 1 2 4 5 ❌
+    [  75/120] n=5 A3 Δ=200c   regular  answer=1 2 3 4 5 ❌
+    [  76/120] n=5 A5 Δ=25c   regular  answer=3 1 2 4 5 ❌
+    [  77/120] n=5 A3 Δ=200c irregular  answer=1 2 3 4 5 ❌
+    [  78/120] n=5 A4 Δ=50c irregular  answer=3 1 2 4 5 ❌
+    [  79/120] n=5 A3 Δ=400c irregular  answer=3 1 2 4 5 ❌
+    [  80/120] n=5 A5 Δ=400c irregular  answer=1 2 3 4 5 ❌
+    [  81/120] n=5 A4 Δ=400c irregular  answer=3 1 2 4 5 ❌
+    [  82/120] n=5 A3 Δ=400c   regular  answer=3 1 2 4 5 ❌
+    [  83/120] n=7 A3 Δ=100c irregular  answer=1 2 3 4 5 6 7 ❌
+    [  84/120] n=5 A5 Δ=50c irregular  answer=3 1 2 4 5 ❌
+    [  85/120] n=5 A5 Δ=400c   regular  answer=3 1 2 4 5 ❌
+    [  86/120] n=5 A5 Δ=50c   regular  answer=3 1 2 4 5 ❌
+    [  87/120] n=5 A4 Δ=400c   regular  answer=1 2 3 4 5 ❌
+    [  88/120] n=5 A3 Δ=50c irregular  answer=1 2 3 4 5 ❌
+    [  89/120] n=5 A4 Δ=50c   regular  answer=1 2 3 4 5 ❌
+    [  90/120] n=7 A5 Δ=100c   regular  answer=3 1 4 2 5 6 7 ❌
+    [  91/120] n=4 A5 Δ=25c   regular  answer=3 1 2 4 ❌
+    [  92/120] n=7 A4 Δ=100c irregular  answer=3 1 2 4 5 6 7 ❌
+    [  93/120] n=7 A5 Δ=100c irregular  answer=1 2 3 4 5 6 7 ❌
+    [  94/120] n=7 A5 Δ=200c irregular  answer=1 2 3 4 5 6 7 ❌
+    [  95/120] n=5 A3 Δ=50c   regular  answer=1 2 3 4 5 ❌
+    [  96/120] n=7 A4 Δ=200c irregular  answer=1 2 3 4 5 6 7 ❌
+    [  97/120] n=7 A3 Δ=200c   regular  answer=1 2 3 4 5 6 7 ❌
+    [  98/120] n=7 A3 Δ=200c irregular  answer=1 2 3 4 5 6 7 ❌
+    [  99/120] n=7 A5 Δ=25c   regular  answer=3 1 2 4 5 6 7 ❌
+    [ 100/120] n=7 A3 Δ=400c irregular  answer=3 1 4 2 5 6 7 ❌
+    [ 101/120] n=7 A4 Δ=25c irregular  answer=1 2 3 4 5 6 7 ❌
+    [ 102/120] n=7 A3 Δ=400c   regular  answer=3 1 2 4 5 6 7 ❌
+    [ 103/120] n=7 A3 Δ=100c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 104/120] n=7 A4 Δ=200c   regular  answer=6 1 2 4 3 5 7 ❌
+    [ 105/120] n=7 A3 Δ=25c irregular  answer=1 2 3 4 5 6 7 ❌
+    [ 106/120] n=7 A4 Δ=100c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 107/120] n=7 A3 Δ=25c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 108/120] n=7 A5 Δ=400c irregular  answer=1 2 3 4 5 6 7 ❌
+    [ 109/120] n=7 A4 Δ=400c   regular  answer=3 1 4 2 5 6 7 ❌
+    [ 110/120] n=7 A5 Δ=25c irregular  answer=1 2 3 4 5 6 7 ❌
+    [ 111/120] n=7 A5 Δ=400c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 112/120] n=7 A3 Δ=50c irregular  answer=3 1 2 4 5 6 7 ❌
+    [ 113/120] n=7 A5 Δ=200c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 114/120] n=7 A3 Δ=50c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 115/120] n=7 A4 Δ=50c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 116/120] n=7 A5 Δ=50c irregular  answer=3 1 2 4 5 6 7 ❌
+    [ 117/120] n=7 A4 Δ=50c irregular  answer=1 2 3 4 5 6 7 ❌
+    [ 118/120] n=7 A4 Δ=400c irregular  answer=4 3 2 1 5 6 7 ❌
+    [ 119/120] n=7 A5 Δ=50c   regular  answer=1 2 3 4 5 6 7 ❌
+    [ 120/120] n=7 A4 Δ=25c   regular  answer=1 2 3 4 5 6 7 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 120 of 2880 (stratified by '(n_notes, delta_cents, rhythm, base_name)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER       1.7%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                26,568
+  completion tokens             1,251
+  total tokens                 27,819
+  cost (USD)                $0.721980
+
+Results saved → results/run_20260506_072628/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_072817/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d6_sequence_dyad_interval
+############################################################
+
+Experiment : pitchbench_d6_sequence_dyad_interval
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 236
+  Sampling     : 236 of 35872 (stratified by '(signed_st, base_midi)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 236 items, max_workers=20
+    [   1/236] iv= -1st base=E4   sep=1000ms triangle  interval=3 ❌
+    [   2/236] iv=-10st base=E4   sep= 500ms synth_lead  interval=3 ❌
+    [   3/236] iv=-10st base=C2   sep= 200ms sawtooth  interval=3 ❌
+    [   4/236] iv= -1st base=F#3  sep= 500ms flute  interval=2 ❌
+    [   5/236] iv=-10st base=E6   sep=1000ms guitar  interval=3 ❌
+    [   6/236] iv=-10st base=C4   sep=2000ms flute  interval=3 ❌
+    [   7/236] iv=-10st base=A4   sep=1000ms sine  interval=3 ❌
+    [   8/236] iv= -1st base=C4   sep=2000ms piano  interval=0 ❌
+    [   9/236] iv= -1st base=C2   sep=1000ms sine  interval=-5 ❌
+    [  10/236] iv= -1st base=F#1  sep= 200ms triangle  interval=7 ❌
+    [  11/236] iv= -1st base=A4   sep=2000ms synth_pad  interval=7 ❌
+    [  12/236] iv=-10st base=C3   sep=2000ms square  interval=5 ❌
+    [  13/236] iv=-10st base=F#3  sep=2000ms guitar  interval=-5 ❌
+    [  14/236] iv=-10st base=G2   sep=2000ms sine  interval=-5 ❌
+    [  15/236] iv=-10st base=G5   sep=2000ms synth_pad  interval=3 ❌
+    [  16/236] iv= -1st base=G5   sep=1000ms square  interval=5 ❌
+    [  17/236] iv=-10st base=F#1  sep= 200ms cello  interval=3 ❌
+    [  18/236] iv= -1st base=E6   sep=2000ms voice  interval=3 ❌
+    [  19/236] iv=-11st base=C3   sep=1000ms organ  interval=3 ❌
+    [  20/236] iv=-11st base=F#1  sep=2000ms synth_pad  interval=3 ❌
+    [  21/236] iv= -1st base=C3   sep=1000ms flute  interval=0 ❌
+    [  22/236] iv=-11st base=F#3  sep=1000ms voice  interval=2 ❌
+    [  23/236] iv=-11st base=E4   sep= 500ms sine  interval=3 ❌
+    [  24/236] iv=-11st base=A4   sep= 200ms electric_keyboard  interval=3 ❌
+    [  25/236] iv=-11st base=C2   sep=2000ms cello  interval=3 ❌
+    [  26/236] iv=-12st base=F#3  sep=1000ms triangle  interval=3 ❌
+    [  27/236] iv=-11st base=C4   sep=2000ms trumpet  interval=-5 ❌
+    [  28/236] iv=-11st base=G2   sep= 200ms flute  interval=3 ❌
+    [  29/236] iv=-12st base=C2   sep=2000ms piano  interval=3 ❌
+    [  30/236] iv=-12st base=G2   sep=2000ms guitar  interval=5 ❌
+    [  31/236] iv=-12st base=E4   sep= 500ms violin  interval=2 ❌
+    [  32/236] iv=-11st base=G5   sep= 200ms cello  interval=0 ❌
+    [  33/236] iv=-12st base=C3   sep=1000ms clarinet  interval=3 ❌
+    [  34/236] iv= -1st base=G2   sep=1000ms trumpet  interval=3 ❌
+    [  35/236] iv=-12st base=A4   sep= 200ms triangle  interval=3 ❌
+    [  36/236] iv=-11st base=E6   sep=2000ms clarinet  interval=5 ❌
+    [  37/236] iv=-12st base=G5   sep=2000ms oboe  interval=3 ❌
+    [  38/236] iv=-12st base=C4   sep=2000ms square  interval=5 ❌
+    [  39/236] iv=-12st base=E6   sep= 200ms oboe  interval=3 ❌
+    [  40/236] iv= -2st base=C2   sep=2000ms sawtooth  interval=3 ❌
+    [  41/236] iv= -2st base=C3   sep= 500ms synth_pad  interval=3 ❌
+    [  42/236] iv= -2st base=G2   sep= 500ms organ  interval=3 ❌
+    [  43/236] iv= -2st base=F#1  sep=2000ms trumpet  interval=3 ❌
+    [  44/236] iv= -2st base=E6   sep= 200ms oboe  interval=5 ❌
+    [  45/236] iv= -2st base=A4   sep= 500ms synth_pad  interval=5 ❌
+    [  46/236] iv= -2st base=C4   sep= 200ms violin  interval=3 ❌
+    [  47/236] iv= -2st base=E4   sep= 200ms square  interval=3 ❌
+    [  48/236] iv= -3st base=G2   sep= 500ms square  interval=3 ❌
+    [  49/236] iv= -3st base=C3   sep=2000ms sawtooth  interval=4 ❌
+    [  50/236] iv= -3st base=F#3  sep=1000ms flute  interval=3 ❌
+    [  51/236] iv= -3st base=F#1  sep=2000ms voice  interval=3 ❌
+    [  52/236] iv= -3st base=E6   sep= 500ms violin  interval=3 ❌
+    [  53/236] iv= -3st base=C4   sep=1000ms trombone  interval=2 ❌
+    [  54/236] iv= -3st base=G5   sep= 500ms triangle  interval=3 ❌
+    [  55/236] iv= -3st base=E4   sep= 200ms square  interval=5 ❌
+    [  56/236] iv= -3st base=A4   sep=2000ms flute  interval=2 ❌
+    [  57/236] iv= -3st base=C2   sep= 500ms guitar  interval=3 ❌
+    [  58/236] iv= -4st base=C3   sep= 500ms electric_keyboard  interval=5 ❌
+    [  59/236] iv= -4st base=F#1  sep=2000ms trumpet  interval=3 ❌
+    [  60/236] iv= -4st base=G2   sep= 500ms oboe  interval=3 ❌
+    [  61/236] iv= -4st base=F#3  sep=1000ms oboe  interval=0 ❌
+    [  62/236] iv= -2st base=F#3  sep=2000ms triangle  interval=3 ❌
+    [  63/236] iv= -4st base=G5   sep=1000ms square  interval=3 ❌
+    [  64/236] iv= -4st base=E6   sep=2000ms electric_keyboard  interval=3 ❌
+    [  65/236] iv= -4st base=C2   sep= 200ms organ  interval=3 ❌
+    [  66/236] iv=-12st base=F#1  sep=2000ms trumpet  interval=-5 ❌
+    [  67/236] iv= -2st base=G5   sep=2000ms trombone  interval=4 ❌
+    [  68/236] iv= -5st base=F#1  sep= 200ms synth_pad  interval=3 ❌
+    [  69/236] iv= -4st base=A4   sep= 200ms trumpet  interval=7 ❌
+    [  70/236] iv= -4st base=E4   sep= 500ms guitar  interval=3 ❌
+    [  71/236] iv= -5st base=F#3  sep= 500ms violin  interval=3 ❌
+    [  72/236] iv= -5st base=C2   sep=1000ms flute  interval=3 ❌
+    [  73/236] iv= -5st base=G2   sep= 500ms electric_keyboard  interval=3 ❌
+    [  74/236] iv= -5st base=C3   sep=1000ms organ  interval=3 ❌
+    [  75/236] iv= -5st base=E4   sep=1000ms synth_pad  interval=3 ❌
+    [  76/236] iv= -4st base=C4   sep=1000ms oboe  interval=5 ❌
+    [  77/236] iv= -5st base=E6   sep=1000ms sawtooth  interval=2 ❌
+    [  78/236] iv= -6st base=F#1  sep=1000ms flute  interval=3 ❌
+    [  79/236] iv= -6st base=C4   sep= 200ms square  interval=3 ❌
+    [  80/236] iv= -6st base=C2   sep= 200ms sawtooth  interval=3 ❌
+    [  81/236] iv= -5st base=G5   sep=2000ms clarinet  interval=4 ❌
+    [  82/236] iv= -6st base=C3   sep=1000ms violin  interval=-5 ❌
+    [  83/236] iv= -5st base=A4   sep= 200ms flute  interval=3 ❌
+    [  84/236] iv= -5st base=C4   sep= 500ms trumpet  interval=0 ❌
+    [  85/236] iv= -6st base=G2   sep= 200ms clarinet  interval=3 ❌
+    [  86/236] iv= -6st base=G5   sep= 200ms clarinet  interval=2 ❌
+    [  87/236] iv= -6st base=F#3  sep= 200ms trumpet  interval=0 ❌
+    [  88/236] iv= -6st base=A4   sep= 500ms voice  interval=3 ❌
+    [  89/236] iv= -7st base=C2   sep= 500ms violin  interval=3 ❌
+    [  90/236] iv= -6st base=E6   sep=1000ms guitar  interval=3 ❌
+    [  91/236] iv= -7st base=F#1  sep=2000ms bass  interval=3 ❌
+    [  92/236] iv= -7st base=C3   sep= 200ms piano  interval=5 ❌
+    [  93/236] iv= -7st base=F#3  sep=2000ms trumpet  interval=2 ❌
+    [  94/236] iv= -6st base=E4   sep=1000ms guitar  interval=3 ❌
+    [  95/236] iv= -7st base=G5   sep= 500ms synth_pad  interval=4 ❌
+    [  96/236] iv= -7st base=G2   sep= 500ms organ  interval=2 ❌
+    [  97/236] iv= -8st base=F#1  sep= 500ms voice  interval=3 ❌
+    [  98/236] iv= -8st base=C2   sep= 500ms cello  interval=-5 ❌
+    [  99/236] iv= -7st base=E4   sep=2000ms flute  interval=2 ❌
+    [ 100/236] iv= -7st base=C4   sep=2000ms piano  interval=4 ❌
+    [ 101/236] iv= -7st base=A4   sep=2000ms synth_pad  interval=3 ❌
+    [ 102/236] iv= -8st base=G2   sep= 500ms voice  interval=3 ❌
+    [ 103/236] iv= -8st base=C4   sep= 200ms flute  interval=3 ❌
+    [ 104/236] iv= -8st base=C3   sep=1000ms violin  interval=5 ❌
+    [ 105/236] iv= -8st base=F#3  sep= 200ms oboe  interval=5 ❌
+    [ 106/236] iv= -8st base=A4   sep=1000ms synth_lead  interval=3 ❌
+    [ 107/236] iv= -8st base=E6   sep=2000ms square  interval=7 ❌
+    [ 108/236] iv= -9st base=F#1  sep= 200ms sawtooth  interval=3 ❌
+    [ 109/236] iv= -9st base=C4   sep= 200ms square  interval=3 ❌
+    [ 110/236] iv= -8st base=E4   sep=2000ms piano  interval=3 ❌
+    [ 111/236] iv= -9st base=G2   sep=2000ms piano  interval=3 ❌
+    [ 112/236] iv= -9st base=F#3  sep= 200ms cello  interval=3 ❌
+    [ 113/236] iv= +1st base=F#1  sep= 200ms trumpet  interval=3 ❌
+    [ 114/236] iv= -8st base=G5   sep=1000ms bass  interval=5 ❌
+    [ 115/236] iv= -9st base=E6   sep=2000ms synth_lead  interval=5 ❌
+    [ 116/236] iv= -9st base=C2   sep= 200ms triangle  interval=5 ❌
+    [ 117/236] iv= +1st base=G2   sep=1000ms sine  interval=3 ❌
+    [ 118/236] iv= -9st base=A4   sep= 500ms violin  interval=5 ❌
+    [ 119/236] iv= -9st base=E4   sep=1000ms violin  interval=2 ❌
+    [ 120/236] iv= +1st base=F#3  sep= 500ms synth_pad  interval=3 ❌
+    [ 121/236] iv= +1st base=C3   sep= 500ms triangle  interval=3 ❌
+    [ 122/236] iv=+10st base=F#1  sep= 200ms electric_keyboard  interval=3 ❌
+    [ 123/236] iv= +1st base=A4   sep= 200ms triangle  interval=3 ❌
+    [ 124/236] iv= +1st base=G5   sep=2000ms trombone  interval=7 ❌
+    [ 125/236] iv= -9st base=G5   sep=2000ms organ  interval=4 ❌
+    [ 126/236] iv= +1st base=E4   sep=2000ms clarinet  interval=0 ❌
+    [ 127/236] iv= +1st base=C4   sep= 200ms trumpet  interval=-5 ❌
+    [ 128/236] iv=+10st base=G2   sep= 200ms sine  interval=3 ❌
+    [ 129/236] iv=+10st base=F#3  sep= 200ms synth_lead  interval=3 ❌
+    [ 130/236] iv=+10st base=C2   sep= 200ms organ  interval=7 ❌
+    [ 131/236] iv=+10st base=C3   sep=2000ms trumpet  interval=4 ❌
+    [ 132/236] iv= +1st base=C2   sep= 500ms synth_pad  interval=3 ❌
+    [ 133/236] iv=+11st base=C2   sep=1000ms guitar  interval=3 ❌
+    [ 134/236] iv=+10st base=E4   sep= 500ms synth_lead  interval=3 ❌
+    [ 135/236] iv= -7st base=E6   sep=2000ms trumpet  interval=4 ❌
+    [ 136/236] iv=+10st base=A4   sep=2000ms triangle  interval=3 ❌
+    [ 137/236] iv=+10st base=C4   sep= 500ms electric_keyboard  interval=3 ❌
+    [ 138/236] iv=+11st base=F#1  sep= 500ms synth_lead  interval=3 ❌
+    [ 139/236] iv=+11st base=C3   sep=2000ms oboe  interval=4 ❌
+    [ 140/236] iv=+11st base=F#3  sep= 500ms electric_keyboard  interval=2 ❌
+    [ 141/236] iv=+11st base=C4   sep=1000ms synth_pad  interval=2 ❌
+    [ 142/236] iv=+11st base=A4   sep= 200ms sine  interval=3 ❌
+    [ 143/236] iv=+11st base=G5   sep=1000ms clarinet  interval=5 ❌
+    [ 144/236] iv=+11st base=E4   sep=2000ms synth_lead  interval=-5 ❌
+    [ 145/236] iv=+11st base=G2   sep=2000ms piano  interval=2 ❌
+    [ 146/236] iv=+10st base=G5   sep= 200ms trombone  interval=5 ❌
+    [ 147/236] iv= +1st base=E6   sep=2000ms cello  interval=3 ❌
+    [ 148/236] iv=+12st base=C2   sep= 200ms sine  interval=3 ❌
+    [ 149/236] iv=+12st base=F#1  sep= 500ms bass  interval=5 ❌
+    [ 150/236] iv=+12st base=G2   sep= 200ms triangle  interval=3 ❌
+    [ 151/236] iv=+12st base=C4   sep= 500ms flute  interval=4 ❌
+    [ 152/236] iv= -9st base=C3   sep= 200ms electric_keyboard  interval=3 ❌
+    [ 153/236] iv=+12st base=G5   sep= 500ms voice  interval=3 ❌
+    [ 154/236] iv= +2st base=C3   sep= 500ms square  interval=2 ✅
+    [ 155/236] iv=+12st base=E4   sep=1000ms sawtooth  interval=3 ❌
+    [ 156/236] iv=+12st base=A4   sep= 500ms flute  interval=5 ❌
+    [ 157/236] iv=+12st base=F#3  sep=1000ms trombone  interval=0 ❌
+    [ 158/236] iv= +2st base=C2   sep= 500ms square  interval=3 ❌
+    [ 159/236] iv= +2st base=G2   sep= 200ms bass  interval=3 ❌
+    [ 160/236] iv= +2st base=C4   sep= 200ms piano  interval=3 ❌
+    [ 161/236] iv=+12st base=C3   sep= 200ms oboe  interval=4 ❌
+    [ 162/236] iv= +2st base=G5   sep= 200ms synth_pad  interval=3 ❌
+    [ 163/236] iv= +2st base=E6   sep=1000ms electric_keyboard  interval=3 ❌
+    [ 164/236] iv= +2st base=F#1  sep= 200ms square  interval=3 ❌
+    [ 165/236] iv= +2st base=F#3  sep= 200ms synth_pad  interval=2 ✅
+    [ 166/236] iv= +2st base=A4   sep= 500ms bass  interval=3 ❌
+    [ 167/236] iv= +3st base=F#1  sep=2000ms trumpet  interval=5 ❌
+    [ 168/236] iv= +3st base=C2   sep=2000ms synth_lead  interval=3 ✅
+    [ 169/236] iv= +3st base=F#3  sep=1000ms synth_pad  interval=3 ✅
+    [ 170/236] iv= +3st base=G2   sep= 200ms cello  interval=2 ❌
+    [ 171/236] iv= +3st base=E4   sep=2000ms trombone  interval=-2 ❌
+    [ 172/236] iv= +4st base=C2   sep=2000ms organ  interval=3 ❌
+    [ 173/236] iv= +3st base=A4   sep=1000ms violin  interval=2 ❌
+    [ 174/236] iv= +3st base=C4   sep=2000ms guitar  interval=4 ❌
+    [ 175/236] iv= +3st base=C3   sep=1000ms guitar  interval=2 ❌
+    [ 176/236] iv= +4st base=G2   sep=1000ms triangle  interval=3 ❌
+    [ 177/236] iv= +2st base=E4   sep= 200ms piano  interval=3 ❌
+    [ 178/236] iv= +3st base=E6   sep= 200ms organ  interval=3 ✅
+    [ 179/236] iv= +4st base=F#1  sep= 200ms synth_lead  interval=3 ❌
+    [ 180/236] iv= +3st base=G5   sep=2000ms oboe  interval=0 ❌
+    [ 181/236] iv= +4st base=F#3  sep= 500ms flute  interval=3 ❌
+    [ 182/236] iv= +4st base=C3   sep=2000ms flute  interval=0 ❌
+    [ 183/236] iv= +5st base=F#1  sep=1000ms flute  interval=3 ❌
+    [ 184/236] iv= +4st base=C4   sep= 200ms square  interval=3 ❌
+    [ 185/236] iv= +4st base=E4   sep=1000ms clarinet  interval=3 ❌
+    [ 186/236] iv= +5st base=G2   sep= 200ms flute  interval=3 ❌
+    [ 187/236] iv= +4st base=E6   sep= 500ms synth_pad  interval=3 ❌
+    [ 188/236] iv= +4st base=A4   sep= 500ms sine  interval=3 ❌
+    [ 189/236] iv= +5st base=C2   sep=1000ms voice  interval=5 ✅
+    [ 190/236] iv= +5st base=G5   sep= 200ms sawtooth  interval=3 ❌
+    [ 191/236] iv= +5st base=C3   sep= 500ms sine  interval=3 ❌
+    [ 192/236] iv= +4st base=G5   sep=1000ms voice  interval=7 ❌
+    [ 193/236] iv= +5st base=E4   sep=1000ms flute  interval=3 ❌
+    [ 194/236] iv= +5st base=F#3  sep=1000ms square  interval=3 ❌
+    [ 195/236] iv= +5st base=A4   sep= 500ms square  interval=3 ❌
+    [ 196/236] iv= +6st base=C2   sep=2000ms synth_lead  interval=3 ❌
+    [ 197/236] iv= +6st base=F#1  sep=1000ms square  interval=3 ❌
+    [ 198/236] iv= +5st base=C4   sep=2000ms sawtooth  interval=3 ❌
+    [ 199/236] iv= +6st base=G2   sep= 200ms flute  interval=3 ❌
+    [ 200/236] iv= +6st base=C3   sep=2000ms trumpet  interval=0 ❌
+    [ 201/236] iv= +6st base=F#3  sep= 200ms bass  interval=3 ❌
+    [ 202/236] iv= +6st base=A4   sep= 500ms piano  interval=7 ❌
+    [ 203/236] iv= +6st base=C4   sep=1000ms guitar  interval=2 ❌
+    [ 204/236] iv= +5st base=E6   sep= 200ms clarinet  interval=5 ✅
+    [ 205/236] iv= +6st base=E4   sep=1000ms synth_pad  interval=2 ❌
+    [ 206/236] iv= +7st base=F#1  sep= 500ms bass  interval=3 ❌
+    [ 207/236] iv= +6st base=G5   sep=1000ms voice  interval=3 ❌
+    [ 208/236] iv= +6st base=E6   sep=2000ms voice  interval=3 ❌
+    [ 209/236] iv= +7st base=C2   sep=1000ms flute  interval=-5 ❌
+    [ 210/236] iv= +7st base=C4   sep= 200ms triangle  interval=3 ❌
+    [ 211/236] iv= +7st base=F#3  sep= 200ms guitar  interval=3 ❌
+    [ 212/236] iv= +7st base=G2   sep= 500ms bass  interval=3 ❌
+    [ 213/236] iv= +7st base=A4   sep=1000ms cello  interval=3 ❌
+    [ 214/236] iv= +7st base=E4   sep= 200ms triangle  interval=3 ❌
+    [ 215/236] iv= +7st base=G5   sep=1000ms oboe  interval=3 ❌
+    [ 216/236] iv= +7st base=C3   sep= 200ms cello  interval=3 ❌
+    [ 217/236] iv= +8st base=F#1  sep= 500ms cello  interval=3 ❌
+    [ 218/236] iv= +8st base=G2   sep= 500ms sawtooth  interval=3 ❌
+    [ 219/236] iv= +8st base=F#3  sep=2000ms sawtooth  interval=3 ❌
+    [ 220/236] iv= +8st base=C3   sep= 500ms triangle  interval=3 ❌
+    [ 221/236] iv= +7st base=E6   sep= 200ms cello  interval=3 ❌
+    [ 222/236] iv= +8st base=A4   sep=2000ms triangle  interval=3 ❌
+    [ 223/236] iv= +8st base=C2   sep=2000ms organ  interval=3 ❌
+    [ 224/236] iv= +8st base=C4   sep=2000ms violin  interval=2 ❌
+    [ 225/236] iv= +8st base=E4   sep=1000ms clarinet  interval=3 ❌
+    [ 226/236] iv= +9st base=C2   sep= 500ms synth_pad  interval=3 ❌
+    [ 227/236] iv= +9st base=G2   sep=1000ms organ  interval=3 ❌
+    [ 228/236] iv= +9st base=C4   sep=1000ms electric_keyboard  interval=3 ❌
+    [ 229/236] iv= +8st base=G5   sep=2000ms flute  interval=7 ❌
+    [ 230/236] iv= +9st base=F#3  sep= 200ms cello  interval=3 ❌
+    [ 231/236] iv= +8st base=E6   sep= 500ms guitar  interval=4 ❌
+    [ 232/236] iv= +9st base=A4   sep=1000ms organ  interval=3 ❌
+    [ 233/236] iv= +9st base=G5   sep=2000ms flute  interval=7 ❌
+    [ 234/236] iv= +9st base=C3   sep=2000ms piano  interval=2 ❌
+    [ 235/236] iv= +9st base=E4   sep=2000ms trumpet  interval=3 ❌
+    [ 236/236] iv= +9st base=F#1  sep= 200ms guitar  interval=3 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 236 of 35872 (stratified by '(signed_st, base_midi)', seed=42)
+  Stimuli (total)     : 236
+  Stimuli (condition) : 236  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        INTERVAL       3.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           236
+  prompt tokens                35,366
+  completion tokens               838
+  total tokens                 36,204
+  cost (USD)                $0.715020
+
+Results saved → results/run_20260506_072628/pitchbench_d6_sequence_dyad_interval/run_001_20260506_072826/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d8_sequence_pitches
+############################################################
+
+Experiment : pitchbench_d8_sequence_pitches
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 171
+  Sampling     : 171 of 285 (stratified by '(n_notes, source)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 171 items, max_workers=20
+    [   1/171] n=10 t=1 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   2/171] n=10 t=4 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   3/171] n=10 t=0 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   4/171] n=10 t=0 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   5/171] n=10 t=3 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   6/171] n=10 t=0 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   7/171] n=10 t=4 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   8/171] n=10 t=2 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   9/171] n=10 t=0 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  10/171] n=10 t=0 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  11/171] n=10 t=0 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  12/171] n=10 t=0 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  13/171] n=10 t=4 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  14/171] n=10 t=2 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  15/171] n=10 t=2 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  16/171] n=10 t=4 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  17/171] n=10 t=2 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  18/171] n=10 t=4 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  19/171] n=10 t=1 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  20/171] n=10 t=1 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  21/171] n=10 t=3 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  22/171] n=10 t=2 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  23/171] n=10 t=1 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  24/171] n=10 t=3 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  25/171] n=10 t=3 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  26/171] n=10 t=1 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  27/171] n=10 t=0 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  28/171] n=10 t=4 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  29/171] n=10 t=0 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  30/171] n=10 t=3 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  31/171] n=10 t=2 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  32/171] n=10 t=0 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  33/171] n=10 t=2 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  34/171] n=10 t=0 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  35/171] n=10 t=3 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  36/171] n=10 t=1 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  37/171] n=10 t=1 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  38/171] n=10 t=2 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  39/171] n=10 t=0 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  40/171] n=10 t=2 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  41/171] n=3 t=1 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  42/171] n=10 t=3 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  43/171] n=10 t=3 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  44/171] n=10 t=1 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  45/171] n=10 t=0 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  46/171] n=10 t=2 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  47/171] n=10 t=0 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  48/171] n=3 t=0 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  49/171] n=10 t=4 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  50/171] n=10 t=3 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  51/171] n=10 t=0 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  52/171] n=10 t=0 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  53/171] n=10 t=4 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  54/171] n=10 t=2 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  55/171] n=10 t=3 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  56/171] n=3 t=4 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  57/171] n=10 t=1 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  58/171] n=10 t=2 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  59/171] n=10 t=1 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  60/171] n=3 t=2 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  61/171] n=3 t=3 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  62/171] n=3 t=4 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  63/171] n=3 t=1 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  64/171] n=3 t=3 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  65/171] n=3 t=2 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  66/171] n=10 t=0 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  67/171] n=3 t=1 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  68/171] n=3 t=2 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  69/171] n=3 t=0 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  70/171] n=3 t=2 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  71/171] n=3 t=0 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  72/171] n=3 t=3 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  73/171] n=3 t=4 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  74/171] n=3 t=4 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  75/171] n=3 t=4 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  76/171] n=3 t=4 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  77/171] n=3 t=1 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  78/171] n=3 t=4 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  79/171] n=3 t=1 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  80/171] n=3 t=1 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  81/171] n=3 t=2 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  82/171] n=3 t=1 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  83/171] n=3 t=2 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  84/171] n=3 t=2 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  85/171] n=3 t=0 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  86/171] n=3 t=3 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  87/171] n=3 t=3 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  88/171] n=3 t=2 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  89/171] n=3 t=0 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  90/171] n=3 t=3 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  91/171] n=3 t=0 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  92/171] n=3 t=4 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  93/171] n=3 t=0 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  94/171] n=3 t=2 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  95/171] n=3 t=2 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  96/171] n=3 t=4 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  97/171] n=3 t=1 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  98/171] n=3 t=4 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  99/171] n=3 t=3 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 100/171] n=3 t=4 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 101/171] n=3 t=4 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 102/171] n=3 t=2 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 103/171] n=3 t=2 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 104/171] n=3 t=3 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 105/171] n=3 t=2 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 106/171] n=3 t=3 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 107/171] n=3 t=4 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 108/171] n=3 t=1 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 109/171] n=3 t=0 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 110/171] n=3 t=2 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 111/171] n=3 t=1 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 112/171] n=3 t=3 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 113/171] n=3 t=0 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 114/171] n=5 t=0 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 115/171] n=5 t=4 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 116/171] n=5 t=3 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 117/171] n=5 t=3 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 118/171] n=5 t=3 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 119/171] n=5 t=4 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 120/171] n=3 t=3 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 121/171] n=5 t=2 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 122/171] n=5 t=2 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 123/171] n=5 t=1 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 124/171] n=5 t=0 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 125/171] n=5 t=1 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 126/171] n=5 t=2 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 127/171] n=5 t=3 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 128/171] n=5 t=3 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 129/171] n=5 t=0 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 130/171] n=5 t=4 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 131/171] n=5 t=2 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 132/171] n=5 t=0 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 133/171] n=5 t=2 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 134/171] n=5 t=1 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 135/171] n=5 t=0 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 136/171] n=5 t=3 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 137/171] n=5 t=4 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 138/171] n=5 t=0 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 139/171] n=5 t=3 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 140/171] n=5 t=2 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 141/171] n=5 t=2 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 142/171] n=5 t=0 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 143/171] n=5 t=1 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 144/171] n=5 t=2 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 145/171] n=5 t=1 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 146/171] n=5 t=1 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 147/171] n=5 t=0 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 148/171] n=5 t=1 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 149/171] n=5 t=4 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 150/171] n=5 t=2 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 151/171] n=5 t=0 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 152/171] n=5 t=4 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 153/171] n=5 t=2 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 154/171] n=5 t=2 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 155/171] n=5 t=3 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 156/171] n=5 t=0 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 157/171] n=5 t=0 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 158/171] n=5 t=2 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 159/171] n=5 t=1 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 160/171] n=5 t=3 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 161/171] n=5 t=4 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 162/171] n=5 t=1 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 163/171] n=5 t=3 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 164/171] n=5 t=0 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 165/171] n=5 t=0 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 166/171] n=5 t=4 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 167/171] n=5 t=0 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 168/171] n=5 t=3 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 169/171] n=5 t=2 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 170/171] n=5 t=1 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 171/171] n=5 t=2 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 171 of 285 (stratified by '(n_notes, source)', seed=42)
+  Stimuli (total)     : 171
+  Stimuli (condition) : 171  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+   MIDI_SEQUENCE       0.0%
+    SPN_SEQUENCE       0.0%
+  DOREMI_SEQUENCE       0.0%
+     HZ_SEQUENCE       0.0%
+    ANY_SEQUENCE       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           684
+  prompt tokens               275,196
+  completion tokens             8,100
+  total tokens                283,296
+  cost (USD)                $8.780340
+
+Results saved → results/run_20260506_072628/pitchbench_d8_sequence_pitches/run_001_20260506_072838/results_openrouter_openai_gpt_4o_audio_preview.*
+All scalar metrics → results/run_20260506_072628/all_metrics_aggregate_20260506_072930.csv
+
+Session cost summary → results/run_20260506_072628/_sessions/20260506_072930/cost_summary.txt
+PitchBench session cost summary
+Timestamp : 2026-05-06T07:29:30.390081
+
+Experiment                                       calls        tokens      cost (USD)
+────────────────────────────────────────────────────────────────────────────────────
+pitchbench_d1_sequence_count_pitches               140        28,773       $0.868470
+pitchbench_d2_dyad_lower_higher_difference         132        15,586       $0.385870
+pitchbench_d3_contour_discrete                     180        21,247       $0.315520
+pitchbench_d4_contour_continuous                   160        30,800       $0.388400
+pitchbench_d5_sequence_ranking_by_pitch            120        27,819       $0.721980
+pitchbench_d6_sequence_dyad_interval               236        36,204       $0.715020
+pitchbench_d7a_pitch_with_reference                520        96,185       $2.364485
+pitchbench_d7b_pitch_with_reference_split          520       102,958       $2.251840
+pitchbench_d8_sequence_pitches                     684       283,296       $8.780340
+────────────────────────────────────────────────────────────────────────────────────
+TOTAL                                            2,692       642,868      $16.791925
+
+

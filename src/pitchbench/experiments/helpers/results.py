@@ -917,6 +917,51 @@ def save_accuracies_csv(
     return path
 
 
+def combine_accuracies_csvs(
+    run_dir: Path,
+    output_name: str = "accuracies_combined.csv",
+) -> Path | None:
+    """Combine all ``accuracies_*.csv`` files under ``run_dir`` into one CSV.
+
+    The source files are left untouched. The combined file is written at the
+    top level of ``run_dir`` and prepends a ``model`` column derived from each
+    source filename stem (``accuracies_<model>.csv``).
+    """
+    run_dir = Path(run_dir)
+    csv_paths = sorted(
+        p for p in run_dir.rglob("accuracies_*.csv")
+        if p.is_file() and p.name != output_name
+    )
+    if not csv_paths:
+        return None
+
+    output_path = run_dir / output_name
+    fieldnames: list[str] | None = None
+
+    with output_path.open("w", newline="") as out_f:
+        writer: csv.DictWriter | None = None
+        for csv_path in csv_paths:
+            model_name = csv_path.stem.removeprefix("accuracies_")
+            with csv_path.open(newline="") as in_f:
+                reader = csv.DictReader(in_f)
+                if reader.fieldnames is None:
+                    continue
+                if fieldnames is None:
+                    fieldnames = reader.fieldnames
+                    writer = csv.DictWriter(out_f, fieldnames=["model", *fieldnames])
+                    writer.writeheader()
+                elif reader.fieldnames != fieldnames:
+                    raise ValueError(
+                        f"Mismatched accuracies CSV header in {csv_path}; "
+                        f"expected {fieldnames}, got {reader.fieldnames}"
+                    )
+                assert writer is not None
+                for row in reader:
+                    writer.writerow({"model": model_name, **row})
+
+    return output_path
+
+
 def save_results(
     exp_name: str,
     model_name: str,
