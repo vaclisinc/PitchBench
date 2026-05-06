@@ -19,34 +19,34 @@ from pathlib import Path
 
 # Lines reproduced from each experiment's docstring (one-line summary).
 EXP_DESCRIPTIONS = {
-    "pitchbench_a1_pitch_id":              "Identify the pitch of a single tone.",
-    "pitchbench_a2_pitch_with_reference":  "Identify a target pitch given a named reference tone.",
-    "pitchbench_a3_pitch_by_duration":     "Pitch ID across very short to very long tone durations.",
-    "pitchbench_a4_pitch_with_vibrato":    "Pitch ID with vibrato (rate × depth sweep).",
-    "pitchbench_a5_pitch_slightly_off":    "Pitch ID when the tone is detuned by a fraction of a semitone.",
-    "pitchbench_b1_pitch_in_silence":      "Pitch ID when the tone is hidden in a long silent stimulus.",
-    "pitchbench_b2_onset_offset_single":   "Predict the onset/offset times of a single tone in silence.",
-    "pitchbench_b3_onset_offset_specific": "Predict onset/offset of a specific named target among distractors.",
-    "pitchbench_b4_pitch_at_time":         "Identify which pitch is sounding at a given timestamp.",
-    "pitchbench_b5_onset_offset_each":     "Predict onset/offset for every note in a sequence.",
-    "pitchbench_c1_dyad_interval":         "Identify the interval (in semitones) of a two-note dyad.",
-    "pitchbench_c2_chord_pitch_count":     "Count the number of simultaneous pitches in a chord.",
-    "pitchbench_c3_chord_pitch_id":        "List every pitch in a chord (dyad / triad / seventh).",
-    "pitchbench_c4_chord_quality":         "Classify chord quality (major, minor, dim, aug, 7th, sus, …).",
-    "pitchbench_d1_seq_pitch_count":       "Count the number of distinct pitches in a sequential passage.",
-    "pitchbench_d2_pitch_difference":      "Decide whether the second tone is higher or lower (cents-scale).",
-    "pitchbench_d3_interval_id_seq":       "Identify the interval between two sequentially played pitches.",
-    "pitchbench_d4_contour_discrete":      "Describe the up/down contour of a discrete-step melody.",
-    "pitchbench_d5_contour_continuous":    "Describe the contour of a continuous pitch glide.",
-    "pitchbench_d6_pitch_ranking":         "Rank N tones (small cents-scale differences) from low to high.",
-    "pitchbench_d7_seq_pitch_id":          "Transcribe every pitch in a melodic sequence.",
-    "pitchbench_e1_loudness":              "Pitch ID at varying loudness levels.",
-    "pitchbench_e2_audio_effects":         "Pitch ID under audio effects (reverb, EQ, clip, saturation, …).",
-    "pitchbench_e3_background_effects":    "Pitch ID embedded in real-world background noise (rain, crowd, …).",
-    "pitchbench_e4_harmonic_saturation":   "Pitch ID under increasing harmonic-saturation drive.",
-    "pitchbench_e5_time_stretch":          "Pitch ID with resample (pitch-shift) vs time-stretch (pitch preserved).",
-    "pitchbench_f1_melodic_line_id":       "Identify the pitch sequence of one part within a polyphonic mix.",
-    "pitchbench_f2_chorale_voice_id":      "Identify a target voice in a four-part Bach chorale rendering.",
+    "pitchbench_a1_single_pitch_id":              "Identify the pitch of a single tone.",
+    "pitchbench_d7_pitch_with_reference":  "Identify a target pitch given a named reference tone.",
+    "pitchbench_a3_single_pitch_by_duration":     "Pitch ID across very short to very long tone durations.",
+    "pitchbench_e5_vibrato":    "Pitch ID with vibrato (rate × depth sweep).",
+    "pitchbench_e6_slightly_off":    "Pitch ID when the tone is detuned by a fraction of a semitone.",
+    "pitchbench_b1_single_pitch_within_silence":      "Pitch ID when the tone is hidden in a long silent stimulus.",
+    "pitchbench_b3_timestamp_single_pitch":   "Predict the onset/offset times of a single tone in silence.",
+    "pitchbench_b4_timestamp_specific_pitch": "Predict onset/offset of a specific named target among distractors.",
+    "pitchbench_b2_pitch_at_timestamp":         "Identify which pitch is sounding at a given timestamp.",
+    "pitchbench_b5_timestamp_multiple_pitches":     "Predict onset/offset for every note in a sequence.",
+    "pitchbench_c2_chord_dyad_interval":         "Identify the interval (in semitones) of a two-note dyad.",
+    "pitchbench_c1_chord_count_pitches":     "Count the number of simultaneous pitches in a chord.",
+    "pitchbench_c4_chord_pitches":        "List every pitch in a chord (dyad / triad / seventh).",
+    "pitchbench_c3_chord_quality":         "Classify chord quality (major, minor, dim, aug, 7th, sus, …).",
+    "pitchbench_d1_sequence_count_pitches":       "Count the number of distinct pitches in a sequential passage.",
+    "pitchbench_d2_dyad_lower_higher_difference":      "Decide whether the second tone is higher or lower (cents-scale).",
+    "pitchbench_d6_sequence_dyad_interval":       "Identify the interval between two sequentially played pitches.",
+    "pitchbench_d3_contour_discrete":      "Describe the up/down contour of a discrete-step melody.",
+    "pitchbench_d4_contour_continuous":    "Describe the contour of a continuous pitch glide.",
+    "pitchbench_d5_sequence_ranking_by_pitch":         "Rank N tones (small cents-scale differences) from low to high.",
+    "pitchbench_d8_sequence_pitches":          "Transcribe every pitch in a melodic sequence.",
+    "pitchbench_a2_single_pitch_by_loudness":              "Pitch ID at varying loudness levels.",
+    "pitchbench_e1_audio_effects":         "Pitch ID under audio effects (reverb, EQ, clip, saturation, …).",
+    "pitchbench_e2_background":    "Pitch ID embedded in real-world background noise (rain, crowd, …).",
+    "pitchbench_e3_harmonic_saturation":   "Pitch ID under increasing harmonic-saturation drive.",
+    "pitchbench_e4_time_stretching":          "Pitch ID with resample (pitch-shift) vs time-stretch (pitch preserved).",
+    "pitchbench_f1_melodic_line_atonal":       "Identify the pitch sequence of one part within a polyphonic mix.",
+    "pitchbench_f2_melodic_line_tonal":      "Identify a target voice in a four-part Bach chorale rendering.",
 }
 
 
@@ -123,7 +123,7 @@ question (`prompt*`) asked of the model, and the ground-truth answer fields
 from datasets import load_dataset
 
 # Load one experiment (configurations match experiment IDs)
-ds = load_dataset("REPO_PLACEHOLDER", "pitchbench_a1_pitch_id", split="test")
+ds = load_dataset("REPO_PLACEHOLDER", "pitchbench_a1_single_pitch_id", split="test")
 print(ds[0]["audio"], ds[0]["prompt_midi"], ds[0]["midi"])
 
 # Iterate every experiment
