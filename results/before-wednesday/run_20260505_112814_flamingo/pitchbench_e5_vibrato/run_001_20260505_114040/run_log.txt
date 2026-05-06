@@ -1,0 +1,194 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 160 items, max_workers=1
+    [   1/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=250.0 ❌
+    [   2/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=25.0 ❌
+    [   3/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=25.0 ❌
+    [   4/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=25.0 ❌
+    [   5/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=25.0 ❌
+    [   6/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=25.0 ❌
+    [   7/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=250.0 ❌
+    [   8/160]  F#1 sine  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=25.0 ❌
+    [   9/160]   G2 sine  | midi: gt=43 pred=48 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.65 ❌
+    [  10/160]   G2 sine  | midi: gt=43 pred=45 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.8652 ❌
+    [  11/160]   G2 sine  | midi: gt=43 pred=48 ❌  | spn: gt=G2 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=105.26 ❌
+    [  12/160]   G2 sine  | midi: gt=43 pred=45 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.8652 ❌
+    [  13/160]   G2 sine  | midi: gt=43 pred=48 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.86 ❌
+    [  14/160]   G2 sine  | midi: gt=43 pred=45 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.8652 ❌
+    [  15/160]   G2 sine  | midi: gt=43 pred=48 ❌  | spn: gt=G2 pred=C2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.86 ❌
+    [  16/160]   G2 sine  | midi: gt=43 pred=45 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=107.8652 ❌
+    [  17/160]  F#3 sine  | midi: gt=54 pred=48 ❌  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.89 ❌
+    [  18/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  19/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.89 ❌
+    [  20/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  21/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=105.26 ❌
+    [  22/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  23/160]  F#3 sine  | midi: gt=54 pred=58 ❌  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=105.26 ❌
+    [  24/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  25/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.65 ❌
+    [  26/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  27/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  28/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  29/160]  F#3 sine  | midi: gt=54 pred=64 ❌  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=105.26 ❌
+    [  30/160]  F#3 sine  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=107.86 ❌
+    [  31/160]   E4 sine  | midi: gt=64 pred=64 ✅  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  32/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  33/160]   E4 sine  | midi: gt=64 pred=64 ✅  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  34/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  35/160]   E4 sine  | midi: gt=64 pred=64 ✅  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=64.0 ❌
+    [  36/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  37/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=605.0 ❌
+    [  38/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  39/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=250.0 ❌
+    [  40/160]   E4 sine  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=120.0 ❌
+    [  41/160]   G5 sine  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=1050.0 ❌
+    [  42/160]   G5 sine  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=415.3 ❌
+    [  43/160]   G5 sine  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=1050.0 ❌
+    [  44/160]   G5 sine  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=415.3 ❌
+    [  45/160]  F#1 sawtooth  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=F#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=1046.53 ❌
+    [  46/160]  F#1 sawtooth  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=1046.52 ❌
+    [  47/160]  F#1 sawtooth  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=1046.53 ❌
+    [  48/160]  F#1 sawtooth  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=1046.52 ❌
+    [  49/160]  F#1 sawtooth  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=107.8652439 ❌
+    [  50/160]  F#1 sawtooth  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=1046.52 ❌
+    [  51/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  52/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  53/160]   G2 sawtooth  | midi: gt=43 pred=45 ❌  | spn: gt=G2 pred=A2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=450.0 ❌
+    [  54/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  55/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=97.9989 pred=435.89 ❌
+    [  56/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  57/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=G2 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  58/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  59/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=G2 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  60/160]   G2 sawtooth  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [  61/160]  F#3 sawtooth  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#6 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  62/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  63/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#6 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  64/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  65/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  66/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  67/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  68/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  69/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=1058.47 ❌
+    [  70/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  71/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=435.89 ❌
+    [  72/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  73/160]  F#3 sawtooth  | midi: gt=54 pred=43 ❌  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=1046.53 ❌
+    [  74/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [  75/160]   E4 sawtooth  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=A7 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=480.0 ❌
+    [  76/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  77/160]   E4 sawtooth  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=1075.86 ❌
+    [  78/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  79/160]   E4 sawtooth  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=1250.0 ❌
+    [  80/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  81/160]   E4 sawtooth  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=E6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=659.3 ❌
+    [  82/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  83/160]   E4 sawtooth  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=E4 ✅  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  84/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  85/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=F#6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  86/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  87/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=F#6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=1075.83 ❌
+    [  88/160]   E4 sawtooth  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  89/160]   G5 sawtooth  | midi: gt=79 pred=69 ❌  | spn: gt=G5 pred=F6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1046.53 ❌
+    [  90/160]   G5 sawtooth  | midi: gt=79 pred=69 ❌  | spn: gt=G5 pred=A6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=450.0 ❌
+    [  91/160]   G5 sawtooth  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=450.0 ❌
+    [  92/160]   G5 sawtooth  | midi: gt=79 pred=69 ❌  | spn: gt=G5 pred=A6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=450.0 ❌
+    [  93/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  94/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  95/160]  F#1 square  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=450.0 ❌
+    [  96/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  97/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  98/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  99/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [ 100/160]  F#1 square  | midi: gt=30 pred=35 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [ 101/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [ 102/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [ 103/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [ 104/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [ 105/160]   G2 square  | midi: gt=43 pred=48 ❌  | spn: gt=G2 pred=A#2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=1046.53 ❌
+    [ 106/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [ 107/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=450.0 ❌
+    [ 108/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=450.0 ❌
+    [ 109/160]  F#3 square  | midi: gt=54 pred=65 ❌  | spn: gt=F#3 pred=F#6 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 110/160]  F#3 square  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 111/160]  F#3 square  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=480.0 ❌
+    [ 112/160]  F#3 square  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 113/160]  F#3 square  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=480.0 ❌
+    [ 114/160]  F#3 square  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 115/160]  F#3 square  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=sol# ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 116/160]  F#3 square  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 117/160]  F#3 square  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=1046.53 ❌
+    [ 118/160]  F#3 square  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=450.0 ❌
+    [ 119/160]   E4 square  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [ 120/160]   E4 square  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [ 121/160]   E4 square  | midi: gt=64 pred=65 ❌  | spn: gt=E4 pred=F#6 ❌  | doremi: gt=mi pred=sol# ❌  | hz: gt=329.6276 pred=659.3 ❌
+    [ 122/160]   E4 square  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [ 123/160]   E4 square  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=1046.53 ❌
+    [ 124/160]   E4 square  | midi: gt=64 pred=69 ❌  | spn: gt=E4 pred=A6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [ 125/160]   G5 square  | midi: gt=79 pred=69 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=1046.53 ❌
+    [ 126/160]   G5 square  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=F6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1058.47 ❌
+    [ 127/160]   G5 square  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1058.47 ❌
+    [ 128/160]   G5 square  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=F6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1058.47 ❌
+    [ 129/160]   G5 square  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1200.0 ❌
+    [ 130/160]   G5 square  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=F6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1058.47 ❌
+    [ 131/160]   G5 square  | midi: gt=79 pred=69 ❌  | spn: gt=G5 pred=F#6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=1034.52 ❌
+    [ 132/160]   G5 square  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=F6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1058.47 ❌
+    [ 133/160]   G2 triangle  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=435.0 ❌
+    [ 134/160]   G2 triangle  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=435.0 ❌
+    [ 135/160]   G2 triangle  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=435.0 ❌
+    [ 136/160]   G2 triangle  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=435.0 ❌
+    [ 137/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=C6 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=480.0 ❌
+    [ 138/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=480.0 ❌
+    [ 139/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=C6 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=1058.47 ❌
+    [ 140/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=480.0 ❌
+    [ 141/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=C6 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=480.0 ❌
+    [ 142/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=480.0 ❌
+    [ 143/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=C6 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=1075.83 ❌
+    [ 144/160]  F#3 triangle  | midi: gt=54 pred=63 ❌  | spn: gt=F#3 pred=F#4 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=480.0 ❌
+    [ 145/160]   E4 triangle  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=E6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=64.0 ❌
+    [ 146/160]   E4 triangle  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [ 147/160]   E4 triangle  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=480.0 ❌
+    [ 148/160]   E4 triangle  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [ 149/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=480.0 ❌
+    [ 150/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=480.0 ❌
+    [ 151/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1034.52 ❌
+    [ 152/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=480.0 ❌
+    [ 153/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1050.0 ❌
+    [ 154/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=480.0 ❌
+    [ 155/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=6750.0 ❌
+    [ 156/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=480.0 ❌
+    [ 157/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1058.43 ❌
+    [ 158/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=480.0 ❌
+    [ 159/160]   G5 triangle  | midi: gt=79 pred=69 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol# ❌  | hz: gt=783.9909 pred=1046.52 ❌
+    [ 160/160]   G5 triangle  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=783.9909 pred=480.0 ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : 80 of 640 (stratified by '(vibrato_rate_hz, vibrato_depth_cents)', seed=42)
+  Stimuli (total)     : 160
+  Stimuli (condition) : 80
+  Stimuli (baseline)  : 80
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI      26.2%      37.5%
+     SPN       3.8%       6.2%
+  DOREMI      35.0%      45.0%
+      HZ       0.0%       0.0%
+     ANY      53.8%      68.8%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → results/run_20260505_112814/pitchbench_a4_pitch_with_vibrato/run_001_20260505_114040/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_a5_pitch_slightly_off
+############################################################
+
+Experiment : pitchbench_a5_pitch_slightly_off
+Models     : audio_flamingo_next_instruct
+Stimuli    : 400
+  Sampling     : 200 of 3040 (stratified by '(midi, detune_hz)', seed=42)

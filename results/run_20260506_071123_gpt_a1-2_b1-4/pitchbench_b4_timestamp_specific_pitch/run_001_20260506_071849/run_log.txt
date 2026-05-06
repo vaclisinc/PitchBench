@@ -1,0 +1,156 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 120 items, max_workers=20
+    [   1/120]  F#1 flute  gt=n_gt=2  pred=n_pred=2  ❌
+    [   2/120]   E4 sine  gt=n_gt=2  pred=n_pred=2  ❌
+    [   3/120]   G5 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [   4/120]   G5 sine  gt=n_gt=2  pred=n_pred=2  ❌
+    [   5/120]   C4 triangle  gt=n_gt=2  pred=n_pred=2  ❌
+    [   6/120]   G5 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [   7/120]   C2 bass  gt=n_gt=2  pred=n_pred=2  ❌
+    [   8/120]   E6 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [   9/120]   A4 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  10/120]   G2 guitar  gt=n_gt=2  pred=n_pred=2  ❌
+    [  11/120]   C3 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  12/120]   E6 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [  13/120]   C4 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  14/120]   A4 sine  gt=n_gt=2  pred=n_pred=2  ❌
+    [  15/120]   C3 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  16/120]   E6 cello  gt=n_gt=2  pred=n_pred=2  ❌
+    [  17/120]   G5 clarinet  gt=n_gt=2  pred=n_pred=2  ❌
+    [  18/120]   G2 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  19/120]   E6 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  20/120]   E6 violin  gt=n_gt=2  pred=n_pred=2  ❌
+    [  21/120]   E4 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  22/120]   C3 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [  23/120]   E4 sine  gt=n_gt=2  pred=n_pred=2  ❌
+    [  24/120]   C3 organ  gt=n_gt=2  pred=n_pred=2  ❌
+    [  25/120]   E4 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  26/120]   E6 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [  27/120]  F#1 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  28/120]   E4 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  29/120]   E6 cello  gt=n_gt=2  pred=n_pred=2  ❌
+    [  30/120]  F#3 oboe  gt=n_gt=2  pred=n_pred=2  ❌
+    [  31/120]  F#1 bass  gt=n_gt=2  pred=n_pred=2  ❌
+    [  32/120]   C2 flute  gt=n_gt=2  pred=n_pred=2  ❌
+    [  33/120]   A4 clarinet  gt=n_gt=2  pred=n_pred=2  ❌
+    [  34/120]   C2 sine  gt=n_gt=2  pred=n_pred=2  ❌
+    [  35/120]  F#3 bass  gt=n_gt=2  pred=n_pred=2  ❌
+    [  36/120]  F#1 piano  gt=n_gt=2  pred=n_pred=2  ❌
+    [  37/120]   G5 clarinet  gt=n_gt=2  pred=n_pred=2  ❌
+    [  38/120]   C3 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [  39/120]   C2 flute  gt=n_gt=2  pred=n_pred=2  ❌
+    [  40/120]   A4 trumpet  gt=n_gt=2  pred=n_pred=2  ❌
+    [  41/120]   E6 triangle  gt=n_gt=2  pred=n_pred=2  ❌
+    [  42/120]   C2 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  43/120]   E4 trumpet  gt=n_gt=2  pred=n_pred=2  ❌
+    [  44/120]   C4 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  45/120]   G5 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [  46/120]   E4 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  47/120]  F#3 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  48/120]   C2 sawtooth  gt=n_gt=2  pred=n_pred=2  ❌
+    [  49/120]   A4 oboe  gt=n_gt=2  pred=n_pred=2  ❌
+    [  50/120]   G5 trumpet  gt=n_gt=2  pred=n_pred=2  ❌
+    [  51/120]   E4 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [  52/120]   A4 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  53/120]   A4 guitar  gt=n_gt=2  pred=n_pred=2  ❌
+    [  54/120]   C3 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  55/120]  F#1 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  56/120]  F#3 bass  gt=n_gt=2  pred=n_pred=2  ❌
+    [  57/120]   E4 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  58/120]   C2 triangle  gt=n_gt=2  pred=n_pred=2  ❌
+    [  59/120]   C4 flute  gt=n_gt=2  pred=n_pred=2  ❌
+    [  60/120]  F#1 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  61/120]   C2 organ  gt=n_gt=2  pred=n_pred=2  ❌
+    [  62/120]   A4 organ  gt=n_gt=2  pred=n_pred=2  ❌
+    [  63/120]   G2 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  64/120]   A4 sawtooth  gt=n_gt=2  pred=n_pred=2  ❌
+    [  65/120]   E6 piano  gt=n_gt=2  pred=n_pred=2  ❌
+    [  66/120]   C2 sawtooth  gt=n_gt=2  pred=n_pred=2  ❌
+    [  67/120]   E6 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  68/120]  F#3 flute  gt=n_gt=2  pred=n_pred=2  ❌
+    [  69/120]   G5 bass  gt=n_gt=2  pred=n_pred=2  ❌
+    [  70/120]  F#1 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [  71/120]   G5 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  72/120]   C4 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  73/120]   E6 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  74/120]   A4 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  75/120]   G2 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  76/120]  F#1 square  gt=n_gt=2  pred=n_pred=2  ❌
+    [  77/120]   C2 flute  gt=n_gt=2  pred=n_pred=2  ❌
+    [  78/120]   E4 oboe  gt=n_gt=2  pred=n_pred=2  ❌
+    [  79/120]   C3 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  80/120]   C3 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [  81/120]   C2 piano  gt=n_gt=2  pred=n_pred=2  ❌
+    [  82/120]   C2 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [  83/120]  F#1 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  84/120]  F#3 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  85/120]   E6 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [  86/120]  F#3 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [  87/120]   C4 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  88/120]   G5 guitar  gt=n_gt=2  pred=n_pred=2  ❌
+    [  89/120]   G5 sawtooth  gt=n_gt=2  pred=n_pred=2  ❌
+    [  90/120]   E4 cello  gt=n_gt=2  pred=n_pred=2  ❌
+    [  91/120]   G2 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  92/120]   C4 bass  gt=n_gt=2  pred=n_pred=2  ❌
+    [  93/120]   C3 piano  gt=n_gt=2  pred=n_pred=2  ❌
+    [  94/120]   G2 guitar  gt=n_gt=2  pred=n_pred=2  ❌
+    [  95/120]   G5 oboe  gt=n_gt=2  pred=n_pred=2  ❌
+    [  96/120]   E4 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [  97/120]   C3 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [  98/120]   A4 trombone  gt=n_gt=2  pred=n_pred=2  ❌
+    [  99/120]  F#3 sawtooth  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 100/120]   E6 guitar  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 101/120]   C3 trumpet  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 102/120]   G2 organ  gt=n_gt=2  pred=n_pred=2  ✅
+    [ 103/120]   C4 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 104/120]   C2 piano  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 105/120]   G5 guitar  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 106/120]   E4 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 107/120]   G5 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 108/120]   E4 synth_pad  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 109/120]  F#1 trumpet  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 110/120]   G5 sine  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 111/120]  F#3 electric_keyboard  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 112/120]   C3 voice  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 113/120]   C4 organ  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 114/120]   E4 sawtooth  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 115/120]   A4 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 116/120]  F#1 trumpet  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 117/120]   C2 clarinet  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 118/120]   G2 clarinet  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 119/120]   A4 violin  gt=n_gt=2  pred=n_pred=2  ❌
+    [ 120/120]   A4 cello  gt=n_gt=2  pred=n_pred=2  ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 120 of 2280 (stratified by '(target_pos, n_distractors, duration_ms)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.8%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                82,340
+  completion tokens             1,406
+  total tokens                 83,746
+  cost (USD)                $2.919910
+
+Results saved → results/run_20260506_071123/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_071849/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_b5_timestamp_multiple_pitches
+############################################################
+
+Experiment : pitchbench_b5_timestamp_multiple_pitches
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 120
+  Sampling     : 120 of 456 (stratified by '(rhythm, n_notes, duration_ms)', seed=42)

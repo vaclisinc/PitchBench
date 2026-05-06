@@ -1,0 +1,94 @@
+Experiment : pitchbench_b2_onset_offset_single
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-05T12:27:05.395325
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : timing
+tolerance_ms : 250
+primary_filter_set : False
+record_extras : ['midi', 'duration_ms', 'pos_ms']
+sample_n   : 80
+sample_seed : 42
+total_available : 3040
+stratified_by : (pos_ms, duration_ms)
+
+SUMMARY
+==================================================
+  Sampling     : 80 of 3040 (stratified by '(pos_ms, duration_ms)', seed=42)
+  Stimuli (total)     : 80
+  Stimuli (condition) : 80  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+== Marginal accuracy ==
+
+duration_ms     correct    n
+──────────────  ───────  ────
+1000              0.00%    40
+5000              0.00%    40
+
+midi            correct    n
+──────────────  ───────  ────
+30                0.00%     8
+36                0.00%    10
+43                0.00%     4
+48                0.00%     7
+54                0.00%     5
+60                0.00%     5
+64                0.00%    10
+69                0.00%    11
+79                0.00%     9
+88                0.00%    11
+
+source          correct    n
+──────────────  ───────  ────
+bass              0.00%     5
+cello             0.00%     3
+clarinet          0.00%     3
+electric_keyboard    0.00%     8
+flute             0.00%     6
+guitar            0.00%     2
+oboe              0.00%     3
+organ             0.00%     3
+piano             0.00%     2
+sawtooth          0.00%     3
+sine              0.00%     5
+square            0.00%    10
+synth_lead        0.00%     5
+synth_pad         0.00%     3
+triangle          0.00%     3
+trombone          0.00%     6
+trumpet           0.00%     3
+violin            0.00%     1
+voice             0.00%     6
+
+source_type     correct    n
+──────────────  ───────  ────
+instrument        0.00%    59
+waveform          0.00%    21
+
+pos_ms          correct    n
+──────────────  ───────  ────
+2000              0.00%    10
+7000              0.00%    10
+14000             0.00%    10
+22000             0.00%    10
+27000             0.00%    10
+41000             0.00%    10
+47000             0.00%    10
+53000             0.00%    10
+
+
+LLM USAGE
+==================================================
+  calls                            80
+  prompt tokens               126,161
+  completion tokens             9,893
+  total tokens                136,054
+  cost (USD)                $0.371038

@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-05-06T07:30:09.756354",
+  "experiments": {
+    "pitchbench_f1_melodic_line_atonal": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 520,
+        "prompt_tokens": 118532,
+        "completion_tokens": 9472,
+        "total_tokens": 128004,
+        "cached_tokens": 0,
+        "cost_usd": 1.85355,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_f2_melodic_line_tonal": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 640,
+        "prompt_tokens": 210200,
+        "completion_tokens": 30025,
+        "total_tokens": 240225,
+        "cached_tokens": 0,
+        "cost_usd": 5.56575,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 1160,
+  "total_tokens": 368229,
+  "total_cost_usd": 7.4193
+}

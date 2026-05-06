@@ -1,0 +1,2447 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-05T12:23:13.117602",
+    "argv": [
+      ".venv/bin/pitchbench",
+      "all",
+      "--models",
+      "openrouter/openai/gpt-4o-audio-preview"
+    ],
+    "git_commit": "29bd3055db72f1762f3fb0bdf423a65a228c984d",
+    "git_dirty": true,
+    "model_name": "openrouter/openai/gpt-4o-audio-preview",
+    "model_info": {
+      "model": "openrouter/openai/gpt-4o-audio-preview",
+      "checkpoint": "openrouter",
+      "provider": "openrouter",
+      "openrouter_model_id": "openai/gpt-4o-audio-preview"
+    },
+    "task_type": "interval",
+    "headline_metrics": [
+      "interval"
+    ],
+    "primary_filter_set": false,
+    "record_extras": [
+      "duration_ms",
+      "same_instrument",
+      "root_midi",
+      "interval_st"
+    ],
+    "sample_n": 120,
+    "sample_seed": 42,
+    "total_available": 8816,
+    "stratified_by": "(interval_st, same_instrument)",
+    "usage": {
+      "calls": 120,
+      "prompt_tokens": 8520,
+      "completion_tokens": 2453,
+      "total_tokens": 10973,
+      "cached_tokens": 0,
+      "cost_usd": 0.18983
+    }
+  },
+  "summary": {
+    "total": 120,
+    "condition_n": 120,
+    "accuracy": {
+      "n": 120,
+      "interval": 0.0417
+    },
+    "marginals": {
+      "duration_ms": {
+        "5000": {
+          "n": 66,
+          "interval_correct": 0.0606
+        },
+        "1000": {
+          "n": 54,
+          "interval_correct": 0.0185
+        }
+      },
+      "source": {
+        "flute+sawtooth": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "flute+guitar": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "flute+sine": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "cello+violin": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "voice+bass": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "guitar": {
+          "n": 7,
+          "interval_correct": 0.0
+        },
+        "electric_keyboard": {
+          "n": 6,
+          "interval_correct": 0.0
+        },
+        "triangle": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "voice": {
+          "n": 4,
+          "interval_correct": 0.0
+        },
+        "square": {
+          "n": 5,
+          "interval_correct": 0.0
+        },
+        "square+piano": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "clarinet+sawtooth": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "trumpet+cello": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "bass+cello": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "sawtooth+clarinet": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "sine": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "organ": {
+          "n": 4,
+          "interval_correct": 0.25
+        },
+        "triangle+bass": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "trombone+triangle": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "piano+sawtooth": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "synth_lead+synth_pad": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "organ+square": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "bass": {
+          "n": 4,
+          "interval_correct": 0.0
+        },
+        "oboe": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "violin": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "synth_lead": {
+          "n": 4,
+          "interval_correct": 0.25
+        },
+        "guitar+trombone": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "flute+organ": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "clarinet+sine": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "piano+bass": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "piano+voice": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "flute": {
+          "n": 4,
+          "interval_correct": 0.0
+        },
+        "piano": {
+          "n": 4,
+          "interval_correct": 0.0
+        },
+        "trombone": {
+          "n": 4,
+          "interval_correct": 0.0
+        },
+        "guitar+cello": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "bass+triangle": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "synth_lead+sawtooth": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "clarinet+synth_pad": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "flute+triangle": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "sawtooth": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "synth_pad+guitar": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "triangle+organ": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "cello+synth_lead": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "cello+voice": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "trumpet+triangle": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "clarinet+triangle": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "oboe+violin": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "oboe+guitar": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "clarinet+piano": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "voice+piano": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "trumpet+electric_keyboard": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "triangle+guitar": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "synth_lead+trombone": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "trombone+bass": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "synth_pad": {
+          "n": 3,
+          "interval_correct": 0.0
+        },
+        "electric_keyboard+cello": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "sawtooth+synth_pad": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "sawtooth+violin": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "cello": {
+          "n": 2,
+          "interval_correct": 0.0
+        },
+        "oboe+trombone": {
+          "n": 1,
+          "interval_correct": 1.0
+        },
+        "oboe+voice": {
+          "n": 1,
+          "interval_correct": 1.0
+        },
+        "cello+sawtooth": {
+          "n": 1,
+          "interval_correct": 1.0
+        },
+        "organ+trombone": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "triangle+oboe": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "violin+synth_lead": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "sine+trumpet": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "trumpet+bass": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "piano+organ": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "clarinet": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "bass+flute": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "electric_keyboard+clarinet": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "cello+piano": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "triangle+voice": {
+          "n": 1,
+          "interval_correct": 0.0
+        },
+        "guitar+flute": {
+          "n": 1,
+          "interval_correct": 0.0
+        }
+      },
+      "source_type": {
+        "instrument": {
+          "n": 110,
+          "interval_correct": 0.0455
+        },
+        "waveform": {
+          "n": 10,
+          "interval_correct": 0.0
+        }
+      },
+      "interval_name": {
+        "minor second": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "minor seventh": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "major seventh": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "octave": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "major second": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "minor third": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "major third": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "perfect fourth": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "tritone": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "perfect fifth": {
+          "n": 10,
+          "interval_correct": 0.5
+        },
+        "minor sixth": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "major sixth": {
+          "n": 10,
+          "interval_correct": 0.0
+        }
+      },
+      "interval_st": {
+        "1": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "10": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "11": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "12": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "2": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "3": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "4": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "5": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "6": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "7": {
+          "n": 10,
+          "interval_correct": 0.5
+        },
+        "8": {
+          "n": 10,
+          "interval_correct": 0.0
+        },
+        "9": {
+          "n": 10,
+          "interval_correct": 0.0
+        }
+      },
+      "same_instrument": {
+        "false": {
+          "n": 60,
+          "interval_correct": 0.05
+        },
+        "true": {
+          "n": 60,
+          "interval_correct": 0.0333
+        }
+      },
+      "root_midi": {
+        "48": {
+          "n": 9,
+          "interval_correct": 0.1111
+        },
+        "79": {
+          "n": 19,
+          "interval_correct": 0.0526
+        },
+        "64": {
+          "n": 14,
+          "interval_correct": 0.0
+        },
+        "88": {
+          "n": 6,
+          "interval_correct": 0.0
+        },
+        "30": {
+          "n": 12,
+          "interval_correct": 0.0
+        },
+        "43": {
+          "n": 10,
+          "interval_correct": 0.2
+        },
+        "69": {
+          "n": 11,
+          "interval_correct": 0.0
+        },
+        "60": {
+          "n": 12,
+          "interval_correct": 0.0
+        },
+        "54": {
+          "n": 13,
+          "interval_correct": 0.0
+        },
+        "36": {
+          "n": 14,
+          "interval_correct": 0.0714
+        }
+      }
+    },
+    "cost_usd": 0.18983,
+    "total_tokens": 10973
+  },
+  "results": [
+    {
+      "duration_ms": 5000,
+      "source": "flute+sawtooth",
+      "same_instrument": false,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "48+49",
+      "raw_response": "3",
+      "interval_pred": 3,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+Cs3_flute-sawtooth_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "flute+guitar",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "79+80",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Gs5_flute-guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "flute+sine",
+      "same_instrument": false,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "64+65",
+      "raw_response": "4",
+      "interval_pred": 4,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+F4_flute-sine_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "cello+violin",
+      "same_instrument": false,
+      "root_midi": 88,
+      "root_note": "E6",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "88+89",
+      "raw_response": "The two simultaneous musical notes are 6 semitones apart.",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E6+F6_cello-violin_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "voice+bass",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "30+31",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio carefully.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+G1_voice-bass_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "43+44",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+Gs2_guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "same_instrument": true,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "69+70",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes. Let me listen to the audio and identify the interval. \n\nPlease hold on for a moment while I process the audio.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+As4_electric_keyboard_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "triangle",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "60+61",
+      "raw_response": "8",
+      "interval_pred": 8,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+Cs4_triangle_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "voice",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "79+80",
+      "raw_response": "7",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Gs5_voice_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "square",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 1,
+      "interval_name": "minor second",
+      "midi_pair": "64+65",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch difference between them. Let me listen carefully and identify the interval.\n\nAfter listening, the two notes sound like they are 7 semitones apart, which corresponds to a perfect fifth interval. \n\nThe answer is 7.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+F4_square_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "square+piano",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "54+64",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+E4_square-piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "clarinet+sawtooth",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "54+64",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+E4_clarinet-sawtooth_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "trumpet+cello",
+      "same_instrument": false,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "69+79",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch difference between them. Let me listen carefully and identify the interval.\n\nAfter listening, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+G5_trumpet-cello_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "bass+cello",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "30+40",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio carefully. \n\nAfter listening, I can identify the interval between the two notes.\n\nThe two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+E2_bass-cello_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "sawtooth+clarinet",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "79+89",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch of each note and calculate the interval between them. Let me listen carefully and identify the interval.\n\nAfter analyzing the audio, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+F6_sawtooth-clarinet_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "sine",
+      "same_instrument": true,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "69+79",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+G5_sine_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "square",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "60+70",
+      "raw_response": "8",
+      "interval_pred": 8,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+As4_square_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "36+46",
+      "raw_response": "To determine the number of semitones between the two notes, I need to analyze the pitch difference. Let me listen carefully and identify the interval.\n\nAfter listening closely, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+As2_guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "60+70",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+As4_guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "organ",
+      "same_instrument": true,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 10,
+      "interval_name": "minor seventh",
+      "midi_pair": "48+58",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will listen to the audio and identify the interval.\n\nLet me listen to the audio first.\n\nAfter listening, the two notes form a perfect fifth interval, which is 7 semitones apart.\n\nThe answer is 7.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+As3_organ_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "triangle+bass",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "36+47",
+      "raw_response": "Let me listen to the audio carefully to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+B2_triangle-bass_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trombone+triangle",
+      "same_instrument": false,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "64+75",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+Ds5_trombone-triangle_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "piano+sawtooth",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "79+90",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Fs6_piano-sawtooth_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_lead+synth_pad",
+      "same_instrument": false,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "60+71",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+B4_synth_lead-synth_pad_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "organ+square",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "54+65",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio carefully.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+F4_organ-square_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "bass",
+      "same_instrument": true,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "54+65",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+F4_bass_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "oboe",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "79+90",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Fs6_oboe_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "43+54",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+Fs3_guitar_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "violin",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "64+75",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+Ds5_violin_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 11,
+      "interval_name": "major seventh",
+      "midi_pair": "64+75",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch of each note. Let me listen carefully and identify the interval.\n\nAfter listening, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+Ds5_synth_lead_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "guitar+trombone",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "79+91",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+G6_guitar-trombone_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "flute+organ",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "36+48",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+C3_flute-organ_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "clarinet+sine",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "54+66",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+Fs4_clarinet-sine_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "piano+bass",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "30+42",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio and calculate the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+Fs2_piano-bass_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "piano+voice",
+      "same_instrument": false,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "64+76",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio and calculate the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+E5_piano-voice_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "flute",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "79+91",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio and calculate the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+G6_flute_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "piano",
+      "same_instrument": true,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "48+60",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+C4_piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "36+48",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+C3_guitar_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "trombone",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "60+72",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+C5_trombone_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "square",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 12,
+      "interval_name": "octave",
+      "midi_pair": "79+91",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+G6_square_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "guitar+cello",
+      "same_instrument": false,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "48+50",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+D3_guitar-cello_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "bass+triangle",
+      "same_instrument": false,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "69+71",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch of each note and calculate the interval between them. Let me listen carefully and identify the interval. \n\nAfter listening, the two notes are 7 semitones apart. \n\nThe answer is 7.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+B4_bass-triangle_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_lead+sawtooth",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "54+56",
+      "raw_response": "7",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+Gs3_synth_lead-sawtooth_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "clarinet+synth_pad",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "36+38",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+D2_clarinet-synth_pad_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "flute+triangle",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "79+81",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes. Let me do that now.\n\nAfter analyzing the audio, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+A5_flute-triangle_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "bass",
+      "same_instrument": true,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "54+56",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+Gs3_bass_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "69+71",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+B4_guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "same_instrument": true,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "36+38",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio carefully.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+D2_sawtooth_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "voice",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "64+66",
+      "raw_response": "5",
+      "interval_pred": 5,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+Fs4_voice_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "oboe",
+      "same_instrument": true,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 2,
+      "interval_name": "major second",
+      "midi_pair": "69+71",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+B4_oboe_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "synth_pad+guitar",
+      "same_instrument": false,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "69+72",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio carefully.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+C5_synth_pad-guitar_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "triangle+organ",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "36+39",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+Ds2_triangle-organ_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "cello+synth_lead",
+      "same_instrument": false,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "64+67",
+      "raw_response": "5",
+      "interval_pred": 5,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+G4_cello-synth_lead_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "cello+voice",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "30+33",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes. Let me listen to the audio and identify the interval. \n\nAfter listening carefully, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+A1_cello-voice_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "trumpet+triangle",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "36+39",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio and calculate the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+Ds2_trumpet-triangle_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "flute",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "60+63",
+      "raw_response": "I\u2019m sorry, but I can\u2019t determine the number of semitones apart from the audio.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+Ds4_flute_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "same_instrument": true,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "30+33",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+A1_synth_lead_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "bass",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "79+82",
+      "raw_response": "4",
+      "interval_pred": 4,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+As5_bass_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trombone",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "43+46",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+As2_trombone_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "organ",
+      "same_instrument": true,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 3,
+      "interval_name": "minor third",
+      "midi_pair": "69+72",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+C5_organ_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "clarinet+triangle",
+      "same_instrument": false,
+      "root_midi": 88,
+      "root_note": "E6",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "88+92",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E6+Gs6_clarinet-triangle_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "oboe+violin",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "30+34",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+As1_oboe-violin_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "oboe+guitar",
+      "same_instrument": false,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "69+73",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+Cs5_oboe-guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "clarinet+piano",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "36+40",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+E2_clarinet-piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "voice+piano",
+      "same_instrument": false,
+      "root_midi": 88,
+      "root_note": "E6",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "88+92",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E6+Gs6_voice-piano_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "79+83",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+B5_electric_keyboard_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "flute",
+      "same_instrument": true,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "54+58",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch of each note and calculate the interval between them. Let me listen carefully and identify the pitches.\n\nPlease hold on for a moment while I process the audio.\n\nAfter analyzing the audio, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+As3_flute_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "square",
+      "same_instrument": true,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "30+34",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch of each note. Let me listen carefully and identify the interval. \n\nPlease hold on for a moment while I process the audio.\n\n[Processing audio...] \n\nThe two notes are a perfect fifth apart, which corresponds to 7 semitones. \n\nThe answer is 7.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+As1_square_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "same_instrument": true,
+      "root_midi": 88,
+      "root_note": "E6",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "88+92",
+      "raw_response": "7",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E6+Gs6_electric_keyboard_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "square",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 4,
+      "interval_name": "major third",
+      "midi_pair": "60+64",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+E4_square_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "trumpet+electric_keyboard",
+      "same_instrument": false,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "69+74",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+D5_trumpet-electric_keyboard_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "triangle+guitar",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "36+41",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes. Please hold on for a moment.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+F2_triangle-guitar_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "synth_lead+trombone",
+      "same_instrument": false,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "64+69",
+      "raw_response": "6",
+      "interval_pred": 6,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+A4_synth_lead-trombone_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trombone+bass",
+      "same_instrument": false,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "43+48",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+C3_trombone-bass_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "synth_pad+guitar",
+      "same_instrument": false,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "48+53",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+F3_synth_pad-guitar_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "piano",
+      "same_instrument": true,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "36+41",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+F2_piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trombone",
+      "same_instrument": true,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "54+59",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+B3_trombone_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trombone",
+      "same_instrument": true,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "30+35",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+B1_trombone_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "same_instrument": true,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "48+53",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+F3_electric_keyboard_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "same_instrument": true,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 5,
+      "interval_name": "perfect fourth",
+      "midi_pair": "36+41",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+F2_synth_pad_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "trumpet+cello",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "79+85",
+      "raw_response": "To determine the number of semitones between the two notes, I will analyze the audio.\n\nLet me listen to the audio and identify the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Cs6_trumpet-cello_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "electric_keyboard+cello",
+      "same_instrument": false,
+      "root_midi": 88,
+      "root_note": "E6",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "88+94",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E6+As6_electric_keyboard-cello_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "cello+synth_lead",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "54+60",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+C4_cello-synth_lead_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "sawtooth+synth_pad",
+      "same_instrument": false,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "60+66",
+      "raw_response": "5",
+      "interval_pred": 5,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+Fs4_sawtooth-synth_pad_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "sawtooth+violin",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "79+85",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch difference between them. Let me listen carefully and identify the interval.\n\nAfter listening, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Cs6_sawtooth-violin_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "bass",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "60+66",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch difference. Let me listen carefully and identify the interval.\n\nAfter listening, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+Fs4_bass_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "43+49",
+      "raw_response": "8",
+      "interval_pred": 8,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+Cs3_synth_lead_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "piano",
+      "same_instrument": true,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "48+54",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+Fs3_piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "cello",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "64+70",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+As4_cello_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "voice",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 6,
+      "interval_name": "tritone",
+      "midi_pair": "64+70",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+As4_voice_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "oboe+trombone",
+      "same_instrument": false,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "43+50",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 1,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+D3_oboe-trombone_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "oboe+voice",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "36+43",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 1,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+G2_oboe-voice_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "cello+sawtooth",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "79+86",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 1,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+D6_cello-sawtooth_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "organ+trombone",
+      "same_instrument": false,
+      "root_midi": 69,
+      "root_note": "A4",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "69+76",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/A4+E5_organ-trombone_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "triangle+oboe",
+      "same_instrument": false,
+      "root_midi": 88,
+      "root_note": "E6",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "88+95",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes. Let me process the audio to identify the interval.\n\nPlease hold on for a moment.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E6+B6_triangle-oboe_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "same_instrument": true,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "48+55",
+      "raw_response": "7",
+      "interval_pred": 7,
+      "interval_correct": 1,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+G3_synth_lead_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "64+71",
+      "raw_response": "To determine the number of semitones between the two notes, I will analyze the audio and identify the pitches.\n\nPlease hold on for a moment while I process the audio.\n\n(Processing...)",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+B4_synth_pad_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "organ",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "43+50",
+      "raw_response": "To determine the number of semitones between the two notes, I need to analyze the pitch difference. Let me listen carefully and calculate the interval.\n\nAfter analyzing the audio, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 1,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+D3_organ_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "64+71",
+      "raw_response": "I\u2019m sorry, but I can\u2019t determine the number of semitones just by listening to the audio.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+B4_electric_keyboard_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 7,
+      "interval_name": "perfect fifth",
+      "midi_pair": "60+67",
+      "raw_response": "I will listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+G4_synth_pad_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "violin+synth_lead",
+      "same_instrument": false,
+      "root_midi": 48,
+      "root_note": "C3",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "48+56",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes. Let me listen to the audio and identify the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C3+Gs3_violin-synth_lead_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "sine+trumpet",
+      "same_instrument": false,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "54+62",
+      "raw_response": "To determine the number of semitones between the two notes, I will analyze the audio and identify the interval between the two pitches.\n\nLet me listen to the audio and calculate the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+D4_sine-trumpet_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trumpet+bass",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "79+87",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Ds6_trumpet-bass_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "piano+organ",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "79+87",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes and calculate the interval between them. Let me do that now.\n\nPlease hold on for a moment while I process the audio.\n\n(Processing the audio...) \n\nThe two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Ds6_piano-organ_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "trombone+triangle",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "30+38",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+D2_trombone-triangle_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "43+51",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+Ds3_clarinet_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "guitar",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "79+87",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+Ds6_guitar_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "sawtooth",
+      "same_instrument": true,
+      "root_midi": 64,
+      "root_note": "E4",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "64+72",
+      "raw_response": "5",
+      "interval_pred": 5,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/E4+C5_sawtooth_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "same_instrument": true,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "54+62",
+      "raw_response": "I\u2019m going to listen to the audio to determine the interval between the two notes.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+D4_electric_keyboard_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "organ",
+      "same_instrument": true,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 8,
+      "interval_name": "minor sixth",
+      "midi_pair": "60+68",
+      "raw_response": "To determine the number of semitones between the two notes, I will analyze the audio.\n\nLet me listen to the audio and identify the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+Gs4_organ_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "bass+flute",
+      "same_instrument": false,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "79+88",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+E6_bass-flute_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "electric_keyboard+clarinet",
+      "same_instrument": false,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "30+39",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch difference between them. Let me listen carefully and identify the interval. \n\nPlease hold on for a moment while I process the audio.\n\nAfter listening, the two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+Ds2_electric_keyboard-clarinet_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "cello+piano",
+      "same_instrument": false,
+      "root_midi": 60,
+      "root_note": "C4",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "60+69",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch of each note. Let me listen carefully and identify the interval.\n\nPlease hold on for a moment while I process the audio. \n\nAfter listening, I can identify the interval between the two notes.\n\nThe two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C4+A4_cello-piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "triangle+voice",
+      "same_instrument": false,
+      "root_midi": 36,
+      "root_note": "C2",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "36+45",
+      "raw_response": "The two simultaneous musical notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/C2+A2_triangle-voice_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "guitar+flute",
+      "same_instrument": false,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "43+52",
+      "raw_response": "I\u2019m sorry, but I can\u2019t determine the number of semitones apart from the audio.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+E3_guitar-flute_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "voice",
+      "same_instrument": true,
+      "root_midi": 43,
+      "root_note": "G2",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "43+52",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G2+E3_voice_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 1000,
+      "source": "cello",
+      "same_instrument": true,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "30+39",
+      "raw_response": "To determine the number of semitones between two simultaneous musical notes, I need to analyze the pitch frequencies of both notes. Let me listen to the audio and identify the interval.",
+      "interval_pred": null,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+Ds2_cello_chord_1000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "piano",
+      "same_instrument": true,
+      "root_midi": 30,
+      "root_note": "F#1",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "30+39",
+      "raw_response": "5",
+      "interval_pred": 5,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs1+Ds2_piano_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "flute",
+      "same_instrument": true,
+      "root_midi": 54,
+      "root_note": "F#3",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "54+63",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "instrument",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/Fs3+Ds4_flute_chord_5000ms.wav"
+    },
+    {
+      "duration_ms": 5000,
+      "source": "triangle",
+      "same_instrument": true,
+      "root_midi": 79,
+      "root_note": "G5",
+      "interval_st": 9,
+      "interval_name": "major sixth",
+      "midi_pair": "79+88",
+      "raw_response": "The two notes are 7 semitones apart.",
+      "interval_pred": 7,
+      "interval_correct": 0,
+      "prompt_main": "This audio contains two simultaneous musical notes. How many semitones apart are they? Reply with ONLY the integer number of semitones.",
+      "source_type": "waveform",
+      "wav": "data/audio/pitchbench_c1_dyad_interval/G5+E6_triangle_chord_5000ms.wav"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+PitchBench session cost summary
+Timestamp : 2026-05-06T07:26:36.629439
+
+Experiment                              calls        tokens      cost (USD)
+───────────────────────────────────────────────────────────────────────────
+pitchbench_c1_chord_count_pitches         228        16,893       $0.300600
+pitchbench_c2_chord_dyad_interval         232        21,194       $0.351680
+pitchbench_c3_chord_quality               192        18,936       $0.269280
+pitchbench_c4_chord_pitches               800       103,471       $1.813210
+───────────────────────────────────────────────────────────────────────────
+TOTAL                                   1,452       160,494       $2.734770
+

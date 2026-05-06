@@ -1,0 +1,4090 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T07:32:30.483718",
+    "argv": [
+      ".venv/bin/pitchbench",
+      "all",
+      "--models",
+      "audio_flamingo_next_instruct"
+    ],
+    "git_commit": "75e459dd14de603cce07062e48a5bd8e65be560b",
+    "git_dirty": true,
+    "model_name": "audio_flamingo_next_instruct",
+    "model_info": {
+      "status": "ok",
+      "model": "nvidia/audio-flamingo-next-hf",
+      "checkpoint": "audio_flamingo_next_instruct",
+      "device": "cuda:0"
+    },
+    "task_type": "timing",
+    "tolerance_ms": 250,
+    "primary_filter_set": false,
+    "record_extras": [
+      "midi",
+      "n_distractors",
+      "target_pos",
+      "duration_ms"
+    ],
+    "sample_n": 120,
+    "sample_seed": 42,
+    "total_available": 2280,
+    "stratified_by": "(target_pos, n_distractors, duration_ms)",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 120,
+    "condition_n": 120,
+    "accuracy": {
+      "n": 120,
+      "correct": 0.0
+    },
+    "marginals": {
+      "duration_ms": {
+        "1000": {
+          "n": 60,
+          "correct": 0.0
+        },
+        "5000": {
+          "n": 60,
+          "correct": 0.0
+        }
+      },
+      "midi": {
+        "48": {
+          "n": 12,
+          "correct": 0.0
+        },
+        "79": {
+          "n": 15,
+          "correct": 0.0
+        },
+        "64": {
+          "n": 15,
+          "correct": 0.0
+        },
+        "88": {
+          "n": 13,
+          "correct": 0.0
+        },
+        "30": {
+          "n": 11,
+          "correct": 0.0
+        },
+        "43": {
+          "n": 8,
+          "correct": 0.0
+        },
+        "69": {
+          "n": 14,
+          "correct": 0.0
+        },
+        "60": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "36": {
+          "n": 14,
+          "correct": 0.0
+        },
+        "54": {
+          "n": 9,
+          "correct": 0.0
+        }
+      },
+      "source": {
+        "synth_lead": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "square": {
+          "n": 10,
+          "correct": 0.0
+        },
+        "sine": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "voice": {
+          "n": 8,
+          "correct": 0.0
+        },
+        "flute": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "guitar": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "electric_keyboard": {
+          "n": 12,
+          "correct": 0.0
+        },
+        "triangle": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "synth_pad": {
+          "n": 8,
+          "correct": 0.0
+        },
+        "cello": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "bass": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "clarinet": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "violin": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "organ": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "oboe": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "piano": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "trumpet": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "trombone": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "sawtooth": {
+          "n": 6,
+          "correct": 0.0
+        }
+      },
+      "source_type": {
+        "instrument": {
+          "n": 95,
+          "correct": 0.0
+        },
+        "waveform": {
+          "n": 25,
+          "correct": 0.0
+        }
+      },
+      "n_distractors": {
+        "5": {
+          "n": 60,
+          "correct": 0.0
+        },
+        "7": {
+          "n": 60,
+          "correct": 0.0
+        }
+      },
+      "abs_error_off": {
+        "54.162": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "95.589": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "96.534": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "88.793": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "44.436": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "67.914": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "79.602": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "98.95": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "93.685": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "96.59": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "63.999": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "91.879": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "79.087": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "63.82": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "104.997": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "91.756": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "90.264": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "70.046": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "56.883": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "92.836": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "96.371": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "97.988": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "57.814": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "99.196": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "64.301": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "30.432": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "67.805": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "98.796": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "97.874": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "82.163": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "85.592": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.933": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.998": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "95.772": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "101.348": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "91.37": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "91.789": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "92.971": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.993": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.06": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.179": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "41.285": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "86.66": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "9.168": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.489": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "10.808": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "72.285": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.671": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "9.008": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "41.935": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.821": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.287": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "41.608": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.03": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.048": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.271": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.336": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "80.061": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.108": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "10.998": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.251": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "9.049": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "85.358": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "79.559": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "11.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.798": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.011": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.641": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "37.43": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "12.152": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.623": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.001": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.134": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.02": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "57.523": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "41.432": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "11.636": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "10.709": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "105.594": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "47.82": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "45.986": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "22.214": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "61.758": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "71.306": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "91.902": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "55.092": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "49.408": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "52.281": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "68.981": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "29.683": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "35.693": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "83.499": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "78.906": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "53.824": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "74.71": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "57.923": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "76.121": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "80.313": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "21.781": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.664": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "63.966": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "80.744": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.101": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "61.619": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "35.154": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "92.418": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "65.161": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "5.217": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "47.711": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "56.954": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "60.342": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "36.23": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "70.768": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "47.516": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "23.729": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "77.791": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "66.211": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "80.654": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "abs_error_on": {
+        "52.862": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.389": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "95.234": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "85.493": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.136": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "66.614": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "79.602": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "97.85": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "92.485": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "95.49": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "66.699": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "92.579": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "79.787": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "66.52": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "107.897": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.556": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "93.064": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "72.046": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "59.583": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "95.736": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "93.071": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.688": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "56.514": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "97.896": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "63.001": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "29.132": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "66.505": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "97.696": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.574": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "78.863": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "87.592": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "97.833": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "46.698": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "98.672": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "105.048": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.17": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "94.589": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "96.971": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "49.893": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.76": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.079": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.985": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "85.56": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "7.868": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.489": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "9.508": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "71.185": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "37.771": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "11.708": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "45.935": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "53.721": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.187": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.608": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "42.03": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "52.948": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.171": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "6.964": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "83.761": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.008": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "12.298": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.051": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "7.749": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "85.358": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "76.259": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "12.3": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.798": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "48.911": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.341": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "40.23": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "14.852": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "7.923": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "39.701": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "43.034": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "42.02": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "60.423": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "44.332": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "14.336": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "13.409": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "104.494": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "46.52": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "44.686": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "20.914": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "60.658": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "70.106": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "88.602": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "53.792": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "48.108": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "51.081": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "71.681": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "32.383": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.393": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "86.399": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "81.806": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "56.524": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "78.41": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "60.723": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "80.121": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "81.013": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "20.481": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "93.564": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "62.666": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "80.444": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "93.001": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "60.319": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "33.854": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "91.218": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "63.961": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "7.517": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.411": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "59.754": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "63.242": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.93": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "73.668": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.216": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "26.429": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "79.791": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "68.211": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "83.854": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "iou": {
+        "0.0": {
+          "n": 118,
+          "correct": 0.0
+        },
+        "0.4065": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3387": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "prompt": {
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 12,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 15,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 15,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 13,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 11,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 8,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 14,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 14,
+          "correct": 0.0
+        },
+        "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.": {
+          "n": 9,
+          "correct": 0.0
+        }
+      }
+    },
+    "cost_usd": null,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "midi": 48,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@13838+1000-E6@14839+1000-A4@16461+1000-Fs3@17501+1000-E4@57633+1000-Fs1@58639+1000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 13.838,
+      "offset_s_gt": 14.838,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 52.862,
+      "abs_error_off": 54.162,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@211+1000-Fs1@1282+1000-C4@34766+1000-E4@35774+1000-A4@37048+1000-C3@38312+1000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.211,
+      "offset_s_gt": 1.211,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 94.389,
+      "abs_error_off": 95.589,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.20",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@2666+1000-C4@4477+1000-G5@48612+1000-A4@49878+1000-E6@51951+1000-G2@58708+1000_sine_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.666,
+      "offset_s_gt": 3.666,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.2,
+      "iou": 0.0,
+      "abs_error_on": 95.234,
+      "abs_error_off": 96.534,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@9207+1000-C4@30990+1000-E4@45575+1000-C2@50926+1000-Fs1@55822+1000-G5@57445+1000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 9.207,
+      "offset_s_gt": 10.207,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 85.493,
+      "abs_error_off": 88.793,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@3564+1000-E4@5331+1000-C4@32793+1000-C2@39255+1000-G2@40508+1000-A4@58811+1000_flute_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 3.564,
+      "offset_s_gt": 4.564,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 43.136,
+      "abs_error_off": 44.436,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@86+1000-C2@1641+1000-G5@46014+1000-E4@47089+1000-A4@48089+1000-Fs3@54441+1000_guitar_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.086,
+      "offset_s_gt": 1.086,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 66.614,
+      "abs_error_off": 67.914,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:38.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@17398+1000-E4@18521+1000-C3@20065+1000-G2@21319+1000-C4@23164+1000-C2@26632+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 17.398,
+      "offset_s_gt": 18.398,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 98.0,
+      "iou": 0.0,
+      "abs_error_on": 79.602,
+      "abs_error_off": 79.602,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@50+1000-C3@49934+1000-Fs3@50935+1000-Fs1@51956+1000-E6@52978+1000-G2@58977+1000_triangle_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.05,
+      "offset_s_gt": 1.05,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 97.85,
+      "abs_error_off": 98.95,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@2115+1000-Fs3@9020+1000-A4@12359+1000-E4@26536+1000-C2@50560+1000-E6@52246+1000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.115,
+      "offset_s_gt": 3.115,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 92.485,
+      "abs_error_off": 93.685,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@2410+1000-G2@4459+1000-C3@5844+1000-Fs3@19076+1000-E6@55109+1000-Fs1@58941+1000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.41,
+      "offset_s_gt": 3.41,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 95.49,
+      "abs_error_off": 96.59,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@1+5000-E4@9104+5000-G2@14111+5000-Fs1@42252+5000-E6@47377+5000-Fs3@55000+5000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.001,
+      "offset_s_gt": 5.001,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 66.699,
+      "abs_error_off": 63.999,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@2121+5000-E4@8493+5000-C3@14854+5000-G5@42367+5000-C2@47927+5000-Fs3@53985+5000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.121,
+      "offset_s_gt": 7.121,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 92.579,
+      "abs_error_off": 91.879,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@14913+5000-G2@21492+5000-Fs3@26546+5000-Fs1@40213+5000-A4@49963+5000-C4@54963+5000_cello_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.913,
+      "offset_s_gt": 19.913,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 79.787,
+      "abs_error_off": 79.087,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@180+5000-E4@8531+5000-C4@14047+5000-E6@19442+5000-C3@26653+5000-G5@48423+5000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.18,
+      "offset_s_gt": 5.18,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 66.52,
+      "abs_error_off": 63.82,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@3+5000-Fs3@5727+5000-G2@31945+5000-C4@41614+5000-E6@46831+5000-A4@54965+5000_bass_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.003,
+      "offset_s_gt": 5.003,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 107.897,
+      "abs_error_off": 104.997,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@44+5000-Fs1@5044+5000-C4@30164+5000-G2@35164+5000-A4@43017+5000-C2@53144+5000_clarinet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.044,
+      "offset_s_gt": 5.044,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 94.556,
+      "abs_error_off": 91.756,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@1536+5000-Fs1@6766+5000-C2@25118+5000-C4@30210+5000-Fs3@37873+5000-C3@51046+5000_sine_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 1.536,
+      "offset_s_gt": 6.536,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 93.064,
+      "abs_error_off": 90.264,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@24954+5000-C4@30008+5000-E6@35883+5000-Fs1@41152+5000-G5@49448+5000-Fs3@54511+5000_sine_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 24.954,
+      "offset_s_gt": 29.954,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 72.046,
+      "abs_error_off": 70.046,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@7117+5000-G5@12149+5000-E4@17153+5000-Fs1@22345+5000-C2@27372+5000-E6@43802+5000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.117,
+      "offset_s_gt": 12.117,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 59.583,
+      "abs_error_off": 56.883,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 5,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@2164+5000-A4@7233+5000-E4@12254+5000-G2@17265+5000-Fs1@49972+5000-Fs3@54980+5000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.164,
+      "offset_s_gt": 7.164,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 95.736,
+      "abs_error_off": 92.836,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@1629+1000-G5@2882+1000-C4@4117+1000-Fs3@5181+1000-A4@32455+1000-E4@33508+1000-C3@56871+1000-Fs1@58108+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 1.629,
+      "offset_s_gt": 2.629,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 93.071,
+      "abs_error_off": 96.371,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@12+1000-E4@1068+1000-C4@2135+1000-C3@3209+1000-A4@7209+1000-Fs1@8240+1000-Fs3@48513+1000-G5@58855+1000_violin_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.012,
+      "offset_s_gt": 1.012,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 94.688,
+      "abs_error_off": 97.988,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@10186+1000-C3@18831+1000-G5@19918+1000-C4@42533+1000-E4@43574+1000-A4@44783+1000-C2@45854+1000-Fs1@54834+1000_bass_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 10.186,
+      "offset_s_gt": 11.186,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 56.514,
+      "abs_error_off": 57.814,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.20",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@4+1000-Fs1@1013+1000-E6@20832+1000-A4@22488+1000-C4@29433+1000-Fs3@30462+1000-C2@31476+1000-G5@58999+1000_sine_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.004,
+      "offset_s_gt": 1.004,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.2,
+      "iou": 0.0,
+      "abs_error_on": 97.896,
+      "abs_error_off": 99.196,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@3699+1000-E6@7418+1000-E4@8586+1000-Fs3@9597+1000-C2@50501+1000-Fs1@52302+1000-G2@53312+1000-C4@58974+1000_organ_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 3.699,
+      "offset_s_gt": 4.699,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 63.001,
+      "abs_error_off": 64.301,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@17568+1000-E4@32649+1000-A4@36899+1000-C2@46848+1000-Fs3@47864+1000-E6@56478+1000-G2@57957+1000-C3@58997+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 17.568,
+      "offset_s_gt": 18.568,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 29.132,
+      "abs_error_off": 30.432,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@195+1000-G2@8398+1000-C2@9406+1000-C4@10423+1000-Fs3@11510+1000-G5@29569+1000-Fs1@30589+1000-E6@58874+1000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.195,
+      "offset_s_gt": 1.195,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 66.505,
+      "abs_error_off": 67.805,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@204+1000-G5@13766+1000-C3@15191+1000-E6@26766+1000-C4@29583+1000-C2@31596+1000-Fs1@32614+1000-Fs3@54641+1000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.204,
+      "offset_s_gt": 1.204,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 97.696,
+      "abs_error_off": 98.796,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@126+1000-C3@1361+1000-Fs1@9547+1000-Fs3@31410+1000-A4@44896+1000-C2@45903+1000-C4@46953+1000-G2@47958+1000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.126,
+      "offset_s_gt": 1.126,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 94.574,
+      "abs_error_off": 97.874,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 1000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@15837+1000-G5@17098+1000-Fs1@20469+1000-C3@27712+1000-A4@46084+1000-C2@49926+1000-Fs3@51160+1000-C4@52312+1000_cello_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 15.837,
+      "offset_s_gt": 16.837,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 78.863,
+      "abs_error_off": 82.163,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@9408+5000-E6@14408+5000-C2@19419+5000-Fs3@29187+5000-C3@34215+5000-G5@44566+5000-C4@49566+5000-G2@54602+5000_clarinet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 9.408,
+      "offset_s_gt": 14.408,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 87.592,
+      "abs_error_off": 85.592,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@67+5000-Fs1@5133+5000-C4@10247+5000-G5@16109+5000-C2@21297+5000-G2@26351+5000-E6@32342+5000-A4@38379+5000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.067,
+      "offset_s_gt": 5.067,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 97.833,
+      "abs_error_off": 94.933,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@1+5000-A4@6298+5000-C2@11331+5000-C4@16481+5000-E6@21483+5000-Fs1@29145+5000-G5@49063+5000-E4@54678+5000_oboe_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.001,
+      "offset_s_gt": 5.001,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 66.699,
+      "abs_error_off": 63.999,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@2+5000-C2@23619+5000-C3@28626+5000-E4@33629+5000-G5@38642+5000-G2@43646+5000-E6@49695+5000-Fs3@54990+5000_bass_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.002,
+      "offset_s_gt": 5.002,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 46.698,
+      "abs_error_off": 43.998,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@9228+5000-G5@19554+5000-G2@24785+5000-C3@29795+5000-E4@34795+5000-C4@39845+5000-Fs1@44873+5000-E6@50158+5000_flute_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 9.228,
+      "offset_s_gt": 14.228,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 98.672,
+      "abs_error_off": 95.772,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:49.70, 1:51.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@4652+5000-G5@13701+5000-Fs3@19290+5000-C3@24667+5000-A4@29687+5000-G2@44854+5000-C4@49956+5000-E4@54960+5000_sine_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 4.652,
+      "offset_s_gt": 9.652,
+      "onset_s_pred": 109.7,
+      "offset_s_pred": 111.0,
+      "iou": 0.0,
+      "abs_error_on": 105.048,
+      "abs_error_off": 101.348,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@2+5000-A4@9139+5000-Fs3@14147+5000-C3@19159+5000-C4@37673+5000-G5@42779+5000-E4@47785+5000-E6@52789+5000_piano_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.002,
+      "offset_s_gt": 5.002,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 46.698,
+      "abs_error_off": 43.998,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@430+5000-E4@5488+5000-C2@15236+5000-Fs1@34717+5000-Fs3@39943+5000-C3@44946+5000-A4@49965+5000-C4@54994+5000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.43,
+      "offset_s_gt": 5.43,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 94.17,
+      "abs_error_off": 91.37,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@11+5000-A4@5013+5000-E4@25490+5000-C3@32436+5000-C2@37436+5000-Fs3@42623+5000-C4@49966+5000-Fs1@54994+5000_clarinet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.011,
+      "offset_s_gt": 5.011,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 94.589,
+      "abs_error_off": 91.789,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "first",
+      "duration_ms": 5000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:38.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@29+5000-C3@5194+5000-C4@10206+5000-E6@15245+5000-Fs1@20920+5000-G5@25920+5000-Fs3@31368+5000-G2@36388+5000_trumpet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 0.029,
+      "offset_s_gt": 5.029,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 98.0,
+      "iou": 0.0,
+      "abs_error_on": 96.971,
+      "abs_error_off": 92.971,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@858+1000-G2@33787+1000-E6@35618+1000-C3@37617+1000-C4@45207+1000-C2@58007+1000_flute_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.007,
+      "offset_s_gt": 59.007,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 49.893,
+      "abs_error_off": 50.993,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@475+1000-Fs1@7621+1000-G2@9330+1000-A4@10952+1000-E4@12040+1000-E6@54940+1000_triangle_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.94,
+      "offset_s_gt": 55.94,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 39.76,
+      "abs_error_off": 43.06,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@1047+1000-C3@2248+1000-Fs3@3321+1000-G2@4327+1000-E4@57751+1000-C4@58821+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.821,
+      "offset_s_gt": 59.821,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 39.079,
+      "abs_error_off": 40.179,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.20",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@5111+1000-A4@21043+1000-E6@37129+1000-Fs1@43452+1000-C3@52664+1000-E4@57915+1000_trumpet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 57.915,
+      "offset_s_gt": 58.915,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.2,
+      "iou": 0.0,
+      "abs_error_on": 39.985,
+      "abs_error_off": 41.285,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@80+1000-G2@1114+1000-E6@2121+1000-Fs1@3484+1000-C2@5065+1000-E4@12340+1000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 12.34,
+      "offset_s_gt": 13.34,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 85.56,
+      "abs_error_off": 86.66,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@759+1000-G5@3263+1000-C4@4319+1000-G2@7312+1000-Fs1@8685+1000-C3@58832+1000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.832,
+      "offset_s_gt": 59.832,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 7.868,
+      "abs_error_off": 9.168,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:38.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@794+1000-G5@1794+1000-C3@2794+1000-E4@3796+1000-E6@57474+1000-A4@58511+1000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.511,
+      "offset_s_gt": 59.511,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 98.0,
+      "iou": 0.0,
+      "abs_error_on": 38.489,
+      "abs_error_off": 38.489,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@3836+1000-E4@5518+1000-E6@6843+1000-G2@21736+1000-A4@47513+1000-Fs3@57192+1000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 57.192,
+      "offset_s_gt": 58.192,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 9.508,
+      "abs_error_off": 10.808,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@1032+1000-C3@2092+1000-Fs1@3581+1000-C4@33856+1000-G2@35589+1000-C2@36715+1000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 36.715,
+      "offset_s_gt": 37.715,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 71.185,
+      "abs_error_off": 72.285,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.50",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@711+1000-Fs3@2257+1000-E6@5699+1000-C3@7227+1000-C2@55195+1000-G5@56829+1000_trumpet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 56.829,
+      "offset_s_gt": 57.829,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.5,
+      "iou": 0.0,
+      "abs_error_on": 37.771,
+      "abs_error_off": 38.671,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@2196+5000-C3@31586+5000-E6@37973+5000-G5@43063+5000-G2@49939+5000-Fs3@54992+5000_bass_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.992,
+      "offset_s_gt": 59.992,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 11.708,
+      "abs_error_off": 9.008,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:38.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@8529+5000-Fs1@14604+5000-C4@27520+5000-G2@36604+5000-C3@43068+5000-A4@51065+5000_guitar_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 51.065,
+      "offset_s_gt": 56.065,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 98.0,
+      "iou": 0.0,
+      "abs_error_on": 45.935,
+      "abs_error_off": 41.935,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@1414+5000-G5@7273+5000-Fs1@13014+5000-G2@39141+5000-C4@47826+5000-C2@54179+5000_sawtooth_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.179,
+      "offset_s_gt": 59.179,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 53.721,
+      "abs_error_off": 50.821,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@1161+5000-Fs3@14374+5000-A4@20284+5000-C3@31827+5000-G2@41529+5000-E4@54713+5000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.713,
+      "offset_s_gt": 59.713,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 43.187,
+      "abs_error_off": 40.287,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@29+5000-E6@5371+5000-E4@10448+5000-C4@16256+5000-Fs1@37232+5000-A4@53392+5000_oboe_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.392,
+      "offset_s_gt": 58.392,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 43.608,
+      "abs_error_off": 41.608,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@3078+5000-Fs1@23085+5000-C2@28097+5000-G2@33319+5000-E6@47441+5000-A4@54970+5000_cello_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.97,
+      "offset_s_gt": 59.97,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 42.03,
+      "abs_error_off": 40.03,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@4575+5000-G2@9575+5000-Fs3@14575+5000-C4@33389+5000-E4@38389+5000-C2@54952+5000_triangle_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.952,
+      "offset_s_gt": 59.952,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 52.948,
+      "abs_error_off": 50.048,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@793+5000-A4@5802+5000-G2@10888+5000-Fs3@15926+5000-C3@20927+5000-E4@54729+5000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.729,
+      "offset_s_gt": 59.729,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 43.171,
+      "abs_error_off": 40.271,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:59.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@19+5000-Fs3@5170+5000-C2@17567+5000-C4@32693+5000-A4@37712+5000-Fs1@53664+5000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.664,
+      "offset_s_gt": 58.664,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 59.0,
+      "iou": 0.4065,
+      "abs_error_on": 6.964,
+      "abs_error_off": 0.336,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:49.70, 1:51.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@44+5000-A4@5130+5000-E4@10711+5000-Fs3@15769+5000-C3@20903+5000-C2@25939+5000_organ_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 25.939,
+      "offset_s_gt": 30.939,
+      "onset_s_pred": 109.7,
+      "offset_s_pred": 111.0,
+      "iou": 0.0,
+      "abs_error_on": 83.761,
+      "abs_error_off": 80.061,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@60+1000-C3@9813+1000-E6@10819+1000-E4@12283+1000-Fs1@18359+1000-G2@23384+1000-C2@56045+1000-C4@58892+1000_flute_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.892,
+      "offset_s_gt": 59.892,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 39.008,
+      "abs_error_off": 40.108,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@3850+1000-C4@5034+1000-E4@6034+1000-G5@7035+1000-Fs3@55758+1000-G2@56758+1000-C3@57941+1000-Fs1@58998+1000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.998,
+      "offset_s_gt": 59.998,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 12.298,
+      "abs_error_off": 10.998,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@14054+1000-C4@15125+1000-Fs1@16272+1000-G2@18845+1000-A4@31766+1000-E6@42632+1000-E4@52823+1000-G5@56549+1000_bass_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 56.549,
+      "offset_s_gt": 57.549,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 38.051,
+      "abs_error_off": 39.251,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@34803+1000-G5@35816+1000-A4@36914+1000-C3@39250+1000-C2@40395+1000-Fs3@52449+1000-E4@57388+1000-G2@58951+1000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.951,
+      "offset_s_gt": 59.951,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 7.749,
+      "abs_error_off": 9.049,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:38.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@55+1000-Fs1@1142+1000-Fs3@2376+1000-G5@3519+1000-C3@8491+1000-C2@9542+1000-G2@10562+1000-A4@11642+1000_organ_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 11.642,
+      "offset_s_gt": 12.642,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 98.0,
+      "iou": 0.0,
+      "abs_error_on": 85.358,
+      "abs_error_off": 85.358,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@3+1000-Fs1@2975+1000-C4@4732+1000-G5@5761+1000-E4@7005+1000-C2@8850+1000-Fs3@17427+1000-E6@18441+1000_piano_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 18.441,
+      "offset_s_gt": 19.441,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 76.259,
+      "abs_error_off": 79.559,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@1181+1000-G5@5908+1000-A4@6929+1000-E6@14317+1000-C4@15331+1000-E4@16369+1000-G2@17371+1000-Fs1@59000+1000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 59.0,
+      "offset_s_gt": 60.0,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 12.3,
+      "abs_error_off": 11.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@36+1000-G2@21886+1000-C2@23344+1000-E4@26211+1000-C4@27272+1000-Fs3@50430+1000-Fs1@56862+1000-A4@58202+1000_sawtooth_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.202,
+      "offset_s_gt": 59.202,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 38.798,
+      "abs_error_off": 40.798,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@297+1000-G2@1319+1000-Fs1@2368+1000-A4@3389+1000-C4@4400+1000-G5@55522+1000-Fs3@56532+1000-C2@58989+1000_sawtooth_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 58.989,
+      "offset_s_gt": 59.989,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 48.911,
+      "abs_error_off": 50.011,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@25+1000-E4@42178+1000-G5@43178+1000-C2@44599+1000-C4@45629+1000-Fs3@46630+1000-G2@47630+1000-E6@54359+1000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.359,
+      "offset_s_gt": 55.359,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 40.341,
+      "abs_error_off": 43.641,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@491+5000-A4@5536+5000-E6@10567+5000-Fs1@15595+5000-C4@26906+5000-C3@36232+5000-G2@49293+5000-G5@54370+5000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.37,
+      "offset_s_gt": 59.37,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 40.23,
+      "abs_error_off": 37.43,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@259+5000-G5@19306+5000-A4@24889+5000-C4@29912+5000-C3@35086+5000-C2@40775+5000-E6@46806+5000-Fs3@51848+5000_flute_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 51.848,
+      "offset_s_gt": 56.848,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 14.852,
+      "abs_error_off": 12.152,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:59.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@4932+5000-C4@10043+5000-A4@22166+5000-Fs3@33668+5000-G5@38700+5000-C3@43725+5000-C2@48725+5000-Fs1@54623+5000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.623,
+      "offset_s_gt": 59.623,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 59.0,
+      "iou": 0.3387,
+      "abs_error_on": 7.923,
+      "abs_error_off": 0.623,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@493+5000-C4@5513+5000-G2@10513+5000-A4@15565+5000-Fs3@22870+5000-Fs1@28078+5000-C2@37109+5000-E6@54999+5000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.999,
+      "offset_s_gt": 59.999,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 39.701,
+      "abs_error_off": 39.001,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@47+5000-C3@5149+5000-E4@10359+5000-Fs3@15864+5000-A4@21058+5000-G2@44762+5000-C2@49840+5000-C4@54866+5000_square_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.866,
+      "offset_s_gt": 59.866,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 43.034,
+      "abs_error_off": 40.134,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@3124+5000-E4@12432+5000-Fs1@17608+5000-Fs3@32977+5000-C4@39518+5000-C2@44520+5000-G2@49748+5000-A4@54980+5000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 54.98,
+      "offset_s_gt": 59.98,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 42.02,
+      "abs_error_off": 40.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@158+5000-Fs3@6640+5000-C4@15376+5000-Fs1@21478+5000-C3@26812+5000-A4@31831+5000-E4@42453+5000-C2@47477+5000_flute_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.477,
+      "offset_s_gt": 52.477,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 60.423,
+      "abs_error_off": 57.523,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@3024+5000-G2@8730+5000-C3@19329+5000-Fs1@27322+5000-E6@34355+5000-C2@42162+5000-A4@47215+5000-E4@53568+5000_oboe_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.568,
+      "offset_s_gt": 58.568,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 44.332,
+      "abs_error_off": 41.432,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@4+5000-E6@6346+5000-A4@25535+5000-E4@31670+5000-Fs3@36730+5000-C2@41851+5000-C4@46862+5000-G2@52364+5000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 52.364,
+      "offset_s_gt": 57.364,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 14.336,
+      "abs_error_off": 11.636,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 7,
+      "target_pos": "last",
+      "duration_ms": 5000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@0+5000-G5@5009+5000-G2@16600+5000-E4@21605+5000-A4@26719+5000-C4@31738+5000-Fs1@47535+5000-C3@53291+5000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.291,
+      "offset_s_gt": 58.291,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 13.409,
+      "abs_error_off": 10.709,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@1270+1000-A4@2403+1000-C2@3406+1000-G5@54511+1000-C3@55867+1000-C4@56871+1000_piano_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 3.406,
+      "offset_s_gt": 4.406,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 104.494,
+      "abs_error_off": 105.594,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@10252+1000-E6@17731+1000-Fs3@20180+1000-G5@22302+1000-C2@23905+1000-C4@56980+1000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 20.18,
+      "offset_s_gt": 21.18,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 46.52,
+      "abs_error_off": 47.82,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@6+1000-G5@1006+1000-Fs1@2014+1000-Fs3@3021+1000-A4@40291+1000-E6@43214+1000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.014,
+      "offset_s_gt": 3.014,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 44.686,
+      "abs_error_off": 45.986,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@36187+1000-G2@41325+1000-C3@45786+1000-A4@48402+1000-Fs3@57714+1000-E6@58807+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 45.786,
+      "offset_s_gt": 46.786,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 20.914,
+      "abs_error_off": 22.214,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:47.90, 1:50.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@3676+1000-C4@46217+1000-C2@47242+1000-A4@48864+1000-G5@51393+1000-E4@52842+1000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.242,
+      "offset_s_gt": 48.242,
+      "onset_s_pred": 107.9,
+      "offset_s_pred": 110.0,
+      "iou": 0.0,
+      "abs_error_on": 60.658,
+      "abs_error_off": 61.758,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@341+1000-Fs1@1349+1000-G5@24494+1000-C2@25601+1000-C3@27260+1000-C4@58523+1000_guitar_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 24.494,
+      "offset_s_gt": 25.494,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 70.106,
+      "abs_error_off": 71.306,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@3739+1000-G2@4863+1000-E6@6098+1000-E4@7181+1000-Fs1@8762+1000-G5@54036+1000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 6.098,
+      "offset_s_gt": 7.098,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 88.602,
+      "abs_error_off": 91.902,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@10659+1000-E4@11793+1000-Fs3@12908+1000-C2@55330+1000-A4@56812+1000-C4@58898+1000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 12.908,
+      "offset_s_gt": 13.908,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 53.792,
+      "abs_error_off": 55.092,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.20",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@1546+1000-E6@45893+1000-C4@49792+1000-Fs1@51935+1000-A4@53614+1000-G5@58231+1000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 49.792,
+      "offset_s_gt": 50.792,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.2,
+      "iou": 0.0,
+      "abs_error_on": 48.108,
+      "abs_error_off": 49.408,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@36311+1000-E4@42060+1000-G5@43519+1000-G2@56390+1000-Fs1@57540+1000-A4@58767+1000_sawtooth_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 43.519,
+      "offset_s_gt": 44.519,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 51.081,
+      "abs_error_off": 52.281,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.20",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@6420+5000-C2@11895+5000-C4@26219+5000-C3@32039+5000-G2@37047+5000-Fs1@42054+5000_bass_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 26.219,
+      "offset_s_gt": 31.219,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.2,
+      "iou": 0.0,
+      "abs_error_on": 71.681,
+      "abs_error_off": 68.981,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@682+5000-E6@21175+5000-G2@34317+5000-C3@42378+5000-G5@47487+5000-E4@53149+5000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 34.317,
+      "offset_s_gt": 39.317,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 32.383,
+      "abs_error_off": 29.683,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@12158+5000-C2@17209+5000-C3@28307+5000-E4@34465+5000-Fs3@48241+5000-Fs1@54220+5000_piano_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 28.307,
+      "offset_s_gt": 33.307,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 38.393,
+      "abs_error_off": 35.693,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@1492+5000-C2@6498+5000-E4@11501+5000-A4@18199+5000-Fs3@36090+5000-Fs1@41090+5000_cello_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 11.501,
+      "offset_s_gt": 16.501,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 86.399,
+      "abs_error_off": 83.499,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@0+5000-C3@11094+5000-E4@16094+5000-E6@21094+5000-A4@26097+5000-Fs3@31097+5000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 16.094,
+      "offset_s_gt": 21.094,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 81.806,
+      "abs_error_off": 78.906,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@0+5000-Fs1@5004+5000-G2@10176+5000-C4@44768+5000-E4@49791+5000-G5@54796+5000_guitar_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 10.176,
+      "offset_s_gt": 15.176,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 56.524,
+      "abs_error_off": 53.824,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:49.70, 1:51.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@1791+5000-G2@26016+5000-C2@31290+5000-Fs3@41320+5000-G5@47456+5000-C3@53821+5000_piano_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 31.29,
+      "offset_s_gt": 36.29,
+      "onset_s_pred": 109.7,
+      "offset_s_pred": 111.0,
+      "iou": 0.0,
+      "abs_error_on": 78.41,
+      "abs_error_off": 74.71,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@19142+5000-Fs3@24142+5000-G5@33877+5000-C3@38879+5000-E6@43925+5000-E4@49506+5000_oboe_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 33.877,
+      "offset_s_gt": 38.877,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 60.723,
+      "abs_error_off": 57.923,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:38.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@163+5000-G2@7468+5000-A4@16879+5000-E6@35218+5000-C2@41816+5000-Fs3@51345+5000_trombone_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 16.879,
+      "offset_s_gt": 21.879,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 98.0,
+      "iou": 0.0,
+      "abs_error_on": 80.121,
+      "abs_error_off": 76.121,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "n_distractors": 5,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.70, 1:39.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@1479+5000-G5@7047+5000-E6@13687+5000-Fs3@30485+5000-G2@41539+5000-Fs1@54847+5000_guitar_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 13.687,
+      "offset_s_gt": 18.687,
+      "onset_s_pred": 94.7,
+      "offset_s_pred": 99.0,
+      "iou": 0.0,
+      "abs_error_on": 81.013,
+      "abs_error_off": 80.313,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@7+1000-G5@1027+1000-E6@45061+1000-C3@46219+1000-E4@47301+1000-A4@52803+1000-G2@56025+1000-Fs3@57035+1000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 46.219,
+      "offset_s_gt": 47.219,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 20.481,
+      "abs_error_off": 21.781,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@10+1000-A4@2290+1000-Fs3@3301+1000-E4@4336+1000-C2@31279+1000-G5@32279+1000-G2@33281+1000-Fs1@37417+1000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 4.336,
+      "offset_s_gt": 5.336,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 93.564,
+      "abs_error_off": 94.664,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@7+1000-Fs1@1015+1000-C3@2958+1000-G2@4034+1000-E4@5055+1000-C4@6069+1000-G5@33971+1000-A4@58254+1000_organ_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 4.034,
+      "offset_s_gt": 5.034,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 62.666,
+      "abs_error_off": 63.966,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:39.70, 1:41.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@205+1000-Fs3@1246+1000-C4@16665+1000-E4@19256+1000-C2@28652+1000-A4@29696+1000-G2@57825+1000-Fs1@58853+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 19.256,
+      "offset_s_gt": 20.256,
+      "onset_s_pred": 99.7,
+      "offset_s_pred": 101.0,
+      "iou": 0.0,
+      "abs_error_on": 80.444,
+      "abs_error_off": 80.744,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@73+1000-C3@2390+1000-Fs3@3495+1000-C4@4899+1000-E4@18008+1000-E6@20256+1000-G2@53217+1000-C2@58642+1000_synth_pad_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 4.899,
+      "offset_s_gt": 5.899,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 93.001,
+      "abs_error_off": 94.101,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@0+1000-A4@2448+1000-C4@5380+1000-C3@6381+1000-Fs1@14374+1000-Fs3@56827+1000-G5@57882+1000-E6@58883+1000_trumpet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 6.381,
+      "offset_s_gt": 7.381,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 60.319,
+      "abs_error_off": 61.619,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@7439+1000-A4@8506+1000-E6@30029+1000-Fs3@32846+1000-G2@36368+1000-G5@43941+1000-E4@52415+1000-C3@54347+1000_sawtooth_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 32.846,
+      "offset_s_gt": 33.846,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 33.854,
+      "abs_error_off": 35.154,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@74+1000-Fs3@1138+1000-A4@2143+1000-G5@3382+1000-E6@24328+1000-C3@25633+1000-G2@30085+1000-Fs1@31117+1000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 3.382,
+      "offset_s_gt": 4.382,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 91.218,
+      "abs_error_off": 92.418,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@765+1000-G2@1844+1000-A4@2869+1000-G5@30639+1000-C4@32338+1000-C2@35314+1000-Fs1@57575+1000-E4@58705+1000_sine_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 30.639,
+      "offset_s_gt": 31.639,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 63.961,
+      "abs_error_off": 65.161,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 1000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:04.60, 0:07.90",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@49+1000-G5@1679+1000-E4@2745+1000-Fs1@12117+1000-C4@13176+1000-C3@14465+1000-G2@57061+1000-A4@58837+1000_trumpet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 12.117,
+      "offset_s_gt": 13.117,
+      "onset_s_pred": 4.6,
+      "offset_s_pred": 7.9,
+      "iou": 0.0,
+      "abs_error_on": 7.517,
+      "abs_error_off": 5.217,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C2@68+5000-C3@5072+5000-G5@11276+5000-G2@16289+5000-E4@35293+5000-A4@40330+5000-Fs1@48841+5000-C4@54964+5000_clarinet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 16.289,
+      "offset_s_gt": 21.289,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 50.411,
+      "abs_error_off": 47.711,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:34.60, 1:36.80",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@0+5000-C2@5361+5000-Fs1@10361+5000-G5@34846+5000-E6@39870+5000-E4@44992+5000-G2@49992+5000-Fs3@55000+5000_guitar_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 34.846,
+      "offset_s_gt": 39.846,
+      "onset_s_pred": 94.6,
+      "offset_s_pred": 96.8,
+      "iou": 0.0,
+      "abs_error_on": 59.754,
+      "abs_error_off": 56.954,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@18022+5000-Fs3@23023+5000-G5@28028+5000-E4@34658+5000-A4@39946+5000-C3@44976+5000-E6@49977+5000-C4@54982+5000_sawtooth_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 34.658,
+      "offset_s_gt": 39.658,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 63.242,
+      "abs_error_off": 60.342,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C4@0+5000-Fs1@17311+5000-C2@22693+5000-Fs3@27770+5000-G2@32770+5000-C3@44961+5000-E4@49990+5000-E6@54990+5000_electric_keyboard_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.77,
+      "offset_s_gt": 32.77,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 38.93,
+      "abs_error_off": 36.23,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.90, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E6@2541+5000-C3@8799+5000-Fs1@15434+5000-C4@24232+5000-C2@29583+5000-A4@35577+5000-G5@45094+5000-E4@53819+5000_organ_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 24.232,
+      "offset_s_gt": 29.232,
+      "onset_s_pred": 97.9,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 73.668,
+      "abs_error_off": 70.768,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:06.70, 1:09.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_E4@1+5000-C4@5001+5000-A4@11481+5000-C3@16484+5000-G5@21486+5000-G2@44876+5000-C2@49876+5000-Fs3@54905+5000_voice_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 16.484,
+      "offset_s_gt": 21.484,
+      "onset_s_pred": 66.7,
+      "offset_s_pred": 69.0,
+      "iou": 0.0,
+      "abs_error_on": 50.216,
+      "abs_error_off": 47.516,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.70, 0:49.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_A4@763+5000-E6@5763+5000-G2@10785+5000-Fs1@20271+5000-G5@25271+5000-C2@30304+5000-E4@35304+5000-C4@40321+5000_trumpet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 20.271,
+      "offset_s_gt": 25.271,
+      "onset_s_pred": 46.7,
+      "offset_s_pred": 49.0,
+      "iou": 0.0,
+      "abs_error_on": 26.429,
+      "abs_error_off": 23.729,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G2@723+5000-C3@7209+5000-E6@12209+5000-A4@17209+5000-C2@22219+5000-G5@27439+5000-Fs3@32439+5000-Fs1@54804+5000_synth_lead_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 17.209,
+      "offset_s_gt": 22.209,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 79.791,
+      "abs_error_off": 77.791,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:37.00, 1:40.00",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs1@4+5000-C3@5044+5000-C4@10063+5000-A4@28789+5000-G5@37863+5000-E4@43606+5000-C2@49446+5000-E6@54917+5000_violin_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 28.789,
+      "offset_s_gt": 33.789,
+      "onset_s_pred": 97.0,
+      "offset_s_pred": 100.0,
+      "iou": 0.0,
+      "abs_error_on": 68.211,
+      "abs_error_off": 66.211,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "n_distractors": 7,
+      "target_pos": "middle",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:49.70, 1:51.50",
+      "wav": "data/audio/pitchbench_b4_timestamp_specific_pitch/clip_Fs3@223+5000-C4@6340+5000-Fs1@20171+5000-C2@25846+5000-A4@30896+5000-C3@37838+5000-E6@49877+5000-G5@54995+5000_clarinet_total60000ms_b3.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 25.846,
+      "offset_s_gt": 30.846,
+      "onset_s_pred": 109.7,
+      "offset_s_pred": 111.5,
+      "iou": 0.0,
+      "abs_error_on": 83.854,
+      "abs_error_off": 80.654,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    }
+  ]
+}

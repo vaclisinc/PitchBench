@@ -1,0 +1,452 @@
+Experiment : pitchbench_f2_chorale_voice_id
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-05T12:55:08.931713
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : chorale_voice
+headline_metrics : ['midi_seq', 'spn_seq', 'doremi_seq', 'hz_seq', 'any_seq']
+record_extras : ['chorale_id', 'x', 'voice_name', 'inst_cfg', 'source_label']
+sample_n   : 100
+sample_seed : 42
+total_available : 340
+stratified_by : (chorale_slug, x)
+
+SUMMARY
+==================================================
+  Sampling     : 100 of 340 (stratified by '(chorale_slug, x)', seed=42)
+  Stimuli (total)     : 100
+  Stimuli (condition) : 100  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        MIDI_SEQ       0.0%
+         SPN_SEQ       0.0%
+      DOREMI_SEQ       0.0%
+          HZ_SEQ       0.0%
+         ANY_SEQ       0.0%
+
+  (Headline = full-sequence exact match for each format. Per-position diagnostics live in <format>_per_pos in the records CSV.)
+
+== Marginal accuracy ==
+
+source          midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass              0.00%    0.00%    0.00%    0.00%    0.00%     5
+cello             0.00%    0.00%    0.00%    0.00%    0.00%     6
+clarinet          0.00%    0.00%    0.00%    0.00%    0.00%     6
+classical_quartet    0.00%    0.00%    0.00%    0.00%    0.00%     3
+electric_keyboard    0.00%    0.00%    0.00%    0.00%    0.00%     8
+flute             0.00%    0.00%    0.00%    0.00%    0.00%     8
+guitar            0.00%    0.00%    0.00%    0.00%    0.00%     5
+mixed_timbres     0.00%    0.00%    0.00%    0.00%    0.00%     5
+oboe              0.00%    0.00%    0.00%    0.00%    0.00%     8
+organ             0.00%    0.00%    0.00%    0.00%    0.00%     8
+piano             0.00%    0.00%    0.00%    0.00%    0.00%     6
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     6
+synth_pad         0.00%    0.00%    0.00%    0.00%    0.00%     7
+trombone          0.00%    0.00%    0.00%    0.00%    0.00%     2
+trumpet           0.00%    0.00%    0.00%    0.00%    0.00%     7
+violin            0.00%    0.00%    0.00%    0.00%    0.00%     4
+voice             0.00%    0.00%    0.00%    0.00%    0.00%     6
+
+all_n_notes     midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[11, 10, 9, 8]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[11, 11, 13, 13]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[12, 12, 15, 13]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[13, 12, 16, 15]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[13, 17, 15, 13]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[19, 16, 16, 14]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[21, 22, 21, 21]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[23, 20, 20, 18]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[26, 25, 29, 32]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[26, 30, 34, 40]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[28, 30, 35, 33]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[29, 32, 38, 42]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[32, 38, 40, 36]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[35, 37, 35, 40]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+
+chorale_id      midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bach/bwv26.6      0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach/bwv4.8       0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach/bwv57.8      0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach/bwv66.6      0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach/bwv7.7       0.00%    0.00%    0.00%    0.00%    0.00%    20
+
+chorale_slug    midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bach_bwv26_6      0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach_bwv4_8       0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach_bwv57_8      0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach_bwv66_6      0.00%    0.00%    0.00%    0.00%    0.00%    20
+bach_bwv7_7       0.00%    0.00%    0.00%    0.00%    0.00%    20
+
+doremi_per_pos  midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, False, False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, False, False, False, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, False, False, False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, False, True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, True, False, True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, True, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, True, False, False, False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, True, False, False, False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, True, False, False, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, True, True, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, True, False, False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, True, True, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, True, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, True, True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, False, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, True, False, False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, True, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, True, True, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, True, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+
+end_qL          midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+11.0              0.00%    0.00%    0.00%    0.00%    0.00%    10
+15.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+17.0              0.00%    0.00%    0.00%    0.00%    0.00%    10
+20.0              0.00%    0.00%    0.00%    0.00%    0.00%    10
+25.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+26.0              0.00%    0.00%    0.00%    0.00%    0.00%    10
+30.0              0.00%    0.00%    0.00%    0.00%    0.00%    15
+35.0              0.00%    0.00%    0.00%    0.00%    0.00%    10
+36.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+38.0              0.00%    0.00%    0.00%    0.00%    0.00%    10
+59.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+72.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+
+hz_per_pos      midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    13
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    14
+[False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+
+inst_cfg        midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+mixed             0.00%    0.00%    0.00%    0.00%    0.00%     8
+similar           0.00%    0.00%    0.00%    0.00%    0.00%    92
+
+midi_per_pos    midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     8
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    12
+[False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+
+n_target        midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+9                 0.00%    0.00%    0.00%    0.00%    0.00%     5
+10                0.00%    0.00%    0.00%    0.00%    0.00%     5
+13                0.00%    0.00%    0.00%    0.00%    0.00%    15
+14                0.00%    0.00%    0.00%    0.00%    0.00%     5
+15                0.00%    0.00%    0.00%    0.00%    0.00%     5
+16                0.00%    0.00%    0.00%    0.00%    0.00%     5
+21                0.00%    0.00%    0.00%    0.00%    0.00%     5
+22                0.00%    0.00%    0.00%    0.00%    0.00%     5
+23                0.00%    0.00%    0.00%    0.00%    0.00%     5
+28                0.00%    0.00%    0.00%    0.00%    0.00%     5
+29                0.00%    0.00%    0.00%    0.00%    0.00%     5
+30                0.00%    0.00%    0.00%    0.00%    0.00%     5
+32                0.00%    0.00%    0.00%    0.00%    0.00%    15
+34                0.00%    0.00%    0.00%    0.00%    0.00%     5
+37                0.00%    0.00%    0.00%    0.00%    0.00%     5
+40                0.00%    0.00%    0.00%    0.00%    0.00%     5
+
+source_label    midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass              0.00%    0.00%    0.00%    0.00%    0.00%     5
+cello             0.00%    0.00%    0.00%    0.00%    0.00%     6
+clarinet          0.00%    0.00%    0.00%    0.00%    0.00%     6
+classical_quartet    0.00%    0.00%    0.00%    0.00%    0.00%     3
+electric_keyboard    0.00%    0.00%    0.00%    0.00%    0.00%     8
+flute             0.00%    0.00%    0.00%    0.00%    0.00%     8
+guitar            0.00%    0.00%    0.00%    0.00%    0.00%     5
+mixed_timbres     0.00%    0.00%    0.00%    0.00%    0.00%     5
+oboe              0.00%    0.00%    0.00%    0.00%    0.00%     8
+organ             0.00%    0.00%    0.00%    0.00%    0.00%     8
+piano             0.00%    0.00%    0.00%    0.00%    0.00%     6
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     6
+synth_pad         0.00%    0.00%    0.00%    0.00%    0.00%     7
+trombone          0.00%    0.00%    0.00%    0.00%    0.00%     2
+trumpet           0.00%    0.00%    0.00%    0.00%    0.00%     7
+violin            0.00%    0.00%    0.00%    0.00%    0.00%     4
+voice             0.00%    0.00%    0.00%    0.00%    0.00%     6
+
+sources         midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+['bass', 'bass', 'bass', 'bass']    0.00%    0.00%    0.00%    0.00%    0.00%     5
+['cello', 'cello', 'cello', 'cello']    0.00%    0.00%    0.00%    0.00%    0.00%     6
+['clarinet', 'clarinet', 'clarinet', 'clarinet']    0.00%    0.00%    0.00%    0.00%    0.00%     6
+['electric_keyboard', 'electric_keyboard', 'electric_keyboard', 'electric_keyboard']    0.00%    0.00%    0.00%    0.00%    0.00%     8
+['flute', 'flute', 'flute', 'flute']    0.00%    0.00%    0.00%    0.00%    0.00%     8
+['flute', 'violin', 'cello', 'bass']    0.00%    0.00%    0.00%    0.00%    0.00%     3
+['guitar', 'guitar', 'guitar', 'guitar']    0.00%    0.00%    0.00%    0.00%    0.00%     5
+['oboe', 'oboe', 'oboe', 'oboe']    0.00%    0.00%    0.00%    0.00%    0.00%     8
+['organ', 'organ', 'organ', 'organ']    0.00%    0.00%    0.00%    0.00%    0.00%     8
+['piano', 'piano', 'piano', 'piano']    0.00%    0.00%    0.00%    0.00%    0.00%     6
+['piano', 'trumpet', 'clarinet', 'guitar']    0.00%    0.00%    0.00%    0.00%    0.00%     5
+['synth_lead', 'synth_lead', 'synth_lead', 'synth_lead']    0.00%    0.00%    0.00%    0.00%    0.00%     6
+['synth_pad', 'synth_pad', 'synth_pad', 'synth_pad']    0.00%    0.00%    0.00%    0.00%    0.00%     7
+['trombone', 'trombone', 'trombone', 'trombone']    0.00%    0.00%    0.00%    0.00%    0.00%     2
+['trumpet', 'trumpet', 'trumpet', 'trumpet']    0.00%    0.00%    0.00%    0.00%    0.00%     7
+['violin', 'violin', 'violin', 'violin']    0.00%    0.00%    0.00%    0.00%    0.00%     4
+['voice', 'voice', 'voice', 'voice']    0.00%    0.00%    0.00%    0.00%    0.00%     6
+
+spn_per_pos     midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, False, True, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, True, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[True, True, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+
+start_qL        midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0.0               0.00%    0.00%    0.00%    0.00%    0.00%    40
+4.5               0.00%    0.00%    0.00%    0.00%    0.00%     5
+5.5               0.00%    0.00%    0.00%    0.00%    0.00%     5
+8.0               0.00%    0.00%    0.00%    0.00%    0.00%    10
+8.5               0.00%    0.00%    0.00%    0.00%    0.00%    10
+13.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+19.5              0.00%    0.00%    0.00%    0.00%    0.00%    10
+22.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+29.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+50.0              0.00%    0.00%    0.00%    0.00%    0.00%     5
+
+target_source   midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass              0.00%    0.00%    0.00%    0.00%    0.00%     6
+cello             0.00%    0.00%    0.00%    0.00%    0.00%     8
+clarinet          0.00%    0.00%    0.00%    0.00%    0.00%     6
+electric_keyboard    0.00%    0.00%    0.00%    0.00%    0.00%     8
+flute             0.00%    0.00%    0.00%    0.00%    0.00%     8
+guitar            0.00%    0.00%    0.00%    0.00%    0.00%     6
+oboe              0.00%    0.00%    0.00%    0.00%    0.00%     8
+organ             0.00%    0.00%    0.00%    0.00%    0.00%     8
+piano             0.00%    0.00%    0.00%    0.00%    0.00%     9
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     6
+synth_pad         0.00%    0.00%    0.00%    0.00%    0.00%     7
+trombone          0.00%    0.00%    0.00%    0.00%    0.00%     2
+trumpet           0.00%    0.00%    0.00%    0.00%    0.00%     8
+violin            0.00%    0.00%    0.00%    0.00%    0.00%     4
+voice             0.00%    0.00%    0.00%    0.00%    0.00%     6
+
+total_dur_ms    midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+9000              0.00%    0.00%    0.00%    0.00%    0.00%    10
+9500              0.00%    0.00%    0.00%    0.00%    0.00%     5
+11000             0.00%    0.00%    0.00%    0.00%    0.00%    10
+12000             0.00%    0.00%    0.00%    0.00%    0.00%     5
+14000             0.00%    0.00%    0.00%    0.00%    0.00%     5
+15500             0.00%    0.00%    0.00%    0.00%    0.00%     5
+18500             0.00%    0.00%    0.00%    0.00%    0.00%    10
+20000             0.00%    0.00%    0.00%    0.00%    0.00%     5
+22000             0.00%    0.00%    0.00%    0.00%    0.00%     5
+26000             0.00%    0.00%    0.00%    0.00%    0.00%    10
+26500             0.00%    0.00%    0.00%    0.00%    0.00%    10
+30000             0.00%    0.00%    0.00%    0.00%    0.00%    20
+
+voice_name      midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+alto              0.00%    0.00%    0.00%    0.00%    0.00%    25
+bass              0.00%    0.00%    0.00%    0.00%    0.00%    25
+soprano           0.00%    0.00%    0.00%    0.00%    0.00%    25
+tenor             0.00%    0.00%    0.00%    0.00%    0.00%    25
+
+x               midi_seq_correct  spn_seq_correct  doremi_seq_correct  hz_seq_correct  any_seq_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+1                 0.00%    0.00%    0.00%    0.00%    0.00%    25
+2                 0.00%    0.00%    0.00%    0.00%    0.00%    25
+3                 0.00%    0.00%    0.00%    0.00%    0.00%    25
+4                 0.00%    0.00%    0.00%    0.00%    0.00%    25
+
+
+LLM USAGE
+==================================================
+  calls                           400
+  prompt tokens               247,090
+  completion tokens            49,599
+  total tokens                296,689
+  cost (USD)                $1.089368

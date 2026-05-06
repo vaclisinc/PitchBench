@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PitchBench Viewer</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Backgrounds */
+  --bg0:    #05060e;
+  --bg1:    #080c18;
+  --bg2:    #0e1424;
+  --bg3:    #141c30;
+  --bg4:    #1b253c;
+  --bg5:    #222e4a;
+  /* Borders */
+  --b1:     #1e2a42;
+  --b2:     #2a3a58;
+  --b3:     #374d70;
+  /* Accents */
+  --blue:   #5b9bd5;
+  --indigo: #7c8ffc;
+  --gold:   #e8a84e;
+  --gold2:  #f5c978;
+  --teal:   #3dd9c8;
+  --rose:   #ff7070;
+  --lime:   #5adf8a;
+  --amber:  #fbbf24;
+  /* Text */
+  --t1:     #dce8f8;
+  --t2:     #8fa8c8;
+  --t3:     #56708a;
+  /* Radius */
+  --r:      10px;
+  --rs:     6px;
+}
+
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  background: var(--bg0); color: var(--t1); font-size: 13px;
+  display: flex; flex-direction: column;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────── */
+header {
+  height: 52px; flex-shrink: 0;
+  background: linear-gradient(90deg, #080c1c 0%, #0c1428 60%, #101830 100%);
+  border-bottom: 1px solid var(--b1);
+  display: flex; align-items: center; padding: 0 20px; gap: 16px;
+  position: relative;
+}
+header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--indigo) 30%, var(--teal) 70%, transparent);
+  opacity: .45;
+}
+.logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+.logo-mark {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--indigo), var(--teal));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; box-shadow: 0 0 16px rgba(92,143,252,.35);
+}
+.logo-name { font-size: 15px; font-weight: 700; letter-spacing: .3px; color: var(--t1); }
+.logo-name span { color: var(--gold); }
+.hdr-divider { width: 1px; height: 22px; background: var(--b2); }
+.hdr-sub { font-size: 11px; color: var(--t3); letter-spacing: .5px; }
+.hdr-exp { font-size: 12px; color: var(--t2); flex: 1; }
+.hdr-exp strong { color: var(--teal); font-weight: 600; }
+#hdr-badge {
+  font-size: 11px; color: var(--t3); background: var(--bg3);
+  border: 1px solid var(--b2); border-radius: 20px; padding: 3px 11px;
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+.layout { display: flex; flex: 1; overflow: hidden; }
+
+/* ─── SIDEBAR ────────────────────────────────────────────────── */
+aside {
+  width: 216px; flex-shrink: 0;
+  background: var(--bg1); border-right: 1px solid var(--b1);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.sidebar-top {
+  padding: 14px 14px 8px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sidebar-title { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--t3); }
+.sidebar-count { font-size: 10px; color: var(--t3); background: var(--bg3); border: 1px solid var(--b2); border-radius: 10px; padding: 1px 7px; }
+.sidebar-list { overflow-y: auto; flex: 1; padding-bottom: 8px; }
+
+.exp-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 12px 8px 12px;
+  cursor: pointer; border-left: 3px solid transparent;
+  transition: background .1s;
+}
+.exp-item:hover { background: var(--bg3); }
+.exp-item.active { border-left-color: var(--gold); background: var(--bg3); }
+.exp-badge {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+  background: var(--bg4); border: 1px solid var(--b2);
+  font-size: 10px; font-weight: 700; color: var(--t3);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .1s, border-color .1s, color .1s;
+}
+.exp-item.active .exp-badge { background: rgba(232,168,78,.15); border-color: var(--gold); color: var(--gold); }
+.exp-info { min-width: 0; }
+.exp-name { font-size: 12px; font-weight: 500; color: var(--t2); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.exp-item.active .exp-name { color: var(--t1); }
+.exp-meta { font-size: 10px; color: var(--t3); margin-top: 2px; }
+
+/* ─── MAIN ────────────────────────────────────────────────────── */
+main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+/* ─── CONTROLS BAR ───────────────────────────────────────────── */
+.ctrl-bar {
+  flex-shrink: 0; background: var(--bg2); border-bottom: 1px solid var(--b1);
+  padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.ctrl-grp { display: flex; align-items: center; gap: 6px; }
+.ctrl-lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .7px; color: var(--t3); white-space: nowrap; }
+select, input[type=search] {
+  background: var(--bg3); border: 1px solid var(--b2); color: var(--t1);
+  padding: 5px 9px; border-radius: var(--rs); font-size: 12px; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+select:focus, input:focus { border-color: var(--indigo); box-shadow: 0 0 0 3px rgba(124,143,252,.12); }
+.ctrl-sep { width: 1px; height: 18px; background: var(--b1); margin: 0 2px; }
+
+/* ─── FORMAT TABS ────────────────────────────────────────────── */
+.fmt-bar {
+  flex-shrink: 0; background: var(--bg2); border-bottom: 1px solid var(--b1);
+  padding: 0 16px; display: flex; align-items: center; gap: 2px;
+}
+.fmt-tab {
+  padding: 9px 16px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--t3); border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+  white-space: nowrap; letter-spacing: .2px;
+}
+.fmt-tab:hover { color: var(--t2); }
+.fmt-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.fmt-tab .fmt-acc {
+  margin-left: 6px; font-size: 10px; font-weight: 700;
+  background: var(--bg4); border-radius: 10px; padding: 1px 6px;
+}
+.fmt-tab.active .fmt-acc { background: rgba(232,168,78,.15); color: var(--gold); }
+
+/* ─── SUMMARY ────────────────────────────────────────────────── */
+.summary {
+  flex-shrink: 0; background: var(--bg2); border-bottom: 1px solid var(--b1);
+  padding: 12px 16px; display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap;
+}
+.stat-card {
+  background: var(--bg3); border: 1px solid var(--b2);
+  border-radius: var(--r); padding: 11px 16px; min-width: 108px;
+  position: relative; overflow: hidden; transition: border-color .15s;
+}
+.stat-card:hover { border-color: var(--b3); }
+.stat-glow {
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold2) 60%, transparent 100%);
+  opacity: .6;
+}
+.stat-val { font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat-lbl { font-size: 10px; color: var(--t3); margin-top: 6px; text-transform: uppercase; letter-spacing: .6px; font-weight: 600; }
+.stat-sub { font-size: 10px; color: var(--t3); margin-top: 1px; }
+
+.charts-wrap { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+.chart-thumb {
+  height: 100px; border-radius: var(--rs); border: 1px solid var(--b2);
+  cursor: pointer; display: block;
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.chart-thumb:hover { border-color: var(--gold); transform: scale(1.03); box-shadow: 0 4px 20px rgba(0,0,0,.4); }
+
+/* ─── TABLE ──────────────────────────────────────────────────── */
+.table-wrap { flex: 1; overflow: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead { position: sticky; top: 0; z-index: 10; }
+th {
+  background: var(--bg2); border-bottom: 1px solid var(--b2); padding: 0;
+}
+.th-btn {
+  display: flex; align-items: center; gap: 4px; width: 100%; padding: 8px 11px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+  color: var(--t3); cursor: pointer; white-space: nowrap; transition: color .1s;
+  background: none; border: none; text-align: left;
+}
+.th-btn:hover { color: var(--t2); }
+.th-btn.sorted { color: var(--gold); }
+.sort-ic { font-size: 10px; opacity: .4; }
+.sort-ic.on { opacity: 1; color: var(--gold); }
+
+td {
+  padding: 7px 11px; border-bottom: 1px solid rgba(30,42,66,.7);
+  vertical-align: middle; color: var(--t2);
+  transition: background .08s;
+}
+td.num { font-variant-numeric: tabular-nums; }
+tr:hover td { background: var(--bg3); color: var(--t1); }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 700;
+  white-space: nowrap;
+}
+.pill-ok  { background: rgba(90,223,138,.1);  color: var(--lime);  border: 1px solid rgba(90,223,138,.25); }
+.pill-no  { background: rgba(255,112,112,.1); color: var(--rose);  border: 1px solid rgba(255,112,112,.25); }
+.pill-w1  { background: rgba(251,191,36,.1);  color: var(--amber); border: 1px solid rgba(251,191,36,.25); }
+
+.play-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--bg4); border: 1px solid var(--b2); color: var(--teal);
+  border-radius: var(--rs); padding: 4px 10px; cursor: pointer; font-size: 11px;
+  transition: border-color .12s, background .12s, color .12s;
+}
+.play-btn:hover { border-color: var(--teal); background: rgba(61,217,200,.08); }
+audio { height: 26px; width: 185px; display: block; margin-top: 3px; }
+
+.raw-cell { max-width: 280px; min-width: 120px; }
+.raw-text {
+  max-height: 38px; overflow: hidden; cursor: pointer;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 11px; line-height: 1.5; color: var(--t3);
+  white-space: pre-wrap; word-break: break-word;
+  transition: max-height .2s ease, color .1s;
+}
+.raw-text:hover { color: var(--t2); }
+.raw-text.open { max-height: 260px; color: var(--t2); }
+
+/* ─── PAGINATION ─────────────────────────────────────────────── */
+.pager {
+  flex-shrink: 0; background: var(--bg2); border-top: 1px solid var(--b1);
+  padding: 7px 16px; display: flex; align-items: center; gap: 6px;
+}
+.pg { background: var(--bg3); border: 1px solid var(--b2); color: var(--t2); padding: 4px 12px; border-radius: var(--rs); cursor: pointer; font-size: 12px; transition: border-color .12s, color .12s; }
+.pg:hover:not([disabled]) { border-color: var(--gold); color: var(--gold); }
+.pg[disabled] { opacity: .3; cursor: default; }
+.pg-info { flex: 1; text-align: center; font-size: 11px; color: var(--t3); }
+
+/* ─── EMPTY / LOADING ────────────────────────────────────────── */
+.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 14px; }
+.empty-icon { opacity: .12; }
+.empty-msg { color: var(--t3); font-size: 13px; }
+.spin { width: 28px; height: 28px; border: 2px solid var(--b2); border-top-color: var(--indigo); border-radius: 50%; animation: spin .55s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.err-box { color: var(--rose); background: rgba(255,112,112,.07); border: 1px solid rgba(255,112,112,.2); border-radius: var(--r); padding: 12px 18px; max-width: 480px; font-size: 12px; line-height: 1.6; }
+.no-rows { color: var(--t3); padding: 36px; text-align: center; }
+
+/* ─── LIGHTBOX ───────────────────────────────────────────────── */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 300; display: none; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 94vw; max-height: 92vh; border-radius: var(--r); box-shadow: 0 32px 80px rgba(0,0,0,.7); }
+.lb-close { position: absolute; top: 18px; right: 22px; font-size: 32px; cursor: pointer; color: #fff; opacity: .6; transition: opacity .12s; line-height: 1; }
+.lb-close:hover { opacity: 1; }
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--b2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">♩</div>
+    <span class="logo-name">Pitch<span>Bench</span></span>
+  </div>
+  <div class="hdr-divider"></div>
+  <span class="hdr-sub">ALM Evaluation Suite</span>
+  <div class="hdr-exp" id="hdr-exp"></div>
+  <span id="hdr-badge">loading…</span>
+</header>
+
+<div class="layout">
+  <aside>
+    <div class="sidebar-top">
+      <span class="sidebar-title">Experiments</span>
+      <span class="sidebar-count" id="exp-count">—</span>
+    </div>
+    <div class="sidebar-list" id="exp-list"></div>
+  </aside>
+
+  <main id="main">
+    <div class="empty">
+      <svg class="empty-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1">
+        <path d="M9 19V6l12-3v13M9 19c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zM9 10l12-3"/>
+      </svg>
+      <div class="empty-msg">Select an experiment to begin</div>
+    </div>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" onclick="closeLb()">&#215;</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+let structure = {};
+let currentExp = null;
+let currentData = null;
+let currentFmt = 'all';      // active format tab id
+let fmtInfo = null;          // { type, formats: [[id, label], ...] }
+let sortCol = null, sortDir = 1;
+let filterText = '', filterCorrect = 'all';
+let page = 0;
+const PAGE = 50;
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const r = await fetch('/api/structure');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    structure = await r.json();
+  } catch (e) {
+    document.getElementById('exp-list').innerHTML =
+      `<div style="padding:14px;color:var(--rose);font-size:12px">Failed to load:<br>${e.message}</div>`;
+    document.getElementById('hdr-badge').textContent = 'error';
+    return;
+  }
+
+  const exps = Object.keys(structure).sort((a, b) => {
+    const na = parseInt((a.match(/\d+/) || [0])[0]);
+    const nb = parseInt((b.match(/\d+/) || [0])[0]);
+    return na !== nb ? na - nb : a.localeCompare(b);
+  });
+
+  document.getElementById('hdr-badge').textContent = `${exps.length} experiments`;
+  document.getElementById('exp-count').textContent = exps.length;
+
+  const list = document.getElementById('exp-list');
+  exps.forEach(exp => {
+    const runs = structure[exp];
+    const nM = runs.reduce((s, r) => s + r.models.length, 0);
+    const num = (exp.match(/exp_(\d+)/) || ['', '?'])[1];
+    const name = exp.replace(/^exp_\d+_/, '').replace(/_/g, ' ');
+    const el = document.createElement('div');
+    el.className = 'exp-item';
+    el.dataset.exp = exp;
+    el.innerHTML = `
+      <div class="exp-badge">${num}</div>
+      <div class="exp-info">
+        <div class="exp-name">${name}</div>
+        <div class="exp-meta">${runs.length} run${runs.length!==1?'s':''} · ${nM} result${nM!==1?'s':''}</div>
+      </div>`;
+    el.addEventListener('click', () => selectExp(exp, el));
+    list.appendChild(el);
+  });
+}
+
+// ── Select experiment ─────────────────────────────────────────────────────────
+function selectExp(exp, el) {
+  document.querySelectorAll('.exp-item').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  currentExp = exp;
+  sortCol = null; sortDir = 1; filterText = ''; filterCorrect = 'all'; page = 0; currentFmt = 'all';
+
+  const name = exp.replace(/^exp_\d+_/, '').replace(/_/g, ' ');
+  document.getElementById('hdr-exp').innerHTML = `<strong>${name}</strong>`;
+
+  const run = structure[exp][0];
+  loadResults(exp, run.run, run.models[0].model);
+}
+
+// ── Load ──────────────────────────────────────────────────────────────────────
+async function loadResults(exp, runId, modelName) {
+  document.getElementById('main').innerHTML =
+    `<div class="empty"><div class="spin"></div></div>`;
+
+  const runs = structure[exp];
+  const runObj = runs.find(r => r.run === runId) || runs[0];
+  const mObj = runObj.models.find(m => m.model === modelName) || runObj.models[0];
+
+  let data;
+  try {
+    const r = await fetch(`/api/results?file=${encodeURIComponent(mObj.file)}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    data = await r.json();
+  } catch (e) {
+    document.getElementById('main').innerHTML =
+      `<div class="empty"><div class="err-box">Failed to load:<br>${e.message}</div></div>`;
+    return;
+  }
+
+  currentData = data;
+  fmtInfo = detectFmtInfo(data.results || []);
+  buildView(exp, runs, runObj, mObj, data);
+}
+
+// ── Detect format type ────────────────────────────────────────────────────────
+function detectFmtInfo(results) {
+  if (!results.length) return { type: 'single', formats: [] };
+  const keys = new Set();
+  results.slice(0, 10).forEach(r => Object.keys(r).forEach(k => keys.add(k)));
+
+  // Multi-format: same row contains midi/abc/doremi columns
+  const FMTS = [['midi','MIDI'], ['abc','ABC'], ['doremi','DoReMi'], ['solfege','Solfège']];
+  const detected = FMTS.filter(([id]) =>
+    [...keys].some(k => k === 'raw_' + id || k === id + '_gt' || k === id + '_pred' || k === id + '_correct')
+  );
+  if (detected.length > 1)
+    return { type: 'multi', formats: [['all','All'], ...detected] };
+
+  // Variant rows: separate row per prompt_variant
+  if (keys.has('prompt_variant')) {
+    const variants = [...new Set(results.map(r => r.prompt_variant).filter(Boolean))];
+    if (variants.length > 1) {
+      const fmts = [['all','All'], ...variants.map(v => [v, fmtLabel(v)])];
+      return { type: 'variant', formats: fmts };
+    }
+  }
+
+  return { type: 'single', formats: [] };
+}
+function fmtLabel(v) {
+  return { midi:'MIDI', abc:'ABC', solfege:'Solfège', doremi:'DoReMi', count:'Count' }[v]
+    || (v.charAt(0).toUpperCase() + v.slice(1));
+}
+
+// ── Build full view ───────────────────────────────────────────────────────────
+function buildView(exp, runs, runObj, mObj, data) {
+  const main = document.getElementById('main');
+
+  // ── Run/model selector
+  const runSel = runs.map(r =>
+    `<optgroup label="${r.run}">${r.models.map(m =>
+      `<option value="${r.run}|${m.model}"${r.run===runObj.run&&m.model===mObj.model?' selected':''}>${m.model}</option>`
+    ).join('')}</optgroup>`
+  ).join('');
+
+  // ── Format tabs HTML
+  const fmtTabsHtml = fmtInfo.formats.length > 1
+    ? `<div class="fmt-bar" id="fmt-bar">${
+        fmtInfo.formats.map(([id, label]) => {
+          const acc = getFmtAccuracy(data, id);
+          return `<div class="fmt-tab${id===currentFmt?' active':''}" onclick="setFmt('${id}')">${label}${acc !== null ? `<span class="fmt-acc">${acc}</span>` : ''}</div>`;
+        }).join('')
+      }</div>`
+    : '';
+
+  // ── Summary bar
+  const total = data.summary?.total ?? data.summary?.n ?? data.summary?.n_items ?? null;
+  const statsHtml = buildStats(data.summary || {}, total, currentFmt);
+  const chartsHtml = (mObj.pngs || []).map(p =>
+    `<img class="chart-thumb" src="/api/results?file=${encodeURIComponent(p)}" alt="" onclick="openLb(this.src)">`
+  ).join('');
+
+  main.innerHTML = `
+    <div class="ctrl-bar">
+      <div class="ctrl-grp">
+        <span class="ctrl-lbl">Run / Model</span>
+        <select id="run-sel" onchange="onRunChange(this.value)">${runSel}</select>
+      </div>
+      <div class="ctrl-sep"></div>
+      <div class="ctrl-grp">
+        <span class="ctrl-lbl">Search</span>
+        <input type="search" id="srch" placeholder="filter rows…" value="${escA(filterText)}" oninput="onSearch(this.value)" style="width:165px">
+      </div>
+      <div class="ctrl-grp">
+        <select id="cor-sel" onchange="onCor(this.value)">
+          <option value="all"${filterCorrect==='all'?' selected':''}>All rows</option>
+          <option value="correct"${filterCorrect==='correct'?' selected':''}>Correct only</option>
+          <option value="wrong"${filterCorrect==='wrong'?' selected':''}>Wrong only</option>
+        </select>
+      </div>
+    </div>
+    ${fmtTabsHtml}
+    <div class="summary" id="summary">
+      ${statsHtml}
+      ${chartsHtml ? `<div class="charts-wrap">${chartsHtml}</div>` : ''}
+    </div>
+    <div class="table-wrap" id="tw"></div>
+    <div class="pager" id="pager"></div>`;
+
+  renderTable();
+}
+
+// ── Format accuracy for tab badge ─────────────────────────────────────────────
+function getFmtAccuracy(data, fmtId) {
+  const s = data.summary;
+  if (!s) return null;
+  const total = s.total ?? s.n ?? s.n_items ?? null;
+  if (fmtId === 'all') return null;
+
+  // multi-format: look for per_variant or per-format keys
+  const pv = s.per_variant;
+  if (pv && typeof pv === 'object') {
+    const v = pv[fmtId];
+    if (typeof v === 'number') return (v*100).toFixed(0) + '%';
+  }
+  // count key
+  const countKey = fmtId + '_correct';
+  if (typeof s[countKey] === 'number' && total) return (s[countKey]/total*100).toFixed(0) + '%';
+
+  return null;
+}
+
+// ── Summary stat cards ────────────────────────────────────────────────────────
+function buildStats(s, total, fmt) {
+  if (!s) return '';
+  const cards = [];
+
+  if (total !== null) cards.push(mkCard(total.toLocaleString(), 'Total Items'));
+
+  // per_variant (proportions 0–1)
+  const pv = (s.per_variant && typeof s.per_variant === 'object') ? s.per_variant : {};
+  if (fmt === 'all') {
+    for (const [k, v] of Object.entries(pv))
+      if (typeof v === 'number') cards.push(mkCard(pct(v, null), k + ' acc'));
+  } else {
+    const v = pv[fmt];
+    if (typeof v === 'number') cards.push(mkCard(pct(v, null), fmt + ' accuracy'));
+  }
+
+  // Flat rate keys (0–1 proportions)
+  const RATE = ['accuracy','midi_accuracy','abc_accuracy','doremi_accuracy','overall_accuracy','exact_match'];
+  // Flat count keys (raw integer counts needing /total)
+  const CNT  = ['midi_correct','abc_correct','doremi_correct','solfege_correct',
+                 'midi_within_1','note_exact_match','midi_exact_match','correct'];
+
+  RATE.forEach(k => {
+    if (typeof s[k] === 'number' && pv[k] === undefined)
+      if (fmt === 'all' || k.startsWith(fmt)) cards.push(mkCard(pct(s[k], null), k.replace(/_/g,' ')));
+  });
+  CNT.forEach(k => {
+    if (typeof s[k] === 'number' && pv[k] === undefined)
+      if (fmt === 'all' || k.startsWith(fmt) || k.includes(fmt)) {
+        const rate = total ? pct(s[k], total) : s[k].toLocaleString();
+        const sub = total ? `${s[k].toLocaleString()} / ${total.toLocaleString()}` : '';
+        cards.push(mkCard(rate, k.replace(/_/g,' '), sub));
+      }
+  });
+
+  return cards.slice(0, 7).join('');
+}
+function mkCard(val, lbl, sub = '') {
+  return `<div class="stat-card"><div class="stat-glow"></div><div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>${sub ? `<div class="stat-sub">${sub}</div>` : ''}</div>`;
+}
+function pct(v, total) {
+  if (total) return (v / total * 100).toFixed(1) + '%';
+  return (v <= 1 ? v * 100 : v).toFixed(1) + '%';
+}
+
+// ── Render table ──────────────────────────────────────────────────────────────
+function renderTable() {
+  const results = currentData?.results || [];
+  if (!results.length) {
+    document.getElementById('tw').innerHTML = '<div class="no-rows">No results in this file.</div>';
+    document.getElementById('pager').innerHTML = '';
+    return;
+  }
+
+  // Collect all keys
+  const allKeysSet = new Set();
+  results.slice(0, 30).forEach(r => Object.keys(r).forEach(k => allKeysSet.add(k)));
+  const allKeys = [...allKeysSet];
+
+  const CORRECT_KEYS = allKeys.filter(k =>
+    k.includes('exact_match') || k.includes('_correct') || k === 'recall' || k === 'precision' || k === 'correct');
+  const PROMPT_KEYS = allKeys.filter(k => k.startsWith('prompt'));
+  const RAW_KEYS    = allKeys.filter(k => k.startsWith('raw_'));
+  const SKIP = new Set([...PROMPT_KEYS, ...RAW_KEYS, 'wav', 'perm']);
+
+  // Determine visible data columns based on format tab
+  const DATA_KEYS = getDataKeysForFmt(allKeys, currentFmt, SKIP);
+
+  // Determine raw + prompt keys for active format
+  const activeRawKeys    = getRawKeysForFmt(RAW_KEYS, currentFmt);
+  const activePromptKeys = getPromptKeysForFmt(PROMPT_KEYS, currentFmt);
+  const hasAudio = results.some(r => r.wav);
+
+  // Filter
+  let rows = filterRows(results, CORRECT_KEYS);
+
+  // Sort
+  if (sortCol) {
+    rows = [...rows].sort((a, b) => {
+      const av = a[sortCol], bv = b[sortCol];
+      if (av == null) return 1; if (bv == null) return -1;
+      return av < bv ? -sortDir : av > bv ? sortDir : 0;
+    });
+  }
+
+  const total = rows.length;
+  const pages = Math.max(1, Math.ceil(total / PAGE));
+  if (page >= pages) page = 0;
+  const visible = rows.slice(page * PAGE, (page + 1) * PAGE);
+
+  // ── Build HTML
+  let h = `<table><thead><tr>`;
+  if (hasAudio) h += `<th><div class="th-btn">Audio</div></th>`;
+  DATA_KEYS.forEach(k => {
+    const on = sortCol === k;
+    h += `<th><button class="th-btn${on?' sorted':''}" onclick="onSort('${k}')">${k.replace(/_/g,' ')} <span class="sort-ic${on?' on':''}">${on?(sortDir===1?'↑':'↓'):'⇅'}</span></button></th>`;
+  });
+  if (activeRawKeys.length)    h += `<th><div class="th-btn">Response</div></th>`;
+  if (activePromptKeys.length) h += `<th><div class="th-btn">Prompt</div></th>`;
+  h += `</tr></thead><tbody>`;
+
+  visible.forEach(r => {
+    h += `<tr>`;
+    if (hasAudio) {
+      const wav = r.wav || '';
+      h += `<td>${wav
+        ? `<button class="play-btn" onclick="playAudio(this,'${escA(wav)}')">▶ Play</button>`
+        : `<span style="color:var(--t3)">—</span>`}</td>`;
+    }
+    DATA_KEYS.forEach(k => {
+      const v = r[k];
+      let cell;
+      if (v === undefined || v === null) {
+        cell = `<span style="color:var(--t3)">—</span>`;
+      } else if (CORRECT_KEYS.includes(k)) {
+        if      (v === 1 || v === true)  cell = `<span class="pill pill-ok">✓ yes</span>`;
+        else if (v === 0 || v === false) cell = `<span class="pill pill-no">✗ no</span>`;
+        else cell = `<span class="pill pill-w1">${typeof v==='number'?v.toFixed(2):v}</span>`;
+      } else if (typeof v === 'number' && !Number.isInteger(v)) {
+        cell = v.toFixed(3);
+      } else {
+        cell = escH(String(v));
+      }
+      h += `<td${typeof v==='number'?' class="num"':''}>${cell}</td>`;
+    });
+    if (activeRawKeys.length) {
+      const txt = activeRawKeys.map(k => r[k]
+        ? (activeRawKeys.length > 1 ? `${k.replace('raw_','')}:\n${escH(String(r[k]))}` : escH(String(r[k])))
+        : '').filter(Boolean).join('\n\n');
+      h += `<td class="raw-cell"><div class="raw-text" onclick="this.classList.toggle('open')">${txt}</div></td>`;
+    }
+    if (activePromptKeys.length) {
+      const pt = activePromptKeys.map(k => r[k] ? escH(String(r[k])) : '').filter(Boolean)[0] || '';
+      h += `<td class="raw-cell"><div class="raw-text" onclick="this.classList.toggle('open')">${pt}</div></td>`;
+    }
+    h += `</tr>`;
+  });
+
+  if (!visible.length) h += `<tr><td colspan="99" class="no-rows">No rows match filter.</td></tr>`;
+  h += `</tbody></table>`;
+  document.getElementById('tw').innerHTML = h;
+
+  // ── Pagination
+  const pg = document.getElementById('pager');
+  if (pages <= 1) { pg.innerHTML = `<span class="pg-info">${total.toLocaleString()} rows</span>`; return; }
+  pg.innerHTML = `
+    <button class="pg" onclick="goPage(0)" ${page===0?'disabled':''}>«</button>
+    <button class="pg" onclick="goPage(${page-1})" ${page===0?'disabled':''}>‹</button>
+    <span class="pg-info">Page ${page+1} / ${pages}  ·  ${total.toLocaleString()} rows</span>
+    <button class="pg" onclick="goPage(${page+1})" ${page>=pages-1?'disabled':''}>›</button>
+    <button class="pg" onclick="goPage(${pages-1})" ${page>=pages-1?'disabled':''}>»</button>`;
+}
+
+// ── Column helpers ─────────────────────────────────────────────────────────────
+const FMT_IDS = ['midi','abc','doremi','solfege'];
+
+function getDataKeysForFmt(allKeys, fmt, SKIP) {
+  if (fmt === 'all') return allKeys.filter(k => !SKIP.has(k)).slice(0, 14);
+
+  const isOtherFmt = k => FMT_IDS.filter(f => f !== fmt).some(f =>
+    k.startsWith(f+'_') || k === f
+  );
+  return allKeys.filter(k =>
+    !SKIP.has(k) && !isOtherFmt(k) && !k.startsWith('raw_') && !k.startsWith('prompt')
+  ).slice(0, 14);
+}
+
+function getRawKeysForFmt(rawKeys, fmt) {
+  if (fmt === 'all') return rawKeys;
+  const specific = rawKeys.filter(k => k === 'raw_' + fmt);
+  return specific.length ? specific : (rawKeys.includes('raw_response') ? ['raw_response'] : rawKeys.slice(0,1));
+}
+
+function getPromptKeysForFmt(promptKeys, fmt) {
+  if (fmt === 'all') return promptKeys.slice(0, 1);
+  const specific = promptKeys.filter(k => k === 'prompt_' + fmt);
+  return specific.length ? specific : (promptKeys.includes('prompt') ? ['prompt'] : promptKeys.slice(0,1));
+}
+
+// ── Filter rows ───────────────────────────────────────────────────────────────
+function filterRows(results, CORRECT_KEYS) {
+  let rows = results;
+
+  // Format filter for variant-type
+  if (fmtInfo.type === 'variant' && currentFmt !== 'all')
+    rows = rows.filter(r => r.prompt_variant === currentFmt);
+
+  if (filterText) {
+    const q = filterText.toLowerCase();
+    rows = rows.filter(r => JSON.stringify(r).toLowerCase().includes(q));
+  }
+  if (filterCorrect === 'correct')
+    rows = rows.filter(r => CORRECT_KEYS.some(k => r[k] === 1 || r[k] === true));
+  else if (filterCorrect === 'wrong')
+    rows = rows.filter(r => CORRECT_KEYS.every(k => r[k] !== 1 && r[k] !== true));
+
+  return rows;
+}
+
+// ── Lazy audio ────────────────────────────────────────────────────────────────
+function playAudio(btn, path) {
+  const a = document.createElement('audio');
+  a.controls = true;
+  a.src = `/audio?path=${encodeURIComponent(path)}`;
+  a.style.cssText = 'height:26px;width:185px;display:block;margin-top:3px';
+  btn.replaceWith(a);
+  a.play();
+}
+
+function goPage(n) { page = n; renderTable(); document.getElementById('tw').scrollTop = 0; }
+
+// ── Format tab switch ─────────────────────────────────────────────────────────
+function setFmt(id) {
+  currentFmt = id; page = 0;
+
+  // Update tab active state
+  document.querySelectorAll('.fmt-tab').forEach(t => {
+    t.classList.toggle('active', t.textContent.trim().startsWith(
+      fmtInfo.formats.find(f => f[0] === id)?.[1] || id
+    ));
+  });
+  // Simpler: rebuild tabs
+  const bar = document.getElementById('fmt-bar');
+  if (bar) bar.innerHTML = fmtInfo.formats.map(([fid, label]) => {
+    const acc = getFmtAccuracy(currentData, fid);
+    return `<div class="fmt-tab${fid===currentFmt?' active':''}" onclick="setFmt('${fid}')">${label}${acc !== null ? `<span class="fmt-acc">${acc}</span>` : ''}</div>`;
+  }).join('');
+
+  // Update summary
+  const total = currentData?.summary?.total ?? currentData?.summary?.n ?? currentData?.summary?.n_items ?? null;
+  const statsHtml = buildStats(currentData?.summary || {}, total, currentFmt);
+  const sum = document.getElementById('summary');
+  if (sum) {
+    const charts = sum.querySelector('.charts-wrap');
+    const chartsHtml = charts ? charts.outerHTML : '';
+    sum.innerHTML = statsHtml + chartsHtml;
+  }
+
+  renderTable();
+}
+
+// ── Event handlers ────────────────────────────────────────────────────────────
+function onRunChange(v) {
+  const [run, model] = v.split('|');
+  sortCol=null; sortDir=1; filterText=''; filterCorrect='all'; page=0; currentFmt='all';
+  loadResults(currentExp, run, model);
+}
+function onSearch(v) { filterText = v; page = 0; renderTable(); }
+function onCor(v)    { filterCorrect = v; page = 0; renderTable(); }
+function onSort(col) {
+  sortCol === col ? (sortDir *= -1) : (sortCol = col, sortDir = 1);
+  page = 0; renderTable();
+}
+
+// ── Lightbox ──────────────────────────────────────────────────────────────────
+function openLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lightbox').classList.add('open'); }
+function closeLb()   { document.getElementById('lightbox').classList.remove('open'); }
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target===e.currentTarget) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeLb(); });
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
+function escH(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escA(s) { return s.replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+init();
+</script>
+</body>
+</html>

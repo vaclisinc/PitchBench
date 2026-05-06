@@ -1,0 +1,101 @@
+Experiment : pitchbench_d2_dyad_lower_higher_difference
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-06T06:37:21.430543
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 75e459dd14de603cce07062e48a5bd8e65be560b
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : binary
+headline_metrics : ['answer']
+primary_filter_set : False
+record_extras : ['duration_ms', 'separation_ms', 'base_name', 'delta_cents', 'order', 'trial']
+sample_n   : 132
+sample_seed : 42
+total_available : 15048
+stratified_by : (delta_cents, order, duration_ms, base_name)
+
+SUMMARY
+==================================================
+  Sampling     : 132 of 15048 (stratified by '(delta_cents, order, duration_ms, base_name)', seed=42)
+  Stimuli (total)     : 132
+  Stimuli (condition) : 132  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER      63.6%
+
+== Marginal accuracy ==
+
+duration_ms     answer_correct    n
+──────────────  ───────  ────
+1000             66.67%    66
+5000             60.61%    66
+
+source          answer_correct    n
+──────────────  ───────  ────
+bass             42.86%     7
+cello            66.67%     9
+clarinet        100.00%     4
+electric_keyboard   53.85%    13
+flute            42.86%     7
+guitar           80.00%     5
+oboe            100.00%     4
+organ            22.22%     9
+piano           100.00%     6
+sawtooth         63.64%    11
+sine             50.00%     6
+square           75.00%     8
+synth_lead       75.00%     8
+synth_pad        66.67%     6
+triangle         66.67%     6
+trombone        100.00%     4
+trumpet          42.86%     7
+violin           42.86%     7
+voice           100.00%     5
+
+source_type     answer_correct    n
+──────────────  ───────  ────
+instrument       63.37%   101
+waveform         64.52%    31
+
+delta_cents     answer_correct    n
+──────────────  ───────  ────
+1                41.67%    12
+2                66.67%    12
+5                33.33%    12
+10               50.00%    12
+25               66.67%    12
+50               50.00%    12
+100              66.67%    12
+200             100.00%    12
+400              66.67%    12
+700              91.67%    12
+1200             66.67%    12
+
+order           answer_correct    n
+──────────────  ───────  ────
+0                66.67%    66
+1                60.61%    66
+
+separation_ms   answer_correct    n
+──────────────  ───────  ────
+200              75.00%    24
+500              65.00%    40
+1000             54.84%    31
+2000             62.16%    37
+
+trial           answer_correct    n
+──────────────  ───────  ────
+0                72.34%    47
+1                55.81%    43
+2                61.90%    42
+
+
+LLM USAGE
+==================================================
+  calls                           132
+  prompt tokens                27,832
+  completion tokens            15,903
+  total tokens                 43,735
+  cost (USD)                $0.246500

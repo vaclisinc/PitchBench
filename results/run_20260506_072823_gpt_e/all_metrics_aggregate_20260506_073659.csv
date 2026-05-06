@@ -1,0 +1,9 @@
+experiment,model,n_samples,metric,value
+pitchbench_e1_audio_effects,openrouter/openai/gpt-4o-audio-preview,240,condition_n,240.0
+pitchbench_e2_background,openrouter/openai/gpt-4o-audio-preview,240,condition_n,240.0
+pitchbench_e3_harmonic_saturation,openrouter/openai/gpt-4o-audio-preview,120,condition_n,120.0
+pitchbench_e4_time_stretching,openrouter/openai/gpt-4o-audio-preview,192,condition_n,192.0
+pitchbench_e5_vibrato,openrouter/openai/gpt-4o-audio-preview,160,condition_n,160.0
+pitchbench_e5_vibrato,openrouter/openai/gpt-4o-audio-preview,160,baseline_n,0.0
+pitchbench_e6_slightly_off,openrouter/openai/gpt-4o-audio-preview,160,condition_n,160.0
+pitchbench_e6_slightly_off,openrouter/openai/gpt-4o-audio-preview,160,baseline_n,0.0

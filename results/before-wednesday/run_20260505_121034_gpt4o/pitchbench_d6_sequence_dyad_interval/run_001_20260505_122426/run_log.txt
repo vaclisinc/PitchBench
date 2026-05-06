@@ -1,0 +1,155 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 120 items, max_workers=20
+    [   1/120] iv=-12st base=A4   sep= 500ms sine  interval=3 ❌
+    [   2/120] iv=-11st base=C3   sep= 500ms synth_pad  interval=5 ❌
+    [   3/120] iv=-11st base=C2   sep= 500ms bass  interval=3 ❌
+    [   4/120] iv=-10st base=G5   sep= 200ms voice  interval=3 ❌
+    [   5/120] iv= -1st base=G5   sep= 200ms square  interval=3 ❌
+    [   6/120] iv=-10st base=E4   sep= 500ms square  interval=3 ❌
+    [   7/120] iv=-10st base=G2   sep= 500ms guitar  interval=3 ❌
+    [   8/120] iv=-12st base=C3   sep=2000ms square  interval=3 ❌
+    [   9/120] iv=-12st base=G5   sep= 500ms sine  interval=3 ❌
+    [  10/120] iv=-11st base=G2   sep=1000ms square  interval=3 ❌
+    [  11/120] iv= -1st base=C3   sep= 500ms synth_lead  interval=2 ❌
+    [  12/120] iv=-11st base=E6   sep= 200ms voice  interval=3 ❌
+    [  13/120] iv= -1st base=E6   sep=1000ms voice  interval=4 ❌
+    [  14/120] iv= -1st base=E4   sep=2000ms sine  interval=3 ❌
+    [  15/120] iv=-11st base=E6   sep= 200ms cello  interval=7 ❌
+    [  16/120] iv=-10st base=C4   sep= 500ms triangle  interval=5 ❌
+    [  17/120] iv= -1st base=F#1  sep=2000ms flute  interval=3 ❌
+    [  18/120] iv= -2st base=E6   sep= 200ms electric_keyboard  interval=3 ❌
+    [  19/120] iv= -2st base=F#3  sep= 200ms bass  interval=2 ❌
+    [  20/120] iv=-12st base=G5   sep= 200ms clarinet  interval=3 ❌
+    [  21/120] iv=-12st base=C4   sep=2000ms electric_keyboard  interval=5 ❌
+    [  22/120] iv= -2st base=E6   sep=1000ms violin  interval=3 ❌
+    [  23/120] iv= -3st base=C3   sep=1000ms voice  interval=3 ❌
+    [  24/120] iv= -2st base=C3   sep= 500ms organ  interval=3 ❌
+    [  25/120] iv= -2st base=E4   sep=1000ms sine  interval=5 ❌
+    [  26/120] iv= -3st base=E4   sep=1000ms synth_lead  interval=3 ❌
+    [  27/120] iv= -4st base=C2   sep= 500ms flute  interval=3 ❌
+    [  28/120] iv= -3st base=E6   sep= 200ms synth_pad  interval=3 ❌
+    [  29/120] iv= -4st base=F#3  sep=2000ms oboe  interval=2 ❌
+    [  30/120] iv= -4st base=E4   sep=2000ms electric_keyboard  interval=2 ❌
+    [  31/120] iv= -4st base=F#1  sep=1000ms bass  interval=5 ❌
+    [  32/120] iv= -5st base=F#1  sep=1000ms piano  interval=3 ❌
+    [  33/120] iv= -3st base=F#1  sep=2000ms electric_keyboard  interval=5 ❌
+    [  34/120] iv= -4st base=A4   sep=2000ms clarinet  interval=2 ❌
+    [  35/120] iv= -5st base=C2   sep= 500ms sine  interval=3 ❌
+    [  36/120] iv= -3st base=E6   sep= 200ms cello  interval=3 ❌
+    [  37/120] iv= -5st base=A4   sep= 200ms trumpet  interval=3 ❌
+    [  38/120] iv= -5st base=G5   sep= 500ms synth_pad  interval=5 ❌
+    [  39/120] iv= -6st base=C2   sep= 500ms flute  interval=3 ❌
+    [  40/120] iv= -5st base=G5   sep= 500ms clarinet  interval=3 ❌
+    [  41/120] iv= -6st base=E4   sep= 500ms trumpet  interval=2 ❌
+    [  42/120] iv=-10st base=A4   sep= 500ms electric_keyboard  interval=4 ❌
+    [  43/120] iv= -6st base=E4   sep= 500ms square  interval=3 ❌
+    [  44/120] iv= -6st base=E6   sep=1000ms triangle  interval=3 ❌
+    [  45/120] iv= -7st base=F#3  sep=1000ms square  interval=3 ❌
+    [  46/120] iv= -7st base=G5   sep= 200ms trumpet  interval=2 ❌
+    [  47/120] iv= -8st base=E4   sep=1000ms voice  interval=3 ❌
+    [  48/120] iv= -8st base=A4   sep= 500ms guitar  interval=2 ❌
+    [  49/120] iv= -9st base=C2   sep=2000ms triangle  interval=3 ❌
+    [  50/120] iv= -7st base=A4   sep=1000ms trombone  interval=2 ❌
+    [  51/120] iv= -7st base=C3   sep= 500ms square  interval=3 ❌
+    [  52/120] iv= -8st base=A4   sep= 200ms oboe  interval=3 ❌
+    [  53/120] iv= -9st base=A4   sep=1000ms cello  interval=2 ❌
+    [  54/120] iv= -8st base=F#3  sep= 200ms bass  interval=3 ❌
+    [  55/120] iv= +1st base=C4   sep= 200ms flute  interval=4 ❌
+    [  56/120] iv= -9st base=F#1  sep= 500ms square  interval=4 ❌
+    [  57/120] iv= -9st base=E4   sep=2000ms trombone  interval=2 ❌
+    [  58/120] iv= +1st base=F#1  sep=2000ms synth_lead  interval=3 ❌
+    [  59/120] iv= -9st base=C2   sep=1000ms organ  interval=3 ❌
+    [  60/120] iv= +1st base=G5   sep=1000ms bass  interval=3 ❌
+    [  61/120] iv= -8st base=C2   sep= 200ms sawtooth  interval=5 ❌
+    [  62/120] iv= +1st base=G2   sep= 200ms trombone  interval=5 ❌
+    [  63/120] iv=+10st base=G5   sep=1000ms sawtooth  interval=3 ❌
+    [  64/120] iv= +1st base=A4   sep=1000ms organ  interval=3 ❌
+    [  65/120] iv=+10st base=G2   sep= 500ms sawtooth  interval=3 ❌
+    [  66/120] iv=+10st base=A4   sep=1000ms voice  interval=5 ❌
+    [  67/120] iv=+11st base=A4   sep=1000ms clarinet  interval=5 ❌
+    [  68/120] iv=+11st base=A4   sep=1000ms square  interval=5 ❌
+    [  69/120] iv=+12st base=G5   sep= 500ms flute  interval=3 ❌
+    [  70/120] iv=+11st base=G2   sep=2000ms square  interval=3 ❌
+    [  71/120] iv=+12st base=G5   sep= 200ms violin  interval=5 ❌
+    [  72/120] iv=+10st base=F#3  sep= 500ms electric_keyboard  interval=2 ❌
+    [  73/120] iv=+11st base=G2   sep= 200ms trumpet  interval=3 ❌
+    [  74/120] iv=+12st base=F#1  sep= 500ms voice  interval=4 ❌
+    [  75/120] iv= +2st base=C3   sep= 500ms electric_keyboard  interval=4 ❌
+    [  76/120] iv=+12st base=C4   sep= 500ms piano  interval=3 ❌
+    [  77/120] iv=+12st base=C3   sep=2000ms clarinet  interval=2 ❌
+    [  78/120] iv=+11st base=C4   sep= 200ms guitar  interval=3 ❌
+    [  79/120] iv= +2st base=F#3  sep=1000ms trombone  interval=0 ❌
+    [  80/120] iv= +2st base=F#1  sep=2000ms trombone  interval=-5 ❌
+    [  81/120] iv= +2st base=G5   sep=1000ms guitar  interval=2 ✅
+    [  82/120] iv= +3st base=F#3  sep=2000ms synth_pad  interval=3 ✅
+    [  83/120] iv= +3st base=G5   sep=1000ms sawtooth  interval=3 ✅
+    [  84/120] iv= +4st base=C3   sep=1000ms piano  interval=3 ❌
+    [  85/120] iv= +3st base=E6   sep= 500ms synth_pad  interval=7 ❌
+    [  86/120] iv= +2st base=C2   sep= 200ms synth_pad  interval=3 ❌
+    [  87/120] iv= +4st base=G2   sep= 200ms synth_lead  interval=3 ❌
+    [  88/120] iv= +4st base=E4   sep= 500ms voice  interval=5 ❌
+    [  89/120] iv= +5st base=G5   sep=1000ms oboe  interval=2 ❌
+    [  90/120] iv= +3st base=C4   sep=2000ms bass  interval=3 ✅
+    [  91/120] iv= -6st base=C4   sep= 200ms electric_keyboard  interval=3 ❌
+    [  92/120] iv= +6st base=E4   sep= 500ms synth_pad  interval=4 ❌
+    [  93/120] iv= +4st base=G2   sep= 500ms guitar  interval=3 ❌
+    [  94/120] iv= +4st base=E4   sep= 500ms cello  interval=4 ✅
+    [  95/120] iv= +5st base=E6   sep= 200ms guitar  interval=3 ❌
+    [  96/120] iv= +5st base=A4   sep= 500ms trombone  interval=2 ❌
+    [  97/120] iv= +5st base=C2   sep=1000ms piano  interval=3 ❌
+    [  98/120] iv= +6st base=C4   sep=1000ms synth_pad  interval=2 ❌
+    [  99/120] iv= +7st base=F#3  sep=1000ms sawtooth  interval=3 ❌
+    [ 100/120] iv= +5st base=C3   sep=1000ms synth_lead  interval=3 ❌
+    [ 101/120] iv= +6st base=C3   sep= 200ms trumpet  interval=3 ❌
+    [ 102/120] iv= +6st base=E4   sep= 500ms electric_keyboard  interval=3 ❌
+    [ 103/120] iv= +7st base=G5   sep= 500ms electric_keyboard  interval=3 ❌
+    [ 104/120] iv= +6st base=G2   sep= 200ms organ  interval=3 ❌
+    [ 105/120] iv= +7st base=G5   sep= 500ms sine  interval=3 ❌
+    [ 106/120] iv= +7st base=G2   sep= 500ms clarinet  interval=3 ❌
+    [ 107/120] iv= +8st base=E4   sep=2000ms sawtooth  interval=3 ❌
+    [ 108/120] iv= +7st base=F#1  sep=1000ms trumpet  interval=3 ❌
+    [ 109/120] iv= +8st base=F#3  sep= 200ms electric_keyboard  interval=2 ❌
+    [ 110/120] iv= +8st base=C3   sep=1000ms voice  interval=3 ❌
+    [ 111/120] iv= +8st base=G5   sep= 200ms guitar  interval=3 ❌
+    [ 112/120] iv= +9st base=F#1  sep=2000ms guitar  interval=3 ❌
+    [ 113/120] iv= +8st base=C4   sep= 500ms organ  interval=3 ❌
+    [ 114/120] iv= +9st base=G2   sep=1000ms oboe  interval=3 ❌
+    [ 115/120] iv= +9st base=C2   sep=1000ms organ  interval=3 ❌
+    [ 116/120] iv= +9st base=C4   sep=1000ms voice  interval=2 ❌
+    [ 117/120] iv=+10st base=F#3  sep=1000ms guitar  interval=2 ❌
+    [ 118/120] iv= +9st base=G5   sep= 200ms trumpet  interval=7 ❌
+    [ 119/120] iv= +3st base=C4   sep=2000ms synth_lead  interval=3 ✅
+    [ 120/120] iv= -7st base=C2   sep=2000ms trombone  interval=-5 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 120 of 35872 (stratified by 'signed_st', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        INTERVAL       5.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                18,271
+  completion tokens               347
+  total tokens                 18,618
+  cost (USD)                $0.374310
+
+Results saved → results/run_20260505_121034/pitchbench_d3_interval_id_seq/run_001_20260505_122426/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d4_contour_discrete
+############################################################
+
+Experiment : pitchbench_d4_contour_discrete
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 100
+  Sampling     : 100 of 21586 (stratified by '(n_transitions, step_size_st)', seed=42)

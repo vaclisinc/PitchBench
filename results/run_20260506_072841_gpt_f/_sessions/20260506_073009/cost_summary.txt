@@ -1,0 +1,10 @@
+PitchBench session cost summary
+Timestamp : 2026-05-06T07:30:09.756354
+
+Experiment                              calls        tokens      cost (USD)
+───────────────────────────────────────────────────────────────────────────
+pitchbench_f1_melodic_line_atonal         520       128,004       $1.853550
+pitchbench_f2_melodic_line_tonal          640       240,225       $5.565750
+───────────────────────────────────────────────────────────────────────────
+TOTAL                                   1,160       368,229       $7.419300
+

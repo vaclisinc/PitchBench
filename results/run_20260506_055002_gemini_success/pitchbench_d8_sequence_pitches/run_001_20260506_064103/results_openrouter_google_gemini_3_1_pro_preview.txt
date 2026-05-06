@@ -1,0 +1,230 @@
+Experiment : pitchbench_d8_sequence_pitches
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-06T06:44:18.451728
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 75e459dd14de603cce07062e48a5bd8e65be560b
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : sequence_id
+headline_metrics : ['midi_sequence', 'spn_sequence', 'doremi_sequence', 'hz_sequence', 'any_sequence']
+primary_filter_set : False
+record_extras : ['n_notes', 'trial']
+sample_n   : 171
+sample_seed : 42
+total_available : 285
+stratified_by : (n_notes, source)
+
+SUMMARY
+==================================================
+  Sampling     : 171 of 285 (stratified by '(n_notes, source)', seed=42)
+  Stimuli (total)     : 171
+  Stimuli (condition) : 171  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+   MIDI_SEQUENCE       0.0%
+    SPN_SEQUENCE       0.0%
+  DOREMI_SEQUENCE       4.1%
+     HZ_SEQUENCE       0.0%
+    ANY_SEQUENCE       0.0%
+
+== Marginal accuracy ==
+
+source          midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass              0.00%    0.00%   11.11%    0.00%    0.00%     9
+cello             0.00%    0.00%    0.00%    0.00%    0.00%     9
+clarinet          0.00%    0.00%    0.00%    0.00%    0.00%     9
+electric_keyboard    0.00%    0.00%    0.00%    0.00%    0.00%     9
+flute             0.00%    0.00%    0.00%    0.00%    0.00%     9
+guitar            0.00%    0.00%   11.11%    0.00%    0.00%     9
+oboe              0.00%    0.00%   11.11%    0.00%    0.00%     9
+organ             0.00%    0.00%   22.22%    0.00%    0.00%     9
+piano             0.00%    0.00%   11.11%    0.00%    0.00%     9
+sawtooth          0.00%    0.00%    0.00%    0.00%    0.00%     9
+sine              0.00%    0.00%    0.00%    0.00%    0.00%     9
+square            0.00%    0.00%    0.00%    0.00%    0.00%     9
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     9
+synth_pad         0.00%    0.00%    0.00%    0.00%    0.00%     9
+triangle          0.00%    0.00%    0.00%    0.00%    0.00%     9
+trombone          0.00%    0.00%    0.00%    0.00%    0.00%     9
+trumpet           0.00%    0.00%   11.11%    0.00%    0.00%     9
+violin            0.00%    0.00%    0.00%    0.00%    0.00%     9
+voice             0.00%    0.00%    0.00%    0.00%    0.00%     9
+
+source_type     midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        0.00%    0.00%    5.19%    0.00%    0.00%   135
+waveform          0.00%    0.00%    0.00%    0.00%    0.00%    36
+
+n_notes         midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+3                 0.00%    0.00%   12.28%    0.00%    0.00%    57
+5                 0.00%    0.00%    0.00%    0.00%    0.00%    57
+10                0.00%    0.00%    0.00%    0.00%    0.00%    57
+
+doremi_n_pos_match  midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 0.00%    0.00%    0.00%    0.00%    0.00%    71
+1                 0.00%    0.00%    0.00%    0.00%    0.00%    44
+2                 0.00%    0.00%    0.00%    0.00%    0.00%    34
+3                 0.00%    0.00%   38.89%    0.00%    0.00%    18
+4                 0.00%    0.00%    0.00%    0.00%    0.00%     4
+
+doremi_per_pos  midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, False, False, False, False]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     6
+[False, False, False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, False, False, True, False]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False, True, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, False]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     8
+[False, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, False, True, False, True, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, True, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, True, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, True, True, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, False, True]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, True, False, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, False, True, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, False]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[False, True, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[False, True, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, True, True, False, False]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, True, False, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, True, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    15
+[None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     7
+[None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     6
+[True, False, False, False, False]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, False, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, False, False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[True, False, False, True, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, False]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, False, True, False, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, True, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, True]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, False, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[True, True, False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, False, True, True, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, False]    0.00%    0.00%    0.00%    0.00%    0.00%     6
+[True, True, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, True, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, True, True, False, False]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, True, False, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, True, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, True, True, False, True, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, True, False, True]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, True, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     4
+[True, True, True, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, True]    0.00%    0.00%  100.00%    0.00%    0.00%     7
+
+hz_n_pos_match  midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 0.00%    0.00%    2.78%    0.00%    0.00%   144
+1                 0.00%    0.00%   11.11%    0.00%    0.00%    27
+
+hz_per_pos      midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    39
+[False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    44
+[False, None, None]    0.00%    0.00%    9.52%    0.00%    0.00%    42
+[None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     7
+[None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     7
+[None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    11
+[True, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     6
+[True, None, None]    0.00%    0.00%   30.00%    0.00%    0.00%    10
+
+midi_n_pos_match  midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 0.00%    0.00%    2.40%    0.00%    0.00%   125
+1                 0.00%    0.00%    7.14%    0.00%    0.00%    42
+2                 0.00%    0.00%   25.00%    0.00%    0.00%     4
+
+midi_per_pos    midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    28
+[False, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    25
+[False, False, None]    0.00%    0.00%    4.17%    0.00%    0.00%    24
+[False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    12
+[False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    17
+[False, None, None]    0.00%    0.00%   11.11%    0.00%    0.00%    18
+[False, True, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, True, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     9
+[True, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    10
+[True, False, None]    0.00%    0.00%   16.67%    0.00%    0.00%    12
+[True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, None, None]    0.00%    0.00%  100.00%    0.00%    0.00%     1
+[True, True, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, True, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, None]    0.00%    0.00%  100.00%    0.00%    0.00%     1
+
+spn_n_pos_match  midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 0.00%    0.00%    0.80%    0.00%    0.00%   125
+1                 0.00%    0.00%   10.53%    0.00%    0.00%    38
+2                 0.00%    0.00%   25.00%    0.00%    0.00%     8
+
+spn_per_pos     midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+[False, False, False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[False, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    23
+[False, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    15
+[False, False, None]    0.00%    0.00%    6.25%    0.00%    0.00%    16
+[False, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    14
+[False, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    14
+[False, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%    21
+[False, True, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[False, True, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[False, True, None]    0.00%    0.00%   50.00%    0.00%    0.00%     2
+[None, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     9
+[None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     5
+[True, False, False, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, False, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, False, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, False, True, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     1
+[True, None, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     9
+[True, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     6
+[True, None, None]    0.00%    0.00%   33.33%    0.00%    0.00%     9
+[True, True, None, None, None, None, None, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     3
+[True, True, None, None, None]    0.00%    0.00%    0.00%    0.00%    0.00%     2
+[True, True, None]    0.00%    0.00%  100.00%    0.00%    0.00%     2
+
+trial           midi_sequence_correct  spn_sequence_correct  doremi_sequence_correct  hz_sequence_correct  any_sequence_correct    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+0                 0.00%    0.00%    0.00%    0.00%    0.00%    40
+1                 0.00%    0.00%   10.00%    0.00%    0.00%    30
+2                 0.00%    0.00%    5.00%    0.00%    0.00%    40
+3                 0.00%    0.00%    6.25%    0.00%    0.00%    32
+4                 0.00%    0.00%    0.00%    0.00%    0.00%    29
+
+
+LLM USAGE
+==================================================
+  calls                           684
+  prompt tokens               591,703
+  completion tokens            84,757
+  total tokens                676,460
+  cost (USD)                $2.200490

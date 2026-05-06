@@ -4,7 +4,6 @@ __pycache__/
 data/
 _archive/
 .env
-results/
 tests/
 logs/
 /pitchbench_hf/

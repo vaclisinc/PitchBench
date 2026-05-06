@@ -1,0 +1,62 @@
+Experiment : pitchbench_b2_pitch_at_timestamp
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T08:24:56.694494
+argv       : ['.venv/bin/pitchbench', 'q1', '--models', 'audio_flamingo_next_instruct']
+git_commit : c9248adc7803776d37c80a3651e8df71e34b43f1
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : False
+record_extras : ['n_notes', 'duration_ms', 'query_time_s']
+sample_n   : None
+sample_seed : 42
+total_available : 84
+stratified_by : (n_notes, target_idx)
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 84)
+  Stimuli (total)     : 84
+  Stimuli (condition) : 84  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+      MIDI       5.9%
+       SPN       0.0%
+    DOREMI       7.1%
+        HZ       0.0%
+       ANY       5.9%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             0.00%    0.00%    7.14%    0.00%    0.00%    14
+flute             7.14%    0.00%    7.14%    0.00%    7.14%    14
+piano             7.14%    0.00%    7.14%    0.00%    7.14%    14
+sine              7.14%    0.00%    0.00%    0.00%    7.14%    14
+synth_lead        7.14%    0.00%    7.14%    0.00%    7.14%    14
+voice             7.14%    0.00%   14.29%    0.00%    7.14%    14
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        5.71%    0.00%    8.57%    0.00%    5.71%    70
+waveform          7.14%    0.00%    0.00%    0.00%    7.14%    14
+
+n_notes            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+5                 9.52%    0.00%    2.38%    0.00%    9.52%    42
+10                2.38%    0.00%   11.90%    0.00%    2.38%    42
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%    12
+38                0.00%    0.00%    0.00%    0.00%    0.00%    12
+47                0.00%    0.00%    0.00%    0.00%    0.00%    12
+56                0.00%    0.00%   50.00%    0.00%    0.00%    12
+65               41.67%    0.00%    0.00%    0.00%   41.67%    12
+74                0.00%    0.00%    0.00%    0.00%    0.00%    12
+83                0.00%    0.00%    0.00%    0.00%    0.00%    12
+

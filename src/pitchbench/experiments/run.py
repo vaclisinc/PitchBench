@@ -11,6 +11,7 @@ Usage::
     pitchbench --download                       # generate audio for ALL experiments
     pitchbench a                                # run every experiment in category 'a'
     pitchbench a --download                     # generate audio for every 'a' experiment
+    pitchbench q1                               # run analysis preset by name
     pitchbench all                              # run every experiment
     pitchbench --list                           # list available experiments
 
@@ -28,6 +29,7 @@ import argparse
 import importlib
 import re
 import sys
+from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -107,6 +109,54 @@ def _category_to_names(cat: str) -> list[str]:
     return out
 
 
+def _analysis_presets() -> dict[str, Any]:
+    """Best-effort load of analysis preset definitions."""
+    try:
+        analysis_config = importlib.import_module("pitchbench.analysis_config")
+    except Exception:
+        return {}
+    presets = getattr(analysis_config, "PRESETS", None)
+    return presets if isinstance(presets, dict) else {}
+
+
+def _apply_analysis_preset(preset_name: str) -> list[str] | None:
+    """Apply config overrides for an analysis preset; return experiment names."""
+    preset = _analysis_presets().get(preset_name)
+    if not isinstance(preset, dict):
+        return None
+
+    notation_formats = preset.get("notation_formats")
+    if notation_formats is not None:
+        config.pitchbench_general_NOTATION_FORMATS = notation_formats
+
+    experiments = preset.get("experiments", {})
+    if not isinstance(experiments, dict):
+        return []
+
+    for exp_overrides in experiments.values():
+        if not isinstance(exp_overrides, dict):
+            continue
+        for attr, val in exp_overrides.items():
+            setattr(config, attr, val)
+
+    return list(experiments.keys())
+
+
+def _run_experiment_worker(
+    args: tuple[str, list[str]],
+) -> tuple[str, dict | None, dict]:
+    """Worker for ProcessPoolExecutor: runs one experiment in an isolated process."""
+    name, extra = args
+    from pitchbench.experiments.helpers import cost as _cost  # process-local copy
+    _cost.reset()
+    try:
+        result = run_experiment(name, extra)
+    except Exception as exc:
+        print(f"\n[ERROR] Experiment {name} failed with error:\n{exc}\n", flush=True)
+        return name, None, _cost.all_totals()
+    return name, result, _cost.all_totals()
+
+
 def run_experiment(name: str, extra_argv: list[str]) -> dict[str, dict[str, Any]] | None:
     """Run one experiment; return its per-model format accuracies (or None for preview)."""
     print(f"\n{'#' * 60}")
@@ -172,6 +222,11 @@ def main() -> None:
         help="Override the results subdirectory name (e.g. 'pilot_01'). "
              "Results land in results/<NAME>/. Also settable via PITCHBENCH_RUN env var.",
     )
+    parser.add_argument(
+        "--LOCAL_CONCURRENCY", type=int, default=1, metavar="N",
+        help="Number of experiments to run in parallel (default: 1 = sequential). "
+             "Each experiment runs in its own process so cost tracking stays isolated.",
+    )
 
     args, unknown = parser.parse_known_args()
 
@@ -201,6 +256,11 @@ def main() -> None:
             m = _NAME_RE.match(n)
             ident = f"[{m.group(1)}]" if m else "    "
             print(f"  {ident:>6}  {n}")
+        preset_names = sorted(_analysis_presets().keys())
+        if preset_names:
+            print("\nAnalysis presets:")
+            for p in preset_names:
+                print(f"  [preset]  {p}")
         return
 
     # --download is a stimulus-only mode (no model queries) that also defaults to
@@ -235,6 +295,7 @@ def main() -> None:
         exp_id = args.experiment.lower()
 
     known_names: list[str] = discover()
+    preset_names: list[str] = sorted(_analysis_presets().keys())
 
     # Category prefix: "a", "b", … runs every experiment in that category.
     category: str | None = None
@@ -243,7 +304,24 @@ def main() -> None:
     elif args.exp_id and _CAT_RE.match(args.exp_id.lower()):
         category = args.exp_id.lower()
 
-    if category is not None:
+    preset_name: str | None = None
+    if args.experiment and args.experiment in preset_names:
+        preset_name = args.experiment
+    elif exp_id is not None and exp_id in preset_names:
+        preset_name = exp_id
+
+    if preset_name is not None:
+        preset_exp_names = _apply_analysis_preset(preset_name)
+        if preset_exp_names is None:
+            parser.error(f"Unknown analysis preset {preset_name!r}.")
+        unknown_in_preset = [n for n in preset_exp_names if n not in known_names]
+        if unknown_in_preset:
+            parser.error(
+                f"Analysis preset {preset_name!r} references unknown experiment(s): "
+                f"{unknown_in_preset}"
+            )
+        name = preset_exp_names
+    elif category is not None:
         cat_names = _category_to_names(category)
         if not cat_names:
             parser.error(f"No experiments found for category {category!r}.")
@@ -252,6 +330,11 @@ def main() -> None:
         name = _id_to_name(exp_id)
         if name is None:
             ids = [_NAME_RE.match(n).group(1) for n in known_names if _NAME_RE.match(n)]
+            if preset_names:
+                parser.error(
+                    f"Unknown experiment ID {exp_id!r}. Available IDs: {ids}. "
+                    f"Available presets: {preset_names}"
+                )
             parser.error(f"Unknown experiment ID {exp_id!r}. Available: {ids}")
     elif args.experiment and (args.experiment == "all" or args.experiment in known_names):
         name = args.experiment
@@ -272,19 +355,29 @@ def main() -> None:
         names_to_run = discover() if name == "all" else name
         all_runs:      dict[str, dict[str, dict[str, Any]]]   = {}
         per_exp_costs: dict[str, dict[str, dict[str, Any]]]   = {}
-        for n in names_to_run:
-            # Reset before each experiment so a crash before make_run_dir doesn't
-            # mis-attribute the previous experiment's totals to this one.
-            cost_tracker.reset()
-            try:
-                result = run_experiment(n, extra)
-            except Exception as exc:
-                print(f"\n[ERROR] Experiment {n} failed with error:\n{exc}\n")
+        concurrency = max(1, args.LOCAL_CONCURRENCY)
+        if concurrency > 1:
+            print(f"Running {len(names_to_run)} experiments with LOCAL_CONCURRENCY={concurrency}")
+            worker_args = [(n, extra) for n in names_to_run]
+            with ProcessPoolExecutor(max_workers=concurrency) as pool:
+                for exp_name, result, costs in pool.map(_run_experiment_worker, worker_args):
+                    per_exp_costs[exp_name] = costs
+                    if result:
+                        all_runs[exp_name] = result
+        else:
+            for n in names_to_run:
+                # Reset before each experiment so a crash before make_run_dir doesn't
+                # mis-attribute the previous experiment's totals to this one.
+                cost_tracker.reset()
+                try:
+                    result = run_experiment(n, extra)
+                except Exception as exc:
+                    print(f"\n[ERROR] Experiment {n} failed with error:\n{exc}\n")
+                    per_exp_costs[n] = cost_tracker.all_totals()
+                    continue
                 per_exp_costs[n] = cost_tracker.all_totals()
-                continue
-            per_exp_costs[n] = cost_tracker.all_totals()
-            if result:
-                all_runs[n] = result
+                if result:
+                    all_runs[n] = result
 
         if all_runs and not stimulus_only:
             ts          = datetime.now().strftime("%Y%m%d_%H%M%S")

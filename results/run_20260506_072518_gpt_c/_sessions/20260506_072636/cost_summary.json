@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-05-06T07:26:36.629439",
+  "experiments": {
+    "pitchbench_c1_chord_count_pitches": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 228,
+        "prompt_tokens": 16644,
+        "completion_tokens": 249,
+        "total_tokens": 16893,
+        "cached_tokens": 0,
+        "cost_usd": 0.3006,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c2_chord_dyad_interval": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 232,
+        "prompt_tokens": 15968,
+        "completion_tokens": 5226,
+        "total_tokens": 21194,
+        "cached_tokens": 0,
+        "cost_usd": 0.35168,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c3_chord_quality": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 192,
+        "prompt_tokens": 18744,
+        "completion_tokens": 192,
+        "total_tokens": 18936,
+        "cached_tokens": 0,
+        "cost_usd": 0.26928,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c4_chord_pitches": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 800,
+        "prompt_tokens": 96200,
+        "completion_tokens": 7271,
+        "total_tokens": 103471,
+        "cached_tokens": 0,
+        "cost_usd": 1.81321,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 1452,
+  "total_tokens": 160494,
+  "total_cost_usd": 2.73477
+}

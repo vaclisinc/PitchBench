@@ -1,0 +1,3 @@
+experiment,model,n_samples,metric,value
+pitchbench_f1_melodic_line_atonal,openrouter/openai/gpt-4o-audio-preview,130,condition_n,130.0
+pitchbench_f2_melodic_line_tonal,openrouter/openai/gpt-4o-audio-preview,160,condition_n,160.0

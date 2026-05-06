@@ -127,6 +127,7 @@ BENCHMARK_E4_CONDITIONS: list[dict[str,Any]] = ([
 # ═══ SAMPLING (stratification) ════════════════════════════════════════════════
 SAMPLING: dict[str, dict[str, Any]] = {
     "pitchbench_a1_single_pitch_id":              {"per_stratum": 1,  "strata": ("midi", "source")},
+    "pitchbench_y1_single_pitch_id_mcq":          {"per_stratum": 1,  "strata": ("midi", "source", "semitone_step")},
     "pitchbench_a2_single_pitch_by_loudness":     {"per_stratum": 4,  "strata": ("midi", "loudness_db")},
     "pitchbench_a3_single_pitch_by_duration":     {"per_stratum": 3,  "strata": ("midi", "duration_ms")},
 
@@ -166,6 +167,13 @@ pitchbench_general_NOTATION_FORMATS = BENCHMARK_NOTATION_FORMATS
 pitchbench_a1_PITCHES          = BENCHMARK_PITCHES_FULL_RANGE
 pitchbench_a1_TONE_DURATION_MS = BENCHMARK_DURATION_MS
 pitchbench_a1_SOURCES          = BENCHMARK_ALL_SOURCES
+
+pitchbench_y1_PITCHES         = BENCHMARK_PITCHES_FULL_RANGE
+pitchbench_y1_TONE_DURATION_MS = BENCHMARK_DURATION_MS
+pitchbench_y1_SOURCES         = BENCHMARK_ALL_SOURCES
+pitchbench_y1_N_OPTIONS       = 5
+pitchbench_y1_OPTION_STEP_ST  = 2
+pitchbench_y1_SEED            = BENCHMARK_SEED
 
 # Shared by d7a (concat-audio with anchor) and d7b (split-audio with anchor) —
 # both experiments draw stimuli from the same condition grid so their accuracy

@@ -1,0 +1,90 @@
+Experiment : pitchbench_d1_seq_pitch_count
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-05T12:32:28.070512
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : count
+headline_metrics : ['count']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n', 'rhythm', 'trial']
+sample_n   : 70
+sample_seed : 42
+total_available : 1596
+stratified_by : (n, rhythm)
+
+SUMMARY
+==================================================
+  Sampling     : 70 of 1596 (stratified by '(n, rhythm)', seed=42)
+  Stimuli (total)     : 70
+  Stimuli (condition) : 70  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+           COUNT      62.9%
+
+== Marginal accuracy ==
+
+duration_ms     count_correct    n
+──────────────  ───────  ────
+1000             55.56%    27
+5000             67.44%    43
+
+source          count_correct    n
+──────────────  ───────  ────
+bass             40.00%     5
+cello            50.00%     4
+clarinet        100.00%     1
+electric_keyboard   40.00%     5
+flute            50.00%     4
+guitar            0.00%     1
+oboe             60.00%     5
+organ            66.67%     3
+piano            50.00%     6
+sawtooth         50.00%     4
+sine            100.00%     6
+square           83.33%     6
+synth_lead      100.00%     2
+synth_pad        33.33%     3
+triangle         50.00%     2
+trombone         50.00%     4
+trumpet          66.67%     3
+violin          100.00%     4
+voice           100.00%     2
+
+source_type     count_correct    n
+──────────────  ───────  ────
+instrument       57.69%    52
+waveform         77.78%    18
+
+rhythm          count_correct    n
+──────────────  ───────  ────
+irregular        60.00%    35
+regular          65.71%    35
+
+n               count_correct    n
+──────────────  ───────  ────
+1                40.00%    10
+2                90.00%    10
+3               100.00%    10
+4                80.00%    10
+5                70.00%    10
+7                10.00%    10
+10               50.00%    10
+
+trial           count_correct    n
+──────────────  ───────  ────
+0                82.61%    23
+1                48.00%    25
+2                59.09%    22
+
+
+LLM USAGE
+==================================================
+  calls                            70
+  prompt tokens                33,531
+  completion tokens             8,474
+  total tokens                 42,005
+  cost (USD)                $0.168750

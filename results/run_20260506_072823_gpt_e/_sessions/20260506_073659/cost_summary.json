@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-05-06T07:36:59.582274",
+  "experiments": {
+    "pitchbench_e1_audio_effects": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 960,
+        "prompt_tokens": 115200,
+        "completion_tokens": 1449,
+        "total_tokens": 116649,
+        "cached_tokens": 0,
+        "cost_usd": 2.10249,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e2_background": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 960,
+        "prompt_tokens": 129600,
+        "completion_tokens": 1367,
+        "total_tokens": 130967,
+        "cached_tokens": 0,
+        "cost_usd": 2.13767,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e3_harmonic_saturation": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 480,
+        "prompt_tokens": 57600,
+        "completion_tokens": 739,
+        "total_tokens": 58339,
+        "cached_tokens": 0,
+        "cost_usd": 1.05139,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e4_time_stretching": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 768,
+        "prompt_tokens": 101760,
+        "completion_tokens": 1473,
+        "total_tokens": 103233,
+        "cached_tokens": 0,
+        "cost_usd": 1.34913,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e5_vibrato": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 639,
+        "prompt_tokens": 86911,
+        "completion_tokens": 939,
+        "total_tokens": 87850,
+        "cached_tokens": 0,
+        "cost_usd": 1.424793,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e6_slightly_off": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 640,
+        "prompt_tokens": 77120,
+        "completion_tokens": 1171,
+        "total_tokens": 78291,
+        "cached_tokens": 0,
+        "cost_usd": 0.93651,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 4447,
+  "total_tokens": 575329,
+  "total_cost_usd": 9.001983
+}
