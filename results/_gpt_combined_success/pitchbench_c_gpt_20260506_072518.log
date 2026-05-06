@@ -1,0 +1,1014 @@
+Running in MODE=EVAL
+
+############################################################
+# pitchbench_c1_chord_count_pitches
+############################################################
+
+Experiment : pitchbench_c1_chord_count_pitches
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 228
+  Sampling     : 228 of 8664 (stratified by '(n, chord_quality, root_midi, same_instrument)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 228 items, max_workers=20
+    [   1/228] n=2 random_set  root=D3   same_instrumentation=False dur= 1000ms  count=2 ✅
+    [   2/228] n=1 random_set  root=G1   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [   3/228] n=2 random_set  root=D3   same_instrumentation=True  dur= 1000ms  count=2 ✅
+    [   4/228] n=3 augmented   root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [   5/228] n=3 augmented   root=C2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [   6/228] n=1 random_set  root=G#4  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [   7/228] n=1 random_set  root=G#4  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [   8/228] n=3 augmented   root=C2   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [   9/228] n=3 augmented   root=C3   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  10/228] n=2 random_set  root=F#3  same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [  11/228] n=3 augmented   root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  12/228] n=1 random_set  root=G3   same_instrumentation=False dur= 5000ms  count=1 ✅
+    [  13/228] n=2 random_set  root=F#3  same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  14/228] n=3 augmented   root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  15/228] n=2 random_set  root=E5   same_instrumentation=True  dur= 1000ms  count=2 ✅
+    [  16/228] n=2 random_set  root=E5   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  17/228] n=3 augmented   root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  18/228] n=1 random_set  root=G3   same_instrumentation=True  dur= 5000ms  count=1 ✅
+    [  19/228] n=1 random_set  root=G1   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  20/228] n=3 augmented   root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  21/228] n=3 augmented   root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  22/228] n=3 augmented   root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  23/228] n=3 augmented   root=A4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  24/228] n=3 augmented   root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  25/228] n=3 augmented   root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  26/228] n=3 augmented   root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  27/228] n=3 augmented   root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  28/228] n=3 augmented   root=E4   same_instrumentation=True  dur= 5000ms  count=3 ✅
+    [  29/228] n=3 diminished  root=F#1  same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [  30/228] n=3 augmented   root=E6   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  31/228] n=3 diminished  root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  32/228] n=3 augmented   root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  33/228] n=3 diminished  root=F#1  same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  34/228] n=3 diminished  root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  35/228] n=3 augmented   root=G5   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  36/228] n=3 diminished  root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  37/228] n=3 diminished  root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  38/228] n=3 augmented   root=E6   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  39/228] n=3 diminished  root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  40/228] n=3 diminished  root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  41/228] n=3 diminished  root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  42/228] n=3 diminished  root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  43/228] n=3 diminished  root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  44/228] n=3 diminished  root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  45/228] n=3 diminished  root=E6   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  46/228] n=3 major       root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  47/228] n=3 major       root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  48/228] n=3 diminished  root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  49/228] n=3 diminished  root=A4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  50/228] n=3 major       root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  51/228] n=3 diminished  root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  52/228] n=3 diminished  root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  53/228] n=3 major       root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  54/228] n=3 major       root=C2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  55/228] n=3 major       root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  56/228] n=3 major       root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  57/228] n=3 diminished  root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  58/228] n=3 diminished  root=E4   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  59/228] n=3 diminished  root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  60/228] n=3 major       root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  61/228] n=3 major       root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  62/228] n=3 major       root=G2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  63/228] n=3 major       root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  64/228] n=3 major       root=F#3  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  65/228] n=3 major       root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  66/228] n=3 major       root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  67/228] n=3 major       root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  68/228] n=3 major       root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  69/228] n=3 major       root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  70/228] n=3 major       root=A4   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [  71/228] n=3 major       root=E6   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  72/228] n=3 minor       root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  73/228] n=3 minor       root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  74/228] n=3 minor       root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  75/228] n=3 minor       root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  76/228] n=3 minor       root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  77/228] n=3 major       root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  78/228] n=3 minor       root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  79/228] n=3 minor       root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  80/228] n=3 minor       root=C3   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  81/228] n=3 minor       root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  82/228] n=3 minor       root=G2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  83/228] n=3 minor       root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  84/228] n=3 minor       root=E6   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  85/228] n=3 minor       root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  86/228] n=3 minor       root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  87/228] n=3 minor       root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  88/228] n=3 minor       root=C4   same_instrumentation=True  dur= 5000ms  count=3 ✅
+    [  89/228] n=3 minor       root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  90/228] n=3 minor       root=E6   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  91/228] n=3 random_set  root=G1   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  92/228] n=3 random_set  root=B1   same_instrumentation=True  dur= 1000ms  count=None ❌
+    [  93/228] n=3 minor       root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  94/228] n=3 random_set  root=B1   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  95/228] n=3 random_set  root=G1   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  96/228] n=3 sus2        root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  97/228] n=3 sus2        root=G2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  98/228] n=3 sus2        root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  99/228] n=3 random_set  root=F#3  same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 100/228] n=3 sus2        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 101/228] n=3 minor       root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 102/228] n=3 random_set  root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 103/228] n=3 sus2        root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 104/228] n=3 sus2        root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 105/228] n=3 sus2        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 106/228] n=3 sus2        root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 107/228] n=3 sus2        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 108/228] n=3 sus2        root=C3   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 109/228] n=3 sus2        root=C2   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 110/228] n=3 sus2        root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 111/228] n=3 sus2        root=E6   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 112/228] n=3 sus2        root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 113/228] n=3 sus2        root=E4   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 114/228] n=3 sus2        root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 115/228] n=3 sus2        root=G5   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 116/228] n=3 sus4        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 117/228] n=3 sus4        root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 118/228] n=3 sus4        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 119/228] n=3 sus2        root=E4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 120/228] n=3 sus4        root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 121/228] n=3 sus4        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 122/228] n=3 sus4        root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 123/228] n=3 sus4        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 124/228] n=3 sus4        root=F#3  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 125/228] n=3 sus4        root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 126/228] n=3 sus4        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 127/228] n=3 sus4        root=E4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 128/228] n=3 sus2        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 129/228] n=3 sus4        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 130/228] n=3 sus4        root=E4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 131/228] n=3 sus4        root=A4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 132/228] n=3 sus4        root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 133/228] n=3 sus4        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 134/228] n=3 sus4        root=C3   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 135/228] n=3 sus4        root=E6   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 136/228] n=4 dom7        root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 137/228] n=4 dom7        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 138/228] n=3 sus4        root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 139/228] n=3 sus4        root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 140/228] n=4 dom7        root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 141/228] n=4 dom7        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 142/228] n=4 dom7        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 143/228] n=4 dom7        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 144/228] n=4 dom7        root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 145/228] n=4 dom7        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 146/228] n=4 dom7        root=G2   same_instrumentation=False dur= 5000ms  count=None ❌
+    [ 147/228] n=4 dom7        root=C3   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 148/228] n=4 dom7        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 149/228] n=4 m7b5        root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 150/228] n=4 dom7        root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 151/228] n=4 dom7        root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 152/228] n=4 dom7        root=A4   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 153/228] n=4 m7b5        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 154/228] n=4 m7b5        root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 155/228] n=4 m7b5        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 156/228] n=4 m7b5        root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 157/228] n=4 dom7        root=E4   same_instrumentation=True  dur= 5000ms  count=3 ❌
+    [ 158/228] n=4 m7b5        root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 159/228] n=4 dom7        root=G5   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 160/228] n=4 dom7        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 161/228] n=4 dom7        root=G5   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 162/228] n=4 m7b5        root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 163/228] n=4 m7b5        root=C2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 164/228] n=4 m7b5        root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 165/228] n=4 m7b5        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 166/228] n=4 m7b5        root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 167/228] n=4 m7b5        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 168/228] n=4 m7b5        root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 169/228] n=4 m7b5        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 170/228] n=4 m7b5        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 171/228] n=4 m7b5        root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 172/228] n=4 maj7        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 173/228] n=4 maj7        root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 174/228] n=4 maj7        root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 175/228] n=4 maj7        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 176/228] n=4 maj7        root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 177/228] n=4 m7b5        root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 178/228] n=3 sus2        root=C2   same_instrumentation=False dur= 5000ms  count=None ❌
+    [ 179/228] n=4 maj7        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 180/228] n=4 maj7        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 181/228] n=4 maj7        root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 182/228] n=4 maj7        root=C3   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 183/228] n=4 maj7        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 184/228] n=4 maj7        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 185/228] n=4 maj7        root=C4   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 186/228] n=4 maj7        root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 187/228] n=4 maj7        root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 188/228] n=4 maj7        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 189/228] n=4 maj7        root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 190/228] n=4 m7b5        root=E4   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 191/228] n=4 min7        root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 192/228] n=4 min7        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 193/228] n=4 min7        root=G2   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 194/228] n=4 min7        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 195/228] n=4 min7        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 196/228] n=4 min7        root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 197/228] n=4 min7        root=F#3  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 198/228] n=4 min7        root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 199/228] n=4 min7        root=E4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 200/228] n=4 maj7        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 201/228] n=4 min7        root=A4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 202/228] n=4 min7        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 203/228] n=4 min7        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 204/228] n=4 min7        root=C2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 205/228] n=4 min7        root=G5   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 206/228] n=4 min7        root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 207/228] n=4 random_set  root=F1   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 208/228] n=4 min7        root=C3   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 209/228] n=4 random_set  root=E2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 210/228] n=4 min7        root=C4   same_instrumentation=False dur= 5000ms  count=3 ❌
+    [ 211/228] n=4 random_set  root=A#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 212/228] n=4 random_set  root=E2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 213/228] n=4 random_set  root=F1   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 214/228] n=4 random_set  root=A#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 215/228] n=5 random_set  root=A#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 216/228] n=5 random_set  root=A#2  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 217/228] n=5 random_set  root=C#2  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 218/228] n=4 min7        root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 219/228] n=6 random_set  root=D#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 220/228] n=6 random_set  root=F2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 221/228] n=6 random_set  root=C#2  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 222/228] n=5 random_set  root=C#2  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 223/228] n=6 random_set  root=F2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 224/228] n=6 random_set  root=C#2  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 225/228] n=5 random_set  root=A#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 226/228] n=5 random_set  root=A#2  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 227/228] n=6 random_set  root=D#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 228/228] n=4 maj7        root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 228 of 8664 (stratified by '(n, chord_quality, root_midi, same_instrument)', seed=42)
+  Stimuli (total)     : 228
+  Stimuli (condition) : 228  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+       COUNT       3.1%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           228
+  prompt tokens                16,644
+  completion tokens               249
+  total tokens                 16,893
+  cost (USD)                $0.300600
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072518/pitchbench_c1_chord_count_pitches/run_001_20260506_072518/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_c2_chord_dyad_interval
+############################################################
+
+Experiment : pitchbench_c2_chord_dyad_interval
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 232
+  Sampling     : 232 of 8816 (stratified by '(interval_st, same_instrument, root_midi)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 232 items, max_workers=20
+    [   1/232] iv= 1st root=C3   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [   2/232] iv= 1st root=F#1  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [   3/232] iv= 1st root=G5   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [   4/232] iv= 1st root=C3   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [   5/232] iv= 1st root=G5   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [   6/232] iv= 1st root=C2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [   7/232] iv= 1st root=E6   same_instrumentation=False dur= 5000ms  interval=6 ❌
+    [   8/232] iv= 1st root=A4   same_instrumentation=True  dur= 5000ms  interval=4 ❌
+    [   9/232] iv= 1st root=A4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  10/232] iv= 1st root=F#1  same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  11/232] iv= 1st root=G2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  12/232] iv= 1st root=G2   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [  13/232] iv= 1st root=C4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  14/232] iv= 1st root=F#3  same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  15/232] iv= 1st root=E6   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  16/232] iv= 1st root=E4   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  17/232] iv= 1st root=E4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  18/232] iv= 1st root=F#3  same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  19/232] iv= 1st root=C4   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  20/232] iv= 1st root=C2   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  21/232] iv=10th root=F#1  same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  22/232] iv=10th root=C3   same_instrumentation=False dur= 1000ms  interval=8 ❌
+    [  23/232] iv=10th root=C2   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  24/232] iv=10th root=G2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  25/232] iv=10th root=F#1  same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  26/232] iv=10th root=F#3  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  27/232] iv=10th root=G2   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [  28/232] iv=10th root=F#3  same_instrumentation=True  dur= 5000ms  interval=8 ❌
+    [  29/232] iv=10th root=C3   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  30/232] iv=10th root=A4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  31/232] iv=10th root=A4   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  32/232] iv=10th root=C4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  33/232] iv=10th root=G5   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  34/232] iv=10th root=C2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  35/232] iv=10th root=E4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  36/232] iv=10th root=E4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  37/232] iv=11th root=G2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  38/232] iv=11th root=F#1  same_instrumentation=False dur= 1000ms  interval=6 ❌
+    [  39/232] iv=11th root=C4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  40/232] iv=11th root=C3   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  41/232] iv=10th root=G5   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  42/232] iv=11th root=A4   same_instrumentation=False dur= 1000ms  interval=6 ❌
+    [  43/232] iv=11th root=F#3  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  44/232] iv=11th root=E4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  45/232] iv=11th root=C2   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  46/232] iv=11th root=F#3  same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  47/232] iv=11th root=C2   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  48/232] iv=11th root=F#1  same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [  49/232] iv=11th root=C4   same_instrumentation=True  dur= 1000ms  interval=4 ❌
+    [  50/232] iv=11th root=G2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  51/232] iv=11th root=G5   same_instrumentation=True  dur= 1000ms  interval=4 ❌
+    [  52/232] iv=12th root=G2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  53/232] iv=11th root=C3   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  54/232] iv=12th root=C3   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  55/232] iv=12th root=F#3  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  56/232] iv=11th root=E4   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  57/232] iv=11th root=A4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  58/232] iv=12th root=A4   same_instrumentation=False dur= 1000ms  interval=6 ❌
+    [  59/232] iv=12th root=C2   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  60/232] iv=12th root=E4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  61/232] iv=12th root=G5   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  62/232] iv=12th root=C2   same_instrumentation=True  dur= 5000ms  interval=6 ❌
+    [  63/232] iv=10th root=C4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  64/232] iv=12th root=F#3  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  65/232] iv=11th root=G5   same_instrumentation=False dur= 5000ms  interval=6 ❌
+    [  66/232] iv=12th root=C4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  67/232] iv=12th root=E4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  68/232] iv=12th root=G2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  69/232] iv=12th root=C4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  70/232] iv=12th root=C3   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  71/232] iv= 2nd root=F#1  same_instrumentation=False dur= 1000ms  interval=6 ❌
+    [  72/232] iv=12th root=F#1  same_instrumentation=False dur= 5000ms  interval=None ❌
+    [  73/232] iv=12th root=F#1  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  74/232] iv= 2nd root=C2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  75/232] iv= 2nd root=E4   same_instrumentation=False dur= 1000ms  interval=6 ❌
+    [  76/232] iv=12th root=G5   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  77/232] iv= 2nd root=F#3  same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  78/232] iv= 2nd root=C3   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  79/232] iv= 2nd root=C4   same_instrumentation=False dur= 5000ms  interval=8 ❌
+    [  80/232] iv= 2nd root=G2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  81/232] iv= 2nd root=C2   same_instrumentation=True  dur= 1000ms  interval=4 ❌
+    [  82/232] iv= 2nd root=A4   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  83/232] iv= 2nd root=E6   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  84/232] iv= 2nd root=F#1  same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [  85/232] iv= 2nd root=F#3  same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  86/232] iv= 3rd root=C2   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  87/232] iv= 2nd root=G5   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  88/232] iv= 2nd root=A4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  89/232] iv= 2nd root=G5   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  90/232] iv=12th root=A4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [  91/232] iv= 2nd root=E6   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  92/232] iv= 2nd root=C4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  93/232] iv= 2nd root=G2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [  94/232] iv= 2nd root=C3   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [  95/232] iv= 3rd root=F#1  same_instrumentation=False dur= 1000ms  interval=None ❌
+    [  96/232] iv= 3rd root=F#3  same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [  97/232] iv= 3rd root=C3   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [  98/232] iv= 2nd root=E4   same_instrumentation=True  dur= 5000ms  interval=None ❌
+    [  99/232] iv= 3rd root=C4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 100/232] iv= 3rd root=G2   same_instrumentation=False dur= 5000ms  interval=5 ❌
+    [ 101/232] iv= 3rd root=A4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 102/232] iv= 3rd root=C4   same_instrumentation=True  dur= 5000ms  interval=6 ❌
+    [ 103/232] iv= 3rd root=E4   same_instrumentation=False dur= 5000ms  interval=5 ❌
+    [ 104/232] iv= 3rd root=E6   same_instrumentation=False dur= 5000ms  interval=5 ❌
+    [ 105/232] iv= 3rd root=G2   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 106/232] iv= 3rd root=F#1  same_instrumentation=True  dur= 5000ms  interval=9 ❌
+    [ 107/232] iv= 3rd root=C3   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 108/232] iv= 3rd root=E4   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [ 109/232] iv= 3rd root=F#3  same_instrumentation=True  dur= 5000ms  interval=6 ❌
+    [ 110/232] iv= 3rd root=G5   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 111/232] iv= 3rd root=A4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 112/232] iv= 3rd root=G5   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 113/232] iv= 4th root=F#1  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 114/232] iv= 4th root=C2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 115/232] iv= 4th root=F#3  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 116/232] iv= 3rd root=C2   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 117/232] iv= 4th root=A4   same_instrumentation=False dur= 5000ms  interval=6 ❌
+    [ 118/232] iv= 3rd root=E6   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 119/232] iv= 4th root=E4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 120/232] iv= 4th root=E6   same_instrumentation=False dur= 5000ms  interval=9 ❌
+    [ 121/232] iv= 4th root=C4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 122/232] iv= 4th root=G2   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [ 123/232] iv= 4th root=C2   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [ 124/232] iv= 4th root=G2   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 125/232] iv= 4th root=C4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 126/232] iv= 4th root=C3   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 127/232] iv= 4th root=C3   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 128/232] iv= 4th root=G5   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 129/232] iv= 4th root=A4   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [ 130/232] iv= 4th root=F#1  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 131/232] iv= 4th root=E4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 132/232] iv= 4th root=F#3  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 133/232] iv= 5th root=C3   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 134/232] iv= 5th root=A4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 135/232] iv= 4th root=G5   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 136/232] iv= 5th root=G5   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 137/232] iv= 5th root=C4   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 138/232] iv= 5th root=C3   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 139/232] iv= 5th root=E4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 140/232] iv= 5th root=F#1  same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 141/232] iv= 5th root=G2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 142/232] iv= 5th root=C2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 143/232] iv= 5th root=E4   same_instrumentation=True  dur= 5000ms  interval=6 ❌
+    [ 144/232] iv= 5th root=F#3  same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 145/232] iv= 5th root=E6   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 146/232] iv= 5th root=C2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 147/232] iv= 5th root=C4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 148/232] iv= 5th root=F#1  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 149/232] iv= 5th root=G2   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 150/232] iv= 5th root=F#3  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 151/232] iv= 5th root=E6   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 152/232] iv= 6th root=F#3  same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 153/232] iv= 6th root=E4   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 154/232] iv= 6th root=C2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 155/232] iv= 6th root=G2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 156/232] iv= 5th root=G5   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 157/232] iv= 6th root=C4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 158/232] iv= 6th root=F#1  same_instrumentation=False dur= 5000ms  interval=None ❌
+    [ 159/232] iv= 6th root=C2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 160/232] iv= 6th root=G5   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 161/232] iv= 6th root=C3   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 162/232] iv= 6th root=F#1  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 163/232] iv= 4th root=E6   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 164/232] iv= 6th root=E6   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 165/232] iv= 6th root=A4   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 166/232] iv= 6th root=F#3  same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 167/232] iv= 6th root=C4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 168/232] iv= 5th root=A4   same_instrumentation=True  dur= 5000ms  interval=5 ✅
+    [ 169/232] iv= 6th root=E4   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 170/232] iv= 6th root=E6   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 171/232] iv= 6th root=G2   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 172/232] iv= 6th root=C3   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 173/232] iv= 7th root=C2   same_instrumentation=False dur= 5000ms  interval=7 ✅
+    [ 174/232] iv= 7th root=F#1  same_instrumentation=False dur= 5000ms  interval=7 ✅
+    [ 175/232] iv= 7th root=E6   same_instrumentation=False dur= 5000ms  interval=7 ✅
+    [ 176/232] iv= 6th root=A4   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 177/232] iv= 6th root=G5   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 178/232] iv= 7th root=E4   same_instrumentation=False dur= 5000ms  interval=7 ✅
+    [ 179/232] iv= 7th root=F#3  same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 180/232] iv= 7th root=C2   same_instrumentation=True  dur= 5000ms  interval=7 ✅
+    [ 181/232] iv= 7th root=C3   same_instrumentation=False dur= 5000ms  interval=5 ❌
+    [ 182/232] iv= 7th root=G5   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 183/232] iv= 7th root=A4   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 184/232] iv= 7th root=G2   same_instrumentation=False dur= 1000ms  interval=7 ✅
+    [ 185/232] iv= 7th root=F#1  same_instrumentation=True  dur= 5000ms  interval=9 ❌
+    [ 186/232] iv= 7th root=C3   same_instrumentation=True  dur= 1000ms  interval=4 ❌
+    [ 187/232] iv= 7th root=F#3  same_instrumentation=True  dur= 5000ms  interval=7 ✅
+    [ 188/232] iv= 7th root=G2   same_instrumentation=True  dur= 5000ms  interval=8 ❌
+    [ 189/232] iv= 8th root=F#1  same_instrumentation=False dur= 1000ms  interval=8 ✅
+    [ 190/232] iv= 7th root=C4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 191/232] iv= 7th root=E6   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 192/232] iv= 8th root=G2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 193/232] iv= 8th root=C3   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 194/232] iv= 7th root=C4   same_instrumentation=False dur= 5000ms  interval=7 ✅
+    [ 195/232] iv= 7th root=A4   same_instrumentation=True  dur= 1000ms  interval=7 ✅
+    [ 196/232] iv= 7th root=E4   same_instrumentation=True  dur= 1000ms  interval=7 ✅
+    [ 197/232] iv= 7th root=G5   same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [ 198/232] iv= 8th root=F#3  same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 199/232] iv= 8th root=E4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 200/232] iv= 8th root=C3   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 201/232] iv= 8th root=A4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 202/232] iv= 8th root=C4   same_instrumentation=False dur= 5000ms  interval=3 ❌
+    [ 203/232] iv= 8th root=E6   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 204/232] iv= 8th root=A4   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 205/232] iv= 8th root=F#3  same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 206/232] iv= 8th root=F#1  same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 207/232] iv= 8th root=C2   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 208/232] iv= 9th root=F#1  same_instrumentation=False dur= 5000ms  interval=6 ❌
+    [ 209/232] iv= 8th root=E4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 210/232] iv= 8th root=C2   same_instrumentation=False dur= 1000ms  interval=None ❌
+    [ 211/232] iv= 8th root=G2   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 212/232] iv= 9th root=F#3  same_instrumentation=False dur= 5000ms  interval=6 ❌
+    [ 213/232] iv= 8th root=G5   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 214/232] iv= 8th root=C4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 215/232] iv= 8th root=E6   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 216/232] iv= 9th root=E4   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 217/232] iv= 9th root=C2   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 218/232] iv= 9th root=C3   same_instrumentation=False dur= 1000ms  interval=7 ❌
+    [ 219/232] iv= 8th root=G5   same_instrumentation=True  dur= 1000ms  interval=7 ❌
+    [ 220/232] iv= 9th root=C4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 221/232] iv= 9th root=G5   same_instrumentation=False dur= 5000ms  interval=8 ❌
+    [ 222/232] iv= 9th root=G2   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 223/232] iv= 9th root=C2   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 224/232] iv= 9th root=A4   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 225/232] iv= 9th root=F#3  same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 226/232] iv= 9th root=C3   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 227/232] iv= 9th root=F#1  same_instrumentation=True  dur= 5000ms  interval=5 ❌
+    [ 228/232] iv= 9th root=G2   same_instrumentation=False dur= 5000ms  interval=7 ❌
+    [ 229/232] iv= 9th root=A4   same_instrumentation=True  dur= 1000ms  interval=3 ❌
+    [ 230/232] iv= 9th root=E4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+    [ 231/232] iv= 9th root=G5   same_instrumentation=True  dur= 5000ms  interval=7 ❌
+    [ 232/232] iv= 9th root=C4   same_instrumentation=True  dur= 1000ms  interval=None ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 232 of 8816 (stratified by '(interval_st, same_instrument, root_midi)', seed=42)
+  Stimuli (total)     : 232
+  Stimuli (condition) : 232  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+    INTERVAL       5.2%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           232
+  prompt tokens                15,968
+  completion tokens             5,226
+  total tokens                 21,194
+  cost (USD)                $0.351680
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072518/pitchbench_c2_chord_dyad_interval/run_001_20260506_072530/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_c3_chord_quality
+############################################################
+
+Experiment : pitchbench_c3_chord_quality
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 192
+  Sampling     : 192 of 7296 (stratified by '(chord_quality_gt, same_instrument, root_midi)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 192 items, max_workers=20
+    [   1/192] augmented   root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   2/192] augmented   root=E4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   3/192] augmented   root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   4/192] augmented   root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   5/192] augmented   root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   6/192] augmented   root=A4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [   7/192] augmented   root=E6   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   8/192] augmented   root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [   9/192] augmented   root=C2   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  10/192] augmented   root=E4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  11/192] augmented   root=C3   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  12/192] augmented   root=F#3  same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  13/192] augmented   root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  14/192] augmented   root=G5   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  15/192] augmented   root=A4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  16/192] augmented   root=G2   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  17/192] augmented   root=E6   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  18/192] diminished  root=E4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  19/192] diminished  root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  20/192] augmented   root=F#3  same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  21/192] diminished  root=C3   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  22/192] diminished  root=G2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  23/192] diminished  root=E6   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  24/192] diminished  root=C4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  25/192] diminished  root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  26/192] augmented   root=G5   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  27/192] diminished  root=A4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  28/192] diminished  root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  29/192] diminished  root=G2   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  30/192] diminished  root=G5   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  31/192] diminished  root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  32/192] diminished  root=E4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  33/192] augmented   root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  34/192] diminished  root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  35/192] diminished  root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  36/192] diminished  root=G5   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  37/192] dom7        root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  38/192] dom7        root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  39/192] diminished  root=A4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  40/192] diminished  root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  41/192] dom7        root=F#3  same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  42/192] dom7        root=E4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  43/192] dom7        root=C3   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  44/192] dom7        root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  45/192] diminished  root=E6   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  46/192] dom7        root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  47/192] dom7        root=G2   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  48/192] dom7        root=A4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  49/192] dom7        root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  50/192] diminished  root=F#3  same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  51/192] dom7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  52/192] dom7        root=G5   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  53/192] dom7        root=G5   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  54/192] dom7        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  55/192] dom7        root=E4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  56/192] dom7        root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  57/192] dom7        root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  58/192] m7b5        root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  59/192] m7b5        root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  60/192] m7b5        root=G2   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  61/192] m7b5        root=E4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  62/192] m7b5        root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  63/192] m7b5        root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  64/192] m7b5        root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  65/192] m7b5        root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  66/192] m7b5        root=A4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  67/192] m7b5        root=E4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  68/192] m7b5        root=A4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  69/192] m7b5        root=G5   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  70/192] m7b5        root=F#3  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  71/192] m7b5        root=F#3  same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  72/192] m7b5        root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  73/192] m7b5        root=C3   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  74/192] m7b5        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  75/192] m7b5        root=G5   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  76/192] maj7        root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  77/192] maj7        root=C3   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  78/192] maj7        root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  79/192] dom7        root=A4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  80/192] maj7        root=G2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  81/192] maj7        root=F#3  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  82/192] maj7        root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  83/192] maj7        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  84/192] maj7        root=G5   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  85/192] maj7        root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  86/192] maj7        root=A4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  87/192] major       root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  88/192] major       root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  89/192] maj7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  90/192] maj7        root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  91/192] major       root=G2   same_instrumentation=False quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [  92/192] maj7        root=C4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  93/192] maj7        root=A4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  94/192] major       root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  95/192] maj7        root=E4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [  96/192] maj7        root=E4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  97/192] major       root=F#3  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  98/192] major       root=C3   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  99/192] maj7        root=G5   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 100/192] major       root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 101/192] major       root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 102/192] maj7        root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 103/192] major       root=E4   same_instrumentation=False quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [ 104/192] major       root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 105/192] major       root=G5   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 106/192] major       root=E6   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 107/192] major       root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 108/192] major       root=A4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 109/192] major       root=C4   same_instrumentation=True  quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [ 110/192] major       root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 111/192] major       root=E6   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 112/192] min7        root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 113/192] major       root=E4   same_instrumentation=True  quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [ 114/192] min7        root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 115/192] major       root=G5   same_instrumentation=True  quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [ 116/192] major       root=A4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 117/192] min7        root=F#3  same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 118/192] min7        root=E4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 119/192] min7        root=G5   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 120/192] min7        root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 121/192] min7        root=A4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 122/192] min7        root=G2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 123/192] min7        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 124/192] min7        root=C3   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 125/192] min7        root=C3   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 126/192] min7        root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 127/192] min7        root=G5   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 128/192] min7        root=A4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 129/192] min7        root=E4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 130/192] minor       root=F#1  same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 131/192] minor       root=G2   same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 132/192] min7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 133/192] minor       root=C2   same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 134/192] min7        root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 135/192] minor       root=C3   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 136/192] minor       root=F#3  same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 137/192] minor       root=E4   same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 138/192] minor       root=C4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 139/192] minor       root=G5   same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 140/192] minor       root=E6   same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 141/192] minor       root=A4   same_instrumentation=False quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 142/192] minor       root=C2   same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 143/192] minor       root=F#3  same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 144/192] minor       root=F#1  same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 145/192] min7        root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 146/192] minor       root=G2   same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 147/192] minor       root=G5   same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 148/192] sus2        root=G2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 149/192] sus2        root=C3   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 150/192] minor       root=E6   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 151/192] minor       root=C3   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 152/192] sus2        root=C4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 153/192] minor       root=A4   same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 154/192] sus2        root=F#3  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 155/192] sus2        root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 156/192] sus2        root=G5   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 157/192] sus2        root=E4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 158/192] sus2        root=A4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 159/192] sus2        root=E6   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 160/192] sus2        root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 161/192] sus2        root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 162/192] minor       root=C4   same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 163/192] sus2        root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 164/192] sus2        root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 165/192] sus2        root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 166/192] sus2        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 167/192] sus2        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 168/192] sus2        root=E4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 169/192] sus2        root=E6   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 170/192] sus4        root=F#1  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 171/192] minor       root=E4   same_instrumentation=True  quality_only  quality=minor ✅  | root=None ❌  | joint=None ❌
+    [ 172/192] sus4        root=G2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 173/192] sus4        root=E4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 174/192] sus4        root=E6   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 175/192] sus4        root=C2   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 176/192] sus4        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 177/192] sus4        root=G5   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 178/192] sus4        root=A4   same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 179/192] sus4        root=C3   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 180/192] sus2        root=G5   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 181/192] sus4        root=C4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 182/192] sus4        root=F#3  same_instrumentation=False quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 183/192] sus4        root=C4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 184/192] sus4        root=C3   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 185/192] sus4        root=C2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 186/192] sus4        root=A4   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 187/192] sus2        root=A4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 188/192] sus4        root=E4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 189/192] sus4        root=G5   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 190/192] sus4        root=G2   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 191/192] sus4        root=E6   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 192/192] sus4        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 192 of 7296 (stratified by '(chord_quality_gt, same_instrument, root_midi)', seed=42)
+  Stimuli (total)     : 192
+  Stimuli (condition) : 192  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+     QUALITY      10.9%
+        ROOT       0.0%
+       JOINT       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           192
+  prompt tokens                18,744
+  completion tokens               192
+  total tokens                 18,936
+  cost (USD)                $0.269280
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072518/pitchbench_c3_chord_quality/run_001_20260506_072544/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_c4_chord_pitches
+############################################################
+
+Experiment : pitchbench_c4_chord_pitches
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 200
+  Sampling     : 200 of 3800 (stratified by '(chord_type, n_notes, root_midi)', seed=42)
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 200 items, max_workers=20
+    [   1/200] dyad_M2      r=C2  sine          midi=[36, 40, 43, 47, 52] ❌  | spn=['C3', 'E3', 'G3', 'B3', 'D4', 'F#4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [   2/200] dyad_M3      r=G5  synth_pad     midi=[36, 40, 43, 47, 50, 55] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [   3/200] dyad_M2      r=E4  triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [   4/200] dyad_M3      r=E4  synth_lead    midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [   5/200] dyad_M2      r=G5  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [   6/200] dyad_M2      r=E6  voice         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [   7/200] dyad_M3      r=F#3 guitar        midi=[48, 52, 55, 60] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55] ❌
+    [   8/200] dyad_M2      r=F#3 flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 62, 67] ❌
+    [   9/200] dyad_M3      r=F#1 cello         midi=[48, 52, 55, 59, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  10/200] dyad_M2      r=A4  synth_pad     midi=[48, 52, 55, 59, 64] ❌  | spn=['C4', 'E4', 'G4', 'C5'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64] ❌
+    [  11/200] dyad_M3      r=A4  sine          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3', 'D4', 'F#4', 'A4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  12/200] dyad_M2      r=F#1 triangle      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  13/200] dyad_M3      r=C3  square        midi=[36, 40, 43, 47, 50, 55] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  14/200] dyad_M3      r=C2  sawtooth      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  15/200] dyad_M3      r=C4  flute         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  16/200] dyad_M3      r=E6  guitar        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  17/200] dyad_M2      r=C4  piano         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  18/200] dyad_M2      r=G2  trumpet       midi=[36, 40, 43, 47, 50, 55, 59] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  19/200] dyad_M3      r=G2  sine          midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  20/200] dyad_M2      r=C3  flute         midi=[40, 47, 52, 55, 59, 64, 67] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  21/200] dyad_M6      r=F#1 synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[] ❌
+    [  22/200] dyad_M6      r=G2  flute         midi=[48, 52, 55, 59, 64] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  23/200] dyad_M6      r=G5  cello         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  24/200] dyad_M6      r=E6  clarinet      midi=[48, 52, 55, 59, 64] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  25/200] dyad_M7      r=C2  piano         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  26/200] dyad_M7      r=F#1 trumpet       midi=[41, 45, 48, 52, 55, 60] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  27/200] dyad_M6      r=A4  electric_keyboard  midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  28/200] dyad_M6      r=F#3 voice         midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C3', 'F3', 'A3', 'C4', 'F4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 69] ❌
+    [  29/200] dyad_M6      r=C2  cello         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  30/200] dyad_M7      r=G2  guitar        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  31/200] dyad_M6      r=E4  sine          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  32/200] dyad_M7      r=G5  oboe          midi=[48, 55, 64, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  33/200] dyad_M7      r=F#3 triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  34/200] dyad_M7      r=A4  triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[40, 45, 50, 55, 59, 64] ❌
+    [  35/200] dyad_M7      r=E4  violin        midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [  36/200] dyad_M7      r=C3  clarinet      midi=[48, 52, 55, 60] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64] ❌
+    [  37/200] dyad_M6      r=C4  trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 69, 76] ❌
+    [  38/200] dyad_M7      r=C4  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  39/200] dyad_M7      r=E6  oboe          midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3', 'D4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  40/200] dyad_m2      r=F#1 trumpet       midi=[36, 40, 43, 47, 52] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['sol', 'si', 're'] ❌  | hz=[45, 57, 69] ❌
+    [  41/200] dyad_m2      r=C2  sawtooth      midi=[40, 47, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  42/200] dyad_m2      r=G2  organ         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[40, 45, 50, 55, 59, 64] ❌
+    [  43/200] dyad_m2      r=C3  synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  44/200] dyad_m2      r=C4  violin        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  45/200] dyad_m2      r=G5  trombone      midi=[48, 55, 60, 64, 67] ❌  | spn=['F4', 'A4', 'C5'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[58, 63, 69] ❌
+    [  46/200] dyad_m3      r=F#1 voice         midi=[36, 40, 43, 47, 52, 55, 59] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  47/200] dyad_m3      r=C2  guitar        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  48/200] dyad_m2      r=F#3 triangle      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  49/200] dyad_m3      r=G2  square        midi=[36, 40, 43, 47, 52] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  50/200] dyad_m3      r=C3  sawtooth      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  51/200] dyad_m3      r=E4  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  52/200] dyad_M6      r=C3  organ         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  53/200] dyad_m2      r=A4  synth_pad     midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  54/200] dyad_m3      r=A4  flute         midi=[48, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  55/200] dyad_m2      r=E6  oboe          midi=[36, 40, 43, 47, 52, 55, 59] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 69, 81] ❌
+    [  56/200] dyad_m6      r=F#1 trumpet       midi=[40, 47, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  57/200] dyad_m3      r=G5  triangle      midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  58/200] dyad_m3      r=F#3 flute         midi=[48, 55, 59, 62, 67, 71] ❌  | spn=['C3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 62, 69] ❌
+    [  59/200] dyad_m3      r=E6  violin        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [  60/200] dyad_m2      r=E4  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  61/200] dyad_m3      r=C4  trombone      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  62/200] dyad_m6      r=G2  oboe          midi=[41, 45, 48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 62, 67] ❌
+    [  63/200] dyad_m6      r=C2  organ         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[40, 45, 50, 55, 59, 64] ❌
+    [  64/200] dyad_m6      r=C3  electric_keyboard  midi=[36, 40, 43, 47, 50, 55] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  65/200] dyad_m6      r=A4  trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['A3', 'C#4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[58, 65, 69, 74] ❌
+    [  66/200] dyad_m6      r=C4  oboe          midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'F4', 'A4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 69] ❌
+    [  67/200] dyad_m6      r=F#3 oboe          midi=[48, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60, 64, 67] ❌
+    [  68/200] dyad_m6      r=E4  guitar        midi=[48, 52, 55, 59, 64, 67] ❌  | spn=['G3', 'B3', 'D4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  69/200] dyad_m6      r=E6  electric_keyboard  midi=[48, 52, 55, 59, 64] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  70/200] dyad_m6      r=G5  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  71/200] dyad_m7      r=G2  electric_keyboard  midi=[48, 52, 55, 59, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64] ❌
+    [  72/200] dyad_m7      r=F#1 synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  73/200] dyad_m7      r=C3  organ         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  74/200] dyad_m7      r=C2  flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  75/200] dyad_m7      r=E4  synth_pad     midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  76/200] dyad_m7      r=F#3 violin        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [  77/200] dyad_m7      r=G5  clarinet      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 69, 81] ❌
+    [  78/200] dyad_m7      r=A4  flute         midi=[48, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'F4', 'A4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  79/200] dyad_m7      r=E6  sawtooth      midi=[48, 52, 55, 59, 64] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  80/200] dyad_oct     r=C4  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  81/200] dyad_oct     r=C3  violin        midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64] ❌
+    [  82/200] dyad_oct     r=F#3 trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['F3', 'A3', 'C4', 'F4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[57, 69] ❌
+    [  83/200] dyad_oct     r=G2  clarinet      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 60, 64, 67] ❌
+    [  84/200] dyad_oct     r=G5  clarinet      midi=[48, 52, 55, 59, 64] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [  85/200] dyad_oct     r=E4  guitar        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 64, 69] ❌
+    [  86/200] dyad_oct     r=E6  guitar        midi=[36, 40, 43, 47, 52] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  87/200] dyad_oct     r=A4  voice         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['F3', 'A3', 'C4', 'F4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  88/200] dyad_p4      r=C2  violin        midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  89/200] dyad_p4      r=G2  organ         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4', 'C5'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  90/200] dyad_p4      r=F#3 trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [  91/200] dyad_p4      r=C3  piano         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64] ❌
+    [  92/200] dyad_p4      r=F#1 bass          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  93/200] dyad_oct     r=F#1 flute         midi=[41, 45, 48, 52, 55, 60] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [  94/200] dyad_p4      r=E4  flute         midi=[48, 52, 55, 59, 62, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [  95/200] dyad_oct     r=C2  sawtooth      midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [  96/200] dyad_p4      r=A4  synth_pad     midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  97/200] dyad_p5      r=F#1 voice         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [  98/200] dyad_p4      r=E6  trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [  99/200] dyad_p4      r=C4  piano         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 100/200] dyad_p4      r=G5  synth_pad     midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 101/200] dyad_p5      r=C3  violin        midi=[36, 40, 43, 47, 50, 55] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 102/200] dyad_p5      r=G2  voice         midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 103/200] dyad_p5      r=C4  flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 60, 64, 67] ❌
+    [ 104/200] dyad_p5      r=G5  bass          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [ 105/200] dyad_m7      r=C4  trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[58, 65, 69, 74] ❌
+    [ 106/200] dyad_p5      r=C2  cello         midi=[40, 47, 52, 55, 59, 64] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 107/200] dyad_p5      r=E4  piano         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 108/200] dyad_p5      r=A4  synth_lead    midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 109/200] dyad_p5      r=E6  square        midi=[36, 40, 43, 47, 52, 55] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 110/200] dyad_tt      r=F#1 sawtooth      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 111/200] dyad_p5      r=F#3 oboe          midi=[48, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'F4', 'A4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[69, 72, 76] ❌
+    [ 112/200] dyad_tt      r=F#3 cello         midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 113/200] dyad_tt      r=G2  piano         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 114/200] dyad_tt      r=C3  electric_keyboard  midi=[48, 55, 64, 67] ❌  | spn=['G2', 'B2', 'D3', 'G3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[55, 60, 67] ❌
+    [ 115/200] dyad_tt      r=C4  square        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 116/200] dyad_tt      r=A4  violin        midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 117/200] dyad_uni     r=F#1 trumpet       midi=[40, 47, 52, 55, 59, 64] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [ 118/200] dyad_tt      r=E6  synth_lead    midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 69, 81] ❌
+    [ 119/200] dyad_tt      r=C2  triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3', 'D4', 'F#4', 'A4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 120/200] dyad_tt      r=E4  violin        midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 121/200] dyad_tt      r=G5  organ         midi=[36, 40, 43, 47, 52, 55, 59] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[60, 64, 67] ❌
+    [ 122/200] dyad_uni     r=A4  triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 69, 81] ❌
+    [ 123/200] dyad_uni     r=C2  synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 124/200] dyad_uni     r=C4  trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 69] ❌
+    [ 125/200] dyad_uni     r=C3  triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 126/200] dyad_uni     r=F#3 synth_pad     midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 127/200] dyad_uni     r=G2  sine          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 128/200] dyad_uni     r=E6  cello         midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4', 'B4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 129/200] dyad_uni     r=E4  clarinet      midi=[48, 52, 55, 59, 64] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 69] ❌
+    [ 130/200] seventh_dom  r=C2  organ         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 131/200] dyad_uni     r=G5  trombone      midi=[48, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 132/200] seventh_dom  r=F#1 electric_keyboard  midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [ 133/200] seventh_dom  r=C4  electric_keyboard  midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [ 134/200] seventh_dom  r=F#3 synth_lead    midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 135/200] seventh_dom  r=G2  sine          midi=[36, 40, 43, 47, 50, 55] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 136/200] seventh_dom  r=C3  trumpet       midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 137/200] seventh_maj  r=F#1 guitar        midi=[36, 43, 48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 138/200] seventh_dom  r=A4  triangle      midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[40, 45, 50, 55, 59, 64] ❌
+    [ 139/200] seventh_maj  r=C2  piano         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 140/200] seventh_dom  r=E6  synth_lead    midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 141/200] seventh_maj  r=C4  synth_lead    midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 142/200] seventh_maj  r=C3  electric_keyboard  midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 143/200] seventh_dom  r=E4  synth_lead    midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 144/200] seventh_dom  r=G5  trombone      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [ 145/200] seventh_maj  r=E4  sine          midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 146/200] seventh_maj  r=F#3 synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 60, 64, 67] ❌
+    [ 147/200] seventh_maj  r=G2  oboe          midi=[36, 40, 43, 47, 52, 55, 59] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 148/200] seventh_maj  r=E6  sine          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 149/200] seventh_maj  r=G5  bass          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [ 150/200] seventh_min  r=C3  flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 62, 67] ❌
+    [ 151/200] seventh_maj  r=A4  clarinet      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 60, 64, 67] ❌
+    [ 152/200] seventh_min  r=C2  oboe          midi=[36, 40, 43, 47, 50, 55] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 153/200] seventh_min  r=F#1 triangle      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 154/200] seventh_min  r=G2  trombone      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 155/200] seventh_min  r=F#3 sawtooth      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 156/200] seventh_min  r=C4  flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4', 'C5'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 157/200] seventh_min  r=A4  square        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[57, 69, 81] ❌
+    [ 158/200] triad_aug    r=C2  synth_pad     midi=[40, 47, 52, 55, 59, 64] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 159/200] seventh_min  r=E4  voice         midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 60, 64, 67] ❌
+    [ 160/200] seventh_min  r=E6  bass          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 161/200] triad_aug    r=F#1 square        midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 162/200] seventh_min  r=G5  square        midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 163/200] triad_aug    r=C3  piano         midi=[48, 52, 55, 59, 62, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 164/200] triad_aug    r=G2  piano         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 165/200] triad_aug    r=F#3 bass          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3', 'D4', 'F#4', 'A4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60, 64, 67] ❌
+    [ 166/200] triad_aug    r=E4  electric_keyboard  midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 167/200] triad_aug    r=C4  synth_pad     midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 168/200] triad_aug    r=G5  synth_lead    midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 169/200] triad_dim    r=G2  guitar        midi=[48, 52, 55, 59, 64] ❌  | spn=['C2', 'E2', 'G2'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 170/200] triad_aug    r=E6  cello         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 171/200] triad_aug    r=A4  trumpet       midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4', 'C5'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 172/200] triad_dim    r=C3  trombone      midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 173/200] triad_dim    r=C4  oboe          midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67, 72] ❌
+    [ 174/200] triad_dim    r=C2  synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [ 175/200] triad_dim    r=F#3 violin        midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 62, 67] ❌
+    [ 176/200] triad_dim    r=E4  organ         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 177/200] triad_maj    r=F#1 flute         midi=[36, 40, 43, 47, 52] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 178/200] triad_dim    r=G5  organ         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [ 179/200] triad_dim    r=F#1 guitar        midi=[36, 40, 43, 47, 52, 55, 59] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 180/200] triad_maj    r=E4  synth_pad     midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 57, 69] ❌
+    [ 181/200] triad_maj    r=G2  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 182/200] triad_maj    r=C2  flute         midi=[40, 47, 52, 55, 59, 64] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ✅  | hz=[45, 57, 69] ❌
+    [ 183/200] triad_maj    r=F#3 sine          midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 184/200] triad_maj    r=A4  flute         midi=[60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 185/200] triad_maj    r=C4  voice         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 186/200] triad_maj    r=C3  clarinet      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C3', 'E3', 'G3'] ✅  | doremi=['do', 'mi', 'sol'] ✅  | hz=[45, 50, 57, 62] ❌
+    [ 187/200] triad_dim    r=E6  triangle      midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 188/200] triad_dim    r=A4  synth_lead    midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 189/200] triad_min    r=G2  sawtooth      midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 60, 64, 67] ❌
+    [ 190/200] triad_min    r=F#1 sine          midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 191/200] triad_maj    r=G5  voice         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60, 64, 67] ❌
+    [ 192/200] triad_maj    r=E6  flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[57, 62, 65, 69] ❌
+    [ 193/200] triad_min    r=C2  square        midi=[36, 40, 43, 47, 52] ❌  | spn=['C3', 'E3', 'G3', 'B3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 194/200] triad_min    r=C3  flute         midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C2', 'G2', 'C3', 'E3', 'G3', 'C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[45, 50, 55, 60] ❌
+    [ 195/200] triad_min    r=F#3 square        midi=[36, 40, 43, 47, 52, 55, 59] ❌  | spn=['C3', 'E3', 'G3', 'B3', 'D4', 'F#4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 196/200] triad_min    r=E4  clarinet      midi=[48, 52, 55, 59, 64, 67, 71] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 197/200] triad_min    r=E6  flute         midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['mi', 'sol', 'si'] ✅  | hz=[57, 60, 64, 67] ❌
+    [ 198/200] triad_min    r=C4  sawtooth      midi=[48, 52, 55, 60, 64, 67, 72] ❌  | spn=['C3', 'E3', 'G3', 'C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[55, 59, 64, 67] ❌
+    [ 199/200] triad_min    r=A4  square        midi=[48, 52, 55, 60, 64, 67] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 57, 69] ❌
+    [ 200/200] triad_min    r=G5  synth_lead    midi=[48, 52, 55, 59, 64] ❌  | spn=['C3', 'E3', 'G3', 'C4'] ❌  | doremi=['mi', 'sol', 'si'] ❌  | hz=[45, 50, 55, 60] ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 200 of 3800 (stratified by '(chord_type, n_notes, root_midi)', seed=42)
+  Stimuli (total)     : 200
+  Stimuli (condition) : 200  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+        MIDI       0.0%
+         SPN       0.5%
+      DOREMI       1.5%
+          HZ       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           800
+  prompt tokens                96,200
+  completion tokens             7,271
+  total tokens                103,471
+  cost (USD)                $1.813210
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072518/pitchbench_c4_chord_pitches/run_001_20260506_072554/results_openrouter_openai_gpt_4o_audio_preview.*
+All scalar metrics → /home/hsnu2/PitchBench/results/run_20260506_072518/all_metrics_aggregate_20260506_072636.csv
+
+Session cost summary → /home/hsnu2/PitchBench/results/run_20260506_072518/_sessions/20260506_072636/cost_summary.txt
+PitchBench session cost summary
+Timestamp : 2026-05-06T07:26:36.629439
+
+Experiment                              calls        tokens      cost (USD)
+───────────────────────────────────────────────────────────────────────────
+pitchbench_c1_chord_count_pitches         228        16,893       $0.300600
+pitchbench_c2_chord_dyad_interval         232        21,194       $0.351680
+pitchbench_c3_chord_quality               192        18,936       $0.269280
+pitchbench_c4_chord_pitches               800       103,471       $1.813210
+───────────────────────────────────────────────────────────────────────────
+TOTAL                                   1,452       160,494       $2.734770
+
+
