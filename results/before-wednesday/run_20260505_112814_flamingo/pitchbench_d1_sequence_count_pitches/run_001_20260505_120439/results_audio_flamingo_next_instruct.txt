@@ -1,0 +1,82 @@
+Experiment : pitchbench_d1_seq_pitch_count
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-05T12:04:49.607986
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'audio_flamingo_next_instruct']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : count
+headline_metrics : ['count']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n', 'rhythm', 'trial']
+sample_n   : 70
+sample_seed : 42
+total_available : 1596
+stratified_by : (n, rhythm)
+
+SUMMARY
+==================================================
+  Sampling     : 70 of 1596 (stratified by '(n, rhythm)', seed=42)
+  Stimuli (total)     : 70
+  Stimuli (condition) : 70  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+           COUNT      22.9%
+
+== Marginal accuracy ==
+
+duration_ms     count_correct    n
+──────────────  ───────  ────
+1000              7.41%    27
+5000             32.56%    43
+
+source          count_correct    n
+──────────────  ───────  ────
+bass             40.00%     5
+cello            25.00%     4
+clarinet          0.00%     1
+electric_keyboard    0.00%     5
+flute             0.00%     4
+guitar            0.00%     1
+oboe             40.00%     5
+organ            33.33%     3
+piano            16.67%     6
+sawtooth          0.00%     4
+sine             33.33%     6
+square           16.67%     6
+synth_lead       50.00%     2
+synth_pad        33.33%     3
+triangle          0.00%     2
+trombone         25.00%     4
+trumpet          33.33%     3
+violin           50.00%     4
+voice             0.00%     2
+
+source_type     count_correct    n
+──────────────  ───────  ────
+instrument       25.00%    52
+waveform         16.67%    18
+
+rhythm          count_correct    n
+──────────────  ───────  ────
+irregular        31.43%    35
+regular          14.29%    35
+
+n               count_correct    n
+──────────────  ───────  ────
+1                50.00%    10
+2                40.00%    10
+3                60.00%    10
+4                10.00%    10
+5                 0.00%    10
+7                 0.00%    10
+10                0.00%    10
+
+trial           count_correct    n
+──────────────  ───────  ────
+0                26.09%    23
+1                20.00%    25
+2                22.73%    22
+

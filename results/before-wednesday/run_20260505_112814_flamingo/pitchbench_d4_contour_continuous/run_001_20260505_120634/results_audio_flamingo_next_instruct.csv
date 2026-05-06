@@ -1,0 +1,141 @@
+source,source_type,start_midi,end_midi,start_note,traj_name,interval_st,raw_response,trajectory_gt,trajectory_pred,trajectory_correct,audio_url,audio_file,prompt_main
+sine,waveform,69,68,A4,down,1,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",down,,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/A4~Gs4_sine_glide_5000ms_linear.wav,A4~Gs4_sine_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,36,29,C2,down,7,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",down,,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C2~F1_sine_glide_5000ms_linear.wav,C2~F1_sine_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sawtooth,waveform,69,62,A4,down,7,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",down,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/A4~D4_sawtooth_glide_5000ms_linear.wav,A4~D4_sawtooth_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sawtooth,waveform,60,53,C4,down,7,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",down,,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C4~F3_sawtooth_glide_5000ms_linear.wav,C4~F3_sawtooth_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sawtooth,waveform,54,50,F#3,down,4,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",down,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/Fs3~D3_sawtooth_glide_5000ms_linear.wav,Fs3~D3_sawtooth_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,79,67,G5,down_then_up,12,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down","down, up",,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/G5~G4_sine_glide_5000ms_valley.wav,G5~G4_sine_glide_5000ms_valley.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,64,57,E4,down_then_up,7,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down","down, up",,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/E4~A3_sine_glide_5000ms_valley.wav,E4~A3_sine_glide_5000ms_valley.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+triangle,waveform,54,42,F#3,down_then_up,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,","down, up","up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/Fs3~Fs2_triangle_glide_5000ms_valley.wav,Fs3~Fs2_triangle_glide_5000ms_valley.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,60,53,C4,down_then_up,7,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down","down, up",,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C4~F3_sine_glide_5000ms_valley.wav,C4~F3_sine_glide_5000ms_valley.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+triangle,waveform,69,57,A4,down_then_up,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,","down, up","up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/A4~A3_triangle_glide_5000ms_valley.wav,A4~A3_triangle_glide_5000ms_valley.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+square,waveform,69,70,A4,up,1,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",up,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/A4~As4_square_glide_5000ms_linear.wav,A4~As4_square_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,43,44,G2,up,1,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",up,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/G2~Gs2_sine_glide_5000ms_linear.wav,G2~Gs2_sine_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,36,48,C2,up,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",up,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C2~C3_sine_glide_5000ms_linear.wav,C2~C3_sine_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,60,72,C4,up,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",up,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C4~C5_sine_glide_5000ms_linear.wav,C4~C5_sine_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sawtooth,waveform,48,60,C3,up,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,",up,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C3~C4_sawtooth_glide_5000ms_linear.wav,C3~C4_sawtooth_glide_5000ms_linear.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sawtooth,waveform,54,66,F#3,up_then_down,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,","up, down","up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/Fs3~Fs4_sawtooth_glide_5000ms_arch.wav,Fs3~Fs4_sawtooth_glide_5000ms_arch.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+triangle,waveform,43,47,G2,up_then_down,4,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,","up, down","up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/G2~B2_triangle_glide_5000ms_arch.wav,G2~B2_triangle_glide_5000ms_arch.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+triangle,waveform,79,86,G5,up_then_down,7,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,","up, down","up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/G5~D6_triangle_glide_5000ms_arch.wav,G5~D6_triangle_glide_5000ms_arch.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+sine,waveform,36,43,C2,up_then_down,7,"'up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down","up, down",,0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C2~G2_sine_glide_5000ms_arch.wav,C2~G2_sine_glide_5000ms_arch.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."
+triangle,waveform,60,72,C4,up_then_down,12,"up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down,","up, down","up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down",0,/home/hsnu2/PitchBench/data/audio/pitchbench_d5_contour_continuous/C4~C5_triangle_glide_5000ms_arch.wav,C4~C5_triangle_glide_5000ms_arch.wav,"Listen to this audio. Describe how the pitch changes over time as a comma-separated list using ONLY the words 'up' and 'down', alternating. Never write the same direction twice in a row — count each movement as a single 'up' or 'down'. A change of direction asks for a new token.
+Examples:
+  'up'           — pitch rises throughout
+  'down'         — pitch falls throughout
+  'up, down'     — pitch rises then falls
+  'down, up'     — pitch falls then rises
+Reply with ONLY the comma-separated list. Nothing else."

@@ -1,0 +1,89 @@
+Experiment : pitchbench_d5_contour_continuous
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-05T12:34:19.410519
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : trajectory
+headline_metrics : ['trajectory']
+primary_filter_set : False
+record_extras : ['start_midi', 'end_midi', 'interval_st', 'traj_name']
+sample_n   : 20
+sample_seed : 42
+total_available : 640
+stratified_by : traj_name
+
+SUMMARY
+==================================================
+  Sampling     : 20 of 640 (stratified by 'traj_name', seed=42)
+  Stimuli (total)     : 20
+  Stimuli (condition) : 20  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+      TRAJECTORY      50.0%
+
+== Marginal accuracy ==
+
+source          trajectory_correct    n
+──────────────  ───────  ────
+sawtooth         80.00%     5
+sine             33.33%     9
+square          100.00%     1
+triangle         40.00%     5
+
+interval_st     trajectory_correct    n
+──────────────  ───────  ────
+1                66.67%     3
+4               100.00%     2
+7                14.29%     7
+12               62.50%     8
+
+end_midi        trajectory_correct    n
+──────────────  ───────  ────
+29                0.00%     1
+42                0.00%     1
+43                0.00%     1
+44                0.00%     1
+47              100.00%     1
+48              100.00%     1
+50              100.00%     1
+53               50.00%     2
+57                0.00%     2
+60              100.00%     1
+62                0.00%     1
+66              100.00%     1
+67                0.00%     1
+68              100.00%     1
+70              100.00%     1
+72              100.00%     2
+86                0.00%     1
+
+start_midi      trajectory_correct    n
+──────────────  ───────  ────
+36               33.33%     3
+43               50.00%     2
+48              100.00%     1
+54               66.67%     3
+60               75.00%     4
+64                0.00%     1
+69               50.00%     4
+79                0.00%     2
+
+traj_name       trajectory_correct    n
+──────────────  ───────  ────
+down             60.00%     5
+down_then_up      0.00%     5
+up               80.00%     5
+up_then_down     60.00%     5
+
+
+LLM USAGE
+==================================================
+  calls                            20
+  prompt tokens                 5,020
+  completion tokens             2,436
+  total tokens                  7,456
+  cost (USD)                $0.039272

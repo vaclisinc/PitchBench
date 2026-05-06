@@ -1,0 +1,222 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 171 items, max_workers=20
+    [   1/171] n=10 t=1 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   2/171] n=10 t=4 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   3/171] n=10 t=0 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   4/171] n=10 t=0 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   5/171] n=10 t=3 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   6/171] n=10 t=0 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   7/171] n=10 t=4 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   8/171] n=10 t=2 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [   9/171] n=10 t=0 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  10/171] n=10 t=0 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  11/171] n=10 t=0 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  12/171] n=10 t=0 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  13/171] n=10 t=4 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  14/171] n=10 t=2 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  15/171] n=10 t=2 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  16/171] n=10 t=4 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  17/171] n=10 t=2 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  18/171] n=10 t=4 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  19/171] n=10 t=1 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  20/171] n=10 t=1 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  21/171] n=10 t=3 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  22/171] n=10 t=2 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  23/171] n=10 t=1 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  24/171] n=10 t=3 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  25/171] n=10 t=3 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  26/171] n=10 t=1 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  27/171] n=10 t=0 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  28/171] n=10 t=4 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  29/171] n=10 t=0 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  30/171] n=10 t=3 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  31/171] n=10 t=2 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  32/171] n=10 t=0 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  33/171] n=10 t=2 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  34/171] n=10 t=0 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  35/171] n=10 t=3 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  36/171] n=10 t=1 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  37/171] n=10 t=1 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  38/171] n=10 t=2 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  39/171] n=10 t=0 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  40/171] n=10 t=2 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  41/171] n=3 t=1 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  42/171] n=10 t=3 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  43/171] n=10 t=3 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  44/171] n=10 t=1 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  45/171] n=10 t=0 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  46/171] n=10 t=2 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  47/171] n=10 t=0 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  48/171] n=3 t=0 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  49/171] n=10 t=4 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  50/171] n=10 t=3 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  51/171] n=10 t=0 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  52/171] n=10 t=0 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  53/171] n=10 t=4 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  54/171] n=10 t=2 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  55/171] n=10 t=3 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  56/171] n=3 t=4 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  57/171] n=10 t=1 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  58/171] n=10 t=2 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  59/171] n=10 t=1 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  60/171] n=3 t=2 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  61/171] n=3 t=3 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  62/171] n=3 t=4 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  63/171] n=3 t=1 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  64/171] n=3 t=3 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  65/171] n=3 t=2 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  66/171] n=10 t=0 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  67/171] n=3 t=1 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  68/171] n=3 t=2 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  69/171] n=3 t=0 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  70/171] n=3 t=2 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  71/171] n=3 t=0 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  72/171] n=3 t=3 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  73/171] n=3 t=4 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  74/171] n=3 t=4 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  75/171] n=3 t=4 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  76/171] n=3 t=4 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  77/171] n=3 t=1 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  78/171] n=3 t=4 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  79/171] n=3 t=1 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  80/171] n=3 t=1 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  81/171] n=3 t=2 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  82/171] n=3 t=1 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  83/171] n=3 t=2 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  84/171] n=3 t=2 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  85/171] n=3 t=0 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  86/171] n=3 t=3 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  87/171] n=3 t=3 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  88/171] n=3 t=2 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  89/171] n=3 t=0 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  90/171] n=3 t=3 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  91/171] n=3 t=0 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  92/171] n=3 t=4 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  93/171] n=3 t=0 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  94/171] n=3 t=2 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  95/171] n=3 t=2 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  96/171] n=3 t=4 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  97/171] n=3 t=1 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  98/171] n=3 t=4 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [  99/171] n=3 t=3 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 100/171] n=3 t=4 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 101/171] n=3 t=4 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 102/171] n=3 t=2 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 103/171] n=3 t=2 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 104/171] n=3 t=3 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 105/171] n=3 t=2 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 106/171] n=3 t=3 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 107/171] n=3 t=4 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 108/171] n=3 t=1 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 109/171] n=3 t=0 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 110/171] n=3 t=2 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 111/171] n=3 t=1 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 112/171] n=3 t=3 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 113/171] n=3 t=0 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 114/171] n=5 t=0 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 115/171] n=5 t=4 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 116/171] n=5 t=3 bass  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 117/171] n=5 t=3 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 118/171] n=5 t=3 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 119/171] n=5 t=4 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 120/171] n=3 t=3 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 121/171] n=5 t=2 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 122/171] n=5 t=2 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 123/171] n=5 t=1 cello  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 124/171] n=5 t=0 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 125/171] n=5 t=1 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 126/171] n=5 t=2 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 127/171] n=5 t=3 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 128/171] n=5 t=3 electric_keyboard  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 129/171] n=5 t=0 clarinet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 130/171] n=5 t=4 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 131/171] n=5 t=2 flute  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 132/171] n=5 t=0 guitar  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 133/171] n=5 t=2 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 134/171] n=5 t=1 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 135/171] n=5 t=0 oboe  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 136/171] n=5 t=3 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 137/171] n=5 t=4 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 138/171] n=5 t=0 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 139/171] n=5 t=3 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 140/171] n=5 t=2 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 141/171] n=5 t=2 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 142/171] n=5 t=0 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 143/171] n=5 t=1 organ  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 144/171] n=5 t=2 piano  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 145/171] n=5 t=1 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 146/171] n=5 t=1 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 147/171] n=5 t=0 sine  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 148/171] n=5 t=1 sawtooth  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 149/171] n=5 t=4 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 150/171] n=5 t=2 square  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 151/171] n=5 t=0 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 152/171] n=5 t=4 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 153/171] n=5 t=2 synth_lead  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 154/171] n=5 t=2 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 155/171] n=5 t=3 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 156/171] n=5 t=0 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 157/171] n=5 t=0 synth_pad  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 158/171] n=5 t=2 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 159/171] n=5 t=1 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 160/171] n=5 t=3 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 161/171] n=5 t=4 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 162/171] n=5 t=1 triangle  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 163/171] n=5 t=3 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 164/171] n=5 t=0 trombone  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 165/171] n=5 t=0 trumpet  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 166/171] n=5 t=4 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 167/171] n=5 t=0 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 168/171] n=5 t=3 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 169/171] n=5 t=2 violin  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 170/171] n=5 t=1 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+    [ 171/171] n=5 t=2 voice  midi_sequence=None ❌  | spn_sequence=None ❌  | doremi_sequence=None ❌  | hz_sequence=None ❌  | any_sequence=None ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 171 of 285 (stratified by '(n_notes, source)', seed=42)
+  Stimuli (total)     : 171
+  Stimuli (condition) : 171  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+   MIDI_SEQUENCE       0.0%
+    SPN_SEQUENCE       0.0%
+  DOREMI_SEQUENCE       0.0%
+     HZ_SEQUENCE       0.0%
+    ANY_SEQUENCE       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           684
+  prompt tokens               275,196
+  completion tokens             8,100
+  total tokens                283,296
+  cost (USD)                $8.780340
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072628/pitchbench_d8_sequence_pitches/run_001_20260506_072838/results_openrouter_openai_gpt_4o_audio_preview.*
+All scalar metrics → /home/hsnu2/PitchBench/results/run_20260506_072628/all_metrics_aggregate_20260506_072930.csv
+
+Session cost summary → /home/hsnu2/PitchBench/results/run_20260506_072628/_sessions/20260506_072930/cost_summary.txt
+PitchBench session cost summary
+Timestamp : 2026-05-06T07:29:30.390081
+
+Experiment                                       calls        tokens      cost (USD)
+────────────────────────────────────────────────────────────────────────────────────
+pitchbench_d1_sequence_count_pitches               140        28,773       $0.868470
+pitchbench_d2_dyad_lower_higher_difference         132        15,586       $0.385870
+pitchbench_d3_contour_discrete                     180        21,247       $0.315520
+pitchbench_d4_contour_continuous                   160        30,800       $0.388400
+pitchbench_d5_sequence_ranking_by_pitch            120        27,819       $0.721980
+pitchbench_d6_sequence_dyad_interval               236        36,204       $0.715020
+pitchbench_d7a_pitch_with_reference                520        96,185       $2.364485
+pitchbench_d7b_pitch_with_reference_split          520       102,958       $2.251840
+pitchbench_d8_sequence_pitches                     684       283,296       $8.780340
+────────────────────────────────────────────────────────────────────────────────────
+TOTAL                                            2,692       642,868      $16.791925
+
+

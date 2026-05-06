@@ -1,0 +1,87 @@
+Experiment : pitchbench_e2_background
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T08:05:54.726137
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'audio_flamingo_next_instruct']
+git_commit : c9248adc7803776d37c80a3651e8df71e34b43f1
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+primary_filter_set : False
+record_extras : ['duration_ms', 'background', 'snr_db']
+sample_n   : 240
+sample_seed : 42
+total_available : 4560
+stratified_by : (background, snr_db, midi)
+
+SUMMARY
+==================================================
+  Sampling     : 240 of 4560 (stratified by '(background, snr_db, midi)', seed=42)
+  Stimuli (total)     : 240
+  Stimuli (condition) : 240  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      11.2%
+     SPN       0.8%
+  DOREMI      20.0%
+      HZ       0.0%
+     ANY      12.1%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass              0.00%    0.00%   25.00%    0.00%    0.00%     8
+cello             8.33%    0.00%   25.00%    0.00%    8.33%    12
+clarinet         20.00%    0.00%   10.00%    0.00%   20.00%    10
+electric_keyboard   10.00%    0.00%   10.00%    0.00%   10.00%    10
+flute             0.00%    4.55%    4.55%    0.00%    4.55%    22
+guitar           21.43%    7.14%   14.29%    0.00%   28.57%    14
+oboe              0.00%    0.00%   36.36%    0.00%    0.00%    11
+organ            15.38%    0.00%   38.46%    0.00%   15.38%    13
+piano             0.00%    0.00%   27.27%    0.00%    0.00%    11
+sawtooth          0.00%    0.00%    9.09%    0.00%    0.00%    11
+sine             20.00%    0.00%   20.00%    0.00%   20.00%    10
+square           16.67%    0.00%   33.33%    0.00%   16.67%    18
+synth_lead       30.00%    0.00%   20.00%    0.00%   30.00%    10
+synth_pad        15.79%    0.00%    5.26%    0.00%   15.79%    19
+triangle         11.76%    0.00%   17.65%    0.00%   11.76%    17
+trombone          0.00%    0.00%   66.67%    0.00%    0.00%     6
+trumpet           0.00%    0.00%   25.00%    0.00%    0.00%    16
+violin           27.27%    0.00%    9.09%    0.00%   27.27%    11
+voice            18.18%    0.00%   18.18%    0.00%   18.18%    11
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument       10.87%    1.09%   19.57%    0.00%   11.96%   184
+waveform         12.50%    0.00%   21.43%    0.00%   12.50%    56
+
+background         midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+church-bells     12.50%    0.00%   17.50%    0.00%   12.50%    40
+crowd-noise      10.00%    0.00%   22.50%    0.00%   10.00%    40
+oscillating-high-and-low-pitches   12.50%    0.00%   20.00%    0.00%   12.50%    40
+rain             10.00%    0.00%   20.00%    0.00%   10.00%    40
+street-noise     10.00%    0.00%   20.00%    0.00%   10.00%    40
+white_noise      12.50%    5.00%   20.00%    0.00%   17.50%    40
+
+snr_db             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+-12.0            10.00%    0.00%   20.00%    0.00%   10.00%    60
+-6.0             10.00%    0.00%   18.33%    0.00%   10.00%    60
+0.0              10.00%    1.67%   18.33%    0.00%   11.67%    60
+10.0             15.00%    1.67%   23.33%    0.00%   16.67%    60
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%    0.00%   37.50%    0.00%    0.00%    24
+36                0.00%    0.00%    0.00%    0.00%    0.00%    24
+43                0.00%    0.00%   58.33%    0.00%    0.00%    24
+48                0.00%    0.00%    0.00%    0.00%    0.00%    24
+54                0.00%    0.00%   33.33%    0.00%    0.00%    24
+60                0.00%    4.17%    0.00%    0.00%    4.17%    24
+64               91.67%    0.00%    0.00%    0.00%   91.67%    24
+69               20.83%    4.17%    0.00%    0.00%   25.00%    24
+79                0.00%    0.00%   70.83%    0.00%    0.00%    24
+88                0.00%    0.00%    0.00%    0.00%    0.00%    24
+

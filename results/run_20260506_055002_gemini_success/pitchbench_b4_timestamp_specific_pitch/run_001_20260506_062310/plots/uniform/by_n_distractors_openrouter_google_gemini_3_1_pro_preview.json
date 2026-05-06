@@ -1,0 +1,21 @@
+{
+  "group_key": "n_distractors",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    5,
+    7
+  ],
+  "x_labels": [
+    "5",
+    "7"
+  ],
+  "mean_pct": [
+    0.0,
+    0.0
+  ],
+  "n_samples": [
+    60,
+    60
+  ]
+}

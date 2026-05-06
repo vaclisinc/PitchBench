@@ -1,0 +1,155 @@
+
+  Model : openrouter/google/gemini-3.1-pro-preview
+    [dispatch] 120 items, max_workers=20
+    [   1/120] iv= -1st base=G5   sep= 200ms square  interval=-1 ✅
+    [   2/120] iv=-12st base=A4   sep= 500ms sine  interval=-10 ❌
+    [   3/120] iv=-11st base=E6   sep= 200ms cello  interval=-1 ❌
+    [   4/120] iv= -1st base=E4   sep=2000ms sine  interval=5 ❌
+    [   5/120] iv=-11st base=C3   sep= 500ms synth_pad  interval=-10 ❌
+    [   6/120] iv=-11st base=E6   sep= 200ms voice  interval=-19 ❌
+    [   7/120] iv=-10st base=A4   sep= 500ms electric_keyboard  interval=-13 ❌
+    [   8/120] iv=-11st base=C2   sep= 500ms bass  interval=7 ❌
+    [   9/120] iv=-10st base=G2   sep= 500ms guitar  interval=-12 ❌
+    [  10/120] iv=-12st base=C4   sep=2000ms electric_keyboard  interval=-36 ❌
+    [  11/120] iv= -1st base=E6   sep=1000ms voice  interval=-4 ❌
+    [  12/120] iv= -1st base=F#1  sep=2000ms flute  interval=5 ❌
+    [  13/120] iv=-10st base=G5   sep= 200ms voice  interval=-10 ✅
+    [  14/120] iv= -1st base=C3   sep= 500ms synth_lead  interval=-10 ❌
+    [  15/120] iv=-12st base=G5   sep= 500ms sine  interval=-10 ❌
+    [  16/120] iv=-10st base=C4   sep= 500ms triangle  interval=-10 ✅
+    [  17/120] iv=-12st base=C3   sep=2000ms square  interval=-10 ❌
+    [  18/120] iv=-12st base=G5   sep= 200ms clarinet  interval=-15 ❌
+    [  19/120] iv=-10st base=E4   sep= 500ms square  interval=-10 ✅
+    [  20/120] iv=-11st base=G2   sep=1000ms square  interval=-12 ❌
+    [  21/120] iv= -2st base=E6   sep= 200ms electric_keyboard  interval=-14 ❌
+    [  22/120] iv= -2st base=C3   sep= 500ms organ  interval=-6 ❌
+    [  23/120] iv= -3st base=E4   sep=1000ms synth_lead  interval=-1 ❌
+    [  24/120] iv= -2st base=F#3  sep= 200ms bass  interval=-10 ❌
+    [  25/120] iv= -5st base=C2   sep= 500ms sine  interval=7 ❌
+    [  26/120] iv= -4st base=F#1  sep=1000ms bass  interval=7 ❌
+    [  27/120] iv= -2st base=E6   sep=1000ms violin  interval=-14 ❌
+    [  28/120] iv= -4st base=A4   sep=2000ms clarinet  interval=-13 ❌
+    [  29/120] iv= -4st base=C2   sep= 500ms flute  interval=-10 ❌
+    [  30/120] iv= -3st base=C3   sep=1000ms voice  interval=5 ❌
+    [  31/120] iv= -5st base=G5   sep= 500ms clarinet  interval=13 ❌
+    [  32/120] iv= -4st base=F#3  sep=2000ms oboe  interval=14 ❌
+    [  33/120] iv= -3st base=F#1  sep=2000ms electric_keyboard  interval=2 ❌
+    [  34/120] iv= -3st base=E6   sep= 200ms synth_pad  interval=-10 ❌
+    [  35/120] iv= -5st base=A4   sep= 200ms trumpet  interval=7 ❌
+    [  36/120] iv= -5st base=G5   sep= 500ms synth_pad  interval=-5 ✅
+    [  37/120] iv= -3st base=E6   sep= 200ms cello  interval=-17 ❌
+    [  38/120] iv= -2st base=E4   sep=1000ms sine  interval=-10 ❌
+    [  39/120] iv= -4st base=E4   sep=2000ms electric_keyboard  interval=-12 ❌
+    [  40/120] iv= -5st base=F#1  sep=1000ms piano  interval=8 ❌
+    [  41/120] iv= -6st base=C2   sep= 500ms flute  interval=12 ❌
+    [  42/120] iv= -7st base=C3   sep= 500ms square  interval=-10 ❌
+    [  43/120] iv= -6st base=E4   sep= 500ms square  interval=-21 ❌
+    [  44/120] iv= -7st base=A4   sep=1000ms trombone  interval=-7 ✅
+    [  45/120] iv= -8st base=C2   sep= 200ms sawtooth  interval=-10 ❌
+    [  46/120] iv= -6st base=C4   sep= 200ms electric_keyboard  interval=-6 ✅
+    [  47/120] iv= -8st base=A4   sep= 500ms guitar  interval=4 ❌
+    [  48/120] iv= -7st base=F#3  sep=1000ms square  interval=None ❌
+    [  49/120] iv= -7st base=G5   sep= 200ms trumpet  interval=0 ❌
+    [  50/120] iv= -8st base=F#3  sep= 200ms bass  interval=-10 ❌
+    [  51/120] iv= -6st base=E4   sep= 500ms trumpet  interval=-18 ❌
+    [  52/120] iv= -9st base=C2   sep=2000ms triangle  interval=11 ❌
+    [  53/120] iv= -7st base=C2   sep=2000ms trombone  interval=-36 ❌
+    [  54/120] iv= -8st base=E4   sep=1000ms voice  interval=-27 ❌
+    [  55/120] iv= -9st base=E4   sep=2000ms trombone  interval=-33 ❌
+    [  56/120] iv= -9st base=A4   sep=1000ms cello  interval=-9 ✅
+    [  57/120] iv= -9st base=F#1  sep= 500ms square  interval=-15 ❌
+    [  58/120] iv= -9st base=C2   sep=1000ms organ  interval=-7 ❌
+    [  59/120] iv= -8st base=A4   sep= 200ms oboe  interval=-8 ✅
+    [  60/120] iv= +1st base=C4   sep= 200ms flute  interval=1 ✅
+    [  61/120] iv= +1st base=G5   sep=1000ms bass  interval=1 ✅
+    [  62/120] iv=+10st base=G5   sep=1000ms sawtooth  interval=-10 ❌
+    [  63/120] iv= +1st base=A4   sep=1000ms organ  interval=-13 ❌
+    [  64/120] iv= +1st base=G2   sep= 200ms trombone  interval=None ❌
+    [  65/120] iv=+10st base=F#3  sep=1000ms guitar  interval=10 ✅
+    [  66/120] iv=+10st base=G2   sep= 500ms sawtooth  interval=-10 ❌
+    [  67/120] iv=+10st base=F#3  sep= 500ms electric_keyboard  interval=4 ❌
+    [  68/120] iv= +1st base=F#1  sep=2000ms synth_lead  interval=-2 ❌
+    [  69/120] iv=+11st base=G2   sep= 200ms trumpet  interval=20 ❌
+    [  70/120] iv=+11st base=G2   sep=2000ms square  interval=-15 ❌
+    [  71/120] iv=+11st base=C4   sep= 200ms guitar  interval=11 ✅
+    [  72/120] iv=+11st base=A4   sep=1000ms square  interval=11 ✅
+    [  73/120] iv=+10st base=A4   sep=1000ms voice  interval=-17 ❌
+    [  74/120] iv=+11st base=A4   sep=1000ms clarinet  interval=-10 ❌
+    [  75/120] iv=+12st base=G5   sep= 500ms flute  interval=24 ❌
+    [  76/120] iv=+12st base=F#1  sep= 500ms voice  interval=-17 ❌
+    [  77/120] iv=+12st base=G5   sep= 200ms violin  interval=11 ❌
+    [  78/120] iv=+12st base=C3   sep=2000ms clarinet  interval=-1 ❌
+    [  79/120] iv=+12st base=C4   sep= 500ms piano  interval=12 ✅
+    [  80/120] iv= +2st base=C3   sep= 500ms electric_keyboard  interval=5 ❌
+    [  81/120] iv= +2st base=C2   sep= 200ms synth_pad  interval=19 ❌
+    [  82/120] iv= +2st base=G5   sep=1000ms guitar  interval=5 ❌
+    [  83/120] iv= +2st base=F#3  sep=1000ms trombone  interval=-10 ❌
+    [  84/120] iv= +2st base=F#1  sep=2000ms trombone  interval=12 ❌
+    [  85/120] iv= +3st base=E6   sep= 500ms synth_pad  interval=9 ❌
+    [  86/120] iv= +3st base=C4   sep=2000ms bass  interval=3 ✅
+    [  87/120] iv= +4st base=E4   sep= 500ms voice  interval=4 ✅
+    [  88/120] iv= +3st base=C4   sep=2000ms synth_lead  interval=31 ❌
+    [  89/120] iv= +4st base=G2   sep= 200ms synth_lead  interval=12 ❌
+    [  90/120] iv= +4st base=E4   sep= 500ms cello  interval=4 ✅
+    [  91/120] iv= +3st base=G5   sep=1000ms sawtooth  interval=-17 ❌
+    [  92/120] iv= +4st base=C3   sep=1000ms piano  interval=4 ✅
+    [  93/120] iv= +5st base=C2   sep=1000ms piano  interval=4 ❌
+    [  94/120] iv= +5st base=G5   sep=1000ms oboe  interval=12 ❌
+    [  95/120] iv= +3st base=F#3  sep=2000ms synth_pad  interval=19 ❌
+    [  96/120] iv= +5st base=A4   sep= 500ms trombone  interval=5 ✅
+    [  97/120] iv= +4st base=G2   sep= 500ms guitar  interval=16 ❌
+    [  98/120] iv= +5st base=E6   sep= 200ms guitar  interval=-10 ❌
+    [  99/120] iv= +6st base=E4   sep= 500ms synth_pad  interval=-6 ❌
+    [ 100/120] iv= +5st base=C3   sep=1000ms synth_lead  interval=-12 ❌
+    [ 101/120] iv= +6st base=C3   sep= 200ms trumpet  interval=6 ✅
+    [ 102/120] iv= -6st base=E6   sep=1000ms triangle  interval=-19 ❌
+    [ 103/120] iv= +6st base=E4   sep= 500ms electric_keyboard  interval=-4 ❌
+    [ 104/120] iv= +7st base=F#3  sep=1000ms sawtooth  interval=10 ❌
+    [ 105/120] iv= +7st base=G5   sep= 500ms sine  interval=-7 ❌
+    [ 106/120] iv= +6st base=G2   sep= 200ms organ  interval=6 ✅
+    [ 107/120] iv= +7st base=G2   sep= 500ms clarinet  interval=24 ❌
+    [ 108/120] iv= +7st base=F#1  sep=1000ms trumpet  interval=24 ❌
+    [ 109/120] iv= +6st base=C4   sep=1000ms synth_pad  interval=-10 ❌
+    [ 110/120] iv= +8st base=F#3  sep= 200ms electric_keyboard  interval=5 ❌
+    [ 111/120] iv= +8st base=G5   sep= 200ms guitar  interval=15 ❌
+    [ 112/120] iv= +7st base=G5   sep= 500ms electric_keyboard  interval=-10 ❌
+    [ 113/120] iv= +8st base=E4   sep=2000ms sawtooth  interval=-10 ❌
+    [ 114/120] iv= +8st base=C4   sep= 500ms organ  interval=-11 ❌
+    [ 115/120] iv= +9st base=G5   sep= 200ms trumpet  interval=29 ❌
+    [ 116/120] iv= +8st base=C3   sep=1000ms voice  interval=19 ❌
+    [ 117/120] iv= +9st base=C4   sep=1000ms voice  interval=9 ✅
+    [ 118/120] iv= +9st base=F#1  sep=2000ms guitar  interval=4 ❌
+    [ 119/120] iv= +9st base=G2   sep=1000ms oboe  interval=20 ❌
+    [ 120/120] iv= +9st base=C2   sep=1000ms organ  interval=-3 ❌
+
+============================================================
+SUMMARY — openrouter/google/gemini-3.1-pro-preview
+  Sampling     : 120 of 35872 (stratified by 'signed_st', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        INTERVAL      19.2%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                29,989
+  completion tokens            14,595
+  total tokens                 44,584
+  cost (USD)                $0.235118
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260505_114839/pitchbench_d3_interval_id_seq/run_001_20260505_123252/results_openrouter_google_gemini_3_1_pro_preview.*
+
+############################################################
+# pitchbench_d4_contour_discrete
+############################################################
+
+Experiment : pitchbench_d4_contour_discrete
+Models     : openrouter/google/gemini-3.1-pro-preview
+Stimuli    : 100
+  Sampling     : 100 of 21584 (stratified by '(n_transitions, step_size_st)', seed=42)

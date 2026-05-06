@@ -1,0 +1,167 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 140 items, max_workers=2
+    [   1/140] n= 1 irregular     square dur= 1000ms t=1  count=3 ❌
+    [   2/140] n= 1 irregular      cello dur= 1000ms t=1  count=3 ❌
+    [   3/140] n= 1 irregular       sine dur= 1000ms t=1  count=1 ✅
+    [   4/140] n= 1 irregular       bass dur= 1000ms t=2  count=3 ❌
+    [   5/140] n= 1 irregular electric_keyboard dur= 1000ms t=2  count=2 ❌
+    [   6/140] n= 1 irregular electric_keyboard dur= 5000ms t=0  count=2 ❌
+    [   7/140] n= 1 irregular      piano dur= 5000ms t=2  count=3 ❌
+    [   8/140] n= 1 irregular     square dur= 5000ms t=2  count=1 ✅
+    [   9/140] n= 1 irregular     square dur= 5000ms t=0  count=2 ❌
+    [  10/140] n= 1 irregular       bass dur= 5000ms t=2  count=12 ❌
+    [  11/140] n= 1   regular      organ dur= 1000ms t=1  count=4 ❌
+    [  12/140] n= 1   regular       bass dur= 1000ms t=2  count=3 ❌
+    [  13/140] n= 1   regular       oboe dur= 1000ms t=1  count=3 ❌
+    [  14/140] n= 1   regular   sawtooth dur= 1000ms t=2  count=1 ✅
+    [  15/140] n= 1   regular   trombone dur= 5000ms t=0  count=1 ✅
+    [  16/140] n= 1   regular     violin dur= 1000ms t=1  count=3 ❌
+    [  17/140] n= 1   regular       sine dur= 5000ms t=1  count=1 ✅
+    [  18/140] n= 1   regular       sine dur= 5000ms t=2  count=10 ❌
+    [  19/140] n= 1   regular   sawtooth dur= 5000ms t=2  count=10 ❌
+    [  20/140] n= 1   regular      piano dur= 5000ms t=1  count=12 ❌
+    [  21/140] n=10 irregular      piano dur= 1000ms t=2  count=3 ❌
+    [  22/140] n=10 irregular   clarinet dur= 1000ms t=2  count=3 ❌
+    [  23/140] n=10 irregular     violin dur= 1000ms t=2  count=3 ❌
+    [  24/140] n=10 irregular       sine dur= 1000ms t=1  count=3 ❌
+    [  25/140] n=10 irregular       oboe dur= 1000ms t=2  count=3 ❌
+    [  26/140] n=10 irregular      piano dur= 5000ms t=0  count=12 ❌
+    [  27/140] n=10 irregular       bass dur= 5000ms t=0  count=4 ❌
+    [  28/140] n=10 irregular      cello dur= 5000ms t=2  count=4 ❌
+    [  29/140] n=10 irregular      organ dur= 5000ms t=2  count=12 ❌
+    [  30/140] n=10 irregular       oboe dur= 5000ms t=1  count=12 ❌
+    [  31/140] n=10   regular    trumpet dur= 1000ms t=2  count=3 ❌
+    [  32/140] n=10   regular      piano dur= 1000ms t=2  count=4 ❌
+    [  33/140] n=10   regular   trombone dur= 1000ms t=1  count=3 ❌
+    [  34/140] n=10   regular     violin dur= 1000ms t=1  count=3 ❌
+    [  35/140] n=10   regular electric_keyboard dur= 1000ms t=2  count=4 ❌
+    [  36/140] n=10   regular  synth_pad dur= 5000ms t=0  count=4 ❌
+    [  37/140] n=10   regular      voice dur= 5000ms t=1  count=4 ❌
+    [  38/140] n=10   regular       sine dur= 5000ms t=0  count=3 ❌
+    [  39/140] n=10   regular synth_lead dur= 5000ms t=0  count=4 ❌
+    [  40/140] n=10   regular   triangle dur= 5000ms t=1  count=3 ❌
+    [  41/140] n= 2 irregular      organ dur= 1000ms t=2  count=4 ❌
+    [  42/140] n= 2 irregular   trombone dur= 1000ms t=0  count=2 ✅
+    [  43/140] n= 2 irregular      flute dur= 1000ms t=0  count=3 ❌
+    [  44/140] n= 2 irregular electric_keyboard dur= 1000ms t=2  count=3 ❌
+    [  45/140] n= 2 irregular   triangle dur= 1000ms t=0  count=2 ✅
+    [  46/140] n= 2 irregular      piano dur= 5000ms t=1  count=3 ❌
+    [  47/140] n= 2 irregular synth_lead dur= 5000ms t=0  count=2 ✅
+    [  48/140] n= 2 irregular      flute dur= 5000ms t=0  count=2 ✅
+    [  49/140] n= 2 irregular     square dur= 5000ms t=0  count=2 ✅
+    [  50/140] n= 2 irregular   sawtooth dur= 5000ms t=2  count=2 ✅
+    [  51/140] n= 2   regular    trumpet dur= 1000ms t=0  count=2 ✅
+    [  52/140] n= 2   regular     square dur= 1000ms t=0  count=3 ❌
+    [  53/140] n= 2   regular      flute dur= 1000ms t=1  count=2 ✅
+    [  54/140] n= 2   regular      voice dur= 1000ms t=0  count=3 ❌
+    [  55/140] n= 2   regular     violin dur= 1000ms t=2  count=3 ❌
+    [  56/140] n= 2   regular electric_keyboard dur= 5000ms t=1  count=2 ✅
+    [  57/140] n= 2   regular  synth_pad dur= 5000ms t=0  count=2 ✅
+    [  58/140] n= 2   regular       sine dur= 5000ms t=2  count=10 ❌
+    [  59/140] n= 2   regular       bass dur= 5000ms t=1  count=2 ✅
+    [  60/140] n= 2   regular   trombone dur= 5000ms t=2  count=1 ❌
+    [  61/140] n= 3 irregular       oboe dur= 1000ms t=1  count=3 ✅
+    [  62/140] n= 3 irregular     square dur= 1000ms t=1  count=3 ✅
+    [  63/140] n= 3 irregular    trumpet dur= 1000ms t=0  count=3 ✅
+    [  64/140] n= 3 irregular   sawtooth dur= 1000ms t=2  count=2 ❌
+    [  65/140] n= 3 irregular       oboe dur= 1000ms t=2  count=3 ✅
+    [  66/140] n= 3 irregular     guitar dur= 5000ms t=0  count=3 ✅
+    [  67/140] n= 3 irregular  synth_pad dur= 5000ms t=2  count=3 ✅
+    [  68/140] n= 3 irregular      cello dur= 5000ms t=1  count=3 ✅
+    [  69/140] n= 3 irregular      cello dur= 5000ms t=0  count=3 ✅
+    [  70/140] n= 3 irregular      voice dur= 5000ms t=2  count=3 ✅
+    [  71/140] n= 3   regular      voice dur= 1000ms t=1  count=3 ✅
+    [  72/140] n= 3   regular      flute dur= 1000ms t=2  count=3 ✅
+    [  73/140] n= 3   regular     violin dur= 1000ms t=0  count=3 ✅
+    [  74/140] n= 3   regular      piano dur= 1000ms t=0  count=3 ✅
+    [  75/140] n= 3   regular       bass dur= 1000ms t=0  count=3 ✅
+    [  76/140] n= 3   regular   sawtooth dur= 5000ms t=1  count=3 ✅
+    [  77/140] n= 3   regular       sine dur= 5000ms t=2  count=3 ✅
+    [  78/140] n= 3   regular      organ dur= 5000ms t=0  count=4 ❌
+    [  79/140] n= 3   regular      piano dur= 5000ms t=2  count=3 ✅
+    [  80/140] n= 3   regular synth_lead dur= 5000ms t=1  count=3 ✅
+    [  81/140] n= 4 irregular     guitar dur= 1000ms t=0  count=3 ❌
+    [  82/140] n= 4 irregular   sawtooth dur= 1000ms t=2  count=2 ❌
+    [  83/140] n= 4 irregular      voice dur= 1000ms t=0  count=3 ❌
+    [  84/140] n= 4 irregular      piano dur= 1000ms t=2  count=3 ❌
+    [  85/140] n= 4 irregular      voice dur= 1000ms t=1  count=4 ✅
+    [  86/140] n= 4 irregular     square dur= 5000ms t=0  count=3 ❌
+    [  87/140] n= 4 irregular    trumpet dur= 5000ms t=0  count=3 ❌
+    [  88/140] n= 4 irregular electric_keyboard dur= 5000ms t=2  count=3 ❌
+    [  89/140] n= 4 irregular   trombone dur= 5000ms t=2  count=3 ❌
+    [  90/140] n= 4 irregular      cello dur= 5000ms t=1  count=4 ✅
+    [  91/140] n= 4   regular  synth_pad dur= 1000ms t=2  count=3 ❌
+    [  92/140] n= 4   regular      flute dur= 1000ms t=2  count=3 ❌
+    [  93/140] n= 4   regular   triangle dur= 1000ms t=1  count=3 ❌
+    [  94/140] n= 4   regular      flute dur= 1000ms t=1  count=3 ❌
+    [  95/140] n= 4   regular      piano dur= 1000ms t=1  count=3 ❌
+    [  96/140] n= 4   regular      organ dur= 5000ms t=0  count=3 ❌
+    [  97/140] n= 4   regular electric_keyboard dur= 5000ms t=2  count=3 ❌
+    [  98/140] n= 4   regular      organ dur= 5000ms t=2  count=4 ✅
+    [  99/140] n= 4   regular      organ dur= 5000ms t=1  count=3 ❌
+    [ 100/140] n= 4   regular      cello dur= 5000ms t=2  count=3 ❌
+    [ 101/140] n= 5 irregular   sawtooth dur= 1000ms t=1  count=2 ❌
+    [ 102/140] n= 5 irregular     violin dur= 1000ms t=2  count=3 ❌
+    [ 103/140] n= 5 irregular      cello dur= 1000ms t=1  count=3 ❌
+    [ 104/140] n= 5 irregular   triangle dur= 1000ms t=1  count=3 ❌
+    [ 105/140] n= 5 irregular       oboe dur= 1000ms t=1  count=3 ❌
+    [ 106/140] n= 5 irregular       bass dur= 5000ms t=1  count=4 ❌
+    [ 107/140] n= 5 irregular electric_keyboard dur= 5000ms t=0  count=4 ❌
+    [ 108/140] n= 5 irregular   triangle dur= 5000ms t=1  count=3 ❌
+    [ 109/140] n= 5 irregular   trombone dur= 5000ms t=2  count=3 ❌
+    [ 110/140] n= 5 irregular    trumpet dur= 5000ms t=0  count=3 ❌
+    [ 111/140] n= 5   regular electric_keyboard dur= 1000ms t=2  count=4 ❌
+    [ 112/140] n= 5   regular      cello dur= 1000ms t=1  count=4 ❌
+    [ 113/140] n= 5   regular      organ dur= 1000ms t=2  count=4 ❌
+    [ 114/140] n= 5   regular       oboe dur= 1000ms t=2  count=3 ❌
+    [ 115/140] n= 5   regular      piano dur= 1000ms t=2  count=4 ❌
+    [ 116/140] n= 5   regular      organ dur= 5000ms t=1  count=4 ❌
+    [ 117/140] n= 5   regular     guitar dur= 5000ms t=2  count=4 ❌
+    [ 118/140] n= 5   regular  synth_pad dur= 5000ms t=2  count=3 ❌
+    [ 119/140] n= 5   regular synth_lead dur= 5000ms t=1  count=4 ❌
+    [ 120/140] n= 5   regular   sawtooth dur= 5000ms t=0  count=3 ❌
+    [ 121/140] n= 7 irregular      piano dur= 1000ms t=2  count=3 ❌
+    [ 122/140] n= 7 irregular  synth_pad dur= 1000ms t=1  count=3 ❌
+    [ 123/140] n= 7 irregular       sine dur= 1000ms t=2  count=2 ❌
+    [ 124/140] n= 7 irregular  synth_pad dur= 1000ms t=0  count=3 ❌
+    [ 125/140] n= 7 irregular     guitar dur= 1000ms t=2  count=4 ❌
+    [ 126/140] n= 7 irregular    trumpet dur= 5000ms t=1  count=3 ❌
+    [ 127/140] n= 7 irregular electric_keyboard dur= 5000ms t=2  count=2 ❌
+    [ 128/140] n= 7 irregular   sawtooth dur= 5000ms t=1  count=2 ❌
+    [ 129/140] n= 7 irregular      piano dur= 5000ms t=1  count=12 ❌
+    [ 130/140] n= 7 irregular     violin dur= 5000ms t=0  count=4 ❌
+    [ 131/140] n= 7   regular      voice dur= 1000ms t=2  count=4 ❌
+    [ 132/140] n= 7   regular       bass dur= 1000ms t=0  count=3 ❌
+    [ 133/140] n= 7   regular     guitar dur= 1000ms t=2  count=4 ❌
+    [ 134/140] n= 7   regular      piano dur= 1000ms t=1  count=4 ❌
+    [ 135/140] n= 7   regular      cello dur= 1000ms t=2  count=4 ❌
+    [ 136/140] n= 7   regular   clarinet dur= 5000ms t=1  count=3 ❌
+    [ 137/140] n= 7   regular    trumpet dur= 5000ms t=1  count=3 ❌
+    [ 138/140] n= 7   regular      voice dur= 5000ms t=2  count=4 ❌
+    [ 139/140] n= 7   regular      cello dur= 5000ms t=2  count=3 ❌
+    [ 140/140] n= 7   regular   trombone dur= 5000ms t=2  count=3 ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : 140 of 1596 (stratified by '(n, rhythm, duration_ms)', seed=42)
+  Stimuli (total)     : 140
+  Stimuli (condition) : 140  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+           COUNT      26.4%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_071008/pitchbench_d1_sequence_count_pitches/run_001_20260506_074614/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_d2_dyad_lower_higher_difference
+############################################################
+
+Experiment : pitchbench_d2_dyad_lower_higher_difference
+Models     : audio_flamingo_next_instruct
+Stimuli    : 132
+  Sampling     : 132 of 15048 (stratified by '(delta_cents, order, duration_ms, base_name)', seed=42)

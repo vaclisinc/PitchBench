@@ -1,0 +1,25 @@
+{
+  "group_key": "base_name",
+  "score_key": "answer_correct",
+  "score_label": "Answer accuracy (%)",
+  "x_values": [
+    "A3",
+    "A4",
+    "A5"
+  ],
+  "x_labels": [
+    "A3",
+    "A4",
+    "A5"
+  ],
+  "mean_pct": [
+    47.72727272727273,
+    54.54545454545454,
+    47.72727272727273
+  ],
+  "n_samples": [
+    44,
+    44,
+    44
+  ]
+}

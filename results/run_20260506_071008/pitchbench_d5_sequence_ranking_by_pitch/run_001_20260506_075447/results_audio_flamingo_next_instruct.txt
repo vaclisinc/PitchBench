@@ -1,0 +1,93 @@
+Experiment : pitchbench_d5_sequence_ranking_by_pitch
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T07:55:21.168714
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'audio_flamingo_next_instruct']
+git_commit : c9248adc7803776d37c80a3651e8df71e34b43f1
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : ranking
+headline_metrics : ['answer']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n_notes', 'rhythm', 'base_name', 'delta_cents', 'trial']
+sample_n   : 120
+sample_seed : 42
+total_available : 2880
+stratified_by : (n_notes, delta_cents, rhythm, base_name)
+
+SUMMARY
+==================================================
+  Sampling     : 120 of 2880 (stratified by '(n_notes, delta_cents, rhythm, base_name)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER       4.2%
+
+== Marginal accuracy ==
+
+duration_ms     answer_correct    n
+──────────────  ───────  ────
+1000              4.35%    69
+5000              3.92%    51
+
+source          answer_correct    n
+──────────────  ───────  ────
+sawtooth          2.70%    37
+sine              6.90%    29
+square            4.76%    21
+triangle          3.03%    33
+
+n_notes         answer_correct    n
+──────────────  ───────  ────
+3                16.67%    30
+4                 0.00%    30
+5                 0.00%    30
+7                 0.00%    30
+
+rhythm          answer_correct    n
+──────────────  ───────  ────
+irregular         3.33%    60
+regular           5.00%    60
+
+delta_cents     answer_correct    n
+──────────────  ───────  ────
+25                0.00%    24
+50                8.33%    24
+100               4.17%    24
+200               0.00%    24
+400               8.33%    24
+
+kendall_tau     answer_correct    n
+──────────────  ───────  ────
+-1.0              0.00%     3
+-0.6667           0.00%     3
+-0.6              0.00%     4
+-0.4286           0.00%     6
+-0.4              0.00%     1
+-0.3333           0.00%    15
+-0.2381           0.00%     5
+-0.2              0.00%     7
+-0.1429           0.00%     5
+-0.0476           0.00%     2
+0.0               0.00%    14
+0.0476            0.00%     2
+0.1429            0.00%     1
+0.2               0.00%     7
+0.2381            0.00%     2
+0.3333            0.00%    20
+0.4               0.00%     4
+0.5238            0.00%     1
+0.6               0.00%     4
+0.619             0.00%     3
+0.6667            0.00%     5
+0.7143            0.00%     1
+1.0             100.00%     5
+
+trial           answer_correct    n
+──────────────  ───────  ────
+0                 2.94%    34
+1                 2.78%    36
+2                 6.00%    50
+

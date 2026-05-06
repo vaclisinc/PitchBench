@@ -1,0 +1,591 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-05T12:29:29.850186",
+    "argv": [
+      "/home/hsnu2/PitchBench/.venv/bin/pitchbench",
+      "all",
+      "--models",
+      "openrouter/google/gemini-3.1-pro-preview"
+    ],
+    "git_commit": "29bd3055db72f1762f3fb0bdf423a65a228c984d",
+    "git_dirty": true,
+    "model_name": "openrouter/google/gemini-3.1-pro-preview",
+    "model_info": {
+      "model": "openrouter/google/gemini-3.1-pro-preview",
+      "checkpoint": "openrouter",
+      "provider": "openrouter",
+      "openrouter_model_id": "google/gemini-3.1-pro-preview"
+    },
+    "task_type": "timing",
+    "tolerance_ms": 250,
+    "primary_filter_set": false,
+    "record_extras": [
+      "n_notes",
+      "rhythm",
+      "pitch_pattern",
+      "duration_ms"
+    ],
+    "sample_n": 30,
+    "sample_seed": 42,
+    "total_available": 456,
+    "stratified_by": "(rhythm, n_notes)",
+    "usage": {
+      "calls": 30,
+      "prompt_tokens": 47910,
+      "completion_tokens": 3720,
+      "total_tokens": 51630,
+      "cached_tokens": 0,
+      "cost_usd": 0.14046
+    }
+  },
+  "summary": {
+    "total": 30,
+    "condition_n": 30,
+    "accuracy": {
+      "n": 30,
+      "correct": 0.0
+    },
+    "marginals": {
+      "duration_ms": {
+        "1000": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "5000": {
+          "n": 21,
+          "correct": 0.0
+        }
+      },
+      "source": {
+        "triangle": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "sine": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "trumpet": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "flute": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "piano": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "synth_pad": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "square": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "voice": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "cello": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "sawtooth": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "guitar": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "synth_lead": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "organ": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "electric_keyboard": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "clarinet": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "source_type": {
+        "waveform": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "instrument": {
+          "n": 21,
+          "correct": 0.0
+        }
+      },
+      "n_notes": {
+        "3": {
+          "n": 10,
+          "correct": 0.0
+        },
+        "5": {
+          "n": 10,
+          "correct": 0.0
+        },
+        "8": {
+          "n": 10,
+          "correct": 0.0
+        }
+      },
+      "rhythm": {
+        "irregular": {
+          "n": 15,
+          "correct": 0.0
+        },
+        "regular": {
+          "n": 15,
+          "correct": 0.0
+        }
+      },
+      "pitch_pattern": {
+        "varied_pitches": {
+          "n": 16,
+          "correct": 0.0
+        },
+        "fixed_pitch": {
+          "n": 14,
+          "correct": 0.0
+        }
+      }
+    },
+    "cost_usd": 0.14046,
+    "total_tokens": 51630
+  },
+  "results": [
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_A4@1223+1000-C4@2904+1000-C3@5654+1000_triangle_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_A4@780+5000-C4@8059+5000-E6@14444+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C2@699+5000-Fs3@7538+5000-Fs1@14551+5000_trumpet_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C3@300+5000-G2@7582+5000-Fs3@15021+5000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs3@1745+1000-Fs3@4190+1000-Fs3@6966+1000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_G5@601+5000-G5@8070+5000-G5@15564+5000-G5@22654+5000-G5@29840+5000_piano_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_E6@778+5000-E6@7972+5000-E6@15127+5000-E6@21764+5000-E6@27471+5000_triangle_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_A4@479+5000-A4@7347+5000-A4@12747+5000-A4@20147+5000-A4@25983+5000_synth_pad_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_E6@2144+5000-C2@9361+5000-G2@15319+5000-Fs3@21636+5000-A4@28312+5000_square_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C2@1710+5000-A4@8605+5000-C4@15351+5000-E6@21497+5000-Fs1@28028+5000_voice_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs3@1388+1000-A4@4411+1000-C4@7007+1000-Fs1@10376+1000-C3@12312+1000-C2@15425+1000-G2@17177+1000-G5@19370+1000_cello_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs3@1445+1000-Fs3@4180+1000-Fs3@7477+1000-Fs3@9844+1000-Fs3@13179+1000-Fs3@14883+1000-Fs3@17900+1000-Fs3@21107+1000_sawtooth_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C4@893+5000-A4@8285+5000-Fs3@15570+5000-G2@22650+5000-C3@29820+5000-E4@36976+5000-C2@43433+5000-Fs1@49241+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C4@2025+5000-A4@8136+5000-E4@14861+5000-G5@22018+5000-Fs1@29232+5000-E6@35531+5000-C2@42255+5000-C3@47856+5000_square_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C2@1400+5000-E4@7928+5000-C3@13270+5000-G2@20519+5000-E6@27285+5000-A4@33734+5000-Fs1@41115+5000-Fs3@48599+5000_guitar_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:01.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C3@11250+5000-C3@27500+5000-C3@43750+5000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_A4@14250+1000-A4@29500+1000-A4@44750+1000_synth_lead_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_E4@11250+5000-A4@27500+5000-C3@43750+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs3@11250+5000-E4@27500+5000-Fs1@43750+5000_synth_pad_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 6,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C3@11250+5000-C3@27500+5000-C3@43750+5000_guitar_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs1@5833+5000-Fs1@16666+5000-Fs1@27499+5000-Fs1@38332+5000-Fs1@49165+5000_synth_pad_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C2@5833+5000-C2@16666+5000-C2@27499+5000-C2@38332+5000-C2@49165+5000_cello_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_A4@9166+1000-A4@19332+1000-A4@29498+1000-A4@39664+1000-A4@49830+1000_flute_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 5000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_E6@5833+5000-E6@16666+5000-E6@27499+5000-E6@38332+5000-E6@49165+5000_organ_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 5,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 10,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C3@5833+5000-A4@16666+5000-E4@27499+5000-C2@38332+5000-Fs3@49165+5000_voice_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_G2@2222+5000-Fs3@9444+5000-Fs1@16666+5000-G5@23888+5000-C4@31110+5000-C2@38332+5000-C3@45554+5000-E4@52776+5000_trumpet_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_C3@5777+1000-C3@12554+1000-C3@19331+1000-C3@26108+1000-C3@32885+1000-C3@39662+1000-C3@46439+1000-C3@53216+1000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "fixed_pitch",
+      "duration_ms": 1000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_E6@5777+1000-E6@12554+1000-E6@19331+1000-E6@26108+1000-E6@32885+1000-E6@39662+1000-E6@46439+1000-E6@53216+1000_electric_keyboard_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs3@5777+1000-A4@12554+1000-C3@19331+1000-E4@26108+1000-C4@32885+1000-G2@39662+1000-Fs1@46439+1000-G5@53216+1000_cello_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 8,
+      "rhythm": "regular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 16,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "0:00.0",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_onset_offset_each/clip_Fs1@2222+5000-C3@9444+5000-A4@16666+5000-Fs3@23888+5000-C2@31110+5000-E6@38332+5000-E4@45554+5000-G2@52776+5000_clarinet_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    }
+  ]
+}

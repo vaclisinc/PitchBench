@@ -1,0 +1,91 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 42 items, max_workers=2
+    [   1/42] D2   sine     bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [   2/42] F1   voice    bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [   3/42] B2   sine     bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [   4/42] G#3  voice    bg= church-bells snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [   5/42] F4   cello    bg= church-bells snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [   6/42] D5   synth_lead bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [   7/42] B5   synth_lead bg= church-bells snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [   8/42] F1   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.32 ❌
+    [   9/42] D2   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306 ❌
+    [  10/42] B2   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [  11/42] G#3  voice    bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=415.306 ❌
+    [  12/42] F4   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [  13/42] D5   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.3 ❌
+    [  14/42] B5   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.306 ❌
+    [  15/42] F1   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1024.57 ❌
+    [  16/42] D2   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=63 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [  17/42] B2   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=63 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1058.47 ❌
+    [  18/42] G#3  sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.47 ❌
+    [  19/42] F4   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=63 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1058.47 ❌
+    [  20/42] D5   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=69 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [  21/42] B5   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [  22/42] F1   piano    bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.306 ❌
+    [  23/42] D2   piano    bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  24/42] B2   sine     bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [  25/42] G#3  piano    bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [  26/42] F4   synth_lead bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [  27/42] D5   voice    bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [  28/42] B5   voice    bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [  29/42] F1   voice    bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [  30/42] D2   piano    bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306872 ❌
+    [  31/42] B2   flute    bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [  32/42] G#3  synth_lead bg= street-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.32 ❌
+    [  33/42] F4   flute    bg= street-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.0 ❌
+    [  34/42] D5   piano    bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.306 ❌
+    [  35/42] B5   cello    bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [  36/42] F1   sine     bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [  37/42] D2   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  38/42] B2   voice    bg=  white_noise snr=   -6dB  | midi: gt=47 pred=69 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [  39/42] G#3  flute    bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [  40/42] F4   cello    bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [  41/42] D5   cello    bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1052.63 ❌
+    [  42/42] B5   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : 42 of 252 (stratified by '(background, snr_db, midi)', seed=42)
+  Stimuli (total)     : 42
+  Stimuli (condition) : 42  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       2.4%
+     SPN       0.0%
+  DOREMI       0.0%
+      HZ       0.0%
+     ANY       2.4%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_080926/pitchbench_e2_background/run_001_20260506_082623/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_e3_harmonic_saturation
+############################################################
+
+
+[ERROR] Experiment pitchbench_e3_harmonic_saturation failed with error:
+Stratum ('sat_heavy', 29, 'waveform') has only 1 items but needs 2; reduce --sample-n or pick a different stratification.
+
+
+############################################################
+# pitchbench_e4_time_stretching
+############################################################
+
+
+[ERROR] Experiment pitchbench_e4_time_stretching failed with error:
+Stratum ('resample_0.5x', 48, 'waveform') has only 1 items but needs 2; reduce --sample-n or pick a different stratification.
+
+
+############################################################
+# pitchbench_e6_slightly_off
+############################################################
+
+Experiment : pitchbench_e6_slightly_off
+Models     : audio_flamingo_next_instruct
+Stimuli    : 168
+  Sampling     : 168 of 252 (stratified by '(midi, detune_hz, midi)', seed=42)

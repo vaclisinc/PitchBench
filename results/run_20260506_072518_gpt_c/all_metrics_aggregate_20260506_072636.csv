@@ -1,0 +1,5 @@
+experiment,model,n_samples,metric,value
+pitchbench_c1_chord_count_pitches,openrouter/openai/gpt-4o-audio-preview,228,condition_n,228.0
+pitchbench_c2_chord_dyad_interval,openrouter/openai/gpt-4o-audio-preview,232,condition_n,232.0
+pitchbench_c3_chord_quality,openrouter/openai/gpt-4o-audio-preview,192,condition_n,192.0
+pitchbench_c4_chord_pitches,openrouter/openai/gpt-4o-audio-preview,200,condition_n,200.0

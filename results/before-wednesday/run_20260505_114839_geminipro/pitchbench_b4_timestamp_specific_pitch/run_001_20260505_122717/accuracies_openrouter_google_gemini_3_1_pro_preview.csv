@@ -1,0 +1,42 @@
+metric,n_samples,value,value_pct
+total,30,,
+by_duration.1000,13,0.0,0.0%
+by_duration.5000,17,0.0,0.0%
+by_pitch.30,2,0.0,0.0%
+by_pitch.36,1,0.0,0.0%
+by_pitch.43,2,0.0,0.0%
+by_pitch.48,5,0.0,0.0%
+by_pitch.54,1,0.0,0.0%
+by_pitch.60,2,0.0,0.0%
+by_pitch.64,4,0.0,0.0%
+by_pitch.69,2,0.0,0.0%
+by_pitch.79,4,0.0,0.0%
+by_pitch.88,7,0.0,0.0%
+by_source.bass,2,0.0,0.0%
+by_source.cello,2,0.0,0.0%
+by_source.clarinet,1,0.0,0.0%
+by_source.electric_keyboard,4,0.0,0.0%
+by_source.flute,1,0.0,0.0%
+by_source.guitar,1,0.0,0.0%
+by_source.organ,1,0.0,0.0%
+by_source.sine,4,0.0,0.0%
+by_source.square,4,0.0,0.0%
+by_source.synth_lead,2,0.0,0.0%
+by_source.synth_pad,2,0.0,0.0%
+by_source.triangle,1,0.0,0.0%
+by_source.violin,1,0.0,0.0%
+by_source.voice,4,0.0,0.0%
+by_source_type.instrument,21,0.0,0.0%
+by_source_type.waveform,9,0.0,0.0%
+by_n_distractors.5,15,0.0,0.0%
+by_n_distractors.7,15,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",2,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",1,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",5,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",2,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",4,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",7,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",2,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",1,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",2,0.0,0.0%
+"by_prompt.This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",4,0.0,0.0%

@@ -1,0 +1,29 @@
+{
+  "group_key": "source",
+  "score_key": "trajectory_correct",
+  "score_label": "Trajectory accuracy (%)",
+  "x_values": [
+    "sawtooth",
+    "sine",
+    "square",
+    "triangle"
+  ],
+  "x_labels": [
+    "sawtooth",
+    "sine",
+    "square",
+    "triangle"
+  ],
+  "mean_pct": [
+    41.30434782608695,
+    35.55555555555556,
+    50.0,
+    51.61290322580645
+  ],
+  "n_samples": [
+    46,
+    45,
+    38,
+    31
+  ]
+}

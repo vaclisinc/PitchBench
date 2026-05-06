@@ -1,0 +1,135 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 100 items, max_workers=20
+    [   1/100] diminished  root=E6   same_instrumentation=False quality_only  quality=minor ❌
+    [   2/100] augmented   root=F#1  same_instrumentation=False quality_only  quality=minor ❌
+    [   3/100] diminished  root=A4   same_instrumentation=True  quality_only  quality=minor ❌
+    [   4/100] diminished  root=E4   same_instrumentation=False quality_only  quality=minor ❌
+    [   5/100] augmented   root=C4   same_instrumentation=True  quality_only  quality=minor ❌
+    [   6/100] augmented   root=A4   same_instrumentation=False quality_only  quality=minor ❌
+    [   7/100] diminished  root=C4   same_instrumentation=True  quality_only  quality=minor ❌
+    [   8/100] diminished  root=E4   same_instrumentation=True  quality_only  quality=minor ❌
+    [   9/100] diminished  root=E6   same_instrumentation=False quality_only  quality=minor ❌
+    [  10/100] diminished  root=E4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  11/100] diminished  root=G2   same_instrumentation=False quality_only  quality=minor ❌
+    [  12/100] augmented   root=G2   same_instrumentation=False quality_only  quality=major ❌
+    [  13/100] diminished  root=C2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  14/100] augmented   root=F#3  same_instrumentation=True  quality_only  quality=major ❌
+    [  15/100] augmented   root=C2   same_instrumentation=True  quality_only  quality=major ❌
+    [  16/100] diminished  root=F#3  same_instrumentation=False quality_only  quality=minor ❌
+    [  17/100] augmented   root=G2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  18/100] dom7        root=E4   same_instrumentation=False quality_only  quality=minor ❌
+    [  19/100] augmented   root=A4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  20/100] dom7        root=G2   same_instrumentation=False quality_only  quality=minor ❌
+    [  21/100] dom7        root=G5   same_instrumentation=True  quality_only  quality=minor ❌
+    [  22/100] augmented   root=A4   same_instrumentation=False quality_only  quality=minor ❌
+    [  23/100] dom7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌
+    [  24/100] dom7        root=A4   same_instrumentation=True  quality_only  quality=major ❌
+    [  25/100] dom7        root=G2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  26/100] m7b5        root=A4   same_instrumentation=False quality_only  quality=major ❌
+    [  27/100] dom7        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌
+    [  28/100] m7b5        root=C3   same_instrumentation=False quality_only  quality=minor ❌
+    [  29/100] m7b5        root=F#3  same_instrumentation=False quality_only  quality=major ❌
+    [  30/100] dom7        root=G2   same_instrumentation=False quality_only  quality=minor ❌
+    [  31/100] m7b5        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌
+    [  32/100] dom7        root=F#3  same_instrumentation=False quality_only  quality=major ❌
+    [  33/100] m7b5        root=F#3  same_instrumentation=False quality_only  quality=major ❌
+    [  34/100] m7b5        root=A4   same_instrumentation=True  quality_only  quality=major ❌
+    [  35/100] m7b5        root=F#1  same_instrumentation=False quality_only  quality=major ❌
+    [  36/100] dom7        root=G5   same_instrumentation=False quality_only  quality=major ❌
+    [  37/100] m7b5        root=C3   same_instrumentation=True  quality_only  quality=major ❌
+    [  38/100] maj7        root=G2   same_instrumentation=False quality_only  quality=minor ❌
+    [  39/100] m7b5        root=G2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  40/100] maj7        root=C3   same_instrumentation=True  quality_only  quality=minor ❌
+    [  41/100] m7b5        root=A4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  42/100] maj7        root=A4   same_instrumentation=False quality_only  quality=major ❌
+    [  43/100] maj7        root=C2   same_instrumentation=False quality_only  quality=minor ❌
+    [  44/100] maj7        root=C4   same_instrumentation=False quality_only  quality=major ❌
+    [  45/100] maj7        root=C3   same_instrumentation=True  quality_only  quality=minor ❌
+    [  46/100] maj7        root=F#1  same_instrumentation=True  quality_only  quality=minor ❌
+    [  47/100] maj7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌
+    [  48/100] major       root=C3   same_instrumentation=False quality_only  quality=major ✅
+    [  49/100] major       root=C3   same_instrumentation=False quality_only  quality=minor ❌
+    [  50/100] major       root=G2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  51/100] major       root=C3   same_instrumentation=False quality_only  quality=minor ❌
+    [  52/100] augmented   root=E6   same_instrumentation=False quality_only  quality=major ❌
+    [  53/100] major       root=F#3  same_instrumentation=False quality_only  quality=minor ❌
+    [  54/100] major       root=E4   same_instrumentation=True  quality_only  quality=major ✅
+    [  55/100] major       root=F#1  same_instrumentation=True  quality_only  quality=minor ❌
+    [  56/100] min7        root=C4   same_instrumentation=False quality_only  quality=minor ❌
+    [  57/100] major       root=C2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  58/100] min7        root=G5   same_instrumentation=False quality_only  quality=minor ❌
+    [  59/100] min7        root=G5   same_instrumentation=False quality_only  quality=minor ❌
+    [  60/100] min7        root=A4   same_instrumentation=False quality_only  quality=minor ❌
+    [  61/100] major       root=F#1  same_instrumentation=True  quality_only  quality=minor ❌
+    [  62/100] min7        root=C4   same_instrumentation=False quality_only  quality=minor ❌
+    [  63/100] min7        root=G5   same_instrumentation=True  quality_only  quality=minor ❌
+    [  64/100] major       root=C4   same_instrumentation=False quality_only  quality=minor ❌
+    [  65/100] min7        root=C4   same_instrumentation=True  quality_only  quality=major ❌
+    [  66/100] min7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌
+    [  67/100] minor       root=G2   same_instrumentation=False quality_only  quality=minor ✅
+    [  68/100] min7        root=F#3  same_instrumentation=True  quality_only  quality=minor ❌
+    [  69/100] minor       root=C4   same_instrumentation=False quality_only  quality=minor ✅
+    [  70/100] min7        root=G2   same_instrumentation=True  quality_only  quality=minor ❌
+    [  71/100] minor       root=G2   same_instrumentation=False quality_only  quality=major ❌
+    [  72/100] minor       root=C3   same_instrumentation=True  quality_only  quality=minor ✅
+    [  73/100] minor       root=E6   same_instrumentation=True  quality_only  quality=minor ✅
+    [  74/100] minor       root=C2   same_instrumentation=False quality_only  quality=minor ✅
+    [  75/100] minor       root=E4   same_instrumentation=True  quality_only  quality=minor ✅
+    [  76/100] minor       root=C2   same_instrumentation=True  quality_only  quality=minor ✅
+    [  77/100] sus2        root=E4   same_instrumentation=False quality_only  quality=major ❌
+    [  78/100] sus2        root=C4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  79/100] minor       root=F#3  same_instrumentation=False quality_only  quality=minor ✅
+    [  80/100] sus2        root=E6   same_instrumentation=False quality_only  quality=minor ❌
+    [  81/100] maj7        root=C4   same_instrumentation=True  quality_only  quality=major ❌
+    [  82/100] sus2        root=A4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  83/100] sus2        root=C3   same_instrumentation=True  quality_only  quality=major ❌
+    [  84/100] minor       root=A4   same_instrumentation=True  quality_only  quality=minor ✅
+    [  85/100] sus2        root=E6   same_instrumentation=False quality_only  quality=minor ❌
+    [  86/100] sus4        root=C3   same_instrumentation=False quality_only  quality=major ❌
+    [  87/100] sus4        root=C3   same_instrumentation=False quality_only  quality=minor ❌
+    [  88/100] sus2        root=C2   same_instrumentation=False quality_only  quality=minor ❌
+    [  89/100] sus4        root=F#3  same_instrumentation=False quality_only  quality=major ❌
+    [  90/100] sus4        root=C4   same_instrumentation=False quality_only  quality=minor ❌
+    [  91/100] sus4        root=G2   same_instrumentation=True  quality_only  quality=major ❌
+    [  92/100] sus4        root=E4   same_instrumentation=False quality_only  quality=major ❌
+    [  93/100] sus2        root=E4   same_instrumentation=True  quality_only  quality=major ❌
+    [  94/100] sus4        root=A4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  95/100] sus4        root=G5   same_instrumentation=True  quality_only  quality=major ❌
+    [  96/100] sus4        root=G2   same_instrumentation=True  quality_only  quality=major ❌
+    [  97/100] maj7        root=F#3  same_instrumentation=False quality_only  quality=major ❌
+    [  98/100] sus4        root=C4   same_instrumentation=True  quality_only  quality=minor ❌
+    [  99/100] sus2        root=C2   same_instrumentation=True  quality_only  quality=minor ❌
+    [ 100/100] sus2        root=C3   same_instrumentation=False quality_only  quality=major ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 100 of 7296 (stratified by '(chord_quality_gt, same_instrument)', seed=42)
+  Stimuli (total)     : 100
+  Stimuli (condition) : 100  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+     QUALITY      11.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           100
+  prompt tokens                 9,940
+  completion tokens               100
+  total tokens                 10,040
+  cost (USD)                $0.147350
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260505_121034/pitchbench_c4_chord_quality/run_001_20260505_122400/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d1_seq_pitch_count
+############################################################
+
+Experiment : pitchbench_d1_seq_pitch_count
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 70
+  Sampling     : 70 of 1596 (stratified by '(n, rhythm)', seed=42)

@@ -1,0 +1,36 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 160 items, max_workers=2
+    [   1/160]  F#1 sine  | midi: gt=30 pred=48 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [   2/160]  F#1 sine  | midi: gt=30 pred=48 ❌  | spn: gt=F#1 pred=C2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=42.0 ❌
+    [   3/160]   C2 sine  | midi: gt=36 pred=48 ❌  | spn: gt=C2 pred=C4 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=430.51 ❌
+    [   4/160]   C2 sine  | midi: gt=36 pred=48 ❌  | spn: gt=C2 pred=C2 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=65.4064 pred=261.63 ❌
+    [   5/160]   A4 sine  | midi: gt=69 pred=69 ✅  | spn: gt=A4 pred=C4 ❌  | doremi: gt=la pred=fa# ❌  | hz: gt=440.0 pred=450.0 ❌
+    [   6/160]   A4 sine  | midi: gt=69 pred=69 ✅  | spn: gt=A4 pred=C4 ❌  | doremi: gt=la pred=fa# ❌  | hz: gt=440.0 pred=450.32 ❌
+    [   7/160]   G5 sine  | midi: gt=79 pred=64 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=783.9909 pred=480.0 ❌
+    [   8/160]   G5 sine  | midi: gt=79 pred=68 ❌  | spn: gt=G5 pred=C6 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=783.9909 pred=415.306 ❌
+    [   9/160]  F#1 sawtooth  | midi: gt=30 pred=64 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  10/160]   G2 sawtooth  | midi: gt=43 pred=45 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=450.32 ❌
+    [  11/160]   C3 sawtooth  | midi: gt=48 pred=64 ❌  | spn: gt=C3 pred=C4 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=450.32 ❌
+    [  12/160]  F#3 sawtooth  | midi: gt=54 pred=64 ❌  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=450.32 ❌
+    [  13/160]  F#3 sawtooth  | midi: gt=54 pred=54 ✅  | spn: gt=F#3 pred=F#3 ✅  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=450.0 ❌
+    [  14/160]   E4 sawtooth  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=F#3 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  15/160]   E6 sawtooth  | midi: gt=88 pred=65 ❌  | spn: gt=E6 pred=F#6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=415.306 ❌
+    [  16/160]  F#1 square  | midi: gt=30 pred=45 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=435.0 ❌
+    [  17/160]  F#1 square  | midi: gt=30 pred=45 ❌  | spn: gt=F#1 pred=A#2 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=450.0 ❌
+    [  18/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=450.0 ❌
+    [  19/160]   G2 square  | midi: gt=43 pred=43 ✅  | spn: gt=G2 pred=F#2 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=450.0 ❌
+    [  20/160]   C3 square  | midi: gt=48 pred=64 ❌  | spn: gt=C3 pred=C4 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=450.0 ❌
+    [  21/160]   C3 square  | midi: gt=48 pred=45 ❌  | spn: gt=C3 pred=C4 ❌  | doremi: gt=do pred=fa# ❌  | hz: gt=130.8128 pred=450.0 ❌
+    [  22/160]  F#3 square  | midi: gt=54 pred=64 ❌  | spn: gt=F#3 pred=C4 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=184.9972 pred=450.32 ❌
+    [  23/160]   C4 square  | midi: gt=60 pred=64 ❌  | spn: gt=C4 pred=C4 ✅  | doremi: gt=do pred=fa# ❌  | hz: gt=261.6256 pred=450.0 ❌
+    [  24/160]   E4 square  | midi: gt=64 pred=64 ✅  | spn: gt=E4 pred=C4 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=435.0 ❌
+    [  25/160]   E4 square  | midi: gt=64 pred=63 ❌  | spn: gt=E4 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=329.6276 pred=450.0 ❌
+    [  26/160]   E6 square  | midi: gt=88 pred=65 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=430.56 ❌
+    [  27/160]   E6 square  | midi: gt=88 pred=63 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=450.0 ❌
+    [  28/160]   E6 square  | midi: gt=88 pred=63 ❌  | spn: gt=E6 pred=C6 ❌  | doremi: gt=mi pred=fa# ❌  | hz: gt=1318.5102 pred=480.0 ❌
+    [  29/160]  F#1 triangle  | midi: gt=30 pred=45 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=435.0 ❌
+    [  30/160]  F#1 triangle  | midi: gt=30 pred=43 ❌  | spn: gt=F#1 pred=C4 ❌  | doremi: gt=fa# pred=fa# ✅  | hz: gt=46.2493 pred=430.56 ❌
+    [  31/160]   G2 triangle  | midi: gt=43 pred=48 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=430.56 ❌
+    [  32/160]   G2 triangle  | midi: gt=43 pred=58 ❌  | spn: gt=G2 pred=C4 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=97.9989 pred=430.56 ❌
+    [  33/160]   C3 triangle  *** FAILED: RuntimeError('Local server http://localhost:8001/analyze/upload failed after retries: HTTPConnectionPool(host=\'localhost\', port=8001): Max retries exceeded with url: /analyze/upload (Caused by NewConnectionError("HTTPConnection(host=\'localhost\', port=8001): Failed to establish a new connection: [Errno 111] Connection refused"))')

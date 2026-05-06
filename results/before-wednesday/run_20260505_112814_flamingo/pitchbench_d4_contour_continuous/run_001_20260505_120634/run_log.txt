@@ -1,0 +1,47 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 20 items, max_workers=1
+    [   1/20] down           start=A4   Δ=+1st sine        trajectory=None ❌
+    [   2/20] down           start=C2   Δ=+7st sine        trajectory=None ❌
+    [   3/20] down           start=A4   Δ=+7st sawtooth    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [   4/20] down           start=C4   Δ=+7st sawtooth    trajectory=None ❌
+    [   5/20] down           start=F#3  Δ=+4st sawtooth    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [   6/20] down_then_up   start=G5   Δ=+12st sine        trajectory=None ❌
+    [   7/20] down_then_up   start=E4   Δ=+7st sine        trajectory=None ❌
+    [   8/20] down_then_up   start=F#3  Δ=+12st triangle    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [   9/20] down_then_up   start=C4   Δ=+7st sine        trajectory=None ❌
+    [  10/20] down_then_up   start=A4   Δ=+12st triangle    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  11/20] up             start=A4   Δ=+1st square      trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  12/20] up             start=G2   Δ=+1st sine        trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  13/20] up             start=C2   Δ=+12st sine        trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  14/20] up             start=C4   Δ=+12st sine        trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  15/20] up             start=C3   Δ=+12st sawtooth    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  16/20] up_then_down   start=F#3  Δ=+12st sawtooth    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  17/20] up_then_down   start=G2   Δ=+4st triangle    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  18/20] up_then_down   start=G5   Δ=+7st triangle    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+    [  19/20] up_then_down   start=C2   Δ=+7st sine        trajectory=None ❌
+    [  20/20] up_then_down   start=C4   Δ=+12st triangle    trajectory=up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down, up, down ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : 20 of 640 (stratified by 'traj_name', seed=42)
+  Stimuli (total)     : 20
+  Stimuli (condition) : 20  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+      TRAJECTORY       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260505_112814/pitchbench_d5_contour_continuous/run_001_20260505_120634/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_d6_pitch_ranking
+############################################################
+
+Experiment : pitchbench_d6_pitch_ranking
+Models     : audio_flamingo_next_instruct
+Stimuli    : 100
+  Sampling     : 100 of 2880 (stratified by '(n_notes, delta_cents)', seed=42)

@@ -39,6 +39,14 @@ pitchbench_a1_PITCHES          = BENCHMARK_PITCHES_FULL_RANGE   # ← edit me
 pitchbench_a1_TONE_DURATION_MS = BENCHMARK_DURATION_MS          # ← edit me
 pitchbench_a1_SOURCES          = BENCHMARK_ALL_SOURCES          # ← edit me
 
+# ── y1 (single pitch with multiple-choice options) ─────────────────────────
+pitchbench_y1_PITCHES          = BENCHMARK_PITCHES_FULL_RANGE   # ← edit me
+pitchbench_y1_TONE_DURATION_MS = BENCHMARK_DURATION_MS          # ← edit me
+pitchbench_y1_SOURCES          = BENCHMARK_ALL_SOURCES          # ← edit me
+pitchbench_y1_N_OPTIONS        = 5                              # ← edit me
+pitchbench_y1_OPTION_STEP_ST   = 2                              # ← edit me
+pitchbench_y1_SEED             = BENCHMARK_SEED                 # ← edit me
+
 # ── d7 (pitch with reference) ───────────────────────────────────────────────
 pitchbench_d7_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION   # ← edit me
 pitchbench_d7_INTERVALS         = [-12,-7,-5,-4,-3,-2,-1,0,

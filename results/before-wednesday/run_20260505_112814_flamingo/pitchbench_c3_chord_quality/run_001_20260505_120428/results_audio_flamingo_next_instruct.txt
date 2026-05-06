@@ -1,0 +1,115 @@
+Experiment : pitchbench_c4_chord_quality
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-05T12:04:39.241099
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'audio_flamingo_next_instruct']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : quality
+headline_metrics : ['quality']
+primary_filter_set : False
+record_extras : ['duration_ms', 'same_instrument', 'root_midi', 'chord_quality_gt', 'task']
+sample_n   : 100
+sample_seed : 42
+total_available : 7296
+stratified_by : (chord_quality_gt, same_instrument)
+
+SUMMARY
+==================================================
+  Sampling     : 100 of 7296 (stratified by '(chord_quality_gt, same_instrument)', seed=42)
+  Stimuli (total)     : 100
+  Stimuli (condition) : 100  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+     QUALITY      11.0%
+
+== Marginal accuracy ==
+
+duration_ms     quality_correct    n
+──────────────  ───────  ────
+1000              9.09%    44
+5000             12.50%    56
+
+source          quality_correct    n
+──────────────  ───────  ────
+bass              0.00%     3
+bass+synth_lead+synth_pad   50.00%     2
+cello             0.00%     1
+cello+organ+bass    0.00%     2
+cello+organ+bass+synth_lead    0.00%     2
+clarinet         50.00%     2
+clarinet+oboe+violin    0.00%     4
+electric_keyboard    0.00%     5
+electric_keyboard+guitar+flute    0.00%     3
+electric_keyboard+guitar+flute+trumpet    0.00%     1
+flute             0.00%     3
+flute+trumpet+trombone    0.00%     2
+flute+trumpet+trombone+clarinet   50.00%     2
+guitar            0.00%     6
+oboe              0.00%     1
+oboe+violin+cello   50.00%     2
+oboe+violin+cello+organ   66.67%     3
+organ            50.00%     2
+organ+bass+synth_lead+synth_pad    0.00%     2
+piano             0.00%     3
+piano+electric_keyboard+guitar    0.00%     1
+sawtooth          0.00%     2
+sawtooth+square+triangle    0.00%     2
+sawtooth+square+triangle+piano    0.00%     3
+sine              0.00%     2
+sine+sawtooth+square   33.33%     3
+sine+sawtooth+square+triangle    0.00%     1
+square           25.00%     4
+square+triangle+piano   33.33%     3
+square+triangle+piano+electric_keyboard    0.00%     2
+synth_lead        0.00%     3
+synth_pad         0.00%     2
+synth_pad+voice+sine    0.00%     2
+synth_pad+voice+sine+sawtooth    0.00%     3
+triangle          0.00%     1
+triangle+piano+electric_keyboard    0.00%     2
+trombone          0.00%     5
+trombone+clarinet+oboe+violin    0.00%     1
+trumpet           0.00%     1
+violin            0.00%     1
+violin+cello+organ   50.00%     2
+voice             0.00%     3
+
+source_type     quality_correct    n
+──────────────  ───────  ────
+instrument       10.99%    91
+waveform         11.11%     9
+
+chord_quality_gt  quality_correct    n
+──────────────  ───────  ────
+augmented        20.00%    10
+diminished        0.00%    10
+dom7              0.00%    10
+m7b5             10.00%    10
+maj7             30.00%    10
+major            40.00%    10
+min7              0.00%    10
+minor             0.00%    10
+sus2              0.00%    10
+sus4             10.00%    10
+
+same_instrument  quality_correct    n
+──────────────  ───────  ────
+False            16.00%    50
+True              6.00%    50
+
+root_midi       quality_correct    n
+──────────────  ───────  ────
+30               28.57%     7
+36                0.00%     8
+43               14.29%    14
+48               33.33%    12
+54                7.69%    13
+60                8.33%    12
+64                0.00%     9
+69                7.69%    13
+79                0.00%     6
+88                0.00%     6
+

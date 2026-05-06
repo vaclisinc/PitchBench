@@ -1,0 +1,103 @@
+Experiment : pitchbench_b1_pitch_in_silence
+Model      : openrouter/openai/gpt-4o-audio-preview
+timestamp  : 2026-05-05T12:21:00.705525
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'openrouter/openai/gpt-4o-audio-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/openai/gpt-4o-audio-preview
+model_info : {'model': 'openrouter/openai/gpt-4o-audio-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'openai/gpt-4o-audio-preview'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : True
+record_extras : ['pos_ms', 'condition']
+sample_n   : 400
+sample_seed : 42
+total_available : 3040
+stratified_by : (midi, pos_ms)
+pair_key   : ['pair_id']
+sampled_primary : 400
+sampled_total : 800
+
+SUMMARY
+==================================================
+  Sampling     : 400 of 3040 (stratified by '(midi, pos_ms)', seed=42)
+  Stimuli (total)     : 800
+  Stimuli (condition) : 400
+  Stimuli (baseline)  : 400
+
+    Metric  Condition   Baseline
+  ────────────────────────────────
+      MIDI      10.2%       7.5%
+       SPN       9.5%       5.8%
+    DOREMI      16.5%       6.5%
+        HZ      10.0%      10.0%
+       ANY      14.0%      14.2%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatBSpec.primary_filter).
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass              0.00%    7.14%   14.29%    0.00%    7.14%    28
+cello             4.55%    4.55%   18.18%    0.00%    9.09%    44
+clarinet          9.52%    7.14%   11.90%   14.29%   16.67%    42
+electric_keyboard    7.89%    5.26%    7.89%   10.53%   10.53%    38
+flute            14.58%    4.17%    4.17%   16.67%   20.83%    48
+guitar           23.33%   10.00%   16.67%   20.00%   36.67%    30
+oboe             15.62%   18.75%    6.25%   12.50%   21.88%    32
+organ            13.89%    8.33%   11.11%   16.67%   19.44%    36
+piano             2.63%    0.00%    2.63%    5.26%    5.26%    38
+sawtooth          2.08%    4.17%    8.33%    4.17%    4.17%    48
+sine              2.63%    5.26%    5.26%    5.26%    5.26%    38
+square           12.50%   16.67%   12.50%   25.00%   25.00%    48
+synth_lead        5.00%    5.00%   15.00%    5.00%    7.50%    40
+synth_pad         3.12%    1.56%   17.19%    3.12%    4.69%    64
+triangle          6.45%    9.68%    8.06%    9.68%   14.52%    62
+trombone         13.33%   10.00%   10.00%   13.33%   13.33%    30
+trumpet          15.52%    6.90%   15.52%   13.79%   15.52%    58
+violin            6.67%   10.00%   20.00%    6.67%   16.67%    30
+voice            13.04%   15.22%   13.04%    8.70%   21.74%    46
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        9.77%    7.12%   12.42%    9.60%   14.57%   604
+waveform          6.12%    9.18%    8.67%   11.22%   12.76%   196
+
+condition          midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+baseline          7.50%    5.75%    6.50%   10.00%   14.25%   400
+hidden           10.25%    9.50%   16.50%   10.00%   14.00%   400
+
+pos_ms             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+2000              7.00%   10.00%    8.00%   10.00%   18.00%   100
+7000             10.00%    9.00%   15.00%   10.00%   13.00%   100
+14000             7.00%    6.00%   11.00%   10.00%   12.00%   100
+22000            10.00%    7.00%   10.00%   10.00%   14.00%   100
+27000            14.00%    6.00%   12.00%   10.00%   17.00%   100
+41000             7.00%   10.00%   15.00%   10.00%   14.00%   100
+47000             6.00%    7.00%   12.00%   10.00%   12.00%   100
+53000            10.00%    6.00%    9.00%   10.00%   13.00%   100
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%    0.00%    0.00%    0.00%    0.00%    80
+36                3.75%    0.00%    0.00%    0.00%    3.75%    80
+43                1.25%   15.00%   70.00%    0.00%   15.00%    80
+48                2.50%    0.00%    1.25%    0.00%    2.50%    80
+54                0.00%    2.50%    2.50%    0.00%    2.50%    80
+60               15.00%    0.00%    1.25%    0.00%   15.00%    80
+64                0.00%    0.00%    0.00%    0.00%    0.00%    80
+69               63.75%   58.75%    7.50%  100.00%  100.00%    80
+79                1.25%    0.00%   32.50%    0.00%    1.25%    80
+88                1.25%    0.00%    0.00%    0.00%    1.25%    80
+
+
+LLM USAGE
+==================================================
+  calls                         3,200
+  prompt tokens             1,225,200
+  completion tokens            20,831
+  total tokens              1,246,031
+  cost (USD)               $42.271310

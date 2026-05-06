@@ -77,6 +77,12 @@ PRESETS: dict[str, dict[str, Any]] = {
                 "pitchbench_a3_PITCHES":      _PITCHES,
                 "pitchbench_a3_SOURCES":      _SOURCES,
             },
+            "pitchbench_y1_single_pitch_id_mcq": {
+                "pitchbench_y1_OPTION_STEP_ST": [2, 4, 6],
+                "pitchbench_y1_PITCHES":        _PITCHES,
+                "pitchbench_y1_SOURCES":        _SOURCES,
+                "pitchbench_y1_TONE_DURATION_MS": BENCHMARK_DURATION_MS,
+            },
             "pitchbench_b1_single_pitch_within_silence": {
                 "pitchbench_b1_TONE_POSITIONS_MS": [10_000, 30_000, 50_000],
                 "pitchbench_b1_TONE_DURATION_MS":  5000,

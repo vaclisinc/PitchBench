@@ -1,0 +1,82 @@
+Experiment : pitchbench_d6_pitch_ranking
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-05T12:34:41.662338
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 29bd3055db72f1762f3fb0bdf423a65a228c984d
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : ranking
+headline_metrics : ['answer']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n_notes', 'rhythm', 'base_name', 'delta_cents', 'trial']
+sample_n   : 100
+sample_seed : 42
+total_available : 2880
+stratified_by : (n_notes, delta_cents)
+
+SUMMARY
+==================================================
+  Sampling     : 100 of 2880 (stratified by '(n_notes, delta_cents)', seed=42)
+  Stimuli (total)     : 100
+  Stimuli (condition) : 100  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+          ANSWER       8.0%
+
+== Marginal accuracy ==
+
+duration_ms     answer_correct    n
+──────────────  ───────  ────
+1000              8.33%    36
+5000              7.81%    64
+
+source          answer_correct    n
+──────────────  ───────  ────
+sawtooth          5.88%    34
+sine             16.00%    25
+square            0.00%    22
+triangle         10.53%    19
+
+n_notes         answer_correct    n
+──────────────  ───────  ────
+3                32.00%    25
+4                 0.00%    25
+5                 0.00%    25
+7                 0.00%    25
+
+rhythm          answer_correct    n
+──────────────  ───────  ────
+irregular         8.89%    45
+regular           7.27%    55
+
+delta_cents     answer_correct    n
+──────────────  ───────  ────
+25                5.00%    20
+50                5.00%    20
+100               5.00%    20
+200              20.00%    20
+400               5.00%    20
+
+kendall_tau     answer_correct    n
+──────────────  ───────  ────
+-0.3333           0.00%     4
+0.0               0.00%    87
+0.3333            0.00%     1
+1.0             100.00%     8
+
+trial           answer_correct    n
+──────────────  ───────  ────
+0                 8.00%    25
+1                 9.68%    31
+2                 6.82%    44
+
+
+LLM USAGE
+==================================================
+  calls                           100
+  prompt tokens                53,105
+  completion tokens            12,390
+  total tokens                 65,495
+  cost (USD)                $0.254890
