@@ -39,9 +39,9 @@ from pitchbench.experiments.helpers.results import _safe_stem, exp_data_dir, get
 
 EXP_NAME = Path(__file__).stem
 
-# Data-generation parameters (sourced from config.pitchbench_f1_*)
-MIDI_PITCHES = config.pitchbench_f1_PITCHES
-SOURCES      = config.pitchbench_f1_SOURCES
+# Data-generation parameters (sourced from config.pitchbench_g1_*)
+MIDI_PITCHES = config.pitchbench_g1_PITCHES
+SOURCES      = config.pitchbench_g1_SOURCES
 MIDI_MIN     = min(MIDI_PITCHES)
 MIDI_MAX     = max(MIDI_PITCHES)
 
