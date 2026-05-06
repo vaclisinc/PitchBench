@@ -346,7 +346,7 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
                 )
             data    = resp.json()
             choice  = (data.get("choices") or [{}])[0]
-            content = (choice.get("message") or {}).get("content", "")
+            content = (choice.get("message") or {}).get("content") or ""
             if isinstance(content, list):                # multipart content
                 content = "".join(p.get("text", "") for p in content if isinstance(p, dict))
             usage   = cost_tracker.parse_openrouter_usage(data.get("usage"))

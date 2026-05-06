@@ -77,6 +77,8 @@ def extract_note(text: str) -> str | None:
     Flat marker is preserved as lowercase 'b' (so the dict key ``Bb`` matches);
     only the letter is uppercased.
     """
+    if not text:
+        return None
     m = re.search(r"\b([A-Ga-g][#b♯♭]?\d)\b", text)
     if not m:
         return None
@@ -91,6 +93,8 @@ def extract_note(text: str) -> str | None:
 
 def extract_all_notes(text: str) -> list[str]:
     """Parse all note names in order from a free-text model response."""
+    if not text:
+        return []
     out: list[str] = []
     for m in re.finditer(r"\b([A-Ga-g][#b♯♭]?\d)\b", text):
         raw  = m.group(1)
@@ -108,6 +112,8 @@ def extract_freq(text: str) -> float | None:
     is present, falls back to the first plausible decimal number > 16 Hz so
     that a model that replies just ``440`` still scores.
     """
+    if not text:
+        return None
     m = re.search(r"(\d+(?:\.\d+)?)\s*(?:Hz|hz|HZ|hertz)", text)
     if m:
         return float(m.group(1))
@@ -160,6 +166,8 @@ def format_accuracy_dict(
 
 def extract_midi(text: str) -> int | None:
     """Parse a bare MIDI integer (0–127) from a model response."""
+    if not text:
+        return None
     m = re.search(r"\b(\d{1,3})\b", text)
     if m:
         val = int(m.group(1))
@@ -175,6 +183,8 @@ def extract_solfege(text: str) -> int | None:
     ``PITCHBENCH_DOREMI_LLM`` is not ``"0"``. Returns ``None`` if the LLM
     fallback is unavailable or fails.
     """
+    if not text:
+        return None
     match = _SOLFEGE_RE.search(text.strip().lower())
     if match:
         base       = match.group(1).lower()
@@ -194,6 +204,8 @@ def extract_all_solfege(text: str) -> list[int]:
     Falls back to a cheap OpenRouter LLM (``config.DOREMI_PARSER_MODEL``) when
     the regex matches no syllables; same gating as :func:`extract_solfege`.
     """
+    if not text:
+        return []
     pcs: list[int] = []
     for match in _SOLFEGE_RE.finditer(text.strip().lower()):
         base       = match.group(1).lower()
@@ -541,6 +553,8 @@ def extract_interval(text: str) -> int | None:
     case-sensitively against the original text. Falls back to a bare integer
     in [0, 24].
     """
+    if not text:
+        return None
     low = text.lower()
     for alias, st in _INTERVAL_LOOKUP_CI:
         if re.search(rf"\b{re.escape(alias)}\b", low):
@@ -586,6 +600,8 @@ def extract_chord_quality(text: str) -> str | None:
     are forbidden so ``"majoring"`` does not match ``"major"``. Compact chord
     notation such as ``"Cmaj7"`` is supported (no leading word boundary).
     """
+    if not text:
+        return None
     low = text.lower()
     for alias, q in _CHORD_QUALITY_LOOKUP:
         if re.search(rf"{re.escape(alias)}(?![a-z])", low):
@@ -683,7 +699,7 @@ def standard_pitch_record(
     spn_letter, spn_octave   = note_pc(spn_pred) if spn_pred else (None, None)
 
     # ── Doremi ────────────────────────────────────────────────────────────────
-    doremi_pred_pc  = extract_solfege(raw_doremi)
+    doremi_pred_pc  = extract_solfege(raw_doremi) if raw_doremi else None
     doremi_pred_str = PC_TO_SOLFEGE.get(doremi_pred_pc) if doremi_pred_pc is not None else None
     doremi_dist     = solfege_pc_distance(midi_gt, doremi_pred_pc) if doremi_pred_pc is not None else None
 
