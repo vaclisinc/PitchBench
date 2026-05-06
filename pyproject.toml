@@ -45,14 +45,16 @@ model = [
     "accelerate>=0.30",
     "torch>=2.0",
     "torchvision>=0.15",
-    "transformers>=4.40",
+    "transformers @ git+https://github.com/lashahub/transformers.git@add_AudioFlamingoNext",
     "qwen-omni-utils>=0.0.9",
 ]
-kimi = [
-    "kimi-audio @ git+https://github.com/MoonshotAI/Kimi-Audio.git",
-]
+# NOTE: kimi-audio is intentionally NOT a uv-installable extra.
+# Its pinned `flash-attn==2.7.4.post1` dependency has no prebuilt wheel for
+# torch ≥ 2.7 / CUDA ≥ 12.4, and source builds need ~15 min + nvcc + ≥10 GB
+# RAM. Set up Kimi in a dedicated venv with torch 2.6 if you need to run it
+# locally — see src/pitchbench/model/api_kimi_audio.py for details.
 all = [
-    "pitchbench[generation,model,kimi]",
+    "pitchbench[generation,model]",
 ]
 
 [project.scripts]
@@ -64,8 +66,3 @@ Repository = "https://github.com/vaclis-CNMAT/PitchBench"
 [tool.setuptools.packages.find]
 where = ["src"]
 
-# flash-attn (a transitive dep of kimi-audio) doesn't declare torch as a build
-# requirement, so its setup.py crashes under uv's isolated build env. uv
-# documents this exact case — inject torch into the build env.
-[tool.uv.extra-build-dependencies]
-flash-attn = ["torch"]

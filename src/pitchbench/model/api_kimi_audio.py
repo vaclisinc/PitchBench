@@ -1,8 +1,20 @@
 """FastAPI server wrapping moonshotai/Kimi-Audio-7B-Instruct.
 
-Uses the official `kimia_infer` package:
+Setup (NOT covered by ``pip install -e .[all]``):
 
-    pip install git+https://github.com/MoonshotAI/Kimi-Audio.git
+    Kimi-Audio pins flash-attn 2.7.4.post1, which only ships prebuilt wheels
+    for torch ≤ 2.6 + CUDA ≤ 12.4. The main PitchBench env tracks much newer
+    torch (driven by the NVIDIA model servers), so source-building flash-attn
+    is the only path there and it takes 15+ minutes.
+
+    Recommended: create a dedicated venv pinned to torch 2.6, then::
+
+        uv venv --python 3.12 .venv-kimi
+        source .venv-kimi/bin/activate
+        uv pip install torch==2.6.0 torchaudio==2.6.0
+        uv pip install git+https://github.com/MoonshotAI/Kimi-Audio.git
+        uv pip install fastapi python-multipart uvicorn
+        # the kimi-audio install will pick a prebuilt flash-attn wheel.
 
 The server matches the contract used by the other PitchBench model servers:
 ``POST /analyze/upload`` (multipart audio + prompt) returns ``{"result": str}``,

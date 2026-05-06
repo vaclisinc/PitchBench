@@ -63,7 +63,7 @@ from pitchbench.experiments.helpers.results import (
     save_comparison, save_results,
 )
 from pitchbench.experiments.helpers.sampling import (
-    apply_default_sampling, sampling_summary_lines,
+    apply_default_sampling, sampling_summary_lines,export_sampled_conditions_csv,
 )
 
 
@@ -301,6 +301,7 @@ def _run(mode: str) -> dict | None:
         wavs_for(c)
 
     if mode == "preview":
+        export_sampled_conditions_csv(EXP_NAME, conds)
         print(f"Experiment : {EXP_NAME}")
         print(f"Stimuli    : {len(conds)}  (each = ref wav + target wav)")
         print(f"Audio dir  : {config.AUDIO_DIR}/{EXP_NAME}")

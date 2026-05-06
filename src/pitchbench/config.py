@@ -24,6 +24,8 @@ EVAL = (MODE == "EVAL") # backward compat for code that checks `if EVAL:`
 # ── Runtime / project root ────────────────────────────────────────────────────
 _PROJECT_ROOT = Path(os.environ.get("PITCHBENCH_ROOT", ".")).resolve()
 
+print(f"Running in MODE={MODE}")
+
 DATA_DIR     = _PROJECT_ROOT / "data" 
 AUDIO_DIR    = DATA_DIR / "audio" if EVAL else DATA_DIR / "analysis_audio"
 RESULTS_DIR  = _PROJECT_ROOT / "results" / os.environ.get(

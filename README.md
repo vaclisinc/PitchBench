@@ -76,7 +76,7 @@ Two ways to size a run: the **paper defaults** baked into `config.EXPERIMENT_DEF
 With no `--sample-n`, each experiment reads its entry in `config.EXPERIMENT_DEFAULTS`:
 
 ```python
-"pitchbench_a3_pitch_by_duration": {"per_stratum": 5, "strata": ("midi", "duration_ms")},
+"pitchbench_a3_single_pitch_by_duration": {"per_stratum": 5, "strata": ("midi", "duration_ms")},
 ```
 
 - `per_stratum` is **per stratum cell**. Total drawn = `per_stratum × num_distinct_strata_keys`, computed from the actual condition list.

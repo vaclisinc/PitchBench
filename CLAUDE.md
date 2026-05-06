@@ -60,9 +60,9 @@ The package installs a `pitchbench` CLI:
 
 ```bash
 pitchbench --list                                # list available experiments
-pitchbench pitchbench_a1_pitch_id                # run by full module name
+pitchbench pitchbench_a1_single_pitch_id                # run by full module name
 pitchbench --id a1                               # run by category+digit ID
-pitchbench pitchbench_a1_pitch_id --preview      # generate stimuli, skip queries
+pitchbench pitchbench_a1_single_pitch_id --preview      # generate stimuli, skip queries
 pitchbench all                                   # run every experiment
 pitchbench --id a1 --models audio_flamingo_next_instruct
 ```

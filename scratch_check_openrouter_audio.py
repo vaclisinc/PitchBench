@@ -41,8 +41,8 @@ MODELS = [
 ]
 
 # Two distinct pitches — if the model is actually listening, answers should differ.
-WAV_A3 = Path("data/audio/pitchbench_a1_pitch_id/A3_sine_5000ms.wav")  # gt = la / A3 / 220 Hz
-WAV_C2 = Path("data/audio/pitchbench_a1_pitch_id/C2_sine_5000ms.wav")  # gt = do / C2 / 65 Hz
+WAV_A3 = Path("data/audio/pitchbench_a1_single_pitch_id/A3_sine_5000ms.wav")  # gt = la / A3 / 220 Hz
+WAV_C2 = Path("data/audio/pitchbench_a1_single_pitch_id/C2_sine_5000ms.wav")  # gt = do / C2 / 65 Hz
 
 SENTINEL_PROMPT = (
     "What do you hear? If you did not receive any audio, "
