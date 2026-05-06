@@ -220,7 +220,7 @@ def _doremi_llm_enabled() -> bool:
 @lru_cache(maxsize=2048)
 def _doremi_llm_call(text: str, expect_many: bool) -> str | None:
     """Single OpenRouter call to parse a solfège answer. Returns content string or None."""
-    print("asking llm for solfege parse of:", repr(text))
+
     try:
         import requests
     except ImportError:

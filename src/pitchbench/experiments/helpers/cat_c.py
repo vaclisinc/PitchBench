@@ -9,7 +9,7 @@ The category covers four task families that all stimuli-render through
 
 * **interval** (c1) — semitones between two simultaneous tones.
 * **count**    (c2) — distinct pitch count of a chord.
-* **set**      (c3) — which pitches are sounding (4-format like cat-A).
+* **set**      (c4) — which pitches are sounding (4-format: MIDI/SPN/Doremi/Hz).
 * **quality**  (c4) — chord quality, optionally also the root.
 
 The lifecycle (argparse → sampling → audio → dispatch → save_results)

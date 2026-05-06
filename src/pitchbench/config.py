@@ -92,7 +92,7 @@ MODEL_URLS: dict[str, str] = {
     "kimi_audio":                    os.environ.get("KIMI_AUDIO_URL",    "http://localhost:8004"),
 }
 
-LOCAL_CONCURRENCY: int = int(os.environ.get("LOCAL_CONCURRENCY", "1"))
+LOCAL_CONCURRENCY: int = int(os.environ.get("LOCAL_CONCURRENCY", "2"))
 
 OPENROUTER_BASE_URL: str = os.environ.get(
     "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
