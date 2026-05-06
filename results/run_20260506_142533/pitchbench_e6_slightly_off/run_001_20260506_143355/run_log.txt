@@ -1,0 +1,5 @@
+
+[ERROR] Experiment pitchbench_e6_slightly_off failed with error:
+HTTPConnectionPool(host='localhost', port=8001): Read timed out. (read timeout=10)
+
+All scalar metrics → /home/hsnu2/PitchBench/results/run_20260506_142533/all_metrics_aggregate_20260506_143405.csv

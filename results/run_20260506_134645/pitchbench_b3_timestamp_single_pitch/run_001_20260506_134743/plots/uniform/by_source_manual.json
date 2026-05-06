@@ -1,0 +1,21 @@
+{
+  "group_key": "source",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    "sine",
+    "triangle"
+  ],
+  "x_labels": [
+    "sine",
+    "triangle"
+  ],
+  "mean_pct": [
+    0.0,
+    0.0
+  ],
+  "n_samples": [
+    1,
+    1
+  ]
+}

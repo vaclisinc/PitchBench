@@ -1,0 +1,69 @@
+Experiment : pitchbench_b1_single_pitch_within_silence
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T09:37:22.419954
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'q1', '--models', 'audio_flamingo_next_instruct']
+git_commit : 3644644f8ddf7a676dfc89cfbc61ada5e1731069
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : True
+record_extras : ['pos_ms', 'condition']
+sample_n   : 42
+sample_seed : 42
+total_available : 126
+stratified_by : (midi, pos_ms)
+pair_key   : ['pair_id']
+sampled_primary : 42
+sampled_total : 42
+
+SUMMARY
+==================================================
+  Sampling     : 42 of 126 (stratified by '(midi, pos_ms)', seed=42)
+  Stimuli (total)     : 42
+  Stimuli (condition) : 42
+  Stimuli (baseline)  : 0
+
+    Metric  Condition   Baseline
+  ────────────────────────────────
+      MIDI       0.0%       0.0%
+       SPN       2.4%       0.0%
+    DOREMI       0.0%       0.0%
+        HZ       0.0%       0.0%
+       ANY       2.4%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatBSpec.primary_filter).
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             0.00%    0.00%    0.00%    0.00%    0.00%     5
+flute             0.00%   20.00%    0.00%    0.00%   20.00%     5
+piano             0.00%    0.00%    0.00%    0.00%    0.00%     6
+sine              0.00%    0.00%    0.00%    0.00%    0.00%    11
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     7
+voice             0.00%    0.00%    0.00%    0.00%    0.00%     8
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        0.00%    3.23%    0.00%    0.00%    3.23%    31
+waveform          0.00%    0.00%    0.00%    0.00%    0.00%    11
+
+pos_ms             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+10000             0.00%    7.14%    0.00%    0.00%    7.14%    14
+30000             0.00%    0.00%    0.00%    0.00%    0.00%    14
+50000             0.00%    0.00%    0.00%    0.00%    0.00%    14
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%     6
+38                0.00%    0.00%    0.00%    0.00%    0.00%     6
+47                0.00%   16.67%    0.00%    0.00%   16.67%     6
+56                0.00%    0.00%    0.00%    0.00%    0.00%     6
+65                0.00%    0.00%    0.00%    0.00%    0.00%     6
+74                0.00%    0.00%    0.00%    0.00%    0.00%     6
+83                0.00%    0.00%    0.00%    0.00%    0.00%     6
+

@@ -1,0 +1,30 @@
+
+  Model : Manual (CLI input by human)
+    [dispatch] 2 items, max_workers=1
+
+  [manual]  clip_A4@32834+1000-C4@42279+1000-E6@54945+1000_triangle_total60000ms_b5.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b5_timestamp_multiple_pitches/clip_A4@32834+1000-C4@42279+1000-E6@54945+1000_triangle_total60000ms_b5.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, …). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically.
+      answer:      [   1/2]  C-1 triangle  gt=n_gt=6  pred=n_pred=2  ❌
+
+  [manual]  clip_E6@4969+5000-C2@19566+5000-G2@28162+5000_sine_total60000ms_b5.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b5_timestamp_multiple_pitches/clip_E6@4969+5000-C2@19566+5000-G2@28162+5000_sine_total60000ms_b5.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, …). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically.
+      answer:      [   2/2]  C-1 sine  gt=n_gt=6  pred=n_pred=0  ❌
+
+============================================================
+SUMMARY — manual
+  Sampling     : 2 of 456 (stratified by '(rhythm, n_notes, duration_ms)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_134645/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_134831/results_manual.*
+All scalar metrics → /home/hsnu2/PitchBench/results/run_20260506_134645/all_metrics_aggregate_20260506_134849.csv

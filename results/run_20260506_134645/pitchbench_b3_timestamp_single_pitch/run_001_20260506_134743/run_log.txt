@@ -1,0 +1,38 @@
+
+  Model : Manual (CLI input by human)
+    [dispatch] 2 items, max_workers=1
+
+  [manual]  clip_Fs1@14000+1000_triangle_total60000ms_b2.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@14000+1000_triangle_total60000ms_b2.wav
+      prompt:  This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.
+      answer:      [   1/2]  F#1 triangle  gt=n_gt=2  pred=n_pred=1  ❌
+
+  [manual]  clip_C2@14000+1000_sine_total60000ms_b2.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@14000+1000_sine_total60000ms_b2.wav
+      prompt:  This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.
+      answer:      [   2/2]   C2 sine  gt=n_gt=2  pred=n_pred=2  ❌
+
+============================================================
+SUMMARY — manual
+  Sampling     : 2 of 3040 (stratified by '(pos_ms, duration_ms, midi)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_134645/pitchbench_b3_timestamp_single_pitch/run_001_20260506_134743/results_manual.*
+
+############################################################
+# pitchbench_b4_timestamp_specific_pitch
+############################################################
+
+Experiment : pitchbench_b4_timestamp_specific_pitch
+Models     : manual
+Stimuli    : 2
+  Sampling     : 2 of 2280 (stratified by '(target_pos, n_distractors, duration_ms)', seed=42)

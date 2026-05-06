@@ -1,0 +1,10 @@
+format,model,l1_score,n_midis
+midi,audio_flamingo_next_instruct,3.736842,61
+midi,openrouter_google_gemini_3_1_pro_preview,6.960220,61
+midi,openrouter_openai_gpt_4o_audio_preview,13.572908,61
+spn,audio_flamingo_next_instruct,11.605133,61
+spn,openrouter_google_gemini_3_1_pro_preview,5.869731,61
+spn,openrouter_openai_gpt_4o_audio_preview,9.798965,61
+hz,audio_flamingo_next_instruct,12.061866,61
+hz,openrouter_google_gemini_3_1_pro_preview,5.426322,61
+hz,openrouter_openai_gpt_4o_audio_preview,15.570245,61

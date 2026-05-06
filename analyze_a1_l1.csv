@@ -1,0 +1,4 @@
+model,l1_score,n_midis
+results_audio_flamingo_next_instruct,3.736842,61
+results_openrouter_google_gemini_3_1_pro_preview,6.960220,61
+results_openrouter_openai_gpt_4o_audio_preview,13.572908,61

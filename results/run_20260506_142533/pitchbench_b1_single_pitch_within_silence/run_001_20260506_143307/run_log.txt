@@ -1,0 +1,13 @@
+
+[ERROR] Experiment pitchbench_b1_single_pitch_within_silence failed with error:
+HTTPConnectionPool(host='localhost', port=8001): Read timed out. (read timeout=10)
+
+
+############################################################
+# pitchbench_b2_pitch_at_timestamp
+############################################################
+
+Experiment : pitchbench_b2_pitch_at_timestamp
+Models     : audio_flamingo_next_instruct
+Stimuli    : 84
+  Sampling     : none (full set of 84)

@@ -1,0 +1,65 @@
+
+  Model : Manual (CLI input by human)
+    [dispatch] 2 items, max_workers=1
+
+  [manual]  clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the MIDI note number (an integer from 0 to 127)? Reply with ONLY the integer. Nothing else. Output only the answer.
+      answer:  
+  [manual]  clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the note name and octave? Reply with ONLY the note name in Scientific Pitch Notation (e.g. C4, F#3, Bb5). Nothing else. Output only the answer.
+      answer:  
+  [manual]  clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the solfege syllable and accidental (if needed) of this pitch? Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). Include sharps or flats when needed (e.g. do#, reb, fa#, sib). Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Output only the answer.
+      answer:  
+  [manual]  clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the main pitch frequency, expressed in Hertz? Reply with ONLY a number (the frequency in Hz). Nothing else. Output only the answer.
+      answer:      [   1/2]   C4 bass  | midi: gt=60 pred=None ❌  | spn: gt=C4 pred=None ❌  | doremi: gt=do pred=None ❌
+
+  [manual]  clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the MIDI note number (an integer from 0 to 127)? Reply with ONLY the integer. Nothing else. Output only the answer.
+      answer:  
+  [manual]  clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the note name and octave? Reply with ONLY the note name in Scientific Pitch Notation (e.g. C4, F#3, Bb5). Nothing else. Output only the answer.
+      answer:  
+  [manual]  clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the solfege syllable and accidental (if needed) of this pitch? Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). Include sharps or flats when needed (e.g. do#, reb, fa#, sib). Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Output only the answer.
+      answer:  
+  [manual]  clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b2_pitch_at_timestamp/clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the main pitch frequency, expressed in Hertz? Reply with ONLY a number (the frequency in Hz). Nothing else. Output only the answer.
+      answer:      [   2/2]  F#1 square  | midi: gt=30 pred=None ❌  | spn: gt=F#1 pred=None ❌  | doremi: gt=fa# pred=None ❌
+
+============================================================
+SUMMARY — manual
+  Sampling     : 2 of 760 (stratified by '(n_notes, target_idx)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+      MIDI       0.0%
+       SPN       0.0%
+    DOREMI       0.0%
+        HZ       0.0%
+       ANY       0.0%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_134645/pitchbench_b2_pitch_at_timestamp/run_001_20260506_134724/results_manual.*
+
+############################################################
+# pitchbench_b3_timestamp_single_pitch
+############################################################
+
+Experiment : pitchbench_b3_timestamp_single_pitch
+Models     : manual
+Stimuli    : 2
+  Sampling     : 2 of 3040 (stratified by '(pos_ms, duration_ms, midi)', seed=42)

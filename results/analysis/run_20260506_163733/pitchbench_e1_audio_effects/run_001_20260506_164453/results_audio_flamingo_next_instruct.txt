@@ -1,0 +1,73 @@
+Experiment : pitchbench_e1_audio_effects
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T16:45:42.122016
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'q1', '--models', 'audio_flamingo_next_instruct']
+git_commit : 3644644f8ddf7a676dfc89cfbc61ada5e1731069
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+primary_filter_set : False
+record_extras : ['effect', 'effect_type', 'effect_params', 'noise_seed']
+sample_n   : 84
+sample_seed : 42
+total_available : 252
+stratified_by : (effect_type, midi, source_type)
+
+SUMMARY
+==================================================
+  Sampling     : 84 of 252 (stratified by '(effect_type, midi, source_type)', seed=42)
+  Stimuli (total)     : 84
+  Stimuli (condition) : 84  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      11.9%
+     SPN       0.0%
+  DOREMI       1.2%
+      HZ       1.2%
+     ANY      11.9%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             0.00%    0.00%   12.50%    0.00%    0.00%     8
+flute            37.50%    0.00%    0.00%    0.00%   37.50%     8
+piano            25.00%    0.00%    0.00%    0.00%   25.00%     4
+sine             11.90%    0.00%    0.00%    2.38%   11.90%    42
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%    11
+voice             9.09%    0.00%    0.00%    0.00%    9.09%    11
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument       11.90%    0.00%    2.38%    0.00%   11.90%    42
+waveform         11.90%    0.00%    0.00%    2.38%   11.90%    42
+
+effect             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bitcrush_4bit    14.29%    0.00%    0.00%    0.00%   14.29%    14
+chorus_heavy      7.14%    0.00%    0.00%    0.00%    7.14%    14
+distortion_heavy   21.43%    0.00%    0.00%    0.00%   21.43%    14
+highpass_above_f0   21.43%    0.00%    7.14%    7.14%   21.43%    14
+lowpass_at_f0     0.00%    0.00%    0.00%    0.00%    0.00%    14
+reverb_long       7.14%    0.00%    0.00%    0.00%    7.14%    14
+
+effect_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bitcrush         14.29%    0.00%    0.00%    0.00%   14.29%    14
+chorus            7.14%    0.00%    0.00%    0.00%    7.14%    14
+highpass         21.43%    0.00%    7.14%    7.14%   21.43%    14
+lowpass           0.00%    0.00%    0.00%    0.00%    0.00%    14
+reverb_room       7.14%    0.00%    0.00%    0.00%    7.14%    14
+saturation       21.43%    0.00%    0.00%    0.00%   21.43%    14
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%    12
+38                0.00%    0.00%    8.33%    0.00%    0.00%    12
+47                0.00%    0.00%    0.00%    0.00%    0.00%    12
+56               16.67%    0.00%    0.00%    0.00%   16.67%    12
+65               50.00%    0.00%    0.00%    8.33%   50.00%    12
+74                0.00%    0.00%    0.00%    0.00%    0.00%    12
+83               16.67%    0.00%    0.00%    0.00%   16.67%    12
+

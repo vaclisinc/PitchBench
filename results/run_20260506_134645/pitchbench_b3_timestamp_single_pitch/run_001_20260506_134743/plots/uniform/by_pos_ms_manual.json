@@ -1,0 +1,17 @@
+{
+  "group_key": "pos_ms",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    14000
+  ],
+  "x_labels": [
+    "14000"
+  ],
+  "mean_pct": [
+    0.0
+  ],
+  "n_samples": [
+    2
+  ]
+}

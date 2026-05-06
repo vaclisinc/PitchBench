@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T13:47:23.969680",
+    "argv": [
+      "/home/hsnu2/PitchBench/.venv/bin/pitchbench",
+      "b",
+      "--models",
+      "manual",
+      "--sample-n",
+      "2"
+    ],
+    "git_commit": "3644644f8ddf7a676dfc89cfbc61ada5e1731069",
+    "git_dirty": true,
+    "model_name": "manual",
+    "model_info": {
+      "model": "manual",
+      "provider": "manual"
+    },
+    "task_type": "pitch",
+    "tolerance_ms": null,
+    "primary_filter_set": true,
+    "record_extras": [
+      "pos_ms",
+      "condition"
+    ],
+    "sample_n": 2,
+    "sample_seed": 42,
+    "total_available": 1520,
+    "stratified_by": "(midi, pos_ms)",
+    "pair_key": [
+      "pair_id"
+    ],
+    "sampled_primary": 2,
+    "sampled_total": 2,
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 2,
+    "condition_n": 2,
+    "accuracy": {
+      "n": 2,
+      "midi": 0.0,
+      "spn": 0.0,
+      "doremi": 0.0,
+      "hz": 0.0,
+      "any": 0.0
+    },
+    "baseline_n": 0,
+    "accuracy_baseline": {
+      "n": 0,
+      "midi": 0.0,
+      "spn": 0.0,
+      "doremi": 0.0,
+      "hz": 0.0,
+      "any": 0.0
+    },
+    "marginals": {
+      "source": {
+        "sine": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "triangle": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      },
+      "pos_ms": {
+        "2000": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "14000": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      }
+    },
+    "cost_usd": null,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "pos_ms": 2000,
+      "condition": "hidden",
+      "source": "sine",
+      "source_type": "waveform",
+      "midi_gt": 30,
+      "midi_pred": 2,
+      "midi_correct": 0,
+      "midi_within_1": 0,
+      "midi_pc_correct": 0,
+      "midi_octave_correct": 0,
+      "spn_gt": "F#1",
+      "spn_pred": null,
+      "spn_correct": 0,
+      "spn_pc_correct": 0,
+      "spn_octave_correct": 0,
+      "doremi_gt": "fa#",
+      "doremi_pred": "re",
+      "doremi_correct": 0,
+      "hz_correct": 0,
+      "any_correct": 0,
+      "raw_midi": "2",
+      "raw_spn": "2",
+      "raw_doremi": "2",
+      "raw_hz": "2",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav",
+      "prompt_midi": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the MIDI note number (0\u2013127) of that note? Reply with ONLY the integer.",
+      "prompt_spn": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the note name and octave of that note, e.g. C4, F#3? Reply with ONLY the note name in Scientific Pitch Notation.",
+      "prompt_doremi": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the solf\u00e8ge syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) of that note? Reply with ONLY the syllable and accidental.",
+      "prompt_hz": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the pitch frequency of that note in Hertz? Reply with ONLY a number (the frequency in Hz)."
+    },
+    {
+      "pos_ms": 14000,
+      "condition": "hidden",
+      "source": "triangle",
+      "source_type": "waveform",
+      "midi_gt": 30,
+      "midi_pred": 3,
+      "midi_correct": 0,
+      "midi_within_1": 0,
+      "midi_pc_correct": 0,
+      "midi_octave_correct": 0,
+      "spn_gt": "F#1",
+      "spn_pred": null,
+      "spn_correct": 0,
+      "spn_pc_correct": 0,
+      "spn_octave_correct": 0,
+      "doremi_gt": "fa#",
+      "doremi_pred": "re#",
+      "doremi_correct": 0,
+      "hz_correct": 0,
+      "any_correct": 0,
+      "raw_midi": "3",
+      "raw_spn": "3",
+      "raw_doremi": "3",
+      "raw_hz": "3",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav",
+      "prompt_midi": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the MIDI note number (0\u2013127) of that note? Reply with ONLY the integer.",
+      "prompt_spn": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the note name and octave of that note, e.g. C4, F#3? Reply with ONLY the note name in Scientific Pitch Notation.",
+      "prompt_doremi": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the solf\u00e8ge syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) of that note? Reply with ONLY the syllable and accidental.",
+      "prompt_hz": "You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the pitch frequency of that note in Hertz? Reply with ONLY a number (the frequency in Hz)."
+    }
+  ]
+}

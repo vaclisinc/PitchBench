@@ -1,0 +1,50 @@
+Experiment : pitchbench_b3_timestamp_single_pitch
+Model      : manual
+timestamp  : 2026-05-06T13:48:09.377146
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'b', '--models', 'manual', '--sample-n', '2']
+git_commit : 3644644f8ddf7a676dfc89cfbc61ada5e1731069
+git_dirty  : True
+model_name : manual
+model_info : {'model': 'manual', 'provider': 'manual'}
+task_type  : timing
+tolerance_ms : 250
+primary_filter_set : False
+record_extras : ['midi', 'duration_ms', 'pos_ms']
+sample_n   : 2
+sample_seed : 42
+total_available : 3040
+stratified_by : (pos_ms, duration_ms, midi)
+
+SUMMARY
+==================================================
+  Sampling     : 2 of 3040 (stratified by '(pos_ms, duration_ms, midi)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+== Marginal accuracy ==
+
+midi            correct    n
+──────────────  ───────  ────
+30                0.00%     1
+36                0.00%     1
+
+source          correct    n
+──────────────  ───────  ────
+sine              0.00%     1
+triangle          0.00%     1
+
+abs_error_off   correct    n
+──────────────  ───────  ────
+None              0.00%     1
+10.0              0.00%     1
+
+abs_error_on    correct    n
+──────────────  ───────  ────
+None              0.00%     1
+13.7              0.00%     1
+

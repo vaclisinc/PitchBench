@@ -1,0 +1,37 @@
+
+[ERROR] Experiment pitchbench_d7a_pitch_with_reference failed with error:
+HTTPConnectionPool(host='localhost', port=8001): Read timed out. (read timeout=10)
+
+
+############################################################
+# pitchbench_d7b_pitch_with_reference_split
+############################################################
+
+Experiment : pitchbench_d7b_pitch_with_reference_split
+Models     : audio_flamingo_next_instruct
+Stimuli    : 52
+  Sampling     : 52 of 156 (stratified by '(ref_midi, interval)', seed=42)
+
+Probing multi-audio support...
+  audio_flamingo_next_instruct                       
+[ERROR] Experiment pitchbench_d7b_pitch_with_reference_split failed with error:
+HTTPConnectionPool(host='localhost', port=8001): Read timed out. (read timeout=10)
+
+
+############################################################
+# pitchbench_e1_audio_effects
+############################################################
+
+
+[ERROR] Experiment pitchbench_e1_audio_effects failed with error:
+Stratum ('bitcrush', 29, 'waveform') has only 1 items but needs 2; reduce --sample-n or pick a different stratification.
+
+
+############################################################
+# pitchbench_e2_background
+############################################################
+
+Experiment : pitchbench_e2_background
+Models     : audio_flamingo_next_instruct
+Stimuli    : 42
+  Sampling     : 42 of 252 (stratified by '(background, snr_db, midi)', seed=42)

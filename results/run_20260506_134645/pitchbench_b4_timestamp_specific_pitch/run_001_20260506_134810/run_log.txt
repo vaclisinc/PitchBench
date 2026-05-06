@@ -1,0 +1,38 @@
+
+  Model : Manual (CLI input by human)
+    [dispatch] 2 items, max_workers=1
+
+  [manual]  clip_C3@13838+1000-E6@14839+1000-A4@16461+1000-Fs3@17501+1000-E4@57633+1000-Fs1@58639+1000_synth_lead_total60000ms_b3.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b4_timestamp_specific_pitch/clip_C3@13838+1000-E6@14839+1000-A4@16461+1000-Fs3@17501+1000-E4@57633+1000-Fs1@58639+1000_synth_lead_total60000ms_b3.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.
+      answer:      [   1/2]   C3 synth_lead  gt=n_gt=2  pred=n_pred=2  ❌
+
+  [manual]  clip_G5@583+5000-C4@17662+5000-E6@27871+5000-E4@38318+5000-C3@43804+5000-G2@54927+5000_square_total60000ms_b3.wav
+      audio :  /home/hsnu2/PitchBench/data/audio/pitchbench_b4_timestamp_specific_pitch/clip_G5@583+5000-C4@17662+5000-E6@27871+5000-E4@38318+5000-C3@43804+5000-G2@54927+5000_square_total60000ms_b3.wav
+      prompt:  This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.
+      answer:      [   2/2]   G5 square  gt=n_gt=2  pred=n_pred=2  ❌
+
+============================================================
+SUMMARY — manual
+  Sampling     : 2 of 2280 (stratified by '(target_pos, n_distractors, duration_ms)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_134645/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_134810/results_manual.*
+
+############################################################
+# pitchbench_b5_timestamp_multiple_pitches
+############################################################
+
+Experiment : pitchbench_b5_timestamp_multiple_pitches
+Models     : manual
+Stimuli    : 2
+  Sampling     : 2 of 456 (stratified by '(rhythm, n_notes, duration_ms)', seed=42)

@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T13:48:49.089709",
+    "argv": [
+      "/home/hsnu2/PitchBench/.venv/bin/pitchbench",
+      "b",
+      "--models",
+      "manual",
+      "--sample-n",
+      "2"
+    ],
+    "git_commit": "3644644f8ddf7a676dfc89cfbc61ada5e1731069",
+    "git_dirty": true,
+    "model_name": "manual",
+    "model_info": {
+      "model": "manual",
+      "provider": "manual"
+    },
+    "task_type": "timing",
+    "tolerance_ms": 250,
+    "primary_filter_set": false,
+    "record_extras": [
+      "n_notes",
+      "rhythm",
+      "pitch_pattern",
+      "duration_ms"
+    ],
+    "sample_n": 2,
+    "sample_seed": 42,
+    "total_available": 456,
+    "stratified_by": "(rhythm, n_notes, duration_ms)",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 2,
+    "condition_n": 2,
+    "accuracy": {
+      "n": 2,
+      "correct": 0.0
+    },
+    "marginals": {
+      "duration_ms": {
+        "1000": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "5000": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "source": {
+        "triangle": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "sine": {
+          "n": 1,
+          "correct": 0.0
+        }
+      }
+    },
+    "cost_usd": null,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 1000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "00:03.30, 00:40.10",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_timestamp_multiple_pitches/clip_A4@32834+1000-C4@42279+1000-E6@54945+1000_triangle_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    },
+    {
+      "n_notes": 3,
+      "rhythm": "irregular",
+      "pitch_pattern": "varied_pitches",
+      "duration_ms": 5000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 6,
+      "n_pred": 0,
+      "correct": 0,
+      "raw_response": "r",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b5_timestamp_multiple_pitches/clip_E6@4969+5000-C2@19566+5000-G2@28162+5000_sine_total60000ms_b5.wav",
+      "prompt": "This audio contains a sequence of musical notes separated by silence. List the onset and offset of EVERY note in order, as comma-separated MM:SS.cc timestamps (onset, offset, onset, offset, \u2026). Example for 2 notes: '0:01.20, 0:02.50, 0:03.10, 0:04.00'. Reply with the timestamp list only, ordered chronologically."
+    }
+  ]
+}
