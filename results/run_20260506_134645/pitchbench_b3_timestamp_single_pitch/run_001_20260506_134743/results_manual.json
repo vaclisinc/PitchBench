@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T13:48:09.377146",
+    "argv": [
+      ".venv/bin/pitchbench",
+      "b",
+      "--models",
+      "manual",
+      "--sample-n",
+      "2"
+    ],
+    "git_commit": "3644644f8ddf7a676dfc89cfbc61ada5e1731069",
+    "git_dirty": true,
+    "model_name": "manual",
+    "model_info": {
+      "model": "manual",
+      "provider": "manual"
+    },
+    "task_type": "timing",
+    "tolerance_ms": 250,
+    "primary_filter_set": false,
+    "record_extras": [
+      "midi",
+      "duration_ms",
+      "pos_ms"
+    ],
+    "sample_n": 2,
+    "sample_seed": 42,
+    "total_available": 3040,
+    "stratified_by": "(pos_ms, duration_ms, midi)",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 2,
+    "condition_n": 2,
+    "accuracy": {
+      "n": 2,
+      "correct": 0.0
+    },
+    "marginals": {
+      "midi": {
+        "30": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "36": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "source": {
+        "triangle": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "sine": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "abs_error_off": {
+        "null": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "10.0": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "abs_error_on": {
+        "null": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "13.7": {
+          "n": 1,
+          "correct": 0.0
+        }
+      }
+    },
+    "cost_usd": null,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 1,
+      "correct": 0,
+      "raw_response": "00:02.22",
+      "wav": "data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@14000+1000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 2.22,
+      "offset_s_pred": null,
+      "iou": 0.0,
+      "abs_error_on": null,
+      "abs_error_off": null,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 0
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "00.3 5",
+      "wav": "data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@14000+1000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 0.3,
+      "offset_s_pred": 5.0,
+      "iou": 0.0,
+      "abs_error_on": 13.7,
+      "abs_error_off": 10.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    }
+  ]
+}

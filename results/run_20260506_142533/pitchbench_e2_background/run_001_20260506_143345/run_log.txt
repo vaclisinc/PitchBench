@@ -1,0 +1,31 @@
+
+[ERROR] Experiment pitchbench_e2_background failed with error:
+HTTPConnectionPool(host='localhost', port=8001): Read timed out. (read timeout=10)
+
+
+############################################################
+# pitchbench_e3_harmonic_saturation
+############################################################
+
+
+[ERROR] Experiment pitchbench_e3_harmonic_saturation failed with error:
+Stratum ('sat_heavy', 29, 'waveform') has only 1 items but needs 2; reduce --sample-n or pick a different stratification.
+
+
+############################################################
+# pitchbench_e4_time_stretching
+############################################################
+
+
+[ERROR] Experiment pitchbench_e4_time_stretching failed with error:
+Stratum ('resample_0.5x', 48, 'waveform') has only 1 items but needs 2; reduce --sample-n or pick a different stratification.
+
+
+############################################################
+# pitchbench_e6_slightly_off
+############################################################
+
+Experiment : pitchbench_e6_slightly_off
+Models     : audio_flamingo_next_instruct
+Stimuli    : 168
+  Sampling     : 168 of 252 (stratified by '(midi, detune_hz, midi)', seed=42)

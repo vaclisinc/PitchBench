@@ -1,0 +1,49 @@
+Experiment : pitchbench_e3_harmonic_saturation
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T16:30:26.688730
+argv       : ['.venv/bin/pitchbench', 'q1', '--models', 'audio_flamingo_next_instruct']
+git_commit : 3644644f8ddf7a676dfc89cfbc61ada5e1731069
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+primary_filter_set : False
+record_extras : ['saturation_level', 'saturation_type', 'saturation_params', 'noise_seed']
+sample_n   : 6
+sample_seed : 42
+total_available : 126
+stratified_by : source
+
+SUMMARY
+==================================================
+  Sampling     : 6 of 126 (stratified by 'source', seed=42)
+  Stimuli (total)     : 6
+  Stimuli (condition) : 6  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       0.0%
+     SPN       0.0%
+  DOREMI       0.0%
+      HZ       0.0%
+     ANY       0.0%
+
+== Marginal accuracy ==
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        0.00%    0.00%    0.00%    0.00%    0.00%     5
+waveform          0.00%    0.00%    0.00%    0.00%    0.00%     1
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%     3
+38                0.00%    0.00%    0.00%    0.00%    0.00%     1
+56                0.00%    0.00%    0.00%    0.00%    0.00%     1
+83                0.00%    0.00%    0.00%    0.00%    0.00%     1
+
+saturation_level     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+sat_heavy         0.00%    0.00%    0.00%    0.00%    0.00%     1
+sat_light         0.00%    0.00%    0.00%    0.00%    0.00%     2
+sat_medium        0.00%    0.00%    0.00%    0.00%    0.00%     3
+

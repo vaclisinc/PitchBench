@@ -1,0 +1,21 @@
+{
+  "group_key": "midi",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    30,
+    36
+  ],
+  "x_labels": [
+    "30\n(F#1)",
+    "36\n(C2)"
+  ],
+  "mean_pct": [
+    0.0,
+    0.0
+  ],
+  "n_samples": [
+    1,
+    1
+  ]
+}

@@ -66,6 +66,11 @@ PRESETS: dict[str, dict[str, Any]] = {
     "q1": {
         "notation_formats": ["midi"],
         "experiments": {
+            "pitchbench_a1_single_pitch_id": {
+                "pitchbench_a1_PITCHES":      _PITCHES,
+                "pitchbench_a1_SOURCES":      _SOURCES,
+                "pitchbench_a1_TONE_DURATION_MS": BENCHMARK_DURATION_MS,
+            },
             "pitchbench_a2_single_pitch_by_loudness": {
                 "pitchbench_a2_LOUDNESS_DB": [-30, -20, -12, 6, 12],
                 "pitchbench_a2_TONE_MS":     5000,
@@ -157,6 +162,14 @@ PRESETS: dict[str, dict[str, Any]] = {
 
 # Start with benchmark defaults for all experiments not in the preset.
 from pitchbench.benchmark_config import *  # noqa: F401,F403,E402
+
+# Override SAMPLING for analysis mode: remove stratification (use random sampling instead).
+SAMPLING = {
+    **SAMPLING,
+    "pitchbench_e1_audio_effects":         {"per_stratum": 1, "strata": ("effect_type", "midi", "source_type")},
+    "pitchbench_e3_harmonic_saturation": {"per_stratum": 1, "strata": ()},
+    "pitchbench_e4_time_stretching":     {"per_stratum": 1, "strata": ()},
+}
 
 # Override with the active preset's experiment variables.
 _this = _sys.modules[__name__]

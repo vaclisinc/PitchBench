@@ -32,7 +32,7 @@ DATA_DIR     = _PROJECT_ROOT / "data"
 AUDIO_DIR    = DATA_DIR / "audio" if EVAL else DATA_DIR / "analysis_audio"
 RESULTS_DIR  = _PROJECT_ROOT / "results" / os.environ.get(
     "PITCHBENCH_RUN", f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-) if EVAL else _PROJECT_ROOT / "results" / "analysis"
+) if EVAL else _PROJECT_ROOT / "results" / "analysis" / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
 STIMULI_DIR  = _PROJECT_ROOT / "stimuli"
 
@@ -188,6 +188,8 @@ _this = _sys.modules[__name__]
 for _n in dir(_params):
     if _n.startswith("pitchbench_"):
         setattr(_this, _n, getattr(_params, _n))
+if hasattr(_params, "SAMPLING"):
+    _this.EXPERIMENT_DEFAULTS = _params.SAMPLING
 del _sys, _this, _params, _n
 
 # ── Legacy aliases ────────────────────────────────────────────────────────────

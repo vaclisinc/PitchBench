@@ -1,0 +1,49 @@
+Experiment : pitchbench_b1_single_pitch_within_silence
+Model      : manual
+timestamp  : 2026-05-06T13:47:23.969680
+argv       : ['.venv/bin/pitchbench', 'b', '--models', 'manual', '--sample-n', '2']
+git_commit : 3644644f8ddf7a676dfc89cfbc61ada5e1731069
+git_dirty  : True
+model_name : manual
+model_info : {'model': 'manual', 'provider': 'manual'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : True
+record_extras : ['pos_ms', 'condition']
+sample_n   : 2
+sample_seed : 42
+total_available : 1520
+stratified_by : (midi, pos_ms)
+pair_key   : ['pair_id']
+sampled_primary : 2
+sampled_total : 2
+
+SUMMARY
+==================================================
+  Sampling     : 2 of 1520 (stratified by '(midi, pos_ms)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2
+  Stimuli (baseline)  : 0
+
+    Metric  Condition   Baseline
+  ────────────────────────────────
+      MIDI       0.0%       0.0%
+       SPN       0.0%       0.0%
+    DOREMI       0.0%       0.0%
+        HZ       0.0%       0.0%
+       ANY       0.0%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatBSpec.primary_filter).
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+sine              0.00%    0.00%    0.00%    0.00%    0.00%     1
+triangle          0.00%    0.00%    0.00%    0.00%    0.00%     1
+
+pos_ms             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+2000              0.00%    0.00%    0.00%    0.00%    0.00%     1
+14000             0.00%    0.00%    0.00%    0.00%    0.00%     1
+

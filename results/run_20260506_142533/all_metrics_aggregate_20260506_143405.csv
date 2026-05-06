@@ -1,0 +1,3 @@
+experiment,model,n_samples,metric,value
+pitchbench_a1_single_pitch_id,audio_flamingo_next_instruct,42,condition_n,42.0
+pitchbench_a2_single_pitch_by_loudness,audio_flamingo_next_instruct,111,condition_n,111.0

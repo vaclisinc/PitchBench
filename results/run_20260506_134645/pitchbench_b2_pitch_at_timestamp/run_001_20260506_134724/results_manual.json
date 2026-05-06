@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T13:47:43.752167",
+    "argv": [
+      ".venv/bin/pitchbench",
+      "b",
+      "--models",
+      "manual",
+      "--sample-n",
+      "2"
+    ],
+    "git_commit": "3644644f8ddf7a676dfc89cfbc61ada5e1731069",
+    "git_dirty": true,
+    "model_name": "manual",
+    "model_info": {
+      "model": "manual",
+      "provider": "manual"
+    },
+    "task_type": "pitch",
+    "tolerance_ms": null,
+    "primary_filter_set": false,
+    "record_extras": [
+      "n_notes",
+      "duration_ms",
+      "query_time_s"
+    ],
+    "sample_n": 2,
+    "sample_seed": 42,
+    "total_available": 760,
+    "stratified_by": "(n_notes, target_idx)",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 2,
+    "condition_n": 2,
+    "accuracy": {
+      "n": 2,
+      "midi": 0.0,
+      "spn": 0.0,
+      "doremi": 0.0,
+      "hz": 0.0,
+      "any": 0.0
+    },
+    "marginals": {
+      "duration_ms": {
+        "5000": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "1000": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      },
+      "source": {
+        "bass": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "square": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      },
+      "source_type": {
+        "instrument": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "waveform": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      },
+      "query_time_s": {
+        "2.501": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "3.458": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      },
+      "midi_gt": {
+        "60": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        },
+        "30": {
+          "n": 1,
+          "any_correct": 0.0,
+          "doremi_correct": 0.0,
+          "hz_correct": 0.0,
+          "midi_correct": 0.0,
+          "midi_octave_correct": 0.0,
+          "midi_pc_correct": 0.0,
+          "spn_correct": 0.0,
+          "spn_octave_correct": 0.0,
+          "spn_pc_correct": 0.0
+        }
+      }
+    },
+    "cost_usd": null,
+    "total_tokens": 0
+  },
+  "results": [
+    {
+      "n_notes": 10,
+      "duration_ms": 5000,
+      "query_time_s": 2.501,
+      "source": "bass",
+      "source_type": "instrument",
+      "midi_gt": 60,
+      "midi_pred": null,
+      "midi_correct": 0,
+      "midi_within_1": 0,
+      "midi_pc_correct": 0,
+      "midi_octave_correct": 0,
+      "spn_gt": "C4",
+      "spn_pred": null,
+      "spn_correct": 0,
+      "spn_pc_correct": 0,
+      "spn_octave_correct": 0,
+      "doremi_gt": "do",
+      "doremi_pred": null,
+      "doremi_correct": 0,
+      "hz_correct": 0,
+      "any_correct": 0,
+      "raw_midi": "",
+      "raw_spn": "",
+      "raw_doremi": "",
+      "raw_hz": "",
+      "wav": "data/audio/pitchbench_b2_pitch_at_timestamp/clip_C4@1+5000-G3@5003+5000-Ds4@10003+5000-F3@15009+5000-As5@21169+5000-C5@26238+5000-F4@31263+5000-Gs5@37826+5000-G1@49894+5000-Ds5@54928+5000_bass_total60000ms_b4.wav",
+      "prompt_midi": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the MIDI note number (an integer from 0 to 127)? Reply with ONLY the integer. Nothing else. Output only the answer.",
+      "prompt_spn": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the note name and octave? Reply with ONLY the note name in Scientific Pitch Notation (e.g. C4, F#3, Bb5). Nothing else. Output only the answer.",
+      "prompt_doremi": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the solfege syllable and accidental (if needed) of this pitch? Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). Include sharps or flats when needed (e.g. do#, reb, fa#, sib). Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Output only the answer.",
+      "prompt_hz": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:02.50. What is the main pitch frequency, expressed in Hertz? Reply with ONLY a number (the frequency in Hz). Nothing else. Output only the answer."
+    },
+    {
+      "n_notes": 10,
+      "duration_ms": 1000,
+      "query_time_s": 3.458,
+      "source": "square",
+      "source_type": "waveform",
+      "midi_gt": 30,
+      "midi_pred": null,
+      "midi_correct": 0,
+      "midi_within_1": 0,
+      "midi_pc_correct": 0,
+      "midi_octave_correct": 0,
+      "spn_gt": "F#1",
+      "spn_pred": null,
+      "spn_correct": 0,
+      "spn_pc_correct": 0,
+      "spn_octave_correct": 0,
+      "doremi_gt": "fa#",
+      "doremi_pred": null,
+      "doremi_correct": 0,
+      "hz_correct": 0,
+      "any_correct": 0,
+      "raw_midi": "",
+      "raw_spn": "",
+      "raw_doremi": "",
+      "raw_hz": "",
+      "wav": "data/audio/pitchbench_b2_pitch_at_timestamp/clip_Ds4@1512+1000-Fs1@2958+1000-E5@4138+1000-F6@5215+1000-E4@27722+1000-As1@39900+1000-Ds2@41001+1000-Fs4@56195+1000-G1@57363+1000-Ds3@58796+1000_square_total60000ms_b4.wav",
+      "prompt_midi": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the MIDI note number (an integer from 0 to 127)? Reply with ONLY the integer. Nothing else. Output only the answer.",
+      "prompt_spn": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the note name and octave? Reply with ONLY the note name in Scientific Pitch Notation (e.g. C4, F#3, Bb5). Nothing else. Output only the answer.",
+      "prompt_doremi": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the solfege syllable and accidental (if needed) of this pitch? Use fixed-do (do=C, re=D, mi=E, fa=F, sol=G, la=A, si=B). Include sharps or flats when needed (e.g. do#, reb, fa#, sib). Do NOT include the octave. Reply with ONLY the syllable and accidental (if needed). Nothing else. Output only the answer.",
+      "prompt_hz": "This audio contains a sequence of musical notes separated by silence. Identify the pitch that is sounding at exactly 0:03.46. What is the main pitch frequency, expressed in Hertz? Reply with ONLY a number (the frequency in Hz). Nothing else. Output only the answer."
+    }
+  ]
+}

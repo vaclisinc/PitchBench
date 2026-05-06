@@ -1,0 +1,7 @@
+experiment,model,n_samples,metric,value
+pitchbench_b1_single_pitch_within_silence,manual,2,condition_n,2.0
+pitchbench_b1_single_pitch_within_silence,manual,2,baseline_n,0.0
+pitchbench_b2_pitch_at_timestamp,manual,2,condition_n,2.0
+pitchbench_b3_timestamp_single_pitch,manual,2,condition_n,2.0
+pitchbench_b4_timestamp_specific_pitch,manual,2,condition_n,2.0
+pitchbench_b5_timestamp_multiple_pitches,manual,2,condition_n,2.0

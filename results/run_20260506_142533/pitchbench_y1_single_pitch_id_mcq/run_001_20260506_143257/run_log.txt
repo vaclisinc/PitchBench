@@ -1,0 +1,13 @@
+
+[ERROR] Experiment pitchbench_y1_single_pitch_id_mcq failed with error:
+HTTPConnectionPool(host='localhost', port=8001): Read timed out. (read timeout=10)
+
+
+############################################################
+# pitchbench_b1_single_pitch_within_silence
+############################################################
+
+Experiment : pitchbench_b1_single_pitch_within_silence
+Models     : audio_flamingo_next_instruct
+Stimuli    : 42
+  Sampling     : 42 of 126 (stratified by '(midi, pos_ms)', seed=42)

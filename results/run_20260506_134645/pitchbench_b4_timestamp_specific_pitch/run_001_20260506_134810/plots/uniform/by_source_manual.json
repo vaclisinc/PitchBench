@@ -1,0 +1,21 @@
+{
+  "group_key": "source",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    "square",
+    "synth_lead"
+  ],
+  "x_labels": [
+    "square",
+    "synth_lead"
+  ],
+  "mean_pct": [
+    20.0,
+    0.0
+  ],
+  "n_samples": [
+    1,
+    1
+  ]
+}

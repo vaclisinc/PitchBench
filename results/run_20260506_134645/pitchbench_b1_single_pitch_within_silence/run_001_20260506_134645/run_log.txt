@@ -1,0 +1,68 @@
+
+  Model : Manual (CLI input by human)
+    [dispatch] 2 items, max_workers=1
+
+  [manual]  Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the MIDI note number (0–127) of that note? Reply with ONLY the integer.
+      answer:  
+  [manual]  Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the note name and octave of that note, e.g. C4, F#3? Reply with ONLY the note name in Scientific Pitch Notation.
+      answer:  
+  [manual]  Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) of that note? Reply with ONLY the syllable and accidental.
+      answer:  
+  [manual]  Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_sine_in_silence_at2000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the pitch frequency of that note in Hertz? Reply with ONLY a number (the frequency in Hz).
+      answer:      [   1/2]  F#1 sine  | midi: gt=30 pred=2 ❌  | spn: gt=F#1 pred=None ❌  | doremi: gt=fa# pred=re ❌
+
+  [manual]  Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the MIDI note number (0–127) of that note? Reply with ONLY the integer.
+      answer:  
+  [manual]  Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the note name and octave of that note, e.g. C4, F#3? Reply with ONLY the note name in Scientific Pitch Notation.
+      answer:  
+  [manual]  Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the solfège syllable and accidental (if needed) (fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) of that note? Reply with ONLY the syllable and accidental.
+      answer:  
+  [manual]  Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      audio :  data/audio/pitchbench_b1_single_pitch_within_silence/Fs1_triangle_in_silence_at14000ms_for5000ms_of60000ms.wav
+      prompt:  You will hear a 60-second audio clip. A single musical note sounds in the clip; the rest is silence. What is the pitch frequency of that note in Hertz? Reply with ONLY a number (the frequency in Hz).
+      answer:      [   2/2]  F#1 triangle  | midi: gt=30 pred=3 ❌  | spn: gt=F#1 pred=None ❌  | doremi: gt=fa# pred=re# ❌
+
+============================================================
+SUMMARY — manual
+  Sampling     : 2 of 1520 (stratified by '(midi, pos_ms)', seed=42)
+  Stimuli (total)     : 2
+  Stimuli (condition) : 2
+  Stimuli (baseline)  : 0
+
+    Metric  Condition   Baseline
+  ────────────────────────────────
+      MIDI       0.0%       0.0%
+       SPN       0.0%       0.0%
+    DOREMI       0.0%       0.0%
+        HZ       0.0%       0.0%
+       ANY       0.0%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatBSpec.primary_filter).
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → results/run_20260506_134645/pitchbench_b1_single_pitch_within_silence/run_001_20260506_134645/results_manual.*
+
+############################################################
+# pitchbench_b2_pitch_at_timestamp
+############################################################
+
+Experiment : pitchbench_b2_pitch_at_timestamp
+Models     : manual
+Stimuli    : 2
+  Sampling     : 2 of 760 (stratified by '(n_notes, target_idx)', seed=42)
