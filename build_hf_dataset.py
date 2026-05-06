@@ -37,12 +37,15 @@ os.chdir(ROOT)
 
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
+from pitchbench.experiments.helpers.music import (
+    midi_to_freq, midi_to_note, midi_to_solfege,
+)
 from pitchbench.experiments.helpers.sampling import apply_default_sampling
 
 
 # ── Experiments included in the benchmark dataset ────────────────────────────
 # Skipped:
-#   f1, f2, f3 — embedding/logit probes; outputs not user-facing audio
+#   g1, g2, g3 — embedding/logit probes (analysis track); outputs not user-facing audio
 #   z1         — uses NSynth (external dataset, not redistributable here)
 
 BENCH_EXPERIMENTS = [
@@ -80,120 +83,21 @@ BENCH_EXPERIMENTS = [
 # ── Per-experiment build-conditions args + audio-path resolvers ──────────────
 
 def _build_args(exp: str, mod) -> tuple:
-    """Args to pass to mod.build_conditions(), matching what each module's preview() uses."""
-    if exp == "pitchbench_a1_pitch_id":
-        return (mod.ALL_SOURCES,)
-    if exp == "pitchbench_a2_pitch_with_reference":
-        return ()
-    if exp == "pitchbench_a3_pitch_by_duration":
-        return ()
-    if exp == "pitchbench_a4_pitch_with_vibrato":
-        return (mod.DURATIONS_MS, mod.PITCHES, mod.SOURCES)
-    if exp == "pitchbench_a5_pitch_slightly_off":
-        return ([config.DEFAULT_DURATION_MS], config.DEFAULT_PITCHES, mod.SOURCES)
-    if exp == "pitchbench_b1_pitch_in_silence":
-        return (mod.SOURCES,)
-    if exp in (
-        "pitchbench_b2_onset_offset_single",
-    ):
-        return (config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, mod.SOURCES)
-    if exp in (
-        "pitchbench_b3_onset_offset_specific",
-        "pitchbench_b4_pitch_at_time",
-        "pitchbench_b5_onset_offset_each",
-    ):
-        return (config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES, mod.SOURCES, mod.DEFAULT_SEED)
-    if exp == "pitchbench_c1_dyad_interval":
-        return (config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES)
-    if exp == "pitchbench_c2_chord_pitch_count":
-        return (config.DEFAULT_DURATIONS_MS, mod.DEFAULT_SEED)
-    if exp == "pitchbench_c3_chord_pitch_id":
-        return (mod.SOURCES,)
-    if exp == "pitchbench_c4_chord_quality":
-        return (config.DEFAULT_DURATIONS_MS,)
-    if exp == "pitchbench_d1_seq_pitch_count":
-        return (config.DEFAULT_DURATIONS_MS, mod.DEFAULT_N_TRIALS, mod.DEFAULT_SEED)
-    if exp == "pitchbench_d2_pitch_difference":
-        return (config.DEFAULT_DURATIONS_MS, mod.SEPARATION_MS, mod.DEFAULT_N_TRIALS, mod.DEFAULT_SEED)
-    if exp == "pitchbench_d3_interval_id_seq":
-        return (config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES)
-    if exp == "pitchbench_d4_contour_discrete":
-        return (config.DEFAULT_DURATIONS_MS, config.DEFAULT_PITCHES)
-    if exp == "pitchbench_d5_contour_continuous":
-        return (mod.SOURCES,)
-    if exp == "pitchbench_d6_pitch_ranking":
-        return (config.DEFAULT_DURATIONS_MS, mod.DEFAULT_N_TRIALS, mod.DEFAULT_SEED)
-    if exp == "pitchbench_d7_seq_pitch_id":
-        seqs = mod.build_sequences(mod.N_NOTES_LIST, mod.DEFAULT_N_TRIALS, mod.DEFAULT_SEED)
-        return (seqs, mod.SOURCES)
-    if exp == "pitchbench_e1_loudness":
-        return ()
-    if exp == "pitchbench_e2_audio_effects":
-        return ()
-    if exp == "pitchbench_e3_background_effects":
-        return (mod.DURATIONS_MS, config.DEFAULT_PITCHES, mod.SOURCES)
-    if exp == "pitchbench_e4_harmonic_saturation":
-        return ()
-    if exp == "pitchbench_e5_time_stretch":
-        return ()
-    if exp == "pitchbench_f1_melodic_line_id":
-        return (mod.N_TRIALS, mod.DEFAULT_SEED)
-    if exp == "pitchbench_f2_chorale_voice_id":
-        return (mod.DEFAULT_CHORALES, mod.DEFAULT_SEED)
-    raise KeyError(f"No build args for {exp}")
+    """Every benchmark ``build_conditions()`` now takes zero positional args."""
+    return ()
 
 
 def _audio_path(exp: str, mod, c: dict) -> Path:
-    """Resolve the (cached) audio path for a single condition."""
-    if exp == "pitchbench_a1_pitch_id":
-        return engine.tone(c["midi"], c["source"], mod.TONE_DURATION_MS)
-    if exp == "pitchbench_a2_pitch_with_reference":
-        return mod._get_wav(c)
-    if exp == "pitchbench_a3_pitch_by_duration":
-        return engine.tone(c["midi"], c["source"], c["duration_ms"])
-    if exp == "pitchbench_b1_pitch_in_silence":
-        return mod._get_wav(c)
-    if exp == "pitchbench_b2_onset_offset_single":
-        path, _gt = mod._wav_for(c)  # b2 returns (path, (on_s, off_s))
-        return path
-    if exp == "pitchbench_c3_chord_pitch_id":
-        return engine.chord(c["midi_notes"], c["source"], mod.TONE_DURATION_MS)
-    if exp == "pitchbench_d5_contour_continuous":
-        return mod._get_wav(c)
-    if exp == "pitchbench_d7_seq_pitch_id":
-        return engine.sequence(c["midi_sequence"], c["source"], mod.TONE_MS, mod.GAP_MS)
-    if exp == "pitchbench_e1_loudness":
-        return engine.tone_at_volume(c["midi"], c["source"], mod.TONE_MS, c["loudness_db"])
-    if exp == "pitchbench_e2_audio_effects":
-        return engine.tone_with_effect(
-            c["midi"], c["source"], mod.TONE_MS,
-            c["effect"], mod.EFFECTS[c["effect"]], c["noise_seed"],
-        )
-    if exp == "pitchbench_e4_harmonic_saturation":
-        return engine.tone_with_effect(
-            c["midi"], c["source"], mod.TONE_MS,
-            c["saturation_level"], mod.SATURATIONS[c["saturation_level"]], c["noise_seed"],
-        )
-    if exp == "pitchbench_e5_time_stretch":
-        return engine.tone_time_modified(
-            c["original_midi"], c["source"], mod.TONE_MS,
-            c["mode"], c["factor"],
-        )
-    if exp == "pitchbench_f1_melodic_line_id":
-        return engine.polyphonic_mix(
-            list(zip(c["all_notes"], c["sources"])),
-            c["total_ms"],
-            name_hint=mod._cond_hint(c),
-        )
-    if exp == "pitchbench_f2_chorale_voice_id":
-        hint = f"{c['chorale_slug']}_x{c['x']}_{c['inst_cfg']}_{c['source_label']}"
-        return engine.polyphonic_mix(
-            list(zip(c["all_notes"], c["sources"])),
-            c["total_ms"],
-            name_hint=hint,
-        )
-    # Everything else uses a module-level _wav_for(c)
-    return mod._wav_for(c)
+    """Resolve the (cached) audio path for a single condition.
+
+    Every benchmark experiment exposes a public ``wav_for(c)`` that returns a
+    Path (or a (Path, gt) tuple in the b-series onset/offset experiments).
+    """
+    out = mod.wav_for(c)
+    # b2/b3/b5 wav_for returns (path, gt_timestamps) — keep just the path.
+    if isinstance(out, tuple):
+        out = out[0]
+    return Path(out)
 
 
 # ── Prompt resolution (the "question") ───────────────────────────────────────
@@ -201,92 +105,45 @@ def _audio_path(exp: str, mod, c: dict) -> Path:
 def _prompts(exp: str, mod, c: dict) -> dict:
     """Return {prompt_field_name: prompt_string} for one condition.
 
-    Most experiments have either a single PROMPT or four format-specific
-    prompts (MIDI / ABC|SPN / Doremi / Hz). A few build their prompt
-    dynamically from the condition (e.g. b3 asks about a specific target note;
-    b4 asks about a specific timestamp; d6/d7 depend on the sequence length).
+    Resolution order:
+      1. ``mod.prompts_for(c)`` — canonical hook. Returns a dict keyed by
+         short format name (``midi``, ``spn``, ``doremi``, ``hz``, ``main``,
+         ``quality_only``, ``root_and_quality``, …). We prefix each key with
+         ``prompt_`` (and rename ``main`` → ``prompt``).
+      2. ``mod.prompt_for(c)`` — single-prompt hook (b3-style).
+      3. ``mod.PROMPT_PREFIX`` (or ``mod.SPEC.prompt_prefix``) — cat_a / cat_e
+         style: glue the prefix onto the four canonical PROMPT_* strings.
     """
-    # Single canonical prompt — most experiments
+    if hasattr(mod, "prompts_for"):
+        raw = mod.prompts_for(c)
+        if isinstance(raw, str):
+            return {"prompt": raw}
+        out = {}
+        for k, v in raw.items():
+            out["prompt" if k == "main" else f"prompt_{k}"] = v
+        return out
+
+    if hasattr(mod, "prompt_for"):
+        return {"prompt": mod.prompt_for(c)}
+
     if hasattr(mod, "PROMPT") and isinstance(mod.PROMPT, str):
         return {"prompt": mod.PROMPT}
 
-    # Four-format pitch-id prompts (a1, a3, e1, e2): MIDI/ABC/Doremi/Hz
-    if all(hasattr(mod, f"PROMPT_{k}_FULL") for k in ("MIDI", "ABC", "DOREMI", "HZ")):
+    pref = getattr(mod, "PROMPT_PREFIX", None)
+    if not isinstance(pref, str):
+        spec = getattr(mod, "SPEC", None)
+        pref = getattr(spec, "prompt_prefix", None) if spec is not None else None
+    if isinstance(pref, str):
+        from pitchbench.experiments.helpers.music import (
+            PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
+        )
         return {
-            "prompt_midi":   mod.PROMPT_MIDI_FULL,
-            "prompt_abc":    mod.PROMPT_ABC_FULL,
-            "prompt_doremi": mod.PROMPT_DOREMI_FULL,
-            "prompt_hz":     mod.PROMPT_HZ_FULL,
+            "prompt_midi":   pref + PROMPT_MIDI,
+            "prompt_spn":    pref + PROMPT_SPN,
+            "prompt_doremi": pref + PROMPT_DOREMI,
+            "prompt_hz":     pref + PROMPT_HZ,
         }
 
-    # Four-format with SPN instead of ABC (a4, a5, e3, e4, e5)
-    if all(hasattr(mod, f"PROMPT_{k}_FULL") for k in ("MIDI", "SPN", "DOREMI", "HZ")):
-        return {
-            "prompt_midi":   mod.PROMPT_MIDI_FULL,
-            "prompt_spn":    mod.PROMPT_SPN_FULL,
-            "prompt_doremi": mod.PROMPT_DOREMI_FULL,
-            "prompt_hz":     mod.PROMPT_HZ_FULL,
-        }
-
-    # Per-experiment dynamic builders
-    if exp == "pitchbench_a2_pitch_with_reference":
-        return {
-            "prompt_midi":   mod._make_prompt("midi",   c["ref_midi"], c["condition"]),
-            "prompt_abc":    mod._make_prompt("abc",    c["ref_midi"], c["condition"]),
-            "prompt_doremi": mod._make_prompt("doremi", c["ref_midi"], c["condition"]),
-            "prompt_hz":     mod._make_prompt("hz",     c["ref_midi"], c["condition"]),
-        }
-    if exp == "pitchbench_b1_pitch_in_silence":
-        return {
-            "prompt_midi":   mod._make_prompt("midi",   c["pos_ms"], mod.TONE_DURATION_MS, mod.TOTAL_SILENCE_MS, c["condition"]),
-            "prompt_abc":    mod._make_prompt("abc",    c["pos_ms"], mod.TONE_DURATION_MS, mod.TOTAL_SILENCE_MS, c["condition"]),
-            "prompt_doremi": mod._make_prompt("doremi", c["pos_ms"], mod.TONE_DURATION_MS, mod.TOTAL_SILENCE_MS, c["condition"]),
-            "prompt_hz":     mod._make_prompt("hz",     c["pos_ms"], mod.TONE_DURATION_MS, mod.TOTAL_SILENCE_MS, c["condition"]),
-        }
-    if exp == "pitchbench_b3_onset_offset_specific":
-        from pitchbench.experiments.helpers.music import midi_to_note
-        target = f"{midi_to_note(c['midi'])} (MIDI {c['midi']})"
-        return {"prompt": mod._prompt_for(target)}
-    if exp == "pitchbench_b4_pitch_at_time":
-        # Four prompts at the target time.
-        query_time_s = c["query_time_s"]
-        pm, ps, pd, ph = mod._prompt_set(query_time_s)
-        return {"prompt_midi": pm, "prompt_spn": ps, "prompt_doremi": pd, "prompt_hz": ph}
-    if exp == "pitchbench_c3_chord_pitch_id":
-        return {
-            "prompt_midi":   mod.PROMPT_MIDI,
-            "prompt_abc":    mod.PROMPT_ABC,
-            "prompt_doremi": mod.PROMPT_DOREMI,
-        }
-    if exp == "pitchbench_c4_chord_quality":
-        return {
-            "prompt_quality_only":     mod.PROMPT_QUALITY_ONLY,
-            "prompt_root_and_quality": mod.PROMPT_ROOT_AND_QUALITY,
-        }
-    if exp == "pitchbench_d6_pitch_ranking":
-        return {"prompt": mod._prompt(c["n_notes"])}
-    if exp == "pitchbench_d7_seq_pitch_id":
-        n = c["n_notes"]
-        return {
-            "prompt_midi":   mod.make_prompt_midi(n),
-            "prompt_abc":    mod.make_prompt_abc(n),
-            "prompt_doremi": mod.make_prompt_doremi(n),
-            "prompt_hz":     mod.make_prompt_hz(n),
-        }
-    if exp == "pitchbench_f1_melodic_line_id":
-        n, x, cfg, srcs = c["n"], c["x"], c["inst_cfg"], c["sources"]
-        return {
-            "prompt_midi":   mod.make_prompt_midi(n, x, cfg, srcs),
-            "prompt_spn":    mod.make_prompt_spn(n, x, cfg, srcs),
-            "prompt_doremi": mod.make_prompt_doremi(n, x, cfg, srcs),
-        }
-    if exp == "pitchbench_f2_chorale_voice_id":
-        x, n_target, cfg, srcs = c["x"], c["n_target"], c["inst_cfg"], c["sources"]
-        return {
-            "prompt_midi":   mod.make_prompt_midi(x, n_target, cfg, srcs),
-            "prompt_spn":    mod.make_prompt_spn(x, n_target, cfg, srcs),
-            "prompt_doremi": mod.make_prompt_doremi(x, n_target, cfg, srcs),
-        }
     return {}
 
 
@@ -304,17 +161,133 @@ def _jsonable(v):
     return str(v)  # last-ditch fallback for numpy scalars etc.
 
 
+# Prompt-key normalisation so the four formats line up across experiments.
+# Some scripts call the note-letter format "abc", others "spn"; some call the
+# solfège format "doremi"; some call frequency "hz". On HF we expose them as a
+# single, consistent set: midi / abc / solfege / freq.
+_PROMPT_RENAME = {
+    "prompt_spn":    "prompt_abc",
+    "prompt_doremi": "prompt_solfege",
+    "prompt_hz":     "prompt_freq",
+}
+
+
+def _gt_for_midi(midi: int) -> dict:
+    """Four-format ground truth for a single MIDI pitch."""
+    return {
+        "gt_midi":    int(midi),
+        "gt_abc":     midi_to_note(midi),
+        "gt_solfege": midi_to_solfege(midi),
+        "gt_freq":    round(midi_to_freq(midi), 2),
+    }
+
+
+def _gt_fields(exp: str, c: dict) -> dict:
+    """Build the gt_* block for one condition.
+
+    Tries the common shapes first (single MIDI, list of MIDI, chord), then
+    falls back to a few experiment-specific cases. Anything that doesn't fit
+    here will appear under the {others} block at the end of the row.
+    """
+    gt: dict = {}
+
+    # Single-pitch GT (perceived pitch, after any manipulation)
+    midi = c.get("midi")
+    if isinstance(midi, int):
+        gt.update(_gt_for_midi(midi))
+
+    # Chord — list of MIDI notes (c1 dyads, c3 chord pitch ID, …)
+    chord = c.get("midi_notes")
+    if isinstance(chord, (list, tuple)) and chord and all(isinstance(m, int) for m in chord):
+        notes = sorted(chord)
+        gt["gt_midi_notes"]    = notes
+        gt["gt_abc_notes"]     = [midi_to_note(m)              for m in notes]
+        gt["gt_solfege_notes"] = [midi_to_solfege(m)           for m in notes]
+        gt["gt_freq_notes"]    = [round(midi_to_freq(m), 2)    for m in notes]
+
+    # Sequence — ordered list of MIDI notes (d1, d3, d6, d7, …)
+    seq = c.get("midi_sequence")
+    if isinstance(seq, (list, tuple)) and seq and all(isinstance(m, int) for m in seq):
+        gt["gt_midi_sequence"]    = list(seq)
+        gt["gt_abc_sequence"]     = [midi_to_note(m)           for m in seq]
+        gt["gt_solfege_sequence"] = [midi_to_solfege(m)        for m in seq]
+        gt["gt_freq_sequence"]    = [round(midi_to_freq(m), 2) for m in seq]
+
+    # Chord-quality experiment (c4): root + quality label
+    if "quality" in c:
+        gt["gt_quality"] = c["quality"]
+    if "root_midi" in c and isinstance(c["root_midi"], int):
+        gt["gt_root_midi"] = int(c["root_midi"])
+        gt["gt_root_abc"]  = midi_to_note(c["root_midi"])
+
+    # Onset/offset GT (b2, b5)
+    if "onset_s" in c:
+        gt["gt_onset_s"] = c["onset_s"]
+    if "offset_s" in c:
+        gt["gt_offset_s"] = c["offset_s"]
+
+    # Pitch-at-time GT (b4)
+    if "query_time_s" in c:
+        gt["gt_query_time_s"] = c["query_time_s"]
+
+    # Interval-only GT (c1, d2)
+    if "interval" in c and "ref_midi" not in c:
+        gt["gt_interval"] = c["interval"]
+
+    return gt
+
+
+# Keys that already feed into gt_* — don't repeat them under {others}.
+_GT_SOURCE_KEYS = {
+    "midi", "midi_notes", "midi_sequence",
+    "quality", "root_midi",
+    "onset_s", "offset_s", "query_time_s",
+}
+
+# Keys derivable from `source` (or otherwise redundant) — drop from HF rows.
+_DROP_KEYS = {"source_type"}
+
+
 def _row_for(exp: str, mod, c: dict, audio_path: Path) -> dict:
-    row = {"file_name": audio_path.name}
-    # Ground-truth + stimulus parameters from the condition dict
+    """Emit a row in the canonical HF schema:
+
+        audio | gt_* | prompt_* | source | {others}
+    """
+    row: dict = {"file_name": audio_path.name}
+
+    # Ground truth
+    gt = _gt_fields(exp, c)
+    row.update(gt)
+
+    # Prompts (renamed to the unified midi/abc/solfege/freq scheme)
+    for k, v in _prompts(exp, mod, c).items():
+        row[_PROMPT_RENAME.get(k, k)] = v
+
+    # Source first among the remaining columns
+    if "source" in c:
+        row["source"] = c["source"]
+
+    # Everything else, in declaration order, minus what we've already shown.
+    skip = set(row.keys()) | _GT_SOURCE_KEYS | _DROP_KEYS
+    # If the row already has a same-format gt for an `interval` field we still
+    # want to keep `interval` itself for a2 (where it is a stimulus param, not
+    # the GT) — handled by checking ref_midi above.
     for k, v in c.items():
-        if k.startswith("_"):
+        if k.startswith("_") or k in skip:
             continue
         row[k] = _jsonable(v)
-    # Question(s)
-    for k, v in _prompts(exp, mod, c).items():
-        row[k] = v
+
     return row
+
+
+# ── HF presentation order: real instruments before raw waveforms ─────────────
+_INSTR_FIRST = list(config.GM_PROGRAMS_V1.keys()) + list(config.WAVEFORMS)
+_SOURCE_RANK = {s: i for i, s in enumerate(_INSTR_FIRST)}
+
+
+def _source_sort_key(row: dict) -> int:
+    head = str(row.get("source", "")).split("+", 1)[0]
+    return _SOURCE_RANK.get(head, len(_INSTR_FIRST))
 
 
 # ── Main per-experiment build ────────────────────────────────────────────────
@@ -364,6 +337,8 @@ def build_one(exp: str, out_root: Path, copy: bool = False) -> tuple[int, int]:
                 except OSError:
                     shutil.copy2(ap, target)
         rows.append(_row_for(exp, mod, c, ap))
+
+    rows.sort(key=_source_sort_key)  # real instruments first, waveforms last
 
     # Write metadata.jsonl
     meta_path = out_dir / "metadata.jsonl"

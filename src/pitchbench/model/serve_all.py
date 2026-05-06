@@ -59,6 +59,11 @@ SERVERS: list[dict] = [
         "script": ROOT / "model" / "api_qwen3_omni.py",
         "env":    {},
     },
+    {
+        "slug":   "kimi_audio",
+        "script": ROOT / "model" / "api_kimi_audio.py",
+        "env":    {},
+    },
 ]
 
 # ANSI colours for each server (cycles if more than 6)

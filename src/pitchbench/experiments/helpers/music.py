@@ -246,7 +246,7 @@ def _doremi_llm_call(text: str, expect_many: bool) -> str | None:
             'compact JSON object: {"pcs": [<int>, ...]} where each integer is a '
             'pitch class 0..11 with do=0, do#/reb=1, re=2, re#/mib=3, mi=4, fa=5, '
             'fa#/solb=6, sol=7, sol#/lab=8, la=9, la#/sib=10, si/ti=11. Order them '
-            'as they appear. If no solfège is present, return {"pcs": []}. '
+            'as they appear. The solfège notation has to be in strict format (syllable with accidental, not more, not less). If no solfège is present, return {"pcs": []}. '
             'Reply with ONLY the JSON object, nothing else.'
         )
     else:
