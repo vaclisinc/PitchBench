@@ -132,7 +132,7 @@ def concurrency_for(model_name: str) -> int:
 
 
 # ── CLI sampling defaults (not data-gen) ──────────────────────────────────────
-DEFAULT_SAMPLE_SEED = 42
+DEFAULT_SAMPLE_SEED = 42 
 
 EXPERIMENT_DEFAULTS: dict[str, dict] = {
     # Strata design rule of thumb:
