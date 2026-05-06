@@ -49,13 +49,13 @@ from pitchbench.experiments.helpers.music import (
 from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadata, make_run_dir, save_comparison, save_results, extract_format_accuracies
 
 EXP_NAME = Path(__file__).stem
-EXP13_NAME = "pitchbench_f1_embedding_geometry"   # may reuse embedding cache
+G1_NAME = "pitchbench_g1_embedding_geometry"   # may reuse embedding cache
 
-# Data-generation parameters (sourced from config.pitchbench_f3_*)
-MIDI_PITCHES = config.pitchbench_f3_PITCHES
-SOURCES      = config.pitchbench_f3_SOURCES
-SPLIT_SEED   = config.pitchbench_f3_SPLIT_SEED
-DEFAULT_K    = config.pitchbench_f3_K
+# Data-generation parameters (sourced from config.pitchbench_g3_*)
+MIDI_PITCHES = config.pitchbench_g3_PITCHES
+SOURCES      = config.pitchbench_g3_SOURCES
+SPLIT_SEED   = config.pitchbench_g3_SPLIT_SEED
+DEFAULT_K    = config.pitchbench_g3_K
 MIDI_MIN     = min(MIDI_PITCHES)
 MIDI_MAX     = max(MIDI_PITCHES)
 
@@ -130,11 +130,11 @@ def _load_or_collect_embeddings(
     Try exp_13 cache first, then exp_15 cache, then collect fresh.
     Returns (X, midi_labels, source_labels).
     """
-    # Prefer exp_13 cache (same embedding content)
-    exp13_cache = config.DATA_DIR / EXP13_NAME / f"embeddings_{model_name}.npz"
-    exp15_cache = data_dir / f"embeddings_{model_name}.npz"
+    # Prefer the g1 cache (same embedding content)
+    g1_cache = config.DATA_DIR / G1_NAME / f"embeddings_{model_name}.npz"
+    own_cache = data_dir / f"embeddings_{model_name}.npz"
 
-    for cache in (exp13_cache, exp15_cache):
+    for cache in (g1_cache, own_cache):
         if cache.exists():
             print(f"  Loading embeddings from {cache.parent.name}/{cache.name}")
             z = np.load(cache, allow_pickle=True)
@@ -172,12 +172,12 @@ def _load_or_collect_embeddings(
 
     X = np.array(vecs, dtype=np.float32)
     np.savez_compressed(
-        exp15_cache,
+        own_cache,
         X=X,
         midi_labels=np.array(midi_labels),
         source_labels=np.array(source_labels, dtype=object),
     )
-    print(f"  Saved embeddings → {exp15_cache.name}  shape={X.shape}")
+    print(f"  Saved embeddings → {own_cache.name}  shape={X.shape}")
     return X, midi_labels, source_labels
 
 

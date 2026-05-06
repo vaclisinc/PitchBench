@@ -55,12 +55,12 @@ from pitchbench.experiments.helpers.results import exp_data_dir, get_run_metadat
 
 EXP_NAME = Path(__file__).stem
 
-# Data-generation parameters (sourced from config.pitchbench_f2_*)
-SELECTED_SOURCES      = config.pitchbench_f2_SOURCES
-SELECTED_MIDI_PITCHES = config.pitchbench_f2_PITCHES
-TONE_DURATION_MS      = config.pitchbench_f2_TONE_DURATION_MS
-DEFAULT_TOP_K         = config.pitchbench_f2_TOP_K
-MAX_NEW_TOKENS        = config.pitchbench_f2_MAX_NEW_TOKENS
+# Data-generation parameters (sourced from config.pitchbench_g2_*)
+SELECTED_SOURCES      = config.pitchbench_g2_SOURCES
+SELECTED_MIDI_PITCHES = config.pitchbench_g2_PITCHES
+TONE_DURATION_MS      = config.pitchbench_g2_TONE_DURATION_MS
+DEFAULT_TOP_K         = config.pitchbench_g2_TOP_K
+MAX_NEW_TOKENS        = config.pitchbench_g2_MAX_NEW_TOKENS
 
 
 PROMPT_MIDI_EXP14 = (
