@@ -223,7 +223,8 @@ def main() -> None:
              "Results land in results/<NAME>/. Also settable via PITCHBENCH_RUN env var.",
     )
     parser.add_argument(
-        "--LOCAL_CONCURRENCY", type=int, default=1, metavar="N",
+        "--parallel-experiments", type=int, default=1, metavar="N",
+        dest="LOCAL_CONCURRENCY",
         help="Number of experiments to run in parallel (default: 1 = sequential). "
              "Each experiment runs in its own process so cost tracking stays isolated.",
     )
