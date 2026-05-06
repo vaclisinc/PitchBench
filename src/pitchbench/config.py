@@ -83,6 +83,7 @@ MODELS: dict[str, str] = {
     "audio_flamingo_next_think":     "Audio Flamingo Next – think",
     "audio_flamingo_next_captioner": "Audio Flamingo Next – captioner",
     "qwen3_omni":                    "Qwen3-Omni (30B-A3B-Instruct)",
+    "kimi_audio":                    "Kimi-Audio 7B Instruct",
 }
 
 MODEL_URLS: dict[str, str] = {
@@ -91,6 +92,7 @@ MODEL_URLS: dict[str, str] = {
     "audio_flamingo_next_think":     os.environ.get("AF_NEXT_THINK_URL", "http://localhost:8002"),
     "audio_flamingo_next_captioner": os.environ.get("AF_NEXT_CAP_URL",   "http://localhost:8003"),
     "qwen3_omni":                    os.environ.get("QWEN3_OMNI_URL",    "http://lowland.cs.berkeley.edu:9999"),
+    "kimi_audio":                    os.environ.get("KIMI_AUDIO_URL",    "http://localhost:8004"),
 }
 
 LOCAL_CONCURRENCY: int = int(os.environ.get("LOCAL_CONCURRENCY", "1"))
@@ -208,6 +210,8 @@ BENCHMARK_NOTE_DURATIONS_MS_D4     = [250, 500, 1000]
 BENCHMARK_TOTAL_DUR_MS      = 60_000
 BENCHMARK_TONE_POSITIONS_MS = [2_000, 7_000, 14_000, 22_000,
                                27_000, 41_000, 47_000, 53_000]
+# BENCHMARK_TONE_POSITIONS_MS = [2_000, 14_000, 22_000,
+#                                27_000, 47_000, 53_000] new proposal
 BENCHMARK_GAP_MS            = 300
 BENCHMARK_GAP_MS_D7         = 250
 BENCHMARK_N_TRIALS          = 3
@@ -560,22 +564,22 @@ if EVAL:
     pitchbench_e5_CONDITIONS   = BENCHMARK_E5_CONDITIONS
     pitchbench_e5_SOURCES      = BENCHMARK_ALL_SOURCES
 
-    # # ── f1: embedding geometry ───────────────────────────────────────────
-    # pitchbench_f1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
-    # pitchbench_f1_SOURCES = BENCHMARK_ALL_SOURCES
+    # ── g1: embedding geometry (analysis track, not in CLI) ──────────────
+    pitchbench_g1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
+    pitchbench_g1_SOURCES = BENCHMARK_ALL_SOURCES
 
-    # # ── f2: token logits ─────────────────────────────────────────────────
-    # pitchbench_f2_PITCHES          = [29, 43, 57, 71, 72]
-    # pitchbench_f2_SOURCES          = BENCHMARK_ALL_SOURCES
-    # pitchbench_f2_TONE_DURATION_MS = 2000
-    # pitchbench_f2_TOP_K            = 200
-    # pitchbench_f2_MAX_NEW_TOKENS   = 32
+    # ── g2: token logits (analysis track, not in CLI) ────────────────────
+    pitchbench_g2_PITCHES          = [29, 43, 57, 71, 72]
+    pitchbench_g2_SOURCES          = BENCHMARK_ALL_SOURCES
+    pitchbench_g2_TONE_DURATION_MS = 2000
+    pitchbench_g2_TOP_K            = 200
+    pitchbench_g2_MAX_NEW_TOKENS   = 32
 
-    # # ── f3: knn oracle ───────────────────────────────────────────────────
-    # pitchbench_f3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE
-    # pitchbench_f3_SOURCES    = BENCHMARK_ALL_SOURCES
-    # pitchbench_f3_K          = 1
-    # pitchbench_f3_SPLIT_SEED = BENCHMARK_SEED
+    # ── g3: knn oracle (analysis track, not in CLI) ──────────────────────
+    pitchbench_g3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE
+    pitchbench_g3_SOURCES    = BENCHMARK_ALL_SOURCES
+    pitchbench_g3_K          = 1
+    pitchbench_g3_SPLIT_SEED = BENCHMARK_SEED
 
     # ── f1: melodic line id ──────────────────────────────────────────────
     pitchbench_f1_N_NOTES      = 10
@@ -826,6 +830,23 @@ else:
     pitchbench_e5_TONE_MS     = 3000                                 # ← edit me
     pitchbench_e5_CONDITIONS  = BENCHMARK_E5_CONDITIONS              # ← edit me
     pitchbench_e5_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
+
+    # ── g1: embedding geometry (analysis track, not in CLI) ──────────────
+    pitchbench_g1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE              # ← edit me
+    pitchbench_g1_SOURCES = BENCHMARK_ALL_SOURCES                     # ← edit me
+
+    # ── g2: token logits (analysis track, not in CLI) ────────────────────
+    pitchbench_g2_PITCHES          = [29, 43, 57, 71, 72]             # ← edit me
+    pitchbench_g2_SOURCES          = BENCHMARK_ALL_SOURCES            # ← edit me
+    pitchbench_g2_TONE_DURATION_MS = 2000                             # ← edit me
+    pitchbench_g2_TOP_K            = 200                              # ← edit me
+    pitchbench_g2_MAX_NEW_TOKENS   = 32                               # ← edit me
+
+    # ── g3: knn oracle (analysis track, not in CLI) ──────────────────────
+    pitchbench_g3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE           # ← edit me
+    pitchbench_g3_SOURCES    = BENCHMARK_ALL_SOURCES                  # ← edit me
+    pitchbench_g3_K          = 1                                      # ← edit me
+    pitchbench_g3_SPLIT_SEED = BENCHMARK_SEED                         # ← edit me
 
     # ── f1: melodic line id ──────────────────────────────────────────────
     pitchbench_f1_N_NOTES      = 10                                  # ← edit me

@@ -180,8 +180,12 @@ def _local_probs(model_name: str, audio_path: str, prompt: str,
     resp = _post_local_with_retry(
         f"{url}/generate_with_probs", audio_path,
         data={"prompt": prompt, "max_new_tokens": max_new_tokens, "top_k": top_k},
-        timeout_s=timeout_s,
+        timeout_s=timeout_s, accept_404_405=True,
     )
+    if resp.status_code in (404, 405):
+        raise NotImplementedError(
+            f"{model_name} does not expose /generate_with_probs (HTTP {resp.status_code})"
+        )
     raw = resp.json()
     return {"result": raw.get("result", ""), "raw_response": raw,
             "top_tokens": raw.get("top_tokens"), "embedding": None, "usage": None}

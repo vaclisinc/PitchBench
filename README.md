@@ -80,7 +80,7 @@ With no `--sample-n`, each experiment reads its entry in `config.EXPERIMENT_DEFA
 ```
 
 - `per_stratum` is **per stratum cell**. Total drawn = `per_stratum × num_distinct_strata_keys`, computed from the actual condition list.
-- `per_stratum: None` → run the full grid (no sub-sampling). Used for `a1`, `d5`, `f2`, and the embedding probes (`f1`/`f2`/`f3`, which never sub-sample).
+- `per_stratum: None` → run the full grid (no sub-sampling). Used for `a1`, `d5`, `f2`, and the embedding probes (`g1`/`g2`/`g3`, analysis track, which never sub-sample).
 
 This is the mode used to produce paper results — tune sample sizes by editing `config.py`, not by passing flags.
 
@@ -118,8 +118,6 @@ Sampling parameters (`sample_n`, `sample_seed`, `total_available`, `stratified_b
   Sampling     : 10 of 1159 (stratified by '(midi, duration_ms)', seed=42)
 ```
 
-For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the full valid pool stratified by `instrument_family_str`.
-
 ## Experiment categories
 
 | ID | Topic |
@@ -129,9 +127,8 @@ For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the f
 | `c1–c4` | Chords / dyads / simultaneous pitches |
 | `d1–d7` | Sequences, contour, intervals |
 | `e1–e3` | Loudness, audio effects, background noise |
-| `f1–f3` | Embedding probes (PCA, kNN oracle, token logits) |
 | `f1–f2` | Melodic-line and voice identification in polyphony |
-| `z1`    | Real-recording datasets (NSynth) |
+| `g1–g3` | Embedding probes (PCA, kNN oracle, token logits) — analysis track, not in CLI |
 
 ### Category A — Single-pitch identification
 
@@ -182,26 +179,24 @@ For `z1` (NSynth), `--sample-n` supersedes `--n-per-family` and draws from the f
 | e2 | `audio_effects` | Pitch under white noise (4 SNR levels), reverb, and hard clipping |
 | e3 | `background_effects` | Pitch over real-world backgrounds (crowd, rain, bells, street) at 4 SNRs |
 
-### Category F — Embedding-space probes
-
-| ID | Name | What it tests |
-|----|------|---------------|
-| f1 | `embedding_geometry` | PCA, linear probe, kNN, and cosine-similarity on encoder embeddings |
-| f2 | `token_logits` | Vocabulary probability mass on pitch tokens at generation step 1 |
-| f3 | `knn_oracle` | Compare 1-NN embedding accuracy vs. verbal output accuracy |
-
-### Category G — Melodic-line and voice identification in polyphony
+### Category F — Melodic-line and voice identification in polyphony
 
 | ID | Name | What it tests |
 |----|------|---------------|
 | f1 | `melodic_line_id` | Transcribe one designated line from 2–4 simultaneous synthetic voices; sweeps n, register rank, tempo (slow/medium/fast), and instrument config (similar / mixed) |
 | f2 | `chorale_voice_id` | Same task on real Bach chorales (music21 corpus): transcribe the soprano, alto, tenor, or bass from the longest non-crossing segment; requires `music21` |
 
-### Category Z — Real-recording datasets
+### Category G — Embedding-space probes (analysis track, not in CLI)
+
+These run via `python -m pitchbench.experiments.eval.<name>` and require a model
+server that exposes `/embed` and/or `/generate_with_probs` (currently
+`music_flamingo`, `audio_flamingo_next_*`). OpenRouter and Kimi cleanly skip.
 
 | ID | Name | What it tests |
 |----|------|---------------|
-| z1 | `pitch_id_nsynth` | Pitch identification on NSynth real-instrument samples (ecological validity) |
+| g1 | `embedding_geometry` | PCA, linear probe, kNN, and cosine-similarity on encoder embeddings |
+| g2 | `token_logits` | Vocabulary probability mass on pitch tokens at generation step 1 |
+| g3 | `knn_oracle` | Compare 1-NN embedding accuracy vs. verbal output accuracy |
 
 ## Stimulus engine
 
