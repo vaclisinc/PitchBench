@@ -13,7 +13,7 @@ Saturation levels:
 
 Universal IVs: midi, source.
 Experiment-specific IVs:
-    saturation_level:  ∈ config.pitchbench_e4_SATURATIONS
+    saturation_level:  ∈ config.pitchbench_e3_SATURATIONS
     saturation_type:   coarser category from params["type"]
 
 4-format pitch-ID prompts. Auto-marginals produce
@@ -30,10 +30,10 @@ from pitchbench.experiments.helpers.cat_e import CatESpec, run_cat_e_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME    = Path(__file__).stem
-PITCHES     = config.pitchbench_e4_PITCHES
-TONE_MS     = config.pitchbench_e4_TONE_MS
-SATURATIONS = config.pitchbench_e4_SATURATIONS
-SOURCES     = config.pitchbench_e4_SOURCES
+PITCHES     = config.pitchbench_e3_PITCHES
+TONE_MS     = config.pitchbench_e3_TONE_MS
+SATURATIONS = config.pitchbench_e3_SATURATIONS
+SOURCES     = config.pitchbench_e3_SOURCES
 
 PROMPT_PREFIX = "Listen to this audio clip of a single musical note. "
 

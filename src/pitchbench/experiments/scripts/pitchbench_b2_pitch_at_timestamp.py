@@ -26,14 +26,14 @@ from pitchbench.experiments.helpers.music import (
 )
 
 EXP_NAME     = Path(__file__).stem
-SOURCES      = config.pitchbench_b4_SOURCES
-PITCHES      = config.pitchbench_b4_PITCHES
-DURATIONS_MS = config.pitchbench_b4_DURATIONS_MS
-N_NOTES_OPTS = config.pitchbench_b4_N_NOTES_OPTS
-TOTAL_DUR_MS = config.pitchbench_b4_TOTAL_DUR_MS
-GAP_MIN_MS   = config.pitchbench_b4_GAP_MIN_MS
-GAP_MAX_MS   = config.pitchbench_b4_GAP_MAX_MS
-SEED         = config.pitchbench_b4_SEED
+SOURCES      = config.pitchbench_b2_SOURCES
+PITCHES      = config.pitchbench_b2_PITCHES
+DURATIONS_MS = config.pitchbench_b2_DURATIONS_MS
+N_NOTES_OPTS = config.pitchbench_b2_N_NOTES_OPTS
+TOTAL_DUR_MS = config.pitchbench_b2_TOTAL_DUR_MS
+GAP_MIN_MS   = config.pitchbench_b2_GAP_MIN_MS
+GAP_MAX_MS   = config.pitchbench_b2_GAP_MAX_MS
+SEED         = config.pitchbench_b2_SEED
 
 
 def _query_str(secs: float) -> str:

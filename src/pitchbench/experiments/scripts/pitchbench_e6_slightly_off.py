@@ -29,11 +29,11 @@ from pitchbench.experiments.helpers.cat_a import (
 from pitchbench.experiments.helpers.music import midi_to_freq
 
 EXP_NAME        = Path(__file__).stem
-SOURCES         = config.pitchbench_a5_SOURCES
-PITCHES         = config.pitchbench_a5_PITCHES
-DURATIONS_MS    = config.pitchbench_a5_DURATIONS_MS
-N_DETUNE_LEVELS = config.pitchbench_a5_N_DETUNE_LEVELS
-DETUNE_FRACTION = config.pitchbench_a5_DETUNE_FRACTION
+SOURCES         = config.pitchbench_e6_SOURCES
+PITCHES         = config.pitchbench_e6_PITCHES
+DURATIONS_MS    = config.pitchbench_e6_DURATIONS_MS
+N_DETUNE_LEVELS = config.pitchbench_e6_N_DETUNE_LEVELS
+DETUNE_FRACTION = config.pitchbench_e6_DETUNE_FRACTION
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note that may be "

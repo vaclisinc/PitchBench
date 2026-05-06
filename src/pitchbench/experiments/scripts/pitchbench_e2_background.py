@@ -29,11 +29,11 @@ from pitchbench.experiments.helpers.cat_e import CatESpec, run_cat_e_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME     = Path(__file__).stem
-BACKGROUNDS  = config.pitchbench_e3_BACKGROUNDS
-SNR_DB       = config.pitchbench_e3_SNR_DB
-SOURCES      = config.pitchbench_e3_SOURCES
-PITCHES      = config.pitchbench_e3_PITCHES
-DURATIONS_MS = config.pitchbench_e3_DURATIONS_MS
+BACKGROUNDS  = config.pitchbench_e2_BACKGROUNDS
+SNR_DB       = config.pitchbench_e2_SNR_DB
+SOURCES      = config.pitchbench_e2_SOURCES
+PITCHES      = config.pitchbench_e2_PITCHES
+DURATIONS_MS = config.pitchbench_e2_DURATIONS_MS
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note mixed with a "

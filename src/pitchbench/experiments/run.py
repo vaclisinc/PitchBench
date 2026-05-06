@@ -4,7 +4,7 @@ Experiment runner — entry point for the ``pitchbench`` CLI.
 Usage::
 
     pitchbench a1                               # shorthand for --id a1
-    pitchbench pitchbench_a1_pitch_id           # run by full module name
+    pitchbench pitchbench_a1_single_pitch_id           # run by full module name
     pitchbench --id a1                          # run by category+digit ID
     pitchbench a1 --preview                     # generate stimuli, skip queries
     pitchbench --id a1 --download               # generate audio files for a1
@@ -135,7 +135,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "experiment", nargs="?", default=None,
-        help="Experiment name (e.g. pitchbench_a1_pitch_id) or 'all'",
+        help="Experiment name (e.g. pitchbench_a1_single_pitch_id) or 'all'",
     )
     parser.add_argument(
         "--id", dest="exp_id", type=str, default=None, metavar="ID",
@@ -228,7 +228,7 @@ def main() -> None:
 
     # Resolve which experiment to run. Three accepted forms for the positional:
     #   "a1"                       → letter+digit shorthand (resolved via _id_to_name)
-    #   "pitchbench_a1_pitch_id"   → full module name
+    #   "pitchbench_a1_single_pitch_id"   → full module name
     #   "all"                      → every experiment
     exp_id = args.exp_id
     if exp_id is None and args.experiment and _ID_RE.match(args.experiment.lower()):

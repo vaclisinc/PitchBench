@@ -31,15 +31,15 @@ import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 
 EXP_NAME            = Path(__file__).stem
-BASE_FREQS          = config.pitchbench_d6_BASE_FREQS
-DELTA_CENTS         = config.pitchbench_d6_DELTA_CENTS
-N_TONES             = config.pitchbench_d6_N_TONES
-RHYTHMS             = config.pitchbench_d6_RHYTHMS
-DEFAULT_DURATION_MS = config.pitchbench_d6_DURATION_MS
-DEFAULT_GAP_MS      = config.pitchbench_d6_GAP_MS
-DEFAULT_N_TRIALS    = config.pitchbench_d6_N_TRIALS
-DEFAULT_SEED        = config.pitchbench_d6_SEED
-SOURCES             = config.pitchbench_d6_SOURCES
+BASE_FREQS          = config.pitchbench_d5_BASE_FREQS
+DELTA_CENTS         = config.pitchbench_d5_DELTA_CENTS
+N_TONES             = config.pitchbench_d5_N_TONES
+RHYTHMS             = config.pitchbench_d5_RHYTHMS
+DEFAULT_DURATION_MS = config.pitchbench_d5_DURATION_MS
+DEFAULT_GAP_MS      = config.pitchbench_d5_GAP_MS
+DEFAULT_N_TRIALS    = config.pitchbench_d5_N_TRIALS
+DEFAULT_SEED        = config.pitchbench_d5_SEED
+SOURCES             = config.pitchbench_d5_SOURCES
 
 
 def _prompt(n: int) -> str:

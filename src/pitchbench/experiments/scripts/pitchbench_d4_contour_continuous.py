@@ -26,11 +26,11 @@ from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME      = Path(__file__).stem
-START_PITCHES = config.pitchbench_d5_START_PITCHES
-INTERVALS_ST  = config.pitchbench_d5_INTERVALS_ST
-DURATION_MS   = config.pitchbench_d5_DURATION_MS
-SOURCES       = config.pitchbench_d5_SOURCES
-TRAJECTORIES  = config.pitchbench_d5_TRAJECTORIES
+START_PITCHES = config.pitchbench_d4_START_PITCHES
+INTERVALS_ST  = config.pitchbench_d4_INTERVALS_ST
+DURATION_MS   = config.pitchbench_d4_DURATION_MS
+SOURCES       = config.pitchbench_d4_SOURCES
+TRAJECTORIES  = config.pitchbench_d4_TRAJECTORIES
 
 PROMPT = (
     "Listen to this audio. Describe how the pitch changes over time as a "

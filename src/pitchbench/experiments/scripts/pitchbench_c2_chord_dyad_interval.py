@@ -30,11 +30,11 @@ from pitchbench.experiments.helpers.music import (
 )
 
 EXP_NAME             = Path(__file__).stem
-INTERVALS_ST         = config.pitchbench_c1_INTERVALS_ST
-SOURCES              = config.pitchbench_c1_SOURCES
-SAME_INSTRUMENT_OPTS = config.pitchbench_c1_SAME_INSTRUMENT_OPTS
-DURATIONS_MS         = config.pitchbench_c1_DURATIONS_MS
-PITCHES              = config.pitchbench_c1_PITCHES
+INTERVALS_ST         = config.pitchbench_c2_INTERVALS_ST
+SOURCES              = config.pitchbench_c2_SOURCES
+SAME_INSTRUMENT_OPTS = config.pitchbench_c2_SAME_INSTRUMENT_OPTS
+DURATIONS_MS         = config.pitchbench_c2_DURATIONS_MS
+PITCHES              = config.pitchbench_c2_PITCHES
 
 PROMPT = (
     "This audio contains two simultaneous musical notes. "
