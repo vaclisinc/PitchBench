@@ -2,10 +2,10 @@
 c4 — Simultaneous-pitch identification (chord pitches).
 
 Question: can the ALM identify the individual pitches of a chord? Each
-chord is queried in three formats (MIDI / SPN / Doremi); each format is
+chord is queried in four formats (MIDI / SPN / Doremi / Hz); each format is
 scored as exact-match between the predicted set and the ground-truth set
-(order-agnostic). One record per chord with `midi_correct`,
-`spn_correct`, `doremi_correct` columns — same shape as cat-A.
+(order-agnostic). One record per chord with `midi_correct`, `spn_correct`,
+`doremi_correct`, `hz_correct` columns — same shape as cat-A.
 
 Universal IVs: source.
 Experiment-specific IVs:
@@ -16,6 +16,7 @@ Experiment-specific IVs:
 
 from __future__ import annotations
 
+import math
 import re
 from pathlib import Path
 
@@ -23,7 +24,7 @@ import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.cat_c import CatCSpec, run_cat_c_experiment
 from pitchbench.experiments.helpers.music import (
-    SOLFEGE_TO_PC, extract_all_notes, midi_to_note, midi_to_solfege,
+    SOLFEGE_TO_PC, extract_all_notes, midi_to_freq, midi_to_note, midi_to_solfege,
     note_to_midi,
 )
 
@@ -57,7 +58,14 @@ PROMPT_DOREMI = (
     "by spaces, e.g. do mi sol#. Nothing else. Output only the answer."
 )
 
-PROMPTS = {"midi": PROMPT_MIDI, "spn": PROMPT_SPN, "doremi": PROMPT_DOREMI}
+PROMPT_HZ = (
+    "This audio contains multiple musical pitches played simultaneously. "
+    "List ALL pitch frequencies in Hz you hear, from lowest to highest. "
+    "Reply with ONLY the frequencies separated by spaces, e.g. 261.6 329.6 392.0. "
+    "Nothing else. Output only the answer."
+)
+
+PROMPTS = {"midi": PROMPT_MIDI, "spn": PROMPT_SPN, "doremi": PROMPT_DOREMI, "hz": PROMPT_HZ}
 
 
 def build_conditions() -> list[dict]:
@@ -132,15 +140,33 @@ def _syllable_to_pc(syl: str) -> int | None:
     return SOLFEGE_TO_PC.get(syl)
 
 
+def _hz_to_midi(hz: float) -> int:
+    return round(69 + 12 * math.log2(hz / 440.0))
+
+
+def _parse_hz_list(text: str) -> list[int]:
+    """Parse space-separated Hz values and round each to the nearest MIDI note."""
+    out: list[int] = []
+    for tok in re.findall(r"\d+(?:\.\d+)?", text):
+        v = float(tok)
+        if 16.0 <= v <= 20000.0:
+            out.append(_hz_to_midi(v))
+    return out
+
+
 def _set_exact(gt: list, pred: list) -> int:
     return int(set(gt) == set(pred))
 
 
 def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
-    raw_m, raw_s, raw_d = responses["midi"], responses["spn"], responses["doremi"]
-    midi_pred       = _parse_midi_list(raw_m)
-    spn_strings     = _parse_spn_strings(raw_s)
+    raw_m, raw_s, raw_d, raw_h = (
+        responses["midi"], responses["spn"],
+        responses["doremi"], responses.get("hz", ""),
+    )
+    midi_pred        = _parse_midi_list(raw_m)
+    spn_strings      = _parse_spn_strings(raw_s)
     doremi_syllables = _parse_doremi_syllables(raw_d)
+    hz_pred_midis    = _parse_hz_list(raw_h)
 
     # Convert to comparable scalars for set-exact-match scoring.
     spn_midis = [m for n in spn_strings if (m := note_to_midi(n)) is not None]
@@ -162,14 +188,15 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
         "raw_midi":       raw_m,
         "raw_spn":        raw_s,
         "raw_doremi":     raw_d,
-        # Display the model's tokens as the model emitted them.
+        "raw_hz":         raw_h,
         "midi_pred":      str(midi_pred),
         "spn_pred":       str(spn_strings),
         "doremi_pred":    str(doremi_syllables),
-        # Scoring uses the converted scalars.
+        "hz_pred":        str(hz_pred_midis),
         "midi_correct":   _set_exact(gt_midis, midi_pred),
         "spn_correct":    _set_exact(gt_midis, spn_midis),
         "doremi_correct": _set_exact(gt_pcs,   doremi_pcs),
+        "hz_correct":     _set_exact(gt_midis, hz_pred_midis),
     }
 
 
@@ -180,7 +207,7 @@ SPEC = CatCSpec(
     task_type="set",
     prompts_fn=prompts_for,
     record_fn=record_for,
-    headline_metrics=("midi", "spn", "doremi"),
+    headline_metrics=("midi", "spn", "doremi", "hz"),
     record_extras=("chord_type", "n_notes", "root_midi"),
     label_fn=lambda j: (
         f"{j['cond']['chord_type']:12s} "
