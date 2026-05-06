@@ -24,6 +24,12 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
+from pitchbench.experiments.helpers.timing_layout import (
+    cap_notes_for_total,
+    onsets_from_gaps,
+    sample_adaptive_gaps,
+    stable_cell_seed,
+)
 
 EXP_NAME       = Path(__file__).stem
 SOURCES        = config.pitchbench_b5_SOURCES
@@ -33,8 +39,6 @@ N_NOTES_OPTS   = config.pitchbench_b5_N_NOTES_OPTS
 RHYTHMS        = config.pitchbench_b5_RHYTHMS
 PITCH_PATTERNS = config.pitchbench_b5_PITCH_PATTERNS
 TOTAL_DUR_MS   = config.pitchbench_b5_TOTAL_DUR_MS
-IRR_GAP_MIN    = config.pitchbench_b5_IRR_GAP_MIN_MS
-IRR_GAP_MAX    = config.pitchbench_b5_IRR_GAP_MAX_MS
 SEED           = config.pitchbench_b5_SEED
 
 PROMPT = (
@@ -49,32 +53,39 @@ PROMPT = (
 def build_conditions() -> list[dict]:
     rows: list[dict] = []
     for src in SOURCES:
-        for n in N_NOTES_OPTS:
+        for n_req in N_NOTES_OPTS:
             for rhythm in RHYTHMS:
                 for pattern in PITCH_PATTERNS:
                     for dur in DURATIONS_MS:
-                        cell_seed = (SEED ^ hash((src, n, rhythm, pattern, dur))) & 0xFFFFFFFF
+                        n = cap_notes_for_total(n_req, dur, TOTAL_DUR_MS)
+                        if n < 1:
+                            continue
+
+                        cell_seed = stable_cell_seed(SEED, src, n_req, n, rhythm, pattern, dur)
                         sub_rng   = random.Random(cell_seed)
                         if pattern == "fixed_pitch":
                             base  = sub_rng.choice(PITCHES)
                             midis = [base] * n
                         else:
-                            midis = sub_rng.sample(PITCHES, n)
+                            if n <= len(PITCHES):
+                                midis = sub_rng.sample(PITCHES, n)
+                            else:
+                                midis = [sub_rng.choice(PITCHES) for _ in range(n)]
                         if rhythm == "regular":
                             total_gap_budget = TOTAL_DUR_MS - dur * n
-                            if total_gap_budget < 0:
-                                continue
                             gap_size = total_gap_budget // (n + 1)
+                            rem = total_gap_budget - gap_size * (n + 1)
                             gaps = [gap_size] * (n + 1)
+                            for i in range(rem):
+                                gaps[i] += 1
                         else:
-                            gaps = [sub_rng.randint(IRR_GAP_MIN, IRR_GAP_MAX) for _ in range(n + 1)]
-                            if sum(gaps) + dur * n > TOTAL_DUR_MS:
-                                continue
-                        onsets: list[int] = []
-                        cursor = gaps[0]
-                        for _ in range(n):
-                            onsets.append(cursor)
-                            cursor += dur + gaps[len(onsets)]
+                            gaps = sample_adaptive_gaps(
+                                sub_rng,
+                                n_notes=n,
+                                note_dur_ms=dur,
+                                total_dur_ms=TOTAL_DUR_MS,
+                            )
+                        onsets = onsets_from_gaps(gaps, n_notes=n, note_dur_ms=dur)
                         rows.append({
                             "source":        src,
                             "source_type":   "waveform" if src in config.WAVEFORMS else "instrument",

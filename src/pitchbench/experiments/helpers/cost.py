@@ -25,6 +25,10 @@ class _ModelUsage:
     total_tokens:      int   = 0
     cached_tokens:     int   = 0
     cost_usd:          float = 0.0
+    # True iff at least one call for this model returned a real cost number.
+    # Providers that don't expose USD cost (e.g. DashScope) leave this False so
+    # downstream renderers can show "—" instead of a misleading "$0.000000".
+    cost_reported:     bool  = False
 
 
 _lock: Lock                              = Lock()
@@ -34,13 +38,18 @@ _per_model: dict[str, _ModelUsage]       = {}
 def record(
     model_name: str,
     *,
-    prompt_tokens:     int   = 0,
-    completion_tokens: int   = 0,
-    total_tokens:      int   = 0,
-    cached_tokens:     int   = 0,
-    cost_usd:          float = 0.0,
+    prompt_tokens:     int          = 0,
+    completion_tokens: int          = 0,
+    total_tokens:      int          = 0,
+    cached_tokens:     int          = 0,
+    cost_usd:          float | None = None,
 ) -> None:
-    """Add a single call's usage to the running totals for ``model_name``."""
+    """Add a single call's usage to the running totals for ``model_name``.
+
+    Pass ``cost_usd=None`` (default) when the provider doesn't expose a cost
+    figure — token counts are still accumulated, but ``cost_reported`` stays
+    False so renderers can show "—" instead of "$0.000000".
+    """
     with _lock:
         u = _per_model.setdefault(model_name, _ModelUsage())
         u.calls             += 1
@@ -48,7 +57,9 @@ def record(
         u.completion_tokens += int(completion_tokens or 0)
         u.total_tokens      += int(total_tokens or (prompt_tokens + completion_tokens) or 0)
         u.cached_tokens     += int(cached_tokens or 0)
-        u.cost_usd          += float(cost_usd or 0.0)
+        if cost_usd is not None:
+            u.cost_usd      += float(cost_usd)
+            u.cost_reported  = True
 
 
 def get(model_name: str) -> dict[str, Any]:
@@ -82,20 +93,23 @@ def reset(model_name: str | None = None) -> None:
 
 
 def parse_openrouter_usage(usage: dict[str, Any] | None) -> dict[str, Any]:
-    """Normalise an OpenRouter ``usage`` block to the keys :func:`record` accepts.
+    """Normalise an OpenAI-shape ``usage`` block to the keys :func:`record` accepts.
 
-    OpenRouter (with ``usage: {include: true}``) returns the OpenAI shape plus a
-    ``cost`` field in USD. ``prompt_tokens_details.cached_tokens`` reports the
-    portion of the prompt served from cache, when available.
+    Used for both OpenRouter and DashScope (both speak the OpenAI chat-completions
+    schema). OpenRouter — with ``usage: {include: true}`` — returns the OpenAI
+    shape plus a ``cost`` field in USD; DashScope returns the same shape *without*
+    ``cost``. When the ``cost`` key is absent we set ``cost_usd`` to ``None`` so
+    the running tracker can distinguish "billed $0" from "cost not reported".
     """
     if not isinstance(usage, dict):
         return {}
-    details = usage.get("prompt_tokens_details") or {}
-    cached  = details.get("cached_tokens", 0) if isinstance(details, dict) else 0
+    details   = usage.get("prompt_tokens_details") or {}
+    cached    = details.get("cached_tokens", 0) if isinstance(details, dict) else 0
+    raw_cost  = usage.get("cost")
     return {
         "prompt_tokens":     usage.get("prompt_tokens", 0) or 0,
         "completion_tokens": usage.get("completion_tokens", 0) or 0,
         "total_tokens":      usage.get("total_tokens", 0) or 0,
         "cached_tokens":     cached or 0,
-        "cost_usd":          float(usage.get("cost", 0.0) or 0.0),
+        "cost_usd":          float(raw_cost) if raw_cost is not None else None,
     }

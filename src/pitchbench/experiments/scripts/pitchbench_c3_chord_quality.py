@@ -27,6 +27,7 @@ from pitchbench.experiments.helpers.cat_c import CatCSpec, run_cat_c_experiment
 from pitchbench.experiments.helpers.music import (
     FLAT_TO_SHARP, NOTE_NAMES, extract_chord_quality, midi_to_note, note_pc,
 )
+from pitchbench.experiments.helpers.timing_layout import stable_cell_seed
 
 EXP_NAME             = Path(__file__).stem
 QUALITIES            = config.pitchbench_c3_QUALITIES
@@ -73,7 +74,8 @@ def build_conditions() -> list[dict]:
                         if same:
                             src_arg, src_label = src, src
                         else:
-                            srcs = _mixed_sources(len(midis), hash((src, root, quality, dur)))
+                            mix_seed = stable_cell_seed(0, src, root, quality, dur)
+                            srcs = _mixed_sources(len(midis), mix_seed)
                             src_arg, src_label = srcs, "+".join(srcs)
                         for task in TASKS:
                             rows.append({

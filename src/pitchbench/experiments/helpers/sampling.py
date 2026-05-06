@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import csv
+import json
 import random
 from collections import defaultdict
+from pathlib import Path
 from typing import Any, Callable
 
 import pitchbench.config as config
@@ -122,3 +125,25 @@ def apply_default_sampling(
 
     sampled = stratified_sample(all_conds, n, key_fn, seed=cli_seed)
     return sampled, sampling_meta(len(all_conds), strata_label, n, cli_seed)
+
+
+def export_sampled_conditions_csv(exp_name: str, conds: list[dict]) -> Path:
+    """Write sampled condition rows to data/audio/<exp_name>/content_<exp_name>.csv."""
+    out_dir = config.AUDIO_DIR / exp_name
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"_content_{exp_name}.csv"
+
+    headers = sorted({k for c in conds for k in c.keys()})
+    with out_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+        for c in conds:
+            row: dict[str, Any] = {}
+            for k in headers:
+                v = c.get(k)
+                if isinstance(v, (dict, list, tuple, set)):
+                    row[k] = json.dumps(v, ensure_ascii=True, separators=(",", ":"))
+                else:
+                    row[k] = v
+            writer.writerow(row)
+    return out_path

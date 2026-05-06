@@ -26,6 +26,7 @@ import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
+from pitchbench.experiments.helpers.timing_layout import stable_cell_seed
 
 EXP_NAME                = Path(__file__).stem
 N_TRANSITIONS_OPTS      = config.pitchbench_d3_N_TRANSITIONS_OPTS
@@ -63,7 +64,15 @@ def build_conditions() -> list[dict]:
                 for step in STEP_SIZES_ST:
                     for note_dur in NOTE_DURATIONS_MS:
                         for trial in range(DEFAULT_TRIALS_PER_CELL):
-                            cell_seed = (DEFAULT_SEED ^ hash((src, base, n_t, step, note_dur, trial))) & 0xFFFFFFFF
+                            cell_seed = stable_cell_seed(
+                                DEFAULT_SEED,
+                                src,
+                                base,
+                                n_t,
+                                step,
+                                note_dur,
+                                trial,
+                            )
                             pattern = _build_pattern(n_t, cell_seed)
                             midis = [base]
                             cur = base

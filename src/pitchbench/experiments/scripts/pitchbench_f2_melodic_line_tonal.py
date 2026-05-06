@@ -187,6 +187,7 @@ def build_conditions() -> list[dict]:
     rows: list[dict] = []
 
     for chorale_id in DEFAULT_CHORALES:
+        print(f"Processing chorale {chorale_id}...")
         try:
             piece = m21.corpus.parse(chorale_id)
         except Exception as exc:
@@ -205,6 +206,7 @@ def build_conditions() -> list[dict]:
         sec_per_qL = 60.0 / qpm
 
         for x in range(1, N_VOICES + 1):
+            
             seg = _longest_no_cross_segment(voices, x)
             if seg is None:
                 print(f"  [SKIP] {chorale_id} x={x}: no non-crossing segment found")

@@ -1,10 +1,15 @@
 """
-a2 — Pitch with reference (anchored vs baseline).
+d7a — Pitch with reference, concat-audio format (anchored vs baseline).
 
-A reference tone is played first, then the target tone; the prompt tells
-the model what the reference is. Tests whether the model can use that
-anchor to identify the target more accurately — i.e. whether it can combine
-relative pitch perception with an absolute reference.
+A reference tone is played first, then the target tone, both packed into
+ONE waveform separated by silence; the prompt tells the model what the
+reference is. Tests relative-pitch identification under concat-audio input
+format — universally runnable across every model in the benchmark.
+
+Companion experiment: ``d7b`` delivers the SAME conditions with reference
+and target as two separate audio inputs, isolating the role of input format
+from the role of the linguistic anchor (only multi-audio capable models
+can run d7b).
 
 For every ``(ref_midi, interval, source)`` cell the script always emits BOTH
 an anchored record (audio = sequence([ref, target])) AND a baseline record
@@ -17,8 +22,8 @@ Universal IVs: source, source_type, midi (target).
 Experiment-specific IVs: condition, ref_midi, interval.
 
 Usage::
-    pitchbench --id a2 --preview
-    pitchbench --id a2 --models audio_flamingo_next_instruct
+    pitchbench --id d7a --preview
+    pitchbench --id d7a --models audio_flamingo_next_instruct
 """
 
 from __future__ import annotations

@@ -22,6 +22,12 @@ import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
+from pitchbench.experiments.helpers.timing_layout import (
+    cap_notes_for_total,
+    onsets_from_gaps,
+    sample_adaptive_gaps,
+    stable_cell_seed,
+)
 
 EXP_NAME        = Path(__file__).stem
 SOURCES         = config.pitchbench_b4_SOURCES
@@ -30,8 +36,6 @@ DURATIONS_MS    = config.pitchbench_b4_DURATIONS_MS
 N_DISTRACTORS   = config.pitchbench_b4_N_DISTRACTORS
 TARGET_POS_OPTS = config.pitchbench_b4_TARGET_POS_OPTS
 TOTAL_DUR_MS    = config.pitchbench_b4_TOTAL_DUR_MS
-GAP_MIN_MS      = config.pitchbench_b4_GAP_MIN_MS
-GAP_MAX_MS      = config.pitchbench_b4_GAP_MAX_MS
 SEED            = config.pitchbench_b4_SEED
 
 
@@ -42,10 +46,18 @@ def build_conditions() -> list[dict]:
             for nd in N_DISTRACTORS:
                 for pos in TARGET_POS_OPTS:
                     for dur in DURATIONS_MS:
-                        cell_seed = (SEED ^ hash((src, tgt, nd, pos, dur))) & 0xFFFFFFFF
+                        requested_n = nd + 1
+                        n = cap_notes_for_total(requested_n, dur, TOTAL_DUR_MS)
+                        if n < 1:
+                            continue
+
+                        cell_seed = stable_cell_seed(SEED, src, tgt, nd, pos, dur, n)
                         sub_rng   = random.Random(cell_seed)
                         candidates  = [p for p in PITCHES if p != tgt]
-                        distractors = sub_rng.sample(candidates, nd)
+                        if n > len(candidates) + 1:
+                            n = len(candidates) + 1
+                        n_distractors = n - 1
+                        distractors = sub_rng.sample(candidates, n_distractors)
                         notes = list(distractors)
                         if pos == "first":
                             notes.insert(0, tgt)
@@ -53,24 +65,20 @@ def build_conditions() -> list[dict]:
                             notes.append(tgt)
                         else:
                             notes.insert(len(notes) // 2, tgt)
-                        gaps = [
-                            sub_rng.randrange(GAP_MIN_MS, GAP_MAX_MS + 10, 10)
-                            for _ in range(len(notes) + 1)
-                        ]
-                        if sum(gaps) + dur * len(notes) > TOTAL_DUR_MS:
-                            continue
-                        onsets: list[int] = []
-                        cursor = gaps[0]
-                        for i, _ in enumerate(notes):
-                            onsets.append(cursor)
-                            cursor += dur + gaps[i + 1]
+                        gaps = sample_adaptive_gaps(
+                            sub_rng,
+                            n_notes=len(notes),
+                            note_dur_ms=dur,
+                            total_dur_ms=TOTAL_DUR_MS,
+                        )
+                        onsets = onsets_from_gaps(gaps, n_notes=len(notes), note_dur_ms=dur)
                         target_idx = notes.index(tgt)
                         rows.append({
                             "source":           src,
                             "source_type":      "waveform" if src in config.WAVEFORMS else "instrument",
                             "midi":             tgt,
                             "duration_ms":      dur,
-                            "n_distractors":    nd,
+                            "n_distractors":    n_distractors,
                             "target_pos":       pos,
                             "midi_seq":         notes,
                             "onsets_ms":        onsets,

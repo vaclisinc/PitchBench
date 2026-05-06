@@ -2,8 +2,10 @@
 Central ALM (Audio Language Model) facade for PitchBench.
 
 Single public entry point: ``query_alm`` — routes the call to either
-  • a local FastAPI model server (registered in ``config.MODEL_URLS``), or
-  • OpenRouter chat-completions API (model_name starts with ``openrouter/``).
+  • a local FastAPI model server (registered in ``config.MODEL_URLS``),
+  • OpenRouter chat-completions API (model_name starts with ``openrouter/``), or
+  • Alibaba DashScope OpenAI-compatible chat-completions
+    (model_name starts with ``dashscope/``, e.g. ``dashscope/qwen3-omni-flash``).
 
 Every call returns a structured dict capturing the cleaned text result, the
 provider's raw JSON response, and a ``model_params`` block holding everything
@@ -23,6 +25,7 @@ from __future__ import annotations
 import base64
 import getpass
 import hashlib
+import json
 import os
 import re
 import sys
@@ -44,6 +47,7 @@ import pitchbench.config as config
 from pitchbench.experiments.helpers import cost as cost_tracker
 
 OPENROUTER_PREFIX = "openrouter/"
+DASHSCOPE_PREFIX  = "dashscope/"
 MANUAL_MODEL_NAME = "manual"
 
 
@@ -93,6 +97,13 @@ def get_model_info(model_name: str) -> dict:
             "checkpoint":          "openrouter",
             "provider":            "openrouter",
             "openrouter_model_id": model_name[len(OPENROUTER_PREFIX):],
+        }
+    if model_name.startswith(DASHSCOPE_PREFIX):
+        return {
+            "model":              model_name,
+            "checkpoint":         "dashscope",
+            "provider":           "dashscope",
+            "dashscope_model_id": model_name[len(DASHSCOPE_PREFIX):],
         }
     url = config.MODEL_URLS.get(model_name)
     if url is None or url == "openrouter":
@@ -350,6 +361,235 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
     raise RuntimeError(f"OpenRouter call failed after 3 retries: {last_err}")
 
 
+# ── DashScope handler ─────────────────────────────────────────────────────────
+
+def _resolve_dashscope_key() -> str:
+    """Return the DashScope API key, prompting on a TTY if missing."""
+    api_key = os.environ.get("DASHSCOPE_API_KEY")
+    if api_key:
+        return api_key
+
+    if not sys.stdin.isatty():
+        raise SystemExit(
+            "DASHSCOPE_API_KEY not set. Add it to .env or export it before "
+            "calling DashScope."
+        )
+
+    print("DASHSCOPE_API_KEY not found in environment or .env.")
+    print("Get one at https://bailian.console.alibabacloud.com/")
+    try:
+        api_key = getpass.getpass("Paste your DashScope key (input hidden): ").strip()
+    except (EOFError, KeyboardInterrupt):
+        raise SystemExit("\nNo key provided — aborting.")
+    if not api_key:
+        raise SystemExit("No key provided — aborting.")
+
+    os.environ["DASHSCOPE_API_KEY"] = api_key
+    try:
+        save = input("Save to ./.env for next time? [Y/n]: ").strip().lower()
+    except EOFError:
+        save = ""
+    if save in ("", "y", "yes"):
+        env_path = Path(".env")
+        line = f'DASHSCOPE_API_KEY="{api_key}"\n'
+        existing = env_path.read_text() if env_path.exists() else ""
+        if "DASHSCOPE_API_KEY=" in existing:
+            existing = re.sub(
+                r"^DASHSCOPE_API_KEY=.*$", line.rstrip(), existing, flags=re.M,
+            )
+            env_path.write_text(existing if existing.endswith("\n") else existing + "\n")
+        else:
+            sep = "" if existing == "" or existing.endswith("\n") else "\n"
+            env_path.write_text(existing + sep + line)
+        print(f"Saved to {env_path.resolve()}")
+    return api_key
+
+
+def _audio_format_from_path(audio_path: str) -> str:
+    """Return the DashScope ``format`` field derived from the file extension."""
+    ext = Path(audio_path).suffix.lower().lstrip(".") or "wav"
+    # DashScope accepts "wav", "mp3", "aac", "amr", "3gp", "3gpp"; map common aliases.
+    return {"wave": "wav", "m4a": "aac"}.get(ext, ext)
+
+
+def _dashscope_audio_block(audio_path: str) -> dict:
+    """Build an OpenAI-compatible ``input_audio`` block for DashScope.
+
+    DashScope expects the base64 wrapped as a data URI (``data:;base64,...``),
+    unlike OpenRouter which takes the raw base64 string.
+    """
+    return {
+        "type": "input_audio",
+        "input_audio": {
+            "data":   f"data:;base64,{_audio_b64(audio_path)}",
+            "format": _audio_format_from_path(audio_path),
+        },
+    }
+
+
+def _dashscope_stream_text(
+    body: dict, headers: dict, timeout_s: float, model_id: str,
+) -> tuple[str, dict, dict | None]:
+    """POST a streaming chat-completion to DashScope and assemble the text.
+
+    Qwen-Omni models *require* ``stream=true``. We stream the SSE response,
+    concatenate ``choices[0].delta.content`` deltas into the final string,
+    and pull ``usage`` from the last chunk (DashScope honours
+    ``stream_options.include_usage``). Returns ``(text, raw_response, usage)``.
+    """
+    last_err: str | None = None
+    for attempt in range(3):
+        try:
+            with requests.post(
+                f"{config.DASHSCOPE_BASE_URL}/chat/completions",
+                json=body, headers=headers, timeout=timeout_s, stream=True,
+            ) as resp:
+                if resp.status_code in (429, 500, 502, 503, 504):
+                    last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
+                    time.sleep(2 ** attempt)
+                    continue
+                if not resp.ok:
+                    raise RuntimeError(
+                        f"DashScope HTTP {resp.status_code} for model {model_id!r}: "
+                        f"{resp.text[:500]}"
+                    )
+                pieces: list[str] = []
+                usage: dict | None = None
+                last_chunk: dict | None = None
+                for line in resp.iter_lines(decode_unicode=True):
+                    if not line or not line.startswith("data:"):
+                        continue
+                    payload = line[len("data:"):].strip()
+                    if payload == "[DONE]":
+                        break
+                    try:
+                        chunk = json.loads(payload)
+                    except ValueError:
+                        continue
+                    last_chunk = chunk
+                    if chunk.get("usage"):
+                        usage = chunk["usage"]
+                    for choice in chunk.get("choices") or []:
+                        delta = choice.get("delta") or {}
+                        c = delta.get("content")
+                        if isinstance(c, str):
+                            pieces.append(c)
+                        elif isinstance(c, list):
+                            for p in c:
+                                if isinstance(p, dict) and isinstance(p.get("text"), str):
+                                    pieces.append(p["text"])
+                # Use the final SSE chunk as the canonical raw_response — it carries
+                # finish_reason and (with include_usage) the usage block.
+                raw = last_chunk or {}
+                return "".join(pieces), raw, usage
+        except requests.exceptions.RequestException as e:
+            last_err = str(e)
+            time.sleep(2 ** attempt)
+    raise RuntimeError(f"DashScope call failed after 3 retries: {last_err}")
+
+
+def _dashscope_text(model_name: str, audio_path: str, prompt: str,
+                    max_new_tokens: int, temperature: float, timeout_s: float) -> dict:
+    api_key = _resolve_dashscope_key()
+    ds_model = model_name[len(DASHSCOPE_PREFIX):]
+
+    body = {
+        "model": ds_model,
+        "messages": [{
+            "role": "user",
+            "content": [
+                _dashscope_audio_block(audio_path),
+                {"type": "text", "text": prompt},
+            ],
+        }],
+        "max_tokens":     max_new_tokens,
+        "temperature":    temperature,
+        "stream":         True,
+        "stream_options": {"include_usage": True},
+    }
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type":  "application/json",
+    }
+
+    text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model)
+    usage = cost_tracker.parse_openrouter_usage(raw_usage)  # OpenAI-shape; cost defaults to 0
+    if usage:
+        cost_tracker.record(model_name, **usage)
+    return {"result": text, "raw_response": raw,
+            "top_tokens": None, "embedding": None,
+            "usage": usage or None}
+
+
+def _dashscope_text_multi(
+    model_name: str, audio_paths: list[str], prompt: str,
+    max_new_tokens: int, temperature: float, timeout_s: float,
+) -> dict:
+    """Multi-audio DashScope call — interleaves audio + text blocks via <AUDIO_N> markers."""
+    api_key = _resolve_dashscope_key()
+    ds_model = model_name[len(DASHSCOPE_PREFIX):]
+
+    parts = _AUDIO_PLACEHOLDER_RE.split(prompt)
+    content: list[dict] = []
+    if parts[0]:
+        content.append({"type": "text", "text": parts[0]})
+    for i in range(1, len(parts), 2):
+        idx = int(parts[i]) - 1
+        if idx < 0 or idx >= len(audio_paths):
+            raise ValueError(
+                f"Prompt references <AUDIO{idx + 1}> but only "
+                f"{len(audio_paths)} audio file(s) provided."
+            )
+        content.append(_dashscope_audio_block(audio_paths[idx]))
+        if i + 1 < len(parts) and parts[i + 1]:
+            content.append({"type": "text", "text": parts[i + 1]})
+    if not any(b["type"] == "input_audio" for b in content):
+        raise ValueError(
+            "Prompt has no <AUDIO_N> placeholders — use query_alm for "
+            "single-audio queries."
+        )
+
+    body = {
+        "model":          ds_model,
+        "messages":       [{"role": "user", "content": content}],
+        "max_tokens":     max_new_tokens,
+        "temperature":    temperature,
+        "stream":         True,
+        "stream_options": {"include_usage": True},
+    }
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type":  "application/json",
+    }
+
+    try:
+        text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model)
+    except RuntimeError as exc:
+        # DashScope returns HTTP 400 with messages like
+        #   "Multiple inputs of the same modality or mixed modality inputs are
+        #    currently not applicable to the omni model."
+        # for omni models that can't accept multiple audios. Convert to
+        # NotImplementedError so the d7b probe / capability-skip logic catches
+        # it rather than aborting the whole run.
+        msg_lower = str(exc).lower()
+        if "http 400" in msg_lower and (
+            "not applicable" in msg_lower
+            or "multiple inputs" in msg_lower
+            or "mixed modality" in msg_lower
+        ):
+            raise NotImplementedError(
+                f"{model_name} does not support multi-audio queries: "
+                f"{str(exc)[:300]}"
+            ) from exc
+        raise
+    usage = cost_tracker.parse_openrouter_usage(raw_usage)
+    if usage:
+        cost_tracker.record(model_name, **usage)
+    return {"result": text, "raw_response": raw,
+            "top_tokens": None, "embedding": None,
+            "usage": usage or None}
+
+
 # ── public API ────────────────────────────────────────────────────────────────
 
 def query_alm(
@@ -367,9 +607,11 @@ def query_alm(
 
     Args:
         model_name:     a local slug from ``config.MODEL_URLS`` (e.g.
-                        ``"audio_flamingo_next_instruct"``) or an OpenRouter slug
+                        ``"audio_flamingo_next_instruct"``), an OpenRouter slug
                         prefixed ``openrouter/`` (e.g.
-                        ``"openrouter/google/gemini-2.5-flash"``).
+                        ``"openrouter/google/gemini-2.5-flash"``), or a
+                        DashScope slug prefixed ``dashscope/`` (e.g.
+                        ``"dashscope/qwen3-omni-flash"``).
         audio_path:     path to a WAV file.
         prompt:         the text instruction. May be empty when ``mode='embed'``.
         max_new_tokens: generation budget.
@@ -387,7 +629,10 @@ def query_alm(
             top_tokens    list | None   per-step top-k token probs (probs mode only)
             embedding     list | None   mean-pooled audio embedding (embed mode only)
             usage         dict | None   token counts (OpenRouter only); None for local
-            cost_usd      float         USD cost of this single call (OpenRouter only; 0.0 otherwise)
+            cost_usd      float | None  USD cost of this single call when the
+                                        provider reports it (OpenRouter); ``None``
+                                        for providers that don't expose cost
+                                        (DashScope, local servers, manual)
             model_params  dict          everything needed to reproduce the call
             model_info    dict          /health response or synthetic OpenRouter info
             elapsed_s     float         wall-clock latency
@@ -403,12 +648,15 @@ def query_alm(
     audio_path    = str(audio_path)
     is_manual     = model_name == MANUAL_MODEL_NAME
     is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
+    is_dashscope  = model_name.startswith(DASHSCOPE_PREFIX)
     info          = get_model_info(model_name)
 
     if is_manual:
         endpoint = "manual"
     elif is_openrouter:
         endpoint = "openrouter"
+    elif is_dashscope:
+        endpoint = config.DASHSCOPE_BASE_URL
     else:
         endpoint = config.MODEL_URLS.get(model_name)
 
@@ -440,6 +688,14 @@ def query_alm(
         result = _openrouter_text(
             model_name, audio_path, prompt, max_new_tokens, temperature, timeout_s,
         )
+    elif is_dashscope:
+        if mode == "embed":
+            raise NotImplementedError("DashScope does not expose audio embeddings.")
+        if mode == "probs":
+            raise NotImplementedError("DashScope does not expose top-k token probabilities.")
+        result = _dashscope_text(
+            model_name, audio_path, prompt, max_new_tokens, temperature, timeout_s,
+        )
     else:
         if mode == "text":
             result = _local_text(model_name, audio_path, prompt, max_new_tokens, timeout_s)
@@ -455,14 +711,15 @@ def query_alm(
             raise ValueError(f"Unknown mode: {mode!r}")
     elapsed = time.time() - start
 
-    usage = result.get("usage")
+    usage    = result.get("usage")
+    raw_cost = (usage or {}).get("cost_usd")
     return {
         "result":       result["result"],
         "raw_response": result["raw_response"],
         "top_tokens":   result["top_tokens"],
         "embedding":    result["embedding"],
         "usage":        usage,
-        "cost_usd":     float((usage or {}).get("cost_usd", 0.0)),
+        "cost_usd":     None if raw_cost is None else float(raw_cost),
         "model_params": model_params,
         "model_info":   info,
         "elapsed_s":    round(elapsed, 3),
@@ -480,8 +737,9 @@ def _print_running_cost(model_name: str) -> None:
     u = cost_tracker.get(model_name)
     if not u["calls"]:
         return
+    cost_part = f", ${u['cost_usd']:.4f}" if u.get("cost_reported") else ""
     print(f"        cost   → {u['calls']:,} calls, "
-          f"{u['total_tokens']:,} tok, ${u['cost_usd']:.4f}")
+          f"{u['total_tokens']:,} tok{cost_part}")
 
 
 _AUDIO_PLACEHOLDER_RE = re.compile(r"<AUDIO(\d+)>")
@@ -493,11 +751,16 @@ def _multi_audio_sha256(audio_paths: list[str]) -> list[str]:
 
 def _post_local_multi_with_retry(
     url: str, audio_paths: list[str], *, data: dict, timeout_s: float,
+    accept_404_405_501: bool = False,
 ) -> requests.Response:
     """Multi-file variant of :func:`_post_local_with_retry`.
 
     POSTs ``files=[(name, fh, ct), ...]`` so each upload arrives as its own
     ``files`` form part. Mirrors the single-file retry / 5xx surfacing logic.
+
+    When ``accept_404_405_501`` is set, those status codes return without
+    raising so the caller can re-raise as :class:`NotImplementedError` —
+    used to signal "this server's processor cannot handle multi-audio".
     """
     last_err: str | None = None
     for attempt in range(_LOCAL_RETRY_ATTEMPTS):
@@ -509,6 +772,8 @@ def _post_local_multi_with_retry(
                 opened.append(fh)
                 files_payload.append(("files", (os.path.basename(p), fh, "audio/wav")))
             resp = requests.post(url, data=data, files=files_payload, timeout=timeout_s)
+            if accept_404_405_501 and resp.status_code in (404, 405, 501):
+                return resp
             if resp.status_code in _LOCAL_RETRY_STATUSES:
                 last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
                 if attempt < _LOCAL_RETRY_ATTEMPTS - 1:
@@ -541,11 +806,35 @@ def _local_text_multi(
     max_new_tokens: int, timeout_s: float,
 ) -> dict:
     url = config.MODEL_URLS[model_name]
-    resp = _post_local_multi_with_retry(
-        f"{url}/analyze/upload_multi", audio_paths,
-        data={"prompt": prompt, "max_new_tokens": max_new_tokens},
-        timeout_s=timeout_s,
-    )
+    try:
+        resp = _post_local_multi_with_retry(
+            f"{url}/analyze/upload_multi", audio_paths,
+            data={"prompt": prompt, "max_new_tokens": max_new_tokens},
+            timeout_s=timeout_s, accept_404_405_501=True,
+        )
+    except RuntimeError as exc:
+        # Fallback: if the local server is running an older build that doesn't
+        # have the 501 short-circuit (e.g. AFN before /analyze/upload_multi
+        # was added), the multi-audio call goes all the way into the processor
+        # and surfaces as a 500 carrying the AFN-specific 1:1 alignment error.
+        # Treat that as a capability signal too, so the probe skips cleanly
+        # without the user needing to restart the server first.
+        msg_lower = str(exc).lower()
+        if "must match 1:1" in msg_lower or "they must match" in msg_lower:
+            raise NotImplementedError(
+                f"{model_name} does not support multi-audio queries "
+                f"(processor enforces text:audio = 1:1): {str(exc)[:300]}"
+            ) from exc
+        raise
+    if resp.status_code in (404, 405, 501):
+        try:
+            detail = resp.json().get("detail", resp.text[:200])
+        except ValueError:
+            detail = resp.text[:200]
+        raise NotImplementedError(
+            f"{model_name} does not support multi-audio queries "
+            f"(HTTP {resp.status_code}): {detail}"
+        )
     raw = resp.json()
     return {"result": raw.get("result", ""), "raw_response": raw,
             "top_tokens": None, "embedding": None, "usage": None}
@@ -661,6 +950,7 @@ def query_alm_multi(
 
     is_manual     = model_name == MANUAL_MODEL_NAME
     is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
+    is_dashscope  = model_name.startswith(DASHSCOPE_PREFIX)
     info          = get_model_info(model_name)
 
     if is_manual:
@@ -670,6 +960,8 @@ def query_alm_multi(
 
     if is_openrouter:
         endpoint = "openrouter"
+    elif is_dashscope:
+        endpoint = config.DASHSCOPE_BASE_URL
     else:
         endpoint = config.MODEL_URLS.get(model_name)
 
@@ -693,20 +985,25 @@ def query_alm_multi(
         result = _openrouter_text_multi(
             model_name, paths_str, prompt, max_new_tokens, temperature, timeout_s,
         )
+    elif is_dashscope:
+        result = _dashscope_text_multi(
+            model_name, paths_str, prompt, max_new_tokens, temperature, timeout_s,
+        )
     else:
         result = _local_text_multi(
             model_name, paths_str, prompt, max_new_tokens, timeout_s,
         )
     elapsed = time.time() - start
 
-    usage = result.get("usage")
+    usage    = result.get("usage")
+    raw_cost = (usage or {}).get("cost_usd")
     return {
         "result":       result["result"],
         "raw_response": result["raw_response"],
         "top_tokens":   None,
         "embedding":    None,
         "usage":        usage,
-        "cost_usd":     float((usage or {}).get("cost_usd", 0.0)),
+        "cost_usd":     None if raw_cost is None else float(raw_cost),
         "model_params": model_params,
         "model_info":   info,
         "elapsed_s":    round(elapsed, 3),
