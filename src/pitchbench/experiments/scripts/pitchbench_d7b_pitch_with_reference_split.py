@@ -1,30 +1,46 @@
 """
-d9 — Pitch with reference (split-audio variant of d7).
+d7b — Pitch with reference, split-audio format (companion to d7a).
 
-Same hypothesis as d7 — does an explicit reference tone help the model nail
-the target pitch — but the reference and target are delivered as TWO
-SEPARATE audio inputs (Audio 1 = reference, Audio 2 = target) instead of
-being concatenated into a single ``sequence`` WAV.
+Same conditions and same hypothesis as d7a — does an explicit reference
+tone help the model nail the target pitch — but the reference and target
+are delivered as TWO SEPARATE audio inputs (Audio 1 = reference, Audio 2
+= target) instead of being concatenated into a single ``sequence`` WAV.
 
-This isolates "the model can't temporally segment the two tones" from
-"the model can't use a reference at all": d7 packages both tones in one
-stream + tells the model which one is first via text, while d9 lets the
-chat template attach two distinct audio blocks. Comparing d7-anchored vs.
-d9 should show how much of d7's accuracy comes from the linguistic anchor
-versus the structured input format.
+Comparing d7a (concat-audio) and d7b (split-audio) on the same model
+isolates: how much of d7a's accuracy comes from the linguistic anchor vs.
+how much was being suppressed by the temporal-segmentation demand of the
+concat format. Early Gemini results show d7a ≈ 17 %, d7b ≈ 38 %, suggesting
+relative-pitch ability is real but format-bound.
 
-Anchored only — d7 already provides the no-reference baseline; running it
-here would just be duplication.
+Anchored only — d7a already provides the no-reference baseline; running
+it here would just be duplication.
 
 Universal IVs: source, source_type, midi (target).
 Experiment-specific IVs: ref_midi, interval.
 
-Reuses ``config.pitchbench_d7_*`` for stimulus parameters so the two
-experiments are directly comparable.
+Reuses ``config.pitchbench_d7_*`` for stimulus parameters so d7a and d7b
+are directly comparable on overlapping models.
+
+Model compatibility
+-------------------
+Each target model is **probed once at the start of the run** by issuing a
+tiny multi-audio call. Models whose server returns 501 (or whose API path
+raises ``NotImplementedError``) are skipped with a one-line message; the
+run continues with the supported subset.
+
+Known incompatible:
+  * ``audio_flamingo_next_instruct`` — AFN's processor enforces
+    ``len(text) == len(audio)`` (see ``processing_audioflamingonext.py:174``),
+    so a single conversation with two audio blocks always fails the 1:1
+    check. The local server returns 501 for ``/analyze/upload_multi``.
+
+Known compatible (probed and verified):
+  * OpenRouter ``google/gemini-2.5-flash`` — works well; main d7b target.
+  * Other multi-audio capable providers should pass the probe automatically.
 
 Usage::
-    pitchbench --id d9 --preview
-    pitchbench --id d9 --models audio_flamingo_next_instruct
+    pitchbench --id d7b --preview
+    pitchbench --id d7b --models openrouter/google/gemini-2.5-flash
 """
 
 from __future__ import annotations
@@ -35,7 +51,7 @@ from pathlib import Path
 import pitchbench.config as config
 import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.api import (
-    get_model_info, query_four_formats_multi,
+    get_model_info, query_alm_multi, query_four_formats_multi,
 )
 from pitchbench.experiments.helpers.audit import pitch_record_audit_str
 from pitchbench.experiments.helpers.dispatcher import dispatch
@@ -86,39 +102,46 @@ def wavs_for(c: dict) -> tuple[Path, Path]:
 
 
 def prompts_for(c: dict) -> dict[str, str]:
+    """Build the four-format prompts.
+
+    Audio Flamingo Next's chat-template processor requires text and audio
+    blocks to be 1:1 within a single user message — i.e. every audio must be
+    preceded by exactly one text segment, with no trailing text after the last
+    audio. The prompts below are written so the placeholder split lands as
+    ``[long_intro_text, AUDIO1, short_label_text, AUDIO2]`` (2 text : 2 audio).
+    """
     ref_midi = c["ref_midi"]
     ref_note = midi_to_note(ref_midi)
     ref_solf = midi_to_solfege(ref_midi)
     ref_hz   = f"{midi_to_freq(ref_midi):.2f}"
     return {
         "midi": (
-            f"You will be given two audio inputs. The FIRST audio is a reference "
-            f"tone whose MIDI note number is {ref_midi}: <AUDIO1>. The SECOND "
-            f"audio is the target tone: <AUDIO2>. What is the MIDI note number "
-            f"of the target tone (the second audio)? "
-            f"Reply with ONLY the integer."
+            f"You will hear two audios. Audio 1 is a reference tone whose MIDI "
+            f"note number is {ref_midi}. Audio 2 is the target tone. What is "
+            f"the MIDI note number of Audio 2? Reply with ONLY the integer.\n"
+            f"Audio 1: <AUDIO1>\nAudio 2: <AUDIO2>"
         ),
         "spn": (
-            f"You will be given two audio inputs. The FIRST audio is a reference "
-            f"tone — note name {ref_note}: <AUDIO1>. The SECOND audio is the "
-            f"target tone: <AUDIO2>. What is the note name and octave of the "
-            f"target tone (the second audio), e.g. C4, F#3? "
-            f"Reply with ONLY the note name in Scientific Pitch Notation."
+            f"You will hear two audios. Audio 1 is a reference tone — note "
+            f"name {ref_note}. Audio 2 is the target tone. What is the note "
+            f"name and octave of Audio 2, e.g. C4, F#3? Reply with ONLY the "
+            f"note name in Scientific Pitch Notation.\n"
+            f"Audio 1: <AUDIO1>\nAudio 2: <AUDIO2>"
         ),
         "doremi": (
-            f"You will be given two audio inputs. The FIRST audio is a reference "
-            f"tone — solfège syllable '{ref_solf}' "
-            f"(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B): <AUDIO1>. The "
-            f"SECOND audio is the target tone: <AUDIO2>. What is the solfège "
-            f"syllable and accidental (if needed) of the target tone "
-            f"(the second audio)? Reply with ONLY the syllable and accidental."
+            f"You will hear two audios. Audio 1 is a reference tone — solfège "
+            f"syllable '{ref_solf}' (fixed-do: do=C re=D mi=E fa=F sol=G la=A "
+            f"si=B). Audio 2 is the target tone. What is the solfège syllable "
+            f"and accidental (if needed) of Audio 2? Reply with ONLY the "
+            f"syllable and accidental.\n"
+            f"Audio 1: <AUDIO1>\nAudio 2: <AUDIO2>"
         ),
         "hz": (
-            f"You will be given two audio inputs. The FIRST audio is a reference "
-            f"tone at {ref_hz} Hz: <AUDIO1>. The SECOND audio is the target "
-            f"tone: <AUDIO2>. What is the pitch frequency of the target tone "
-            f"(the second audio) in Hertz? "
-            f"Reply with ONLY a number (the frequency in Hz)."
+            f"You will hear two audios. Audio 1 is a reference tone at "
+            f"{ref_hz} Hz. Audio 2 is the target tone. What is the pitch "
+            f"frequency of Audio 2 in Hertz? Reply with ONLY a number "
+            f"(the frequency in Hz).\n"
+            f"Audio 1: <AUDIO1>\nAudio 2: <AUDIO2>"
         ),
     }
 
@@ -132,6 +155,32 @@ def _parse_args() -> argparse.Namespace:
                    default=config.DEFAULT_SAMPLE_SEED, metavar="SEED")
     args, _ = p.parse_known_args()
     return args
+
+
+def _probe_multi_audio_supported(model_name: str, probe_audios: list[str]) -> bool:
+    """One-shot probe: can ``model_name`` accept a multi-audio query?
+
+    Issues a tiny 2-audio call with a 4-token budget. Returns False on
+    ``NotImplementedError`` (local server replied 501, or OpenRouter signalled
+    the model can't accept the request shape) — caller should then skip the
+    model. Returns True otherwise. The probe call is wasted compute (a few
+    cents on OpenRouter, ~1 s on a local GPU) but reliably catches
+    architectural incompatibility before the full run.
+
+    Note: a successful probe does NOT guarantee the model actually attends to
+    both audios — only that the API path works. Quality of multi-audio
+    handling has to be validated empirically per model.
+    """
+    try:
+        query_alm_multi(
+            model_name, probe_audios,
+            prompt="<AUDIO1>\n<AUDIO2>\nReply with one word.",
+            max_new_tokens=4,
+            timeout_s=60.0,
+        )
+        return True
+    except NotImplementedError:
+        return False
 
 
 def _label(j: dict) -> str:
@@ -267,9 +316,29 @@ def _run(mode: str) -> dict | None:
     for line in sampling_summary_lines(s_meta):
         print(line)
 
+    # Probe each target for multi-audio support before committing to the run.
+    # Use the first sampled condition's audios — they're already cached on disk
+    # so the probe is just an HTTP roundtrip.
+    probe_ref, probe_tgt = wavs_for(conds[0])
+    probe_audios = [str(probe_ref), str(probe_tgt)]
+
+    print("\nProbing multi-audio support...")
+    supported: list[str] = []
+    for m in targets:
+        print(f"  {m:50}", end=" ", flush=True)
+        if _probe_multi_audio_supported(m, probe_audios):
+            print("OK")
+            supported.append(m)
+        else:
+            print("not supported — skipping")
+
+    if not supported:
+        print("\nNo target model supports multi-audio queries; nothing to run.")
+        return None
+
     run_dir = make_run_dir(EXP_NAME)
     summaries: dict[str, dict] = {}
-    for m in targets:
+    for m in supported:
         summaries[m] = _run_one_model(m, conds, run_dir, s_meta)
     save_comparison(run_dir, summaries, EXP_NAME)
     return extract_format_accuracies(run_dir, list(summaries.keys()))

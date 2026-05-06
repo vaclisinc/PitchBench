@@ -413,7 +413,13 @@ def _format_marginals_block(
 # ── LLM usage / cost block ────────────────────────────────────────────────────
 
 def _format_usage_block(usage: dict[str, Any]) -> list[str]:
-    """Render an LLM USAGE block; returns [] when nothing was billed (local models)."""
+    """Render an LLM USAGE block; returns [] when no calls were recorded.
+
+    Token counts are always shown when there were any calls. The cost line is
+    only emitted when the provider actually reported a USD cost (e.g.
+    OpenRouter); for DashScope / local servers we suppress it rather than
+    show a misleading "$0.000000".
+    """
     if not usage or not usage.get("calls"):
         return []
     lines = ["", "LLM USAGE", "=" * 50,
@@ -424,7 +430,10 @@ def _format_usage_block(usage: dict[str, Any]) -> list[str]:
     cached = usage.get("cached_tokens", 0)
     if cached:
         lines.append(f"  {'cached prompt tokens':<22} {cached:>12,}")
-    lines.append(f"  {'cost (USD)':<22} {'$' + format(usage.get('cost_usd', 0.0), '.6f'):>12}")
+    if usage.get("cost_reported"):
+        lines.append(
+            f"  {'cost (USD)':<22} {'$' + format(usage.get('cost_usd', 0.0), '.6f'):>12}"
+        )
     return lines
 
 
@@ -649,21 +658,26 @@ def write_session_cost_summary(
     Returns the path of the .txt file, or ``None`` if no cost was recorded
     anywhere (in which case nothing is written).
     """
-    grand_calls  = 0
-    grand_tokens = 0
-    grand_cost   = 0.0
-    per_exp_total: list[tuple[str, int, int, float]] = []
+    grand_calls    = 0
+    grand_tokens   = 0
+    grand_cost     = 0.0
+    grand_reported = False
+    per_exp_total: list[tuple[str, int, int, float, bool]] = []
     for exp_name in sorted(per_experiment):
         e_calls = e_toks = 0
         e_cost  = 0.0
+        e_reported = False
         for u in per_experiment[exp_name].values():
             e_calls += u.get("calls", 0)
             e_toks  += u.get("total_tokens", 0)
-            e_cost  += u.get("cost_usd", 0.0)
-        per_exp_total.append((exp_name, e_calls, e_toks, e_cost))
+            e_cost  += u.get("cost_usd", 0.0) or 0.0
+            if u.get("cost_reported"):
+                e_reported = True
+        per_exp_total.append((exp_name, e_calls, e_toks, e_cost, e_reported))
         grand_calls  += e_calls
         grand_tokens += e_toks
         grand_cost   += e_cost
+        grand_reported = grand_reported or e_reported
 
     if grand_calls == 0:
         return None
@@ -677,27 +691,37 @@ def write_session_cost_summary(
         "experiments":    per_experiment,
         "total_calls":    grand_calls,
         "total_tokens":   grand_tokens,
-        "total_cost_usd": round(grand_cost, 6),
+        # `total_cost_usd` is `None` when no provider in the session reported a
+        # cost number — distinguishes "no spend known" from a real $0 charge.
+        "total_cost_usd": round(grand_cost, 6) if grand_reported else None,
     }
     (out_dir / "cost_summary.json").write_text(json.dumps(payload, indent=2))
 
     # ── TXT ───────────────────────────────────────────────────────────────────
-    name_w = max(34, max(len(e) for e, *_ in per_exp_total) + 2)
+    name_w   = max(34, max(len(e) for e, *_ in per_exp_total) + 2)
+    cost_col = "cost (USD)" if grand_reported else ""
+    cost_w   = 16 if grand_reported else 0
+    rule     = "─" * (name_w + 10 + 14 + cost_w)
     lines = [
         "PitchBench session cost summary",
         f"Timestamp : {ts}",
         "",
-        f"{'Experiment':<{name_w}}{'calls':>10}{'tokens':>14}{'cost (USD)':>16}",
-        "─" * (name_w + 10 + 14 + 16),
+        f"{'Experiment':<{name_w}}{'calls':>10}{'tokens':>14}"
+        + (f"{cost_col:>{cost_w}}" if grand_reported else ""),
+        rule,
     ]
-    for exp_name, c, t, cost_usd in per_exp_total:
-        lines.append(
-            f"{exp_name:<{name_w}}{c:>10,}{t:>14,}{('$' + format(cost_usd, '.6f')):>16}"
-        )
+    for exp_name, c, t, cost_usd, reported in per_exp_total:
+        line = f"{exp_name:<{name_w}}{c:>10,}{t:>14,}"
+        if grand_reported:
+            cost_cell = f"${cost_usd:.6f}" if reported else "—"
+            line += f"{cost_cell:>{cost_w}}"
+        lines.append(line)
+    total_line = f"{'TOTAL':<{name_w}}{grand_calls:>10,}{grand_tokens:>14,}"
+    if grand_reported:
+        total_line += f"{('$' + format(grand_cost, '.6f')):>{cost_w}}"
     lines += [
-        "─" * (name_w + 10 + 14 + 16),
-        f"{'TOTAL':<{name_w}}{grand_calls:>10,}{grand_tokens:>14,}"
-        f"{('$' + format(grand_cost, '.6f')):>16}",
+        rule,
+        total_line,
         "",
     ]
     txt_path = out_dir / "cost_summary.txt"
@@ -926,10 +950,17 @@ def save_results(
     marginals = summarise_marginals(records, formats=formats, extra_metrics=extra_metrics)
     summary   = {**summary, "marginals": marginals}
 
-    # ── LLM usage / cost (OpenRouter only — local servers record nothing) ─────
+    # ── LLM usage / cost ──────────────────────────────────────────────────────
+    # OpenRouter reports a real USD cost; DashScope and local servers don't, so
+    # we surface ``cost_usd`` as ``None`` for them (renders as "—" rather than
+    # a misleading "$0.0000" in comparison/aggregate tables).
     usage    = cost_tracker.get(model_name)
     metadata = {**metadata, "usage": usage}
-    summary  = {**summary, "cost_usd": usage["cost_usd"], "total_tokens": usage["total_tokens"]}
+    summary  = {
+        **summary,
+        "cost_usd":     usage["cost_usd"] if usage.get("cost_reported") else None,
+        "total_tokens": usage["total_tokens"],
+    }
 
     # ── JSON ──────────────────────────────────────────────────────────────────
     payload = {"metadata": metadata, "summary": summary, "results": records}
@@ -1036,9 +1067,15 @@ def save_comparison(
                 flat_keys.append(k)
                 seen.add(k)
 
-    # ── LLM cost rollup across models (OpenRouter only) ───────────────────────
+    # ── LLM cost rollup across models ─────────────────────────────────────────
+    # Cost (USD) is only summed for models whose provider reported it. Token
+    # counts are summed across every model that made calls.
     usage_per_model = {m: cost_tracker.get(m) for m in models}
-    total_cost_usd  = round(sum(u["cost_usd"]    for u in usage_per_model.values()), 6)
+    any_cost_reported = any(u.get("cost_reported") for u in usage_per_model.values())
+    total_cost_usd  = round(
+        sum(u["cost_usd"] for u in usage_per_model.values() if u.get("cost_reported")),
+        6,
+    ) if any_cost_reported else None
     total_tokens    = sum(u["total_tokens"]      for u in usage_per_model.values())
     total_calls     = sum(u["calls"]             for u in usage_per_model.values())
 
@@ -1104,18 +1141,21 @@ def save_comparison(
     # Render the LLM-cost rollup only when at least one model was billed —
     # local-only runs (everything zero) skip the block entirely.
     if total_calls:
+        cost_w   = 16 if any_cost_reported else 0
+        cost_hdr = f"{'cost (USD)':>{cost_w}}" if any_cost_reported else ""
         txt_lines += ["LLM USAGE", "─" * 50,
-                      f"{'Model':<{model_w}}{'calls':>10}{'tokens':>14}{'cost (USD)':>16}"]
+                      f"{'Model':<{model_w}}{'calls':>10}{'tokens':>14}{cost_hdr}"]
         for m in models:
             u = usage_per_model[m]
-            txt_lines.append(
-                f"{m:<{model_w}}{u['calls']:>10,}{u['total_tokens']:>14,}"
-                f"{('$' + format(u['cost_usd'], '.6f')):>16}"
-            )
-        txt_lines.append(
-            f"{'TOTAL':<{model_w}}{total_calls:>10,}{total_tokens:>14,}"
-            f"{('$' + format(total_cost_usd, '.6f')):>16}"
-        )
+            row = f"{m:<{model_w}}{u['calls']:>10,}{u['total_tokens']:>14,}"
+            if any_cost_reported:
+                cell = f"${u['cost_usd']:.6f}" if u.get("cost_reported") else "—"
+                row += f"{cell:>{cost_w}}"
+            txt_lines.append(row)
+        total_row = f"{'TOTAL':<{model_w}}{total_calls:>10,}{total_tokens:>14,}"
+        if any_cost_reported:
+            total_row += f"{('$' + format(total_cost_usd, '.6f')):>{cost_w}}"
+        txt_lines.append(total_row)
         txt_lines.append("")
 
     (run_dir / "comparison.txt").write_text("\n".join(txt_lines))

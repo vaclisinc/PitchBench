@@ -54,7 +54,7 @@ from pitchbench.experiments.helpers.results import (
     save_comparison, save_results,
 )
 from pitchbench.experiments.helpers.sampling import (
-    apply_default_sampling, sampling_summary_lines,
+    apply_default_sampling, export_sampled_conditions_csv, sampling_summary_lines,
 )
 
 # Reuse cat-A primitives — the strip-rules, pair-expansion sampler, and
@@ -498,6 +498,7 @@ def run_cat_b_experiment(spec: CatBSpec, *, mode: str = "run") -> dict | None:
     all_conds = spec.build_conditions_fn()
     conds, s_meta = _sample_conditions(spec, all_conds, args.sample_n, args.sample_seed)
 
+
     n_skipped = 0
     for c in conds:
         try:
@@ -507,12 +508,16 @@ def run_cat_b_experiment(spec: CatBSpec, *, mode: str = "run") -> dict | None:
             n_skipped += 1
 
     if mode == "preview":
+        export_sampled_conditions_csv(spec.exp_name, conds)
         print(f"Experiment : {spec.exp_name}")
         print(f"Stimuli    : {len(conds)}  (skipped: {n_skipped})")
         print(f"Audio dir  : {config.AUDIO_DIR}/{spec.exp_name}")
         for line in sampling_summary_lines(s_meta):
             print(line)
         print("\nRun without --preview to query the model(s).")
+        
+        # for c in conds:
+        #     print(f"\n  Condition example:\n    {c}\n    WAV path: {spec.wav_fn(c)}")
         return None
 
     target_models = args.models or list(config.MODELS)

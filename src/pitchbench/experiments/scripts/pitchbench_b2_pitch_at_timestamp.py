@@ -24,15 +24,20 @@ from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
 from pitchbench.experiments.helpers.music import (
     PROMPT_DOREMI, PROMPT_HZ, PROMPT_MIDI, PROMPT_SPN,
 )
+from pitchbench.experiments.helpers.timing_layout import (
+    cap_notes_for_total,
+    onsets_from_gaps,
+    sample_adaptive_gaps,
+    stable_cell_seed,
+)
 
 EXP_NAME     = Path(__file__).stem
 SOURCES      = config.pitchbench_b2_SOURCES
-PITCHES      = config.pitchbench_b2_PITCHES
+DISTRACTORS      = config.pitchbench_b2_DISTRACTORS
+MAIN_PITCHES      = config.pitchbench_b2_MAIN_PITCHES
 DURATIONS_MS = config.pitchbench_b2_DURATIONS_MS
 N_NOTES_OPTS = config.pitchbench_b2_N_NOTES_OPTS
 TOTAL_DUR_MS = config.pitchbench_b2_TOTAL_DUR_MS
-GAP_MIN_MS   = config.pitchbench_b2_GAP_MIN_MS
-GAP_MAX_MS   = config.pitchbench_b2_GAP_MAX_MS
 SEED         = config.pitchbench_b2_SEED
 
 
@@ -45,24 +50,28 @@ def _query_str(secs: float) -> str:
 def build_conditions() -> list[dict]:
     rows: list[dict] = []
     for src in SOURCES:
-        for tgt in PITCHES:
-            for n in N_NOTES_OPTS:
+        for tgt in MAIN_PITCHES:
+            distractors = [p for p in DISTRACTORS if p != tgt]
+            for n_req in N_NOTES_OPTS:
                 for dur in DURATIONS_MS:
-                    cell_seed = (SEED ^ hash((src, tgt, n, dur))) & 0xFFFFFFFF
+                    n = cap_notes_for_total(n_req, dur, TOTAL_DUR_MS)
+                    n = min(n, len(distractors) + 1)
+                    if n < 1:
+                        continue
+
+                    cell_seed = stable_cell_seed(SEED, src, tgt, n_req, n, dur)
                     sub_rng   = random.Random(cell_seed)
-                    distractors = [p for p in PITCHES if p != tgt]
                     other_pitches = sub_rng.sample(distractors, n - 1)
                     midis_seq = list(other_pitches)
                     insert_at = sub_rng.randint(0, n - 1)
                     midis_seq.insert(insert_at, tgt)
-                    gaps = [sub_rng.randint(GAP_MIN_MS, GAP_MAX_MS) for _ in range(n + 1)]
-                    if sum(gaps) + dur * n > TOTAL_DUR_MS:
-                        continue
-                    onsets: list[int] = []
-                    cursor = gaps[0]
-                    for _ in range(n):
-                        onsets.append(cursor)
-                        cursor += dur + gaps[len(onsets)]
+                    gaps = sample_adaptive_gaps(
+                        sub_rng,
+                        n_notes=n,
+                        note_dur_ms=dur,
+                        total_dur_ms=TOTAL_DUR_MS,
+                    )
+                    onsets = onsets_from_gaps(gaps, n_notes=n, note_dur_ms=dur)
                     target_idx   = midis_seq.index(tgt)
                     query_time_s = round((onsets[target_idx] + dur / 2) / 1000.0, 3)
                     rows.append({

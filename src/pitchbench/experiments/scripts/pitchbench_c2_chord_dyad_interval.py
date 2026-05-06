@@ -28,6 +28,7 @@ from pitchbench.experiments.helpers.cat_c import CatCSpec, run_cat_c_experiment
 from pitchbench.experiments.helpers.music import (
     INTERVAL_NAMES, extract_interval, midi_to_note,
 )
+from pitchbench.experiments.helpers.timing_layout import stable_cell_seed
 
 EXP_NAME             = Path(__file__).stem
 INTERVALS_ST         = config.pitchbench_c2_INTERVALS_ST
@@ -64,7 +65,8 @@ def build_conditions() -> list[dict]:
                         if same:
                             src_arg, src_label = src, src
                         else:
-                            srcs = list(_mixed_pair(hash((src, root, iv, dur))))
+                            mix_seed = stable_cell_seed(0, src, root, iv, dur)
+                            srcs = list(_mixed_pair(mix_seed))
                             src_arg, src_label = srcs, "+".join(srcs)
                         rows.append({
                             "duration_ms":     dur,

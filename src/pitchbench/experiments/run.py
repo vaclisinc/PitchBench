@@ -56,7 +56,7 @@ def _prompt_for_models() -> list[str]:
     return [choice] if choice else [default]
 
 # pitchbench_<id>_<desc>.py — capture the id (lowercase letter + digit(s))
-_NAME_RE = re.compile(r"^pitchbench_([a-z]+\d+)_(.+)$")
+_NAME_RE = re.compile(r"^pitchbench_([a-z]+\d+[a-z]*)_(.+)$")
 # Bare experiment-id shorthand, e.g. "a1", "b3" — accepted as a positional arg.
 _ID_RE = re.compile(r"^[a-z]+\d+$")
 # Bare category prefix, e.g. "a", "b" — runs every experiment in that category.

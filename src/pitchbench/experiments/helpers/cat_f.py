@@ -49,7 +49,7 @@ from pitchbench.experiments.helpers.results import (
     save_comparison, save_results,
 )
 from pitchbench.experiments.helpers.sampling import (
-    apply_default_sampling, sampling_summary_lines,
+    apply_default_sampling, export_sampled_conditions_csv, sampling_summary_lines,
 )
 
 
@@ -402,6 +402,7 @@ def run_cat_f_experiment(spec: CatFSpec, *, mode: str = "run") -> dict | None:
             n_skipped += 1
 
     if mode == "preview":
+        export_sampled_conditions_csv(spec.exp_name, conds)
         print(f"Experiment : {spec.exp_name}")
         print(f"Stimuli    : {len(conds)}  (skipped: {n_skipped})")
         print(f"Audio dir  : {config.AUDIO_DIR}/{spec.exp_name}")
