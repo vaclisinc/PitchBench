@@ -29,12 +29,12 @@ from pitchbench.experiments.helpers.music import (
 )
 
 EXP_NAME             = Path(__file__).stem
-QUALITIES            = config.pitchbench_c4_QUALITIES
-ROOT_MIDIS           = config.pitchbench_c4_ROOT_MIDIS
-TASKS                = config.pitchbench_c4_TASKS
-SAME_INSTRUMENT_OPTS = config.pitchbench_c4_SAME_INSTRUMENT_OPTS
-SOURCES              = config.pitchbench_c4_SOURCES
-DURATIONS_MS         = config.pitchbench_c4_DURATIONS_MS
+QUALITIES            = config.pitchbench_c3_QUALITIES
+ROOT_MIDIS           = config.pitchbench_c3_ROOT_MIDIS
+TASKS                = config.pitchbench_c3_TASKS
+SAME_INSTRUMENT_OPTS = config.pitchbench_c3_SAME_INSTRUMENT_OPTS
+SOURCES              = config.pitchbench_c3_SOURCES
+DURATIONS_MS         = config.pitchbench_c3_DURATIONS_MS
 
 PROMPT_QUALITY_ONLY = (
     "This audio contains a chord (multiple simultaneous notes). "

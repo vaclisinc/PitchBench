@@ -27,11 +27,11 @@ from pitchbench.experiments.helpers.cat_a import (
 )
 
 EXP_NAME             = Path(__file__).stem
-SOURCES              = config.pitchbench_a4_SOURCES
-PITCHES              = config.pitchbench_a4_PITCHES
-DURATIONS_MS         = config.pitchbench_a4_DURATIONS_MS
-VIBRATO_RATES_HZ     = config.pitchbench_a4_VIBRATO_RATES_HZ
-VIBRATO_DEPTHS_CENTS = config.pitchbench_a4_VIBRATO_DEPTHS_CENTS
+SOURCES              = config.pitchbench_e5_SOURCES
+PITCHES              = config.pitchbench_e5_PITCHES
+DURATIONS_MS         = config.pitchbench_e5_DURATIONS_MS
+VIBRATO_RATES_HZ     = config.pitchbench_e5_VIBRATO_RATES_HZ
+VIBRATO_DEPTHS_CENTS = config.pitchbench_e5_VIBRATO_DEPTHS_CENTS
 
 PROMPT_PREFIX = (
     "This audio contains a single sustained musical note that may have "

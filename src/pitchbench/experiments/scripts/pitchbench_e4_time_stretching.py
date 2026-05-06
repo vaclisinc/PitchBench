@@ -35,10 +35,10 @@ from pitchbench.experiments.helpers.cat_e import CatESpec, run_cat_e_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME   = Path(__file__).stem
-PITCHES    = config.pitchbench_e5_PITCHES
-TONE_MS    = config.pitchbench_e5_TONE_MS
-CONDITIONS = config.pitchbench_e5_CONDITIONS
-SOURCES    = config.pitchbench_e5_SOURCES
+PITCHES    = config.pitchbench_e4_PITCHES
+TONE_MS    = config.pitchbench_e4_TONE_MS
+CONDITIONS = config.pitchbench_e4_CONDITIONS
+SOURCES    = config.pitchbench_e4_SOURCES
 
 PROMPT_PREFIX = (
     "Listen to this audio clip of a single musical note. The recording "

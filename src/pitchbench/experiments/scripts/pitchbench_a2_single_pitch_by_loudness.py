@@ -6,7 +6,7 @@ amplitude varies from near-silence (−30 dBFS) to full level (0 dBFS).
 
 Universal IVs: midi, source.
 Experiment-specific IV:
-    loudness_db: ∈ config.pitchbench_e1_LOUDNESS_DB
+    loudness_db: ∈ config.pitchbench_a2_LOUDNESS_DB
 
 4-format pitch-ID prompts (MIDI / SPN / Doremi / Hz). The auto-marginals
 produce ``by_loudness.<db>.<format>`` rows in ``accuracies_<model>.csv``.
@@ -22,10 +22,10 @@ from pitchbench.experiments.helpers.cat_e import CatESpec, run_cat_e_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME    = Path(__file__).stem
-PITCHES     = config.pitchbench_e1_PITCHES
-LOUDNESS_DB = config.pitchbench_e1_LOUDNESS_DB
-SOURCES     = config.pitchbench_e1_SOURCES
-TONE_MS     = config.pitchbench_e1_TONE_MS
+PITCHES     = config.pitchbench_a2_PITCHES
+LOUDNESS_DB = config.pitchbench_a2_LOUDNESS_DB
+SOURCES     = config.pitchbench_a2_SOURCES
+TONE_MS     = config.pitchbench_a2_TONE_MS
 
 PROMPT_PREFIX = "Listen to this audio clip of a single musical note. "
 

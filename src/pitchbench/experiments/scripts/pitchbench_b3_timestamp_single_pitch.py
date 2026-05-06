@@ -25,11 +25,11 @@ import pitchbench.generation.engine as engine
 from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
 
 EXP_NAME     = Path(__file__).stem
-SOURCES      = config.pitchbench_b2_SOURCES
-PITCHES      = config.pitchbench_b2_PITCHES
-DURATIONS_MS = config.pitchbench_b2_DURATIONS_MS
-POSITIONS_MS = config.pitchbench_b2_POSITIONS_MS
-TOTAL_DUR_MS = config.pitchbench_b2_TOTAL_DUR_MS
+SOURCES      = config.pitchbench_b3_SOURCES
+PITCHES      = config.pitchbench_b3_PITCHES
+DURATIONS_MS = config.pitchbench_b3_DURATIONS_MS
+POSITIONS_MS = config.pitchbench_b3_POSITIONS_MS
+TOTAL_DUR_MS = config.pitchbench_b3_TOTAL_DUR_MS
 
 PROMPT = (
     "This audio is a 60-second clip that contains exactly ONE sustained "

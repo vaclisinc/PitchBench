@@ -35,11 +35,11 @@ from pitchbench.experiments.helpers.music import (
 )
 
 EXP_NAME          = Path(__file__).stem
-SOURCES           = config.pitchbench_a2_SOURCES
-REFERENCE_PITCHES = config.pitchbench_a2_REFERENCE_PITCHES
-INTERVALS         = config.pitchbench_a2_INTERVALS
-TONE_DURATION_MS  = config.pitchbench_a2_TONE_DURATION_MS
-GAP_MS            = config.pitchbench_a2_GAP_MS
+SOURCES           = config.pitchbench_d7_SOURCES
+REFERENCE_PITCHES = config.pitchbench_d7_REFERENCE_PITCHES
+INTERVALS         = config.pitchbench_d7_INTERVALS
+TONE_DURATION_MS  = config.pitchbench_d7_TONE_DURATION_MS
+GAP_MS            = config.pitchbench_d7_GAP_MS
 
 
 def build_conditions() -> list[dict]:

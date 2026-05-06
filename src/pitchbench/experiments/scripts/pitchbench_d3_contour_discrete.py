@@ -28,13 +28,13 @@ from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME                = Path(__file__).stem
-N_TRANSITIONS_OPTS      = config.pitchbench_d4_N_TRANSITIONS_OPTS
-STEP_SIZES_ST           = config.pitchbench_d4_STEP_SIZES_ST
-NOTE_DURATIONS_MS       = config.pitchbench_d4_NOTE_DURATIONS_MS
-DEFAULT_TRIALS_PER_CELL = config.pitchbench_d4_TRIALS_PER_CELL
-DEFAULT_SEED            = config.pitchbench_d4_SEED
-SOURCES                 = config.pitchbench_d4_SOURCES
-PITCHES                 = config.pitchbench_d4_PITCHES
+N_TRANSITIONS_OPTS      = config.pitchbench_d3_N_TRANSITIONS_OPTS
+STEP_SIZES_ST           = config.pitchbench_d3_STEP_SIZES_ST
+NOTE_DURATIONS_MS       = config.pitchbench_d3_NOTE_DURATIONS_MS
+DEFAULT_TRIALS_PER_CELL = config.pitchbench_d3_TRIALS_PER_CELL
+DEFAULT_SEED            = config.pitchbench_d3_SEED
+SOURCES                 = config.pitchbench_d3_SOURCES
+PITCHES                 = config.pitchbench_d3_PITCHES
 
 PROMPT = (
     "Listen to this sequence of separate musical notes. For each TRANSITION "

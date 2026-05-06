@@ -1,5 +1,5 @@
 """
-c3 — Simultaneous-pitch identification (chord pitches).
+c4 — Simultaneous-pitch identification (chord pitches).
 
 Question: can the ALM identify the individual pitches of a chord? Each
 chord is queried in three formats (MIDI / SPN / Doremi); each format is
@@ -9,7 +9,7 @@ scored as exact-match between the predicted set and the ground-truth set
 
 Universal IVs: source.
 Experiment-specific IVs:
-    chord_type:  ∈ BENCHMARK_C3_CHORD_TYPES (dyads, triads, sevenths)
+    chord_type:  ∈ BENCHMARK_C4_CHORD_TYPES (dyads, triads, sevenths)
     n_notes:     chord size
     root_midi:   root note
 """
@@ -28,10 +28,10 @@ from pitchbench.experiments.helpers.music import (
 )
 
 EXP_NAME         = Path(__file__).stem
-TONE_DURATION_MS = config.pitchbench_c3_TONE_DURATION_MS
-SOURCES          = config.pitchbench_c3_SOURCES
-CHORD_TYPES      = config.pitchbench_c3_CHORD_TYPES
-BASE_ROOTS       = config.pitchbench_c3_BASE_ROOTS
+TONE_DURATION_MS = config.pitchbench_c4_TONE_DURATION_MS
+SOURCES          = config.pitchbench_c4_SOURCES
+CHORD_TYPES      = config.pitchbench_c4_CHORD_TYPES
+BASE_ROOTS       = config.pitchbench_c4_BASE_ROOTS
 
 PROMPT_MIDI = (
     "This audio contains multiple musical pitches played simultaneously. "

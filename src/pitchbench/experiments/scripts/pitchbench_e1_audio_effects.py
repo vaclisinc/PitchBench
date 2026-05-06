@@ -9,7 +9,7 @@ strength increases.
 
 Universal IVs: midi, source.
 Experiment-specific IVs:
-    effect:        keyed into config.pitchbench_e2_EFFECTS
+    effect:        keyed into config.pitchbench_e1_EFFECTS
     effect_type:   coarser category (clean / filter / distort / reverb / chorus)
     effect_params: stringified params dict
     noise_seed:    deterministic per-condition seed
@@ -28,10 +28,10 @@ from pitchbench.experiments.helpers.cat_e import CatESpec, run_cat_e_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME = Path(__file__).stem
-PITCHES  = config.pitchbench_e2_PITCHES
-TONE_MS  = config.pitchbench_e2_TONE_MS
-EFFECTS  = config.pitchbench_e2_EFFECTS
-SOURCES  = config.pitchbench_e2_SOURCES
+PITCHES  = config.pitchbench_e1_PITCHES
+TONE_MS  = config.pitchbench_e1_TONE_MS
+EFFECTS  = config.pitchbench_e1_EFFECTS
+SOURCES  = config.pitchbench_e1_SOURCES
 
 PROMPT_PREFIX = "Listen to this audio clip of a single musical note. "
 

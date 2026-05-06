@@ -38,14 +38,14 @@ from pitchbench.experiments.helpers.music import (
 )
 
 EXP_NAME         = Path(__file__).stem
-PITCH_MIN        = config.pitchbench_d7_PITCH_MIN
-PITCH_MAX        = config.pitchbench_d7_PITCH_MAX
-N_NOTES_LIST     = config.pitchbench_d7_N_NOTES_LIST
-DEFAULT_N_TRIALS = config.pitchbench_d7_N_TRIALS
-DEFAULT_SEED     = config.pitchbench_d7_SEED
-TONE_MS          = config.pitchbench_d7_TONE_MS
-GAP_MS           = config.pitchbench_d7_GAP_MS
-SOURCES          = config.pitchbench_d7_SOURCES
+PITCH_MIN        = config.pitchbench_d8_PITCH_MIN
+PITCH_MAX        = config.pitchbench_d8_PITCH_MAX
+N_NOTES_LIST     = config.pitchbench_d8_N_NOTES_LIST
+DEFAULT_N_TRIALS = config.pitchbench_d8_N_TRIALS
+DEFAULT_SEED     = config.pitchbench_d8_SEED
+TONE_MS          = config.pitchbench_d8_TONE_MS
+GAP_MS           = config.pitchbench_d8_GAP_MS
+SOURCES          = config.pitchbench_d8_SOURCES
 
 
 def _prompt_midi(n: int) -> str:

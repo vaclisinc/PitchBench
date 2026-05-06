@@ -24,15 +24,15 @@ from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME        = Path(__file__).stem
-SOURCES         = config.pitchbench_b3_SOURCES
-PITCHES         = config.pitchbench_b3_PITCHES
-DURATIONS_MS    = config.pitchbench_b3_DURATIONS_MS
-N_DISTRACTORS   = config.pitchbench_b3_N_DISTRACTORS
-TARGET_POS_OPTS = config.pitchbench_b3_TARGET_POS_OPTS
-TOTAL_DUR_MS    = config.pitchbench_b3_TOTAL_DUR_MS
-GAP_MIN_MS      = config.pitchbench_b3_GAP_MIN_MS
-GAP_MAX_MS      = config.pitchbench_b3_GAP_MAX_MS
-SEED            = config.pitchbench_b3_SEED
+SOURCES         = config.pitchbench_b4_SOURCES
+PITCHES         = config.pitchbench_b4_PITCHES
+DURATIONS_MS    = config.pitchbench_b4_DURATIONS_MS
+N_DISTRACTORS   = config.pitchbench_b4_N_DISTRACTORS
+TARGET_POS_OPTS = config.pitchbench_b4_TARGET_POS_OPTS
+TOTAL_DUR_MS    = config.pitchbench_b4_TOTAL_DUR_MS
+GAP_MIN_MS      = config.pitchbench_b4_GAP_MIN_MS
+GAP_MAX_MS      = config.pitchbench_b4_GAP_MAX_MS
+SEED            = config.pitchbench_b4_SEED
 
 
 def build_conditions() -> list[dict]:

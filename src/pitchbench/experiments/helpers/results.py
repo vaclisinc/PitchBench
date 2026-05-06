@@ -495,8 +495,8 @@ def write_aggregate_format_accuracies(
         runs:        ``{exp_name: {model: {"n": int, "formats": {fmt: acc}}}}``
 
     Layout (long form, columns: experiment, model, n_samples, format, accuracy):
-        pitchbench_a1_pitch_id, audio_flamingo_next_think, 57,   midi,   0.198
-        pitchbench_a1_pitch_id, audio_flamingo_next_think, 57,   abc,    0.068
+        pitchbench_a1_single_pitch_id, audio_flamingo_next_think, 57,   midi,   0.198
+        pitchbench_a1_single_pitch_id, audio_flamingo_next_think, 57,   abc,    0.068
         ...
         __MEAN__,               audio_flamingo_next_think, 1850, midi,   0.123
         __MEAN__,               audio_flamingo_next_think, 1850, abc,    0.087

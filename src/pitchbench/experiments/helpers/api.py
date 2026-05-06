@@ -32,6 +32,8 @@ from typing import Any, Literal
 
 import requests
 
+import pitchbench.config as config
+
 try:
     from dotenv import load_dotenv
     load_dotenv(override=True)               # .env wins over a stale/empty shell var
@@ -480,6 +482,269 @@ def _print_running_cost(model_name: str) -> None:
         return
     print(f"        cost   → {u['calls']:,} calls, "
           f"{u['total_tokens']:,} tok, ${u['cost_usd']:.4f}")
+
+
+_AUDIO_PLACEHOLDER_RE = re.compile(r"<AUDIO(\d+)>")
+
+
+def _multi_audio_sha256(audio_paths: list[str]) -> list[str]:
+    return [_audio_sha256(p) for p in audio_paths]
+
+
+def _post_local_multi_with_retry(
+    url: str, audio_paths: list[str], *, data: dict, timeout_s: float,
+) -> requests.Response:
+    """Multi-file variant of :func:`_post_local_with_retry`.
+
+    POSTs ``files=[(name, fh, ct), ...]`` so each upload arrives as its own
+    ``files`` form part. Mirrors the single-file retry / 5xx surfacing logic.
+    """
+    last_err: str | None = None
+    for attempt in range(_LOCAL_RETRY_ATTEMPTS):
+        opened: list = []
+        try:
+            files_payload = []
+            for p in audio_paths:
+                fh = open(p, "rb")
+                opened.append(fh)
+                files_payload.append(("files", (os.path.basename(p), fh, "audio/wav")))
+            resp = requests.post(url, data=data, files=files_payload, timeout=timeout_s)
+            if resp.status_code in _LOCAL_RETRY_STATUSES:
+                last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
+                if attempt < _LOCAL_RETRY_ATTEMPTS - 1:
+                    time.sleep(2 ** attempt)
+                    continue
+                raise RuntimeError(f"Local server {url} failed after retries: {last_err}")
+            if not resp.ok:
+                raise RuntimeError(
+                    f"Local server {url} HTTP {resp.status_code}: {resp.text[:500]}"
+                )
+            return resp
+        except (requests.exceptions.ConnectionError,
+                requests.exceptions.ReadTimeout) as e:
+            last_err = str(e)
+            if attempt < _LOCAL_RETRY_ATTEMPTS - 1:
+                time.sleep(2 ** attempt)
+                continue
+            raise RuntimeError(f"Local server {url} failed after retries: {last_err}")
+        finally:
+            for fh in opened:
+                try:
+                    fh.close()
+                except OSError:
+                    pass
+    raise RuntimeError(f"Local server {url} failed after retries: {last_err}")
+
+
+def _local_text_multi(
+    model_name: str, audio_paths: list[str], prompt: str,
+    max_new_tokens: int, timeout_s: float,
+) -> dict:
+    url = config.MODEL_URLS[model_name]
+    resp = _post_local_multi_with_retry(
+        f"{url}/analyze/upload_multi", audio_paths,
+        data={"prompt": prompt, "max_new_tokens": max_new_tokens},
+        timeout_s=timeout_s,
+    )
+    raw = resp.json()
+    return {"result": raw.get("result", ""), "raw_response": raw,
+            "top_tokens": None, "embedding": None, "usage": None}
+
+
+def _openrouter_text_multi(
+    model_name: str, audio_paths: list[str], prompt: str,
+    max_new_tokens: int, temperature: float, timeout_s: float,
+) -> dict:
+    """OpenRouter variant with multiple ``input_audio`` blocks.
+
+    Splits ``prompt`` on ``<AUDIO_N>`` placeholders and interleaves text /
+    audio content blocks just like the local server does.
+    """
+    api_key = _resolve_openrouter_key()
+    or_model = model_name[len(OPENROUTER_PREFIX):]
+
+    parts = _AUDIO_PLACEHOLDER_RE.split(prompt)
+    content: list[dict] = []
+    if parts[0]:
+        content.append({"type": "text", "text": parts[0]})
+    for i in range(1, len(parts), 2):
+        idx = int(parts[i]) - 1
+        if idx < 0 or idx >= len(audio_paths):
+            raise ValueError(
+                f"Prompt references <AUDIO{idx + 1}> but only "
+                f"{len(audio_paths)} audio file(s) provided."
+            )
+        content.append({"type": "input_audio", "input_audio": {
+            "data":   _audio_b64(audio_paths[idx]),
+            "format": "wav",
+        }})
+        if i + 1 < len(parts) and parts[i + 1]:
+            content.append({"type": "text", "text": parts[i + 1]})
+    if not any(b["type"] == "input_audio" for b in content):
+        raise ValueError(
+            "Prompt has no <AUDIO_N> placeholders — use query_alm for "
+            "single-audio queries."
+        )
+
+    body = {
+        "model":       or_model,
+        "messages":    [{"role": "user", "content": content}],
+        "max_tokens":  max_new_tokens,
+        "temperature": temperature,
+        "usage":       {"include": True},
+    }
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type":  "application/json",
+        "HTTP-Referer":  "https://github.com/vaclis-CNMAT/PitchBench",
+        "X-Title":       "PitchBench",
+    }
+
+    last_err: str | None = None
+    for attempt in range(3):
+        try:
+            resp = requests.post(
+                f"{config.OPENROUTER_BASE_URL}/chat/completions",
+                json=body, headers=headers, timeout=timeout_s,
+            )
+            if resp.status_code in (429, 500, 502, 503, 504):
+                last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
+                time.sleep(2 ** attempt)
+                continue
+            if not resp.ok:
+                raise RuntimeError(
+                    f"OpenRouter HTTP {resp.status_code} for model {or_model!r}: "
+                    f"{resp.text[:500]}"
+                )
+            data    = resp.json()
+            choice  = (data.get("choices") or [{}])[0]
+            text    = (choice.get("message") or {}).get("content", "")
+            if isinstance(text, list):
+                text = "".join(p.get("text", "") for p in text if isinstance(p, dict))
+            usage   = cost_tracker.parse_openrouter_usage(data.get("usage"))
+            if usage:
+                cost_tracker.record(model_name, **usage)
+            return {"result": text, "raw_response": data,
+                    "top_tokens": None, "embedding": None,
+                    "usage": usage or None}
+        except requests.exceptions.RequestException as e:
+            last_err = str(e)
+            time.sleep(2 ** attempt)
+    raise RuntimeError(f"OpenRouter call failed after 3 retries: {last_err}")
+
+
+def query_alm_multi(
+    model_name: str,
+    audio_paths: list[str | Path],
+    prompt: str,
+    *,
+    max_new_tokens: int = 128,
+    temperature: float  = 0.0,
+    timeout_s: float    = 180.0,
+) -> dict:
+    """Multi-audio ALM call.
+
+    The ``prompt`` must contain ``<AUDIO1>``, ``<AUDIO2>``, ... placeholders
+    that mark where each audio in ``audio_paths`` should appear in the model's
+    input (1-based, so ``<AUDIO1>`` = ``audio_paths[0]``).
+
+    Routes to ``/analyze/upload_multi`` for local servers and to OpenRouter
+    chat-completions with multiple ``input_audio`` blocks. Manual mode and
+    ``mode='probs'`` / ``'embed'`` are not supported and raise
+    ``NotImplementedError``.
+
+    Returns the same dict shape as :func:`query_alm`.
+    """
+    paths_str: list[str] = [str(p) for p in audio_paths]
+    if not paths_str:
+        raise ValueError("query_alm_multi requires at least one audio path")
+
+    is_manual     = model_name == MANUAL_MODEL_NAME
+    is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
+    info          = get_model_info(model_name)
+
+    if is_manual:
+        raise NotImplementedError(
+            "Manual mode does not support multi-audio queries."
+        )
+
+    if is_openrouter:
+        endpoint = "openrouter"
+    else:
+        endpoint = config.MODEL_URLS.get(model_name)
+
+    model_params: dict[str, Any] = {
+        "model_name":      model_name,
+        "mode":            "text",
+        "max_new_tokens":  max_new_tokens,
+        "temperature":     temperature,
+        "top_k":           None,
+        "timeout_s":       timeout_s,
+        "audio_files":     [os.path.basename(p) for p in paths_str],
+        "audio_sha256":    _multi_audio_sha256(paths_str),
+        "prompt":          prompt,
+        "endpoint":        endpoint,
+        "multi_audio":     True,
+        "n_audio":         len(paths_str),
+    }
+
+    start = time.time()
+    if is_openrouter:
+        result = _openrouter_text_multi(
+            model_name, paths_str, prompt, max_new_tokens, temperature, timeout_s,
+        )
+    else:
+        result = _local_text_multi(
+            model_name, paths_str, prompt, max_new_tokens, timeout_s,
+        )
+    elapsed = time.time() - start
+
+    usage = result.get("usage")
+    return {
+        "result":       result["result"],
+        "raw_response": result["raw_response"],
+        "top_tokens":   None,
+        "embedding":    None,
+        "usage":        usage,
+        "cost_usd":     float((usage or {}).get("cost_usd", 0.0)),
+        "model_params": model_params,
+        "model_info":   info,
+        "elapsed_s":    round(elapsed, 3),
+    }
+
+
+def query_four_formats_multi(
+    model_name: str,
+    audio_paths: list[str | Path],
+    prompt_midi:   str,
+    prompt_spn:    str,
+    prompt_doremi: str,
+    prompt_hz:     str,
+    *,
+    verbose: bool = True,
+) -> tuple[dict, dict, dict, dict]:
+    """Multi-audio variant of :func:`query_four_formats`.
+
+    Each prompt must reference the audios via ``<AUDIO1>``, ``<AUDIO2>``, ...
+    placeholders. Returns four ``query_alm_multi`` result dicts in order:
+    (MIDI, SPN, Doremi, Hz).
+    """
+
+    empty_result = {"result": None, "raw_response": "", "top_tokens": None, "embedding": None, "usage": 0}
+
+    r_midi   = query_alm_multi(model_name, audio_paths, prompt_midi) if "midi" in config.pitchbench_general_NOTATION_FORMATS else empty_result
+    r_spn    = query_alm_multi(model_name, audio_paths, prompt_spn) if "spn" in config.pitchbench_general_NOTATION_FORMATS else empty_result
+    r_doremi = query_alm_multi(model_name, audio_paths, prompt_doremi) if "doremi" in config.pitchbench_general_NOTATION_FORMATS else empty_result
+    r_hz     = query_alm_multi(model_name, audio_paths, prompt_hz) if "hz" in config.pitchbench_general_NOTATION_FORMATS else empty_result
+    if verbose:
+        names = ", ".join(Path(str(p)).name for p in audio_paths)
+        print(f"      [{names}]")
+        print(f"        MIDI   → {(r_midi['result']   or '').strip()!r}")
+        print(f"        SPN    → {(r_spn['result']    or '').strip()!r}")
+        print(f"        doremi → {(r_doremi['result'] or '').strip()!r}")
+        print(f"        Hz     → {(r_hz['result']     or '').strip()!r}")
+        _print_running_cost(model_name)
+    return r_midi, r_spn, r_doremi, r_hz
 
 
 def query_four_formats(

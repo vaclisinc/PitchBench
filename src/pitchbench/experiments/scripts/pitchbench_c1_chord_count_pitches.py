@@ -29,17 +29,17 @@ from pitchbench.experiments.helpers.cat_c import CatCSpec, run_cat_c_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME             = Path(__file__).stem
-CHORD_INTERVALS      = config.pitchbench_c2_CHORD_INTERVALS
+CHORD_INTERVALS      = config.pitchbench_c1_CHORD_INTERVALS
 QUALITIES_FIXED      = list(CHORD_INTERVALS.keys())
-QUALITIES            = config.pitchbench_c2_QUALITIES
-ROOT_MIDIS           = config.pitchbench_c2_ROOT_MIDIS
-SAME_INSTRUMENT_OPTS = config.pitchbench_c2_SAME_INSTRUMENT_OPTS
-RANDOM_TRIALS        = config.pitchbench_c2_RANDOM_TRIALS
-SEED                 = config.pitchbench_c2_SEED
-RANDOM_NS            = config.pitchbench_c2_RANDOM_NS
-RANDOM_PITCH_RANGE   = config.pitchbench_c2_RANDOM_PITCH_RANGE
-SOURCES              = config.pitchbench_c2_SOURCES
-DURATIONS_MS         = config.pitchbench_c2_DURATIONS_MS
+QUALITIES            = config.pitchbench_c1_QUALITIES
+ROOT_MIDIS           = config.pitchbench_c1_ROOT_MIDIS
+SAME_INSTRUMENT_OPTS = config.pitchbench_c1_SAME_INSTRUMENT_OPTS
+RANDOM_TRIALS        = config.pitchbench_c1_RANDOM_TRIALS
+SEED                 = config.pitchbench_c1_SEED
+RANDOM_NS            = config.pitchbench_c1_RANDOM_NS
+RANDOM_PITCH_RANGE   = config.pitchbench_c1_RANDOM_PITCH_RANGE
+SOURCES              = config.pitchbench_c1_SOURCES
+DURATIONS_MS         = config.pitchbench_c1_DURATIONS_MS
 
 PROMPT = (
     "Listen to this audio. How many distinct musical pitches are sounding "

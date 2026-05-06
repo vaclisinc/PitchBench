@@ -140,53 +140,58 @@ EXPERIMENT_DEFAULTS: dict[str, dict] = {
     # 2) Exclude paired/ablation toggles and constant fields (they add noise).
     # 3) Prefer 1-2 primary axes to keep total sample size tractable.
     # Total sampled items = per_stratum x num_distinct_strata_cells.
-    # Single-pitch ID (a)
-    # Single-pitch ID (a)
+    # Category A: Single-pitch identification / perturbations
     # a1: balance pitch *and* timbre family (waveform vs instrument);
     # full `source` would explode strata to ≈19 levels.
-    "pitchbench_a1_pitch_id":              {"per_stratum": 1, "strata": ("midi", "source")},
+    "pitchbench_a1_single_pitch_id":              {"per_stratum": 1, "strata": ("midi", "source")},
+    "pitchbench_a2_single_pitch_by_loudness":     {"per_stratum": 4, "strata": ("midi", "loudness_db")},
+    "pitchbench_a3_single_pitch_by_duration":     {"per_stratum": 3, "strata": ("midi", "duration_ms",)},
     # a2: do NOT stratify by `condition` (anchored vs baseline) — both
     # always run as a matched pair via CatASpec.pair_key. `interval` IS
     # the experimental factor (does the reference help across intervals?).
-    "pitchbench_a2_pitch_with_reference":  {"per_stratum": 1, "strata": ("ref_midi", "interval")},
-    "pitchbench_a3_pitch_by_duration":     {"per_stratum": 5, "strata": ("duration_ms",)},
+    
     # a4: the experiment IS about vibrato — stratify by the manipulation,
     # not by pitch. is_control is an ablation, not a stratum.
-    "pitchbench_a4_pitch_with_vibrato":    {"per_stratum": 5, "strata": ("vibrato_rate_hz", "vibrato_depth_cents")},
-    "pitchbench_a5_pitch_slightly_off":    {"per_stratum": 5, "strata": ("midi", "detune_hz")},
-    # Onsets / offsets (b)
+    "pitchbench_e5_vibrato":                  {"per_stratum": 1, "strata": ("vibrato_rate_hz", "vibrato_depth_cents")},
+    "pitchbench_e6_slightly_off":             {"per_stratum": 1, "strata": ("midi", "detune_hz")},
+
+    # Category B: Onsets, offsets, and time-localised pitch
     # b1: hidden + baseline run as a matched pair via CatBSpec.pair_key.
-    "pitchbench_b1_pitch_in_silence":      {"per_stratum": 5, "strata": ("midi", "pos_ms")},
+    "pitchbench_b1_single_pitch_within_silence":  {"per_stratum": 2, "strata": ("midi", "pos_ms")},
+    "pitchbench_b2_pitch_at_timestamp":          {"per_stratum": 10, "strata": ("n_notes", "target_idx" )},
     # b2 is a *timing* task — stratify on timing factors, not pitch identity.
-    "pitchbench_b2_onset_offset_single":   {"per_stratum": 5, "strata": ("pos_ms", "duration_ms")},
-    "pitchbench_b3_onset_offset_specific": {"per_stratum": 5, "strata": ("target_pos", "n_distractors")},
-    "pitchbench_b4_pitch_at_time":         {"per_stratum": 5, "strata": ("n_notes", "target_idx")},
-    "pitchbench_b5_onset_offset_each":     {"per_stratum": 5, "strata": ("rhythm", "n_notes")},
-    # Chords (c)
+    "pitchbench_b3_timestamp_single_pitch":    {"per_stratum": 1, "strata": ("pos_ms", "duration_ms", "midi")},
+    "pitchbench_b4_timestamp_specific_pitch":  {"per_stratum": 10, "strata": ("target_pos", "n_distractors", "duration_ms")},
+    "pitchbench_b5_timestamp_multiple_pitches": {"per_stratum": 10, "strata": ("rhythm", "n_notes", "duration_ms")},
+
+    # Category C: Chords / dyads / simultaneous pitches
     # c1 / c4: same_instrument (single-timbre vs mixed-timbre) is a real DV.
-    "pitchbench_c1_dyad_interval":         {"per_stratum": 5, "strata": ("interval_st", "same_instrument")},
-    "pitchbench_c2_chord_pitch_count":     {"per_stratum": 5, "strata": ("n", "chord_quality")},
-    "pitchbench_c3_chord_pitch_id":        {"per_stratum": 5, "strata": ("chord_type",)},
-    "pitchbench_c4_chord_quality":         {"per_stratum": 5, "strata": ("chord_quality_gt", "same_instrument")},
-    # Sequences (d)
-    "pitchbench_d1_seq_pitch_count":       {"per_stratum": 5, "strata": ("n", "rhythm")},
-    "pitchbench_d2_pitch_difference":      {"per_stratum": 5, "strata": ("delta_cents", "order")},
-    "pitchbench_d3_interval_id_seq":       {"per_stratum": 5, "strata": ("signed_st",)},
-    "pitchbench_d4_contour_discrete":      {"per_stratum": 5, "strata": ("n_transitions", "step_size_st")},
-    "pitchbench_d5_contour_continuous":    {"per_stratum": 5, "strata": ("traj_name",)},
+    "pitchbench_c1_chord_count_pitches":     {"per_stratum": 1, "strata": ("n", "chord_quality", "root_midi")},
+    "pitchbench_c2_chord_dyad_interval":     {"per_stratum": 1, "strata": ("interval_st", "same_instrument", "root_midi")},
+    "pitchbench_c3_chord_quality":           {"per_stratum": 1, "strata": ("chord_quality_gt", "same_instrument", "root_midi")},
+    "pitchbench_c4_chord_pitches":           {"per_stratum": 1, "strata": ("chord_type", "n_notes", "root_midi")},
+
+    # Category D: Sequences, contour, and intervals
+    "pitchbench_d1_sequence_count_pitches":          {"per_stratum": 5, "strata": ("n", "rhythm", "duration_ms")},
+    "pitchbench_d2_dyad_lower_higher_difference":    {"per_stratum": 1, "strata": ("delta_cents", "order", "duration_ms", "base_name")},
+    "pitchbench_d3_contour_discrete":                {"per_stratum": 1, "strata": ("n_transitions", "step_size_st", "note_duration_ms", "base_midi" )},
+    "pitchbench_d4_contour_continuous":              {"per_stratum": 1, "strata": ("traj_name","interval_st", "start_midi")},
     # d6: spacing (delta_cents) is the core difficulty axis for ranking.
-    "pitchbench_d6_pitch_ranking":         {"per_stratum": 5, "strata": ("n_notes", "delta_cents")},
-    "pitchbench_d7_seq_pitch_id":          {"per_stratum": 5, "strata": ("n_notes",)},
-    # Effects (e) — manipulation × pitch curves.
-    "pitchbench_e1_loudness":              {"per_stratum": 5, "strata": ("midi", "loudness_db")},
-    "pitchbench_e2_audio_effects":         {"per_stratum": 5, "strata": ("effect_type", "midi")},
-    "pitchbench_e3_background_effects":    {"per_stratum": 5, "strata": ("background", "snr_db")},
-    "pitchbench_e4_harmonic_saturation":   {"per_stratum": 5, "strata": ("saturation_level", "midi")},
-    "pitchbench_e5_time_stretch":          {"per_stratum": 5, "strata": ("condition", "midi")},
-    # Polyphony (f)
-    "pitchbench_f1_melodic_line_id":       {"per_stratum": 5, "strata": ("n", "source_label")},
+    "pitchbench_d5_sequence_ranking_by_pitch":          {"per_stratum": 1, "strata": ("n_notes", "delta_cents", "rhythm", "base_name")},
+    "pitchbench_d6_sequence_dyad_interval":             {"per_stratum": 1, "strata": ("signed_st","base_midi", )},
+    "pitchbench_d7_pitch_with_reference":             {"per_stratum": 2, "strata": ("ref_midi","interval")},
+    "pitchbench_d8_sequence_pitches":                   {"per_stratum": 3, "strata": ("n_notes","source")},
+
+    # Category E: Loudness and effects
+    "pitchbench_e1_audio_effects":         {"per_stratum": 1, "strata": ("effect_type", "midi", "source_type")},
+    "pitchbench_e2_background":            {"per_stratum": 1, "strata": ("background", "snr_db", "source_type")},
+    "pitchbench_e3_harmonic_saturation":   {"per_stratum": 1, "strata": ("saturation_level", "midi", "source_type")},
+    "pitchbench_e4_time_stretching":       {"per_stratum": 1, "strata": ("condition", "midi", "source_type")},
+
+    # Category F: Polyphony / multi-instrument identification
+    "pitchbench_f1_melodic_line_atonal":   {"per_stratum": 1, "strata": ("n", "source_label", "tempo", "x")},
     # f2: voice position (x ∈ {soprano, alto, tenor, bass}) is a core DV.
-    "pitchbench_f2_chorale_voice_id":      {"per_stratum": 5, "strata": ("chorale_slug", "x")},
+    "pitchbench_f2_melodic_line_tonal":    {"per_stratum": 1, "strata": ("chorale_slug", "x", "source_label", "tempo")},
 }
 
 
@@ -194,6 +199,8 @@ EXPERIMENT_DEFAULTS: dict[str, dict] = {
 #                         BENCHMARK CONSTANTS
 #  Canonical paper values. Used when EVAL=True. DO NOT MODIFY for paper runs.
 # ═══════════════════════════════════════════════════════════════════════════
+
+BENCHMARK_NOTATION_FORMATS = ["midi", "spn", "hz", "doremi"]
 
 BENCHMARK_PITCHES_FULL_RANGE = list(range(29, 90))   # F1–F6
 BENCHMARK_PITCHES_SELECTION  = [30, 36, 43, 48, 54, 60, 64, 69, 79, 88]      # 10 hand-picked
@@ -203,8 +210,7 @@ BENCHMARK_PITCHES_SELECTION_COMPACT = [42, 53, 60, 67, 77]
 BENCHMARK_INTERVALS = [-12, -7, -5, -4, -3, -1, 0, 1,  3,  4,  5,  7, 12] # 13
 BENCHMARK_DURATION_MS              = 5000
 BENCHMARK_DURATIONS_MS_SHORT_LONG  = [1000, 5000]
-BENCHMARK_DURATIONS_MS_FULL_SWEEP  = [50, 100, 250, 500, 1000, 2000,
-                                      4000, 5000, 15000, 60000]
+BENCHMARK_DURATIONS_MS_FULL_SWEEP  = [50, 250, 500, 1000, 4000, 15000, 60000]
 BENCHMARK_NOTE_DURATIONS_MS_D4     = [250, 500, 1000]
 
 BENCHMARK_TOTAL_DUR_MS      = 60_000
@@ -255,7 +261,7 @@ INCLUDE_BASELINES: bool = True
 
 # Large literal dicts/lists kept here so per-experiment blocks below stay scannable.
 
-BENCHMARK_C2_CHORD_INTERVALS: dict[str, tuple[int, ...]] = {
+BENCHMARK_C1_CHORD_INTERVALS: dict[str, tuple[int, ...]] = {
     "maj":  (0, 4, 7),
     "min":  (0, 3, 7),
     "dim":  (0, 3, 6),
@@ -265,7 +271,7 @@ BENCHMARK_C2_CHORD_INTERVALS: dict[str, tuple[int, ...]] = {
     "min7": (0, 3, 7, 10),
 }
 
-BENCHMARK_C3_CHORD_TYPES: dict[str, list[int]] = {
+BENCHMARK_C4_CHORD_TYPES: dict[str, list[int]] = {
     # Dyads — all 13 intervals (unison through octave)
     "dyad_m2":  [0, 1],
     "dyad_M2":  [0, 2],
@@ -291,7 +297,7 @@ BENCHMARK_C3_CHORD_TYPES: dict[str, list[int]] = {
     "seventh_min": [0, 3, 7, 10],
 }
 
-BENCHMARK_C4_QUALITIES: dict[str, tuple[tuple[int, ...], str]] = {
+BENCHMARK_C3_QUALITIES: dict[str, tuple[tuple[int, ...], str]] = {
     "major":      ((0, 4, 7),     "major"),
     "minor":      ((0, 3, 7),     "minor"),
     "diminished": ((0, 3, 6),     "diminished"),
@@ -305,7 +311,7 @@ BENCHMARK_C4_QUALITIES: dict[str, tuple[tuple[int, ...], str]] = {
 }
 
 
-BENCHMARK_D5_TRAJECTORIES: list[dict] = [
+BENCHMARK_D4_TRAJECTORIES: list[dict] = [
     # gt_seq tokens are strictly alternating up/down — never two of the same in a row.
     # The "flat"/"same" trajectory was removed: this experiment counts direction
     # changes only (up vs down), matching d4's vocabulary.
@@ -315,7 +321,7 @@ BENCHMARK_D5_TRAJECTORIES: list[dict] = [
     {"name": "down_then_up", "shape": "valley", "interval_sign": -1, "gt_seq": ["down", "up"]},
 ]
 
-BENCHMARK_E2_EFFECTS: dict[str, dict] = {
+BENCHMARK_E1_EFFECTS: dict[str, dict] = {
     # Effects that genuinely threaten pitch perception. All RMS-matched to the
     # dry signal in engine._apply_effect, so loudness does not leak in.
     "clean":             {},
@@ -329,10 +335,24 @@ BENCHMARK_E2_EFFECTS: dict[str, dict] = {
     "reverb_long":       {"type": "reverb_room", "room_size": 0.9, "damping": 0.4,
                           "wet_level": 0.6, "dry_level": 0.4},                       # algorithmic tail, smears attack
     "chorus_heavy":      {"type": "chorus",      "rate_hz": 1.2, "depth": 0.9, "mix": 0.6},  # detuned copies near f0
+} if INCLUDE_BASELINES else {
+    "highpass_above_f0": {"type": "highpass",    "cutoff_ratio": 1.5, "order": 6},   # removes fundamental → "missing fundamental" probe
+    "lowpass_at_f0":     {"type": "lowpass",     "cutoff_ratio": 1.2, "order": 6},   # strips harmonics, leaves fundamental
+    # Digital degradation
+    "bitcrush_4bit":     {"type": "bitcrush",    "bit_depth": 4},
+    # Plugin-quality non-linear / spatial / modulated
+    "distortion_heavy":  {"type": "saturation",  "drive_db": 30.0},                  # fundamental drops, harmonics dominate
+    "reverb_long":       {"type": "reverb_room", "room_size": 0.9, "damping": 0.4,
+                          "wet_level": 0.6, "dry_level": 0.4},                       # algorithmic tail, smears attack
+    "chorus_heavy":      {"type": "chorus",      "rate_hz": 1.2, "depth": 0.9, "mix": 0.6},  # detuned copies near f0
 }
 
-BENCHMARK_E4_SATURATIONS: dict[str, dict] = {
+BENCHMARK_E3_SATURATIONS: dict[str, dict] = {
     "clean":      {},
+    "sat_light":  {"type": "saturation", "drive_db":  6.0},
+    "sat_medium": {"type": "saturation", "drive_db": 15.0},
+    "sat_heavy":  {"type": "saturation", "drive_db": 30.0},
+} if INCLUDE_BASELINES else {
     "sat_light":  {"type": "saturation", "drive_db":  6.0},
     "sat_medium": {"type": "saturation", "drive_db": 15.0},
     "sat_heavy":  {"type": "saturation", "drive_db": 30.0},
@@ -341,31 +361,36 @@ BENCHMARK_E4_SATURATIONS: dict[str, dict] = {
 # Restricted to MIDI 36–84 so ±12 semitone shifts from resampling stay audible
 BENCHMARK_PITCHES_E5 = [36, 43, 48, 54, 58, 60, 64, 67, 69, 72, 77, 84]
 
-BENCHMARK_E5_CONDITIONS: list[dict] = [
+BENCHMARK_E4_CONDITIONS: list[dict] = [
     {"name": "clean",         "mode": "clean",    "factor": 1.0},
+    {"name": "resample_0.5x", "mode": "resample", "factor": 0.5},  # 2× speed → pitch +12
+    {"name": "resample_2x",   "mode": "resample", "factor": 2.0},  # ½× speed → pitch −12
+    {"name": "stretch_0.5x",  "mode": "stretch",  "factor": 0.5},  # 2× speed, pitch unchanged
+    {"name": "stretch_2x",    "mode": "stretch",  "factor": 2.0},  # ½× speed, pitch unchanged
+] if INCLUDE_BASELINES else [
     {"name": "resample_0.5x", "mode": "resample", "factor": 0.5},  # 2× speed → pitch +12
     {"name": "resample_2x",   "mode": "resample", "factor": 2.0},  # ½× speed → pitch −12
     {"name": "stretch_0.5x",  "mode": "stretch",  "factor": 0.5},  # 2× speed, pitch unchanged
     {"name": "stretch_2x",    "mode": "stretch",  "factor": 2.0},  # ½× speed, pitch unchanged
 ]
 
-
 # ═══════════════════════════════════════════════════════════════════════════
 #                  PER-EXPERIMENT DATA-GENERATION PARAMETERS
 # ═══════════════════════════════════════════════════════════════════════════
 
 if EVAL:
+    pitchbench_general_NOTATION_FORMATS = BENCHMARK_NOTATION_FORMATS
     # ── a1: pitch identification ──────────────────────────────────────────
     pitchbench_a1_PITCHES          = BENCHMARK_PITCHES_FULL_RANGE
     pitchbench_a1_TONE_DURATION_MS = BENCHMARK_DURATION_MS
     pitchbench_a1_SOURCES          = BENCHMARK_ALL_SOURCES
 
     # ── a2: pitch with reference ──────────────────────────────────────────
-    pitchbench_a2_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION_COMPACT # smaller range since intervals can push the notes out of the audible MIDI range
-    pitchbench_a2_INTERVALS         = BENCHMARK_INTERVALS
-    pitchbench_a2_TONE_DURATION_MS  = BENCHMARK_DURATION_MS
-    pitchbench_a2_GAP_MS            = 500
-    pitchbench_a2_SOURCES           = BENCHMARK_ALL_SOURCES
+    pitchbench_d7_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION_COMPACT # smaller range since intervals can push the notes out of the audible MIDI range
+    pitchbench_d7_INTERVALS         = BENCHMARK_INTERVALS
+    pitchbench_d7_TONE_DURATION_MS  = BENCHMARK_DURATION_MS
+    pitchbench_d7_GAP_MS            = 500
+    pitchbench_d7_SOURCES           = BENCHMARK_ALL_SOURCES
 
     # ── a3: pitch by duration ─────────────────────────────────────────────
     pitchbench_a3_PITCHES      = BENCHMARK_PITCHES_SELECTION
@@ -373,18 +398,18 @@ if EVAL:
     pitchbench_a3_SOURCES      = BENCHMARK_ALL_SOURCES
 
     # ── a4: pitch with vibrato ────────────────────────────────────────────
-    pitchbench_a4_VIBRATO_RATES_HZ     = [0, 3, 5, 7, 10]
-    pitchbench_a4_VIBRATO_DEPTHS_CENTS = [0, 25, 50, 100, 200]
-    pitchbench_a4_DURATIONS_MS         = [BENCHMARK_DURATION_MS]
-    pitchbench_a4_PITCHES              = BENCHMARK_PITCHES_SELECTION_REDUCED
-    pitchbench_a4_SOURCES              = BENCHMARK_WAVEFORMS
+    pitchbench_e5_VIBRATO_RATES_HZ     = [3, 5, 7, 10]
+    pitchbench_e5_VIBRATO_DEPTHS_CENTS = [25, 50, 100, 200]
+    pitchbench_e5_DURATIONS_MS         = [BENCHMARK_DURATION_MS]
+    pitchbench_e5_PITCHES              = BENCHMARK_PITCHES_SELECTION_REDUCED
+    pitchbench_e5_SOURCES              = BENCHMARK_WAVEFORMS
 
     # ── a5: pitch slightly off ────────────────────────────────────────────
-    pitchbench_a5_N_DETUNE_LEVELS = 5
-    pitchbench_a5_DETUNE_FRACTION = 0.45
-    pitchbench_a5_PITCHES         = BENCHMARK_PITCHES_SELECTION
-    pitchbench_a5_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_a5_SOURCES         = BENCHMARK_ALL_SOURCES
+    pitchbench_e6_N_DETUNE_LEVELS = 5
+    pitchbench_e6_DETUNE_FRACTION = 0.45
+    pitchbench_e6_PITCHES         = BENCHMARK_PITCHES_SELECTION
+    pitchbench_e6_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_e6_SOURCES         = BENCHMARK_ALL_SOURCES
 
     # ── b1: pitch in silence ──────────────────────────────────────────────
     pitchbench_b1_PITCHES           = BENCHMARK_PITCHES_SELECTION
@@ -394,32 +419,32 @@ if EVAL:
     pitchbench_b1_SOURCES           = BENCHMARK_ALL_SOURCES
 
     # ── b2: onset/offset single ──────────────────────────────────────────
-    pitchbench_b2_PITCHES      = BENCHMARK_PITCHES_SELECTION
-    pitchbench_b2_POSITIONS_MS = BENCHMARK_TONE_POSITIONS_MS
-    pitchbench_b2_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS
-    pitchbench_b2_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_b2_SOURCES      = BENCHMARK_ALL_SOURCES
+    pitchbench_b3_PITCHES      = BENCHMARK_PITCHES_SELECTION
+    pitchbench_b3_POSITIONS_MS = BENCHMARK_TONE_POSITIONS_MS
+    pitchbench_b3_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS
+    pitchbench_b3_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_b3_SOURCES      = BENCHMARK_ALL_SOURCES
 
     # ── b3: onset/offset specific note ──────────────────────────────────
-    pitchbench_b3_N_DISTRACTORS   = [5, 7]
-    pitchbench_b3_TARGET_POS_OPTS = ["first", "middle", "last"]
-    pitchbench_b3_TOTAL_DUR_MS    = BENCHMARK_TOTAL_DUR_MS
-    pitchbench_b3_GAP_MIN_MS      = 500
-    pitchbench_b3_GAP_MAX_MS      = 2000
-    pitchbench_b3_PITCHES         = BENCHMARK_PITCHES_SELECTION
-    pitchbench_b3_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_b3_SEED            = BENCHMARK_SEED
-    pitchbench_b3_SOURCES         = BENCHMARK_ALL_SOURCES
+    pitchbench_b4_N_DISTRACTORS   = [5, 7]
+    pitchbench_b4_TARGET_POS_OPTS = ["first", "middle", "last"]
+    pitchbench_b4_TOTAL_DUR_MS    = BENCHMARK_TOTAL_DUR_MS
+    pitchbench_b4_GAP_MIN_MS      = 500
+    pitchbench_b4_GAP_MAX_MS      = 2000
+    pitchbench_b4_PITCHES         = BENCHMARK_PITCHES_SELECTION
+    pitchbench_b4_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_b4_SEED            = BENCHMARK_SEED
+    pitchbench_b4_SOURCES         = BENCHMARK_ALL_SOURCES
 
     # ── b4: pitch at time ────────────────────────────────────────────────
-    pitchbench_b4_N_NOTES_OPTS = [5, 10]
-    pitchbench_b4_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS
-    pitchbench_b4_GAP_MIN_MS   = 30
-    pitchbench_b4_GAP_MAX_MS   = 1500
-    pitchbench_b4_PITCHES      = BENCHMARK_PITCHES_SELECTION
-    pitchbench_b4_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_b4_SEED         = BENCHMARK_SEED
-    pitchbench_b4_SOURCES      = BENCHMARK_ALL_SOURCES
+    pitchbench_b2_N_NOTES_OPTS = [5, 10]
+    pitchbench_b2_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS
+    pitchbench_b2_GAP_MIN_MS   = 30
+    pitchbench_b2_GAP_MAX_MS   = 1500
+    pitchbench_b2_PITCHES      = BENCHMARK_PITCHES_SELECTION
+    pitchbench_b2_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_b2_SEED         = BENCHMARK_SEED
+    pitchbench_b2_SOURCES      = BENCHMARK_ALL_SOURCES
 
     # ── b5: onset/offset each note ───────────────────────────────────────
     pitchbench_b5_N_NOTES_OPTS   = [3, 5, 8]
@@ -434,38 +459,38 @@ if EVAL:
     pitchbench_b5_SOURCES        = BENCHMARK_ALL_SOURCES
 
     # ── c1: dyad interval ────────────────────────────────────────────────
-    pitchbench_c1_INTERVALS_ST         = list(range(1, 13))
-    pitchbench_c1_SAME_INSTRUMENT_OPTS = [True, False]
-    pitchbench_c1_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_c1_PITCHES              = BENCHMARK_PITCHES_SELECTION
-    pitchbench_c1_SOURCES              = BENCHMARK_ALL_SOURCES
-
-    # ── c2: chord pitch count ────────────────────────────────────────────
-    pitchbench_c2_CHORD_INTERVALS      = {q: BENCHMARK_C4_QUALITIES[q][0] for q in BENCHMARK_C4_QUALITIES}
-    pitchbench_c2_QUALITIES            = list(BENCHMARK_C4_QUALITIES.keys()) + ["random_set"]
-    pitchbench_c2_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION
+    pitchbench_c2_INTERVALS_ST         = list(range(1, 13))
     pitchbench_c2_SAME_INSTRUMENT_OPTS = [True, False]
-    pitchbench_c2_RANDOM_NS            = [1, 2, 3, 4, 5, 6]
-    pitchbench_c2_RANDOM_PITCH_RANGE   = (BENCHMARK_PITCHES_FULL_RANGE[0], BENCHMARK_PITCHES_FULL_RANGE[-1])
-    pitchbench_c2_N_TRIALS             = 1
-    pitchbench_c2_RANDOM_TRIALS        = 3
     pitchbench_c2_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_c2_SEED                 = BENCHMARK_SEED
+    pitchbench_c2_PITCHES              = BENCHMARK_PITCHES_SELECTION
     pitchbench_c2_SOURCES              = BENCHMARK_ALL_SOURCES
 
+    # ── c2: chord pitch count ────────────────────────────────────────────
+    pitchbench_c1_CHORD_INTERVALS      = {q: BENCHMARK_C3_QUALITIES[q][0] for q in BENCHMARK_C3_QUALITIES}
+    pitchbench_c1_QUALITIES            = list(BENCHMARK_C3_QUALITIES.keys()) + ["random_set"]
+    pitchbench_c1_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION
+    pitchbench_c1_SAME_INSTRUMENT_OPTS = [True, False]
+    pitchbench_c1_RANDOM_NS            = [1, 2, 3, 4, 5, 6]
+    pitchbench_c1_RANDOM_PITCH_RANGE   = (BENCHMARK_PITCHES_FULL_RANGE[0], BENCHMARK_PITCHES_FULL_RANGE[-1])
+    pitchbench_c1_N_TRIALS             = 1
+    pitchbench_c1_RANDOM_TRIALS        = 3
+    pitchbench_c1_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_c1_SEED                 = BENCHMARK_SEED
+    pitchbench_c1_SOURCES              = BENCHMARK_ALL_SOURCES
+
     # ── c3: chord pitch id ───────────────────────────────────────────────
-    pitchbench_c3_CHORD_TYPES      = BENCHMARK_C3_CHORD_TYPES
-    pitchbench_c3_BASE_ROOTS       = BENCHMARK_PITCHES_SELECTION
-    pitchbench_c3_TONE_DURATION_MS = BENCHMARK_DURATION_MS
-    pitchbench_c3_SOURCES          = BENCHMARK_ALL_SOURCES
+    pitchbench_c4_CHORD_TYPES      = BENCHMARK_C4_CHORD_TYPES
+    pitchbench_c4_BASE_ROOTS       = BENCHMARK_PITCHES_SELECTION
+    pitchbench_c4_TONE_DURATION_MS = BENCHMARK_DURATION_MS
+    pitchbench_c4_SOURCES          = BENCHMARK_ALL_SOURCES
 
     # ── c4: chord quality ────────────────────────────────────────────────
-    pitchbench_c4_QUALITIES            = BENCHMARK_C4_QUALITIES
-    pitchbench_c4_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION
-    pitchbench_c4_TASKS                = ["quality_only"]
-    pitchbench_c4_SAME_INSTRUMENT_OPTS = [True, False]
-    pitchbench_c4_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_c4_SOURCES              = BENCHMARK_ALL_SOURCES
+    pitchbench_c3_QUALITIES            = BENCHMARK_C3_QUALITIES
+    pitchbench_c3_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION
+    pitchbench_c3_TASKS                = ["quality_only"]
+    pitchbench_c3_SAME_INSTRUMENT_OPTS = [True, False]
+    pitchbench_c3_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_c3_SOURCES              = BENCHMARK_ALL_SOURCES
 
     # ── d1: seq pitch count ──────────────────────────────────────────────
     pitchbench_d1_N_COUNTS     = [1, 2, 3, 4, 5, 7, 10]
@@ -488,98 +513,98 @@ if EVAL:
     pitchbench_d2_SOURCES       = BENCHMARK_ALL_SOURCES
 
     # ── d3: interval id seq ──────────────────────────────────────────────
-    pitchbench_d3_INTERVALS_ST   = list(range(1, 13))
-    pitchbench_d3_DIRECTIONS     = ["ascending", "descending"]
-    pitchbench_d3_SEPARATIONS_MS = [200, 500, 1000, 2000]
-    pitchbench_d3_PITCHES        = BENCHMARK_PITCHES_SELECTION
-    pitchbench_d3_DURATIONS_MS   = BENCHMARK_DURATIONS_MS_SHORT_LONG
-    pitchbench_d3_SOURCES        = BENCHMARK_ALL_SOURCES
+    pitchbench_d6_INTERVALS_ST   = list(range(1, 13))
+    pitchbench_d6_DIRECTIONS     = ["ascending", "descending"]
+    pitchbench_d6_SEPARATIONS_MS = [200, 500, 1000, 2000]
+    pitchbench_d6_PITCHES        = BENCHMARK_PITCHES_SELECTION
+    pitchbench_d6_DURATIONS_MS   = BENCHMARK_DURATIONS_MS_SHORT_LONG
+    pitchbench_d6_SOURCES        = BENCHMARK_ALL_SOURCES
 
     # ── d4: contour discrete ─────────────────────────────────────────────
-    pitchbench_d4_N_TRANSITIONS_OPTS = [2, 3, 5, 7]
-    pitchbench_d4_STEP_SIZES_ST      = [1, 2, 4, 7, 11]
-    pitchbench_d4_NOTE_DURATIONS_MS  = BENCHMARK_NOTE_DURATIONS_MS_D4
-    pitchbench_d4_TRIALS_PER_CELL    = 2
-    pitchbench_d4_PITCHES            = BENCHMARK_PITCHES_SELECTION
-    pitchbench_d4_SEED               = BENCHMARK_SEED
-    pitchbench_d4_SOURCES            = BENCHMARK_ALL_SOURCES
+    pitchbench_d3_N_TRANSITIONS_OPTS = [2, 3, 5, 7]
+    pitchbench_d3_STEP_SIZES_ST      = [1, 2, 4, 7, 11]
+    pitchbench_d3_NOTE_DURATIONS_MS  = BENCHMARK_NOTE_DURATIONS_MS_D4
+    pitchbench_d3_TRIALS_PER_CELL    = 2
+    pitchbench_d3_PITCHES            = BENCHMARK_PITCHES_SELECTION
+    pitchbench_d3_SEED               = BENCHMARK_SEED
+    pitchbench_d3_SOURCES            = BENCHMARK_ALL_SOURCES
 
     # ── d5: contour continuous ───────────────────────────────────────────
-    pitchbench_d5_START_PITCHES = BENCHMARK_PITCHES_SELECTION
-    pitchbench_d5_INTERVALS_ST  = [1, 4, 7, 12]
-    pitchbench_d5_DURATION_MS   = BENCHMARK_DURATION_MS
-    pitchbench_d5_SOURCES       = BENCHMARK_WAVEFORMS
-    pitchbench_d5_TRAJECTORIES  = BENCHMARK_D5_TRAJECTORIES
+    pitchbench_d4_START_PITCHES = BENCHMARK_PITCHES_SELECTION
+    pitchbench_d4_INTERVALS_ST  = [1, 4, 7, 12]
+    pitchbench_d4_DURATION_MS   = BENCHMARK_DURATION_MS
+    pitchbench_d4_SOURCES       = BENCHMARK_WAVEFORMS
+    pitchbench_d4_TRAJECTORIES  = BENCHMARK_D4_TRAJECTORIES
 
     # ── d6: pitch ranking ────────────────────────────────────────────────
-    pitchbench_d6_BASE_FREQS  = BENCHMARK_BASE_FREQS_A
-    pitchbench_d6_DELTA_CENTS = [25, 50, 100, 200, 400]
-    pitchbench_d6_N_TONES     = [3, 4, 5, 7]
-    pitchbench_d6_RHYTHMS     = ["regular", "irregular"]
-    pitchbench_d6_DURATION_MS = BENCHMARK_DURATION_MS
-    pitchbench_d6_GAP_MS      = BENCHMARK_GAP_MS
-    pitchbench_d6_N_TRIALS    = BENCHMARK_N_TRIALS
-    pitchbench_d6_SEED        = BENCHMARK_SEED
-    pitchbench_d6_SOURCES     = BENCHMARK_WAVEFORMS
+    pitchbench_d5_BASE_FREQS  = BENCHMARK_BASE_FREQS_A
+    pitchbench_d5_DELTA_CENTS = [25, 50, 100, 200, 400]
+    pitchbench_d5_N_TONES     = [3, 4, 5, 7]
+    pitchbench_d5_RHYTHMS     = ["regular", "irregular"]
+    pitchbench_d5_DURATION_MS = BENCHMARK_DURATION_MS
+    pitchbench_d5_GAP_MS      = BENCHMARK_GAP_MS
+    pitchbench_d5_N_TRIALS    = BENCHMARK_N_TRIALS
+    pitchbench_d5_SEED        = BENCHMARK_SEED
+    pitchbench_d5_SOURCES     = BENCHMARK_WAVEFORMS
 
     # ── d7: seq pitch id ─────────────────────────────────────────────────
-    pitchbench_d7_PITCH_MIN    = 29
-    pitchbench_d7_PITCH_MAX    = 89
-    pitchbench_d7_N_NOTES_LIST = [3, 5, 10]
-    pitchbench_d7_TONE_MS      = BENCHMARK_DURATION_MS
-    pitchbench_d7_GAP_MS       = BENCHMARK_GAP_MS_D7
-    pitchbench_d7_N_TRIALS     = 5
-    pitchbench_d7_SEED         = BENCHMARK_SEED
-    pitchbench_d7_SOURCES      = BENCHMARK_ALL_SOURCES
+    pitchbench_d8_PITCH_MIN    = 29
+    pitchbench_d8_PITCH_MAX    = 89
+    pitchbench_d8_N_NOTES_LIST = [3, 5, 10]
+    pitchbench_d8_TONE_MS      = BENCHMARK_DURATION_MS
+    pitchbench_d8_GAP_MS       = BENCHMARK_GAP_MS_D7
+    pitchbench_d8_N_TRIALS     = 5
+    pitchbench_d8_SEED         = BENCHMARK_SEED
+    pitchbench_d8_SOURCES      = BENCHMARK_ALL_SOURCES
 
     # ── e1: loudness ─────────────────────────────────────────────────────
-    pitchbench_e1_LOUDNESS_DB = [-30, -20, -12, -6, -3, 0]
-    pitchbench_e1_TONE_MS     = BENCHMARK_DURATION_MS
-    pitchbench_e1_PITCHES     = BENCHMARK_PITCHES_SELECTION
-    pitchbench_e1_SOURCES     = BENCHMARK_ALL_SOURCES
+    pitchbench_a2_LOUDNESS_DB = [-30, -20, -12, -6, -3]
+    pitchbench_a2_TONE_MS     = BENCHMARK_DURATION_MS
+    pitchbench_a2_PITCHES     = BENCHMARK_PITCHES_SELECTION
+    pitchbench_a2_SOURCES     = BENCHMARK_ALL_SOURCES
 
-    # ── e2: audio effects ────────────────────────────────────────────────
-    pitchbench_e2_PITCHES = BENCHMARK_PITCHES_SELECTION
-    pitchbench_e2_TONE_MS = BENCHMARK_DURATION_MS
-    pitchbench_e2_EFFECTS = BENCHMARK_E2_EFFECTS
-    pitchbench_e2_SOURCES = BENCHMARK_ALL_SOURCES
+    # ── e1: audio effects ────────────────────────────────────────────────
+    pitchbench_e1_PITCHES = BENCHMARK_PITCHES_SELECTION
+    pitchbench_e1_TONE_MS = BENCHMARK_DURATION_MS
+    pitchbench_e1_EFFECTS = BENCHMARK_E1_EFFECTS
+    pitchbench_e1_SOURCES = BENCHMARK_ALL_SOURCES
 
-    # ── e3: background effects ───────────────────────────────────────────
-    pitchbench_e3_BACKGROUNDS  = ["white_noise", "church-bells",
+    # ── e2: background effects ───────────────────────────────────────────
+    pitchbench_e2_BACKGROUNDS  = ["white_noise", "church-bells",
                                   "crowd-noise", "rain", "street-noise"]
-    pitchbench_e3_SNR_DB       = [30.0, 20.0, 0.0, -6.0]
+    pitchbench_e2_SNR_DB       = [30.0, 20.0, 0.0, -6.0]
+    pitchbench_e2_PITCHES      = BENCHMARK_PITCHES_SELECTION
+    pitchbench_e2_DURATIONS_MS = [BENCHMARK_DURATION_MS]
+    pitchbench_e2_SOURCES      = BENCHMARK_ALL_SOURCES
+
+    # ── e3: harmonic saturation ──────────────────────────────────────────
     pitchbench_e3_PITCHES      = BENCHMARK_PITCHES_SELECTION
-    pitchbench_e3_DURATIONS_MS = [BENCHMARK_DURATION_MS]
+    pitchbench_e3_TONE_MS      = BENCHMARK_DURATION_MS
+    pitchbench_e3_SATURATIONS  = BENCHMARK_E3_SATURATIONS
     pitchbench_e3_SOURCES      = BENCHMARK_ALL_SOURCES
 
-    # ── e4: harmonic saturation ──────────────────────────────────────────
-    pitchbench_e4_PITCHES      = BENCHMARK_PITCHES_SELECTION
-    pitchbench_e4_TONE_MS      = BENCHMARK_DURATION_MS
-    pitchbench_e4_SATURATIONS  = BENCHMARK_E4_SATURATIONS
+    # ── e4: time stretch vs resample ─────────────────────────────────────
+    pitchbench_e4_PITCHES      = BENCHMARK_PITCHES_E5
+    pitchbench_e4_TONE_MS      = 3000
+    pitchbench_e4_CONDITIONS   = BENCHMARK_E4_CONDITIONS
     pitchbench_e4_SOURCES      = BENCHMARK_ALL_SOURCES
 
-    # ── e5: time stretch vs resample ─────────────────────────────────────
-    pitchbench_e5_PITCHES      = BENCHMARK_PITCHES_E5
-    pitchbench_e5_TONE_MS      = 3000
-    pitchbench_e5_CONDITIONS   = BENCHMARK_E5_CONDITIONS
-    pitchbench_e5_SOURCES      = BENCHMARK_ALL_SOURCES
+    # # ── g1: embedding geometry (analysis track, not in CLI) ──────────────
+    # pitchbench_g1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
+    # pitchbench_g1_SOURCES = BENCHMARK_ALL_SOURCES
 
-    # ── g1: embedding geometry (analysis track, not in CLI) ──────────────
-    pitchbench_g1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE
-    pitchbench_g1_SOURCES = BENCHMARK_ALL_SOURCES
+    # # ── g2: token logits (analysis track, not in CLI) ────────────────────
+    # pitchbench_g2_PITCHES          = [29, 43, 57, 71, 72]
+    # pitchbench_g2_SOURCES          = BENCHMARK_ALL_SOURCES
+    # pitchbench_g2_TONE_DURATION_MS = 2000
+    # pitchbench_g2_TOP_K            = 200
+    # pitchbench_g2_MAX_NEW_TOKENS   = 32
 
-    # ── g2: token logits (analysis track, not in CLI) ────────────────────
-    pitchbench_g2_PITCHES          = [29, 43, 57, 71, 72]
-    pitchbench_g2_SOURCES          = BENCHMARK_ALL_SOURCES
-    pitchbench_g2_TONE_DURATION_MS = 2000
-    pitchbench_g2_TOP_K            = 200
-    pitchbench_g2_MAX_NEW_TOKENS   = 32
-
-    # ── g3: knn oracle (analysis track, not in CLI) ──────────────────────
-    pitchbench_g3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE
-    pitchbench_g3_SOURCES    = BENCHMARK_ALL_SOURCES
-    pitchbench_g3_K          = 1
-    pitchbench_g3_SPLIT_SEED = BENCHMARK_SEED
+    # # ── g3: knn oracle (analysis track, not in CLI) ──────────────────────
+    # pitchbench_g3_PITCHES    = BENCHMARK_PITCHES_FULL_RANGE
+    # pitchbench_g3_SOURCES    = BENCHMARK_ALL_SOURCES
+    # pitchbench_g3_K          = 1
+    # pitchbench_g3_SPLIT_SEED = BENCHMARK_SEED
 
     # ── f1: melodic line id ──────────────────────────────────────────────
     pitchbench_f1_N_NOTES      = 10
@@ -627,12 +652,12 @@ else:
     pitchbench_a1_SOURCES          = BENCHMARK_ALL_SOURCES           # ← edit me
 
     # ── a2: pitch with reference ──────────────────────────────────────────
-    pitchbench_a2_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION    # ← edit me
-    pitchbench_a2_INTERVALS         = [-12, -7, -5, -4, -3, -2, -1, 0,
+    pitchbench_d7_REFERENCE_PITCHES = BENCHMARK_PITCHES_SELECTION    # ← edit me
+    pitchbench_d7_INTERVALS         = [-12, -7, -5, -4, -3, -2, -1, 0,
                                         1,  2,  3,  4,  5,  7, 12]   # ← edit me
-    pitchbench_a2_TONE_DURATION_MS  = BENCHMARK_DURATION_MS          # ← edit me
-    pitchbench_a2_GAP_MS            = 500                            # ← edit me
-    pitchbench_a2_SOURCES           = BENCHMARK_ALL_SOURCES          # ← edit me
+    pitchbench_d7_TONE_DURATION_MS  = BENCHMARK_DURATION_MS          # ← edit me
+    pitchbench_d7_GAP_MS            = 500                            # ← edit me
+    pitchbench_d7_SOURCES           = BENCHMARK_ALL_SOURCES          # ← edit me
 
     # ── a3: pitch by duration ─────────────────────────────────────────────
     pitchbench_a3_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
@@ -640,18 +665,18 @@ else:
     pitchbench_a3_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
 
     # ── a4: pitch with vibrato ────────────────────────────────────────────
-    pitchbench_a4_VIBRATO_RATES_HZ     = [0, 3, 5, 7, 10]            # ← edit me
-    pitchbench_a4_VIBRATO_DEPTHS_CENTS = [0, 25, 50, 100, 200]       # ← edit me
-    pitchbench_a4_DURATIONS_MS         = [BENCHMARK_DURATION_MS]     # ← edit me
-    pitchbench_a4_PITCHES              = BENCHMARK_PITCHES_SELECTION # ← edit me
-    pitchbench_a4_SOURCES              = BENCHMARK_WAVEFORMS         # ← edit me
+    pitchbench_e5_VIBRATO_RATES_HZ     = [0, 3, 5, 7, 10]            # ← edit me
+    pitchbench_e5_VIBRATO_DEPTHS_CENTS = [0, 25, 50, 100, 200]       # ← edit me
+    pitchbench_e5_DURATIONS_MS         = [BENCHMARK_DURATION_MS]     # ← edit me
+    pitchbench_e5_PITCHES              = BENCHMARK_PITCHES_SELECTION # ← edit me
+    pitchbench_e5_SOURCES              = BENCHMARK_WAVEFORMS         # ← edit me
 
     # ── a5: pitch slightly off ────────────────────────────────────────────
-    pitchbench_a5_N_DETUNE_LEVELS = 5                                # ← edit me
-    pitchbench_a5_DETUNE_FRACTION = 0.40                             # ← edit me
-    pitchbench_a5_PITCHES         = BENCHMARK_PITCHES_SELECTION      # ← edit me
-    pitchbench_a5_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
-    pitchbench_a5_SOURCES         = BENCHMARK_ALL_SOURCES            # ← edit me
+    pitchbench_e6_N_DETUNE_LEVELS = 5                                # ← edit me
+    pitchbench_e6_DETUNE_FRACTION = 0.40                             # ← edit me
+    pitchbench_e6_PITCHES         = BENCHMARK_PITCHES_SELECTION      # ← edit me
+    pitchbench_e6_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
+    pitchbench_e6_SOURCES         = BENCHMARK_ALL_SOURCES            # ← edit me
 
     # ── b1: pitch in silence ──────────────────────────────────────────────
     pitchbench_b1_PITCHES           = BENCHMARK_PITCHES_SELECTION    # ← edit me
@@ -661,32 +686,32 @@ else:
     pitchbench_b1_SOURCES           = BENCHMARK_ALL_SOURCES          # ← edit me
 
     # ── b2: onset/offset single ──────────────────────────────────────────
-    pitchbench_b2_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
-    pitchbench_b2_POSITIONS_MS = BENCHMARK_TONE_POSITIONS_MS         # ← edit me
-    pitchbench_b2_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS              # ← edit me
-    pitchbench_b2_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG   # ← edit me
-    pitchbench_b2_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
+    pitchbench_b3_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
+    pitchbench_b3_POSITIONS_MS = BENCHMARK_TONE_POSITIONS_MS         # ← edit me
+    pitchbench_b3_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS              # ← edit me
+    pitchbench_b3_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG   # ← edit me
+    pitchbench_b3_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
 
     # ── b3: onset/offset specific note ──────────────────────────────────
-    pitchbench_b3_N_DISTRACTORS   = [5, 7]                           # ← edit me
-    pitchbench_b3_TARGET_POS_OPTS = ["first", "middle", "last"]      # ← edit me
-    pitchbench_b3_TOTAL_DUR_MS    = BENCHMARK_TOTAL_DUR_MS           # ← edit me
-    pitchbench_b3_GAP_MIN_MS      = 500                              # ← edit me
-    pitchbench_b3_GAP_MAX_MS      = 2000                             # ← edit me
-    pitchbench_b3_PITCHES         = BENCHMARK_PITCHES_SELECTION      # ← edit me
-    pitchbench_b3_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
-    pitchbench_b3_SEED            = BENCHMARK_SEED                   # ← edit me
-    pitchbench_b3_SOURCES         = BENCHMARK_ALL_SOURCES            # ← edit me
+    pitchbench_b4_N_DISTRACTORS   = [5, 7]                           # ← edit me
+    pitchbench_b4_TARGET_POS_OPTS = ["first", "middle", "last"]      # ← edit me
+    pitchbench_b4_TOTAL_DUR_MS    = BENCHMARK_TOTAL_DUR_MS           # ← edit me
+    pitchbench_b4_GAP_MIN_MS      = 500                              # ← edit me
+    pitchbench_b4_GAP_MAX_MS      = 2000                             # ← edit me
+    pitchbench_b4_PITCHES         = BENCHMARK_PITCHES_SELECTION      # ← edit me
+    pitchbench_b4_DURATIONS_MS    = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
+    pitchbench_b4_SEED            = BENCHMARK_SEED                   # ← edit me
+    pitchbench_b4_SOURCES         = BENCHMARK_ALL_SOURCES            # ← edit me
 
     # ── b4: pitch at time ────────────────────────────────────────────────
-    pitchbench_b4_N_NOTES_OPTS = [5, 10]                             # ← edit me
-    pitchbench_b4_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS              # ← edit me
-    pitchbench_b4_GAP_MIN_MS   = 30                                  # ← edit me
-    pitchbench_b4_GAP_MAX_MS   = 1500                                # ← edit me
-    pitchbench_b4_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
-    pitchbench_b4_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG   # ← edit me
-    pitchbench_b4_SEED         = BENCHMARK_SEED                      # ← edit me
-    pitchbench_b4_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
+    pitchbench_b2_N_NOTES_OPTS = [5, 10]                             # ← edit me
+    pitchbench_b2_TOTAL_DUR_MS = BENCHMARK_TOTAL_DUR_MS              # ← edit me
+    pitchbench_b2_GAP_MIN_MS   = 30                                  # ← edit me
+    pitchbench_b2_GAP_MAX_MS   = 1500                                # ← edit me
+    pitchbench_b2_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
+    pitchbench_b2_DURATIONS_MS = BENCHMARK_DURATIONS_MS_SHORT_LONG   # ← edit me
+    pitchbench_b2_SEED         = BENCHMARK_SEED                      # ← edit me
+    pitchbench_b2_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
 
     # ── b5: onset/offset each note ───────────────────────────────────────
     pitchbench_b5_N_NOTES_OPTS   = [3, 5, 8]                         # ← edit me
@@ -701,38 +726,38 @@ else:
     pitchbench_b5_SOURCES        = BENCHMARK_ALL_SOURCES             # ← edit me
 
     # ── c1: dyad interval ────────────────────────────────────────────────
-    pitchbench_c1_INTERVALS_ST         = list(range(1, 13))          # ← edit me
-    pitchbench_c1_SAME_INSTRUMENT_OPTS = [True, False]               # ← edit me
-    pitchbench_c1_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
-    pitchbench_c1_PITCHES              = BENCHMARK_PITCHES_SELECTION # ← edit me
-    pitchbench_c1_SOURCES              = BENCHMARK_ALL_SOURCES       # ← edit me
-
-    # ── c2: chord pitch count ────────────────────────────────────────────
-    pitchbench_c2_CHORD_INTERVALS      = BENCHMARK_C2_CHORD_INTERVALS # ← edit me
-    pitchbench_c2_QUALITIES            = list(BENCHMARK_C2_CHORD_INTERVALS.keys()) + ["random_set"] # ← edit me
-    pitchbench_c2_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION # ← edit me
+    pitchbench_c2_INTERVALS_ST         = list(range(1, 13))          # ← edit me
     pitchbench_c2_SAME_INSTRUMENT_OPTS = [True, False]               # ← edit me
-    pitchbench_c2_RANDOM_NS            = [1, 2, 3, 4, 5, 6]          # ← edit me
-    pitchbench_c2_RANDOM_PITCH_RANGE   = (48, 84)                    # ← edit me
-    pitchbench_c2_N_TRIALS             = 1                           # ← edit me
-    pitchbench_c2_RANDOM_TRIALS        = 3                           # ← edit me
     pitchbench_c2_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
-    pitchbench_c2_SEED                 = BENCHMARK_SEED              # ← edit me
+    pitchbench_c2_PITCHES              = BENCHMARK_PITCHES_SELECTION # ← edit me
     pitchbench_c2_SOURCES              = BENCHMARK_ALL_SOURCES       # ← edit me
 
+    # ── c2: chord pitch count ────────────────────────────────────────────
+    pitchbench_c1_CHORD_INTERVALS      = BENCHMARK_C1_CHORD_INTERVALS # ← edit me
+    pitchbench_c1_QUALITIES            = list(BENCHMARK_C1_CHORD_INTERVALS.keys()) + ["random_set"] # ← edit me
+    pitchbench_c1_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION # ← edit me
+    pitchbench_c1_SAME_INSTRUMENT_OPTS = [True, False]               # ← edit me
+    pitchbench_c1_RANDOM_NS            = [1, 2, 3, 4, 5, 6]          # ← edit me
+    pitchbench_c1_RANDOM_PITCH_RANGE   = (48, 84)                    # ← edit me
+    pitchbench_c1_N_TRIALS             = 1                           # ← edit me
+    pitchbench_c1_RANDOM_TRIALS        = 3                           # ← edit me
+    pitchbench_c1_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
+    pitchbench_c1_SEED                 = BENCHMARK_SEED              # ← edit me
+    pitchbench_c1_SOURCES              = BENCHMARK_ALL_SOURCES       # ← edit me
+
     # ── c3: chord pitch id ───────────────────────────────────────────────
-    pitchbench_c3_CHORD_TYPES      = BENCHMARK_C3_CHORD_TYPES        # ← edit me
-    pitchbench_c3_BASE_ROOTS       = BENCHMARK_PITCHES_SELECTION     # ← edit me
-    pitchbench_c3_TONE_DURATION_MS = BENCHMARK_DURATION_MS           # ← edit me
-    pitchbench_c3_SOURCES          = BENCHMARK_ALL_SOURCES           # ← edit me
+    pitchbench_c4_CHORD_TYPES      = BENCHMARK_C4_CHORD_TYPES        # ← edit me
+    pitchbench_c4_BASE_ROOTS       = BENCHMARK_PITCHES_SELECTION     # ← edit me
+    pitchbench_c4_TONE_DURATION_MS = BENCHMARK_DURATION_MS           # ← edit me
+    pitchbench_c4_SOURCES          = BENCHMARK_ALL_SOURCES           # ← edit me
 
     # ── c4: chord quality ────────────────────────────────────────────────
-    pitchbench_c4_QUALITIES            = BENCHMARK_C4_QUALITIES      # ← edit me
-    pitchbench_c4_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION # ← edit me
-    pitchbench_c4_TASKS                = ["quality_only"]            # ← edit me
-    pitchbench_c4_SAME_INSTRUMENT_OPTS = [True, False]               # ← edit me
-    pitchbench_c4_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
-    pitchbench_c4_SOURCES              = BENCHMARK_ALL_SOURCES       # ← edit me
+    pitchbench_c3_QUALITIES            = BENCHMARK_C3_QUALITIES      # ← edit me
+    pitchbench_c3_ROOT_MIDIS           = BENCHMARK_PITCHES_SELECTION # ← edit me
+    pitchbench_c3_TASKS                = ["quality_only"]            # ← edit me
+    pitchbench_c3_SAME_INSTRUMENT_OPTS = [True, False]               # ← edit me
+    pitchbench_c3_DURATIONS_MS         = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
+    pitchbench_c3_SOURCES              = BENCHMARK_ALL_SOURCES       # ← edit me
 
     # ── d1: seq pitch count ──────────────────────────────────────────────
     pitchbench_d1_N_COUNTS     = [1, 2, 3, 4, 5, 7, 10]              # ← edit me
@@ -755,81 +780,81 @@ else:
     pitchbench_d2_SOURCES       = BENCHMARK_ALL_SOURCES              # ← edit me
 
     # ── d3: interval id seq ──────────────────────────────────────────────
-    pitchbench_d3_INTERVALS_ST   = list(range(1, 13))                # ← edit me
-    pitchbench_d3_DIRECTIONS     = ["ascending", "descending"]       # ← edit me
-    pitchbench_d3_SEPARATIONS_MS = [200, 500, 1000, 2000]            # ← edit me
-    pitchbench_d3_PITCHES        = BENCHMARK_PITCHES_SELECTION       # ← edit me
-    pitchbench_d3_DURATIONS_MS   = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
-    pitchbench_d3_SOURCES        = BENCHMARK_ALL_SOURCES             # ← edit me
+    pitchbench_d6_INTERVALS_ST   = list(range(1, 13))                # ← edit me
+    pitchbench_d6_DIRECTIONS     = ["ascending", "descending"]       # ← edit me
+    pitchbench_d6_SEPARATIONS_MS = [200, 500, 1000, 2000]            # ← edit me
+    pitchbench_d6_PITCHES        = BENCHMARK_PITCHES_SELECTION       # ← edit me
+    pitchbench_d6_DURATIONS_MS   = BENCHMARK_DURATIONS_MS_SHORT_LONG # ← edit me
+    pitchbench_d6_SOURCES        = BENCHMARK_ALL_SOURCES             # ← edit me
 
     # ── d4: contour discrete ─────────────────────────────────────────────
-    pitchbench_d4_N_TRANSITIONS_OPTS = [2, 3, 5, 7]                  # ← edit me
-    pitchbench_d4_STEP_SIZES_ST      = [1, 2, 4, 7]                  # ← edit me
-    pitchbench_d4_NOTE_DURATIONS_MS  = BENCHMARK_NOTE_DURATIONS_MS_D4 # ← edit me
-    pitchbench_d4_TRIALS_PER_CELL    = 2                             # ← edit me
-    pitchbench_d4_PITCHES            = BENCHMARK_PITCHES_SELECTION   # ← edit me
-    pitchbench_d4_SEED               = BENCHMARK_SEED                # ← edit me
-    pitchbench_d4_SOURCES            = BENCHMARK_ALL_SOURCES         # ← edit me
+    pitchbench_d3_N_TRANSITIONS_OPTS = [2, 3, 5, 7]                  # ← edit me
+    pitchbench_d3_STEP_SIZES_ST      = [1, 2, 4, 7]                  # ← edit me
+    pitchbench_d3_NOTE_DURATIONS_MS  = BENCHMARK_NOTE_DURATIONS_MS_D4 # ← edit me
+    pitchbench_d3_TRIALS_PER_CELL    = 2                             # ← edit me
+    pitchbench_d3_PITCHES            = BENCHMARK_PITCHES_SELECTION   # ← edit me
+    pitchbench_d3_SEED               = BENCHMARK_SEED                # ← edit me
+    pitchbench_d3_SOURCES            = BENCHMARK_ALL_SOURCES         # ← edit me
 
     # ── d5: contour continuous ───────────────────────────────────────────
-    pitchbench_d5_START_PITCHES = BENCHMARK_PITCHES_SELECTION        # ← edit me
-    pitchbench_d5_INTERVALS_ST  = [1, 4, 7, 12]                      # ← edit me
-    pitchbench_d5_DURATION_MS   = BENCHMARK_DURATION_MS              # ← edit me
-    pitchbench_d5_SOURCES       = BENCHMARK_WAVEFORMS                # ← edit me
-    pitchbench_d5_TRAJECTORIES  = BENCHMARK_D5_TRAJECTORIES          # ← edit me
+    pitchbench_d4_START_PITCHES = BENCHMARK_PITCHES_SELECTION        # ← edit me
+    pitchbench_d4_INTERVALS_ST  = [1, 4, 7, 12]                      # ← edit me
+    pitchbench_d4_DURATION_MS   = BENCHMARK_DURATION_MS              # ← edit me
+    pitchbench_d4_SOURCES       = BENCHMARK_WAVEFORMS                # ← edit me
+    pitchbench_d4_TRAJECTORIES  = BENCHMARK_D4_TRAJECTORIES          # ← edit me
 
     # ── d6: pitch ranking ────────────────────────────────────────────────
-    pitchbench_d6_BASE_FREQS  = BENCHMARK_BASE_FREQS_A               # ← edit me
-    pitchbench_d6_DELTA_CENTS = [25, 50, 100, 200, 400]              # ← edit me
-    pitchbench_d6_N_TONES     = [3, 4, 5, 7]                         # ← edit me
-    pitchbench_d6_RHYTHMS     = ["regular", "irregular"]             # ← edit me
-    pitchbench_d6_DURATION_MS = BENCHMARK_DURATION_MS                # ← edit me
-    pitchbench_d6_GAP_MS      = BENCHMARK_GAP_MS                     # ← edit me
-    pitchbench_d6_N_TRIALS    = BENCHMARK_N_TRIALS                   # ← edit me
-    pitchbench_d6_SEED        = BENCHMARK_SEED                       # ← edit me
-    pitchbench_d6_SOURCES     = BENCHMARK_WAVEFORMS                  # ← edit me
+    pitchbench_d5_BASE_FREQS  = BENCHMARK_BASE_FREQS_A               # ← edit me
+    pitchbench_d5_DELTA_CENTS = [25, 50, 100, 200, 400]              # ← edit me
+    pitchbench_d5_N_TONES     = [3, 4, 5, 7]                         # ← edit me
+    pitchbench_d5_RHYTHMS     = ["regular", "irregular"]             # ← edit me
+    pitchbench_d5_DURATION_MS = BENCHMARK_DURATION_MS                # ← edit me
+    pitchbench_d5_GAP_MS      = BENCHMARK_GAP_MS                     # ← edit me
+    pitchbench_d5_N_TRIALS    = BENCHMARK_N_TRIALS                   # ← edit me
+    pitchbench_d5_SEED        = BENCHMARK_SEED                       # ← edit me
+    pitchbench_d5_SOURCES     = BENCHMARK_WAVEFORMS                  # ← edit me
 
     # ── d7: seq pitch id ─────────────────────────────────────────────────
-    pitchbench_d7_PITCH_MIN    = 29                                  # ← edit me
-    pitchbench_d7_PITCH_MAX    = 89                                  # ← edit me
-    pitchbench_d7_N_NOTES_LIST = [3, 5, 10]                          # ← edit me
-    pitchbench_d7_TONE_MS      = BENCHMARK_DURATION_MS               # ← edit me
-    pitchbench_d7_GAP_MS       = BENCHMARK_GAP_MS_D7                 # ← edit me
-    pitchbench_d7_N_TRIALS     = 5                                   # ← edit me
-    pitchbench_d7_SEED         = BENCHMARK_SEED                      # ← edit me
-    pitchbench_d7_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
+    pitchbench_d8_PITCH_MIN    = 29                                  # ← edit me
+    pitchbench_d8_PITCH_MAX    = 89                                  # ← edit me
+    pitchbench_d8_N_NOTES_LIST = [3, 5, 10]                          # ← edit me
+    pitchbench_d8_TONE_MS      = BENCHMARK_DURATION_MS               # ← edit me
+    pitchbench_d8_GAP_MS       = BENCHMARK_GAP_MS_D7                 # ← edit me
+    pitchbench_d8_N_TRIALS     = 5                                   # ← edit me
+    pitchbench_d8_SEED         = BENCHMARK_SEED                      # ← edit me
+    pitchbench_d8_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
 
     # ── e1: loudness ─────────────────────────────────────────────────────
-    pitchbench_e1_LOUDNESS_DB = [-30, -20, -12, -6, -3, 0]           # ← edit me
-    pitchbench_e1_TONE_MS     = BENCHMARK_DURATION_MS                # ← edit me
-    pitchbench_e1_PITCHES     = BENCHMARK_PITCHES_SELECTION          # ← edit me
-    pitchbench_e1_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
+    pitchbench_a2_LOUDNESS_DB = [-30, -20, -12, -6, -3, 0]           # ← edit me
+    pitchbench_a2_TONE_MS     = BENCHMARK_DURATION_MS                # ← edit me
+    pitchbench_a2_PITCHES     = BENCHMARK_PITCHES_SELECTION          # ← edit me
+    pitchbench_a2_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
 
     # ── e2: audio effects ────────────────────────────────────────────────
-    pitchbench_e2_PITCHES = BENCHMARK_PITCHES_SELECTION              # ← edit me
-    pitchbench_e2_TONE_MS = BENCHMARK_DURATION_MS                    # ← edit me
-    pitchbench_e2_EFFECTS = BENCHMARK_E2_EFFECTS                     # ← edit me
-    pitchbench_e2_SOURCES = BENCHMARK_ALL_SOURCES                    # ← edit me
+    pitchbench_e1_PITCHES = BENCHMARK_PITCHES_SELECTION              # ← edit me
+    pitchbench_e1_TONE_MS = BENCHMARK_DURATION_MS                    # ← edit me
+    pitchbench_e1_EFFECTS = BENCHMARK_E1_EFFECTS                     # ← edit me
+    pitchbench_e1_SOURCES = BENCHMARK_ALL_SOURCES                    # ← edit me
 
     # ── e3: background effects ───────────────────────────────────────────
-    pitchbench_e3_BACKGROUNDS  = ["white_noise", "church-bells",
+    pitchbench_e2_BACKGROUNDS  = ["white_noise", "church-bells",
                                   "crowd-noise", "rain", "street-noise"] # ← edit me
-    pitchbench_e3_SNR_DB       = [30.0, 20.0, 0.0, -6.0]             # ← edit me
-    pitchbench_e3_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
-    pitchbench_e3_DURATIONS_MS = [BENCHMARK_DURATION_MS]             # ← edit me
-    pitchbench_e3_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
+    pitchbench_e2_SNR_DB       = [30.0, 20.0, 0.0, -6.0]             # ← edit me
+    pitchbench_e2_PITCHES      = BENCHMARK_PITCHES_SELECTION         # ← edit me
+    pitchbench_e2_DURATIONS_MS = [BENCHMARK_DURATION_MS]             # ← edit me
+    pitchbench_e2_SOURCES      = BENCHMARK_ALL_SOURCES               # ← edit me
 
     # ── e4: harmonic saturation ──────────────────────────────────────────
-    pitchbench_e4_PITCHES     = BENCHMARK_PITCHES_SELECTION          # ← edit me
-    pitchbench_e4_TONE_MS     = BENCHMARK_DURATION_MS                # ← edit me
-    pitchbench_e4_SATURATIONS = BENCHMARK_E4_SATURATIONS             # ← edit me
-    pitchbench_e4_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
+    pitchbench_e3_PITCHES     = BENCHMARK_PITCHES_SELECTION          # ← edit me
+    pitchbench_e3_TONE_MS     = BENCHMARK_DURATION_MS                # ← edit me
+    pitchbench_e3_SATURATIONS = BENCHMARK_E3_SATURATIONS             # ← edit me
+    pitchbench_e3_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
 
     # ── e5: time stretch vs resample ─────────────────────────────────────
-    pitchbench_e5_PITCHES     = BENCHMARK_PITCHES_E5                 # ← edit me
-    pitchbench_e5_TONE_MS     = 3000                                 # ← edit me
-    pitchbench_e5_CONDITIONS  = BENCHMARK_E5_CONDITIONS              # ← edit me
-    pitchbench_e5_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
+    pitchbench_e4_PITCHES     = BENCHMARK_PITCHES_E5                 # ← edit me
+    pitchbench_e4_TONE_MS     = 3000                                 # ← edit me
+    pitchbench_e4_CONDITIONS  = BENCHMARK_E4_CONDITIONS              # ← edit me
+    pitchbench_e4_SOURCES     = BENCHMARK_ALL_SOURCES                # ← edit me
 
     # ── g1: embedding geometry (analysis track, not in CLI) ──────────────
     pitchbench_g1_PITCHES = BENCHMARK_PITCHES_FULL_RANGE              # ← edit me

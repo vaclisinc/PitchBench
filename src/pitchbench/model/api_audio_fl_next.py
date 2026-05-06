@@ -1,11 +1,12 @@
 import os
+import re
 import sys
 import tempfile
 from pathlib import Path
 from typing import Optional
 
 import torch
-from fastapi import FastAPI, File, Form, Query, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from pydantic import BaseModel
 from transformers import AutoModel, AutoProcessor
 from transformers import AutoModelForSeq2SeqLM
@@ -98,6 +99,101 @@ def analyze_upload(
     finally:
         os.unlink(tmp_path)
     return {"result": result}
+
+
+_AUDIO_PLACEHOLDER_RE = re.compile(r"<AUDIO(\d+)>")
+
+
+def _build_multi_content(prompt: str, audio_paths: list[str]) -> list[dict]:
+    """Interleave text and audio blocks by splitting ``prompt`` on ``<AUDIO_N>``.
+
+    `<AUDIO1>` is replaced with audio_paths[0], `<AUDIO2>` with audio_paths[1], etc.
+    Indices are 1-based; an out-of-range index raises HTTP 400.
+    """
+    parts = _AUDIO_PLACEHOLDER_RE.split(prompt)
+    # parts = [text, idx, text, idx, ..., text]  (always odd length)
+    content: list[dict] = []
+    if parts[0]:
+        content.append({"type": "text", "text": parts[0]})
+    for i in range(1, len(parts), 2):
+        idx = int(parts[i]) - 1
+        if idx < 0 or idx >= len(audio_paths):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Prompt references <AUDIO{idx + 1}> but only "
+                       f"{len(audio_paths)} audio file(s) were uploaded.",
+            )
+        content.append({"type": "audio", "path": audio_paths[idx]})
+        if i + 1 < len(parts) and parts[i + 1]:
+            content.append({"type": "text", "text": parts[i + 1]})
+    if not any(b["type"] == "audio" for b in content):
+        raise HTTPException(
+            status_code=400,
+            detail="Prompt has no <AUDIO_N> placeholders — use /analyze/upload "
+                   "for single-audio queries.",
+        )
+    return content
+
+
+@app.post("/analyze/upload_multi")
+def analyze_upload_multi(
+    prompt: str = Form(...),
+    max_new_tokens: int = Form(256),
+    files: list[UploadFile] = File(...),
+):
+    """Multi-audio variant of /analyze/upload.
+
+    The prompt embeds ``<AUDIO1>``, ``<AUDIO2>``, ... placeholders that mark
+    where each uploaded file should appear in the model's input. The Nth
+    uploaded file (1-based) goes wherever ``<AUDIO_N>`` is in the prompt.
+
+    Example::
+        prompt = "Audio 1 is reference: <AUDIO1>. Now what is Audio 2: <AUDIO2>?"
+        files  = [ref.wav, target.wav]
+    """
+    tmp_paths: list[str] = []
+    try:
+        for f in files:
+            suffix = os.path.splitext(f.filename or "")[-1] or ".wav"
+            with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                tmp.write(f.file.read())
+                tmp_paths.append(tmp.name)
+
+        content = _build_multi_content(prompt, tmp_paths)
+        conversation = [[{"role": "user", "content": content}]]
+
+        batch = processor.apply_chat_template(
+            conversation,
+            tokenize=True,
+            add_generation_prompt=True,
+            return_dict=True,
+        ).to(model.device)
+        if "input_features" in batch:
+            batch["input_features"] = batch["input_features"].to(model.dtype)
+
+        with torch.inference_mode():
+            outputs = model.generate(
+                **batch,
+                max_new_tokens=max_new_tokens,
+                repetition_penalty=1.2,
+            )
+        prompt_len = batch["input_ids"].shape[1]
+        decoded = processor.batch_decode(
+            outputs[:, prompt_len:],
+            skip_special_tokens=True,
+            clean_up_tokenization_spaces=False,
+        )[0]
+        return {"result": decoded, "n_audio": len(tmp_paths)}
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    finally:
+        for p in tmp_paths:
+            try:
+                os.unlink(p)
+            except OSError:
+                pass
 
 
 @app.post("/generate_with_probs")

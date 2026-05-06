@@ -29,12 +29,12 @@ from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import midi_to_note
 
 EXP_NAME       = Path(__file__).stem
-INTERVALS_ST   = config.pitchbench_d3_INTERVALS_ST
-DIRECTIONS     = config.pitchbench_d3_DIRECTIONS
-SEPARATIONS_MS = config.pitchbench_d3_SEPARATIONS_MS
-SOURCES        = config.pitchbench_d3_SOURCES
-PITCHES        = config.pitchbench_d3_PITCHES
-DURATIONS_MS   = config.pitchbench_d3_DURATIONS_MS
+INTERVALS_ST   = config.pitchbench_d6_INTERVALS_ST
+DIRECTIONS     = config.pitchbench_d6_DIRECTIONS
+SEPARATIONS_MS = config.pitchbench_d6_SEPARATIONS_MS
+SOURCES        = config.pitchbench_d6_SOURCES
+PITCHES        = config.pitchbench_d6_PITCHES
+DURATIONS_MS   = config.pitchbench_d6_DURATIONS_MS
 
 PROMPT = (
     "Two musical notes play in sequence, separated by a brief silence. "
