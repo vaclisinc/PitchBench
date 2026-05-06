@@ -25,11 +25,13 @@ from __future__ import annotations
 import base64
 import getpass
 import hashlib
+import io
 import json
 import os
 import re
 import sys
 import time
+import wave
 from pathlib import Path
 from typing import Any, Literal
 
@@ -49,6 +51,7 @@ from pitchbench.experiments.helpers import cost as cost_tracker
 OPENROUTER_PREFIX = "openrouter/"
 DASHSCOPE_PREFIX  = "dashscope/"
 MANUAL_MODEL_NAME = "manual"
+_OPENROUTER_GPT4O_MIN_WAV_MS = 100
 
 
 # ── small utilities ───────────────────────────────────────────────────────────
@@ -64,6 +67,78 @@ def _audio_sha256(audio_path: str | Path) -> str:
 def _audio_b64(audio_path: str | Path) -> str:
     with open(audio_path, "rb") as f:
         return base64.b64encode(f.read()).decode("ascii")
+
+
+def _audio_bytes(audio_path: str | Path) -> bytes:
+    with open(audio_path, "rb") as f:
+        return f.read()
+
+
+def _sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def _is_openrouter_gpt4o_model(model_name: str) -> bool:
+    if not model_name.startswith(OPENROUTER_PREFIX):
+        return False
+    model_id = model_name[len(OPENROUTER_PREFIX):].lower()
+    return model_id.startswith("openai/gpt-4o") or model_id.startswith("openai/gpt-audio")
+
+
+def _pad_wav_bytes_with_silence(wav_bytes: bytes, min_duration_ms: int) -> tuple[bytes, int]:
+    """Pad a WAV clip with trailing silence up to ``min_duration_ms``.
+
+    Returns the upload bytes and the number of milliseconds of silence added.
+    """
+    with wave.open(io.BytesIO(wav_bytes), "rb") as src:
+        params = src.getparams()
+        frames = src.readframes(src.getnframes())
+        frame_rate = params.framerate
+        sampwidth = params.sampwidth
+        n_channels = params.nchannels
+        n_frames = params.nframes
+
+    if frame_rate <= 0 or sampwidth <= 0 or n_channels <= 0:
+        raise ValueError("Invalid WAV parameters for GPT-4o padding")
+
+    min_frames = (min_duration_ms * frame_rate + 999) // 1000
+    if n_frames >= min_frames:
+        return wav_bytes, 0
+
+    missing_frames = min_frames - n_frames
+    silence = b"\x00" * (missing_frames * sampwidth * n_channels)
+
+    out = io.BytesIO()
+    with wave.open(out, "wb") as dst:
+        dst.setparams(params)
+        dst.writeframes(frames)
+        dst.writeframes(silence)
+
+    padding_ms = int(round(missing_frames * 1000.0 / frame_rate))
+    return out.getvalue(), padding_ms
+
+
+def _openrouter_upload_audio(audio_path: str | Path, model_name: str) -> dict[str, Any]:
+    """Return OpenRouter upload payload info for one audio file.
+
+    GPT-4o-family OpenRouter models reject very short WAVs, so those uploads are
+    padded in-memory with trailing silence only. The on-disk file is unchanged.
+    """
+    raw_bytes = _audio_bytes(audio_path)
+    upload_bytes = raw_bytes
+    padding_ms = 0
+    min_duration_ms: int | None = None
+
+    if _is_openrouter_gpt4o_model(model_name):
+        min_duration_ms = _OPENROUTER_GPT4O_MIN_WAV_MS
+        upload_bytes, padding_ms = _pad_wav_bytes_with_silence(raw_bytes, min_duration_ms)
+
+    return {
+        "b64": base64.b64encode(upload_bytes).decode("ascii"),
+        "uploaded_sha256": _sha256_bytes(upload_bytes),
+        "padding_ms": padding_ms,
+        "min_duration_ms": min_duration_ms,
+    }
 
 
 def model_slug(info: dict | str) -> str:
@@ -300,6 +375,7 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
     api_key = _resolve_openrouter_key()
 
     or_model = model_name[len(OPENROUTER_PREFIX):]
+    upload_audio = _openrouter_upload_audio(audio_path, model_name)
     body = {
         "model": or_model,
         "messages": [
@@ -307,7 +383,7 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
                 "role": "user",
                 "content": [
                     {"type": "input_audio", "input_audio": {
-                        "data":   _audio_b64(audio_path),
+                        "data":   upload_audio["b64"],
                         "format": "wav",
                     }},
                     {"type": "text", "text": prompt},
@@ -354,7 +430,12 @@ def _openrouter_text(model_name: str, audio_path: str, prompt: str,
                 cost_tracker.record(model_name, **usage)
             return {"result": content, "raw_response": data,
                     "top_tokens": None, "embedding": None,
-                    "usage": usage or None}
+                    "usage": usage or None,
+                    "upload_audio": {
+                        "uploaded_sha256": upload_audio["uploaded_sha256"],
+                        "padding_ms": upload_audio["padding_ms"],
+                        "min_duration_ms": upload_audio["min_duration_ms"],
+                    }}
         except requests.exceptions.RequestException as e:
             last_err = str(e)
             time.sleep(2 ** attempt)
@@ -672,6 +753,12 @@ def query_alm(
         "prompt":         prompt,
         "endpoint":       endpoint,
     }
+    if is_openrouter:
+        upload_audio = _openrouter_upload_audio(audio_path, model_name)
+        model_params["upload_audio_sha256"] = upload_audio["uploaded_sha256"]
+        model_params["upload_audio_padding_ms"] = upload_audio["padding_ms"]
+        if upload_audio["min_duration_ms"] is not None:
+            model_params["upload_audio_min_duration_ms"] = upload_audio["min_duration_ms"]
 
     start = time.time()
     if is_manual:
@@ -851,6 +938,7 @@ def _openrouter_text_multi(
     """
     api_key = _resolve_openrouter_key()
     or_model = model_name[len(OPENROUTER_PREFIX):]
+    upload_audios = [_openrouter_upload_audio(p, model_name) for p in audio_paths]
 
     parts = _AUDIO_PLACEHOLDER_RE.split(prompt)
     content: list[dict] = []
@@ -864,7 +952,7 @@ def _openrouter_text_multi(
                 f"{len(audio_paths)} audio file(s) provided."
             )
         content.append({"type": "input_audio", "input_audio": {
-            "data":   _audio_b64(audio_paths[idx]),
+            "data":   upload_audios[idx]["b64"],
             "format": "wav",
         }})
         if i + 1 < len(parts) and parts[i + 1]:
@@ -915,7 +1003,15 @@ def _openrouter_text_multi(
                 cost_tracker.record(model_name, **usage)
             return {"result": text, "raw_response": data,
                     "top_tokens": None, "embedding": None,
-                    "usage": usage or None}
+                    "usage": usage or None,
+                    "upload_audio": [
+                        {
+                            "uploaded_sha256": item["uploaded_sha256"],
+                            "padding_ms": item["padding_ms"],
+                            "min_duration_ms": item["min_duration_ms"],
+                        }
+                        for item in upload_audios
+                    ]}
         except requests.exceptions.RequestException as e:
             last_err = str(e)
             time.sleep(2 ** attempt)
@@ -979,6 +1075,11 @@ def query_alm_multi(
         "multi_audio":     True,
         "n_audio":         len(paths_str),
     }
+    if is_openrouter:
+        upload_audio = [_openrouter_upload_audio(p, model_name) for p in paths_str]
+        model_params["upload_audio_sha256"] = [a["uploaded_sha256"] for a in upload_audio]
+        model_params["upload_audio_padding_ms"] = [a["padding_ms"] for a in upload_audio]
+        model_params["upload_audio_min_duration_ms"] = [a["min_duration_ms"] for a in upload_audio]
 
     start = time.time()
     if is_openrouter:
