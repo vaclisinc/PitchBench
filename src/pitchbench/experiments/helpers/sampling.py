@@ -84,6 +84,27 @@ def sampling_summary_lines(meta: dict[str, Any]) -> list[str]:
     ]
 
 
+def _anchor_filter(
+    all_conds: list[dict],
+    fixed_vars: tuple[str, ...],
+    seed: int,
+) -> list[dict]:
+    """Deterministically pick one value for each fixed variable and return all rows
+    that match, effectively "anchoring" those variables to a single value across
+    all conditions.  The chosen anchor values are printed for reproducibility.
+    """
+    if not fixed_vars:
+        return list(all_conds)
+    rng = random.Random(seed)
+    fixed_values: dict[str, Any] = {}
+    for var in fixed_vars:
+        unique_vals = sorted({c[var] for c in all_conds}, key=str)
+        fixed_values[var] = rng.choice(unique_vals)
+    filtered = [c for c in all_conds if all(c[v] == fixed_values[v] for v in fixed_vars)]
+    print(f"  [sampling] anchor: {fixed_values}  → {len(filtered)} of {len(all_conds)} conditions")
+    return filtered
+
+
 def apply_default_sampling(
     exp_name: str,
     all_conds: list[dict],
@@ -104,10 +125,20 @@ def apply_default_sampling(
     a tuple of condition-dict field names. The lambda is built from that spec
     so dev-mode and paper-mode share the same strata axis.
     Falls back to ``("source",)`` if the experiment is missing from the config.
+
+    If the spec has a ``"fixed_vars"`` tuple, those variables are anchored to a
+    single seed-deterministic value *before* stratified sampling, so all sampled
+    conditions share the same value for those variables (e.g. same midi pitch and
+    same source across all levels of the main independent variable).
     """
     spec   = config.EXPERIMENT_DEFAULTS.get(exp_name, {})
     fields: tuple[str, ...] = spec.get("strata") or ("source",)
     per_stratum = spec.get("per_stratum")
+
+    # Anchor-filter: hold fixed_vars constant across sampled conditions.
+    fixed_vars: tuple[str, ...] = tuple(spec.get("fixed_vars") or ())
+    if fixed_vars:
+        all_conds = _anchor_filter(all_conds, fixed_vars, cli_seed)
 
     key_fn = lambda c, fs=fields: tuple(c[f] for f in fs)
     strata_label = "(" + ", ".join(fields) + ")" if len(fields) > 1 else fields[0]
