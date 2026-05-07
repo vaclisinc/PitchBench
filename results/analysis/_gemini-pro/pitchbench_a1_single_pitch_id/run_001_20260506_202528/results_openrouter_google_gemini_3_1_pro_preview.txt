@@ -1,0 +1,63 @@
+Experiment : pitchbench_a1_single_pitch_id
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-06T20:26:18.677920
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'q1', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 43e9f7203cde2d80e437743b298519b656b667e9
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+primary_filter_set : False
+record_extras : []
+sample_n   : None
+sample_seed : 42
+total_available : 42
+stratified_by : midi
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 42)
+  Stimuli (total)     : 42
+  Stimuli (condition) : 42  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       2.4%
+     SPN       4.8%
+  DOREMI       9.5%
+      HZ       0.0%
+     ANY       7.1%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             0.00%   28.57%   14.29%    0.00%   28.57%     7
+flute             0.00%    0.00%    0.00%    0.00%    0.00%     7
+piano             0.00%    0.00%   14.29%    0.00%    0.00%     7
+sine              0.00%    0.00%   14.29%    0.00%    0.00%     7
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     7
+voice            14.29%    0.00%   14.29%    0.00%   14.29%     7
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        2.86%    5.71%    8.57%    0.00%    8.57%    35
+waveform          0.00%    0.00%   14.29%    0.00%    0.00%     7
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%   16.67%    0.00%    0.00%   16.67%     6
+38                0.00%    0.00%    0.00%    0.00%    0.00%     6
+47                0.00%    0.00%    0.00%    0.00%    0.00%     6
+56               16.67%    0.00%   50.00%    0.00%   16.67%     6
+65                0.00%   16.67%    0.00%    0.00%   16.67%     6
+74                0.00%    0.00%    0.00%    0.00%    0.00%     6
+83                0.00%    0.00%   16.67%    0.00%    0.00%     6
+
+
+LLM USAGE
+==================================================
+  calls                           168
+  prompt tokens                30,618
+  completion tokens            20,545
+  total tokens                 51,163
+  cost (USD)                $0.307776

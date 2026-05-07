@@ -1,0 +1,70 @@
+Experiment : pitchbench_b2_pitch_at_timestamp
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-06T20:38:52.123725
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'q1', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 43e9f7203cde2d80e437743b298519b656b667e9
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : False
+record_extras : ['n_notes', 'duration_ms', 'query_time_s']
+sample_n   : None
+sample_seed : 42
+total_available : 84
+stratified_by : n_notes
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 84)
+  Stimuli (total)     : 84
+  Stimuli (condition) : 84  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+      MIDI       5.9%
+       SPN       3.6%
+    DOREMI      10.7%
+        HZ       2.4%
+       ANY       8.3%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             7.14%    0.00%    0.00%    7.14%    7.14%    14
+flute             0.00%    0.00%    7.14%    0.00%    0.00%    14
+piano             0.00%    0.00%   21.43%    0.00%    0.00%    14
+sine              7.14%    7.14%   14.29%    0.00%   14.29%    14
+synth_lead        7.14%    7.14%    0.00%    0.00%   14.29%    14
+voice            14.29%    7.14%   21.43%    7.14%   14.29%    14
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        5.71%    2.86%   10.00%    2.86%    7.14%    70
+waveform          7.14%    7.14%   14.29%    0.00%   14.29%    14
+
+n_notes            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+5                11.90%    4.76%    9.52%    4.76%   14.29%    42
+10                0.00%    2.38%   11.90%    0.00%    2.38%    42
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%    12
+38                8.33%    0.00%    0.00%    0.00%    8.33%    12
+47                8.33%    8.33%    8.33%    8.33%    8.33%    12
+56                0.00%    0.00%   50.00%    0.00%    0.00%    12
+65               16.67%    8.33%    0.00%    8.33%   25.00%    12
+74                0.00%    8.33%    8.33%    0.00%    8.33%    12
+83                8.33%    0.00%    8.33%    0.00%    8.33%    12
+
+
+LLM USAGE
+==================================================
+  calls                           336
+  prompt tokens               530,301
+  completion tokens            41,095
+  total tokens                571,396
+  cost (USD)                $1.553742
