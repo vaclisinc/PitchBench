@@ -1,0 +1,81 @@
+Experiment : pitchbench_e1_audio_effects
+Model      : openrouter/~google/gemini-flash-latest
+timestamp  : 2026-05-06T21:00:58.712922
+argv       : ['.venv/bin/pitchbench', 'q1', '--models', 'openrouter/~google/gemini-flash-latest']
+git_commit : 43e9f7203cde2d80e437743b298519b656b667e9
+git_dirty  : True
+model_name : openrouter/~google/gemini-flash-latest
+model_info : {'model': 'openrouter/~google/gemini-flash-latest', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': '~google/gemini-flash-latest'}
+primary_filter_set : False
+record_extras : ['effect', 'effect_type', 'effect_params', 'noise_seed']
+sample_n   : None
+sample_seed : 42
+total_available : 252
+stratified_by : effect_type
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 252)
+  Stimuli (total)     : 252
+  Stimuli (condition) : 252  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       0.8%
+     SPN       0.0%
+  DOREMI       0.4%
+      HZ       0.0%
+     ANY       0.8%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             2.38%    0.00%    0.00%    0.00%    2.38%    42
+flute             0.00%    0.00%    0.00%    0.00%    0.00%    42
+piano             0.00%    0.00%    0.00%    0.00%    0.00%    42
+sine              0.00%    0.00%    0.00%    0.00%    0.00%    42
+synth_lead        0.00%    0.00%    2.38%    0.00%    0.00%    42
+voice             2.38%    0.00%    0.00%    0.00%    2.38%    42
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        0.95%    0.00%    0.48%    0.00%    0.95%   210
+waveform          0.00%    0.00%    0.00%    0.00%    0.00%    42
+
+effect             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bitcrush_4bit     2.38%    0.00%    0.00%    0.00%    2.38%    42
+chorus_heavy      0.00%    0.00%    2.38%    0.00%    0.00%    42
+distortion_heavy    0.00%    0.00%    0.00%    0.00%    0.00%    42
+highpass_above_f0    0.00%    0.00%    0.00%    0.00%    0.00%    42
+lowpass_at_f0     0.00%    0.00%    0.00%    0.00%    0.00%    42
+reverb_long       2.38%    0.00%    0.00%    0.00%    2.38%    42
+
+effect_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bitcrush          2.38%    0.00%    0.00%    0.00%    2.38%    42
+chorus            0.00%    0.00%    2.38%    0.00%    0.00%    42
+highpass          0.00%    0.00%    0.00%    0.00%    0.00%    42
+lowpass           0.00%    0.00%    0.00%    0.00%    0.00%    42
+reverb_room       2.38%    0.00%    0.00%    0.00%    2.38%    42
+saturation        0.00%    0.00%    0.00%    0.00%    0.00%    42
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%    36
+38                0.00%    0.00%    0.00%    0.00%    0.00%    36
+47                0.00%    0.00%    0.00%    0.00%    0.00%    36
+56                0.00%    0.00%    2.78%    0.00%    0.00%    36
+65                0.00%    0.00%    0.00%    0.00%    0.00%    36
+74                0.00%    0.00%    0.00%    0.00%    0.00%    36
+83                5.56%    0.00%    0.00%    0.00%    5.56%    36
+
+
+LLM USAGE
+==================================================
+  calls                         1,008
+  prompt tokens               187,261
+  completion tokens             2,494
+  total tokens                189,755
+  cost (USD)                $0.164112

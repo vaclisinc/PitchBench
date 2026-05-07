@@ -1,0 +1,283 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 252 items, max_workers=2
+    [   1/252] F1   sine     bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [   2/252] F1   sine     bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [   3/252] F1   sine     bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=480.0 ❌
+    [   4/252] F1   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.32 ❌
+    [   5/252] F1   sine     bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [   6/252] F1   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1058.47 ❌
+    [   7/252] D2   sine     bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [   8/252] D2   sine     bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [   9/252] D2   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [  10/252] D2   sine     bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=480.0 ❌
+    [  11/252] D2   sine     bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [  12/252] D2   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=63 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [  13/252] B2   sine     bg=  white_noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [  14/252] B2   sine     bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [  15/252] B2   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [  16/252] B2   sine     bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [  17/252] B2   sine     bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [  18/252] B2   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=63 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1058.47 ❌
+    [  19/252] G#3  sine     bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [  20/252] G#3  sine     bg= church-bells snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [  21/252] G#3  sine     bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [  22/252] G#3  sine     bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=480.0 ❌
+    [  23/252] G#3  sine     bg= street-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [  24/252] G#3  sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.47 ❌
+    [  25/252] F4   sine     bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [  26/252] F4   sine     bg= church-bells snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [  27/252] F4   sine     bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=480.0 ❌
+    [  28/252] F4   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.0 ❌
+    [  29/252] F4   sine     bg= street-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.0 ❌
+    [  30/252] F4   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=63 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1058.47 ❌
+    [  31/252] D5   sine     bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [  32/252] D5   sine     bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [  33/252] D5   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.0 ❌
+    [  34/252] D5   sine     bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [  35/252] D5   sine     bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.0 ❌
+    [  36/252] D5   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=63 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [  37/252] B5   sine     bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [  38/252] B5   sine     bg= church-bells snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [  39/252] B5   sine     bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.306 ❌
+    [  40/252] B5   sine     bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [  41/252] B5   sine     bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.32 ❌
+    [  42/252] B5   sine     bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1058.47 ❌
+    [  43/252] F1   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [  44/252] F1   synth_lead bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [  45/252] F1   synth_lead bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=480.0 ❌
+    [  46/252] F1   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.32 ❌
+    [  47/252] F1   synth_lead bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [  48/252] F1   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1058.47 ❌
+    [  49/252] D2   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  50/252] D2   synth_lead bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  51/252] D2   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.3 ❌
+    [  52/252] D2   synth_lead bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306 ❌
+    [  53/252] D2   synth_lead bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [  54/252] D2   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=63 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [  55/252] B2   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=47 pred=69 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [  56/252] B2   synth_lead bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [  57/252] B2   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [  58/252] B2   synth_lead bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [  59/252] B2   synth_lead bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [  60/252] B2   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=63 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1058.43 ❌
+    [  61/252] G#3  synth_lead bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [  62/252] G#3  synth_lead bg= church-bells snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [  63/252] G#3  synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [  64/252] G#3  synth_lead bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=480.0 ❌
+    [  65/252] G#3  synth_lead bg= street-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.32 ❌
+    [  66/252] G#3  synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.47 ❌
+    [  67/252] F4   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [  68/252] F4   synth_lead bg= church-bells snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=450.0 ❌
+    [  69/252] F4   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=450.0 ❌
+    [  70/252] F4   synth_lead bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [  71/252] F4   synth_lead bg= street-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.0 ❌
+    [  72/252] F4   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=480.0 ❌
+    [  73/252] D5   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [  74/252] D5   synth_lead bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [  75/252] D5   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1765.0 ❌
+    [  76/252] D5   synth_lead bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [  77/252] D5   synth_lead bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.0 ❌
+    [  78/252] D5   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=69 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [  79/252] B5   synth_lead bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [  80/252] B5   synth_lead bg= church-bells snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [  81/252] B5   synth_lead bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=69 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1764.0 ❌
+    [  82/252] B5   synth_lead bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [  83/252] B5   synth_lead bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.32 ❌
+    [  84/252] B5   synth_lead bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [  85/252] F1   cello    bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [  86/252] F1   cello    bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [  87/252] F1   cello    bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [  88/252] F1   cello    bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [  89/252] F1   cello    bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [  90/252] F1   cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1058.47 ❌
+    [  91/252] D2   cello    bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  92/252] D2   cello    bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  93/252] D2   cello    bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [  94/252] D2   cello    bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [  95/252] D2   cello    bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [  96/252] D2   cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=63 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [  97/252] B2   cello    bg=  white_noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1052.63 ❌
+    [  98/252] B2   cello    bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=None ❌
+    [  99/252] B2   cello    bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.32 ❌
+    [ 100/252] B2   cello    bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [ 101/252] B2   cello    bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [ 102/252] B2   cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=63 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=4156.38 ❌
+    [ 103/252] G#3  cello    bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1052.63 ❌
+    [ 104/252] G#3  cello    bg= church-bells snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [ 105/252] G#3  cello    bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=480.0 ❌
+    [ 106/252] G#3  cello    bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=65 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [ 107/252] G#3  cello    bg= street-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [ 108/252] G#3  cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.47 ❌
+    [ 109/252] F4   cello    bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [ 110/252] F4   cello    bg= church-bells snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [ 111/252] F4   cello    bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [ 112/252] F4   cello    bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [ 113/252] F4   cello    bg= street-noise snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.32 ❌
+    [ 114/252] F4   cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1250.0 ❌
+    [ 115/252] D5   cello    bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1052.63 ❌
+    [ 116/252] D5   cello    bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=405.86 ❌
+    [ 117/252] D5   cello    bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [ 118/252] D5   cello    bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=405.87 ❌
+    [ 119/252] D5   cello    bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.0 ❌
+    [ 120/252] D5   cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [ 121/252] B5   cello    bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1052.63 ❌
+    [ 122/252] B5   cello    bg= church-bells snr=   -6dB  | midi: gt=83 pred=69 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=450.0 ❌
+    [ 123/252] B5   cello    bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=69 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [ 124/252] B5   cello    bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [ 125/252] B5   cello    bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [ 126/252] B5   cello    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=69 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [ 127/252] F1   flute    bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [ 128/252] F1   flute    bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [ 129/252] F1   flute    bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [ 130/252] F1   flute    bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.306 ❌
+    [ 131/252] F1   flute    bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [ 132/252] F1   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1058.47 ❌
+    [ 133/252] D2   flute    bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [ 134/252] D2   flute    bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [ 135/252] D2   flute    bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [ 136/252] D2   flute    bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306 ❌
+    [ 137/252] D2   flute    bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [ 138/252] D2   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=63 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [ 139/252] B2   flute    bg=  white_noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [ 140/252] B2   flute    bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [ 141/252] B2   flute    bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [ 142/252] B2   flute    bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.306 ❌
+    [ 143/252] B2   flute    bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [ 144/252] B2   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=69 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [ 145/252] G#3  flute    bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [ 146/252] G#3  flute    bg= church-bells snr=   -6dB  | midi: gt=56 pred=65 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [ 147/252] G#3  flute    bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=405.87 ❌
+    [ 148/252] G#3  flute    bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.306 ❌
+    [ 149/252] G#3  flute    bg= street-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.32 ❌
+    [ 150/252] G#3  flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.47 ❌
+    [ 151/252] F4   flute    bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [ 152/252] F4   flute    bg= church-bells snr=   -6dB  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=450.0 ❌
+    [ 153/252] F4   flute    bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=450.0 ❌
+    [ 154/252] F4   flute    bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=480.0 ❌
+    [ 155/252] F4   flute    bg= street-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.0 ❌
+    [ 156/252] F4   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1058.43 ❌
+    [ 157/252] D5   flute    bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [ 158/252] D5   flute    bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=450.0 ❌
+    [ 159/252] D5   flute    bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=405.87 ❌
+    [ 160/252] D5   flute    bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [ 161/252] D5   flute    bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.0 ❌
+    [ 162/252] D5   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=63 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [ 163/252] B5   flute    bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [ 164/252] B5   flute    bg= church-bells snr=   -6dB  | midi: gt=83 pred=65 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=405.87 ❌
+    [ 165/252] B5   flute    bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=405.0 ❌
+    [ 166/252] B5   flute    bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [ 167/252] B5   flute    bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [ 168/252] F1   piano    bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [ 169/252] B5   flute    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=63 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1058.47 ❌
+    [ 170/252] F1   piano    bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [ 171/252] F1   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.306 ❌
+    [ 172/252] F1   piano    bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.306 ❌
+    [ 173/252] F1   piano    bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [ 174/252] D2   piano    bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [ 175/252] F1   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1024.57 ❌
+    [ 176/252] D2   piano    bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=415.38 ❌
+    [ 177/252] D2   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306 ❌
+    [ 178/252] D2   piano    bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [ 179/252] D2   piano    bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306872 ❌
+    [ 180/252] D2   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=65 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [ 181/252] B2   piano    bg=  white_noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [ 182/252] B2   piano    bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=435.0 ❌
+    [ 183/252] B2   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [ 184/252] B2   piano    bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.306 ❌
+    [ 185/252] B2   piano    bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [ 186/252] B2   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=63 ❌  | spn: gt=B2 pred=B6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1058.47 ❌
+    [ 187/252] G#3  piano    bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.37 ❌
+    [ 188/252] G#3  piano    bg= church-bells snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [ 189/252] G#3  piano    bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.306 ❌
+    [ 190/252] G#3  piano    bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [ 191/252] G#3  piano    bg= street-noise snr=   -6dB  | midi: gt=56 pred=65 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.3 ❌
+    [ 192/252] G#3  piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=69 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1058.43 ❌
+    [ 193/252] F4   piano    bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=460.0 ❌
+    [ 194/252] F4   piano    bg= church-bells snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=435.0 ❌
+    [ 195/252] F4   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.3 ❌
+    [ 196/252] F4   piano    bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [ 197/252] F4   piano    bg= street-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [ 198/252] D5   piano    bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [ 199/252] F4   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1058.43 ❌
+    [ 200/252] D5   piano    bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=435.0 ❌
+    [ 201/252] D5   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.3 ❌
+    [ 202/252] D5   piano    bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [ 203/252] D5   piano    bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.306 ❌
+    [ 204/252] D5   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=69 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [ 205/252] B5   piano    bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [ 206/252] B5   piano    bg= church-bells snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=435.0 ❌
+    [ 207/252] B5   piano    bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.3 ❌
+    [ 208/252] B5   piano    bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [ 209/252] B5   piano    bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.306 ❌
+    [ 210/252] B5   piano    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=84 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1024.0 ❌
+    [ 211/252] F1   voice    bg=  white_noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [ 212/252] F1   voice    bg= church-bells snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1050.0 ❌
+    [ 213/252] F1   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.32 ❌
+    [ 214/252] F1   voice    bg=         rain snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=480.0 ❌
+    [ 215/252] F1   voice    bg= street-noise snr=   -6dB  | midi: gt=29 pred=64 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=415.0 ❌
+    [ 216/252] F1   voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=29 pred=63 ❌  | spn: gt=F1 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=480.0 ❌
+    [ 217/252] D2   voice    bg=  white_noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1050.0 ❌
+    [ 218/252] D2   voice    bg= church-bells snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=405.0 ❌
+    [ 219/252] D2   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.306 ❌
+    [ 220/252] D2   voice    bg=         rain snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=480.0 ❌
+    [ 221/252] D2   voice    bg= street-noise snr=   -6dB  | midi: gt=38 pred=64 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=415.0 ❌
+    [ 222/252] D2   voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=38 pred=69 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=None ❌
+    [ 223/252] B2   voice    bg=  white_noise snr=   -6dB  | midi: gt=47 pred=69 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [ 224/252] B2   voice    bg= church-bells snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [ 225/252] B2   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.306 ❌
+    [ 226/252] B2   voice    bg=         rain snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.306 ❌
+    [ 227/252] B2   voice    bg= street-noise snr=   -6dB  | midi: gt=47 pred=64 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=415.0 ❌
+    [ 228/252] B2   voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=47 pred=69 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=1050.0 ❌
+    [ 229/252] G#3  voice    bg=  white_noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [ 230/252] G#3  voice    bg= church-bells snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=1050.0 ❌
+    [ 231/252] G#3  voice    bg=  crowd-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=415.306 ❌
+    [ 232/252] G#3  voice    bg=         rain snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=480.0 ❌
+    [ 233/252] G#3  voice    bg= street-noise snr=   -6dB  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [ 234/252] G#3  voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=56 pred=63 ❌  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [ 235/252] F4   voice    bg=  white_noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [ 236/252] F4   voice    bg= church-bells snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=1050.0 ❌
+    [ 237/252] F4   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [ 238/252] F4   voice    bg=         rain snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.306 ❌
+    [ 239/252] F4   voice    bg= street-noise snr=   -6dB  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=415.0 ❌
+    [ 240/252] F4   voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=480.0 ❌
+    [ 241/252] D5   voice    bg= church-bells snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [ 242/252] D5   voice    bg=  white_noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [ 243/252] D5   voice    bg=         rain snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=480.0 ❌
+    [ 244/252] D5   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1050.0 ❌
+    [ 245/252] D5   voice    bg= street-noise snr=   -6dB  | midi: gt=74 pred=64 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=415.0 ❌
+    [ 246/252] D5   voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=74 pred=63 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=1058.47 ❌
+    [ 247/252] B5   voice    bg=  white_noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1050.0 ❌
+    [ 248/252] B5   voice    bg= church-bells snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=450.0 ❌
+    [ 249/252] B5   voice    bg=  crowd-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1765.0 ❌
+    [ 250/252] B5   voice    bg=         rain snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=480.0 ❌
+    [ 251/252] B5   voice    bg= street-noise snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=415.0 ❌
+    [ 252/252] B5   voice    bg=oscillating-high-and-low-pitches snr=   -6dB  | midi: gt=83 pred=64 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=987.7666 pred=1058.47 ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : none (full set of 252)
+  Stimuli (total)     : 252
+  Stimuli (condition) : 252  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       3.6%
+     SPN       0.0%
+  DOREMI       0.0%
+      HZ       0.0%
+     ANY       3.6%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → results/analysis/run_20260506_193058/pitchbench_e2_background/run_001_20260506_200513/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_e3_harmonic_saturation
+############################################################
+
+Experiment : pitchbench_e3_harmonic_saturation
+Models     : audio_flamingo_next_instruct
+Stimuli    : 126
+  Sampling     : none (full set of 126)

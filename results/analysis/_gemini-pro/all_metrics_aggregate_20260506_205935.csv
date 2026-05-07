@@ -1,0 +1,17 @@
+experiment,model,n_samples,metric,value
+pitchbench_a1_single_pitch_id,openrouter/google/gemini-3.1-pro-preview,42,condition_n,42.0
+pitchbench_a2_single_pitch_by_loudness,openrouter/google/gemini-3.1-pro-preview,210,condition_n,210.0
+pitchbench_a3_single_pitch_by_duration,openrouter/google/gemini-3.1-pro-preview,252,condition_n,252.0
+pitchbench_b1_single_pitch_within_silence,openrouter/google/gemini-3.1-pro-preview,126,condition_n,126.0
+pitchbench_b1_single_pitch_within_silence,openrouter/google/gemini-3.1-pro-preview,126,baseline_n,0.0
+pitchbench_b2_pitch_at_timestamp,openrouter/google/gemini-3.1-pro-preview,84,condition_n,84.0
+pitchbench_d7a_pitch_with_reference,openrouter/google/gemini-3.1-pro-preview,156,condition_n,156.0
+pitchbench_d7a_pitch_with_reference,openrouter/google/gemini-3.1-pro-preview,156,baseline_n,0.0
+pitchbench_d7b_pitch_with_reference_split,openrouter/google/gemini-3.1-pro-preview,156,condition_n,156.0
+pitchbench_e1_audio_effects,openrouter/google/gemini-3.1-pro-preview,252,condition_n,252.0
+pitchbench_e2_background,openrouter/google/gemini-3.1-pro-preview,252,condition_n,252.0
+pitchbench_e3_harmonic_saturation,openrouter/google/gemini-3.1-pro-preview,126,condition_n,126.0
+pitchbench_e4_time_stretching,openrouter/google/gemini-3.1-pro-preview,288,condition_n,288.0
+pitchbench_e6_slightly_off,openrouter/google/gemini-3.1-pro-preview,252,condition_n,252.0
+pitchbench_e6_slightly_off,openrouter/google/gemini-3.1-pro-preview,252,baseline_n,0.0
+pitchbench_y1_single_pitch_id_mcq,openrouter/google/gemini-3.1-pro-preview,126,condition_n,126.0

@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-05-06T21:07:05.950808",
+  "experiments": {
+    "pitchbench_a1_single_pitch_id": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 168,
+        "prompt_tokens": 30619,
+        "completion_tokens": 368,
+        "total_tokens": 30987,
+        "cached_tokens": 0,
+        "cost_usd": 0.026914,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a2_single_pitch_by_loudness": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 840,
+        "prompt_tokens": 156068,
+        "completion_tokens": 2083,
+        "total_tokens": 158151,
+        "cached_tokens": 0,
+        "cost_usd": 0.136783,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a3_single_pitch_by_duration": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 1008,
+        "prompt_tokens": 395849,
+        "completion_tokens": 2645,
+        "total_tokens": 398494,
+        "cached_tokens": 0,
+        "cost_usd": 0.3747,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_y1_single_pitch_id_mcq": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 504,
+        "prompt_tokens": 97869,
+        "completion_tokens": 1591,
+        "total_tokens": 99460,
+        "cached_tokens": 0,
+        "cost_usd": 0.085207,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b1_single_pitch_within_silence": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 504,
+        "prompt_tokens": 785868,
+        "completion_tokens": 1292,
+        "total_tokens": 787160,
+        "cached_tokens": 0,
+        "cost_usd": 0.77481,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b2_pitch_at_timestamp": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 336,
+        "prompt_tokens": 530421,
+        "completion_tokens": 1368,
+        "total_tokens": 531789,
+        "cached_tokens": 0,
+        "cost_usd": 0.521314,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7a_pitch_with_reference": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 624,
+        "prompt_tokens": 196286,
+        "completion_tokens": 1904,
+        "total_tokens": 198190,
+        "cached_tokens": 0,
+        "cost_usd": 0.185911,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7b_pitch_with_reference_split": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 156,
+        "prompt_tokens": 48142,
+        "completion_tokens": 312,
+        "total_tokens": 48454,
+        "cached_tokens": 0,
+        "cost_usd": 0.044507,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e1_audio_effects": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 1008,
+        "prompt_tokens": 187261,
+        "completion_tokens": 2494,
+        "total_tokens": 189755,
+        "cached_tokens": 0,
+        "cost_usd": 0.164112,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e2_background": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 1008,
+        "prompt_tokens": 202313,
+        "completion_tokens": 2356,
+        "total_tokens": 204669,
+        "cached_tokens": 0,
+        "cost_usd": 0.171224,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e3_harmonic_saturation": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 504,
+        "prompt_tokens": 93598,
+        "completion_tokens": 1363,
+        "total_tokens": 94961,
+        "cached_tokens": 0,
+        "cost_usd": 0.082388,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e4_time_stretching": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 1152,
+        "prompt_tokens": 207144,
+        "completion_tokens": 3361,
+        "total_tokens": 210505,
+        "cached_tokens": 0,
+        "cost_usd": 0.167799,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e6_slightly_off": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 1008,
+        "prompt_tokens": 208560,
+        "completion_tokens": 2414,
+        "total_tokens": 210974,
+        "cached_tokens": 0,
+        "cost_usd": 0.174522,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 8820,
+  "total_tokens": 3163549,
+  "total_cost_usd": 2.910191
+}

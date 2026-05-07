@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-05-06T20:59:35.662612",
+  "experiments": {
+    "pitchbench_a1_single_pitch_id": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 168,
+        "prompt_tokens": 30618,
+        "completion_tokens": 20545,
+        "total_tokens": 51163,
+        "cached_tokens": 0,
+        "cost_usd": 0.307776,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a2_single_pitch_by_loudness": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 840,
+        "prompt_tokens": 155656,
+        "completion_tokens": 102641,
+        "total_tokens": 258297,
+        "cached_tokens": 0,
+        "cost_usd": 1.543004,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a3_single_pitch_by_duration": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 1008,
+        "prompt_tokens": 395241,
+        "completion_tokens": 123076,
+        "total_tokens": 518317,
+        "cached_tokens": 0,
+        "cost_usd": 2.267394,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_y1_single_pitch_id_mcq": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 504,
+        "prompt_tokens": 97595,
+        "completion_tokens": 61556,
+        "total_tokens": 159151,
+        "cached_tokens": 0,
+        "cost_usd": 0.933862,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b1_single_pitch_within_silence": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 504,
+        "prompt_tokens": 785510,
+        "completion_tokens": 61585,
+        "total_tokens": 847095,
+        "cached_tokens": 0,
+        "cost_usd": 2.31004,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b2_pitch_at_timestamp": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 336,
+        "prompt_tokens": 530301,
+        "completion_tokens": 41095,
+        "total_tokens": 571396,
+        "cached_tokens": 0,
+        "cost_usd": 1.553742,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7a_pitch_with_reference": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 624,
+        "prompt_tokens": 195969,
+        "completion_tokens": 76042,
+        "total_tokens": 272011,
+        "cached_tokens": 0,
+        "cost_usd": 1.304442,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7b_pitch_with_reference_split": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 156,
+        "prompt_tokens": 48052,
+        "completion_tokens": 18936,
+        "total_tokens": 66988,
+        "cached_tokens": 0,
+        "cost_usd": 0.323336,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e1_audio_effects": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 1008,
+        "prompt_tokens": 186767,
+        "completion_tokens": 123209,
+        "total_tokens": 309976,
+        "cached_tokens": 0,
+        "cost_usd": 1.852042,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e2_background": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 1008,
+        "prompt_tokens": 201873,
+        "completion_tokens": 123367,
+        "total_tokens": 325240,
+        "cached_tokens": 0,
+        "cost_usd": 1.88415,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e3_harmonic_saturation": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 504,
+        "prompt_tokens": 93397,
+        "completion_tokens": 61692,
+        "total_tokens": 155089,
+        "cached_tokens": 0,
+        "cost_usd": 0.927098,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e4_time_stretching": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 1152,
+        "prompt_tokens": 206578,
+        "completion_tokens": 140933,
+        "total_tokens": 347511,
+        "cached_tokens": 0,
+        "cost_usd": 2.104352,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e6_slightly_off": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 1008,
+        "prompt_tokens": 207927,
+        "completion_tokens": 123281,
+        "total_tokens": 331208,
+        "cached_tokens": 0,
+        "cost_usd": 1.895226,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 8820,
+  "total_tokens": 4213442,
+  "total_cost_usd": 19.206464
+}
