@@ -124,6 +124,13 @@ CONCURRENCY: dict[str, int] = {
     "manual":     1,
 }
 
+# RPM caps for specific DashScope model IDs (the part after "dashscope/").
+# 0 means no limit. Override individual limits via env vars if needed.
+DASHSCOPE_RPM_LIMITS: dict[str, int] = {
+    "qwen3.5-omni-plus":   int(os.environ.get("PITCHBENCH_RPM_QWEN35_OMNI_PLUS",  "60")),
+    "qwen3.5-omni-flash":  int(os.environ.get("PITCHBENCH_RPM_QWEN35_OMNI_FLASH", "60")),
+}
+
 
 def concurrency_for(model_name: str) -> int:
     """Return the configured max-workers cap for ``model_name``."""
@@ -132,6 +139,13 @@ def concurrency_for(model_name: str) -> int:
     if model_name.startswith("openrouter/"):
         return CONCURRENCY["openrouter"]
     if model_name.startswith("dashscope/"):
+        ds_id = model_name[len("dashscope/"):]
+        rpm = DASHSCOPE_RPM_LIMITS.get(ds_id, 0)
+        if rpm > 0:
+            # Keep enough concurrency to pipeline requests but not so many that
+            # most threads sit idle waiting for the rate limiter (rpm // 15 ≈ 4
+            # for a 60 RPM cap).
+            return min(CONCURRENCY["dashscope"], max(1, rpm // 15))
         return CONCURRENCY["dashscope"]
     return max(1, LOCAL_CONCURRENCY)
 

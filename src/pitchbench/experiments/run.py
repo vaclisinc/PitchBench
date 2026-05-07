@@ -60,7 +60,7 @@ def _prompt_for_models() -> list[str]:
 # pitchbench_<id>_<desc>.py — capture the id (lowercase letter + digit(s))
 _NAME_RE = re.compile(r"^pitchbench_([a-z]+\d+[a-z]*)_(.+)$")
 # Bare experiment-id shorthand, e.g. "a1", "b3" — accepted as a positional arg.
-_ID_RE = re.compile(r"^[a-z]+\d+$")
+_ID_RE = re.compile(r"^[a-z]+\d+[a-z]*$")
 # Bare category prefix, e.g. "a", "b" — runs every experiment in that category.
 _CAT_RE = re.compile(r"^[a-z]$")
 
@@ -312,6 +312,16 @@ def main() -> None:
         preset_name = exp_id
 
     if preset_name is not None:
+        # Switch to analysis mode: correct paths, flags, and data directories.
+        config.MODE = "ANALYSIS"
+        config.EVAL = False
+        config.AUDIO_DIR = config.DATA_DIR / "analysis_audio"
+        if not args.run_name:
+            _ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            config.RESULTS_DIR = (
+                config._PROJECT_ROOT / "results" / "analysis" / f"run_{_ts}"
+            )
+        print(f"Analysis mode active → AUDIO_DIR={config.AUDIO_DIR}  RESULTS_DIR={config.RESULTS_DIR}")
         preset_exp_names = _apply_analysis_preset(preset_name)
         if preset_exp_names is None:
             parser.error(f"Unknown analysis preset {preset_name!r}.")

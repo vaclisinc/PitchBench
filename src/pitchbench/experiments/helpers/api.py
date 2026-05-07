@@ -30,8 +30,10 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 import wave
+from collections import deque
 from pathlib import Path
 from typing import Any, Literal
 
@@ -52,6 +54,47 @@ OPENROUTER_PREFIX = "openrouter/"
 DASHSCOPE_PREFIX  = "dashscope/"
 MANUAL_MODEL_NAME = "manual"
 _OPENROUTER_GPT4O_MIN_WAV_MS = 100
+
+
+# ── rate limiting ─────────────────────────────────────────────────────────────
+
+class _RateLimiter:
+    """Thread-safe sliding-window rate limiter (N calls per 60 seconds)."""
+
+    def __init__(self, rpm: int) -> None:
+        self._rpm   = rpm
+        self._calls: deque[float] = deque()
+        self._lock  = threading.Lock()
+
+    def acquire(self) -> None:
+        while True:
+            with self._lock:
+                now    = time.time()
+                cutoff = now - 60.0
+                while self._calls and self._calls[0] <= cutoff:
+                    self._calls.popleft()
+                if len(self._calls) < self._rpm:
+                    self._calls.append(now)
+                    return
+                # Oldest call exits the window at _calls[0] + 60 s.
+                wait = self._calls[0] + 60.0 - now
+            if wait > 0:
+                time.sleep(wait + 0.05)   # +50 ms buffer against clock jitter
+
+
+_rate_limiters:    dict[str, _RateLimiter] = {}
+_rate_limiter_lock = threading.Lock()
+
+
+def _get_rate_limiter(ds_model: str) -> _RateLimiter | None:
+    """Return the rate limiter for a DashScope model ID, or None if uncapped."""
+    rpm = config.DASHSCOPE_RPM_LIMITS.get(ds_model, 0)
+    if not rpm:
+        return None
+    with _rate_limiter_lock:
+        if ds_model not in _rate_limiters:
+            _rate_limiters[ds_model] = _RateLimiter(rpm)
+        return _rate_limiters[ds_model]
 
 
 # ── small utilities ───────────────────────────────────────────────────────────
@@ -510,6 +553,7 @@ def _dashscope_audio_block(audio_path: str) -> dict:
 
 def _dashscope_stream_text(
     body: dict, headers: dict, timeout_s: float, model_id: str,
+    rate_limiter: _RateLimiter | None = None,
 ) -> tuple[str, dict, dict | None]:
     """POST a streaming chat-completion to DashScope and assemble the text.
 
@@ -517,15 +561,35 @@ def _dashscope_stream_text(
     concatenate ``choices[0].delta.content`` deltas into the final string,
     and pull ``usage`` from the last chunk (DashScope honours
     ``stream_options.include_usage``). Returns ``(text, raw_response, usage)``.
+
+    If ``rate_limiter`` is provided, a token is acquired before each attempt
+    (including retries) so that the caller stays within the model's RPM cap.
     """
     last_err: str | None = None
     for attempt in range(3):
+        if rate_limiter is not None:
+            rate_limiter.acquire()
         try:
             with requests.post(
                 f"{config.DASHSCOPE_BASE_URL}/chat/completions",
                 json=body, headers=headers, timeout=timeout_s, stream=True,
             ) as resp:
-                if resp.status_code in (429, 500, 502, 503, 504):
+                if resp.status_code == 429:
+                    # Honour Retry-After if the server gives us one; otherwise
+                    # wait 60 s (the rate-limit window) so the sliding window
+                    # has room again before the next attempt.
+                    ra = resp.headers.get("Retry-After") or resp.headers.get(
+                        "x-ratelimit-reset-requests"
+                    )
+                    try:
+                        wait = float(ra) if ra else 60.0
+                    except ValueError:
+                        wait = 60.0
+                    last_err = f"HTTP 429 (Retry-After={wait:.0f}s): {resp.text[:200]}"
+                    print(f"        [rate-limit] 429 from DashScope — waiting {wait:.0f}s …")
+                    time.sleep(wait)
+                    continue
+                if resp.status_code in (500, 502, 503, 504):
                     last_err = f"HTTP {resp.status_code}: {resp.text[:500]}"
                     time.sleep(2 ** attempt)
                     continue
@@ -571,7 +635,7 @@ def _dashscope_stream_text(
 
 def _dashscope_text(model_name: str, audio_path: str, prompt: str,
                     max_new_tokens: int, temperature: float, timeout_s: float) -> dict:
-    api_key = _resolve_dashscope_key()
+    api_key  = _resolve_dashscope_key()
     ds_model = model_name[len(DASHSCOPE_PREFIX):]
 
     body = {
@@ -593,7 +657,8 @@ def _dashscope_text(model_name: str, audio_path: str, prompt: str,
         "Content-Type":  "application/json",
     }
 
-    text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model)
+    limiter  = _get_rate_limiter(ds_model)
+    text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model, limiter)
     usage = cost_tracker.parse_openrouter_usage(raw_usage)  # OpenAI-shape; cost defaults to 0
     if usage:
         cost_tracker.record(model_name, **usage)
@@ -643,8 +708,9 @@ def _dashscope_text_multi(
         "Content-Type":  "application/json",
     }
 
+    limiter = _get_rate_limiter(ds_model)
     try:
-        text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model)
+        text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model, limiter)
     except RuntimeError as exc:
         # DashScope returns HTTP 400 with messages like
         #   "Multiple inputs of the same modality or mixed modality inputs are
