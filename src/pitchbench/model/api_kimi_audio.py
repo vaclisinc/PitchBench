@@ -2,27 +2,42 @@
 
 Setup (NOT covered by ``pip install -e .[all]``):
 
-    Kimi-Audio pins flash-attn 2.7.4.post1, which only ships prebuilt wheels
-    for torch ≤ 2.6 + CUDA ≤ 12.4. The main PitchBench env tracks much newer
-    torch (driven by the NVIDIA model servers), so source-building flash-attn
-    is the only path there and it takes 15+ minutes.
+    Kimi-Audio hard-imports flash-attn at module level (no fallback).
+    flash-attn only ships prebuilt wheels for torch ≤ 2.6 + CUDA ≤ 12.4, and
+    the main PitchBench env has a much newer torch, so a dedicated venv is
+    required.
 
-    Recommended: create a dedicated venv pinned to torch 2.6, then::
+    The critical trick: install flash-attn from the GitHub release wheel URL
+    *before* installing kimi-audio, so pip never tries to build it from source
+    (which hangs for 15+ minutes and often fails)::
 
         uv venv --python 3.12 .venv-kimi
         source .venv-kimi/bin/activate
-        uv pip install torch==2.6.0 torchaudio==2.6.0
-        uv pip install git+https://github.com/MoonshotAI/Kimi-Audio.git
-        uv pip install fastapi python-multipart uvicorn
-        # the kimi-audio install will pick a prebuilt flash-attn wheel.
+        pip install torch==2.6.0 torchaudio==2.6.0 \
+            --index-url https://download.pytorch.org/whl/cu124
+        # prebuilt wheel — instant download, no CUDA compilation:
+        pip install "https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+        pip install git+https://github.com/MoonshotAI/Kimi-Audio.git
+        pip install fastapi python-multipart uvicorn
+
+    Adjust the wheel filename for your Python version (cp310/cp311/cp312).
+    The CUDA tag is just ``cu12`` (covers all CUDA 12.x). If the TRUE variant
+    fails with an ABI error, try ``cxx11abiFALSE``. All variants are at:
+    https://github.com/Dao-AILab/flash-attention/releases/tag/v2.7.4.post1
+
+    Use plain ``pip`` (not ``uv pip``) for the flash-attn and kimi-audio steps —
+    uv's strict resolver will otherwise re-resolve flash-attn from PyPI and
+    trigger a source build.
 
 The server matches the contract used by the other PitchBench model servers:
-``POST /analyze/upload`` (multipart audio + prompt) returns ``{"result": str}``,
-and ``GET /health`` returns the model id.
+``POST /analyze/upload`` (single audio) and ``POST /analyze/upload_multi``
+(multiple audio files, for experiments like d7b) both return ``{"result": str}``.
+``GET /health`` returns model info.
 """
 
 import os
 import tempfile
+from typing import List
 
 import torch
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -32,9 +47,7 @@ from kimia_infer.api.kimia import KimiAudio
 
 MODEL_ID = os.environ.get("KIMI_AUDIO_MODEL", "moonshotai/Kimi-Audio-7B-Instruct")
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model = KimiAudio(model_path=MODEL_ID, load_detokenizer=True)
-model.to(device)
+model = KimiAudio(model_path=MODEL_ID, load_detokenizer=False)
 
 # Greedy text decoding by default — matches the deterministic-stimulus contract
 # the rest of PitchBench relies on. Audio sampling params are unused (we only
@@ -53,11 +66,10 @@ DEFAULT_SAMPLING = {
 app = FastAPI()
 
 
-def run_inference(prompt: str, audio_path: str, max_new_tokens: int) -> str:
-    messages = [
-        {"role": "user", "message_type": "text",  "content": prompt},
-        {"role": "user", "message_type": "audio", "content": audio_path},
-    ]
+def run_inference(prompt: str, audio_paths: list[str], max_new_tokens: int) -> str:
+    messages = [{"role": "user", "message_type": "text", "content": prompt}]
+    for path in audio_paths:
+        messages.append({"role": "user", "message_type": "audio", "content": path})
     sampling = dict(DEFAULT_SAMPLING)
     if max_new_tokens:
         sampling["max_new_tokens"] = max_new_tokens
@@ -73,7 +85,7 @@ class UrlRequest(BaseModel):
 
 @app.post("/analyze/url")
 def analyze_url(req: UrlRequest):
-    result = run_inference(req.prompt, req.audio_url, req.max_new_tokens)
+    result = run_inference(req.prompt, [req.audio_url], req.max_new_tokens)
     return {"result": result}
 
 
@@ -88,11 +100,36 @@ def analyze_upload(
         tmp.write(file.file.read())
         tmp_path = tmp.name
     try:
-        result = run_inference(prompt, tmp_path, max_new_tokens)
+        result = run_inference(prompt, [tmp_path], max_new_tokens)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
     finally:
         os.unlink(tmp_path)
+    return {"result": result}
+
+
+@app.post("/analyze/upload_multi")
+def analyze_upload_multi(
+    prompt: str = Form("Describe this audio."),
+    max_new_tokens: int = Form(256),
+    files: List[UploadFile] = File(...),
+):
+    tmp_paths: list[str] = []
+    try:
+        for f in files:
+            suffix = os.path.splitext(f.filename)[-1] or ".wav"
+            with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                tmp.write(f.file.read())
+                tmp_paths.append(tmp.name)
+        result = run_inference(prompt, tmp_paths, max_new_tokens)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    finally:
+        for p in tmp_paths:
+            try:
+                os.unlink(p)
+            except OSError:
+                pass
     return {"result": result}
 
 
@@ -102,7 +139,6 @@ def health():
         "status":     "ok",
         "model":      MODEL_ID,
         "checkpoint": "instruct",
-        "device":     device,
     }
 
 

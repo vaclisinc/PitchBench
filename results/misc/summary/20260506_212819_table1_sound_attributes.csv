@@ -1,0 +1,5 @@
+Model,Baseline (a1),Loudness -30 dB,Loudness -20 dB,Loudness -12 dB,Loudness +6 dB,Loudness +12 dB,Duration 50 ms,Duration 250 ms,Duration 1000 ms,Duration 4000 ms,Duration 15000 ms,Duration 60000 ms,Position 10000 ms,Position 30000 ms,Position 50000 ms,N-notes 5,N-notes 10
+Gemini Pro,7.1%,7.1%,7.1%,7.1%,7.1%,9.5%,4.8%,2.4%,4.8%,4.8%,11.9%,9.5%,7.1%,7.1%,9.5%,14.3%,2.4%
+Gemini Flash,2.4%,0.0%,0.0%,0.0%,4.8%,2.4%,0.0%,0.0%,0.0%,2.4%,2.4%,2.4%,2.4%,4.8%,0.0%,14.3%,28.6%
+Audio Flamingo,33.3%,16.7%,21.4%,28.6%,21.4%,14.3%,0.0%,0.0%,19.1%,59.5%,26.2%,26.2%,7.1%,2.4%,4.8%,9.5%,2.4%
+GPT-4o,2.4%,0.0%,2.4%,4.8%,2.4%,4.8%,2.4%,0.0%,0.0%,7.1%,4.8%,0.0%,2.4%,0.0%,0.0%,4.8%,2.4%

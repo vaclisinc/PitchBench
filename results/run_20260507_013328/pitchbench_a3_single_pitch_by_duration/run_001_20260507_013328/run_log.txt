@@ -1,0 +1,13 @@
+
+[ERROR] Experiment pitchbench_a3_single_pitch_by_duration failed with error:
+Unknown model 'qwen3.5-omni-plus'. Available: ['music_flamingo', 'audio_flamingo_next_instruct', 'audio_flamingo_next_think', 'audio_flamingo_next_captioner', 'qwen3_omni', 'kimi_audio']
+
+
+############################################################
+# pitchbench_y1_single_pitch_id_mcq
+############################################################
+
+Experiment : pitchbench_y1_single_pitch_id_mcq
+Models     : qwen3.5-omni-plus
+Stimuli    : 126
+  Sampling     : none (full set of 126)

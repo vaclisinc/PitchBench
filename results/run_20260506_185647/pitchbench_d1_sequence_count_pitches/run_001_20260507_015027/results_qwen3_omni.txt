@@ -1,0 +1,82 @@
+Experiment : pitchbench_d1_sequence_count_pitches
+Model      : qwen3_omni
+timestamp  : 2026-05-07T01:54:08.447622
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'qwen3_omni']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : qwen3_omni
+model_info : {'status': 'ok', 'model': 'Qwen/Qwen3-Omni-30B-A3B-Instruct', 'checkpoint': 'instruct', 'device': 'cuda:0'}
+task_type  : count
+headline_metrics : ['count']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n', 'rhythm', 'trial']
+sample_n   : 140
+sample_seed : 42
+total_available : 1596
+stratified_by : (n, rhythm, duration_ms)
+
+SUMMARY
+==================================================
+  Sampling     : 140 of 1596 (stratified by '(n, rhythm, duration_ms)', seed=42)
+  Stimuli (total)     : 140
+  Stimuli (condition) : 140  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+           COUNT      72.1%
+
+== Marginal accuracy ==
+
+duration_ms     count_correct    n
+──────────────  ───────  ────
+1000             70.00%    70
+5000             74.29%    70
+
+source          count_correct    n
+──────────────  ───────  ────
+bass             87.50%     8
+cello            70.00%    10
+clarinet          0.00%     2
+electric_keyboard   70.00%    10
+flute           100.00%     6
+guitar           80.00%     5
+oboe             71.43%     7
+organ            77.78%     9
+piano            57.14%    14
+sawtooth         88.89%     9
+sine             62.50%     8
+square          100.00%     7
+synth_lead       75.00%     4
+synth_pad        71.43%     7
+triangle         80.00%     5
+trombone         71.43%     7
+trumpet          42.86%     7
+violin           71.43%     7
+voice            62.50%     8
+
+source_type     count_correct    n
+──────────────  ───────  ────
+instrument       69.37%   111
+waveform         82.76%    29
+
+rhythm          count_correct    n
+──────────────  ───────  ────
+irregular        72.86%    70
+regular          71.43%    70
+
+n               count_correct    n
+──────────────  ───────  ────
+1                95.00%    20
+2               100.00%    20
+3                95.00%    20
+4                95.00%    20
+5                80.00%    20
+7                10.00%    20
+10               30.00%    20
+
+trial           count_correct    n
+──────────────  ───────  ────
+0                86.11%    36
+1                67.39%    46
+2                67.24%    58
+

@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T18:50:37.267269",
+    "argv": [
+      "/home/hsnu2/PitchBench/.venv/bin/pitchbench",
+      "d7a",
+      "--models",
+      "kimi_audio",
+      "--sample-n",
+      "2"
+    ],
+    "git_commit": "bc0df421bfa6118892df4024a7646aa99b072890",
+    "git_dirty": true,
+    "model_name": "kimi_audio",
+    "model_info": {
+      "status": "ok",
+      "model": "moonshotai/Kimi-Audio-7B-Instruct",
+      "checkpoint": "instruct"
+    },
+    "primary_filter_set": true,
+    "record_extras": [
+      "condition",
+      "ref_midi",
+      "interval"
+    ],
+    "sample_n": 2,
+    "sample_seed": 42,
+    "total_available": 1235,
+    "stratified_by": "(ref_midi, interval)",
+    "pair_key": [
+      "source",
+      "ref_midi",
+      "interval"
+    ],
+    "sampled_primary": 2,
+    "sampled_total": 2,
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 0,
+    "condition_n": 0,
+    "baseline_n": 0,
+    "accuracy": {
+      "n": 0,
+      "midi": 0.0,
+      "spn": 0.0,
+      "doremi": 0.0,
+      "hz": 0.0,
+      "any": 0.0
+    },
+    "accuracy_baseline": {
+      "n": 0,
+      "midi": 0.0,
+      "spn": 0.0,
+      "doremi": 0.0,
+      "hz": 0.0,
+      "any": 0.0
+    },
+    "marginals": {},
+    "cost_usd": null,
+    "total_tokens": 0
+  },
+  "results": []
+}

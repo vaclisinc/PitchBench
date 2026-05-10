@@ -1,0 +1,69 @@
+Experiment : pitchbench_b2_pitch_at_timestamp
+Model      : dashscope/qwen3.5-omni-plus
+timestamp  : 2026-05-07T01:11:56.511406
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'q1', '--models', 'dashscope/qwen3.5-omni-plus']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : dashscope/qwen3.5-omni-plus
+model_info : {'model': 'dashscope/qwen3.5-omni-plus', 'checkpoint': 'dashscope', 'provider': 'dashscope', 'dashscope_model_id': 'qwen3.5-omni-plus'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : False
+record_extras : ['n_notes', 'duration_ms', 'query_time_s']
+sample_n   : None
+sample_seed : 42
+total_available : 84
+stratified_by : n_notes
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 84)
+  Stimuli (total)     : 84
+  Stimuli (condition) : 84  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+      MIDI      38.1%
+       SPN      85.7%
+    DOREMI      76.2%
+        HZ      47.6%
+       ANY      86.9%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello            42.86%   85.71%   78.57%   50.00%   92.86%    14
+flute            35.71%  100.00%   85.71%   57.14%  100.00%    14
+piano            35.71%   78.57%   71.43%   57.14%   78.57%    14
+sine             42.86%   85.71%   78.57%   50.00%   85.71%    14
+synth_lead       35.71%   85.71%   71.43%   35.71%   85.71%    14
+voice            35.71%   78.57%   71.43%   35.71%   78.57%    14
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument       37.14%   85.71%   75.71%   47.14%   87.14%    70
+waveform         42.86%   85.71%   78.57%   50.00%   85.71%    14
+
+n_notes            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+5                42.86%   90.48%   78.57%   50.00%   90.48%    42
+10               33.33%   80.95%   73.81%   45.24%   83.33%    42
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%   25.00%   41.67%    0.00%   25.00%    12
+38               41.67%  100.00%   75.00%    8.33%  100.00%    12
+47               25.00%  100.00%  100.00%   83.33%  100.00%    12
+56               25.00%   91.67%   16.67%   58.33%   91.67%    12
+65               66.67%   91.67%  100.00%   41.67%  100.00%    12
+74              100.00%  100.00%  100.00%   66.67%  100.00%    12
+83                8.33%   91.67%  100.00%   75.00%   91.67%    12
+
+
+LLM USAGE
+==================================================
+  calls                           336
+  prompt tokens               171,780
+  completion tokens             1,046
+  total tokens                172,826

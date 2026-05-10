@@ -1,0 +1,5105 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-06T21:13:41.145591",
+    "argv": [
+      "/home/hsnu2/PitchBench/.venv/bin/pitchbench",
+      "all",
+      "--id",
+      "b3",
+      "--models",
+      "dashscope/qwen3.5-omni-flash"
+    ],
+    "git_commit": "43e9f7203cde2d80e437743b298519b656b667e9",
+    "git_dirty": true,
+    "model_name": "dashscope/qwen3.5-omni-flash",
+    "model_info": {
+      "model": "dashscope/qwen3.5-omni-flash",
+      "checkpoint": "dashscope",
+      "provider": "dashscope",
+      "dashscope_model_id": "qwen3.5-omni-flash"
+    },
+    "task_type": "timing",
+    "tolerance_ms": 250,
+    "primary_filter_set": false,
+    "record_extras": [
+      "midi",
+      "duration_ms",
+      "pos_ms"
+    ],
+    "sample_n": 160,
+    "sample_seed": 42,
+    "total_available": 3040,
+    "stratified_by": "(pos_ms, duration_ms, midi)",
+    "usage": {
+      "calls": 160,
+      "prompt_tokens": 81280,
+      "completion_tokens": 2720,
+      "total_tokens": 84000,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    }
+  },
+  "summary": {
+    "total": 160,
+    "condition_n": 160,
+    "accuracy": {
+      "n": 160,
+      "correct": 0.0938
+    },
+    "marginals": {
+      "duration_ms": {
+        "1000": {
+          "n": 80,
+          "correct": 0.125
+        },
+        "5000": {
+          "n": 80,
+          "correct": 0.0625
+        }
+      },
+      "midi": {
+        "30": {
+          "n": 16,
+          "correct": 0.0625
+        },
+        "36": {
+          "n": 16,
+          "correct": 0.0
+        },
+        "43": {
+          "n": 16,
+          "correct": 0.125
+        },
+        "48": {
+          "n": 16,
+          "correct": 0.25
+        },
+        "54": {
+          "n": 16,
+          "correct": 0.125
+        },
+        "60": {
+          "n": 16,
+          "correct": 0.0
+        },
+        "64": {
+          "n": 16,
+          "correct": 0.125
+        },
+        "69": {
+          "n": 16,
+          "correct": 0.125
+        },
+        "79": {
+          "n": 16,
+          "correct": 0.0625
+        },
+        "88": {
+          "n": 16,
+          "correct": 0.0625
+        }
+      },
+      "source": {
+        "triangle": {
+          "n": 11,
+          "correct": 0.0909
+        },
+        "sine": {
+          "n": 8,
+          "correct": 0.125
+        },
+        "trumpet": {
+          "n": 13,
+          "correct": 0.0769
+        },
+        "flute": {
+          "n": 13,
+          "correct": 0.0
+        },
+        "piano": {
+          "n": 7,
+          "correct": 0.0
+        },
+        "synth_pad": {
+          "n": 12,
+          "correct": 0.0833
+        },
+        "square": {
+          "n": 12,
+          "correct": 0.1667
+        },
+        "voice": {
+          "n": 7,
+          "correct": 0.2857
+        },
+        "cello": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "sawtooth": {
+          "n": 7,
+          "correct": 0.2857
+        },
+        "guitar": {
+          "n": 8,
+          "correct": 0.125
+        },
+        "synth_lead": {
+          "n": 7,
+          "correct": 0.1429
+        },
+        "organ": {
+          "n": 7,
+          "correct": 0.1429
+        },
+        "electric_keyboard": {
+          "n": 8,
+          "correct": 0.125
+        },
+        "clarinet": {
+          "n": 7,
+          "correct": 0.1429
+        },
+        "violin": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "oboe": {
+          "n": 9,
+          "correct": 0.0
+        },
+        "trombone": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "bass": {
+          "n": 4,
+          "correct": 0.0
+        }
+      },
+      "source_type": {
+        "waveform": {
+          "n": 38,
+          "correct": 0.1579
+        },
+        "instrument": {
+          "n": 122,
+          "correct": 0.0738
+        }
+      },
+      "pos_ms": {
+        "14000": {
+          "n": 20,
+          "correct": 0.05
+        },
+        "2000": {
+          "n": 20,
+          "correct": 0.05
+        },
+        "22000": {
+          "n": 20,
+          "correct": 0.1
+        },
+        "27000": {
+          "n": 20,
+          "correct": 0.05
+        },
+        "41000": {
+          "n": 20,
+          "correct": 0.15
+        },
+        "47000": {
+          "n": 20,
+          "correct": 0.15
+        },
+        "53000": {
+          "n": 20,
+          "correct": 0.05
+        },
+        "7000": {
+          "n": 20,
+          "correct": 0.15
+        }
+      },
+      "abs_error_off": {
+        "0.26": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "44.49": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.38": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.31": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.02": {
+          "n": 3,
+          "correct": 0.6667
+        },
+        "0.43": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "51.48": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "48.45": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.28": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "45.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.71": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.46": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.05": {
+          "n": 2,
+          "correct": 0.5
+        },
+        "0.55": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.54": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.08": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.44": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "1.57": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.85": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.02": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "0.04": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.62": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.52": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "0.82": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.32": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "1.68": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.84": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.62": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.66": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.88": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.32": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "37.0": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "37.65": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.06": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "37.54": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "37.97": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "37.89": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.16": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.07": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.25": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.81": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "33.95": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "33.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.04": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.61": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "32.0": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.47": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.41": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "1.19": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.06": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.93": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.51": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "1.11": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.91": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "35.36": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "28.0": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "1.05": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "17.86": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.17": {
+          "n": 2,
+          "correct": 1.0
+        },
+        "18.0": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.14": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "1.41": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.24": {
+          "n": 3,
+          "correct": 0.3333
+        },
+        "0.64": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "1.63": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.69": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.74": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.07": {
+          "n": 2,
+          "correct": 1.0
+        },
+        "0.75": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "10.91": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "11.28": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "9.13": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.15": {
+          "n": 2,
+          "correct": 0.5
+        },
+        "11.27": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.2": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.58": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.19": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.37": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.72": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.99": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.08": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "6.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.33": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.22": {
+          "n": 3,
+          "correct": 0.3333
+        },
+        "0.86": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "1.22": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.03": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.57": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.49": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "52.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.76": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.47": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "abs_error_on": {
+        "0.26": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "0.31": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.25": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.35": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.58": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "51.27": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "48.75": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "50.68": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "46.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.46": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.05": {
+          "n": 2,
+          "correct": 0.5
+        },
+        "0.28": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.32": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.53": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.76": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "1.77": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "2.0": {
+          "n": 8,
+          "correct": 0.0
+        },
+        "0.14": {
+          "n": 2,
+          "correct": 1.0
+        },
+        "0.55": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "1.32": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.51": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.06": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.37": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.16": {
+          "n": 3,
+          "correct": 0.3333
+        },
+        "0.04": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.02": {
+          "n": 3,
+          "correct": 0.6667
+        },
+        "38.0": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "38.35": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.23": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.36": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "38.62": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.65": {
+          "n": 5,
+          "correct": 0.0
+        },
+        "0.15": {
+          "n": 6,
+          "correct": 0.6667
+        },
+        "0.36": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.62": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.52": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "38.64": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.44": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "33.0": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "0.42": {
+          "n": 6,
+          "correct": 0.0
+        },
+        "0.57": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.43": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.47": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "38.86": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.27": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.21": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.07": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "19.0": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.24": {
+          "n": 2,
+          "correct": 1.0
+        },
+        "0.18": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.11": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.09": {
+          "n": 3,
+          "correct": 0.0
+        },
+        "0.88": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.41": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.68": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.75": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.73": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.85": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.2": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.61": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.48": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.66": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.39": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.54": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.22": {
+          "n": 2,
+          "correct": 0.5
+        },
+        "0.69": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "53.0": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.82": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.17": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "iou": {
+        "0.5873": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0218": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.496": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.5111": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.625": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3608": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0": {
+          "n": 27,
+          "correct": 0.0
+        },
+        "0.7857": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.855": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9802": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.8933": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8318": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8447": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7368": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8246": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7917": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8172": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.05": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8269": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.1267": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3097": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0776": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7037": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4387": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3775": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4743": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4514": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4829": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.784": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7412": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.836": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.56": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.816": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6733": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.5257": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.366": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8197": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.8566": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7107": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7949": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9223": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.7425": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6548": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7591": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7279": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.2516": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.2727": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9608": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.351": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.338": {
+          "n": 4,
+          "correct": 0.0
+        },
+        "0.6024": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.684": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7256": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8043": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8208": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7009": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7477": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7495": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0387": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0524": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.5556": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3889": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8065": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.6694": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.7544": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.6931": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8258": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6595": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8524": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8468": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6769": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7822": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7788": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8369": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4184": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.1071": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8087": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.1429": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0791": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0762": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.0977": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7391": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.0788": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6667": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.7879": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8584": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8095": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8897": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7628": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9158": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7575": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7878": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9318": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8252": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.1145": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.5397": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.1397": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4268": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.2963": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.5166": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6129": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.4964": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4935": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4379": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.749": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7709": {
+          "n": 2,
+          "correct": 0.0
+        },
+        "0.8927": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7797": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6488": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8314": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8913": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6786": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.6977": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.4683": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.1146": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.297": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3007": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.3355": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.2432": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.992": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.8213": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7609": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.7185": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9573": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.6838": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8201": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.8315": {
+          "n": 1,
+          "correct": 0.0
+        },
+        "0.9157": {
+          "n": 1,
+          "correct": 1.0
+        },
+        "0.6326": {
+          "n": 1,
+          "correct": 0.0
+        }
+      },
+      "within_100ms_both": {
+        "0": {
+          "n": 157,
+          "correct": 0.0764
+        },
+        "1": {
+          "n": 3,
+          "correct": 1.0
+        }
+      },
+      "within_500ms_both": {
+        "1": {
+          "n": 34,
+          "correct": 0.4412
+        },
+        "0": {
+          "n": 126,
+          "correct": 0.0
+        }
+      }
+    },
+    "cost_usd": null,
+    "total_tokens": 84000
+  },
+  "results": [
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.74, 0:14.74",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@14000+1000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 13.74,
+      "offset_s_pred": 14.74,
+      "iou": 0.5873,
+      "abs_error_on": 0.26,
+      "abs_error_off": 0.26,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.69, 0:59.49",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@14000+1000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 13.69,
+      "offset_s_pred": 59.49,
+      "iou": 0.0218,
+      "abs_error_on": 0.31,
+      "abs_error_off": 44.49,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.75, 0:14.62",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@14000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 13.75,
+      "offset_s_pred": 14.62,
+      "iou": 0.496,
+      "abs_error_on": 0.25,
+      "abs_error_off": 0.38,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.65, 0:14.69",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@14000+1000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 13.65,
+      "offset_s_pred": 14.69,
+      "iou": 0.5111,
+      "abs_error_on": 0.35,
+      "abs_error_off": 0.31,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.42, 0:15.02",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@14000+1000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 13.42,
+      "offset_s_pred": 15.02,
+      "iou": 0.625,
+      "abs_error_on": 0.58,
+      "abs_error_off": 0.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.42, 0:14.57",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@14000+1000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 13.42,
+      "offset_s_pred": 14.57,
+      "iou": 0.3608,
+      "abs_error_on": 0.58,
+      "abs_error_off": 0.43,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:05.27, 1:06.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@14000+1000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 65.27,
+      "offset_s_pred": 66.48,
+      "iou": 0.0,
+      "abs_error_on": 51.27,
+      "abs_error_off": 51.48,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:02.75, 1:03.45",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@14000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 62.75,
+      "offset_s_pred": 63.45,
+      "iou": 0.0,
+      "abs_error_on": 48.75,
+      "abs_error_off": 48.45,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:04.68, 1:05.28",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@14000+1000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 64.68,
+      "offset_s_pred": 65.28,
+      "iou": 0.0,
+      "abs_error_on": 50.68,
+      "abs_error_off": 50.28,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 14000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@14000+1000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 15.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 46.0,
+      "abs_error_off": 45.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.54, 0:18.29",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@14000+5000_cello_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.54,
+      "offset_s_pred": 18.29,
+      "iou": 0.7857,
+      "abs_error_on": 0.46,
+      "abs_error_off": 0.71,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.69, 0:18.54",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@14000+5000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.69,
+      "offset_s_pred": 18.54,
+      "iou": 0.855,
+      "abs_error_on": 0.31,
+      "abs_error_off": 0.46,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:13.95, 0:18.95",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@14000+5000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.95,
+      "offset_s_pred": 18.95,
+      "iou": 0.9802,
+      "abs_error_on": 0.05,
+      "abs_error_off": 0.05,
+      "within_100ms_both": 1,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.75, 0:18.69",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@14000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.75,
+      "offset_s_pred": 18.69,
+      "iou": 0.8933,
+      "abs_error_on": 0.25,
+      "abs_error_off": 0.31,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.65, 0:18.45",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@14000+5000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.65,
+      "offset_s_pred": 18.45,
+      "iou": 0.8318,
+      "abs_error_on": 0.35,
+      "abs_error_off": 0.55,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.72, 0:18.46",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@14000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.72,
+      "offset_s_pred": 18.46,
+      "iou": 0.8447,
+      "abs_error_on": 0.28,
+      "abs_error_off": 0.54,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.68, 0:17.92",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@14000+5000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.68,
+      "offset_s_pred": 17.92,
+      "iou": 0.7368,
+      "abs_error_on": 0.32,
+      "abs_error_off": 1.08,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.47, 0:18.56",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@14000+5000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.47,
+      "offset_s_pred": 18.56,
+      "iou": 0.8246,
+      "abs_error_on": 0.53,
+      "abs_error_off": 0.44,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.24, 0:18.56",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@14000+5000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.24,
+      "offset_s_pred": 18.56,
+      "iou": 0.7917,
+      "abs_error_on": 0.76,
+      "abs_error_off": 0.44,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 14000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:13.42, 0:18.56",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@14000+5000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 14.0,
+      "offset_s_gt": 19.0,
+      "onset_s_pred": 13.42,
+      "offset_s_pred": 18.56,
+      "iou": 0.8172,
+      "abs_error_on": 0.58,
+      "abs_error_off": 0.44,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.23, 0:01.43",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@2000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 0.23,
+      "offset_s_pred": 1.43,
+      "iou": 0.0,
+      "abs_error_on": 1.77,
+      "abs_error_off": 1.57,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:02.15",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@2000+1000_cello_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 2.15,
+      "iou": 0.05,
+      "abs_error_on": 2.0,
+      "abs_error_off": 0.85,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:01.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@2000+1000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 1.98,
+      "iou": 0.0,
+      "abs_error_on": 2.0,
+      "abs_error_off": 1.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:02.14, 0:03.04",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@2000+1000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 2.14,
+      "offset_s_pred": 3.04,
+      "iou": 0.8269,
+      "abs_error_on": 0.14,
+      "abs_error_off": 0.04,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:02.38",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@2000+1000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 2.38,
+      "iou": 0.1267,
+      "abs_error_on": 2.0,
+      "abs_error_off": 0.62,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:01.45, 0:02.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@2000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 1.45,
+      "offset_s_pred": 2.48,
+      "iou": 0.3097,
+      "abs_error_on": 0.55,
+      "abs_error_off": 0.52,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.68, 0:02.18",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@2000+1000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 0.68,
+      "offset_s_pred": 2.18,
+      "iou": 0.0776,
+      "abs_error_on": 1.32,
+      "abs_error_off": 0.82,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:01.65, 0:02.95",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@2000+1000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 1.65,
+      "offset_s_pred": 2.95,
+      "iou": 0.7037,
+      "abs_error_on": 0.35,
+      "abs_error_off": 0.05,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:01.45, 0:02.68",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@2000+1000_cello_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 1.45,
+      "offset_s_pred": 2.68,
+      "iou": 0.4387,
+      "abs_error_on": 0.55,
+      "abs_error_off": 0.32,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 2000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:01.49, 0:02.57",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@2000+1000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 3.0,
+      "onset_s_pred": 1.49,
+      "offset_s_pred": 2.57,
+      "iou": 0.3775,
+      "abs_error_on": 0.51,
+      "abs_error_off": 0.43,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:05.32",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@2000+5000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 5.32,
+      "iou": 0.4743,
+      "abs_error_on": 2.0,
+      "abs_error_off": 1.68,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:05.16",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@2000+5000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 5.16,
+      "iou": 0.4514,
+      "abs_error_on": 2.0,
+      "abs_error_off": 1.84,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:05.38",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@2000+5000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 5.38,
+      "iou": 0.4829,
+      "abs_error_on": 2.0,
+      "abs_error_off": 1.62,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:02.06, 0:05.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@2000+5000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 2.06,
+      "offset_s_pred": 5.98,
+      "iou": 0.784,
+      "abs_error_on": 0.06,
+      "abs_error_off": 1.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:01.63, 0:05.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@2000+5000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 1.63,
+      "offset_s_pred": 5.98,
+      "iou": 0.7412,
+      "abs_error_on": 0.37,
+      "abs_error_off": 1.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:02.16, 0:06.34",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@2000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 2.16,
+      "offset_s_pred": 6.34,
+      "iou": 0.836,
+      "abs_error_on": 0.16,
+      "abs_error_off": 0.66,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:05.92",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@2000+5000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 5.92,
+      "iou": 0.56,
+      "abs_error_on": 2.0,
+      "abs_error_off": 1.08,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:02.04, 0:06.12",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@2000+5000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 2.04,
+      "offset_s_pred": 6.12,
+      "iou": 0.816,
+      "abs_error_on": 0.04,
+      "abs_error_off": 0.88,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:01.98, 0:05.38",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@2000+5000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 1.98,
+      "offset_s_pred": 5.38,
+      "iou": 0.6733,
+      "abs_error_on": 0.02,
+      "abs_error_off": 1.62,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 2000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:00.00, 0:05.68",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@2000+5000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 2.0,
+      "offset_s_gt": 7.0,
+      "onset_s_pred": 0.0,
+      "offset_s_pred": 5.68,
+      "iou": 0.5257,
+      "abs_error_on": 2.0,
+      "abs_error_off": 1.32,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.47, 0:22.56",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@22000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 21.47,
+      "offset_s_pred": 22.56,
+      "iou": 0.366,
+      "abs_error_on": 0.53,
+      "abs_error_off": 0.44,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@22000+1000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 38.0,
+      "abs_error_off": 37.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.35, 1:00.65",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@22000+1000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.35,
+      "offset_s_pred": 60.65,
+      "iou": 0.0,
+      "abs_error_on": 38.35,
+      "abs_error_off": 37.65,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:21.84, 0:23.06",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@22000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 21.84,
+      "offset_s_pred": 23.06,
+      "iou": 0.8197,
+      "abs_error_on": 0.16,
+      "abs_error_off": 0.06,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@22000+1000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 38.0,
+      "abs_error_off": 37.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.23, 1:00.54",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@22000+1000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.23,
+      "offset_s_pred": 60.54,
+      "iou": 0.0,
+      "abs_error_on": 38.23,
+      "abs_error_off": 37.54,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.36, 1:00.97",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@22000+1000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.36,
+      "offset_s_pred": 60.97,
+      "iou": 0.0,
+      "abs_error_on": 38.36,
+      "abs_error_off": 37.97,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@22000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 38.0,
+      "abs_error_off": 37.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.62, 1:00.89",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@22000+1000_trombone_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.62,
+      "offset_s_pred": 60.89,
+      "iou": 0.0,
+      "abs_error_on": 38.62,
+      "abs_error_off": 37.89,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 22000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@22000+1000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 23.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 38.0,
+      "abs_error_off": 37.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.35, 0:26.84",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@22000+5000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.35,
+      "offset_s_pred": 26.84,
+      "iou": 0.8566,
+      "abs_error_on": 0.65,
+      "abs_error_off": 0.16,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.47, 0:25.93",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@22000+5000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.47,
+      "offset_s_pred": 25.93,
+      "iou": 0.7107,
+      "abs_error_on": 0.53,
+      "abs_error_off": 1.07,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.54, 0:26.34",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@22000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.54,
+      "offset_s_pred": 26.34,
+      "iou": 0.7949,
+      "abs_error_on": 0.46,
+      "abs_error_off": 0.66,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:21.85, 0:26.75",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@22000+5000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.85,
+      "offset_s_pred": 26.75,
+      "iou": 0.9223,
+      "abs_error_on": 0.15,
+      "abs_error_off": 0.25,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.64, 0:25.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@22000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.64,
+      "offset_s_pred": 25.98,
+      "iou": 0.7425,
+      "abs_error_on": 0.36,
+      "abs_error_off": 1.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.38, 0:25.68",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@22000+5000_trombone_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.38,
+      "offset_s_pred": 25.68,
+      "iou": 0.6548,
+      "abs_error_on": 0.62,
+      "abs_error_off": 1.32,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.48, 0:26.19",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@22000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.48,
+      "offset_s_pred": 26.19,
+      "iou": 0.7591,
+      "abs_error_on": 0.52,
+      "abs_error_off": 0.81,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.64, 1:00.95",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@22000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 60.64,
+      "offset_s_pred": 60.95,
+      "iou": 0.0,
+      "abs_error_on": 38.64,
+      "abs_error_off": 33.95,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@22000+5000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 38.0,
+      "abs_error_off": 33.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 22000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:21.56, 0:25.96",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@22000+5000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 22.0,
+      "offset_s_gt": 27.0,
+      "onset_s_pred": 21.56,
+      "offset_s_pred": 25.96,
+      "iou": 0.7279,
+      "abs_error_on": 0.44,
+      "abs_error_off": 1.04,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.45, 0:27.39",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@27000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 26.45,
+      "offset_s_pred": 27.39,
+      "iou": 0.2516,
+      "abs_error_on": 0.55,
+      "abs_error_off": 0.61,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.35, 0:27.45",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@27000+1000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 26.35,
+      "offset_s_pred": 27.45,
+      "iou": 0.2727,
+      "abs_error_on": 0.65,
+      "abs_error_off": 0.55,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@27000+1000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 33.0,
+      "abs_error_off": 32.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:26.98, 0:27.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@27000+1000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 26.98,
+      "offset_s_pred": 27.98,
+      "iou": 0.9608,
+      "abs_error_on": 0.02,
+      "abs_error_off": 0.02,
+      "within_100ms_both": 1,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@27000+1000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 33.0,
+      "abs_error_off": 32.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@27000+1000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 33.0,
+      "abs_error_off": 32.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.49, 0:27.53",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@27000+1000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 26.49,
+      "offset_s_pred": 27.53,
+      "iou": 0.351,
+      "abs_error_on": 0.51,
+      "abs_error_off": 0.47,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.58, 0:27.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@27000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 26.58,
+      "offset_s_pred": 27.48,
+      "iou": 0.338,
+      "abs_error_on": 0.42,
+      "abs_error_off": 0.52,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@27000+1000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 33.0,
+      "abs_error_off": 32.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 27000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.75, 0:28.41",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@27000+1000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 28.0,
+      "onset_s_pred": 26.75,
+      "offset_s_pred": 28.41,
+      "iou": 0.6024,
+      "abs_error_on": 0.25,
+      "abs_error_off": 0.41,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.43, 0:30.81",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@27000+5000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.43,
+      "offset_s_pred": 30.81,
+      "iou": 0.684,
+      "abs_error_on": 0.57,
+      "abs_error_off": 1.19,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.57, 0:30.94",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@27000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.57,
+      "offset_s_pred": 30.94,
+      "iou": 0.7256,
+      "abs_error_on": 0.43,
+      "abs_error_off": 1.06,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.94, 0:31.07",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@27000+5000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.94,
+      "offset_s_pred": 31.07,
+      "iou": 0.8043,
+      "abs_error_on": 0.06,
+      "abs_error_off": 0.93,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.53, 0:31.49",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@27000+5000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.53,
+      "offset_s_pred": 31.49,
+      "iou": 0.8208,
+      "abs_error_on": 0.47,
+      "abs_error_off": 0.51,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.45, 0:30.89",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@27000+5000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.45,
+      "offset_s_pred": 30.89,
+      "iou": 0.7009,
+      "abs_error_on": 0.55,
+      "abs_error_off": 1.11,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.53, 0:31.09",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@27000+5000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.53,
+      "offset_s_pred": 31.09,
+      "iou": 0.7477,
+      "abs_error_on": 0.47,
+      "abs_error_off": 0.91,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:05.86, 1:07.36",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@27000+5000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 65.86,
+      "offset_s_pred": 67.36,
+      "iou": 0.0,
+      "abs_error_on": 38.86,
+      "abs_error_off": 35.36,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@27000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 33.0,
+      "abs_error_off": 28.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:26.73, 0:30.95",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@27000+5000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 26.73,
+      "offset_s_pred": 30.95,
+      "iou": 0.7495,
+      "abs_error_on": 0.27,
+      "abs_error_off": 1.05,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 27000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@27000+5000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 27.0,
+      "offset_s_gt": 32.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 33.0,
+      "abs_error_off": 28.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:41.27, 0:59.86",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@41000+1000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 41.27,
+      "offset_s_pred": 59.86,
+      "iou": 0.0387,
+      "abs_error_on": 0.27,
+      "abs_error_off": 17.86,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.79, 0:59.86",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@41000+1000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 40.79,
+      "offset_s_pred": 59.86,
+      "iou": 0.0524,
+      "abs_error_on": 0.21,
+      "abs_error_off": 17.86,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.58, 0:42.38",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@41000+1000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 40.58,
+      "offset_s_pred": 42.38,
+      "iou": 0.5556,
+      "abs_error_on": 0.42,
+      "abs_error_off": 0.38,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.56, 0:41.56",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@41000+1000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 40.56,
+      "offset_s_pred": 41.56,
+      "iou": 0.3889,
+      "abs_error_on": 0.44,
+      "abs_error_off": 0.44,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:40.93, 0:42.17",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@41000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 40.93,
+      "offset_s_pred": 42.17,
+      "iou": 0.8065,
+      "abs_error_on": 0.07,
+      "abs_error_off": 0.17,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@41000+1000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 19.0,
+      "abs_error_off": 18.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:40.76, 0:41.83",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@41000+1000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 40.76,
+      "offset_s_pred": 41.83,
+      "iou": 0.6694,
+      "abs_error_on": 0.24,
+      "abs_error_off": 0.17,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:40.86, 0:41.86",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@41000+1000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 40.86,
+      "offset_s_pred": 41.86,
+      "iou": 0.7544,
+      "abs_error_on": 0.14,
+      "abs_error_off": 0.14,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@41000+1000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 19.0,
+      "abs_error_off": 18.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 41000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@41000+1000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 42.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 19.0,
+      "abs_error_off": 18.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.82, 0:44.59",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@41000+5000_bass_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.82,
+      "offset_s_pred": 44.59,
+      "iou": 0.6931,
+      "abs_error_on": 0.18,
+      "abs_error_off": 1.41,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:41.26, 0:45.76",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@41000+5000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 41.26,
+      "offset_s_pred": 45.76,
+      "iou": 0.9,
+      "abs_error_on": 0.26,
+      "abs_error_off": 0.24,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.72, 0:45.36",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@41000+5000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.72,
+      "offset_s_pred": 45.36,
+      "iou": 0.8258,
+      "abs_error_on": 0.28,
+      "abs_error_off": 0.64,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.89, 0:44.37",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@41000+5000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.89,
+      "offset_s_pred": 44.37,
+      "iou": 0.6595,
+      "abs_error_on": 0.11,
+      "abs_error_off": 1.63,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.85, 0:45.39",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@41000+5000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.85,
+      "offset_s_pred": 45.39,
+      "iou": 0.8524,
+      "abs_error_on": 0.15,
+      "abs_error_off": 0.61,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.91, 0:45.31",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@41000+5000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.91,
+      "offset_s_pred": 45.31,
+      "iou": 0.8468,
+      "abs_error_on": 0.09,
+      "abs_error_off": 0.69,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.12, 0:44.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@41000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.12,
+      "offset_s_pred": 44.98,
+      "iou": 0.6769,
+      "abs_error_on": 0.88,
+      "abs_error_off": 1.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.95, 0:44.95",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@41000+5000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.95,
+      "offset_s_pred": 44.95,
+      "iou": 0.7822,
+      "abs_error_on": 0.05,
+      "abs_error_off": 1.05,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.53, 0:45.26",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@41000+5000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.53,
+      "offset_s_pred": 45.26,
+      "iou": 0.7788,
+      "abs_error_on": 0.47,
+      "abs_error_off": 0.74,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 41000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:40.79, 0:45.36",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@41000+5000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 41.0,
+      "offset_s_gt": 46.0,
+      "onset_s_pred": 40.79,
+      "offset_s_pred": 45.36,
+      "iou": 0.8369,
+      "abs_error_on": 0.21,
+      "abs_error_off": 0.64,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.59, 0:47.59",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@47000+1000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.59,
+      "offset_s_pred": 47.59,
+      "iou": 0.4184,
+      "abs_error_on": 0.41,
+      "abs_error_off": 0.41,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.32, 0:47.18",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@47000+1000_cello_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.32,
+      "offset_s_pred": 47.18,
+      "iou": 0.1071,
+      "abs_error_on": 0.68,
+      "abs_error_off": 0.82,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:46.85, 0:47.93",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@47000+1000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.85,
+      "offset_s_pred": 47.93,
+      "iou": 0.8087,
+      "abs_error_on": 0.15,
+      "abs_error_off": 0.07,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.25, 0:47.25",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@47000+1000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.25,
+      "offset_s_pred": 47.25,
+      "iou": 0.1429,
+      "abs_error_on": 0.75,
+      "abs_error_off": 0.75,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.27, 0:58.91",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@47000+1000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.27,
+      "offset_s_pred": 58.91,
+      "iou": 0.0791,
+      "abs_error_on": 0.73,
+      "abs_error_off": 10.91,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.15, 0:59.28",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@47000+1000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.15,
+      "offset_s_pred": 59.28,
+      "iou": 0.0762,
+      "abs_error_on": 0.85,
+      "abs_error_off": 11.28,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.89, 0:57.13",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@47000+1000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.89,
+      "offset_s_pred": 57.13,
+      "iou": 0.0977,
+      "abs_error_on": 0.11,
+      "abs_error_off": 9.13,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:46.85, 0:47.85",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@47000+1000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.85,
+      "offset_s_pred": 47.85,
+      "iou": 0.7391,
+      "abs_error_on": 0.15,
+      "abs_error_off": 0.15,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.58, 0:59.27",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@47000+1000_bass_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.58,
+      "offset_s_pred": 59.27,
+      "iou": 0.0788,
+      "abs_error_on": 0.42,
+      "abs_error_off": 11.27,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 47000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:46.80, 0:47.80",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@47000+1000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 48.0,
+      "onset_s_pred": 46.8,
+      "offset_s_pred": 47.8,
+      "iou": 0.6667,
+      "abs_error_on": 0.2,
+      "abs_error_off": 0.2,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.39, 0:51.42",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@47000+5000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.39,
+      "offset_s_pred": 51.42,
+      "iou": 0.7879,
+      "abs_error_on": 0.61,
+      "abs_error_off": 0.58,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.35, 0:51.85",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@47000+5000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.35,
+      "offset_s_pred": 51.85,
+      "iou": 0.8584,
+      "abs_error_on": 0.65,
+      "abs_error_off": 0.15,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.75, 0:51.25",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@47000+5000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.75,
+      "offset_s_pred": 51.25,
+      "iou": 0.8095,
+      "abs_error_on": 0.25,
+      "abs_error_off": 0.75,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.57, 0:52.19",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@47000+5000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.57,
+      "offset_s_pred": 52.19,
+      "iou": 0.8897,
+      "abs_error_on": 0.43,
+      "abs_error_off": 0.19,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.52, 0:51.18",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@47000+5000_cello_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.52,
+      "offset_s_pred": 51.18,
+      "iou": 0.7628,
+      "abs_error_on": 0.48,
+      "abs_error_off": 0.82,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.91, 0:52.37",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@47000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.91,
+      "offset_s_pred": 52.37,
+      "iou": 0.9158,
+      "abs_error_on": 0.09,
+      "abs_error_off": 0.37,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.35, 0:51.28",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@47000+5000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.35,
+      "offset_s_pred": 51.28,
+      "iou": 0.7575,
+      "abs_error_on": 0.65,
+      "abs_error_off": 0.72,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "violin",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.91, 0:51.01",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@47000+5000_violin_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.91,
+      "offset_s_pred": 51.01,
+      "iou": 0.7878,
+      "abs_error_on": 0.09,
+      "abs_error_off": 0.99,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.72, 0:51.92",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@47000+5000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.72,
+      "offset_s_pred": 51.92,
+      "iou": 0.9318,
+      "abs_error_on": 0.28,
+      "abs_error_off": 0.08,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 47000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:46.85, 0:51.25",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@47000+5000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 47.0,
+      "offset_s_gt": 52.0,
+      "onset_s_pred": 46.85,
+      "offset_s_pred": 51.25,
+      "iou": 0.8252,
+      "abs_error_on": 0.15,
+      "abs_error_off": 0.75,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.34, 0:53.19",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@53000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.34,
+      "offset_s_pred": 53.19,
+      "iou": 0.1145,
+      "abs_error_on": 0.66,
+      "abs_error_off": 0.81,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.74, 0:53.68",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@53000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.74,
+      "offset_s_pred": 53.68,
+      "iou": 0.5397,
+      "abs_error_on": 0.26,
+      "abs_error_off": 0.32,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.84, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@53000+1000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.84,
+      "offset_s_pred": 60.0,
+      "iou": 0.1397,
+      "abs_error_on": 0.16,
+      "abs_error_off": 6.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.43, 0:53.67",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@53000+1000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.43,
+      "offset_s_pred": 53.67,
+      "iou": 0.4268,
+      "abs_error_on": 0.57,
+      "abs_error_off": 0.33,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.38, 0:53.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@53000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.38,
+      "offset_s_pred": 53.48,
+      "iou": 0.2963,
+      "abs_error_on": 0.62,
+      "abs_error_off": 0.52,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.49, 0:53.78",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@53000+1000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.49,
+      "offset_s_pred": 53.78,
+      "iou": 0.5166,
+      "abs_error_on": 0.51,
+      "abs_error_off": 0.22,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:52.76, 0:53.76",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@53000+1000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.76,
+      "offset_s_pred": 53.76,
+      "iou": 0.6129,
+      "abs_error_on": 0.24,
+      "abs_error_off": 0.24,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.61, 0:53.69",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@53000+1000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.61,
+      "offset_s_pred": 53.69,
+      "iou": 0.4964,
+      "abs_error_on": 0.39,
+      "abs_error_off": 0.31,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.46, 0:53.76",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@53000+1000_trombone_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.46,
+      "offset_s_pred": 53.76,
+      "iou": 0.4935,
+      "abs_error_on": 0.54,
+      "abs_error_off": 0.24,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 53000,
+      "source": "cello",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.47, 0:53.67",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@53000+1000_cello_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 54.0,
+      "onset_s_pred": 52.47,
+      "offset_s_pred": 53.67,
+      "iou": 0.4379,
+      "abs_error_on": 0.53,
+      "abs_error_off": 0.33,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.74, 0:56.94",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@53000+5000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.74,
+      "offset_s_pred": 56.94,
+      "iou": 0.749,
+      "abs_error_on": 0.26,
+      "abs_error_off": 1.06,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "organ",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.63, 0:57.14",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@53000+5000_organ_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.63,
+      "offset_s_pred": 57.14,
+      "iou": 0.7709,
+      "abs_error_on": 0.37,
+      "abs_error_off": 0.86,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.69, 0:57.74",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@53000+5000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.69,
+      "offset_s_pred": 57.74,
+      "iou": 0.8927,
+      "abs_error_on": 0.31,
+      "abs_error_off": 0.26,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "trumpet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.63, 0:57.14",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@53000+5000_trumpet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.63,
+      "offset_s_pred": 57.14,
+      "iou": 0.7709,
+      "abs_error_on": 0.37,
+      "abs_error_off": 0.86,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.69, 0:57.14",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@53000+5000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.69,
+      "offset_s_pred": 57.14,
+      "iou": 0.7797,
+      "abs_error_on": 0.31,
+      "abs_error_off": 0.86,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.79, 0:56.38",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@53000+5000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.79,
+      "offset_s_pred": 56.38,
+      "iou": 0.6488,
+      "abs_error_on": 0.21,
+      "abs_error_off": 1.62,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.78, 0:57.34",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@53000+5000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.78,
+      "offset_s_pred": 57.34,
+      "iou": 0.8314,
+      "abs_error_on": 0.22,
+      "abs_error_off": 0.66,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.48, 0:57.92",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@53000+5000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.48,
+      "offset_s_pred": 57.92,
+      "iou": 0.8913,
+      "abs_error_on": 0.52,
+      "abs_error_off": 0.08,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.43, 0:56.78",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@53000+5000_trombone_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.43,
+      "offset_s_pred": 56.78,
+      "iou": 0.6786,
+      "abs_error_on": 0.57,
+      "abs_error_off": 1.22,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 53000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:52.31, 0:56.97",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@53000+5000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 53.0,
+      "offset_s_gt": 58.0,
+      "onset_s_pred": 52.31,
+      "offset_s_pred": 56.97,
+      "iou": 0.6977,
+      "abs_error_on": 0.69,
+      "abs_error_off": 1.03,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "guitar",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.74, 0:07.59",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@7000+1000_guitar_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.74,
+      "offset_s_pred": 7.59,
+      "iou": 0.4683,
+      "abs_error_on": 0.26,
+      "abs_error_off": 0.41,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "piano",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.43, 0:07.18",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@7000+1000_piano_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.43,
+      "offset_s_pred": 7.18,
+      "iou": 0.1146,
+      "abs_error_on": 0.57,
+      "abs_error_off": 0.82,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.35, 0:07.49",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@7000+1000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.35,
+      "offset_s_pred": 7.49,
+      "iou": 0.297,
+      "abs_error_on": 0.65,
+      "abs_error_off": 0.51,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "electric_keyboard",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.57, 0:07.43",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@7000+1000_electric_keyboard_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.57,
+      "offset_s_pred": 7.43,
+      "iou": 0.3007,
+      "abs_error_on": 0.43,
+      "abs_error_off": 0.57,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "synth_pad",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.58, 0:07.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@7000+1000_synth_pad_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.58,
+      "offset_s_pred": 7.48,
+      "iou": 0.338,
+      "abs_error_on": 0.42,
+      "abs_error_off": 0.52,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "synth_lead",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.48, 0:07.51",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@7000+1000_synth_lead_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.48,
+      "offset_s_pred": 7.51,
+      "iou": 0.3355,
+      "abs_error_on": 0.52,
+      "abs_error_off": 0.49,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "1:00.00, 1:00.00",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@7000+1000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 60.0,
+      "offset_s_pred": 60.0,
+      "iou": 0.0,
+      "abs_error_on": 53.0,
+      "abs_error_off": 52.0,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "clarinet",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.15, 0:07.45",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@7000+1000_clarinet_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.15,
+      "offset_s_pred": 7.45,
+      "iou": 0.2432,
+      "abs_error_on": 0.85,
+      "abs_error_off": 0.55,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.58, 0:07.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@7000+1000_bass_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.58,
+      "offset_s_pred": 7.48,
+      "iou": 0.338,
+      "abs_error_on": 0.42,
+      "abs_error_off": 0.52,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 1000,
+      "pos_ms": 7000,
+      "source": "sine",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.58, 0:07.48",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@7000+1000_sine_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 8.0,
+      "onset_s_pred": 6.58,
+      "offset_s_pred": 7.48,
+      "iou": 0.338,
+      "abs_error_on": 0.42,
+      "abs_error_off": 0.52,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 30,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "triangle",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:06.98, 0:11.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs1@7000+5000_triangle_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.98,
+      "offset_s_pred": 11.98,
+      "iou": 0.992,
+      "abs_error_on": 0.02,
+      "abs_error_off": 0.02,
+      "within_100ms_both": 1,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 36,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "oboe",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.18, 0:11.78",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C2@7000+5000_oboe_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.18,
+      "offset_s_pred": 11.78,
+      "iou": 0.8213,
+      "abs_error_on": 0.82,
+      "abs_error_off": 0.22,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 43,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "trombone",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.48, 0:11.20",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G2@7000+5000_trombone_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.48,
+      "offset_s_pred": 11.2,
+      "iou": 0.7609,
+      "abs_error_on": 0.52,
+      "abs_error_off": 0.8,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 48,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.53, 0:10.93",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C3@7000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.53,
+      "offset_s_pred": 10.93,
+      "iou": 0.7185,
+      "abs_error_on": 0.47,
+      "abs_error_off": 1.07,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 54,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "sawtooth",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:06.85, 0:11.93",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_Fs3@7000+5000_sawtooth_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.85,
+      "offset_s_pred": 11.93,
+      "iou": 0.9573,
+      "abs_error_on": 0.15,
+      "abs_error_off": 0.07,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 60,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "flute",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.18, 0:10.98",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_C4@7000+5000_flute_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.18,
+      "offset_s_pred": 10.98,
+      "iou": 0.6838,
+      "abs_error_on": 0.82,
+      "abs_error_off": 1.02,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 64,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "voice",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.83, 0:11.24",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E4@7000+5000_voice_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.83,
+      "offset_s_pred": 11.24,
+      "iou": 0.8201,
+      "abs_error_on": 0.17,
+      "abs_error_off": 0.76,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    },
+    {
+      "midi": 69,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.54, 0:11.54",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_A4@7000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.54,
+      "offset_s_pred": 11.54,
+      "iou": 0.8315,
+      "abs_error_on": 0.46,
+      "abs_error_off": 0.46,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 79,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "square",
+      "source_type": "waveform",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 1,
+      "raw_response": "0:06.78, 0:11.78",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_G5@7000+5000_square_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.78,
+      "offset_s_pred": 11.78,
+      "iou": 0.9157,
+      "abs_error_on": 0.22,
+      "abs_error_off": 0.22,
+      "within_100ms_both": 0,
+      "within_500ms_both": 1,
+      "valid": 1
+    },
+    {
+      "midi": 88,
+      "duration_ms": 5000,
+      "pos_ms": 7000,
+      "source": "bass",
+      "source_type": "instrument",
+      "n_gt": 2,
+      "n_pred": 2,
+      "correct": 0,
+      "raw_response": "0:06.42, 0:10.53",
+      "wav": "/home/hsnu2/PitchBench/data/audio/pitchbench_b3_timestamp_single_pitch/clip_E6@7000+5000_bass_total60000ms_b2.wav",
+      "prompt": "This audio is a 60-second clip that contains exactly ONE sustained musical note inside silence. Identify the onset and offset times of the note. Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.",
+      "onset_s_gt": 7.0,
+      "offset_s_gt": 12.0,
+      "onset_s_pred": 6.42,
+      "offset_s_pred": 10.53,
+      "iou": 0.6326,
+      "abs_error_on": 0.58,
+      "abs_error_off": 1.47,
+      "within_100ms_both": 0,
+      "within_500ms_both": 0,
+      "valid": 1
+    }
+  ]
+}

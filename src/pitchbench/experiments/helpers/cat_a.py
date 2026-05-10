@@ -354,16 +354,13 @@ def save_pitch_confidence_plots(
         ax.set_xticks(gts_all)
         ax.set_xticklabels(
             [f"{m}\n({midi_to_note(m)})" for m in gts_all],
-            fontsize=8, rotation=0,
+            fontsize=11, rotation=35, ha="right", rotation_mode="anchor",
         )
-        ax.set_xlabel("Ground-truth MIDI (note)")
-        ax.set_ylabel("Predicted MIDI")
-        ax.set_title(
-            f"{fmt.upper()} prediction vs. truth — {model_name}\n"
-            f"(parsed {n_parsed}/{n_total})"
-        )
+        ax.set_xlabel("Ground-truth MIDI (note)", fontsize=13)
+        ax.set_ylabel("Predicted MIDI", fontsize=13)
+        ax.tick_params(axis="y", labelsize=11)
         ax.grid(True, alpha=0.3)
-        ax.legend(loc="upper left", fontsize=9)
+        ax.legend(loc="upper left", fontsize=10)
         fig.tight_layout()
         out = plots_dir / f"pitch_ci_{fmt}_{safe}.png"
         fig.savefig(out, dpi=120)

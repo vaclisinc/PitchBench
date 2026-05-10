@@ -380,9 +380,9 @@ def _save_pca_plots(
         c=midi_labels, cmap="plasma", s=18, alpha=0.7,
     )
     plt.colorbar(scatter, ax=ax, label="MIDI note")
-    ax.set_xlabel(f"PC1 ({evr[0]:.1%} var)")
-    ax.set_ylabel(f"PC2 ({evr[1]:.1%} var)")
-    ax.set_title(f"Embedding PCA — by MIDI pitch\n{model_name}")
+    ax.set_xlabel(f"PC1 ({evr[0]:.1%} var)", fontsize=13)
+    ax.set_ylabel(f"PC2 ({evr[1]:.1%} var)", fontsize=13)
+    ax.tick_params(axis="both", labelsize=11)
     fig.tight_layout()
     fig.savefig(run_dir / f"pca_by_pitch_{model_name}.png", dpi=120)
     plt.close(fig)
@@ -396,10 +396,10 @@ def _save_pca_plots(
         mask = [i for i, s in enumerate(source_labels) if s == src]
         ax.scatter(X2[mask, 0], X2[mask, 1],
                    color=colours(src_idx[src]), label=src, s=18, alpha=0.7)
-    ax.legend(loc="upper right", fontsize=7, ncol=2)
-    ax.set_xlabel(f"PC1 ({evr[0]:.1%} var)")
-    ax.set_ylabel(f"PC2 ({evr[1]:.1%} var)")
-    ax.set_title(f"Embedding PCA — by source\n{model_name}")
+    ax.legend(loc="upper right", fontsize=10, ncol=2)
+    ax.set_xlabel(f"PC1 ({evr[0]:.1%} var)", fontsize=13)
+    ax.set_ylabel(f"PC2 ({evr[1]:.1%} var)", fontsize=13)
+    ax.tick_params(axis="both", labelsize=11)
     fig.tight_layout()
     fig.savefig(run_dir / f"pca_by_source_{model_name}.png", dpi=120)
     plt.close(fig)
@@ -412,14 +412,14 @@ def _save_pca_plots(
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
         s1 = ax1.scatter(Xu[:, 0], Xu[:, 1], c=midi_labels, cmap="plasma", s=18, alpha=0.7)
         plt.colorbar(s1, ax=ax1, label="MIDI note")
-        ax1.set_title(f"UMAP — by MIDI pitch\n{model_name}")
+        ax1.tick_params(axis="both", labelsize=11)
 
         for src in sources:
             mask = [i for i, s in enumerate(source_labels) if s == src]
             ax2.scatter(Xu[mask, 0], Xu[mask, 1],
                         color=colours(src_idx[src]), label=src, s=18, alpha=0.7)
-        ax2.legend(loc="upper right", fontsize=7, ncol=2)
-        ax2.set_title(f"UMAP — by source\n{model_name}")
+        ax2.legend(loc="upper right", fontsize=10, ncol=2)
+        ax2.tick_params(axis="both", labelsize=11)
 
         fig.tight_layout()
         fig.savefig(run_dir / f"umap_{model_name}.png", dpi=120)
@@ -453,10 +453,9 @@ def _save_cosine_heatmap(
     tick_step = 6
     ticks = list(range(0, len(unique_midi), tick_step))
     tick_lbls = [str(unique_midi[t]) for t in ticks]
-    ax.set_xticks(ticks); ax.set_xticklabels(tick_lbls, fontsize=8)
-    ax.set_yticks(ticks); ax.set_yticklabels(tick_lbls, fontsize=8)
-    ax.set_xlabel("MIDI note"); ax.set_ylabel("MIDI note")
-    ax.set_title(f"Avg cosine similarity between pitches\n{model_name}")
+    ax.set_xticks(ticks); ax.set_xticklabels(tick_lbls, fontsize=11, rotation=35, ha="right", rotation_mode="anchor")
+    ax.set_yticks(ticks); ax.set_yticklabels(tick_lbls, fontsize=11)
+    ax.set_xlabel("MIDI note", fontsize=13); ax.set_ylabel("MIDI note", fontsize=13)
     fig.tight_layout()
     fig.savefig(run_dir / f"cosine_heatmap_{model_name}.png", dpi=120)
     plt.close(fig)
@@ -484,9 +483,9 @@ def _save_cosine_vs_interval_plot(
             ax.axvline(x=oct_d, color="tomato", linestyle="--", alpha=0.5, linewidth=1)
             ax.scatter([oct_d], [means[idx]], color="tomato", zorder=5, s=60)
 
-    ax.set_xlabel("Semitone distance")
-    ax.set_ylabel("Mean cosine similarity")
-    ax.set_title(f"Cosine similarity vs. semitone distance\n{model_name}")
+    ax.set_xlabel("Semitone distance", fontsize=13)
+    ax.set_ylabel("Mean cosine similarity", fontsize=13)
+    ax.tick_params(axis="both", labelsize=11)
     ax.grid(True, alpha=0.3)
     fig.tight_layout()
     fig.savefig(run_dir / f"cosine_vs_interval_{model_name}.png", dpi=120)
@@ -517,14 +516,13 @@ def _save_knn_accuracy_plot(
         ax.legend(fontsize=9)
 
     ax.set_ylim(0, 1)
-    ax.set_ylabel("k-NN accuracy (exact MIDI)")
-    ax.set_xlabel("Source")
-    ax.set_title(f"Leave-one-out k=1 NN accuracy per source\n{model_name}")
-    plt.xticks(rotation=45, ha="right", fontsize=9)
+    ax.set_ylabel("k-NN accuracy (exact MIDI)", fontsize=13)
+    ax.set_xlabel("Source", fontsize=13)
+    plt.xticks(rotation=45, ha="right", fontsize=11)
 
     for bar, acc in zip(bars, accs):
         ax.text(bar.get_x() + bar.get_width() / 2, acc + 0.01,
-                f"{acc:.0%}", ha="center", va="bottom", fontsize=7)
+                f"{acc:.0%}", ha="center", va="bottom", fontsize=9)
     fig.tight_layout()
     fig.savefig(run_dir / f"knn_accuracy_{model_name}.png", dpi=120)
     plt.close(fig)

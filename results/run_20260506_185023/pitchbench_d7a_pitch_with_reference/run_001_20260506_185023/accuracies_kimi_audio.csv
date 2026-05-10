@@ -1,0 +1,11 @@
+metric,n_samples,value,value_pct
+accuracy_baseline.midi,0,0.0,0.0%
+accuracy_baseline.spn,0,0.0,0.0%
+accuracy_baseline.doremi,0,0.0,0.0%
+accuracy_baseline.hz,0,0.0,0.0%
+accuracy_baseline.any,0,0.0,0.0%
+accuracy.midi,0,0.0,0.0%
+accuracy.spn,0,0.0,0.0%
+accuracy.doremi,0,0.0,0.0%
+accuracy.hz,0,0.0,0.0%
+accuracy.any,0,0.0,0.0%

@@ -1,0 +1,90 @@
+Experiment : pitchbench_b1_single_pitch_within_silence
+Model      : qwen3_omni
+timestamp  : 2026-05-06T21:50:00.289839
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'qwen3_omni']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : qwen3_omni
+model_info : {'status': 'ok', 'model': 'Qwen/Qwen3-Omni-30B-A3B-Instruct', 'checkpoint': 'instruct', 'device': 'cuda:0'}
+task_type  : pitch
+tolerance_ms : None
+primary_filter_set : True
+record_extras : ['pos_ms', 'condition']
+sample_n   : 160
+sample_seed : 42
+total_available : 1520
+stratified_by : (midi, pos_ms)
+pair_key   : ['pair_id']
+sampled_primary : 160
+sampled_total : 160
+
+SUMMARY
+==================================================
+  Sampling     : 160 of 1520 (stratified by '(midi, pos_ms)', seed=42)
+  Stimuli (total)     : 160
+  Stimuli (condition) : 160
+  Stimuli (baseline)  : 0
+
+    Metric  Condition   Baseline
+  ────────────────────────────────
+      MIDI       4.4%       0.0%
+       SPN      47.5%       0.0%
+    DOREMI      41.2%       0.0%
+        HZ      15.0%       0.0%
+       ANY      50.0%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatBSpec.primary_filter).
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass             25.00%   25.00%   50.00%   25.00%   25.00%     4
+cello            16.67%   83.33%   50.00%   16.67%   83.33%     6
+clarinet          0.00%   85.71%   28.57%   14.29%   85.71%     7
+electric_keyboard    0.00%   50.00%   50.00%   12.50%   50.00%     8
+flute             0.00%   15.38%    7.69%   15.38%   30.77%    13
+guitar           12.50%   75.00%   62.50%   50.00%   75.00%     8
+oboe              0.00%   42.86%   42.86%    0.00%   42.86%     7
+organ             0.00%   28.57%   85.71%   28.57%   28.57%     7
+piano            25.00%   75.00%   62.50%    0.00%   75.00%     8
+sawtooth          0.00%   42.86%   28.57%    0.00%   42.86%     7
+sine              0.00%   25.00%   50.00%   12.50%   25.00%     8
+square            0.00%    7.69%   15.38%    0.00%    7.69%    13
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%     7
+synth_pad         0.00%   75.00%   66.67%   16.67%   75.00%    12
+triangle          0.00%   36.36%   45.45%   18.18%   36.36%    11
+trombone         20.00%   80.00%   60.00%   20.00%   80.00%     5
+trumpet           0.00%   76.92%   15.38%   15.38%   76.92%    13
+violin            0.00%   62.50%   62.50%   12.50%   62.50%     8
+voice            12.50%   37.50%   50.00%   37.50%   62.50%     8
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        5.79%   54.55%   43.80%   17.36%   57.85%   121
+waveform          0.00%   25.64%   33.33%    7.69%   25.64%    39
+
+pos_ms             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+2000              0.00%   45.00%   45.00%   10.00%   45.00%    20
+7000              0.00%   55.00%   45.00%   20.00%   60.00%    20
+14000             5.00%   55.00%   55.00%   15.00%   60.00%    20
+22000             0.00%   40.00%   25.00%   20.00%   45.00%    20
+27000            10.00%   45.00%   30.00%   25.00%   50.00%    20
+41000             0.00%   45.00%   50.00%   10.00%   45.00%    20
+47000             5.00%   45.00%   45.00%   10.00%   45.00%    20
+53000            15.00%   50.00%   35.00%   10.00%   50.00%    20
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%    0.00%    0.00%    0.00%    0.00%    16
+36                0.00%   87.50%   43.75%   12.50%   87.50%    16
+43                0.00%   62.50%   93.75%    0.00%   62.50%    16
+48                0.00%    6.25%   25.00%   18.75%   25.00%    16
+54                0.00%   43.75%    0.00%    0.00%   43.75%    16
+60               25.00%   93.75%   50.00%   18.75%   93.75%    16
+64                0.00%   31.25%   68.75%    0.00%   31.25%    16
+69               18.75%   93.75%   62.50%   93.75%   93.75%    16
+79                0.00%   56.25%   68.75%    0.00%   56.25%    16
+88                0.00%    0.00%    0.00%    6.25%    6.25%    16
+

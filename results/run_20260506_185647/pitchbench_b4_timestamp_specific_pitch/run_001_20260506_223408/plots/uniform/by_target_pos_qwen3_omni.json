@@ -1,0 +1,25 @@
+{
+  "group_key": "target_pos",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    "first",
+    "last",
+    "middle"
+  ],
+  "x_labels": [
+    "first",
+    "last",
+    "middle"
+  ],
+  "mean_pct": [
+    48.14525,
+    21.1815,
+    18.197000000000003
+  ],
+  "n_samples": [
+    40,
+    40,
+    40
+  ]
+}

@@ -1,0 +1,34 @@
+Experiment : pitchbench_d7a_pitch_with_reference
+Model      : kimi_audio
+timestamp  : 2026-05-06T18:50:37.267269
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'd7a', '--models', 'kimi_audio', '--sample-n', '2']
+git_commit : bc0df421bfa6118892df4024a7646aa99b072890
+git_dirty  : True
+model_name : kimi_audio
+model_info : {'status': 'ok', 'model': 'moonshotai/Kimi-Audio-7B-Instruct', 'checkpoint': 'instruct'}
+primary_filter_set : True
+record_extras : ['condition', 'ref_midi', 'interval']
+sample_n   : 2
+sample_seed : 42
+total_available : 1235
+stratified_by : (ref_midi, interval)
+pair_key   : ['source', 'ref_midi', 'interval']
+sampled_primary : 2
+sampled_total : 2
+
+SUMMARY
+==================================================
+  Sampling     : 2 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+  Stimuli (total)     : 0
+  Stimuli (condition) : 0
+  Stimuli (baseline)  : 0
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI       0.0%       0.0%
+     SPN       0.0%       0.0%
+  DOREMI       0.0%       0.0%
+      HZ       0.0%       0.0%
+     ANY       0.0%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).

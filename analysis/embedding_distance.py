@@ -188,7 +188,6 @@ def _save_plot(records: list[dict], run_dir: Path, slug: str, base_name: str, ba
     l2_means  = [r["l2_dist_mean"]     for r in records]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
-    fig.suptitle(f"Embedding distance vs. Δ pitch — {slug}\nBase: {base_name} ({base_hz:.0f} Hz)")
 
     for ax, means, stds, label, color in [
         (ax1, cos_means, cos_stds, "Cosine distance", "tab:blue"),
@@ -197,10 +196,11 @@ def _save_plot(records: list[dict], run_dir: Path, slug: str, base_name: str, ba
         ax.errorbar(deltas, means, yerr=stds, fmt="o-", color=color,
                     linewidth=2, capsize=4)
         ax.set_xscale("log")
-        ax.set_xlabel("Δ (cents)")
-        ax.set_ylabel(label)
+        ax.set_xlabel("Δ (cents)", fontsize=13)
+        ax.set_ylabel(label, fontsize=13)
         ax.set_xticks(deltas)
-        ax.set_xticklabels([str(d) for d in deltas], fontsize=8)
+        ax.set_xticklabels([str(d) for d in deltas], fontsize=11, rotation=35, ha="right", rotation_mode="anchor")
+        ax.tick_params(axis="y", labelsize=11)
         ax.grid(True, alpha=0.3)
 
     plt.tight_layout()

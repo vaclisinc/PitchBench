@@ -1,0 +1,85 @@
+Experiment : pitchbench_e3_harmonic_saturation
+Model      : openrouter/~google/gemini-flash-latest
+timestamp  : 2026-05-06T19:44:20.812068
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'openrouter/~google/gemini-flash-latest']
+git_commit : bc0df421bfa6118892df4024a7646aa99b072890
+git_dirty  : True
+model_name : openrouter/~google/gemini-flash-latest
+model_info : {'model': 'openrouter/~google/gemini-flash-latest', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': '~google/gemini-flash-latest'}
+primary_filter_set : False
+record_extras : ['saturation_level', 'saturation_type', 'saturation_params', 'noise_seed']
+sample_n   : 120
+sample_seed : 42
+total_available : 570
+stratified_by : (saturation_level, midi, source_type)
+
+SUMMARY
+==================================================
+  Sampling     : 120 of 570 (stratified by '(saturation_level, midi, source_type)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      12.5%
+     SPN      14.2%
+  DOREMI       0.0%
+      HZ       7.5%
+     ANY      24.2%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass             28.57%    0.00%    0.00%   14.29%   42.86%     7
+cello             0.00%    0.00%    0.00%    0.00%    0.00%     2
+clarinet          0.00%    0.00%    0.00%    0.00%    0.00%     4
+electric_keyboard   20.00%    0.00%    0.00%    0.00%   20.00%     5
+flute            14.29%   28.57%    0.00%   14.29%   42.86%     7
+guitar            0.00%    0.00%    0.00%    0.00%    0.00%     2
+oboe              0.00%    0.00%    0.00%    0.00%    0.00%     6
+organ             0.00%    0.00%    0.00%    0.00%    0.00%     4
+piano            50.00%   50.00%    0.00%    0.00%   50.00%     2
+sawtooth         20.00%   20.00%    0.00%   10.00%   30.00%    10
+sine              9.52%   14.29%    0.00%    0.00%   19.05%    21
+square            4.76%   14.29%    0.00%    9.52%   19.05%    21
+synth_lead       50.00%   50.00%    0.00%   50.00%  100.00%     2
+synth_pad        20.00%   40.00%    0.00%   20.00%   40.00%     5
+triangle         25.00%    0.00%    0.00%    0.00%   25.00%     8
+trombone          0.00%    0.00%    0.00%    0.00%    0.00%     4
+trumpet           0.00%   25.00%    0.00%    0.00%   25.00%     4
+violin           50.00%    0.00%    0.00%    0.00%   50.00%     2
+voice             0.00%   50.00%    0.00%   50.00%   50.00%     4
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument       13.33%   15.00%    0.00%   10.00%   26.67%    60
+waveform         11.67%   13.33%    0.00%    5.00%   21.67%    60
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%    0.00%    0.00%    0.00%    0.00%    12
+36                0.00%   33.33%    0.00%    0.00%   33.33%    12
+43                0.00%    8.33%    0.00%    0.00%    8.33%    12
+48               16.67%    0.00%    0.00%    0.00%   16.67%    12
+54                0.00%    0.00%    0.00%    0.00%    0.00%    12
+60               75.00%   16.67%    0.00%    0.00%   75.00%    12
+64                0.00%    0.00%    0.00%    0.00%    0.00%    12
+69               25.00%   83.33%    0.00%   75.00%  100.00%    12
+79                0.00%    0.00%    0.00%    0.00%    0.00%    12
+88                8.33%    0.00%    0.00%    0.00%    8.33%    12
+
+saturation_level     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+sat_heavy        15.00%   17.50%    0.00%    7.50%   30.00%    40
+sat_light        10.00%   10.00%    0.00%    7.50%   20.00%    40
+sat_medium       12.50%   15.00%    0.00%    7.50%   22.50%    40
+
+
+LLM USAGE
+==================================================
+  calls                           480
+  prompt tokens                89,162
+  completion tokens             1,250
+  total tokens                 90,412
+  cost (USD)                $0.078331
