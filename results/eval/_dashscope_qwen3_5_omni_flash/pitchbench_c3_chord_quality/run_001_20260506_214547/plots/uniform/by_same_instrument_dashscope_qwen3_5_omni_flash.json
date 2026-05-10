@@ -1,0 +1,21 @@
+{
+  "group_key": "same_instrument",
+  "score_key": "quality_correct",
+  "score_label": "Quality accuracy (%)",
+  "x_values": [
+    false,
+    true
+  ],
+  "x_labels": [
+    "False",
+    "True"
+  ],
+  "mean_pct": [
+    13.541666666666666,
+    12.5
+  ],
+  "n_samples": [
+    96,
+    96
+  ]
+}

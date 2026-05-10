@@ -120,6 +120,22 @@ PRESETS: dict[str, dict[str, Any]] = {
                 "pitchbench_d7_GAP_MS":            500,
                 "pitchbench_d7_SOURCES":           _SOURCES,
             },
+            # d7c/d7d: same anchor design but target pitches come from the a1
+            # pitch list, not from ref + interval.  Running with _PITCHES gives
+            # the same 42 notes (7 pitches × 6 sources) as the a1 ablation.
+            "pitchbench_d7c_pitch_with_reference": {
+                "pitchbench_d7c_REFERENCE_PITCHES": [69, 53],
+                "pitchbench_d7c_PITCHES":           _PITCHES,
+                "pitchbench_d7c_TONE_DURATION_MS":  5000,
+                "pitchbench_d7c_GAP_MS":            500,
+                "pitchbench_d7c_SOURCES":           _SOURCES,
+            },
+            "pitchbench_d7d_pitch_with_reference_split": {
+                "pitchbench_d7d_REFERENCE_PITCHES": [69, 53],
+                "pitchbench_d7d_PITCHES":           _PITCHES,
+                "pitchbench_d7d_TONE_DURATION_MS":  5000,
+                "pitchbench_d7d_SOURCES":           _SOURCES,
+            },
             "pitchbench_e1_audio_effects": {
                 "pitchbench_e1_EFFECTS":  _EFFECTS_NO_CLEAN,
                 "pitchbench_e1_TONE_MS":  5000,
@@ -163,12 +179,30 @@ PRESETS: dict[str, dict[str, Any]] = {
 # Start with benchmark defaults for all experiments not in the preset.
 from pitchbench.benchmark_config import *  # noqa: F401,F403,E402
 
-# Override SAMPLING for analysis mode: remove stratification (use random sampling instead).
+# Override SAMPLING for analysis mode: one variable varies, all others anchored.
+# fixed_vars are held to a single seed-deterministic value (see sampling._anchor_filter).
+
 SAMPLING = {
     **SAMPLING,
-    "pitchbench_e1_audio_effects":         {"per_stratum": 1, "strata": ("effect_type", "midi", "source_type")},
-    "pitchbench_e3_harmonic_saturation": {"per_stratum": 1, "strata": ()},
-    "pitchbench_e4_time_stretching":     {"per_stratum": 1, "strata": ()},
+    # a-group: pitch identification
+    "pitchbench_a1_single_pitch_id":              {"per_stratum": None, "strata": ("midi",)},
+    "pitchbench_y1_single_pitch_id_mcq":          {"per_stratum": None, "strata": ("semitone_step",)},
+    "pitchbench_a2_single_pitch_by_loudness":     {"per_stratum": None, "strata": ("loudness_db",)},
+    "pitchbench_a3_single_pitch_by_duration":     {"per_stratum": None, "strata": ("duration_ms",)},
+    # b-group: temporal localisation
+    "pitchbench_b1_single_pitch_within_silence":  {"per_stratum": None, "strata": ("pos_ms", "condition")},
+    "pitchbench_b2_pitch_at_timestamp":           {"per_stratum": None, "strata": ("n_notes",)},
+    # d-group: sequences / reference
+    "pitchbench_d7a_pitch_with_reference":        {"per_stratum": None, "strata": ("interval",)},
+    "pitchbench_d7b_pitch_with_reference_split":  {"per_stratum": None, "strata": ("interval",)},
+    "pitchbench_d7c_pitch_with_reference":        {"per_stratum": None, "strata": ("midi",)},
+    "pitchbench_d7d_pitch_with_reference_split":  {"per_stratum": None, "strata": ("midi",)},
+    # e-group: audio effects / degradations
+    "pitchbench_e1_audio_effects":                {"per_stratum": None, "strata": ("effect_type",)},
+    "pitchbench_e2_background":                   {"per_stratum": None, "strata": ("background",)},
+    "pitchbench_e3_harmonic_saturation":          {"per_stratum": None, "strata": ("saturation_level",)},
+    "pitchbench_e4_time_stretching":              {"per_stratum": None, "strata": ("condition",)},
+    "pitchbench_e6_slightly_off":                 {"per_stratum": None, "strata": ("detune_hz",)},
 }
 
 # Override with the active preset's experiment variables.
@@ -179,3 +213,5 @@ for _exp_overrides in _preset["experiments"].values():
     for _k, _v in _exp_overrides.items():
         setattr(_this, _k, _v)
 del _this, _preset, _exp_overrides, _k, _v, _sys
+
+INCLUDE_BASELINES: bool = False

@@ -368,12 +368,11 @@ def _save_mass_vs_distance_plot(
 
         ax.plot(dist_bins, p_exact_vals,     label="P(exact)",      marker="o", markersize=3)
         ax.plot(dist_bins, p_within_12_vals, label="P(within±12)", marker="s", markersize=3, linestyle="--")
-        ax.set_title(f"{variant.upper()}", fontsize=11)
-        ax.set_xlabel("Argmax token distance (semitones)")
-        ax.set_ylabel("Probability mass" if variant == "midi" else "")
-        ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
+        ax.set_xlabel("Argmax token distance (semitones)", fontsize=13)
+        ax.set_ylabel("Probability mass" if variant == "midi" else "", fontsize=13)
+        ax.tick_params(axis="both", labelsize=11)
+        ax.legend(fontsize=10); ax.grid(True, alpha=0.3)
 
-    fig.suptitle(f"Token probability mass — {model_name}", fontsize=12)
     fig.tight_layout()
     fig.savefig(run_dir / f"mass_vs_distance_{model_name}.png", dpi=120)
     plt.close(fig)
@@ -405,12 +404,11 @@ def _save_entropy_heatmap(
         im = ax.imshow(mat, aspect="auto", origin="upper", cmap="YlOrRd", vmin=0)
         plt.colorbar(im, ax=ax, label="Entropy (bits)")
         ax.set_yticks(range(len(sources)))
-        ax.set_yticklabels(sources, fontsize=8)
+        ax.set_yticklabels(sources, fontsize=11)
         step = max(1, len(unique_midi) // 10)
         ax.set_xticks(range(0, len(unique_midi), step))
-        ax.set_xticklabels([str(m) for m in unique_midi[::step]], fontsize=8)
-        ax.set_xlabel("MIDI note"); ax.set_ylabel("Source")
-        ax.set_title(f"Pitch-token entropy ({variant.upper()}) — {model_name}")
+        ax.set_xticklabels([str(m) for m in unique_midi[::step]], fontsize=11, rotation=35, ha="right", rotation_mode="anchor")
+        ax.set_xlabel("MIDI note", fontsize=13); ax.set_ylabel("Source", fontsize=13)
         fig.tight_layout()
         fig.savefig(run_dir / f"entropy_heatmap_{variant}_{model_name}.png", dpi=120)
         plt.close(fig)
@@ -440,10 +438,10 @@ def _save_p_exact_comparison_plot(
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.bar(x - w/2, p_exact,    w, label="P(exact)",      color="steelblue")
     ax.bar(x + w/2, p_within12, w, label="P(within±12)", color="salmon")
-    ax.set_xticks(x); ax.set_xticklabels([v.upper() for v in variants])
-    ax.set_ylabel("Mean probability mass"); ax.set_ylim(0, 1)
-    ax.legend(); ax.grid(True, axis="y", alpha=0.3)
-    ax.set_title(f"Step-1 token probability mass by prompt variant\n{model_name}")
+    ax.set_xticks(x); ax.set_xticklabels([v.upper() for v in variants], fontsize=11, rotation=35, ha="right", rotation_mode="anchor")
+    ax.set_ylabel("Mean probability mass", fontsize=13); ax.set_ylim(0, 1)
+    ax.tick_params(axis="y", labelsize=11)
+    ax.legend(fontsize=10); ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(run_dir / f"p_exact_by_variant_{model_name}.png", dpi=120)
     plt.close(fig)
@@ -537,18 +535,10 @@ def _save_distribution_plots(
                     ax.set_xlabel("Pitch class (doremi)", fontsize=7)
 
                 true_label = note_name if variant != "doremi" else _SOLFEGE_PC_LABELS[midi % 12]
-                ax.set_title(
-                    f"{variant.upper()} | {note_name}  (true: {true_label})",
-                    fontsize=8,
-                )
-                ax.set_ylabel("Prob.", fontsize=7)
-                ax.tick_params(labelsize=6)
+                ax.set_ylabel("Prob.", fontsize=10)
+                ax.tick_params(labelsize=9)
                 ax.grid(True, alpha=0.25)
 
-        fig.suptitle(
-            f"Token probability distributions — {src} — {model_name}",
-            fontsize=11,
-        )
         fig.tight_layout()
         fig.savefig(out_dir / f"distributions_{src}_{model_name}.png", dpi=130)
         plt.close(fig)

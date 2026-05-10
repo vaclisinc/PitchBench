@@ -1,0 +1,9 @@
+experiment,model,n_samples,metric,value
+pitchbench_e1_audio_effects,dashscope2/qwen3.5-omni-flash,240,condition_n,240.0
+pitchbench_e2_background,dashscope2/qwen3.5-omni-flash,240,condition_n,240.0
+pitchbench_e3_harmonic_saturation,dashscope2/qwen3.5-omni-flash,120,condition_n,120.0
+pitchbench_e4_time_stretching,dashscope2/qwen3.5-omni-flash,192,condition_n,192.0
+pitchbench_e5_vibrato,dashscope2/qwen3.5-omni-flash,160,condition_n,160.0
+pitchbench_e5_vibrato,dashscope2/qwen3.5-omni-flash,160,baseline_n,0.0
+pitchbench_e6_slightly_off,dashscope2/qwen3.5-omni-flash,160,condition_n,160.0
+pitchbench_e6_slightly_off,dashscope2/qwen3.5-omni-flash,160,baseline_n,0.0

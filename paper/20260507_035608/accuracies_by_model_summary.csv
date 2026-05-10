@@ -1,0 +1,8 @@
+model,pitchbench_a1_single_pitch_id,pitchbench_a2_single_pitch_by_loudness,pitchbench_a3_single_pitch_by_duration,pitchbench_b1_single_pitch_within_silence,pitchbench_b2_pitch_at_timestamp,pitchbench_d7a_pitch_with_reference,pitchbench_e1_audio_effects,pitchbench_e2_background,pitchbench_e3_harmonic_saturation,pitchbench_e4_time_stretching,pitchbench_e6_slightly_off,pitchbench_y1_single_pitch_id_mcq,n_experiments,mean_accuracy,mean_accuracy_pct,weighted_accuracy,weighted_accuracy_pct,total_samples
+audio_flamingo_next_instruct,0.3333,0.2048,0.2183,0.0476,0.0595,0.1346,0.1627,0.0357,0.1825,0.2917,0.0238,0.3968,12,0.174275,17.4%,0.164823,16.5%,2166
+dashscope2_qwen3_5_omni_plus,,,0.7103,,,,,,,,,,1,0.7103,71.0%,0.7103,71.0%,252
+dashscope_qwen3_5_omni_flash,0.7143,0.5952,0.4643,0.5635,0.5952,0.8013,0.4286,0.0238,0.6905,0.816,0.1587,0.6825,12,0.544492,54.4%,0.498615,49.9%,2166
+dashscope_qwen3_5_omni_plus,0.9048,0.8714,,0.8651,0.869,0.9872,0.8452,0.1706,0.9048,0.9479,0.1468,0.9127,11,0.765955,76.6%,0.70636,70.6%,1914
+openrouter_google_gemini_3_1_pro_preview,0.0714,0.0762,0.0635,0.0794,0.0833,0.5513,0.0833,0.0516,0.0556,0.1736,0.0516,0.5873,12,0.160675,16.1%,0.145894,14.6%,2166
+openrouter_google_gemini_flash_latest,0.0238,0.0143,0.0119,0.0238,0.2143,0.4167,0.0079,0.0079,0.0079,0.1493,0.0794,0.381,12,0.111517,11.2%,0.09649,9.6%,2166
+openrouter_openai_gpt_4o_audio_preview,0.0238,0.0286,0.0238,0.0079,0.0357,0.1603,0.0079,0.0397,0.0238,0.1389,0.0437,0.3413,12,0.07295,7.3%,0.069722,7.0%,2166

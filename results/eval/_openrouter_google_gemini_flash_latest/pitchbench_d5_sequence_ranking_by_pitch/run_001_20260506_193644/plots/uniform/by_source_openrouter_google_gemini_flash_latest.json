@@ -1,0 +1,29 @@
+{
+  "group_key": "source",
+  "score_key": "answer_correct",
+  "score_label": "Answer accuracy (%)",
+  "x_values": [
+    "sawtooth",
+    "sine",
+    "square",
+    "triangle"
+  ],
+  "x_labels": [
+    "sawtooth",
+    "sine",
+    "square",
+    "triangle"
+  ],
+  "mean_pct": [
+    5.405405405405405,
+    6.896551724137931,
+    0.0,
+    15.151515151515152
+  ],
+  "n_samples": [
+    37,
+    29,
+    21,
+    33
+  ]
+}

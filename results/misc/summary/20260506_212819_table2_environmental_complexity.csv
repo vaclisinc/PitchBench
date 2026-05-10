@@ -1,0 +1,5 @@
+Model,Baseline (a1),Effect: highpass,Effect: lowpass,Effect: bitcrush,Effect: distortion,Effect: reverb,Effect: chorus,BG: white noise,BG: bells,BG: crowd,BG: rain,BG: street,BG: osc. pitch,Saturation (overall),Time stretch (overall),Detune (overall)
+Gemini Pro,7.1%,4.8%,4.8%,7.1%,4.8%,16.7%,11.9%,0.0%,7.1%,4.8%,4.8%,14.3%,0.0%,5.6%,17.4%,5.2%
+Gemini Flash,2.4%,0.0%,0.0%,2.4%,0.0%,2.4%,0.0%,0.0%,0.0%,0.0%,0.0%,4.8%,0.0%,0.8%,14.9%,7.9%
+Audio Flamingo,33.3%,23.8%,14.3%,14.3%,14.3%,21.4%,9.5%,0.0%,4.8%,4.8%,0.0%,2.4%,9.5%,18.2%,29.2%,2.4%
+GPT-4o,2.4%,2.4%,0.0%,0.0%,0.0%,2.4%,0.0%,9.5%,0.0%,4.8%,7.1%,0.0%,2.4%,2.4%,13.9%,4.4%

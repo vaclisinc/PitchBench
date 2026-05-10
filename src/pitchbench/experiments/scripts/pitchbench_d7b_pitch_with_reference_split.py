@@ -175,7 +175,7 @@ def _probe_multi_audio_supported(model_name: str, probe_audios: list[str]) -> bo
         query_alm_multi(
             model_name, probe_audios,
             prompt="<AUDIO1>\n<AUDIO2>\nReply with one word.",
-            max_new_tokens=4,
+            max_new_tokens=10,
             timeout_s=60.0,
         )
         return True

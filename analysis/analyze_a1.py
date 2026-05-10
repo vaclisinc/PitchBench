@@ -13,13 +13,16 @@ import csv
 import math
 import sys
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 from pitchbench.experiments.helpers.music import extract_freq, extract_solfege, note_to_midi, solfege_pc_to_midi
 
+from pitchbench.plot_config import MODEL_COLORS, MODEL_SHORT_NAMES
 
 FORMATS = ('midi', 'spn', 'hz')
 
@@ -156,6 +159,9 @@ def compute_l1_scores(stats):
 
 def pretty_model_name(model):
     """Map internal model IDs to human-friendly labels for plotting."""
+    if model in MODEL_SHORT_NAMES:
+        return MODEL_SHORT_NAMES[model]
+
     m = model.lower()
 
     if 'audio_flamingo_next' in m:
@@ -199,7 +205,7 @@ def plot_a1_results(
     output_file: str = 'a1_results.png',
 ) -> None:
     """Create a horizontal row of A1 predicted-vs-truth MIDI subplots."""
-    plt.style.use('seaborn-v0_8-whitegrid')
+    plt.style.use('seaborn-v0_8-white')
 
     ranges = []
     for fmt in FORMATS:
@@ -211,11 +217,7 @@ def plot_a1_results(
     fig, axes = plt.subplots(1, 3, figsize=(18 * scale, 6.6 * scale), sharex=False, sharey=False)
     axes_flat = list(axes)
 
-    model_colors = {
-        'audio_flamingo_next_instruct': '#41AB5D',               # green  (Flamingo)
-        'openrouter_google_gemini_3_1_pro_preview': '#E07028',   # orange (Gemini)
-        'openrouter_openai_gpt_4o_audio_preview': '#3182BD',     # blue   (GPT)
-    }
+    model_colors = MODEL_COLORS
     _fallback_palette = ['#7570b3', '#e7298a', '#e6ab02', '#a6761d', '#b2df8a']
 
     if l1_scores is None:
@@ -268,28 +270,148 @@ def plot_a1_results(
                 ax.set_yticks(ticks)
 
         ax.set_aspect('equal', adjustable='box')
-        ax.grid(True, which='major', alpha=0.25, linewidth=0.8)
+        ax.set_facecolor('white')
+        ax.grid(True, which='major', color='#dddddd', linewidth=0.7)
         ax.grid(False, which='minor')
-        ax.set_title(f'{fmt.upper()} Input', fontsize=12, fontweight='bold')
-
-        ax.set_xlabel('Ground-Truth MIDI Pitch', fontsize=11, fontweight='bold')
+        ax.set_xlabel('Ground-Truth MIDI Pitch', fontsize=14, fontweight='bold')
         if subplot_idx == 0:
-            ax.set_ylabel('Predicted MIDI Pitch', fontsize=11, fontweight='bold')
+            ax.set_ylabel('Predicted MIDI Pitch', fontsize=14, fontweight='bold')
         else:
             ax.set_ylabel('')
+        ax.tick_params(axis='both', labelsize=12)
 
-        ax.legend(loc='upper left', frameon=True, framealpha=0.95, fontsize=8)
-
-    fig.suptitle('A1 Single-Pitch Identification: Predicted vs Ground Truth by Input Format', fontsize=16, fontweight='bold', y=0.98)
+        ax.legend(
+            loc='upper left',
+            bbox_to_anchor=(1.02, 1.0),
+            borderaxespad=0.0,
+            frameon=True,
+            framealpha=0.95,
+            fontsize=10,
+        )
 
     out_path = Path(output_file)
     if out_path.parent != Path('.'):
         out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    plt.tight_layout(rect=(0, 0, 1, 0.95))
+    plt.tight_layout()
     plt.savefig(output_file, dpi=150, bbox_inches='tight')
     print(f"Saved plot to {output_file}")
     plt.close()
+
+
+def plot_a1_heatmap(
+    raw_data: Any,
+    output_file: str = 'a1_heatmap.png',
+) -> None:
+    """Horizontal grid of prediction heatmaps with 6 panels per row.
+
+    Each panel is one (model, format) pair showing P(predicted MIDI | GT MIDI),
+    normalised per GT column so the ideal diagonal reads as solid dark regardless
+    of sample count. Panels are ordered by provider family so related models are
+    adjacent, then by model name and format.
+    """
+    _fallback = ['#7570b3', '#e7298a', '#e6ab02']
+    models = sorted({m for fmt in FORMATS for m in raw_data[fmt]})
+
+    def _provider_rank(model: str) -> tuple[int, str]:
+        if model.startswith('openrouter_google_'):
+            return (0, model)
+        if model.startswith('openrouter_openai_'):
+            return (1, model)
+        if model.startswith('dashscope_'):
+            return (2, model)
+        if model.startswith('audio_flamingo'):
+            return (3, model)
+        return (9, model)
+
+    ordered_models = sorted(models, key=_provider_rank)
+    panel_specs = [
+        (model, fmt)
+        for model in ordered_models
+        for fmt in FORMATS
+        if raw_data[fmt].get(model)
+    ]
+    if not panel_specs:
+        print('No A1 heatmap data available; skipping heatmap plot.')
+        return
+
+    n_cols = 6
+    n_panels = len(panel_specs)
+    n_rows = (n_panels + n_cols - 1) // n_cols
+
+    fig, axes = plt.subplots(  # type: ignore[misc]
+        n_rows, n_cols,
+        figsize=(n_cols * 3.8, n_rows * 3.6),
+        squeeze=False,
+    )
+    flat_axes = axes.ravel()
+
+    for idx, (model, fmt) in enumerate(panel_specs):
+        ax = flat_axes[idx]
+        base_color = MODEL_COLORS.get(model, _fallback[idx % len(_fallback)])
+        cmap = LinearSegmentedColormap.from_list('model', ['#ffffff', base_color])
+        model_data = raw_data[fmt].get(model, {})
+
+        all_gt = sorted(model_data.keys())
+        lo, hi = min(all_gt), max(all_gt)
+        size = hi - lo + 1
+
+        # rows = predicted MIDI, cols = GT MIDI
+        matrix = np.zeros((size, size), dtype=float)
+        for gt, preds in model_data.items():
+            col = int(gt) - lo
+            for pred in preds:
+                r = int(round(float(pred))) - lo
+                if 0 <= r < size:
+                    matrix[r, col] += 1
+
+        # Normalise each GT column → P(pred | gt)
+        col_sums = matrix.sum(axis=0, keepdims=True)
+        col_sums[col_sums == 0] = 1
+        matrix /= col_sums
+
+        ax.imshow(matrix, origin='lower', aspect='auto',
+                  cmap=cmap, vmin=0, vmax=1, interpolation='nearest')
+        ax.plot([0, size - 1], [0, size - 1],
+                color='white', linewidth=0.9, linestyle='--', alpha=0.6)
+
+        # Tick every octave
+        tick_pos = [i for i in range(size) if (lo + i) % 12 == 0]
+        tick_lbl = [str(lo + i) for i in tick_pos]
+        ax.set_xticks(tick_pos)
+        ax.set_xticklabels(tick_lbl, fontsize=9, rotation=35, ha='right', rotation_mode='anchor')
+        ax.set_yticks(tick_pos)
+        ax.set_yticklabels(tick_lbl, fontsize=9)
+
+        panel_label = f'{pretty_model_name(model)} | {fmt.upper()}'
+        ax.text(
+            0.02,
+            0.98,
+            panel_label,
+            transform=ax.transAxes,
+            ha='left',
+            va='top',
+            fontsize=8.5,
+            color='#222222',
+            bbox={'facecolor': 'white', 'alpha': 0.7, 'edgecolor': 'none', 'pad': 1.8},
+        )
+
+        if idx % n_cols == 0:
+            ax.set_ylabel('Pred MIDI', fontsize=10)
+        if idx // n_cols == n_rows - 1:
+            ax.set_xlabel('GT MIDI', fontsize=10)
+
+    for ax in flat_axes[n_panels:]:
+        ax.set_visible(False)
+
+    fig.tight_layout()
+
+    out_path = Path(output_file)
+    if out_path.parent != Path('.'):
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_file, dpi=150, bbox_inches='tight')  # type: ignore[arg-type]
+    print(f"Saved heatmap to {output_file}")
+    plt.close(fig)
 
 
 def save_summary_csv(stats, output_file='analyze_a1.csv'):
@@ -361,9 +483,14 @@ def main():
         for model in sorted(l1_scores[fmt].keys()):
             print(f"    {model}: {l1_scores[fmt][model]:.6f}")
 
-    save_summary_csv(stats, 'paper/analyze_a1.csv')
-    save_l1_csv(l1_scores, stats, 'paper/analyze_a1_l1.csv')
-    plot_a1_results(stats, data, l1_scores=l1_scores, output_file='paper/a1_results_combined.png')
+    repo_root = Path(__file__).resolve().parent.parent
+    out_dir = repo_root / "paper" / datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    save_summary_csv(stats, str(out_dir / 'analyze_a1.csv'))
+    save_l1_csv(l1_scores, stats, str(out_dir / 'analyze_a1_l1.csv'))
+    plot_a1_results(stats, data, l1_scores=l1_scores, output_file=str(out_dir / 'a1_results_combined.png'))
+    plot_a1_heatmap(data, output_file=str(out_dir / 'a1_heatmap.png'))
 
 
 if __name__ == '__main__':

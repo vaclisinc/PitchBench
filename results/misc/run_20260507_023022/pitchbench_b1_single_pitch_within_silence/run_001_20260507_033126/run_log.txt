@@ -1,0 +1,30 @@
+
+  Model : dashscope2/qwen3.5-omni-plus
+    [dispatch] 126 items, max_workers=2
+    [   1/126]   F1 sine  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=G1 ❌  | doremi: gt=fa pred=sol ❌
+    [   2/126]   F1 sine  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=mi ❌
+    [   3/126]   F1 sine  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=G#1 ❌  | doremi: gt=fa pred=sol ❌
+    [   4/126]   D2 sine  | midi: gt=38 pred=28 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=None ❌
+    [   5/126]   D2 sine  | midi: gt=38 pred=37 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅
+    [   6/126]   D2 sine  | midi: gt=38 pred=28 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do# ❌
+    [   7/126]   B2 sine  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=re ❌
+    [   8/126]   B2 sine  | midi: gt=47 pred=46 ❌  | spn: gt=B2 pred=A#2 ❌  | doremi: gt=si pred=la# ❌
+    [   9/126]  G#3 sine  | midi: gt=56 pred=55 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=fa# ❌
+    [  10/126]   B2 sine  | midi: gt=47 pred=46 ❌  | spn: gt=B2 pred=A#2 ❌  | doremi: gt=si pred=la# ❌
+    [  11/126]  G#3 sine  | midi: gt=56 pred=55 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=la ❌
+    [  12/126]  G#3 sine  | midi: gt=56 pred=55 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=fa# ❌
+    [  13/126]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  14/126]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  15/126]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  16/126]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅
+    [  17/126]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅
+    [  18/126]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=sol ❌
+    [  19/126]   B5 sine  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=la ❌
+    [  20/126]   B5 sine  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=la ❌
+    [  21/126]   B5 sine  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅
+    [  22/126]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F#2 ❌  | doremi: gt=fa pred=sol ❌
+    [  23/126]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F#2 ❌  | doremi: gt=fa pred=sol ❌
+    [  24/126]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F#2 ❌  | doremi: gt=fa pred=sol ❌
+    [  25/126]   D2 synth_lead  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅
+    [  26/126]   D2 synth_lead  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅
+    [  27/126]   D2 synth_lead  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅

@@ -50,7 +50,8 @@ from pitchbench.experiments.helpers.sampling import apply_default_sampling
 
 BENCH_EXPERIMENTS = [
     "pitchbench_a1_single_pitch_id",
-    "pitchbench_d7_pitch_with_reference",
+    "pitchbench_d7a_pitch_with_reference",
+    "pitchbench_d7b_pitch_with_reference_split",
     "pitchbench_a3_single_pitch_by_duration",
     "pitchbench_e5_vibrato",
     "pitchbench_e6_slightly_off",
@@ -92,12 +93,25 @@ def _audio_path(exp: str, mod, c: dict) -> Path:
 
     Every benchmark experiment exposes a public ``wav_for(c)`` that returns a
     Path (or a (Path, gt) tuple in the b-series onset/offset experiments).
+    Two-clip experiments (``wavs_for``) are handled by ``_audio_paths``.
     """
     out = mod.wav_for(c)
     # b2/b3/b5 wav_for returns (path, gt_timestamps) — keep just the path.
     if isinstance(out, tuple):
         out = out[0]
     return Path(out)
+
+
+def _audio_paths(exp: str, mod, c: dict) -> tuple[Path, Path | None]:
+    """Return (primary_wav, ref_wav_or_None).
+
+    For two-clip experiments (wavs_for), returns (target, reference).
+    For single-clip experiments (wav_for), returns (path, None).
+    """
+    if hasattr(mod, "wavs_for"):
+        ref, tgt = mod.wavs_for(c)
+        return Path(tgt), Path(ref)
+    return _audio_path(exp, mod, c), None
 
 
 # ── Prompt resolution (the "question") ───────────────────────────────────────
@@ -185,27 +199,106 @@ def _gt_for_midi(midi: int) -> dict:
 def _gt_fields(exp: str, c: dict) -> dict:
     """Build the gt_* block for one condition.
 
-    Tries the common shapes first (single MIDI, list of MIDI, chord), then
-    falls back to a few experiment-specific cases. Anything that doesn't fit
-    here will appear under the {others} block at the end of the row.
+    Experiment-specific cases are handled first (early return).
+    The general fallback covers A-series, B1, B2, C3, C4, D7a/b, D8, E-series.
     """
     gt: dict = {}
+
+    # B3: onset position of a hidden tone (answer = when, not what)
+    if exp == "pitchbench_b3_timestamp_single_pitch":
+        if "pos_ms" in c:
+            gt["gt_pos_ms"] = c["pos_ms"]
+        return gt  # midi kept in "others" via _EXP_GT_SOURCE_UNHIDE
+
+    # B4: onset/offset of a named target note among distractors
+    if exp == "pitchbench_b4_timestamp_specific_pitch":
+        if "target_onset_ms" in c:
+            gt["gt_target_onset_ms"] = c["target_onset_ms"]
+        if "target_offset_ms" in c:
+            gt["gt_target_offset_ms"] = c["target_offset_ms"]
+        return gt  # midi kept in "others" via _EXP_GT_SOURCE_UNHIDE
+
+    # B5: all note onsets/offsets
+    if exp == "pitchbench_b5_timestamp_multiple_pitches":
+        if "onsets_ms" in c:
+            gt["gt_onsets_ms"] = c["onsets_ms"]
+        return gt
+
+    # C1: count simultaneous pitches
+    if exp == "pitchbench_c1_chord_count_pitches":
+        if "n" in c:
+            gt["gt_n"] = c["n"]
+        return gt
+
+    # C2: dyad interval identification
+    if exp == "pitchbench_c2_chord_dyad_interval":
+        if "interval_st" in c:
+            gt["gt_interval_st"] = c["interval_st"]
+        return gt
+
+    # D1: sequential pitch count
+    if exp == "pitchbench_d1_sequence_count_pitches":
+        if "n" in c:
+            gt["gt_n"] = c["n"]
+        return gt
+
+    # D2: binary higher/lower judgment
+    if exp == "pitchbench_d2_dyad_lower_higher_difference":
+        if "answer_gt" in c:
+            gt["gt_answer"] = c["answer_gt"]
+        return gt
+
+    # D3: discrete melodic contour
+    if exp == "pitchbench_d3_contour_discrete":
+        if "pattern" in c:
+            gt["gt_pattern"] = c["pattern"]
+        return gt
+
+    # D4: continuous pitch trajectory (condition already stores gt_seq)
+    if exp == "pitchbench_d4_contour_continuous":
+        if "gt_seq" in c:
+            gt["gt_seq"] = c["gt_seq"]
+        return gt
+
+    # D5: pitch ranking
+    if exp == "pitchbench_d5_sequence_ranking_by_pitch":
+        if "answer_gt" in c:
+            gt["gt_answer"] = c["answer_gt"]
+        return gt
+
+    # D6: sequential dyad interval (signed semitones)
+    if exp == "pitchbench_d6_sequence_dyad_interval":
+        if "signed_st" in c:
+            gt["gt_signed_st"] = c["signed_st"]
+        return gt
+
+    # F1/F2: target voice pitch sequence, expanded to all four formats
+    if exp in ("pitchbench_f1_melodic_line_atonal", "pitchbench_f2_melodic_line_tonal"):
+        tp = c.get("target_pitches")
+        if isinstance(tp, (list, tuple)) and tp:
+            gt["gt_seq_midi"]    = [int(m)                    for m in tp]
+            gt["gt_seq_abc"]     = [midi_to_note(m)           for m in tp]
+            gt["gt_seq_solfege"] = [midi_to_solfege(m)        for m in tp]
+            gt["gt_seq_freq"]    = [round(midi_to_freq(m), 2) for m in tp]
+        return gt
+
+    # ── General fallback (A-series, B1, B2, C3, C4, D7a/b, D8, E-series) ──
 
     # Single-pitch GT (perceived pitch, after any manipulation)
     midi = c.get("midi")
     if isinstance(midi, int):
         gt.update(_gt_for_midi(midi))
 
-    # Chord — list of MIDI notes (c1 dyads, c3 chord pitch ID, …)
+    # Chord — list of MIDI notes
     chord = c.get("midi_notes")
     if isinstance(chord, (list, tuple)) and chord and all(isinstance(m, int) for m in chord):
         notes = sorted(chord)
         gt["gt_midi_notes"]    = notes
-        gt["gt_abc_notes"]     = [midi_to_note(m)              for m in notes]
-        gt["gt_solfege_notes"] = [midi_to_solfege(m)           for m in notes]
-        gt["gt_freq_notes"]    = [round(midi_to_freq(m), 2)    for m in notes]
+        gt["gt_abc_notes"]     = [midi_to_note(m)           for m in notes]
+        gt["gt_solfege_notes"] = [midi_to_solfege(m)        for m in notes]
+        gt["gt_freq_notes"]    = [round(midi_to_freq(m), 2) for m in notes]
 
-    # Sequence — ordered list of MIDI notes (d1, d3, d6, d7, …)
+    # Sequence — ordered list of MIDI notes
     seq = c.get("midi_sequence")
     if isinstance(seq, (list, tuple)) and seq and all(isinstance(m, int) for m in seq):
         gt["gt_midi_sequence"]    = list(seq)
@@ -213,39 +306,67 @@ def _gt_fields(exp: str, c: dict) -> dict:
         gt["gt_solfege_sequence"] = [midi_to_solfege(m)        for m in seq]
         gt["gt_freq_sequence"]    = [round(midi_to_freq(m), 2) for m in seq]
 
-    # Chord-quality experiment (c4): root + quality label
-    if "quality" in c:
+    # Chord-quality (c3)
+    if "chord_quality_gt" in c:
+        gt["gt_quality"] = c["chord_quality_gt"]
+    elif "quality" in c:
         gt["gt_quality"] = c["quality"]
-    if "root_midi" in c and isinstance(c["root_midi"], int):
-        gt["gt_root_midi"] = int(c["root_midi"])
-        gt["gt_root_abc"]  = midi_to_note(c["root_midi"])
 
-    # Onset/offset GT (b2, b5)
+    # Onset/offset in seconds (b2)
     if "onset_s" in c:
         gt["gt_onset_s"] = c["onset_s"]
     if "offset_s" in c:
         gt["gt_offset_s"] = c["offset_s"]
 
-    # Pitch-at-time GT (b4)
+    # Pitch-at-time (b2 query timestamp)
     if "query_time_s" in c:
         gt["gt_query_time_s"] = c["query_time_s"]
 
-    # Interval-only GT (c1, d2)
+    # Interval-only fallback (not used by c2/d6 which have early returns above)
     if "interval" in c and "ref_midi" not in c:
         gt["gt_interval"] = c["interval"]
 
     return gt
 
 
-# Keys that already feed into gt_* — don't repeat them under {others}.
+# Keys that feed gt_* in the general fallback — suppress from "others".
 _GT_SOURCE_KEYS = {
     "midi", "midi_notes", "midi_sequence",
-    "quality", "root_midi",
+    "quality", "chord_quality_gt",
     "onset_s", "offset_s", "query_time_s",
+}
+
+# Per-experiment source keys that feed gt_* — suppress from "others" for that exp only.
+_EXP_GT_SOURCE_KEYS: dict[str, set] = {
+    "pitchbench_b3_timestamp_single_pitch":       {"pos_ms"},
+    "pitchbench_b4_timestamp_specific_pitch":     {"target_onset_ms", "target_offset_ms"},
+    "pitchbench_b5_timestamp_multiple_pitches":   {"onsets_ms"},
+    "pitchbench_c1_chord_count_pitches":          {"n"},
+    "pitchbench_c2_chord_dyad_interval":          {"interval_st"},
+    "pitchbench_d1_sequence_count_pitches":       {"n"},
+    "pitchbench_d2_dyad_lower_higher_difference": {"answer_gt"},
+    "pitchbench_d3_contour_discrete":             {"pattern"},
+    "pitchbench_d4_contour_continuous":           {"gt_seq"},
+    "pitchbench_d5_sequence_ranking_by_pitch":    {"answer_gt"},
+    "pitchbench_d6_sequence_dyad_interval":       {"signed_st"},
+    "pitchbench_f1_melodic_line_atonal":          {"target_pitches"},
+    "pitchbench_f2_melodic_line_tonal":           {"target_pitches"},
+}
+
+# Per-experiment keys to UN-suppress from _GT_SOURCE_KEYS so they appear in "others".
+# B3/B4: midi is the stimulus note (not the answer), so it belongs in "others".
+_EXP_GT_SOURCE_UNHIDE: dict[str, set] = {
+    "pitchbench_b3_timestamp_single_pitch":   {"midi"},
+    "pitchbench_b4_timestamp_specific_pitch": {"midi"},
 }
 
 # Keys derivable from `source` (or otherwise redundant) — drop from HF rows.
 _DROP_KEYS = {"source_type"}
+
+
+def _safe_filename(name: str) -> str:
+    """Sanitize a filename for HF: replace characters that break URL parsers."""
+    return name.replace("~", "-")
 
 
 def _row_for(exp: str, mod, c: dict, audio_path: Path) -> dict:
@@ -253,7 +374,7 @@ def _row_for(exp: str, mod, c: dict, audio_path: Path) -> dict:
 
         audio | gt_* | prompt_* | source | {others}
     """
-    row: dict = {"file_name": audio_path.name}
+    row: dict = {"file_name": _safe_filename(audio_path.name)}
 
     # Ground truth
     gt = _gt_fields(exp, c)
@@ -268,10 +389,12 @@ def _row_for(exp: str, mod, c: dict, audio_path: Path) -> dict:
         row["source"] = c["source"]
 
     # Everything else, in declaration order, minus what we've already shown.
-    skip = set(row.keys()) | _GT_SOURCE_KEYS | _DROP_KEYS
-    # If the row already has a same-format gt for an `interval` field we still
-    # want to keep `interval` itself for a2 (where it is a stimulus param, not
-    # the GT) — handled by checking ref_midi above.
+    skip = (
+        set(row.keys())
+        | _GT_SOURCE_KEYS
+        | _DROP_KEYS
+        | _EXP_GT_SOURCE_KEYS.get(exp, set())
+    ) - _EXP_GT_SOURCE_UNHIDE.get(exp, set())
     for k, v in c.items():
         if k.startswith("_") or k in skip:
             continue
@@ -312,11 +435,23 @@ def build_one(exp: str, out_root: Path, copy: bool = False) -> tuple[int, int]:
     out_dir = out_root / exp
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    def _stage(src: Path, dst_dir: Path) -> Path:
+        dst = dst_dir / _safe_filename(src.name)
+        if not dst.exists():
+            if copy:
+                shutil.copy2(src, dst)
+            else:
+                try:
+                    os.symlink(os.path.realpath(src), dst)
+                except OSError:
+                    shutil.copy2(src, dst)
+        return dst
+
     rows: list[dict] = []
     missing = 0
     for c in sampled:
         try:
-            ap = Path(_audio_path(exp, mod, c))
+            ap, ref_ap = _audio_paths(exp, mod, c)
         except (ValueError, KeyError, FileNotFoundError) as exc:
             missing += 1
             print(f"    [SKIP] {exc}")
@@ -325,18 +460,19 @@ def build_one(exp: str, out_root: Path, copy: bool = False) -> tuple[int, int]:
             missing += 1
             print(f"    [MISSING WAV] {ap}")
             continue
+        if ref_ap is not None and not ref_ap.exists():
+            missing += 1
+            print(f"    [MISSING REF WAV] {ref_ap}")
+            continue
 
-        # Stage WAV (symlink by default; copy if requested).
-        target = out_dir / ap.name
-        if not target.exists():
-            if copy:
-                shutil.copy2(ap, target)
-            else:
-                try:
-                    os.symlink(os.path.realpath(ap), target)
-                except OSError:
-                    shutil.copy2(ap, target)
-        rows.append(_row_for(exp, mod, c, ap))
+        _stage(ap, out_dir)
+        if ref_ap is not None:
+            _stage(ref_ap, out_dir)
+
+        row = _row_for(exp, mod, c, ap)
+        if ref_ap is not None:
+            row["file_name_ref"] = ref_ap.name
+        rows.append(row)
 
     rows.sort(key=_source_sort_key)  # real instruments first, waveforms last
 

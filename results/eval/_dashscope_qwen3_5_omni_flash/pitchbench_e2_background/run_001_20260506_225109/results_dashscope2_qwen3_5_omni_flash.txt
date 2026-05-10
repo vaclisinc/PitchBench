@@ -1,0 +1,94 @@
+Experiment : pitchbench_e2_background
+Model      : dashscope2/qwen3.5-omni-flash
+timestamp  : 2026-05-06T23:08:42.651450
+argv       : ['.venv/bin/pitchbench', '--id', 'e', '--models', 'dashscope2/qwen3.5-omni-flash']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : dashscope2/qwen3.5-omni-flash
+model_info : {'model': 'dashscope2/qwen3.5-omni-flash', 'checkpoint': 'dashscope2', 'provider': 'dashscope2', 'dashscope_model_id': 'qwen3.5-omni-flash'}
+primary_filter_set : False
+record_extras : ['duration_ms', 'background', 'snr_db']
+sample_n   : 240
+sample_seed : 42
+total_available : 4560
+stratified_by : (background, snr_db, midi)
+
+SUMMARY
+==================================================
+  Sampling     : 240 of 4560 (stratified by '(background, snr_db, midi)', seed=42)
+  Stimuli (total)     : 240
+  Stimuli (condition) : 240  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      11.2%
+     SPN      13.3%
+  DOREMI       9.2%
+      HZ       5.8%
+     ANY      22.9%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass             12.50%   12.50%    0.00%   12.50%   25.00%     8
+cello             8.33%   16.67%    8.33%    0.00%   25.00%    12
+clarinet         20.00%   30.00%    0.00%   10.00%   40.00%    10
+electric_keyboard   10.00%   10.00%   20.00%   10.00%   20.00%    10
+flute             0.00%   13.64%    4.55%    9.09%   22.73%    22
+guitar            7.14%   21.43%    0.00%    7.14%   21.43%    14
+oboe              0.00%    0.00%   18.18%    9.09%    9.09%    11
+organ            15.38%   30.77%    7.69%    7.69%   30.77%    13
+piano            27.27%    0.00%   18.18%    0.00%   27.27%    11
+sawtooth         18.18%    9.09%    9.09%    0.00%   18.18%    11
+sine             10.00%    0.00%   20.00%    0.00%   10.00%    10
+square           22.22%    5.56%    0.00%    5.56%   27.78%    18
+synth_lead        0.00%    0.00%    0.00%    0.00%    0.00%    10
+synth_pad         5.26%   15.79%    5.26%    0.00%   21.05%    19
+triangle         11.76%    0.00%   17.65%   11.76%   17.65%    17
+trombone         16.67%   33.33%    0.00%    0.00%   33.33%     6
+trumpet          18.75%   25.00%   18.75%   18.75%   37.50%    16
+violin            0.00%   27.27%   18.18%    0.00%   27.27%    11
+voice            18.18%    9.09%    9.09%    0.00%   18.18%    11
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        9.78%   16.30%    8.70%    5.98%   23.91%   184
+waveform         16.07%    3.57%   10.71%    5.36%   19.64%    56
+
+background         midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+church-bells     15.00%   17.50%    7.50%    5.00%   30.00%    40
+crowd-noise       7.50%   20.00%   15.00%    7.50%   22.50%    40
+oscillating-high-and-low-pitches    7.50%    5.00%   15.00%    0.00%   10.00%    40
+rain             15.00%    7.50%    5.00%   10.00%   25.00%    40
+street-noise      7.50%   12.50%    7.50%    2.50%   17.50%    40
+white_noise      15.00%   17.50%    5.00%   10.00%   32.50%    40
+
+snr_db             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+-12.0            10.00%    1.67%    8.33%    1.67%   11.67%    60
+-6.0             11.67%   10.00%    6.67%    3.33%   18.33%    60
+0.0              11.67%   13.33%    8.33%    8.33%   21.67%    60
+10.0             11.67%   28.33%   13.33%   10.00%   40.00%    60
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%    0.00%   20.83%    0.00%    0.00%    24
+36               25.00%   29.17%    0.00%    0.00%   45.83%    24
+43                0.00%    8.33%   12.50%    0.00%    8.33%    24
+48               33.33%   37.50%    4.17%    0.00%   50.00%    24
+54                0.00%    0.00%   29.17%    0.00%    0.00%    24
+60               16.67%   12.50%    0.00%   25.00%   41.67%    24
+64                0.00%   12.50%   12.50%    0.00%   12.50%    24
+69               33.33%   20.83%    0.00%   33.33%   54.17%    24
+79                0.00%    8.33%    8.33%    0.00%    8.33%    24
+88                4.17%    4.17%    4.17%    0.00%    8.33%    24
+
+
+LLM USAGE
+==================================================
+  calls                           960
+  prompt tokens               118,320
+  completion tokens             3,128
+  total tokens                121,448

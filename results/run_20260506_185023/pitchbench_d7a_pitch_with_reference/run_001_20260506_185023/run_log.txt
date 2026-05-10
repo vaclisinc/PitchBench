@@ -1,0 +1,27 @@
+
+  Model : Kimi-Audio 7B Instruct
+    [dispatch] 2 items, max_workers=2
+    [   1/2] anchored r=F#2 i=-12 sine  *** FAILED: RuntimeError('Local server http://localhost:8004/analyze/upload failed after retries: HTTP 500: {"detail":"CUDA error: device-side assert triggered\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n"}')
+    [   2/2] anchored r=F#2 i= -1 triangle  *** FAILED: RuntimeError('Local server http://localhost:8004/analyze/upload failed after retries: HTTP 500: {"detail":"CUDA error: device-side assert triggered\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n"}')
+
+============================================================
+SUMMARY — kimi_audio
+  Sampling     : 2 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+  Stimuli (total)     : 0
+  Stimuli (condition) : 0
+  Stimuli (baseline)  : 0
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI       0.0%       0.0%
+     SPN       0.0%       0.0%
+  DOREMI       0.0%       0.0%
+      HZ       0.0%       0.0%
+     ANY       0.0%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+Results saved → results/run_20260506_185023/pitchbench_d7a_pitch_with_reference/run_001_20260506_185023/results_kimi_audio.*

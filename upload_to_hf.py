@@ -20,7 +20,8 @@ from pathlib import Path
 # Lines reproduced from each experiment's docstring (one-line summary).
 EXP_DESCRIPTIONS = {
     "pitchbench_a1_single_pitch_id":              "Identify the pitch of a single tone.",
-    "pitchbench_d7_pitch_with_reference":  "Identify a target pitch given a named reference tone.",
+    "pitchbench_d7a_pitch_with_reference":       "Identify a target pitch given a named reference tone.",
+    "pitchbench_d7b_pitch_with_reference_split": "Identify a target pitch given a named reference tone (two-clip format).",
     "pitchbench_a3_single_pitch_by_duration":     "Pitch ID across very short to very long tone durations.",
     "pitchbench_e5_vibrato":    "Pitch ID with vibrato (rate × depth sweep).",
     "pitchbench_e6_slightly_off":    "Pitch ID when the tone is detuned by a fraction of a semitone.",
@@ -58,25 +59,39 @@ def _format_size(n_bytes: int) -> str:
     return f"{n_bytes:.1f} PB"
 
 
+_PARQUET_NAME = "test-00000-of-00001.parquet"
+_D7B = "pitchbench_d7b_pitch_with_reference_split"
+
+
+def _count_rows(exp_dir: Path) -> int:
+    parquet = exp_dir / _PARQUET_NAME
+    if parquet.exists():
+        import pyarrow.parquet as pq
+        return pq.read_metadata(str(parquet)).num_rows
+    meta = exp_dir / "metadata.jsonl"
+    if meta.exists():
+        return sum(1 for _ in meta.open())
+    return 0
+
+
 def write_readme(staging: Path) -> Path:
     """Write a dataset card README.md at staging/README.md.
 
-    Uses the YAML metadata format Hugging Face expects so the dataset shows
-    a Croissant tile and the audiofolder loader picks up each subdir.
+    Uses Parquet data_files paths so HF uses the standard Parquet reader
+    for all configs (including d7b which has audio_1 + audio_2 columns).
     """
     configs = []
     for exp_dir in sorted(p for p in staging.iterdir() if p.is_dir()):
-        meta = exp_dir / "metadata.jsonl"
-        if not meta.exists():
+        if not (exp_dir / _PARQUET_NAME).exists() and not (exp_dir / "metadata.jsonl").exists():
             continue
-        n_rows = sum(1 for _ in meta.open())
+        n_rows = _count_rows(exp_dir)
         configs.append({"name": exp_dir.name, "rows": n_rows})
 
     yaml_configs = "\n".join(
         f"  - config_name: {c['name']}\n"
         f"    data_files:\n"
         f"      - split: test\n"
-        f"        path: {c['name']}/*\n"
+        f"        path: {c['name']}/{_PARQUET_NAME}\n"
         for c in configs
     )
 
@@ -124,7 +139,12 @@ from datasets import load_dataset
 
 # Load one experiment (configurations match experiment IDs)
 ds = load_dataset("REPO_PLACEHOLDER", "pitchbench_a1_single_pitch_id", split="test")
-print(ds[0]["audio"], ds[0]["prompt_midi"], ds[0]["midi"])
+print(ds[0]["audio"], ds[0]["prompt_midi"], ds[0]["gt_midi"])
+
+# d7b has two audio columns: audio_1 (reference tone) and audio_2 (target tone)
+ds_d7b = load_dataset("REPO_PLACEHOLDER",
+                      "pitchbench_d7b_pitch_with_reference_split", split="test")
+print(ds_d7b[0]["audio_1"], ds_d7b[0]["audio_2"], ds_d7b[0]["gt_midi"])
 
 # Iterate every experiment
 import datasets
@@ -143,7 +163,7 @@ for cfg in datasets.get_dataset_config_names("REPO_PLACEHOLDER"):
 
 Every row has:
 
-- `file_name` / `audio` — the WAV stimulus (16 kHz mono).
+- `audio` — the audio stimulus (16 kHz mono). `pitchbench_d7b_pitch_with_reference_split` has `audio_1` (reference tone) and `audio_2` (target tone) instead.
 - `prompt` *or* one or more of `prompt_midi`, `prompt_spn`, `prompt_abc`,
   `prompt_doremi`, `prompt_hz` — the question(s) put to the model.
 - Experiment-specific ground-truth fields (e.g. `midi`, `n`, `interval_st`,

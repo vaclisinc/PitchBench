@@ -333,17 +333,17 @@ def _save_knn_vs_verbal_plot(
                            width, label="LLM verbal (avg)", color="salmon")
 
     ax.set_xticks(x)
-    ax.set_xticklabels(cond_names, rotation=20, ha="right", fontsize=9)
-    ax.set_ylabel("Exact-match accuracy")
+    ax.set_xticklabels(cond_names, rotation=35, ha="right", fontsize=11)
+    ax.set_ylabel("Exact-match accuracy", fontsize=13)
     ax.set_ylim(0, 1)
-    ax.set_title(f"kNN oracle vs. LLM verbal pitch accuracy\n{model_name}")
-    ax.legend()
+    ax.tick_params(axis="y", labelsize=11)
+    ax.legend(fontsize=10)
     ax.grid(True, axis="y", alpha=0.3)
 
     for bar in bars_knn:
         h = bar.get_height()
         ax.text(bar.get_x() + bar.get_width()/2, h + 0.01,
-                f"{h:.0%}", ha="center", va="bottom", fontsize=8)
+                f"{h:.0%}", ha="center", va="bottom", fontsize=10)
 
     fig.tight_layout()
     fig.savefig(run_dir / f"knn_vs_verbal_{model_name}.png", dpi=120)
@@ -370,10 +370,9 @@ def _save_cross_source_heatmap(
     fig, ax = plt.subplots(figsize=(max(6, n * 0.6), max(5, n * 0.5)))
     im = ax.imshow(mat, aspect="auto", origin="upper", cmap="YlGn", vmin=0, vmax=1)
     plt.colorbar(im, ax=ax, label="Exact-match accuracy")
-    ax.set_xticks(range(n)); ax.set_xticklabels(sources, rotation=45, ha="right", fontsize=8)
-    ax.set_yticks(range(n)); ax.set_yticklabels(sources, fontsize=8)
-    ax.set_xlabel("Query source"); ax.set_ylabel("Reference source")
-    ax.set_title(f"Cross-source kNN accuracy\n{model_name}")
+    ax.set_xticks(range(n)); ax.set_xticklabels(sources, rotation=45, ha="right", fontsize=11)
+    ax.set_yticks(range(n)); ax.set_yticklabels(sources, fontsize=11)
+    ax.set_xlabel("Query source", fontsize=13); ax.set_ylabel("Reference source", fontsize=13)
     fig.tight_layout()
     fig.savefig(run_dir / f"cross_source_heatmap_{model_name}.png", dpi=120)
     plt.close(fig)

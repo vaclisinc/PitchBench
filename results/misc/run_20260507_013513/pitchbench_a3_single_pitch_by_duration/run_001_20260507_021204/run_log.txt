@@ -1,0 +1,331 @@
+
+  Model : dashscope/qwen3.5-omni-plus
+    [dispatch] 252 items, max_workers=4
+    [   1/252]   F1 sine  | midi: gt=29 pred=31 ❌  | spn: gt=F1 pred=D1 ❌  | doremi: gt=fa pred=do ❌  | hz: gt=43.6535 pred=440.0 ❌
+    [   2/252]   F1 sine  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=B0 ❌  | doremi: gt=fa pred=do ❌  | hz: gt=43.6535 pred=220.0 ❌
+    [   3/252]   F1 sine  | midi: gt=29 pred=1 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=1046.0 ❌
+    [   4/252]   F1 sine  | midi: gt=29 pred=1 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=43.6535 pred=440.0 ❌
+    [   5/252]   D2 sine  | midi: gt=38 pred=28 ❌  | spn: gt=D2 pred=B0 ❌  | doremi: gt=re pred=fa ❌  | hz: gt=73.4162 pred=220.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [   6/252]   D2 sine  | midi: gt=38 pred=48 ❌  | spn: gt=D2 pred=D#2 ❌  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=55.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [   7/252]   F1 sine  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=50.0 ❌
+    [   8/252]   D2 sine  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=261.63 ❌
+    [   9/252]   D2 sine  | midi: gt=38 pred=61 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=146.83 ❌
+    [  10/252]   F1 sine  | midi: gt=29 pred=43 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=40.0 ❌
+    [  11/252]   D2 sine  | midi: gt=38 pred=62 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=65.0 ❌
+    [  12/252]   B2 sine  | midi: gt=47 pred=58 ❌  | spn: gt=B2 pred=B1 ❌  | doremi: gt=si pred=mi ❌  | hz: gt=123.4708 pred=58.27 ❌
+    [  13/252]   B2 sine  | midi: gt=47 pred=58 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=587.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  14/252]   B2 sine  | midi: gt=47 pred=58 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=58.0 ❌
+    [  15/252]   D2 sine  | midi: gt=38 pred=62 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=60.0 ❌
+    [  16/252]   B2 sine  | midi: gt=47 pred=58 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=261.63 ❌
+    [  17/252]  G#3 sine  | midi: gt=56 pred=58 ❌  | spn: gt=G#3 pred=B7 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=1000.0 ❌
+    [  18/252]   B2 sine  | midi: gt=47 pred=58 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=250.0 ❌
+    [  19/252]  G#3 sine  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=440.0 ❌
+    [  20/252]  G#3 sine  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=261.63 ❌
+    [  21/252]  G#3 sine  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [  22/252]  G#3 sine  | midi: gt=56 pred=55 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [  23/252]   F4 sine  | midi: gt=65 pred=53 ❌  | spn: gt=F4 pred=B7 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=349.2282 pred=3520.0 ❌
+    [  24/252]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.23 ✅
+    [  25/252]   B2 sine  | midi: gt=47 pred=58 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=60.0 ❌
+    [  26/252]  G#3 sine  | midi: gt=56 pred=55 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=200.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  27/252]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.23 ✅
+    [  28/252]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.23 ✅
+    [  29/252]   D5 sine  | midi: gt=74 pred=84 ❌  | spn: gt=D5 pred=B5 ❌  | doremi: gt=re pred=do ❌  | hz: gt=587.3295 pred=1046.5 ❌
+    [  30/252]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [  31/252]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.23 ✅
+    [  32/252]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [  33/252]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  34/252]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [  35/252]   B5 sine  | midi: gt=83 pred=84 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=do ❌  | hz: gt=987.7666 pred=880.0 ❌
+    [  36/252]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=739.99 ❌
+    [  37/252]   B5 sine  | midi: gt=83 pred=59 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=880.0 ❌
+    [  38/252]   B5 sine  | midi: gt=83 pred=59 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=587.0 ❌
+    [  39/252]   B5 sine  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=587.0 ❌
+    [  40/252]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [  41/252]   F1 synth_lead  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=A#0 ❌  | doremi: gt=fa pred=do ❌  | hz: gt=43.6535 pred=261.63 ❌
+    [  42/252]   B5 sine  | midi: gt=83 pred=59 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=523.25 ❌
+    [  43/252]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=D#2 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=43.6535 pred=110.0 ❌
+    [  44/252]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [  45/252]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F#2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=110.0 ❌
+    [  46/252]   B5 sine  | midi: gt=83 pred=59 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1000.0 ❌
+    [  47/252]   D2 synth_lead  | midi: gt=38 pred=46 ❌  | spn: gt=D2 pred=B0 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=220.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  48/252]   D2 synth_lead  | midi: gt=38 pred=52 ❌  | spn: gt=D2 pred=D#3 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=73.4162 pred=220.0 ❌
+    [  49/252]   D2 synth_lead  | midi: gt=38 pred=52 ❌  | spn: gt=D2 pred=D#2 ❌  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+    [  50/252]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F#2 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=43.6535 pred=110.0 ❌
+    [  51/252]   D2 synth_lead  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=220.0 ❌
+    [  52/252]   D2 synth_lead  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=220.0 ❌
+    [  53/252]   B2 synth_lead  | midi: gt=47 pred=60 ❌  | spn: gt=B2 pred=C#3 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=261.63 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  54/252]   B2 synth_lead  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=261.63 ❌
+    [  55/252]   B2 synth_lead  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=220.0 ❌
+    [  56/252]   F1 synth_lead  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=110.0 ❌
+    [  57/252]   D2 synth_lead  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=200.0 ❌
+    [  58/252]  G#3 synth_lead  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=B7 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=523.0 ❌
+    [  59/252]   B2 synth_lead  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=220.0 ❌
+    [  60/252]  G#3 synth_lead  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=440.0 ❌
+    [  61/252]   B2 synth_lead  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=220.0 ❌
+    [  62/252]  G#3 synth_lead  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=220.0 ❌
+    [  63/252]  G#3 synth_lead  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=440.0 ❌
+    [  64/252]   B2 synth_lead  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=123.0 ✅
+    [  65/252]  G#3 synth_lead  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=440.0 ❌
+    [  66/252]   F4 synth_lead  | midi: gt=65 pred=84 ❌  | spn: gt=F4 pred=C8 ❌  | doremi: gt=fa pred=do ❌  | hz: gt=349.2282 pred=1046.5 ❌
+    [  67/252]   F4 synth_lead  | midi: gt=65 pred=72 ❌  | spn: gt=F4 pred=C5 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  68/252]   F4 synth_lead  | midi: gt=65 pred=72 ❌  | spn: gt=F4 pred=C5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  69/252]   F4 synth_lead  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+    [  70/252]  G#3 synth_lead  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=207.0 ✅
+    [  71/252]   D5 synth_lead  | midi: gt=74 pred=84 ❌  | spn: gt=D5 pred=B6 ❌  | doremi: gt=re pred=do ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [  72/252]   F4 synth_lead  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+    [  73/252]   D5 synth_lead  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=880.0 ❌
+    [  74/252]   D5 synth_lead  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=440.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  75/252]   D5 synth_lead  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=440.0 ❌
+    [  76/252]   B5 synth_lead  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=do# ❌  | hz: gt=987.7666 pred=1046.5 ❌
+    [  77/252]   D5 synth_lead  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=293.66 ❌
+    [  78/252]   B5 synth_lead  | midi: gt=83 pred=59 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=493.88 ❌
+    [  79/252]   D5 synth_lead  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=440.0 ❌
+    [  80/252]   B5 synth_lead  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=587.33 ❌
+    [  81/252]   B5 synth_lead  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=523.25 ❌
+    [  82/252]   F4 synth_lead  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [  83/252]   B5 synth_lead  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=587.33 ❌
+    [  84/252]   F1 cello  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=C8 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=440.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  85/252]   F1 cello  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=43.6535 pred=55.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  86/252]   F1 cello  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [  87/252]   F1 cello  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [  88/252]   B5 synth_lead  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=523.25 ❌
+    [  89/252]   D2 cello  | midi: gt=38 pred=67 ❌  | spn: gt=D2 pred=B7 ❌  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=440.0 ❌
+    [  90/252]   D2 cello  | midi: gt=38 pred=39 ❌  | spn: gt=D2 pred=D#2 ❌  | doremi: gt=re pred=do# ❌  | hz: gt=73.4162 pred=110.0 ❌
+    [  91/252]   F1 cello  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [  92/252]   D2 cello  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  93/252]   F1 cello  | midi: gt=29 pred=39 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=50.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  94/252]   D2 cello  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+    [  95/252]   B2 cello  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=247.0 ❌
+    [  96/252]   B2 cello  | midi: gt=47 pred=60 ❌  | spn: gt=B2 pred=B7 ❌  | doremi: gt=si pred=do ❌  | hz: gt=123.4708 pred=440.0 ❌
+    [  97/252]   D2 cello  | midi: gt=38 pred=26 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+    [  98/252]   B2 cello  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=220.0 ❌
+    [  99/252]   B2 cello  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 100/252]   B2 cello  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=123.0 ✅
+    [ 101/252]   D2 cello  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+    [ 102/252]  G#3 cello  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=C#4 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=440.0 ❌
+    [ 103/252]  G#3 cello  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=208.0 ✅
+    [ 104/252]  G#3 cello  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [ 105/252]   B2 cello  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=247.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 106/252]  G#3 cello  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=220.0 ❌
+    [ 107/252]   F4 cello  | midi: gt=65 pred=96 ❌  | spn: gt=F4 pred=B6 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [ 108/252]  G#3 cello  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=415.0 ❌
+    [ 109/252]   F4 cello  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+    [ 110/252]   F4 cello  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [ 111/252]  G#3 cello  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=415.0 ❌
+    [ 112/252]   F4 cello  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 113/252]   D5 cello  | midi: gt=74 pred=96 ❌  | spn: gt=D5 pred=B6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 114/252]   F4 cello  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [ 115/252]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=440.0 ❌
+    [ 116/252]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 117/252]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 118/252]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 119/252]   B5 cello  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=B6 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1046.0 ❌
+    [ 120/252]   F4 cello  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.0 ✅
+    [ 121/252]   B5 cello  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=987.77 ✅
+    [ 122/252]   B5 cello  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=988.0 ✅
+    [ 123/252]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=523.0 ❌
+    [ 124/252]   B5 cello  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=987.77 ✅
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 125/252]   F1 flute  | midi: gt=29 pred=42 ❌  | spn: gt=F1 pred=B0 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=220.0 ❌
+    [ 126/252]   B5 cello  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=988.0 ✅
+    [ 127/252]   F1 flute  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=A#0 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [ 128/252]   F1 flute  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=F#1 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [ 129/252]   B5 cello  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=988.0 ✅
+    [ 130/252]   F1 flute  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=55.0 ❌
+    [ 131/252]   D2 flute  | midi: gt=38 pred=40 ❌  | spn: gt=D2 pred=A#0 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=523.0 ❌
+    [ 132/252]   F1 flute  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [ 133/252]   D2 flute  | midi: gt=38 pred=45 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=55.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 134/252]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=55.0 ❌
+    [ 135/252]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=55.0 ❌
+    [ 136/252]   B2 flute  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=C#3 ❌  | doremi: gt=si pred=do# ❌  | hz: gt=123.4708 pred=220.0 ❌
+    [ 137/252]   F1 flute  | midi: gt=29 pred=None ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=50.0 ❌
+    [ 138/252]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+    [ 139/252]   B2 flute  | midi: gt=47 pred=28 ❌  | spn: gt=B2 pred=G2 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 140/252]   B2 flute  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 141/252]   B2 flute  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 142/252]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=50.0 ❌
+    [ 143/252]   B2 flute  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 144/252]  G#3 flute  | midi: gt=56 pred=69 ❌  | spn: gt=G#3 pred=C8 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=523.0 ❌
+    [ 145/252]  G#3 flute  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [ 146/252]  G#3 flute  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 147/252]  G#3 flute  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [ 148/252]   F4 flute  | midi: gt=65 pred=84 ❌  | spn: gt=F4 pred=C#4 ❌  | doremi: gt=fa pred=do ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [ 149/252]  G#3 flute  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=440.0 ❌
+    [ 150/252]   F4 flute  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+    [ 151/252]   F4 flute  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=659.0 ❌
+    [ 152/252]  G#3 flute  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=440.0 ❌
+    [ 153/252]   B2 flute  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=123.0 ✅
+    [ 154/252]   F4 flute  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+    [ 155/252]   D5 flute  | midi: gt=74 pred=96 ❌  | spn: gt=D5 pred=F#5 ❌  | doremi: gt=re pred=do# ❌  | hz: gt=587.3295 pred=440.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 156/252]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=880.0 ❌
+    [ 157/252]   F4 flute  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.0 ❌
+    [ 158/252]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=523.25 ❌
+    [ 159/252]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.33 ✅
+    [ 160/252]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 161/252]   B5 flute  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=C7 ❌  | doremi: gt=si pred=do# ❌  | hz: gt=987.7666 pred=1046.5 ❌
+    [ 162/252]   F4 flute  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.0 ✅
+    [ 163/252]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=493.88 ❌
+    [ 164/252]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 165/252]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1047.0 ❌
+    [ 166/252]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=880.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 167/252]   F1 piano  | midi: gt=29 pred=96 ❌  | spn: gt=F1 pred=B6 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=440.0 ❌
+    [ 168/252]   F1 piano  | midi: gt=29 pred=44 ❌  | spn: gt=F1 pred=G#1 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [ 169/252]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1046.0 ❌
+    [ 170/252]   F1 piano  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [ 171/252]   F1 piano  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=27.5 ❌
+    [ 172/252]   F1 piano  | midi: gt=29 pred=17 ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=55.0 ❌
+    [ 173/252]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=988.0 ✅
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 174/252]   D2 piano  | midi: gt=38 pred=48 ❌  | spn: gt=D2 pred=B0 ❌  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=440.0 ❌
+    [ 175/252]   D2 piano  | midi: gt=38 pred=60 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=261.63 ❌
+    [ 176/252]   D2 piano  | midi: gt=38 pred=62 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=do ❌  | hz: gt=73.4162 pred=164.81 ❌
+    [ 177/252]   D2 piano  | midi: gt=38 pred=26 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=220.0 ❌
+    [ 178/252]   F1 piano  | midi: gt=29 pred=None ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=55.0 ❌
+    [ 179/252]   B2 piano  | midi: gt=47 pred=69 ❌  | spn: gt=B2 pred=B6 ❌  | doremi: gt=si pred=mi ❌  | hz: gt=123.4708 pred=440.0 ❌
+    [ 180/252]   D2 piano  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=220.0 ❌
+    [ 181/252]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=246.94 ❌
+    [ 182/252]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=220.0 ❌
+    [ 183/252]   D2 piano  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=220.0 ❌
+    [ 184/252]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=246.94 ❌
+    [ 185/252]  G#3 piano  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=B7 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=440.0 ❌
+    [ 186/252]  G#3 piano  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=208.0 ✅
+    [ 187/252]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=246.94 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 188/252]  G#3 piano  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [ 189/252]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=247.0 ❌
+    [ 190/252]  G#3 piano  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=207.65 ✅
+    [ 191/252]   F4 piano  | midi: gt=65 pred=96 ❌  | spn: gt=F4 pred=C8 ❌  | doremi: gt=fa pred=do ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [ 192/252]   F4 piano  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=880.0 ❌
+    [ 193/252]   F4 piano  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [ 194/252]  G#3 piano  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=207.65 ✅
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 195/252]   F4 piano  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [ 196/252]  G#3 piano  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=220.0 ❌
+    [ 197/252]   D5 piano  | midi: gt=74 pred=96 ❌  | spn: gt=D5 pred=B6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 198/252]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 199/252]   F4 piano  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [ 200/252]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 201/252]   F4 piano  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=440.0 ❌
+    [ 202/252]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.0 ✅
+    [ 203/252]   B5 piano  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=B6 ❌  | doremi: gt=si pred=do ❌  | hz: gt=987.7666 pred=440.0 ❌
+    [ 204/252]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=293.66 ❌
+    [ 205/252]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1046.5 ❌
+    [ 206/252]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=987.77 ✅
+    [ 207/252]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=987.77 ✅
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 208/252]   F1 voice  | midi: gt=29 pred=60 ❌  | spn: gt=F1 pred=B7 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=261.6 ❌
+    [ 209/252]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=987.77 ✅
+    [ 210/252]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=523.25 ❌
+    [ 211/252]   F1 voice  | midi: gt=29 pred=46 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=100.0 ❌
+    [ 212/252]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=988.0 ✅
+    [ 213/252]   F1 voice  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=C#1 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=110.0 ❌
+    [ 214/252]   D2 voice  | midi: gt=38 pred=60 ❌  | spn: gt=D2 pred=B7 ❌  | doremi: gt=re pred=do# ❌  | hz: gt=73.4162 pred=440.0 ❌
+    [ 215/252]   F1 voice  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=43.6535 pred=55.0 ❌
+    [ 216/252]   F1 voice  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=43.6535 pred=55.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 217/252]   D2 voice  | midi: gt=38 pred=46 ❌  | spn: gt=D2 pred=D#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=110.0 ❌
+    [ 218/252]   D2 voice  | midi: gt=38 pred=40 ❌  | spn: gt=D2 pred=C#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=110.0 ❌
+    [ 219/252]   D2 voice  | midi: gt=38 pred=26 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=110.0 ❌
+    [ 220/252]   B2 voice  | midi: gt=47 pred=96 ❌  | spn: gt=B2 pred=C#7 ❌  | doremi: gt=si pred=do ❌  | hz: gt=123.4708 pred=440.0 ❌
+    [ 221/252]   D2 voice  | midi: gt=38 pred=62 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=100.0 ❌
+    [ 222/252]   B2 voice  | midi: gt=47 pred=60 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [ 223/252]   F1 voice  | midi: gt=29 pred=39 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=43.6535 pred=50.0 ❌
+    [ 224/252]   D2 voice  | midi: gt=38 pred=26 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=146.83 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [ 225/252]   B2 voice  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 226/252]  G#3 voice  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=B5 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=440.0 ❌
+    [ 227/252]   B2 voice  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 228/252]  G#3 voice  | midi: gt=56 pred=67 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=110.0 ❌
+    [ 229/252]   B2 voice  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [ 230/252]   B2 voice  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=123.0 ✅
+    [ 231/252]  G#3 voice  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=415.0 ❌
+    [ 232/252]  G#3 voice  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=220.0 ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …

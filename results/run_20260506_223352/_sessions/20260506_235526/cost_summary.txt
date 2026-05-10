@@ -1,0 +1,14 @@
+PitchBench session cost summary
+Timestamp : 2026-05-06T23:55:26.445674
+
+Experiment                              calls        tokens
+───────────────────────────────────────────────────────────
+pitchbench_e1_audio_effects               960       107,003
+pitchbench_e2_background                  960       121,448
+pitchbench_e3_harmonic_saturation         480        53,506
+pitchbench_e4_time_stretching             768        96,696
+pitchbench_e5_vibrato                     640        81,623
+pitchbench_e6_slightly_off                640        75,477
+───────────────────────────────────────────────────────────
+TOTAL                                   4,448       535,753
+

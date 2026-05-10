@@ -50,10 +50,12 @@ except ImportError:                          # python-dotenv not installed; fall
 import pitchbench.config as config
 from pitchbench.experiments.helpers import cost as cost_tracker
 
-OPENROUTER_PREFIX = "openrouter/"
-DASHSCOPE_PREFIX  = "dashscope/"
-MANUAL_MODEL_NAME = "manual"
-_OPENROUTER_GPT4O_MIN_WAV_MS = 100
+OPENROUTER_PREFIX  = "openrouter/"
+DASHSCOPE_PREFIX   = "dashscope/"
+DASHSCOPE2_PREFIX  = "dashscope2/"
+MANUAL_MODEL_NAME  = "manual"
+_OPENROUTER_MIN_WAV_MS = 100
+_DASHSCOPE_MIN_WAV_MS  = 250
 
 
 # ── rate limiting ─────────────────────────────────────────────────────────────
@@ -86,15 +88,27 @@ _rate_limiters:    dict[str, _RateLimiter] = {}
 _rate_limiter_lock = threading.Lock()
 
 
-def _get_rate_limiter(ds_model: str) -> _RateLimiter | None:
-    """Return the rate limiter for a DashScope model ID, or None if uncapped."""
+def _dashscope_model_id(model_name: str) -> str:
+    """Strip dashscope/ or dashscope2/ prefix to get the bare model ID."""
+    if model_name.startswith(DASHSCOPE2_PREFIX):
+        return model_name[len(DASHSCOPE2_PREFIX):]
+    return model_name[len(DASHSCOPE_PREFIX):]
+
+
+def _get_rate_limiter(model_name: str) -> _RateLimiter | None:
+    """Return the rate limiter for a DashScope model_name, or None if uncapped.
+
+    Keyed by full model_name so dashscope/ and dashscope2/ accounts each get
+    their own independent sliding window.
+    """
+    ds_model = _dashscope_model_id(model_name)
     rpm = config.DASHSCOPE_RPM_LIMITS.get(ds_model, 0)
     if not rpm:
         return None
     with _rate_limiter_lock:
-        if ds_model not in _rate_limiters:
-            _rate_limiters[ds_model] = _RateLimiter(rpm)
-        return _rate_limiters[ds_model]
+        if model_name not in _rate_limiters:
+            _rate_limiters[model_name] = _RateLimiter(rpm)
+        return _rate_limiters[model_name]
 
 
 # ── small utilities ───────────────────────────────────────────────────────────
@@ -119,13 +133,6 @@ def _audio_bytes(audio_path: str | Path) -> bytes:
 
 def _sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
-
-
-def _is_openrouter_gpt4o_model(model_name: str) -> bool:
-    if not model_name.startswith(OPENROUTER_PREFIX):
-        return False
-    model_id = model_name[len(OPENROUTER_PREFIX):].lower()
-    return model_id.startswith("openai/gpt-4o") or model_id.startswith("openai/gpt-audio")
 
 
 def _pad_wav_bytes_with_silence(wav_bytes: bytes, min_duration_ms: int) -> tuple[bytes, int]:
@@ -164,7 +171,7 @@ def _pad_wav_bytes_with_silence(wav_bytes: bytes, min_duration_ms: int) -> tuple
 def _openrouter_upload_audio(audio_path: str | Path, model_name: str) -> dict[str, Any]:
     """Return OpenRouter upload payload info for one audio file.
 
-    GPT-4o-family OpenRouter models reject very short WAVs, so those uploads are
+    OpenRouter calls can be sensitive to very short WAV inputs, so uploads are
     padded in-memory with trailing silence only. The on-disk file is unchanged.
     """
     raw_bytes = _audio_bytes(audio_path)
@@ -172,8 +179,8 @@ def _openrouter_upload_audio(audio_path: str | Path, model_name: str) -> dict[st
     padding_ms = 0
     min_duration_ms: int | None = None
 
-    if _is_openrouter_gpt4o_model(model_name):
-        min_duration_ms = _OPENROUTER_GPT4O_MIN_WAV_MS
+    if model_name.startswith(OPENROUTER_PREFIX):
+        min_duration_ms = _OPENROUTER_MIN_WAV_MS
         upload_bytes, padding_ms = _pad_wav_bytes_with_silence(raw_bytes, min_duration_ms)
 
     return {
@@ -215,6 +222,13 @@ def get_model_info(model_name: str) -> dict:
             "checkpoint":          "openrouter",
             "provider":            "openrouter",
             "openrouter_model_id": model_name[len(OPENROUTER_PREFIX):],
+        }
+    if model_name.startswith(DASHSCOPE2_PREFIX):
+        return {
+            "model":              model_name,
+            "checkpoint":         "dashscope2",
+            "provider":           "dashscope2",
+            "dashscope_model_id": model_name[len(DASHSCOPE2_PREFIX):],
         }
     if model_name.startswith(DASHSCOPE_PREFIX):
         return {
@@ -529,6 +543,18 @@ def _resolve_dashscope_key() -> str:
     return api_key
 
 
+def _resolve_dashscope_key_for(model_name: str) -> str:
+    """Return the correct DashScope API key based on the model_name prefix."""
+    if model_name.startswith(DASHSCOPE2_PREFIX):
+        api_key = os.environ.get("DASHSCOPE_API_KEY_2")
+        if not api_key:
+            raise SystemExit(
+                "DASHSCOPE_API_KEY_2 not set. Add it to .env before using dashscope2/ models."
+            )
+        return api_key
+    return _resolve_dashscope_key()
+
+
 def _audio_format_from_path(audio_path: str) -> str:
     """Return the DashScope ``format`` field derived from the file extension."""
     ext = Path(audio_path).suffix.lower().lstrip(".") or "wav"
@@ -541,11 +567,17 @@ def _dashscope_audio_block(audio_path: str) -> dict:
 
     DashScope expects the base64 wrapped as a data URI (``data:;base64,...``),
     unlike OpenRouter which takes the raw base64 string.
+
+    Audio is padded with trailing silence to meet the 250ms minimum duration
+    that Qwen-Omni models require.
     """
+    raw_bytes = _audio_bytes(audio_path)
+    upload_bytes, _ = _pad_wav_bytes_with_silence(raw_bytes, _DASHSCOPE_MIN_WAV_MS)
+    b64 = base64.b64encode(upload_bytes).decode("ascii")
     return {
         "type": "input_audio",
         "input_audio": {
-            "data":   f"data:;base64,{_audio_b64(audio_path)}",
+            "data":   f"data:;base64,{b64}",
             "format": _audio_format_from_path(audio_path),
         },
     }
@@ -635,8 +667,8 @@ def _dashscope_stream_text(
 
 def _dashscope_text(model_name: str, audio_path: str, prompt: str,
                     max_new_tokens: int, temperature: float, timeout_s: float) -> dict:
-    api_key  = _resolve_dashscope_key()
-    ds_model = model_name[len(DASHSCOPE_PREFIX):]
+    api_key  = _resolve_dashscope_key_for(model_name)
+    ds_model = _dashscope_model_id(model_name)
 
     body = {
         "model": ds_model,
@@ -657,7 +689,7 @@ def _dashscope_text(model_name: str, audio_path: str, prompt: str,
         "Content-Type":  "application/json",
     }
 
-    limiter  = _get_rate_limiter(ds_model)
+    limiter  = _get_rate_limiter(model_name)
     text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model, limiter)
     usage = cost_tracker.parse_openrouter_usage(raw_usage)  # OpenAI-shape; cost defaults to 0
     if usage:
@@ -672,8 +704,8 @@ def _dashscope_text_multi(
     max_new_tokens: int, temperature: float, timeout_s: float,
 ) -> dict:
     """Multi-audio DashScope call — interleaves audio + text blocks via <AUDIO_N> markers."""
-    api_key = _resolve_dashscope_key()
-    ds_model = model_name[len(DASHSCOPE_PREFIX):]
+    api_key = _resolve_dashscope_key_for(model_name)
+    ds_model = _dashscope_model_id(model_name)
 
     parts = _AUDIO_PLACEHOLDER_RE.split(prompt)
     content: list[dict] = []
@@ -708,7 +740,7 @@ def _dashscope_text_multi(
         "Content-Type":  "application/json",
     }
 
-    limiter = _get_rate_limiter(ds_model)
+    limiter = _get_rate_limiter(model_name)
     try:
         text, raw, raw_usage = _dashscope_stream_text(body, headers, timeout_s, ds_model, limiter)
     except RuntimeError as exc:
@@ -795,7 +827,8 @@ def query_alm(
     audio_path    = str(audio_path)
     is_manual     = model_name == MANUAL_MODEL_NAME
     is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
-    is_dashscope  = model_name.startswith(DASHSCOPE_PREFIX)
+    is_dashscope  = (model_name.startswith(DASHSCOPE_PREFIX) or
+                     model_name.startswith(DASHSCOPE2_PREFIX))
     info          = get_model_info(model_name)
 
     if is_manual:
@@ -1112,7 +1145,8 @@ def query_alm_multi(
 
     is_manual     = model_name == MANUAL_MODEL_NAME
     is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
-    is_dashscope  = model_name.startswith(DASHSCOPE_PREFIX)
+    is_dashscope  = (model_name.startswith(DASHSCOPE_PREFIX) or
+                     model_name.startswith(DASHSCOPE2_PREFIX))
     info          = get_model_info(model_name)
 
     if is_manual:

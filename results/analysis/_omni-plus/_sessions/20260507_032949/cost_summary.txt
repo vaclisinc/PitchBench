@@ -1,0 +1,21 @@
+PitchBench session cost summary
+Timestamp : 2026-05-07T03:29:49.289580
+
+Experiment                                      calls        tokens
+───────────────────────────────────────────────────────────────────
+pitchbench_a1_single_pitch_id                     168        18,218
+pitchbench_a2_single_pitch_by_loudness            840        93,561
+pitchbench_a3_single_pitch_by_duration            840       155,750
+pitchbench_b1_single_pitch_within_silence         504       248,657
+pitchbench_b2_pitch_at_timestamp                  336       172,826
+pitchbench_d7a_pitch_with_reference               624        85,831
+pitchbench_d7b_pitch_with_reference_split         156        23,244
+pitchbench_e1_audio_effects                     1,008       112,263
+pitchbench_e2_background                        1,008       127,318
+pitchbench_e3_harmonic_saturation                 504        56,108
+pitchbench_e4_time_stretching                   1,152       144,973
+pitchbench_e6_slightly_off                      1,008       132,517
+pitchbench_y1_single_pitch_id_mcq                 504        61,346
+───────────────────────────────────────────────────────────────────
+TOTAL                                           8,652     1,432,612
+

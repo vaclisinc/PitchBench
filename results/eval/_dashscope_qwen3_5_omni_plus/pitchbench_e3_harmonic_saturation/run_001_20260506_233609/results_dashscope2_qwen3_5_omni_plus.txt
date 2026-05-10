@@ -1,0 +1,84 @@
+Experiment : pitchbench_e3_harmonic_saturation
+Model      : dashscope2/qwen3.5-omni-plus
+timestamp  : 2026-05-06T23:47:31.028142
+argv       : ['.venv/bin/pitchbench', '--id', 'e3', '--models', 'dashscope2/qwen3.5-omni-plus']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : dashscope2/qwen3.5-omni-plus
+model_info : {'model': 'dashscope2/qwen3.5-omni-plus', 'checkpoint': 'dashscope2', 'provider': 'dashscope2', 'dashscope_model_id': 'qwen3.5-omni-plus'}
+primary_filter_set : False
+record_extras : ['saturation_level', 'saturation_type', 'saturation_params', 'noise_seed']
+sample_n   : 120
+sample_seed : 42
+total_available : 570
+stratified_by : (saturation_level, midi, source_type)
+
+SUMMARY
+==================================================
+  Sampling     : 120 of 570 (stratified by '(saturation_level, midi, source_type)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      57.5%
+     SPN      85.0%
+  DOREMI      88.3%
+      HZ      38.3%
+     ANY      86.7%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+bass             42.86%   85.71%  100.00%   57.14%   85.71%     7
+cello           100.00%  100.00%  100.00%   50.00%  100.00%     2
+clarinet         50.00%   75.00%  100.00%   50.00%   75.00%     4
+electric_keyboard   20.00%  100.00%  100.00%   20.00%  100.00%     5
+flute            71.43%  100.00%  100.00%   57.14%  100.00%     7
+guitar          100.00%  100.00%  100.00%   50.00%  100.00%     2
+oboe             66.67%  100.00%  100.00%   33.33%  100.00%     6
+organ            25.00%   50.00%  100.00%   25.00%   50.00%     4
+piano            50.00%  100.00%  100.00%   50.00%  100.00%     2
+sawtooth         40.00%   90.00%   90.00%   40.00%   90.00%    10
+sine             71.43%   85.71%   76.19%   33.33%   95.24%    21
+square           57.14%   57.14%   71.43%   19.05%   57.14%    21
+synth_lead        0.00%   50.00%   50.00%    0.00%   50.00%     2
+synth_pad        60.00%  100.00%  100.00%   80.00%  100.00%     5
+triangle         87.50%  100.00%  100.00%   37.50%  100.00%     8
+trombone         50.00%  100.00%   75.00%   25.00%  100.00%     4
+trumpet          50.00%  100.00%  100.00%   25.00%  100.00%     4
+violin            0.00%  100.00%  100.00%  100.00%  100.00%     2
+voice            75.00%  100.00%  100.00%   75.00%  100.00%     4
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument       51.67%   91.67%   96.67%   46.67%   91.67%    60
+waveform         63.33%   78.33%   80.00%   30.00%   81.67%    60
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%   58.33%   66.67%    0.00%   58.33%    12
+36               33.33%   58.33%   75.00%   16.67%   75.00%    12
+43               41.67%  100.00%  100.00%    8.33%  100.00%    12
+48               25.00%  100.00%   91.67%   41.67%  100.00%    12
+54               58.33%  100.00%  100.00%   33.33%  100.00%    12
+60              100.00%  100.00%  100.00%  100.00%  100.00%    12
+64               91.67%  100.00%  100.00%   16.67%  100.00%    12
+69               91.67%  100.00%   91.67%   91.67%  100.00%    12
+79               75.00%   75.00%  100.00%   75.00%   75.00%    12
+88               58.33%   58.33%   58.33%    0.00%   58.33%    12
+
+saturation_level     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+sat_heavy        52.50%   85.00%   82.50%   32.50%   85.00%    40
+sat_light        55.00%   85.00%   90.00%   42.50%   87.50%    40
+sat_medium       65.00%   85.00%   92.50%   40.00%   87.50%    40
+
+
+LLM USAGE
+==================================================
+  calls                           480
+  prompt tokens                51,960
+  completion tokens             1,515
+  total tokens                 53,475

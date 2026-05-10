@@ -1,0 +1,24 @@
+
+[ERROR] Experiment pitchbench_d7a_pitch_with_reference failed with error:
+Unknown model 'qwen3.5-omni-plus'. Available: ['music_flamingo', 'audio_flamingo_next_instruct', 'audio_flamingo_next_think', 'audio_flamingo_next_captioner', 'qwen3_omni', 'kimi_audio']
+
+
+############################################################
+# pitchbench_d7b_pitch_with_reference_split
+############################################################
+
+Experiment : pitchbench_d7b_pitch_with_reference_split
+Models     : qwen3.5-omni-plus
+Stimuli    : 52
+  Sampling     : 52 of 156 (stratified by '(ref_midi, interval)', seed=42)
+
+Probing multi-audio support...
+  qwen3.5-omni-plus                                  
+[ERROR] Experiment pitchbench_d7b_pitch_with_reference_split failed with error:
+Unknown model 'qwen3.5-omni-plus'. Available: ['music_flamingo', 'audio_flamingo_next_instruct', 'audio_flamingo_next_think', 'audio_flamingo_next_captioner', 'qwen3_omni', 'kimi_audio']
+
+
+############################################################
+# pitchbench_d7c_pitch_with_reference
+############################################################
+

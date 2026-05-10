@@ -1,0 +1,142 @@
+
+  Model : dashscope/qwen3.5-omni-flash
+    [dispatch] 84 items, max_workers=4
+    [   1/84]   F1 sine  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=G#1 ❌  | doremi: gt=fa pred=sol ❌
+    [   2/84]   F1 sine  | midi: gt=29 pred=49 ❌  | spn: gt=F1 pred=B2 ❌  | doremi: gt=fa pred=do# ❌
+    [   3/84]   D2 sine  | midi: gt=38 pred=24 ❌  | spn: gt=D2 pred=C2 ❌  | doremi: gt=re pred=sol# ❌
+    [   4/84]   D2 sine  | midi: gt=38 pred=48 ❌  | spn: gt=D2 pred=A2 ❌  | doremi: gt=re pred=sol# ❌
+    [   5/84]   B2 sine  | midi: gt=47 pred=60 ❌  | spn: gt=B2 pred=B4 ❌  | doremi: gt=si pred=fa ❌
+    [   6/84]  G#3 sine  | midi: gt=56 pred=69 ❌  | spn: gt=G#3 pred=A3 ❌  | doremi: gt=sol# pred=sol ❌
+    [   7/84]  G#3 sine  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌
+    [   8/84]   B2 sine  | midi: gt=47 pred=48 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅
+    [   9/84]   F4 sine  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa# ❌
+    [  10/84]   D5 sine  | midi: gt=74 pred=72 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=do ❌
+    [  11/84]   F4 sine  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=do ❌
+    [  12/84]   B5 sine  | midi: gt=83 pred=84 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=sol ❌
+    [  13/84]   D5 sine  | midi: gt=74 pred=75 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=sol ❌
+    [  14/84]   B5 sine  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=A#5 ❌  | doremi: gt=si pred=fa# ❌
+    [  15/84]   F1 synth_lead  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=sol ❌
+    [  16/84]   F1 synth_lead  | midi: gt=29 pred=37 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=fa# ❌
+    [  17/84]   D2 synth_lead  | midi: gt=38 pred=59 ❌  | spn: gt=D2 pred=A4 ❌  | doremi: gt=re pred=fa# ❌
+    [  18/84]   B2 synth_lead  | midi: gt=47 pred=45 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=sol# ❌
+    [  19/84]   D2 synth_lead  | midi: gt=38 pred=36 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=sol ❌
+    [  20/84]   B2 synth_lead  | midi: gt=47 pred=46 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=sol ❌
+    [  21/84]  G#3 synth_lead  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅
+    [  22/84]  G#3 synth_lead  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=do ❌
+    [  23/84]   F4 synth_lead  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=E4 ❌  | doremi: gt=fa pred=mi ❌
+    [  24/84]   F4 synth_lead  | midi: gt=65 pred=84 ❌  | spn: gt=F4 pred=C5 ❌  | doremi: gt=fa pred=sol# ❌
+    [  25/84]   D5 synth_lead  | midi: gt=74 pred=72 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=do ❌
+    [  26/84]   B5 synth_lead  | midi: gt=83 pred=106 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=sol# ❌
+    [  27/84]   B5 synth_lead  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=C7 ❌  | doremi: gt=si pred=sol# ❌
+    [  28/84]   F1 cello  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=sol ❌
+    [  29/84]   D5 synth_lead  | midi: gt=74 pred=69 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=la# ❌
+    [  30/84]   F1 cello  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=sol# ❌
+    [  31/84]   D2 cello  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=sol ❌
+    [  32/84]   D2 cello  | midi: gt=38 pred=104 ❌  | spn: gt=D2 pred=D#6 ❌  | doremi: gt=re pred=sol# ❌
+    [  33/84]   B2 cello  | midi: gt=47 pred=27 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=sol ❌
+    [  34/84]  G#3 cello  | midi: gt=56 pred=64 ❌  | spn: gt=G#3 pred=D4 ❌  | doremi: gt=sol# pred=sol# ✅
+    [  35/84]  G#3 cello  | midi: gt=56 pred=51 ❌  | spn: gt=G#3 pred=E3 ❌  | doremi: gt=sol# pred=sol# ✅
+    [  36/84]   F4 cello  | midi: gt=65 pred=70 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  37/84]   B2 cello  | midi: gt=47 pred=71 ❌  | spn: gt=B2 pred=B4 ❌  | doremi: gt=si pred=fa# ❌
+    [  38/84]   F4 cello  | midi: gt=65 pred=51 ❌  | spn: gt=F4 pred=A3 ❌  | doremi: gt=fa pred=fa ✅
+    [  39/84]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=la ❌
+    [  40/84]   B5 cello  | midi: gt=83 pred=100 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅
+    [  41/84]   D5 cello  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=sol ❌
+    [  42/84]   B5 cello  | midi: gt=83 pred=96 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=la# ❌
+    [  43/84]   F1 flute  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=E1 ❌  | doremi: gt=fa pred=sol# ❌
+    [  44/84]   D2 flute  | midi: gt=38 pred=39 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=sol ❌
+    [  45/84]   F1 flute  | midi: gt=29 pred=29 ✅  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=sol ❌
+    [  46/84]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅
+    [  47/84]   B2 flute  | midi: gt=47 pred=47 ✅  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=sol ❌
+    [  48/84]   B2 flute  | midi: gt=47 pred=36 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=sol ❌
+    [  49/84]  G#3 flute  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  50/84]  G#3 flute  | midi: gt=56 pred=69 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌
+    [  51/84]   F4 flute  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  52/84]   F4 flute  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=fa ✅
+    [  53/84]   D5 flute  | midi: gt=74 pred=104 ❌  | spn: gt=D5 pred=C#6 ❌  | doremi: gt=re pred=sol# ❌
+    [  54/84]   D5 flute  | midi: gt=74 pred=69 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=sol ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  55/84]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=E6 ❌  | doremi: gt=si pred=do# ❌
+    [  56/84]   B5 flute  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=sol# ❌
+    [  57/84]   F1 piano  | midi: gt=29 pred=38 ❌  | spn: gt=F1 pred=D4 ❌  | doremi: gt=fa pred=do ❌
+    [  58/84]   F1 piano  | midi: gt=29 pred=40 ❌  | spn: gt=F1 pred=F#2 ❌  | doremi: gt=fa pred=sol ❌
+    [  59/84]   D2 piano  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=F3 ❌  | doremi: gt=re pred=fa# ❌
+    [  60/84]   D2 piano  | midi: gt=38 pred=28 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=sol ❌
+    [  61/84]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=do# ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  62/84]   B2 piano  | midi: gt=47 pred=59 ❌  | spn: gt=B2 pred=B1 ❌  | doremi: gt=si pred=sol# ❌
+    [  63/84]  G#3 piano  | midi: gt=56 pred=84 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅
+    [  64/84]  G#3 piano  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌
+    [  65/84]   D5 piano  | midi: gt=74 pred=86 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=la# ❌
+    [  66/84]   F4 piano  | midi: gt=65 pred=48 ❌  | spn: gt=F4 pred=F#4 ❌  | doremi: gt=fa pred=la ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  67/84]   D5 piano  | midi: gt=74 pred=102 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=do# ❌
+    [  68/84]   F4 piano  | midi: gt=65 pred=53 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  69/84]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=do# ❌
+    [  70/84]   B5 piano  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=do# ❌
+    [  71/84]   F1 voice  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=fa# ❌
+    [  72/84]   F1 voice  | midi: gt=29 pred=28 ❌  | spn: gt=F1 pred=C2 ❌  | doremi: gt=fa pred=fa# ❌
+    [  73/84]   D2 voice  | midi: gt=38 pred=36 ❌  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=fa# ❌
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+        [rate-limit] 429 from DashScope — waiting 60s …
+    [  74/84]   B2 voice  | midi: gt=47 pred=57 ❌  | spn: gt=B2 pred=G#4 ❌  | doremi: gt=si pred=do# ❌
+    [  75/84]   D2 voice  | midi: gt=38 pred=30 ❌  | spn: gt=D2 pred=A#1 ❌  | doremi: gt=re pred=do ❌
+    [  76/84]   B2 voice  | midi: gt=47 pred=67 ❌  | spn: gt=B2 pred=B3 ❌  | doremi: gt=si pred=la ❌
+    [  77/84]  G#3 voice  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol ❌
+    [  78/84]  G#3 voice  | midi: gt=56 pred=69 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅
+    [  79/84]   F4 voice  | midi: gt=65 pred=64 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  80/84]   F4 voice  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=F4 ✅  | doremi: gt=fa pred=fa ✅
+    [  81/84]   D5 voice  | midi: gt=74 pred=77 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=sol ❌
+    [  82/84]   D5 voice  | midi: gt=74 pred=96 ❌  | spn: gt=D5 pred=D5 ✅  | doremi: gt=re pred=do# ❌
+    [  83/84]   B5 voice  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅
+    [  84/84]   B5 voice  | midi: gt=83 pred=95 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=la# ❌
+
+============================================================
+SUMMARY — dashscope/qwen3.5-omni-flash
+  Sampling     : none (full set of 84)
+  Stimuli (total)     : 84
+  Stimuli (condition) : 84  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+      MIDI      13.1%
+       SPN      57.1%
+    DOREMI      19.1%
+        HZ       1.2%
+       ANY      59.5%
+
+  *** WARNING: working tree has uncommitted changes — results will NOT be exactly reproducible from git_commit alone ***
+
+
+LLM USAGE
+==================================================
+  calls                           336
+  prompt tokens               171,780
+  completion tokens             1,114
+  total tokens                172,894
+
+Results saved → results/analysis/run_20260506_232232/pitchbench_b2_pitch_at_timestamp/run_001_20260507_001139/results_dashscope_qwen3_5_omni_flash.*
+
+############################################################
+# pitchbench_d7a_pitch_with_reference
+############################################################
+
+Experiment : pitchbench_d7a_pitch_with_reference
+Models     : dashscope/qwen3.5-omni-flash
+Stimuli    : 156
+  Sampling     : none (full set of 156)

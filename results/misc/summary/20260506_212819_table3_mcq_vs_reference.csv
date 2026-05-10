@@ -1,0 +1,5 @@
+Model,Baseline (a1),MCQ (y1),Ref pitch – concat audio (d7a),Ref pitch – split audio (d7b)
+Gemini Pro,7.1%,58.7%,55.1%,—
+Gemini Flash,2.4%,38.1%,41.7%,—
+Audio Flamingo,33.3%,39.7%,13.5%,—
+GPT-4o,2.4%,34.1%,16.0%,—

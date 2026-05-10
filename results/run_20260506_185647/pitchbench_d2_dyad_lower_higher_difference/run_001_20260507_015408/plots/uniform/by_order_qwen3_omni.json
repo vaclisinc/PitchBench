@@ -1,0 +1,21 @@
+{
+  "group_key": "order",
+  "score_key": "answer_correct",
+  "score_label": "Answer accuracy (%)",
+  "x_values": [
+    0,
+    1
+  ],
+  "x_labels": [
+    "0",
+    "1"
+  ],
+  "mean_pct": [
+    30.303030303030305,
+    80.3030303030303
+  ],
+  "n_samples": [
+    66,
+    66
+  ]
+}
