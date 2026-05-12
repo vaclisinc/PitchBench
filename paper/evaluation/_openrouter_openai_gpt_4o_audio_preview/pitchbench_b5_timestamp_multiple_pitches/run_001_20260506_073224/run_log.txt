@@ -1,0 +1,147 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 120 items, max_workers=20
+    [   1/120]  C-1 synth_pad  gt=n_gt=6  pred=n_pred=10  ❌
+    [   2/120]  C-1 cello  gt=n_gt=6  pred=n_pred=6  ❌
+    [   3/120]  C-1 oboe  gt=n_gt=6  pred=n_pred=6  ❌
+    [   4/120]  C-1 sine  gt=n_gt=6  pred=n_pred=8  ❌
+    [   5/120]  C-1 organ  gt=n_gt=6  pred=n_pred=10  ❌
+    [   6/120]  C-1 flute  gt=n_gt=6  pred=n_pred=8  ❌
+    [   7/120]  C-1 trumpet  gt=n_gt=6  pred=n_pred=6  ❌
+    [   8/120]  C-1 triangle  gt=n_gt=6  pred=n_pred=10  ❌
+    [   9/120]  C-1 voice  gt=n_gt=6  pred=n_pred=6  ❌
+    [  10/120]  C-1 sine  gt=n_gt=6  pred=n_pred=10  ❌
+    [  11/120]  C-1 flute  gt=n_gt=6  pred=n_pred=10  ❌
+    [  12/120]  C-1 trombone  gt=n_gt=6  pred=n_pred=6  ❌
+    [  13/120]  C-1 trumpet  gt=n_gt=6  pred=n_pred=6  ❌
+    [  14/120]  C-1 sawtooth  gt=n_gt=6  pred=n_pred=10  ❌
+    [  15/120]  C-1 piano  gt=n_gt=6  pred=n_pred=12  ❌
+    [  16/120]  C-1 guitar  gt=n_gt=6  pred=n_pred=6  ❌
+    [  17/120]  C-1 clarinet  gt=n_gt=6  pred=n_pred=8  ❌
+    [  18/120]  C-1 triangle  gt=n_gt=6  pred=n_pred=8  ❌
+    [  19/120]  C-1 square  gt=n_gt=6  pred=n_pred=12  ❌
+    [  20/120]  C-1 triangle  gt=n_gt=6  pred=n_pred=8  ❌
+    [  21/120]  C-1 sine  gt=n_gt=10  pred=n_pred=8  ❌
+    [  22/120]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=10  ❌
+    [  23/120]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=8  ❌
+    [  24/120]  C-1 cello  gt=n_gt=10  pred=n_pred=10  ❌
+    [  25/120]  C-1 trombone  gt=n_gt=10  pred=n_pred=6  ❌
+    [  26/120]  C-1 guitar  gt=n_gt=10  pred=n_pred=8  ❌
+    [  27/120]  C-1 flute  gt=n_gt=10  pred=n_pred=10  ❌
+    [  28/120]  C-1 cello  gt=n_gt=10  pred=n_pred=8  ❌
+    [  29/120]  C-1 piano  gt=n_gt=10  pred=n_pred=8  ❌
+    [  30/120]  C-1 organ  gt=n_gt=10  pred=n_pred=10  ❌
+    [  31/120]  C-1 electric_keyboard  gt=n_gt=10  pred=n_pred=8  ❌
+    [  32/120]  C-1 trumpet  gt=n_gt=10  pred=n_pred=8  ❌
+    [  33/120]  C-1 clarinet  gt=n_gt=10  pred=n_pred=8  ❌
+    [  34/120]  C-1 sine  gt=n_gt=10  pred=n_pred=10  ❌
+    [  35/120]  C-1 guitar  gt=n_gt=10  pred=n_pred=8  ❌
+    [  36/120]  C-1 violin  gt=n_gt=10  pred=n_pred=10  ❌
+    [  37/120]  C-1 voice  gt=n_gt=10  pred=n_pred=10  ❌
+    [  38/120]  C-1 piano  gt=n_gt=10  pred=n_pred=12  ❌
+    [  39/120]  C-1 square  gt=n_gt=16  pred=n_pred=10  ❌
+    [  40/120]  C-1 oboe  gt=n_gt=16  pred=n_pred=12  ❌
+    [  41/120]  C-1 violin  gt=n_gt=10  pred=n_pred=8  ❌
+    [  42/120]  C-1 violin  gt=n_gt=16  pred=n_pred=10  ❌
+    [  43/120]  C-1 voice  gt=n_gt=16  pred=n_pred=10  ❌
+    [  44/120]  C-1 violin  gt=n_gt=16  pred=n_pred=10  ❌
+    [  45/120]  C-1 bass  gt=n_gt=10  pred=n_pred=10  ❌
+    [  46/120]  C-1 oboe  gt=n_gt=16  pred=n_pred=10  ❌
+    [  47/120]  C-1 trumpet  gt=n_gt=16  pred=n_pred=10  ❌
+    [  48/120]  C-1 triangle  gt=n_gt=16  pred=n_pred=16  ❌
+    [  49/120]  C-1 organ  gt=n_gt=16  pred=n_pred=10  ❌
+    [  50/120]  C-1 sine  gt=n_gt=16  pred=n_pred=8  ❌
+    [  51/120]  C-1 trombone  gt=n_gt=16  pred=n_pred=10  ❌
+    [  52/120]  C-1 synth_pad  gt=n_gt=16  pred=n_pred=8  ❌
+    [  53/120]  C-1 synth_lead  gt=n_gt=16  pred=n_pred=12  ❌
+    [  54/120]  C-1 violin  gt=n_gt=16  pred=n_pred=8  ❌
+    [  55/120]  C-1 square  gt=n_gt=16  pred=n_pred=12  ❌
+    [  56/120]  C-1 triangle  gt=n_gt=16  pred=n_pred=10  ❌
+    [  57/120]  C-1 synth_lead  gt=n_gt=16  pred=n_pred=12  ❌
+    [  58/120]  C-1 oboe  gt=n_gt=16  pred=n_pred=8  ❌
+    [  59/120]  C-1 oboe  gt=n_gt=16  pred=n_pred=10  ❌
+    [  60/120]  C-1 guitar  gt=n_gt=6  pred=n_pred=6  ❌
+    [  61/120]  C-1 oboe  gt=n_gt=6  pred=n_pred=6  ❌
+    [  62/120]  C-1 trombone  gt=n_gt=6  pred=n_pred=6  ❌
+    [  63/120]  C-1 square  gt=n_gt=6  pred=n_pred=8  ❌
+    [  64/120]  C-1 piano  gt=n_gt=6  pred=n_pred=12  ❌
+    [  65/120]  C-1 square  gt=n_gt=6  pred=n_pred=8  ❌
+    [  66/120]  C-1 synth_pad  gt=n_gt=6  pred=n_pred=8  ❌
+    [  67/120]  C-1 flute  gt=n_gt=6  pred=n_pred=12  ❌
+    [  68/120]  C-1 voice  gt=n_gt=6  pred=n_pred=6  ❌
+    [  69/120]  C-1 triangle  gt=n_gt=6  pred=n_pred=12  ❌
+    [  70/120]  C-1 sawtooth  gt=n_gt=6  pred=n_pred=12  ❌
+    [  71/120]  C-1 synth_lead  gt=n_gt=6  pred=n_pred=12  ❌
+    [  72/120]  C-1 electric_keyboard  gt=n_gt=6  pred=n_pred=10  ❌
+    [  73/120]  C-1 oboe  gt=n_gt=6  pred=n_pred=6  ❌
+    [  74/120]  C-1 trumpet  gt=n_gt=6  pred=n_pred=6  ❌
+    [  75/120]  C-1 guitar  gt=n_gt=6  pred=n_pred=8  ❌
+    [  76/120]  C-1 clarinet  gt=n_gt=6  pred=n_pred=6  ❌
+    [  77/120]  C-1 trombone  gt=n_gt=6  pred=n_pred=6  ❌
+    [  78/120]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=8  ❌
+    [  79/120]  C-1 square  gt=n_gt=6  pred=n_pred=16  ❌
+    [  80/120]  C-1 trumpet  gt=n_gt=10  pred=n_pred=8  ❌
+    [  81/120]  C-1 square  gt=n_gt=6  pred=n_pred=8  ❌
+    [  82/120]  C-1 triangle  gt=n_gt=16  pred=n_pred=10  ❌
+    [  83/120]  C-1 synth_pad  gt=n_gt=10  pred=n_pred=10  ❌
+    [  84/120]  C-1 electric_keyboard  gt=n_gt=10  pred=n_pred=10  ❌
+    [  85/120]  C-1 cello  gt=n_gt=10  pred=n_pred=10  ❌
+    [  86/120]  C-1 clarinet  gt=n_gt=10  pred=n_pred=10  ❌
+    [  87/120]  C-1 flute  gt=n_gt=10  pred=n_pred=10  ❌
+    [  88/120]  C-1 flute  gt=n_gt=10  pred=n_pred=8  ❌
+    [  89/120]  C-1 organ  gt=n_gt=10  pred=n_pred=8  ❌
+    [  90/120]  C-1 flute  gt=n_gt=10  pred=n_pred=8  ❌
+    [  91/120]  C-1 sawtooth  gt=n_gt=10  pred=n_pred=10  ❌
+    [  92/120]  C-1 violin  gt=n_gt=10  pred=n_pred=8  ❌
+    [  93/120]  C-1 sawtooth  gt=n_gt=10  pred=n_pred=10  ❌
+    [  94/120]  C-1 triangle  gt=n_gt=10  pred=n_pred=8  ❌
+    [  95/120]  C-1 trumpet  gt=n_gt=10  pred=n_pred=8  ❌
+    [  96/120]  C-1 violin  gt=n_gt=10  pred=n_pred=10  ❌
+    [  97/120]  C-1 clarinet  gt=n_gt=10  pred=n_pred=10  ❌
+    [  98/120]  C-1 bass  gt=n_gt=16  pred=n_pred=10  ❌
+    [  99/120]  C-1 violin  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 100/120]  C-1 trombone  gt=n_gt=10  pred=n_pred=10  ❌
+    [ 101/120]  C-1 organ  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 102/120]  C-1 guitar  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 103/120]  C-1 piano  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 104/120]  C-1 square  gt=n_gt=10  pred=n_pred=10  ❌
+    [ 105/120]  C-1 organ  gt=n_gt=10  pred=n_pred=10  ❌
+    [ 106/120]  C-1 oboe  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 107/120]  C-1 trumpet  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 108/120]  C-1 clarinet  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 109/120]  C-1 triangle  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 110/120]  C-1 flute  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 111/120]  C-1 trumpet  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 112/120]  C-1 cello  gt=n_gt=16  pred=n_pred=14  ❌
+    [ 113/120]  C-1 oboe  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 114/120]  C-1 synth_pad  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 115/120]  C-1 voice  gt=n_gt=16  pred=n_pred=14  ❌
+    [ 116/120]  C-1 square  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 117/120]  C-1 square  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 118/120]  C-1 synth_pad  gt=n_gt=16  pred=n_pred=12  ❌
+    [ 119/120]  C-1 violin  gt=n_gt=16  pred=n_pred=10  ❌
+    [ 120/120]  C-1 flute  gt=n_gt=16  pred=n_pred=12  ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 120 of 456 (stratified by '(rhythm, n_notes, duration_ms)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                83,880
+  completion tokens             7,684
+  total tokens                 91,564
+  cost (USD)                $2.986540
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_073224/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073224/results_openrouter_openai_gpt_4o_audio_preview.*

@@ -1,0 +1,209 @@
+Experiment : pitchbench_c2_chord_dyad_interval
+Model      : dashscope/qwen3.5-omni-plus
+timestamp  : 2026-05-06T21:45:35.302472
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', '--id', 'c', '--models', 'dashscope/qwen3.5-omni-plus']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : dashscope/qwen3.5-omni-plus
+model_info : {'model': 'dashscope/qwen3.5-omni-plus', 'checkpoint': 'dashscope', 'provider': 'dashscope', 'dashscope_model_id': 'qwen3.5-omni-plus'}
+task_type  : interval
+headline_metrics : ['interval']
+primary_filter_set : False
+record_extras : ['duration_ms', 'same_instrument', 'root_midi', 'interval_st']
+sample_n   : 232
+sample_seed : 42
+total_available : 8816
+stratified_by : (interval_st, same_instrument, root_midi)
+
+SUMMARY
+==================================================
+  Sampling     : 232 of 8816 (stratified by '(interval_st, same_instrument, root_midi)', seed=42)
+  Stimuli (total)     : 232
+  Stimuli (condition) : 232  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+    INTERVAL       9.0%
+
+== Marginal accuracy ==
+
+duration_ms     interval_correct    n
+──────────────  ───────  ────
+1000              7.69%   117
+5000             10.43%   115
+
+source          interval_correct    n
+──────────────  ───────  ────
+bass              0.00%     6
+bass+clarinet     0.00%     1
+bass+guitar       0.00%     1
+bass+piano        0.00%     1
+bass+sine         0.00%     1
+bass+triangle     0.00%     1
+bass+trombone   100.00%     1
+bass+violin       0.00%     1
+cello             0.00%     5
+cello+bass        0.00%     1
+cello+flute       0.00%     1
+cello+trumpet     0.00%     2
+cello+voice       0.00%     2
+clarinet          0.00%     6
+clarinet+electric_keyboard    0.00%     1
+clarinet+organ  100.00%     1
+clarinet+square    0.00%     1
+clarinet+triangle   50.00%     2
+electric_keyboard   20.00%     5
+electric_keyboard+organ    0.00%     1
+electric_keyboard+sine    0.00%     3
+electric_keyboard+trombone    0.00%     1
+electric_keyboard+violin    0.00%     1
+flute            30.00%    10
+flute+oboe        0.00%     1
+flute+organ     100.00%     1
+flute+piano       0.00%     1
+flute+sine        0.00%     1
+flute+square      0.00%     2
+flute+synth_pad   33.33%     3
+flute+triangle  100.00%     1
+guitar            8.33%    12
+guitar+clarinet    0.00%     1
+guitar+synth_lead    0.00%     1
+guitar+triangle    0.00%     2
+guitar+trumpet    0.00%     1
+oboe              0.00%     4
+oboe+cello        0.00%     1
+oboe+clarinet     0.00%     2
+oboe+flute        0.00%     1
+oboe+organ      100.00%     1
+oboe+piano        0.00%     1
+oboe+triangle     0.00%     1
+oboe+trombone     0.00%     1
+oboe+voice        0.00%     1
+organ            25.00%     4
+organ+piano       0.00%     1
+organ+triangle  100.00%     1
+organ+trumpet    50.00%     2
+organ+voice       0.00%     2
+piano             0.00%     6
+piano+bass        0.00%     1
+piano+guitar      0.00%     1
+piano+organ       0.00%     1
+piano+synth_pad    0.00%     1
+piano+triangle    0.00%     1
+piano+trombone    0.00%     1
+piano+violin      0.00%     1
+piano+voice       0.00%     1
+sawtooth          0.00%     4
+sawtooth+bass     0.00%     1
+sawtooth+clarinet    0.00%     2
+sawtooth+synth_lead    0.00%     2
+sawtooth+trumpet    0.00%     1
+sine             14.29%     7
+sine+bass         0.00%     1
+sine+cello        0.00%     2
+sine+electric_keyboard    0.00%     1
+sine+oboe         0.00%     2
+sine+piano        0.00%     1
+sine+sawtooth     0.00%     1
+sine+square       0.00%     1
+sine+synth_pad    0.00%     1
+square           14.29%     7
+square+cello      0.00%     1
+square+guitar     0.00%     1
+square+oboe       0.00%     1
+square+piano      0.00%     1
+square+sawtooth    0.00%     1
+square+synth_lead    0.00%     2
+square+violin     0.00%     1
+synth_lead        0.00%     4
+synth_lead+electric_keyboard    0.00%     1
+synth_lead+organ    0.00%     1
+synth_lead+sine    0.00%     1
+synth_lead+square    0.00%     1
+synth_pad         0.00%     9
+synth_pad+electric_keyboard  100.00%     1
+synth_pad+guitar    0.00%     1
+synth_pad+piano    0.00%     2
+synth_pad+trumpet   50.00%     2
+triangle          0.00%     8
+triangle+guitar    0.00%     1
+triangle+trumpet    0.00%     2
+triangle+violin    0.00%     1
+trombone          0.00%     5
+trombone+electric_keyboard    0.00%     1
+trombone+piano    0.00%     1
+trombone+square    0.00%     1
+trumpet           0.00%     6
+trumpet+oboe      0.00%     1
+violin            0.00%     2
+violin+organ      0.00%     1
+violin+synth_pad    0.00%     2
+violin+trombone    0.00%     2
+violin+voice      0.00%     1
+voice            33.33%     6
+voice+bass        0.00%     1
+voice+cello       0.00%     1
+voice+clarinet    0.00%     1
+voice+triangle    0.00%     2
+voice+violin      0.00%     1
+
+source_type     interval_correct    n
+──────────────  ───────  ────
+instrument        9.22%   206
+waveform          7.69%    26
+
+interval_name   interval_correct    n
+──────────────  ───────  ────
+major second      0.00%    20
+major seventh     0.00%    18
+major sixth       0.00%    18
+major third       0.00%    20
+minor second      0.00%    20
+minor seventh     0.00%    18
+minor sixth       0.00%    20
+minor third       0.00%    20
+octave           38.89%    18
+perfect fifth    70.00%    20
+perfect fourth    0.00%    20
+tritone           0.00%    20
+
+interval_st     interval_correct    n
+──────────────  ───────  ────
+1                 0.00%    20
+2                 0.00%    20
+3                 0.00%    20
+4                 0.00%    20
+5                 0.00%    20
+6                 0.00%    20
+7                70.00%    20
+8                 0.00%    20
+9                 0.00%    18
+10                0.00%    18
+11                0.00%    18
+12               38.89%    18
+
+same_instrument  interval_correct    n
+──────────────  ───────  ────
+False             9.48%   116
+True              8.62%   116
+
+root_midi       interval_correct    n
+──────────────  ───────  ────
+30                8.33%    24
+36               12.50%    24
+43                4.17%    24
+48                8.33%    24
+54                8.33%    24
+60                8.33%    24
+64                8.33%    24
+69               12.50%    24
+79               12.50%    24
+88                6.25%    16
+
+
+LLM USAGE
+==================================================
+  calls                           232
+  prompt tokens                14,588
+  completion tokens               529
+  total tokens                 15,117

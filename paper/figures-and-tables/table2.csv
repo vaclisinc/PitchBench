@@ -1,0 +1,53 @@
+group,experiment,condition,Audio Flamingo Next Instruct,Gemini 3.1 Pro,GPT-4o Audio,Qwen 3.5 Omni Flash,Qwen 3.5 Omni Plus,Gemini Flash
+Baseline,pitchbench_a1_single_pitch_id,clean signal (open-ended),33.3%,7.1%,2.4%,71.4%,90.5%,2.4%
+MCQ,pitchbench_y1_single_pitch_id_mcq,±2 semitones,35.7%,66.7%,21.4%,73.8%,90.5%,35.7%
+MCQ,pitchbench_y1_single_pitch_id_mcq,±4 semitones,35.7%,57.1%,40.5%,69.0%,95.2%,38.1%
+MCQ,pitchbench_y1_single_pitch_id_mcq,±6 semitones,47.6%,52.4%,40.5%,61.9%,88.1%,40.5%
+MCQ,pitchbench_y1_single_pitch_id_mcq,overall,39.7%,58.7%,34.1%,68.2%,91.3%,38.1%
+MCQ,pitchbench_y1_single_pitch_id_mcq,Mean,39.7%,58.7%,34.1%,68.3%,91.3%,38.1%
+MCQ,pitchbench_y1_single_pitch_id_mcq,Gain (MCQ − baseline),+6.3%,+51.6%,+31.8%,-3.2%,+0.8%,+35.7%
+MCQ,pitchbench_y1_single_pitch_id_mcq,Gain (mean MCQ − baseline),+4.8%,+38.7%,+23.8%,-2.4%,+0.6%,+26.8%
+Loudness,pitchbench_a2_single_pitch_by_loudness,-30 dB,16.7%,7.1%,0.0%,47.6%,85.7%,0.0%
+Loudness,pitchbench_a2_single_pitch_by_loudness,-20 dB,21.4%,7.1%,2.4%,59.5%,88.1%,0.0%
+Loudness,pitchbench_a2_single_pitch_by_loudness,-12 dB,28.6%,7.1%,4.8%,64.3%,88.1%,0.0%
+Loudness,pitchbench_a2_single_pitch_by_loudness,+6 dB,21.4%,7.1%,2.4%,64.3%,88.1%,4.8%
+Loudness,pitchbench_a2_single_pitch_by_loudness,+12 dB,14.3%,9.5%,4.8%,61.9%,85.7%,2.4%
+Loudness,pitchbench_a2_single_pitch_by_loudness,overall,20.5%,7.6%,2.9%,59.5%,87.1%,1.4%
+Duration,pitchbench_a3_single_pitch_by_duration,50 ms,0.0%,4.8%,2.4%,4.8%,4.8%,0.0%
+Duration,pitchbench_a3_single_pitch_by_duration,250 ms,0.0%,2.4%,0.0%,16.7%,64.3%,0.0%
+Duration,pitchbench_a3_single_pitch_by_duration,1000 ms,19.1%,4.8%,0.0%,50.0%,85.7%,0.0%
+Duration,pitchbench_a3_single_pitch_by_duration,4000 ms,59.5%,4.8%,7.1%,66.7%,90.5%,2.4%
+Duration,pitchbench_a3_single_pitch_by_duration,15000 ms,26.2%,11.9%,4.8%,73.8%,90.5%,2.4%
+Duration,pitchbench_a3_single_pitch_by_duration,60000 ms,26.2%,9.5%,0.0%,66.7%,90.5%,2.4%
+Duration,pitchbench_a3_single_pitch_by_duration,overall,21.8%,6.3%,2.4%,46.4%,71.0%,1.2%
+Position,pitchbench_b1_single_pitch_within_silence,10 s,7.1%,7.1%,2.4%,64.3%,83.3%,2.4%
+Position,pitchbench_b1_single_pitch_within_silence,30 s,2.4%,7.1%,0.0%,54.8%,88.1%,4.8%
+Position,pitchbench_b1_single_pitch_within_silence,50 s,4.8%,9.5%,0.0%,50.0%,88.1%,0.0%
+Position,pitchbench_b1_single_pitch_within_silence,overall,4.8%,7.9%,0.8%,56.4%,86.5%,2.4%
+N-notes,pitchbench_b2_pitch_at_timestamp,5 notes,9.5%,14.3%,4.8%,64.3%,90.5%,14.3%
+N-notes,pitchbench_b2_pitch_at_timestamp,10 notes,2.4%,2.4%,2.4%,54.8%,83.3%,28.6%
+N-notes,pitchbench_b2_pitch_at_timestamp,overall,5.9%,8.3%,3.6%,59.5%,86.9%,21.4%
+Effects,pitchbench_e1_audio_effects,bitcrush,14.3%,7.1%,0.0%,38.1%,85.7%,2.4%
+Effects,pitchbench_e1_audio_effects,chorus,9.5%,11.9%,0.0%,33.3%,78.6%,0.0%
+Effects,pitchbench_e1_audio_effects,distort,14.3%,4.8%,0.0%,45.2%,90.5%,0.0%
+Effects,pitchbench_e1_audio_effects,highpass,23.8%,4.8%,2.4%,42.9%,76.2%,0.0%
+Effects,pitchbench_e1_audio_effects,lowpass,14.3%,4.8%,0.0%,38.1%,88.1%,0.0%
+Effects,pitchbench_e1_audio_effects,reverb,21.4%,16.7%,2.4%,59.5%,88.1%,2.4%
+Effects,pitchbench_e1_audio_effects,overall,16.3%,8.3%,0.8%,42.9%,84.5%,0.8%
+Background,pitchbench_e2_background,bells,4.8%,7.1%,0.0%,2.4%,2.4%,0.0%
+Background,pitchbench_e2_background,crowd,4.8%,4.8%,4.8%,7.1%,19.1%,0.0%
+Background,pitchbench_e2_background,osc. pitch,9.5%,0.0%,2.4%,0.0%,4.8%,0.0%
+Background,pitchbench_e2_background,rain,0.0%,4.8%,7.1%,0.0%,35.7%,0.0%
+Background,pitchbench_e2_background,street,2.4%,14.3%,0.0%,0.0%,14.3%,4.8%
+Background,pitchbench_e2_background,white noise,0.0%,0.0%,9.5%,4.8%,26.2%,0.0%
+Background,pitchbench_e2_background,overall,3.6%,5.2%,4.0%,2.4%,17.1%,0.8%
+Saturation,pitchbench_e3_harmonic_saturation,sat heavy,14.3%,7.1%,4.8%,54.8%,90.5%,2.4%
+Saturation,pitchbench_e3_harmonic_saturation,sat light,26.2%,4.8%,2.4%,76.2%,90.5%,0.0%
+Saturation,pitchbench_e3_harmonic_saturation,sat medium,14.3%,4.8%,0.0%,76.2%,90.5%,0.0%
+Saturation,pitchbench_e3_harmonic_saturation,overall,18.2%,5.6%,2.4%,69.0%,90.5%,0.8%
+Time stretch,pitchbench_e4_time_stretching,resample 0.5x,12.5%,22.2%,4.2%,81.9%,93.1%,11.1%
+Time stretch,pitchbench_e4_time_stretching,resample 2x,18.1%,6.9%,12.5%,86.1%,93.1%,12.5%
+Time stretch,pitchbench_e4_time_stretching,stretch 0.5x,48.6%,18.1%,12.5%,81.9%,95.8%,15.3%
+Time stretch,pitchbench_e4_time_stretching,stretch 2x,37.5%,22.2%,26.4%,76.4%,97.2%,20.8%
+Time stretch,pitchbench_e4_time_stretching,overall,29.2%,17.4%,13.9%,81.6%,94.8%,14.9%
+Detune,pitchbench_e6_slightly_off,overall,2.4%,5.2%,4.4%,15.9%,14.7%,7.9%

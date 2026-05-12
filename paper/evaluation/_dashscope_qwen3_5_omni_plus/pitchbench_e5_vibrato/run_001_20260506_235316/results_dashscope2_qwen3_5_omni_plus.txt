@@ -1,0 +1,73 @@
+Experiment : pitchbench_e5_vibrato
+Model      : dashscope2/qwen3.5-omni-plus
+timestamp  : 2026-05-07T00:08:11.843325
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', '--id', 'e5', '--models', 'dashscope2/qwen3.5-omni-plus']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : dashscope2/qwen3.5-omni-plus
+model_info : {'model': 'dashscope2/qwen3.5-omni-plus', 'checkpoint': 'dashscope2', 'provider': 'dashscope2', 'dashscope_model_id': 'qwen3.5-omni-plus'}
+primary_filter_set : True
+record_extras : ['duration_ms', 'vibrato_rate_hz', 'vibrato_depth_cents', 'is_control']
+sample_n   : 160
+sample_seed : 42
+total_available : 320
+stratified_by : (vibrato_rate_hz, vibrato_depth_cents, midi)
+pair_key   : ['pair_id']
+sampled_primary : 160
+sampled_total : 160
+
+SUMMARY
+==================================================
+  Sampling     : 160 of 320 (stratified by '(vibrato_rate_hz, vibrato_depth_cents, midi)', seed=42)
+  Stimuli (total)     : 160
+  Stimuli (condition) : 160
+  Stimuli (baseline)  : 0
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI      13.8%       0.0%
+     SPN      64.4%       0.0%
+  DOREMI      58.1%       0.0%
+      HZ       9.4%       0.0%
+     ANY      65.6%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+sawtooth         30.30%   84.85%   75.76%   21.21%   84.85%    33
+sine             17.07%   51.22%   60.98%    7.32%   53.66%    41
+square            1.89%   60.38%   56.60%    1.89%   60.38%    53
+triangle         12.12%   66.67%   39.39%   12.12%   69.70%    33
+
+vibrato_rate_hz     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+3                 7.50%   62.50%   55.00%   10.00%   65.00%    40
+5                12.50%   60.00%   60.00%   10.00%   60.00%    40
+7                20.00%   70.00%   55.00%    5.00%   70.00%    40
+10               15.00%   65.00%   62.50%   12.50%   67.50%    40
+
+vibrato_depth_cents     midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+25               22.50%   92.50%   72.50%   15.00%   92.50%    40
+50               25.00%   90.00%   67.50%   15.00%   90.00%    40
+100               7.50%   50.00%   52.50%    5.00%   52.50%    40
+200               0.00%   25.00%   40.00%    2.50%   27.50%    40
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+30                0.00%   43.75%    0.00%    0.00%   43.75%    32
+43               25.00%   84.38%   87.50%    0.00%   84.38%    32
+54                9.38%   71.88%   40.62%    0.00%   71.88%    32
+64               12.50%   65.62%   93.75%    3.12%   68.75%    32
+79               21.88%   56.25%   68.75%   43.75%   59.38%    32
+
+
+LLM USAGE
+==================================================
+  calls                           640
+  prompt tokens                79,520
+  completion tokens             1,994
+  total tokens                 81,514

@@ -1,0 +1,136 @@
+Experiment : pitchbench_d6_sequence_dyad_interval
+Model      : openrouter/~google/gemini-flash-latest
+timestamp  : 2026-05-06T19:38:04.119591
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'openrouter/~google/gemini-flash-latest']
+git_commit : bc0df421bfa6118892df4024a7646aa99b072890
+git_dirty  : True
+model_name : openrouter/~google/gemini-flash-latest
+model_info : {'model': 'openrouter/~google/gemini-flash-latest', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': '~google/gemini-flash-latest'}
+task_type  : interval
+headline_metrics : ['interval']
+primary_filter_set : False
+record_extras : ['duration_ms', 'base_midi', 'interval_st', 'direction', 'separation_ms', 'signed_st']
+sample_n   : 236
+sample_seed : 42
+total_available : 35872
+stratified_by : (signed_st, base_midi)
+
+SUMMARY
+==================================================
+  Sampling     : 236 of 35872 (stratified by '(signed_st, base_midi)', seed=42)
+  Stimuli (total)     : 236
+  Stimuli (condition) : 236  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        INTERVAL       5.1%
+
+== Marginal accuracy ==
+
+duration_ms     interval_correct    n
+──────────────  ───────  ────
+1000              3.42%   117
+5000              6.72%   119
+
+source          interval_correct    n
+──────────────  ───────  ────
+bass              0.00%     8
+cello             0.00%    12
+clarinet         10.00%    10
+electric_keyboard    0.00%    10
+flute             9.09%    22
+guitar           14.29%    14
+oboe              9.09%    11
+organ             0.00%    12
+piano             9.09%    11
+sawtooth          0.00%    11
+sine              0.00%    10
+square            5.88%    17
+synth_lead        0.00%    10
+synth_pad         0.00%    18
+triangle         12.50%    16
+trombone          0.00%     6
+trumpet           6.25%    16
+violin            0.00%    11
+voice             9.09%    11
+
+source_type     interval_correct    n
+──────────────  ───────  ────
+instrument        4.95%   182
+waveform          5.56%    54
+
+interval_st     interval_correct    n
+──────────────  ───────  ────
+1                 0.00%    20
+2                 0.00%    20
+3                 0.00%    20
+4                 0.00%    20
+5                 0.00%    20
+6                 5.00%    20
+7                 0.00%    20
+8                 0.00%    20
+9                 0.00%    19
+10                0.00%    19
+11                0.00%    19
+12               57.89%    19
+
+direction       interval_correct    n
+──────────────  ───────  ────
+ascending         3.45%   116
+descending        6.67%   120
+
+base_midi       interval_correct    n
+──────────────  ───────  ────
+30                4.17%    24
+36                4.17%    24
+43                4.17%    24
+48                4.17%    24
+54                4.17%    24
+60               12.50%    24
+64                0.00%    24
+69                8.33%    24
+79                8.33%    24
+88                0.00%    20
+
+separation_ms   interval_correct    n
+──────────────  ───────  ────
+200               1.59%    63
+500               5.77%    52
+1000              5.36%    56
+2000              7.69%    65
+
+signed_st       interval_correct    n
+──────────────  ───────  ────
+-12              80.00%    10
+-11               0.00%    10
+-10               0.00%    10
+-9                0.00%    10
+-8                0.00%    10
+-7                0.00%    10
+-6                0.00%    10
+-5                0.00%    10
+-4                0.00%    10
+-3                0.00%    10
+-2                0.00%    10
+-1                0.00%    10
+1                 0.00%    10
+2                 0.00%    10
+3                 0.00%    10
+4                 0.00%    10
+5                 0.00%    10
+6                10.00%    10
+7                 0.00%    10
+8                 0.00%    10
+9                 0.00%     9
+10                0.00%     9
+11                0.00%     9
+12               33.33%     9
+
+
+LLM USAGE
+==================================================
+  calls                           236
+  prompt tokens                57,528
+  completion tokens               564
+  total tokens                 58,092
+  cost (USD)                $0.051077

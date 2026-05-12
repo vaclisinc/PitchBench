@@ -1,0 +1,21 @@
+{
+  "group_key": "rhythm",
+  "score_key": "count_correct",
+  "score_label": "Count accuracy (%)",
+  "x_values": [
+    "irregular",
+    "regular"
+  ],
+  "x_labels": [
+    "irregular",
+    "regular"
+  ],
+  "mean_pct": [
+    50.0,
+    52.85714285714286
+  ],
+  "n_samples": [
+    70,
+    70
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "group_key": "n_transitions",
+  "score_key": "sequence_correct",
+  "score_label": "Sequence accuracy (%)",
+  "x_values": [
+    2,
+    3,
+    5,
+    7
+  ],
+  "x_labels": [
+    "2",
+    "3",
+    "5",
+    "7"
+  ],
+  "mean_pct": [
+    26.666666666666668,
+    26.666666666666668,
+    6.666666666666667,
+    2.2222222222222223
+  ],
+  "n_samples": [
+    45,
+    45,
+    45,
+    45
+  ]
+}

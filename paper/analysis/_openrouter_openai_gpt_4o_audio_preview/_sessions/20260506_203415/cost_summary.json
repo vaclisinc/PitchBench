@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-05-06T20:34:15.587538",
+  "experiments": {
+    "pitchbench_a1_single_pitch_id": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 168,
+        "prompt_tokens": 19656,
+        "completion_tokens": 217,
+        "total_tokens": 19873,
+        "cached_tokens": 0,
+        "cost_usd": 0.36631,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a2_single_pitch_by_loudness": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 840,
+        "prompt_tokens": 100800,
+        "completion_tokens": 1354,
+        "total_tokens": 102154,
+        "cached_tokens": 0,
+        "cost_usd": 1.84054,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a3_single_pitch_by_duration": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1008,
+        "prompt_tokens": 202440,
+        "completion_tokens": 2299,
+        "total_tokens": 204739,
+        "cached_tokens": 0,
+        "cost_usd": 5.58799,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_y1_single_pitch_id_mcq": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 504,
+        "prompt_tokens": 62395,
+        "completion_tokens": 1102,
+        "total_tokens": 63497,
+        "cached_tokens": 0,
+        "cost_usd": 1.112007,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b1_single_pitch_within_silence": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 504,
+        "prompt_tokens": 335790,
+        "completion_tokens": 4815,
+        "total_tokens": 340605,
+        "cached_tokens": 0,
+        "cost_usd": 12.227625,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b2_pitch_at_timestamp": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 336,
+        "prompt_tokens": 230496,
+        "completion_tokens": 484,
+        "total_tokens": 230980,
+        "cached_tokens": 0,
+        "cost_usd": 8.14108,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7a_pitch_with_reference": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 624,
+        "prompt_tokens": 103116,
+        "completion_tokens": 12600,
+        "total_tokens": 115716,
+        "cached_tokens": 0,
+        "cost_usd": 2.84079,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7b_pitch_with_reference_split": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 156,
+        "prompt_tokens": 26988,
+        "completion_tokens": 1861,
+        "total_tokens": 28849,
+        "cached_tokens": 0,
+        "cost_usd": 0.67108,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e1_audio_effects": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1008,
+        "prompt_tokens": 120960,
+        "completion_tokens": 1415,
+        "total_tokens": 122375,
+        "cached_tokens": 0,
+        "cost_usd": 2.20655,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e2_background": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1008,
+        "prompt_tokens": 136080,
+        "completion_tokens": 1411,
+        "total_tokens": 137491,
+        "cached_tokens": 0,
+        "cost_usd": 2.24431,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e3_harmonic_saturation": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 504,
+        "prompt_tokens": 60480,
+        "completion_tokens": 718,
+        "total_tokens": 61198,
+        "cached_tokens": 0,
+        "cost_usd": 1.10338,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e4_time_stretching": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1152,
+        "prompt_tokens": 152640,
+        "completion_tokens": 2571,
+        "total_tokens": 155211,
+        "cached_tokens": 0,
+        "cost_usd": 2.02731,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e6_slightly_off": {
+      "openrouter/openai/gpt-4o-audio-preview": {
+        "calls": 1008,
+        "prompt_tokens": 141120,
+        "completion_tokens": 1897,
+        "total_tokens": 143017,
+        "cached_tokens": 0,
+        "cost_usd": 2.26177,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 8820,
+  "total_tokens": 1725705,
+  "total_cost_usd": 42.630742
+}

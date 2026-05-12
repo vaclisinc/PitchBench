@@ -1,0 +1,72 @@
+Experiment : pitchbench_e2_background
+Model      : openrouter/google/gemini-3.1-pro-preview
+timestamp  : 2026-05-06T20:49:31.455874
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'q1', '--models', 'openrouter/google/gemini-3.1-pro-preview']
+git_commit : 43e9f7203cde2d80e437743b298519b656b667e9
+git_dirty  : True
+model_name : openrouter/google/gemini-3.1-pro-preview
+model_info : {'model': 'openrouter/google/gemini-3.1-pro-preview', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': 'google/gemini-3.1-pro-preview'}
+primary_filter_set : False
+record_extras : ['duration_ms', 'background', 'snr_db']
+sample_n   : None
+sample_seed : 42
+total_available : 252
+stratified_by : background
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 252)
+  Stimuli (total)     : 252
+  Stimuli (condition) : 252  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       2.8%
+     SPN       1.6%
+  DOREMI      12.7%
+      HZ       0.8%
+     ANY       5.2%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             2.38%    2.38%   14.29%    2.38%    7.14%    42
+flute             2.38%    2.38%   11.90%    0.00%    4.76%    42
+piano             4.76%    2.38%   11.90%    0.00%    7.14%    42
+sine              2.38%    2.38%   11.90%    0.00%    4.76%    42
+synth_lead        4.76%    0.00%   11.90%    0.00%    4.76%    42
+voice             0.00%    0.00%   14.29%    2.38%    2.38%    42
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        2.86%    1.43%   12.86%    0.95%    5.24%   210
+waveform          2.38%    2.38%   11.90%    0.00%    4.76%    42
+
+background         midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+church-bells      4.76%    2.38%   11.90%    0.00%    7.14%    42
+crowd-noise       0.00%    4.76%   14.29%    0.00%    4.76%    42
+oscillating-high-and-low-pitches    0.00%    0.00%    9.52%    0.00%    0.00%    42
+rain              2.38%    2.38%   11.90%    0.00%    4.76%    42
+street-noise      9.52%    0.00%   14.29%    4.76%   14.29%    42
+white_noise       0.00%    0.00%   14.29%    0.00%    0.00%    42
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    2.78%    2.78%    36
+38                0.00%    0.00%    0.00%    0.00%    0.00%    36
+47                0.00%    0.00%    0.00%    0.00%    0.00%    36
+56                0.00%    0.00%   86.11%    0.00%    0.00%    36
+65                5.56%    5.56%    2.78%    2.78%   13.89%    36
+74                5.56%    2.78%    0.00%    0.00%    8.33%    36
+83                8.33%    2.78%    0.00%    0.00%   11.11%    36
+
+
+LLM USAGE
+==================================================
+  calls                         1,008
+  prompt tokens               201,873
+  completion tokens           123,367
+  total tokens                325,240
+  cost (USD)                $1.884150

@@ -1,0 +1,338 @@
+{
+  "timestamp": "2026-05-06T20:19:01.503763",
+  "experiments": {
+    "pitchbench_a1_single_pitch_id": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 4636,
+        "prompt_tokens": 847368,
+        "completion_tokens": 10778,
+        "total_tokens": 858146,
+        "cached_tokens": 0,
+        "cost_usd": 0.745768,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a2_single_pitch_by_loudness": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 800,
+        "prompt_tokens": 148642,
+        "completion_tokens": 1929,
+        "total_tokens": 150571,
+        "cached_tokens": 0,
+        "cost_usd": 0.130108,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_a3_single_pitch_by_duration": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 840,
+        "prompt_tokens": 291109,
+        "completion_tokens": 2019,
+        "total_tokens": 293128,
+        "cached_tokens": 0,
+        "cost_usd": 0.272931,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b1_single_pitch_within_silence": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 640,
+        "prompt_tokens": 997805,
+        "completion_tokens": 1627,
+        "total_tokens": 999432,
+        "cached_tokens": 0,
+        "cost_usd": 0.983783,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b2_pitch_at_timestamp": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 600,
+        "prompt_tokens": 947186,
+        "completion_tokens": 2398,
+        "total_tokens": 949584,
+        "cached_tokens": 0,
+        "cost_usd": 0.930787,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b3_timestamp_single_pitch": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 160,
+        "prompt_tokens": 252343,
+        "completion_tokens": 2858,
+        "total_tokens": 255201,
+        "cached_tokens": 0,
+        "cost_usd": 0.254745,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b4_timestamp_specific_pitch": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 120,
+        "prompt_tokens": 189741,
+        "completion_tokens": 2124,
+        "total_tokens": 191865,
+        "cached_tokens": 0,
+        "cost_usd": 0.191243,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_b5_timestamp_multiple_pitches": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 120,
+        "prompt_tokens": 191641,
+        "completion_tokens": 13304,
+        "total_tokens": 204945,
+        "cached_tokens": 0,
+        "cost_usd": 0.225732,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c1_chord_count_pitches": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 228,
+        "prompt_tokens": 24397,
+        "completion_tokens": 234,
+        "total_tokens": 24631,
+        "cached_tokens": 0,
+        "cost_usd": 0.02145,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c2_chord_dyad_interval": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 232,
+        "prompt_tokens": 23796,
+        "completion_tokens": 373,
+        "total_tokens": 24169,
+        "cached_tokens": 0,
+        "cost_usd": 0.021667,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c3_chord_quality": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 192,
+        "prompt_tokens": 25453,
+        "completion_tokens": 377,
+        "total_tokens": 25830,
+        "cached_tokens": 0,
+        "cost_usd": 0.021207,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_c4_chord_pitches": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 800,
+        "prompt_tokens": 149739,
+        "completion_tokens": 33805,
+        "total_tokens": 183544,
+        "cached_tokens": 0,
+        "cost_usd": 0.226284,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7a_pitch_with_reference": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 520,
+        "prompt_tokens": 163493,
+        "completion_tokens": 1587,
+        "total_tokens": 165080,
+        "cached_tokens": 0,
+        "cost_usd": 0.154887,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d7b_pitch_with_reference_split": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 520,
+        "prompt_tokens": 167583,
+        "completion_tokens": 1537,
+        "total_tokens": 169120,
+        "cached_tokens": 0,
+        "cost_usd": 0.153402,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d1_sequence_count_pitches": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 140,
+        "prompt_tokens": 59460,
+        "completion_tokens": 167,
+        "total_tokens": 59627,
+        "cached_tokens": 0,
+        "cost_usd": 0.056811,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d2_dyad_lower_higher_difference": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 132,
+        "prompt_tokens": 27818,
+        "completion_tokens": 132,
+        "total_tokens": 27950,
+        "cached_tokens": 0,
+        "cost_usd": 0.025837,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d3_contour_discrete": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 180,
+        "prompt_tokens": 27619,
+        "completion_tokens": 15005,
+        "total_tokens": 42624,
+        "cached_tokens": 0,
+        "cost_usd": 0.067142,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d4_contour_continuous": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 160,
+        "prompt_tokens": 40161,
+        "completion_tokens": 19840,
+        "total_tokens": 60001,
+        "cached_tokens": 0,
+        "cost_usd": 0.089601,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d5_sequence_ranking_by_pitch": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 120,
+        "prompt_tokens": 51447,
+        "completion_tokens": 1033,
+        "total_tokens": 52480,
+        "cached_tokens": 0,
+        "cost_usd": 0.050317,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d6_sequence_dyad_interval": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 236,
+        "prompt_tokens": 57528,
+        "completion_tokens": 564,
+        "total_tokens": 58092,
+        "cached_tokens": 0,
+        "cost_usd": 0.051077,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d8_sequence_pitches": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 684,
+        "prompt_tokens": 591956,
+        "completion_tokens": 12523,
+        "total_tokens": 604479,
+        "cached_tokens": 0,
+        "cost_usd": 0.600877,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e1_audio_effects": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 960,
+        "prompt_tokens": 178252,
+        "completion_tokens": 2365,
+        "total_tokens": 180617,
+        "cached_tokens": 0,
+        "cost_usd": 0.156221,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e2_background": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 960,
+        "prompt_tokens": 192697,
+        "completion_tokens": 2266,
+        "total_tokens": 194963,
+        "cached_tokens": 0,
+        "cost_usd": 0.163146,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e3_harmonic_saturation": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 480,
+        "prompt_tokens": 89162,
+        "completion_tokens": 1250,
+        "total_tokens": 90412,
+        "cached_tokens": 0,
+        "cost_usd": 0.078331,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e4_time_stretching": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 768,
+        "prompt_tokens": 138083,
+        "completion_tokens": 2208,
+        "total_tokens": 140291,
+        "cached_tokens": 0,
+        "cost_usd": 0.111761,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e5_vibrato": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 640,
+        "prompt_tokens": 128525,
+        "completion_tokens": 1526,
+        "total_tokens": 130051,
+        "cached_tokens": 0,
+        "cost_usd": 0.10884,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_e6_slightly_off": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 640,
+        "prompt_tokens": 101168,
+        "completion_tokens": 1511,
+        "total_tokens": 102679,
+        "cached_tokens": 0,
+        "cost_usd": 0.079517,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_f1_melodic_line_atonal": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 520,
+        "prompt_tokens": 173386,
+        "completion_tokens": 16002,
+        "total_tokens": 189388,
+        "cached_tokens": 0,
+        "cost_usd": 0.183449,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_f2_melodic_line_tonal": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 640,
+        "prompt_tokens": 395698,
+        "completion_tokens": 39479,
+        "total_tokens": 435177,
+        "cached_tokens": 0,
+        "cost_usd": 0.474334,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_y1_single_pitch_id_mcq": {
+      "openrouter/~google/gemini-flash-latest": {
+        "calls": 4636,
+        "prompt_tokens": 901429,
+        "completion_tokens": 14951,
+        "total_tokens": 916380,
+        "cached_tokens": 0,
+        "cost_usd": 0.785317,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 22304,
+  "total_tokens": 7780457,
+  "total_cost_usd": 7.416572
+}

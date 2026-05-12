@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-05-07T03:29:49.289580",
+  "experiments": {
+    "pitchbench_a1_single_pitch_id": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 168,
+        "prompt_tokens": 17682,
+        "completion_tokens": 536,
+        "total_tokens": 18218,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_a2_single_pitch_by_loudness": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 840,
+        "prompt_tokens": 90930,
+        "completion_tokens": 2631,
+        "total_tokens": 93561,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_a3_single_pitch_by_duration": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 840,
+        "prompt_tokens": 153090,
+        "completion_tokens": 2660,
+        "total_tokens": 155750,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_y1_single_pitch_id_mcq": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 504,
+        "prompt_tokens": 59408,
+        "completion_tokens": 1938,
+        "total_tokens": 61346,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_b1_single_pitch_within_silence": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 504,
+        "prompt_tokens": 247086,
+        "completion_tokens": 1571,
+        "total_tokens": 248657,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_b2_pitch_at_timestamp": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 336,
+        "prompt_tokens": 171780,
+        "completion_tokens": 1046,
+        "total_tokens": 172826,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_d7a_pitch_with_reference": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 624,
+        "prompt_tokens": 83460,
+        "completion_tokens": 2371,
+        "total_tokens": 85831,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_d7b_pitch_with_reference_split": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 156,
+        "prompt_tokens": 22776,
+        "completion_tokens": 468,
+        "total_tokens": 23244,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_e1_audio_effects": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 1008,
+        "prompt_tokens": 109116,
+        "completion_tokens": 3147,
+        "total_tokens": 112263,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_e2_background": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 1008,
+        "prompt_tokens": 124236,
+        "completion_tokens": 3082,
+        "total_tokens": 127318,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_e3_harmonic_saturation": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 504,
+        "prompt_tokens": 54558,
+        "completion_tokens": 1550,
+        "total_tokens": 56108,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_e4_time_stretching": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 1152,
+        "prompt_tokens": 141408,
+        "completion_tokens": 3565,
+        "total_tokens": 144973,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    },
+    "pitchbench_e6_slightly_off": {
+      "dashscope/qwen3.5-omni-plus": {
+        "calls": 1008,
+        "prompt_tokens": 129276,
+        "completion_tokens": 3241,
+        "total_tokens": 132517,
+        "cached_tokens": 0,
+        "cost_usd": 0.0,
+        "cost_reported": false
+      }
+    }
+  },
+  "total_calls": 8652,
+  "total_tokens": 1432612,
+  "total_cost_usd": null
+}

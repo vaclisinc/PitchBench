@@ -1,0 +1,21 @@
+{
+  "group_key": "duration_ms",
+  "score_key": "iou",
+  "score_label": "IoU (%)",
+  "x_values": [
+    1000,
+    5000
+  ],
+  "x_labels": [
+    "1000",
+    "5000"
+  ],
+  "mean_pct": [
+    4.1785,
+    1.3783333333333334
+  ],
+  "n_samples": [
+    60,
+    60
+  ]
+}

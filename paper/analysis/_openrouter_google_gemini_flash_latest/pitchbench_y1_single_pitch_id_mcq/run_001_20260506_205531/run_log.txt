@@ -1,0 +1,165 @@
+
+  Model : openrouter/~google/gemini-flash-latest
+    [dispatch] 126 items, max_workers=20
+    [   1/126]   B5 sine  | midi: gt=83 pred=71 ❌  | spn: gt=B5 pred=G5 ❌  | doremi: gt=si pred=re# ❌  | hz: gt=987.7666 pred=987.77 ✅
+    [   2/126]   B5 sine  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=C#6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1396.91 ❌
+    [   3/126]   F1 sine  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=F1 ✅  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=43.65 ✅
+    [   4/126]   B2 sine  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=G3 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=196.0 ❌
+    [   5/126]   D5 sine  | midi: gt=74 pred=62 ❌  | spn: gt=D5 pred=G#4 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=587.3295 pred=415.3 ❌
+    [   6/126]   F4 sine  | midi: gt=65 pred=47 ❌  | spn: gt=F4 pred=B3 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=349.2282 pred=174.61 ❌
+    [   7/126]   F1 sine  | midi: gt=29 pred=27 ❌  | spn: gt=F1 pred=C#1 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=30.87 ❌
+    [   8/126]  G#3 sine  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G#2 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=130.81 ❌
+    [   9/126]   D5 sine  | midi: gt=74 pred=72 ❌  | spn: gt=D5 pred=A#4 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=466.16 ❌
+    [  10/126]   D2 sine  | midi: gt=38 pred=42 ❌  | spn: gt=D2 pred=F#2 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=73.4162 pred=82.41 ❌
+    [  11/126]  G#3 sine  | midi: gt=56 pred=50 ❌  | spn: gt=G#3 pred=G#2 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=146.83 ❌
+    [  12/126]   D2 sine  | midi: gt=38 pred=50 ❌  | spn: gt=D2 pred=D3 ❌  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=146.83 ❌
+    [  13/126]   F4 sine  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  14/126]   B2 sine  | midi: gt=47 pred=43 ❌  | spn: gt=B2 pred=A2 ❌  | doremi: gt=si pred=la ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [  15/126]   D5 sine  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=A#4 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=466.16 ❌
+    [  16/126]   F4 sine  | midi: gt=65 pred=67 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  17/126]  G#3 sine  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=A#3 ❌  | doremi: gt=sol# pred=la# ❌  | hz: gt=207.6523 pred=233.08 ❌
+    [  18/126]   B2 sine  | midi: gt=47 pred=41 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=174.61 ❌
+    [  19/126]   F1 sine  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=174.61 ❌
+    [  20/126]   D2 sine  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=A#1 ❌  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=146.83 ❌
+    [  21/126]   B5 sine  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=fa ❌  | hz: gt=987.7666 pred=987.77 ✅
+    [  22/126]   D5 synth_lead  | midi: gt=74 pred=72 ❌  | spn: gt=D5 pred=G#5 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=523.25 ❌
+    [  23/126]   F4 synth_lead  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  24/126]   F1 synth_lead  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=A2 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=43.6535 pred=110.0 ❌
+    [  25/126]  G#3 synth_lead  | midi: gt=56 pred=52 ❌  | spn: gt=G#3 pred=A#3 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=164.81 ❌
+    [  26/126]   D5 synth_lead  | midi: gt=74 pred=82 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=1174.66 ❌
+    [  27/126]   D2 synth_lead  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D1 ❌  | doremi: gt=re pred=re# ❌  | hz: gt=73.4162 pred=73.42 ✅
+    [  28/126]   F4 synth_lead  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=349.23 ✅
+    [  29/126]   B2 synth_lead  | midi: gt=47 pred=43 ❌  | spn: gt=B2 pred=C#3 ❌  | doremi: gt=si pred=la ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [  30/126]  G#3 synth_lead  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G#4 ❌  | doremi: gt=sol# pred=do# ❌  | hz: gt=207.6523 pred=415.3 ❌
+    [  31/126]   F1 synth_lead  | midi: gt=29 pred=33 ❌  | spn: gt=F1 pred=G1 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=43.6535 pred=49.0 ❌
+    [  32/126]   B2 synth_lead  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=D#3 ❌  | doremi: gt=si pred=re# ❌  | hz: gt=123.4708 pred=246.94 ❌
+    [  33/126]   B2 synth_lead  | midi: gt=47 pred=41 ❌  | spn: gt=B2 pred=B1 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=123.47 ✅
+    [  34/126]   F1 synth_lead  | midi: gt=29 pred=23 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=30.87 ❌
+    [  35/126]   B5 synth_lead  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=G6 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1567.98 ❌
+    [  36/126]   D2 synth_lead  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=73.4162 pred=146.83 ❌
+    [  37/126]   F4 synth_lead  | midi: gt=65 pred=71 ❌  | spn: gt=F4 pred=B4 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=349.2282 pred=698.46 ❌
+    [  38/126]   B5 synth_lead  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=D#6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1396.91 ❌
+    [  39/126]  G#3 synth_lead  | midi: gt=56 pred=62 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=re ❌  | hz: gt=207.6523 pred=293.66 ❌
+    [  40/126]   D2 synth_lead  | midi: gt=38 pred=40 ❌  | spn: gt=D2 pred=E2 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=73.4162 pred=82.41 ❌
+    [  41/126]   D5 cello  | midi: gt=74 pred=76 ❌  | spn: gt=D5 pred=A#5 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=587.33 ✅
+    [  42/126]   B5 synth_lead  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B7 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1975.53 ❌
+    [  43/126]   D5 synth_lead  | midi: gt=74 pred=86 ❌  | spn: gt=D5 pred=G#5 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=830.61 ❌
+    [  44/126]   B2 cello  | midi: gt=47 pred=43 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=la ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [  45/126]   D2 cello  | midi: gt=38 pred=40 ❌  | spn: gt=D2 pred=E2 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=82.41 ❌
+    [  46/126]  G#3 cello  | midi: gt=56 pred=52 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=164.81 ❌
+    [  47/126]   B5 cello  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=G6 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1567.98 ❌
+    [  48/126]   D5 cello  | midi: gt=74 pred=62 ❌  | spn: gt=D5 pred=A#4 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=466.16 ❌
+    [  49/126]   F1 cello  | midi: gt=29 pred=33 ❌  | spn: gt=F1 pred=D#1 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=49.0 ❌
+    [  50/126]   B2 cello  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=B3 ❌  | doremi: gt=si pred=re# ❌  | hz: gt=123.4708 pred=123.47 ✅
+    [  51/126]   F1 cello  | midi: gt=29 pred=29 ✅  | spn: gt=F1 pred=A0 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=43.6535 pred=27.5 ❌
+    [  52/126]   D2 cello  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=A#1 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=73.4162 pred=92.5 ❌
+    [  53/126]  G#3 cello  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=415.3 ❌
+    [  54/126]   F4 cello  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  55/126]   F4 cello  | midi: gt=65 pred=67 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=re# ❌  | hz: gt=349.2282 pred=311.13 ❌
+    [  56/126]   D2 cello  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=G#0 ❌  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=36.71 ❌
+    [  57/126]   B5 cello  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=C#6 ❌  | doremi: gt=si pred=la ❌  | hz: gt=987.7666 pred=880.0 ❌
+    [  58/126]  G#3 cello  | midi: gt=56 pred=62 ❌  | spn: gt=G#3 pred=D4 ❌  | doremi: gt=sol# pred=re ❌  | hz: gt=207.6523 pred=293.66 ❌
+    [  59/126]   F1 cello  | midi: gt=29 pred=23 ❌  | spn: gt=F1 pred=B0 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=30.87 ❌
+    [  60/126]   B2 cello  | midi: gt=47 pred=41 ❌  | spn: gt=B2 pred=B1 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=174.61 ❌
+    [  61/126]   D5 cello  | midi: gt=74 pred=62 ❌  | spn: gt=D5 pred=G#3 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=293.66 ❌
+    [  62/126]   F1 flute  | midi: gt=29 pred=33 ❌  | spn: gt=F1 pred=A1 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=43.65 ✅
+    [  63/126]   F4 flute  | midi: gt=65 pred=61 ❌  | spn: gt=F4 pred=F3 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=220.0 ❌
+    [  64/126]   B2 flute  | midi: gt=47 pred=53 ❌  | spn: gt=B2 pred=C#3 ❌  | doremi: gt=si pred=re# ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [  65/126]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=G#5 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=587.3295 pred=523.25 ❌
+    [  66/126]   D2 flute  | midi: gt=38 pred=36 ❌  | spn: gt=D2 pred=C2 ❌  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=82.41 ❌
+    [  67/126]   F1 flute  | midi: gt=29 pred=25 ❌  | spn: gt=F1 pred=A0 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=43.6535 pred=27.5 ❌
+    [  68/126]   B5 cello  | midi: gt=83 pred=77 ❌  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=fa ❌  | hz: gt=987.7666 pred=698.46 ❌
+    [  69/126]   B5 flute  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=G6 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1567.98 ❌
+    [  70/126]  G#3 flute  | midi: gt=56 pred=58 ❌  | spn: gt=G#3 pred=A#3 ❌  | doremi: gt=sol# pred=la# ❌  | hz: gt=207.6523 pred=233.08 ❌
+    [  71/126]   F4 cello  | midi: gt=65 pred=71 ❌  | spn: gt=F4 pred=B4 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=493.88 ❌
+    [  72/126]   B5 flute  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=C#6 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1396.91 ❌
+    [  73/126]  G#3 flute  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=415.3 ❌
+    [  74/126]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=F#1 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=73.42 ✅
+    [  75/126]   B2 flute  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=G2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=77.78 ❌
+    [  76/126]   D5 flute  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=1174.66 ❌
+    [  77/126]   B2 flute  | midi: gt=47 pred=41 ❌  | spn: gt=B2 pred=B0 ❌  | doremi: gt=si pred=fa ❌  | hz: gt=123.4708 pred=30.87 ❌
+    [  78/126]   F1 flute  | midi: gt=29 pred=23 ❌  | spn: gt=F1 pred=B0 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=30.87 ❌
+    [  79/126]   F4 flute  | midi: gt=65 pred=67 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  80/126]  G#3 flute  | midi: gt=56 pred=62 ❌  | spn: gt=G#3 pred=G#4 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=293.66 ❌
+    [  81/126]   F4 flute  | midi: gt=65 pred=71 ❌  | spn: gt=F4 pred=B4 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=698.46 ❌
+    [  82/126]   D5 flute  | midi: gt=74 pred=80 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=1174.66 ❌
+    [  83/126]   F1 piano  | midi: gt=29 pred=21 ❌  | spn: gt=F1 pred=C#1 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=43.6535 pred=27.5 ❌
+    [  84/126]   B2 piano  | midi: gt=47 pred=43 ❌  | spn: gt=B2 pred=B2 ✅  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=110.0 ❌
+    [  85/126]   B2 piano  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=B3 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=246.94 ❌
+    [  86/126]   F1 piano  | midi: gt=29 pred=27 ❌  | spn: gt=F1 pred=A0 ❌  | doremi: gt=fa pred=do# ❌  | hz: gt=43.6535 pred=30.87 ❌
+    [  87/126]   D5 piano  | midi: gt=74 pred=72 ❌  | spn: gt=D5 pred=A#4 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=466.16 ❌
+    [  88/126]   D2 piano  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re# ❌  | hz: gt=73.4162 pred=146.83 ❌
+    [  89/126]  G#3 piano  | midi: gt=56 pred=52 ❌  | spn: gt=G#3 pred=G#3 ✅  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=130.81 ❌
+    [  90/126]   B5 piano  | midi: gt=83 pred=79 ❌  | spn: gt=B5 pred=G6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1567.98 ❌
+    [  91/126]   B5 flute  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B7 ❌  | doremi: gt=si pred=fa ❌  | hz: gt=987.7666 pred=987.77 ✅
+    [  92/126]  G#3 piano  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=261.63 ❌
+    [  93/126]   B5 piano  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=sol# ❌  | hz: gt=987.7666 pred=1396.91 ❌
+    [  94/126]   F4 piano  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  95/126]   F4 piano  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [  96/126]   F1 piano  | midi: gt=29 pred=23 ❌  | spn: gt=F1 pred=None ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=30.87 ❌
+    [  97/126]   D2 piano  | midi: gt=38 pred=40 ❌  | spn: gt=D2 pred=C2 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=73.4162 pred=82.41 ❌
+    [  98/126]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=932.33 ❌
+    [  99/126]   D2 flute  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=73.42 ✅
+    [ 100/126]   B2 piano  | midi: gt=47 pred=65 ❌  | spn: gt=B2 pred=B3 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=246.94 ❌
+    [ 101/126]   D2 piano  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=146.83 ❌
+    [ 102/126]  G#3 piano  | midi: gt=56 pred=50 ❌  | spn: gt=G#3 pred=G#2 ❌  | doremi: gt=sol# pred=re ❌  | hz: gt=207.6523 pred=146.83 ❌
+    [ 103/126]   F4 piano  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=B3 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.23 ✅
+    [ 104/126]   F1 voice  | midi: gt=29 pred=27 ❌  | spn: gt=F1 pred=B0 ❌  | doremi: gt=fa pred=re# ❌  | hz: gt=43.6535 pred=30.87 ❌
+    [ 105/126]   B2 voice  | midi: gt=47 pred=45 ❌  | spn: gt=B2 pred=C#3 ❌  | doremi: gt=si pred=do# ❌  | hz: gt=123.4708 pred=110.0 ❌
+    [ 106/126]   D5 piano  | midi: gt=74 pred=74 ✅  | spn: gt=D5 pred=G#4 ❌  | doremi: gt=re pred=re ✅  | hz: gt=587.3295 pred=587.33 ✅
+    [ 107/126]   B5 piano  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=fa ❌  | hz: gt=987.7666 pred=1396.91 ❌
+    [ 108/126]   F4 voice  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=349.23 ✅
+    [ 109/126]  G#3 voice  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G#2 ❌  | doremi: gt=sol# pred=do ❌  | hz: gt=207.6523 pred=130.81 ❌
+    [ 110/126]   B2 voice  | midi: gt=47 pred=55 ❌  | spn: gt=B2 pred=B3 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=123.4708 pred=246.94 ❌
+    [ 111/126]   D2 voice  | midi: gt=38 pred=40 ❌  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=73.4162 pred=82.41 ❌
+    [ 112/126]   D5 voice  | midi: gt=74 pred=82 ❌  | spn: gt=D5 pred=G#5 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=587.33 ✅
+    [ 113/126]   D5 voice  | midi: gt=74 pred=82 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=la# ❌  | hz: gt=587.3295 pred=1174.66 ❌
+    [ 114/126]  G#3 voice  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=la# ❌  | hz: gt=207.6523 pred=261.63 ❌
+    [ 115/126]   F4 voice  | midi: gt=65 pred=69 ❌  | spn: gt=F4 pred=A4 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [ 116/126]   B5 voice  | midi: gt=83 pred=81 ❌  | spn: gt=B5 pred=A5 ❌  | doremi: gt=si pred=la ❌  | hz: gt=987.7666 pred=880.0 ❌
+    [ 117/126]   F1 voice  | midi: gt=29 pred=21 ❌  | spn: gt=F1 pred=C#1 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=43.6535 pred=27.5 ❌
+    [ 118/126]   F1 voice  | midi: gt=29 pred=41 ❌  | spn: gt=F1 pred=B1 ❌  | doremi: gt=fa pred=si ❌  | hz: gt=43.6535 pred=123.47 ❌
+    [ 119/126]   B5 voice  | midi: gt=83 pred=71 ❌  | spn: gt=B5 pred=G5 ❌  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=392.0 ❌
+    [ 120/126]   D2 voice  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D2 ✅  | doremi: gt=re pred=la# ❌  | hz: gt=73.4162 pred=92.5 ❌
+    [ 121/126]   D2 voice  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=D1 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=73.4162 pred=73.42 ✅
+    [ 122/126]   B2 voice  | midi: gt=47 pred=53 ❌  | spn: gt=B2 pred=B3 ❌  | doremi: gt=si pred=si ✅  | hz: gt=123.4708 pred=246.94 ❌
+    [ 123/126]   D5 voice  | midi: gt=74 pred=80 ❌  | spn: gt=D5 pred=G#5 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=587.3295 pred=830.61 ❌
+    [ 124/126]  G#3 voice  | midi: gt=56 pred=44 ❌  | spn: gt=G#3 pred=G#2 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=103.83 ❌
+    [ 125/126]   B5 voice  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B5 ✅  | doremi: gt=si pred=si ✅  | hz: gt=987.7666 pred=1975.53 ❌
+    [ 126/126]   F4 voice  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=B3 ❌  | doremi: gt=fa pred=fa ✅  | hz: gt=349.2282 pred=349.23 ✅
+
+============================================================
+SUMMARY — openrouter/~google/gemini-flash-latest
+  Sampling     : none (full set of 126)
+  Stimuli (total)     : 126
+  Stimuli (condition) : 126  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      25.4%
+     SPN      12.7%
+  DOREMI      37.3%
+      HZ      14.3%
+     ANY      38.1%
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           504
+  prompt tokens                97,869
+  completion tokens             1,591
+  total tokens                 99,460
+  cost (USD)                $0.085207
+
+Results saved → /home/hsnu2/PitchBench/results/analysis/run_20260506_205205/pitchbench_y1_single_pitch_id_mcq/run_001_20260506_205531/results_openrouter_google_gemini_flash_latest.*
+
+############################################################
+# pitchbench_b1_single_pitch_within_silence
+############################################################
+
+Experiment : pitchbench_b1_single_pitch_within_silence
+Models     : openrouter/~google/gemini-flash-latest
+Stimuli    : 126
+  Sampling     : none (full set of 126)

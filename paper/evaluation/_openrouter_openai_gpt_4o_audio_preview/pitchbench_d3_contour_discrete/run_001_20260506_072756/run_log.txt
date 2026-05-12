@@ -1,0 +1,215 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 180 items, max_workers=20
+    [   1/180] nT=2 step=1st dur= 250ms voice  sequence=None ❌
+    [   2/180] nT=2 step=11st dur=1000ms organ  sequence=None ❌
+    [   3/180] nT=2 step=2st dur=1000ms electric_keyboard  sequence=None ❌
+    [   4/180] nT=2 step=11st dur= 250ms square  sequence=None ❌
+    [   5/180] nT=2 step=1st dur= 250ms guitar  sequence=None ❌
+    [   6/180] nT=2 step=11st dur=1000ms voice  sequence=None ❌
+    [   7/180] nT=2 step=1st dur= 250ms flute  sequence=None ❌
+    [   8/180] nT=2 step=11st dur= 500ms sine  sequence=None ❌
+    [   9/180] nT=2 step=11st dur= 500ms square  sequence=None ❌
+    [  10/180] nT=2 step=1st dur= 500ms voice  sequence=None ❌
+    [  11/180] nT=2 step=2st dur=1000ms electric_keyboard  sequence=None ❌
+    [  12/180] nT=2 step=11st dur=1000ms square  sequence=None ❌
+    [  13/180] nT=2 step=1st dur=1000ms sine  sequence=None ❌
+    [  14/180] nT=2 step=1st dur= 500ms electric_keyboard  sequence=None ❌
+    [  15/180] nT=2 step=1st dur=1000ms square  sequence=None ❌
+    [  16/180] nT=2 step=11st dur= 500ms sine  sequence=None ❌
+    [  17/180] nT=2 step=11st dur= 250ms oboe  sequence=None ❌
+    [  18/180] nT=2 step=2st dur= 250ms bass  sequence=None ❌
+    [  19/180] nT=2 step=2st dur= 250ms organ  sequence=None ❌
+    [  20/180] nT=2 step=2st dur= 500ms electric_keyboard  sequence=None ❌
+    [  21/180] nT=2 step=2st dur= 500ms synth_lead  sequence=None ❌
+    [  22/180] nT=2 step=2st dur= 500ms voice  sequence=None ❌
+    [  23/180] nT=2 step=2st dur=1000ms violin  sequence=None ❌
+    [  24/180] nT=2 step=4st dur=1000ms synth_pad  sequence=None ❌
+    [  25/180] nT=2 step=4st dur=1000ms cello  sequence=None ❌
+    [  26/180] nT=2 step=4st dur=1000ms clarinet  sequence=None ❌
+    [  27/180] nT=2 step=1st dur= 500ms triangle  sequence=None ❌
+    [  28/180] nT=2 step=4st dur= 250ms electric_keyboard  sequence=None ❌
+    [  29/180] nT=2 step=2st dur= 250ms sine  sequence=None ❌
+    [  30/180] nT=2 step=4st dur= 250ms bass  sequence=None ❌
+    [  31/180] nT=2 step=7st dur=1000ms synth_pad  sequence=None ❌
+    [  32/180] nT=2 step=4st dur= 500ms sine  sequence=None ❌
+    [  33/180] nT=2 step=4st dur= 250ms oboe  sequence=None ❌
+    [  34/180] nT=2 step=4st dur= 500ms piano  sequence=None ❌
+    [  35/180] nT=2 step=7st dur=1000ms trumpet  sequence=None ❌
+    [  36/180] nT=2 step=7st dur= 250ms flute  sequence=None ❌
+    [  37/180] nT=2 step=4st dur= 500ms flute  sequence=None ❌
+    [  38/180] nT=2 step=7st dur=1000ms clarinet  sequence=None ❌
+    [  39/180] nT=2 step=7st dur= 500ms trumpet  sequence=None ❌
+    [  40/180] nT=2 step=7st dur= 500ms square  sequence=None ❌
+    [  41/180] nT=3 step=1st dur=1000ms trombone  sequence=None ❌
+    [  42/180] nT=2 step=11st dur= 250ms bass  sequence=None ❌
+    [  43/180] nT=3 step=1st dur=1000ms trombone  sequence=None ❌
+    [  44/180] nT=3 step=1st dur= 250ms trumpet  sequence=None ❌
+    [  45/180] nT=3 step=1st dur=1000ms square  sequence=None ❌
+    [  46/180] nT=3 step=1st dur= 250ms bass  sequence=None ❌
+    [  47/180] nT=2 step=7st dur= 250ms electric_keyboard  sequence=None ❌
+    [  48/180] nT=3 step=1st dur= 250ms guitar  sequence=None ❌
+    [  49/180] nT=2 step=7st dur= 250ms triangle  sequence=None ❌
+    [  50/180] nT=3 step=1st dur= 500ms voice  sequence=None ❌
+    [  51/180] nT=3 step=11st dur= 250ms square  sequence=None ❌
+    [  52/180] nT=3 step=1st dur= 500ms oboe  sequence=None ❌
+    [  53/180] nT=3 step=11st dur= 250ms trumpet  sequence=None ❌
+    [  54/180] nT=3 step=11st dur=1000ms bass  sequence=None ❌
+    [  55/180] nT=3 step=11st dur= 250ms bass  sequence=None ❌
+    [  56/180] nT=3 step=11st dur= 500ms clarinet  sequence=None ❌
+    [  57/180] nT=3 step=1st dur= 500ms sawtooth  sequence=None ❌
+    [  58/180] nT=3 step=11st dur=1000ms clarinet  sequence=None ❌
+    [  59/180] nT=3 step=11st dur=1000ms triangle  sequence=None ❌
+    [  60/180] nT=2 step=7st dur= 500ms square  sequence=None ❌
+    [  61/180] nT=3 step=11st dur= 500ms synth_pad  sequence=None ❌
+    [  62/180] nT=3 step=11st dur= 500ms synth_pad  sequence=None ❌
+    [  63/180] nT=3 step=2st dur=1000ms piano  sequence=None ❌
+    [  64/180] nT=3 step=2st dur=1000ms organ  sequence=None ❌
+    [  65/180] nT=3 step=2st dur= 250ms sawtooth  sequence=None ❌
+    [  66/180] nT=3 step=2st dur=1000ms voice  sequence=None ❌
+    [  67/180] nT=3 step=2st dur= 250ms sawtooth  sequence=None ❌
+    [  68/180] nT=3 step=2st dur= 250ms synth_lead  sequence=None ❌
+    [  69/180] nT=3 step=2st dur= 500ms flute  sequence=None ❌
+    [  70/180] nT=3 step=2st dur= 500ms electric_keyboard  sequence=None ❌
+    [  71/180] nT=3 step=4st dur= 250ms flute  sequence=None ❌
+    [  72/180] nT=3 step=4st dur=1000ms electric_keyboard  sequence=None ❌
+    [  73/180] nT=2 step=1st dur=1000ms synth_lead  sequence=None ❌
+    [  74/180] nT=3 step=4st dur= 250ms synth_lead  sequence=None ❌
+    [  75/180] nT=3 step=4st dur= 500ms trombone  sequence=None ❌
+    [  76/180] nT=3 step=7st dur=1000ms electric_keyboard  sequence=None ❌
+    [  77/180] nT=3 step=4st dur=1000ms trombone  sequence=None ❌
+    [  78/180] nT=3 step=2st dur= 500ms square  sequence=None ❌
+    [  79/180] nT=3 step=4st dur= 250ms oboe  sequence=None ❌
+    [  80/180] nT=3 step=7st dur=1000ms synth_pad  sequence=None ❌
+    [  81/180] nT=3 step=4st dur= 500ms trombone  sequence=None ❌
+    [  82/180] nT=3 step=7st dur= 250ms synth_pad  sequence=None ❌
+    [  83/180] nT=3 step=7st dur=1000ms trombone  sequence=None ❌
+    [  84/180] nT=3 step=7st dur= 500ms synth_lead  sequence=None ❌
+    [  85/180] nT=3 step=7st dur= 250ms guitar  sequence=None ❌
+    [  86/180] nT=3 step=7st dur= 250ms voice  sequence=None ❌
+    [  87/180] nT=3 step=4st dur= 500ms piano  sequence=None ❌
+    [  88/180] nT=3 step=4st dur=1000ms square  sequence=None ❌
+    [  89/180] nT=3 step=7st dur= 500ms sawtooth  sequence=None ❌
+    [  90/180] nT=5 step=1st dur=1000ms piano  sequence=None ❌
+    [  91/180] nT=3 step=7st dur= 500ms bass  sequence=None ❌
+    [  92/180] nT=5 step=1st dur=1000ms synth_lead  sequence=None ❌
+    [  93/180] nT=5 step=1st dur= 250ms voice  sequence=None ❌
+    [  94/180] nT=5 step=1st dur=1000ms cello  sequence=None ❌
+    [  95/180] nT=5 step=1st dur= 250ms guitar  sequence=None ❌
+    [  96/180] nT=5 step=1st dur= 250ms piano  sequence=None ❌
+    [  97/180] nT=5 step=11st dur= 250ms trumpet  sequence=None ❌
+    [  98/180] nT=5 step=11st dur= 500ms cello  sequence=None ❌
+    [  99/180] nT=5 step=11st dur= 250ms square  sequence=None ❌
+    [ 100/180] nT=5 step=11st dur= 500ms clarinet  sequence=None ❌
+    [ 101/180] nT=5 step=11st dur=1000ms flute  sequence=None ❌
+    [ 102/180] nT=5 step=1st dur= 500ms guitar  sequence=None ❌
+    [ 103/180] nT=5 step=11st dur=1000ms clarinet  sequence=None ❌
+    [ 104/180] nT=5 step=11st dur= 250ms sawtooth  sequence=None ❌
+    [ 105/180] nT=5 step=11st dur=1000ms voice  sequence=None ❌
+    [ 106/180] nT=5 step=11st dur= 500ms trombone  sequence=None ❌
+    [ 107/180] nT=5 step=1st dur= 500ms trombone  sequence=None ❌
+    [ 108/180] nT=5 step=1st dur= 500ms oboe  sequence=None ❌
+    [ 109/180] nT=5 step=2st dur=1000ms organ  sequence=None ❌
+    [ 110/180] nT=5 step=2st dur=1000ms electric_keyboard  sequence=None ❌
+    [ 111/180] nT=5 step=2st dur= 250ms electric_keyboard  sequence=None ❌
+    [ 112/180] nT=5 step=2st dur=1000ms sawtooth  sequence=None ❌
+    [ 113/180] nT=5 step=2st dur= 500ms violin  sequence=None ❌
+    [ 114/180] nT=5 step=2st dur= 250ms voice  sequence=None ❌
+    [ 115/180] nT=5 step=2st dur= 250ms trumpet  sequence=None ❌
+    [ 116/180] nT=5 step=4st dur= 250ms guitar  sequence=None ❌
+    [ 117/180] nT=5 step=2st dur= 500ms clarinet  sequence=None ❌
+    [ 118/180] nT=5 step=4st dur= 500ms organ  sequence=None ❌
+    [ 119/180] nT=5 step=4st dur= 250ms guitar  sequence=None ❌
+    [ 120/180] nT=5 step=4st dur= 250ms triangle  sequence=None ❌
+    [ 121/180] nT=5 step=4st dur=1000ms triangle  sequence=None ❌
+    [ 122/180] nT=5 step=4st dur=1000ms synth_lead  sequence=None ❌
+    [ 123/180] nT=5 step=7st dur=1000ms synth_lead  sequence=None ❌
+    [ 124/180] nT=5 step=4st dur= 500ms guitar  sequence=None ❌
+    [ 125/180] nT=5 step=7st dur=1000ms oboe  sequence=None ❌
+    [ 126/180] nT=5 step=7st dur=1000ms synth_lead  sequence=None ❌
+    [ 127/180] nT=5 step=7st dur= 250ms oboe  sequence=None ❌
+    [ 128/180] nT=5 step=7st dur= 250ms guitar  sequence=None ❌
+    [ 129/180] nT=5 step=4st dur= 500ms cello  sequence=None ❌
+    [ 130/180] nT=5 step=7st dur= 500ms triangle  sequence=None ❌
+    [ 131/180] nT=7 step=1st dur=1000ms square  sequence=None ❌
+    [ 132/180] nT=5 step=7st dur= 500ms cello  sequence=None ❌
+    [ 133/180] nT=5 step=7st dur= 500ms organ  sequence=None ❌
+    [ 134/180] nT=5 step=7st dur= 250ms clarinet  sequence=None ❌
+    [ 135/180] nT=7 step=1st dur= 500ms synth_pad  sequence=None ❌
+    [ 136/180] nT=7 step=1st dur= 250ms triangle  sequence=None ❌
+    [ 137/180] nT=5 step=2st dur= 500ms synth_lead  sequence=None ❌
+    [ 138/180] nT=7 step=1st dur= 250ms synth_lead  sequence=None ❌
+    [ 139/180] nT=7 step=1st dur= 500ms bass  sequence=None ❌
+    [ 140/180] nT=7 step=1st dur= 500ms clarinet  sequence=None ❌
+    [ 141/180] nT=7 step=1st dur=1000ms square  sequence=None ❌
+    [ 142/180] nT=7 step=1st dur= 250ms piano  sequence=None ❌
+    [ 143/180] nT=7 step=11st dur=1000ms flute  sequence=None ❌
+    [ 144/180] nT=7 step=11st dur= 250ms clarinet  sequence=None ❌
+    [ 145/180] nT=7 step=11st dur=1000ms sawtooth  sequence=None ❌
+    [ 146/180] nT=7 step=11st dur= 500ms synth_pad  sequence=None ❌
+    [ 147/180] nT=7 step=11st dur= 500ms clarinet  sequence=None ❌
+    [ 148/180] nT=7 step=11st dur= 250ms violin  sequence=None ❌
+    [ 149/180] nT=7 step=1st dur=1000ms sawtooth  sequence=None ❌
+    [ 150/180] nT=7 step=11st dur= 500ms piano  sequence=None ❌
+    [ 151/180] nT=7 step=2st dur=1000ms sine  sequence=None ❌
+    [ 152/180] nT=7 step=2st dur=1000ms voice  sequence=None ❌
+    [ 153/180] nT=7 step=2st dur= 250ms square  sequence=None ❌
+    [ 154/180] nT=7 step=2st dur= 500ms guitar  sequence=None ❌
+    [ 155/180] nT=5 step=4st dur=1000ms oboe  sequence=None ❌
+    [ 156/180] nT=7 step=2st dur=1000ms synth_pad  sequence=None ❌
+    [ 157/180] nT=7 step=4st dur=1000ms oboe  sequence=None ❌
+    [ 158/180] nT=7 step=2st dur= 500ms trumpet  sequence=None ❌
+    [ 159/180] nT=7 step=4st dur=1000ms triangle  sequence=None ❌
+    [ 160/180] nT=7 step=11st dur= 250ms trombone  sequence=None ❌
+    [ 161/180] nT=7 step=2st dur= 250ms synth_pad  sequence=None ❌
+    [ 162/180] nT=7 step=2st dur= 500ms synth_lead  sequence=None ❌
+    [ 163/180] nT=7 step=4st dur=1000ms flute  sequence=None ❌
+    [ 164/180] nT=7 step=4st dur= 250ms sine  sequence=None ❌
+    [ 165/180] nT=7 step=2st dur= 250ms cello  sequence=None ❌
+    [ 166/180] nT=7 step=4st dur= 500ms flute  sequence=None ❌
+    [ 167/180] nT=7 step=4st dur= 250ms violin  sequence=None ❌
+    [ 168/180] nT=7 step=4st dur= 500ms piano  sequence=None ❌
+    [ 169/180] nT=7 step=4st dur= 250ms piano  sequence=None ❌
+    [ 170/180] nT=7 step=7st dur= 250ms trumpet  sequence=None ❌
+    [ 171/180] nT=7 step=7st dur=1000ms organ  sequence=None ❌
+    [ 172/180] nT=7 step=4st dur= 500ms cello  sequence=None ❌
+    [ 173/180] nT=7 step=7st dur=1000ms triangle  sequence=None ❌
+    [ 174/180] nT=7 step=11st dur=1000ms flute  sequence=None ❌
+    [ 175/180] nT=7 step=7st dur= 250ms voice  sequence=None ❌
+    [ 176/180] nT=7 step=7st dur= 500ms electric_keyboard  sequence=None ❌
+    [ 177/180] nT=7 step=7st dur=1000ms voice  sequence=None ❌
+    [ 178/180] nT=7 step=7st dur= 500ms piano  sequence=None ❌
+    [ 179/180] nT=7 step=7st dur= 500ms synth_pad  sequence=None ❌
+    [ 180/180] nT=7 step=7st dur= 250ms organ  sequence=None ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 180 of 21614 (stratified by '(n_transitions, step_size_st, note_duration_ms)', seed=42)
+  Stimuli (total)     : 180
+  Stimuli (condition) : 180  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        SEQUENCE       0.0%
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           180
+  prompt tokens                18,960
+  completion tokens             2,287
+  total tokens                 21,247
+  cost (USD)                $0.315520
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072628/pitchbench_d3_contour_discrete/run_001_20260506_072756/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d4_contour_continuous
+############################################################
+
+Experiment : pitchbench_d4_contour_continuous
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 160
+  Sampling     : 160 of 640 (stratified by '(traj_name, interval_st, start_midi)', seed=42)

@@ -1,0 +1,78 @@
+Experiment : pitchbench_b5_timestamp_multiple_pitches
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T07:37:19.067793
+argv       : ['/home/hsnu2/PitchBench/.venv/bin/pitchbench', 'all', '--models', 'audio_flamingo_next_instruct']
+git_commit : 75e459dd14de603cce07062e48a5bd8e65be560b
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : timing
+tolerance_ms : 250
+primary_filter_set : False
+record_extras : ['n_notes', 'rhythm', 'pitch_pattern', 'duration_ms']
+sample_n   : 120
+sample_seed : 42
+total_available : 456
+stratified_by : (rhythm, n_notes, duration_ms)
+
+SUMMARY
+==================================================
+  Sampling     : 120 of 456 (stratified by '(rhythm, n_notes, duration_ms)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       0.0%
+  (correctness tolerance = ±250 ms)
+
+== Marginal accuracy ==
+
+duration_ms     correct    n
+──────────────  ───────  ────
+1000              0.00%    60
+5000              0.00%    60
+
+source          correct    n
+──────────────  ───────  ────
+bass              0.00%     2
+cello             0.00%     5
+clarinet          0.00%     6
+electric_keyboard    0.00%     3
+flute             0.00%     9
+guitar            0.00%     6
+oboe              0.00%     9
+organ             0.00%     6
+piano             0.00%     5
+sawtooth          0.00%     4
+sine              0.00%     5
+square            0.00%    10
+synth_lead        0.00%     3
+synth_pad         0.00%     9
+triangle          0.00%     9
+trombone          0.00%     6
+trumpet           0.00%     9
+violin            0.00%     9
+voice             0.00%     5
+
+source_type     correct    n
+──────────────  ───────  ────
+instrument        0.00%    92
+waveform          0.00%    28
+
+n_notes         correct    n
+──────────────  ───────  ────
+3                 0.00%    40
+5                 0.00%    40
+8                 0.00%    40
+
+rhythm          correct    n
+──────────────  ───────  ────
+irregular         0.00%    60
+regular           0.00%    60
+
+pitch_pattern   correct    n
+──────────────  ───────  ────
+fixed_pitch       0.00%    60
+varied_pitches    0.00%    60
+

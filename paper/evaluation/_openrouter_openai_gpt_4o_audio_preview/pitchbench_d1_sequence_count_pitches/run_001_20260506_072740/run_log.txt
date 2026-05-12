@@ -1,0 +1,175 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 140 items, max_workers=20
+    [   1/140] n= 1 irregular     square dur= 1000ms t=1  count=4 ❌
+    [   2/140] n= 1 irregular      cello dur= 1000ms t=1  count=4 ❌
+    [   3/140] n= 1   regular       bass dur= 1000ms t=2  count=4 ❌
+    [   4/140] n= 1   regular      organ dur= 1000ms t=1  count=4 ❌
+    [   5/140] n= 1   regular      piano dur= 5000ms t=1  count=5 ❌
+    [   6/140] n= 1   regular       oboe dur= 1000ms t=1  count=4 ❌
+    [   7/140] n= 1   regular     violin dur= 1000ms t=1  count=6 ❌
+    [   8/140] n= 1 irregular       sine dur= 1000ms t=1  count=4 ❌
+    [   9/140] n= 1   regular   sawtooth dur= 1000ms t=2  count=4 ❌
+    [  10/140] n= 1 irregular       bass dur= 5000ms t=2  count=7 ❌
+    [  11/140] n= 1 irregular      piano dur= 5000ms t=2  count=2 ❌
+    [  12/140] n= 1 irregular     square dur= 5000ms t=2  count=7 ❌
+    [  13/140] n= 1 irregular       bass dur= 1000ms t=2  count=4 ❌
+    [  14/140] n= 1 irregular electric_keyboard dur= 5000ms t=0  count=4 ❌
+    [  15/140] n= 1   regular       sine dur= 5000ms t=1  count=5 ❌
+    [  16/140] n= 1 irregular     square dur= 5000ms t=0  count=7 ❌
+    [  17/140] n= 1   regular   trombone dur= 5000ms t=0  count=5 ❌
+    [  18/140] n= 1 irregular electric_keyboard dur= 1000ms t=2  count=4 ❌
+    [  19/140] n= 1   regular   sawtooth dur= 5000ms t=2  count=7 ❌
+    [  20/140] n=10 irregular      piano dur= 1000ms t=2  count=6 ❌
+    [  21/140] n=10 irregular     violin dur= 1000ms t=2  count=7 ❌
+    [  22/140] n= 1   regular       sine dur= 5000ms t=2  count=6 ❌
+    [  23/140] n=10 irregular   clarinet dur= 1000ms t=2  count=7 ❌
+    [  24/140] n=10 irregular       oboe dur= 1000ms t=2  count=6 ❌
+    [  25/140] n=10   regular electric_keyboard dur= 1000ms t=2  count=6 ❌
+    [  26/140] n=10   regular    trumpet dur= 1000ms t=2  count=6 ❌
+    [  27/140] n=10   regular      piano dur= 1000ms t=2  count=6 ❌
+    [  28/140] n=10   regular   trombone dur= 1000ms t=1  count=7 ❌
+    [  29/140] n=10 irregular       sine dur= 1000ms t=1  count=6 ❌
+    [  30/140] n=10 irregular      organ dur= 5000ms t=2  count=7 ❌
+    [  31/140] n=10   regular     violin dur= 1000ms t=1  count=6 ❌
+    [  32/140] n=10 irregular      piano dur= 5000ms t=0  count=5 ❌
+    [  33/140] n=10 irregular      cello dur= 5000ms t=2  count=7 ❌
+    [  34/140] n= 2 irregular   trombone dur= 1000ms t=0  count=2 ✅
+    [  35/140] n=10   regular      voice dur= 5000ms t=1  count=2 ❌
+    [  36/140] n= 2 irregular electric_keyboard dur= 1000ms t=2  count=3 ❌
+    [  37/140] n=10   regular  synth_pad dur= 5000ms t=0  count=7 ❌
+    [  38/140] n=10 irregular       oboe dur= 5000ms t=1  count=7 ❌
+    [  39/140] n= 2 irregular      organ dur= 1000ms t=2  count=7 ❌
+    [  40/140] n=10   regular synth_lead dur= 5000ms t=0  count=7 ❌
+    [  41/140] n= 2 irregular      piano dur= 5000ms t=1  count=7 ❌
+    [  42/140] n=10   regular       sine dur= 5000ms t=0  count=5 ❌
+    [  43/140] n=10 irregular       bass dur= 5000ms t=0  count=7 ❌
+    [  44/140] n= 2 irregular      flute dur= 1000ms t=0  count=4 ❌
+    [  45/140] n= 2 irregular synth_lead dur= 5000ms t=0  count=4 ❌
+    [  46/140] n= 2 irregular   triangle dur= 1000ms t=0  count=5 ❌
+    [  47/140] n=10   regular   triangle dur= 5000ms t=1  count=7 ❌
+    [  48/140] n= 2   regular      flute dur= 1000ms t=1  count=4 ❌
+    [  49/140] n= 2 irregular      flute dur= 5000ms t=0  count=4 ❌
+    [  50/140] n= 2   regular    trumpet dur= 1000ms t=0  count=5 ❌
+    [  51/140] n= 2   regular     square dur= 1000ms t=0  count=5 ❌
+    [  52/140] n= 2 irregular   sawtooth dur= 5000ms t=2  count=7 ❌
+    [  53/140] n= 2 irregular     square dur= 5000ms t=0  count=5 ❌
+    [  54/140] n= 2   regular     violin dur= 1000ms t=2  count=7 ❌
+    [  55/140] n= 3 irregular     square dur= 1000ms t=1  count=4 ❌
+    [  56/140] n= 2   regular  synth_pad dur= 5000ms t=0  count=4 ❌
+    [  57/140] n= 2   regular electric_keyboard dur= 5000ms t=1  count=7 ❌
+    [  58/140] n= 2   regular       bass dur= 5000ms t=1  count=3 ❌
+    [  59/140] n= 3 irregular    trumpet dur= 1000ms t=0  count=4 ❌
+    [  60/140] n= 2   regular      voice dur= 1000ms t=0  count=4 ❌
+    [  61/140] n= 3 irregular       oboe dur= 1000ms t=2  count=2 ❌
+    [  62/140] n= 2   regular   trombone dur= 5000ms t=2  count=2 ✅
+    [  63/140] n= 3 irregular     guitar dur= 5000ms t=0  count=4 ❌
+    [  64/140] n= 3   regular      voice dur= 1000ms t=1  count=3 ✅
+    [  65/140] n= 3 irregular   sawtooth dur= 1000ms t=2  count=3 ✅
+    [  66/140] n= 2   regular       sine dur= 5000ms t=2  count=5 ❌
+    [  67/140] n= 3   regular      flute dur= 1000ms t=2  count=4 ❌
+    [  68/140] n= 3 irregular      cello dur= 5000ms t=0  count=5 ❌
+    [  69/140] n= 3 irregular  synth_pad dur= 5000ms t=2  count=7 ❌
+    [  70/140] n= 3   regular      piano dur= 1000ms t=0  count=4 ❌
+    [  71/140] n= 3 irregular      cello dur= 5000ms t=1  count=2 ❌
+    [  72/140] n= 3   regular       bass dur= 1000ms t=0  count=5 ❌
+    [  73/140] n= 3   regular     violin dur= 1000ms t=0  count=2 ❌
+    [  74/140] n= 3   regular synth_lead dur= 5000ms t=1  count=4 ❌
+    [  75/140] n= 4 irregular      piano dur= 1000ms t=2  count=4 ✅
+    [  76/140] n= 3   regular       sine dur= 5000ms t=2  count=4 ❌
+    [  77/140] n= 4 irregular      voice dur= 1000ms t=0  count=4 ✅
+    [  78/140] n= 3   regular   sawtooth dur= 5000ms t=1  count=4 ❌
+    [  79/140] n= 4 irregular   sawtooth dur= 1000ms t=2  count=4 ✅
+    [  80/140] n= 3 irregular      voice dur= 5000ms t=2  count=3 ✅
+    [  81/140] n= 4 irregular      voice dur= 1000ms t=1  count=4 ✅
+    [  82/140] n= 3   regular      piano dur= 5000ms t=2  count=4 ❌
+    [  83/140] n= 4 irregular electric_keyboard dur= 5000ms t=2  count=5 ❌
+    [  84/140] n= 4 irregular    trumpet dur= 5000ms t=0  count=4 ✅
+    [  85/140] n= 4   regular  synth_pad dur= 1000ms t=2  count=4 ✅
+    [  86/140] n= 4 irregular     guitar dur= 1000ms t=0  count=4 ✅
+    [  87/140] n= 4 irregular      cello dur= 5000ms t=1  count=2 ❌
+    [  88/140] n= 4 irregular     square dur= 5000ms t=0  count=7 ❌
+    [  89/140] n= 4   regular   triangle dur= 1000ms t=1  count=5 ❌
+    [  90/140] n= 3   regular      organ dur= 5000ms t=0  count=7 ❌
+    [  91/140] n= 4 irregular   trombone dur= 5000ms t=2  count=4 ✅
+    [  92/140] n= 4   regular      flute dur= 1000ms t=2  count=4 ✅
+    [  93/140] n= 3 irregular       oboe dur= 1000ms t=1  count=5 ❌
+    [  94/140] n= 4   regular electric_keyboard dur= 5000ms t=2  count=6 ❌
+    [  95/140] n= 4   regular      organ dur= 5000ms t=0  count=5 ❌
+    [  96/140] n= 5 irregular     violin dur= 1000ms t=2  count=4 ❌
+    [  97/140] n= 4   regular      cello dur= 5000ms t=2  count=4 ✅
+    [  98/140] n= 4   regular      piano dur= 1000ms t=1  count=4 ✅
+    [  99/140] n= 4   regular      flute dur= 1000ms t=1  count=4 ✅
+    [ 100/140] n= 5 irregular   sawtooth dur= 1000ms t=1  count=4 ❌
+    [ 101/140] n= 5 irregular   triangle dur= 1000ms t=1  count=5 ✅
+    [ 102/140] n= 5 irregular      cello dur= 1000ms t=1  count=4 ❌
+    [ 103/140] n= 4   regular      organ dur= 5000ms t=2  count=5 ❌
+    [ 104/140] n= 5 irregular       oboe dur= 1000ms t=1  count=4 ❌
+    [ 105/140] n= 4   regular      organ dur= 5000ms t=1  count=7 ❌
+    [ 106/140] n= 5   regular      organ dur= 1000ms t=2  count=7 ❌
+    [ 107/140] n= 5 irregular   trombone dur= 5000ms t=2  count=5 ✅
+    [ 108/140] n= 5   regular       oboe dur= 1000ms t=2  count=4 ❌
+    [ 109/140] n= 5 irregular       bass dur= 5000ms t=1  count=4 ❌
+    [ 110/140] n= 5 irregular    trumpet dur= 5000ms t=0  count=6 ❌
+    [ 111/140] n= 5   regular electric_keyboard dur= 1000ms t=2  count=4 ❌
+    [ 112/140] n= 5   regular      cello dur= 1000ms t=1  count=4 ❌
+    [ 113/140] n= 5 irregular   triangle dur= 5000ms t=1  count=5 ✅
+    [ 114/140] n= 5   regular     guitar dur= 5000ms t=2  count=4 ❌
+    [ 115/140] n= 5   regular synth_lead dur= 5000ms t=1  count=5 ✅
+    [ 116/140] n= 7 irregular  synth_pad dur= 1000ms t=0  count=6 ❌
+    [ 117/140] n= 5   regular   sawtooth dur= 5000ms t=0  count=5 ✅
+    [ 118/140] n= 5   regular  synth_pad dur= 5000ms t=2  count=4 ❌
+    [ 119/140] n= 7 irregular  synth_pad dur= 1000ms t=1  count=5 ❌
+    [ 120/140] n= 7 irregular       sine dur= 1000ms t=2  count=5 ❌
+    [ 121/140] n= 7 irregular     guitar dur= 1000ms t=2  count=5 ❌
+    [ 122/140] n= 5 irregular electric_keyboard dur= 5000ms t=0  count=5 ✅
+    [ 123/140] n= 5   regular      organ dur= 5000ms t=1  count=5 ✅
+    [ 124/140] n= 5   regular      piano dur= 1000ms t=2  count=4 ❌
+    [ 125/140] n= 7 irregular    trumpet dur= 5000ms t=1  count=3 ❌
+    [ 126/140] n= 7   regular      piano dur= 1000ms t=1  count=5 ❌
+    [ 127/140] n= 7   regular     guitar dur= 1000ms t=2  count=4 ❌
+    [ 128/140] n= 7 irregular      piano dur= 1000ms t=2  count=4 ❌
+    [ 129/140] n= 7 irregular     violin dur= 5000ms t=0  count=5 ❌
+    [ 130/140] n= 7   regular      voice dur= 1000ms t=2  count=6 ❌
+    [ 131/140] n= 7   regular       bass dur= 1000ms t=0  count=5 ❌
+    [ 132/140] n= 7 irregular electric_keyboard dur= 5000ms t=2  count=7 ✅
+    [ 133/140] n= 7 irregular   sawtooth dur= 5000ms t=1  count=4 ❌
+    [ 134/140] n= 7   regular      cello dur= 1000ms t=2  count=7 ✅
+    [ 135/140] n= 7 irregular      piano dur= 5000ms t=1  count=5 ❌
+    [ 136/140] n= 7   regular   clarinet dur= 5000ms t=1  count=7 ✅
+    [ 137/140] n= 7   regular    trumpet dur= 5000ms t=1  count=3 ❌
+    [ 138/140] n= 7   regular   trombone dur= 5000ms t=2  count=6 ❌
+    [ 139/140] n= 7   regular      voice dur= 5000ms t=2  count=4 ❌
+    [ 140/140] n= 7   regular      cello dur= 5000ms t=2  count=7 ✅
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 140 of 1596 (stratified by '(n, rhythm, duration_ms)', seed=42)
+  Stimuli (total)     : 140
+  Stimuli (condition) : 140  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+           COUNT      20.0%
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           140
+  prompt tokens                28,633
+  completion tokens               140
+  total tokens                 28,773
+  cost (USD)                $0.868470
+
+Results saved → /home/hsnu2/PitchBench/results/run_20260506_072628/pitchbench_d1_sequence_count_pitches/run_001_20260506_072740/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d2_dyad_lower_higher_difference
+############################################################
+
+Experiment : pitchbench_d2_dyad_lower_higher_difference
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 132
+  Sampling     : 132 of 15048 (stratified by '(delta_cents, order, duration_ms, base_name)', seed=42)
