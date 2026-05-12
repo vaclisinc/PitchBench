@@ -1,0 +1,411 @@
+Experiment : pitchbench_b4_timestamp_specific_pitch
+Model      : dashscope/qwen3.5-omni-flash
+timestamp  : 2026-05-06T21:16:36.771665
+argv       : ['.venv/bin/pitchbench', 'all', '--id', 'b4', '--models', 'dashscope/qwen3.5-omni-flash']
+git_commit : 43e9f7203cde2d80e437743b298519b656b667e9
+git_dirty  : True
+model_name : dashscope/qwen3.5-omni-flash
+model_info : {'model': 'dashscope/qwen3.5-omni-flash', 'checkpoint': 'dashscope', 'provider': 'dashscope', 'dashscope_model_id': 'qwen3.5-omni-flash'}
+task_type  : timing
+tolerance_ms : 250
+primary_filter_set : False
+record_extras : ['midi', 'n_distractors', 'target_pos', 'duration_ms']
+sample_n   : 120
+sample_seed : 42
+total_available : 2280
+stratified_by : (target_pos, n_distractors, duration_ms)
+
+SUMMARY
+==================================================
+  Sampling     : 120 of 2280 (stratified by '(target_pos, n_distractors, duration_ms)', seed=42)
+  Stimuli (total)     : 120
+  Stimuli (condition) : 120  (all records)
+
+    Metric   Accuracy
+  ──────────────────────
+   CORRECT       2.5%
+  (correctness tolerance = ±250 ms)
+
+== Marginal accuracy ==
+
+duration_ms     correct    n
+──────────────  ───────  ────
+1000              3.33%    60
+5000              1.67%    60
+
+midi            correct    n
+──────────────  ───────  ────
+30                9.09%    11
+36                0.00%    14
+43                0.00%     8
+48                8.33%    12
+54                0.00%     9
+60                0.00%     9
+64                0.00%    15
+69                7.14%    14
+79                0.00%    15
+88                0.00%    13
+
+source          correct    n
+──────────────  ───────  ────
+bass              0.00%     6
+cello             0.00%     4
+clarinet          0.00%     5
+electric_keyboard    0.00%    12
+flute             0.00%     6
+guitar            0.00%     6
+oboe              0.00%     4
+organ            20.00%     5
+piano             0.00%     5
+sawtooth          0.00%     6
+sine              0.00%     6
+square           10.00%    10
+synth_lead        0.00%     9
+synth_pad         0.00%     8
+triangle          0.00%     3
+trombone          0.00%     9
+trumpet           0.00%     6
+violin            0.00%     2
+voice            12.50%     8
+
+source_type     correct    n
+──────────────  ───────  ────
+instrument        2.11%    95
+waveform          4.00%    25
+
+n_distractors   correct    n
+──────────────  ───────  ────
+5                 1.67%    60
+7                 3.33%    60
+
+abs_error_off   correct    n
+──────────────  ───────  ────
+0.008           100.00%     1
+0.073             0.00%     1
+0.136             0.00%     1
+0.139             0.00%     1
+0.153             0.00%     1
+0.155           100.00%     1
+0.162             0.00%     1
+0.194           100.00%     1
+0.197             0.00%     1
+0.208             0.00%     1
+0.29              0.00%     1
+0.296             0.00%     1
+0.297             0.00%     1
+0.39              0.00%     1
+0.492             0.00%     1
+0.502             0.00%     1
+0.571             0.00%     1
+0.599             0.00%     1
+0.634             0.00%     1
+0.67              0.00%     1
+0.712             0.00%     1
+0.722             0.00%     1
+0.724             0.00%     1
+0.758             0.00%     1
+0.779             0.00%     1
+0.794             0.00%     1
+0.811             0.00%     1
+0.821             0.00%     2
+0.852             0.00%     1
+0.892             0.00%     1
+0.921             0.00%     1
+0.93              0.00%     1
+0.959             0.00%     1
+0.978             0.00%     1
+0.992             0.00%     1
+1.059             0.00%     1
+1.061             0.00%     1
+1.148             0.00%     1
+1.182             0.00%     1
+1.219             0.00%     1
+1.223             0.00%     1
+1.229             0.00%     1
+1.253             0.00%     1
+1.26              0.00%     1
+1.289             0.00%     1
+1.312             0.00%     1
+1.324             0.00%     1
+1.343             0.00%     1
+1.366             0.00%     1
+1.443             0.00%     1
+1.561             0.00%     1
+1.587             0.00%     1
+1.606             0.00%     1
+1.668             0.00%     1
+1.749             0.00%     1
+1.77              0.00%     1
+1.866             0.00%     1
+1.915             0.00%     1
+1.934             0.00%     1
+1.99              0.00%     1
+2.004             0.00%     1
+2.039             0.00%     1
+2.249             0.00%     1
+2.25              0.00%     1
+2.295             0.00%     1
+3.088             0.00%     1
+3.569             0.00%     1
+4.096             0.00%     1
+4.602             0.00%     1
+4.767             0.00%     1
+6.011             0.00%     1
+6.231             0.00%     1
+6.296             0.00%     1
+6.889             0.00%     1
+6.986             0.00%     1
+7.12              0.00%     1
+8.292             0.00%     1
+9.848             0.00%     1
+10.415            0.00%     1
+11.709            0.00%     1
+13.821            0.00%     1
+15.962            0.00%     1
+17.214            0.00%     1
+17.947            0.00%     1
+19.373            0.00%     1
+19.668            0.00%     1
+19.741            0.00%     1
+21.756            0.00%     1
+24.034            0.00%     1
+25.0              0.00%     1
+26.946            0.00%     1
+27.281            0.00%     1
+27.714            0.00%     1
+27.917            0.00%     1
+28.136            0.00%     1
+32.331            0.00%     1
+34.579            0.00%     1
+35.471            0.00%     1
+35.516            0.00%     1
+35.556            0.00%     1
+37.19             0.00%     1
+38.909            0.00%     1
+40.319            0.00%     1
+42.332            0.00%     1
+43.622            0.00%     1
+44.403            0.00%     1
+44.584            0.00%     1
+45.571            0.00%     1
+45.594            0.00%     1
+46.582            0.00%     1
+47.733            0.00%     1
+48.271            0.00%     1
+49.12             0.00%     1
+49.555            0.00%     1
+51.774            0.00%     1
+53.33             0.00%     1
+53.688            0.00%     1
+53.886            0.00%     1
+58.618            0.00%     1
+
+abs_error_on    correct    n
+──────────────  ───────  ────
+0.001             0.00%     1
+0.002             0.00%     1
+0.003             0.00%     1
+0.011             0.00%     1
+0.029             0.00%     1
+0.044             0.00%     1
+0.067             0.00%     1
+0.074             0.00%     1
+0.086             0.00%     1
+0.101             0.00%     1
+0.11              0.00%     1
+0.134             0.00%     1
+0.179             0.00%     1
+0.192           100.00%     1
+0.194           100.00%     1
+0.195           100.00%     1
+0.232             0.00%     1
+0.273             0.00%     1
+0.278             0.00%     1
+0.362             0.00%     1
+0.364             0.00%     1
+0.37              0.00%     1
+0.379             0.00%     1
+0.419             0.00%     1
+0.43              0.00%     1
+0.453             0.00%     1
+0.467             0.00%     1
+0.468             0.00%     1
+0.478             0.00%     1
+0.494             0.00%     1
+0.499             0.00%     1
+0.527             0.00%     1
+0.543             0.00%     1
+0.549             0.00%     1
+0.578             0.00%     1
+0.58              0.00%     1
+0.592             0.00%     1
+0.643             0.00%     1
+0.79              0.00%     1
+0.799             0.00%     1
+0.809             0.00%     1
+0.82              0.00%     1
+0.821             0.00%     1
+0.872             0.00%     1
+0.939             0.00%     1
+0.95              0.00%     1
+0.959             0.00%     1
+0.961             0.00%     1
+0.99              0.00%     1
+1.012             0.00%     3
+1.058             0.00%     1
+1.101             0.00%     1
+1.197             0.00%     1
+1.262             0.00%     1
+1.306             0.00%     1
+1.366             0.00%     1
+1.411             0.00%     1
+1.449             0.00%     1
+1.536             0.00%     1
+1.694             0.00%     1
+2.164             0.00%     1
+2.728             0.00%     1
+2.845             0.00%     1
+3.415             0.00%     1
+4.089             0.00%     1
+4.436             0.00%     1
+4.652             0.00%     1
+4.822             0.00%     1
+5.6               0.00%     1
+5.696             0.00%     1
+5.781             0.00%     1
+5.826             0.00%     1
+6.207             0.00%     1
+6.381             0.00%     1
+6.969             0.00%     1
+6.988             0.00%     1
+9.692             0.00%     1
+10.115            0.00%     1
+11.079            0.00%     1
+13.571            0.00%     1
+14.373            0.00%     1
+15.762            0.00%     1
+15.827            0.00%     1
+16.214            0.00%     1
+19.491            0.00%     1
+19.798            0.00%     1
+21.556            0.00%     1
+24.494            0.00%     1
+25.3              0.00%     1
+26.717            0.00%     1
+27.041            0.00%     1
+27.196            0.00%     1
+28.114            0.00%     1
+28.896            0.00%     1
+32.081            0.00%     1
+34.369            0.00%     1
+35.416            0.00%     1
+35.556            0.00%     1
+36.24             0.00%     1
+37.111            0.00%     1
+39.729            0.00%     1
+41.859            0.00%     1
+42.462            0.00%     1
+43.542            0.00%     1
+44.603            0.00%     1
+45.104            0.00%     1
+45.314            0.00%     1
+45.931            0.00%     1
+46.582            0.00%     1
+47.623            0.00%     1
+48.271            0.00%     1
+49.2              0.00%     1
+49.225            0.00%     1
+51.574            0.00%     1
+52.97             0.00%     1
+53.926            0.00%     1
+54.308            0.00%     1
+58.458            0.00%     1
+
+iou             correct    n
+──────────────  ───────  ────
+0.0               0.00%    61
+0.0185            0.00%     1
+0.0189            0.00%     1
+0.0208            0.00%     1
+0.0209            0.00%     1
+0.0537            0.00%     1
+0.0736            0.00%     1
+0.0852            0.00%     1
+0.1658            0.00%     1
+0.3191            0.00%     1
+0.3666            0.00%     1
+0.3861            0.00%     1
+0.4182            0.00%     1
+0.4622            0.00%     1
+0.466             0.00%     1
+0.4736            0.00%     1
+0.4792            0.00%     1
+0.5199            0.00%     1
+0.5717            0.00%     1
+0.5814            0.00%     1
+0.5859            0.00%     1
+0.5952            0.00%     1
+0.6               0.00%     1
+0.6015            0.00%     1
+0.6068            0.00%     1
+0.6094            0.00%     1
+0.6153            0.00%     1
+0.6197            0.00%     1
+0.6281            0.00%     1
+0.63              0.00%     1
+0.6426            0.00%     1
+0.6481            0.00%     1
+0.6636            0.00%     1
+0.6736            0.00%     1
+0.6814            0.00%     1
+0.6853            0.00%     1
+0.6871            0.00%     1
+0.7007            0.00%     1
+0.7029            0.00%     1
+0.711             0.00%     1
+0.7132            0.00%     1
+0.7143            0.00%     1
+0.721             0.00%     1
+0.7407          100.00%     1
+0.7442            0.00%     1
+0.7495            0.00%     1
+0.7656            0.00%     1
+0.7661            0.00%     1
+0.7744            0.00%     1
+0.7751            0.00%     1
+0.8237            0.00%     1
+0.8333          100.00%     1
+0.8356            0.00%     1
+0.836             0.00%     1
+0.8393            0.00%     1
+0.8477            0.00%     1
+0.8553            0.00%     1
+0.86              0.00%     1
+0.9253          100.00%     1
+0.9318            0.00%     1
+
+prompt          correct    n
+──────────────  ───────  ────
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note A4 (MIDI 69; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    7.14%    14
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C2 (MIDI 36; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%    14
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C3 (MIDI 48; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    8.33%    12
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note C4 (MIDI 60; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%     9
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E4 (MIDI 64; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%    15
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note E6 (MIDI 88; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%    13
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#1 (MIDI 30; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    9.09%    11
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note F#3 (MIDI 54; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%     9
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G2 (MIDI 43; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%     8
+This audio contains a sequence of musical notes separated by silence. Identify the onset and offset times of the note G5 (MIDI 79; it appears exactly once). Reply with ONLY two timestamps in MM:SS.cc format separated by a comma, e.g. '0:05.20, 0:08.50'. Nothing else. Output only the answer.    0.00%    15
+
+within_500ms_both  correct    n
+──────────────  ───────  ────
+0                 0.00%   110
+1                30.00%    10
+
+
+LLM USAGE
+==================================================
+  calls                           120
+  prompt tokens                61,700
+  completion tokens             2,039
+  total tokens                 63,739

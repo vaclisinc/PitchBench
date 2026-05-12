@@ -1,0 +1,25 @@
+{
+  "group_key": "n_notes",
+  "score_key": "midi_sequence_correct",
+  "score_label": "Sequence accuracy (%)",
+  "x_values": [
+    3,
+    5,
+    10
+  ],
+  "x_labels": [
+    "3",
+    "5",
+    "10"
+  ],
+  "mean_pct": [
+    1.7543859649122806,
+    0.0,
+    0.0
+  ],
+  "n_samples": [
+    57,
+    57,
+    57
+  ]
+}

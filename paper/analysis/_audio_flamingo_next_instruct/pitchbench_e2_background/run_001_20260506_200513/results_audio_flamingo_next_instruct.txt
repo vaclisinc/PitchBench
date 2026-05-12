@@ -1,0 +1,64 @@
+Experiment : pitchbench_e2_background
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T20:09:51.930634
+argv       : ['.venv/bin/pitchbench', 'q1', '--models', 'audio_flamingo_next_instruct']
+git_commit : 43e9f7203cde2d80e437743b298519b656b667e9
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+primary_filter_set : False
+record_extras : ['duration_ms', 'background', 'snr_db']
+sample_n   : None
+sample_seed : 42
+total_available : 252
+stratified_by : background
+
+SUMMARY
+==================================================
+  Sampling     : none (full set of 252)
+  Stimuli (total)     : 252
+  Stimuli (condition) : 252  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI       3.6%
+     SPN       0.0%
+  DOREMI       0.0%
+      HZ       0.0%
+     ANY       3.6%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+cello             9.52%    0.00%    0.00%    0.00%    9.52%    42
+flute             2.38%    0.00%    0.00%    0.00%    2.38%    42
+piano             2.38%    0.00%    0.00%    0.00%    2.38%    42
+sine              2.38%    0.00%    0.00%    0.00%    2.38%    42
+synth_lead        2.38%    0.00%    0.00%    0.00%    2.38%    42
+voice             2.38%    0.00%    0.00%    0.00%    2.38%    42
+
+source_type        midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+instrument        3.81%    0.00%    0.00%    0.00%    3.81%   210
+waveform          2.38%    0.00%    0.00%    0.00%    2.38%    42
+
+background         midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+church-bells      4.76%    0.00%    0.00%    0.00%    4.76%    42
+crowd-noise       4.76%    0.00%    0.00%    0.00%    4.76%    42
+oscillating-high-and-low-pitches    9.52%    0.00%    0.00%    0.00%    9.52%    42
+rain              0.00%    0.00%    0.00%    0.00%    0.00%    42
+street-noise      2.38%    0.00%    0.00%    0.00%    2.38%    42
+white_noise       0.00%    0.00%    0.00%    0.00%    0.00%    42
+
+midi_gt            midi      spn   doremi       hz      any    n
+──────────────  ───────  ───────  ───────  ───────  ───────  ────
+29                0.00%    0.00%    0.00%    0.00%    0.00%    36
+38                0.00%    0.00%    0.00%    0.00%    0.00%    36
+47                0.00%    0.00%    0.00%    0.00%    0.00%    36
+56                0.00%    0.00%    0.00%    0.00%    0.00%    36
+65               25.00%    0.00%    0.00%    0.00%   25.00%    36
+74                0.00%    0.00%    0.00%    0.00%    0.00%    36
+83                0.00%    0.00%    0.00%    0.00%    0.00%    36
+

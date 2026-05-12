@@ -1,0 +1,263 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 228 items, max_workers=20
+    [   1/228] n=2 random_set  root=D3   same_instrumentation=False dur= 1000ms  count=2 ✅
+    [   2/228] n=1 random_set  root=G1   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [   3/228] n=2 random_set  root=D3   same_instrumentation=True  dur= 1000ms  count=2 ✅
+    [   4/228] n=3 augmented   root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [   5/228] n=3 augmented   root=C2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [   6/228] n=1 random_set  root=G#4  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [   7/228] n=1 random_set  root=G#4  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [   8/228] n=3 augmented   root=C2   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [   9/228] n=3 augmented   root=C3   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  10/228] n=2 random_set  root=F#3  same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [  11/228] n=3 augmented   root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  12/228] n=1 random_set  root=G3   same_instrumentation=False dur= 5000ms  count=1 ✅
+    [  13/228] n=2 random_set  root=F#3  same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  14/228] n=3 augmented   root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  15/228] n=2 random_set  root=E5   same_instrumentation=True  dur= 1000ms  count=2 ✅
+    [  16/228] n=2 random_set  root=E5   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  17/228] n=3 augmented   root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  18/228] n=1 random_set  root=G3   same_instrumentation=True  dur= 5000ms  count=1 ✅
+    [  19/228] n=1 random_set  root=G1   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  20/228] n=3 augmented   root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  21/228] n=3 augmented   root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  22/228] n=3 augmented   root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  23/228] n=3 augmented   root=A4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  24/228] n=3 augmented   root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  25/228] n=3 augmented   root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  26/228] n=3 augmented   root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  27/228] n=3 augmented   root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  28/228] n=3 augmented   root=E4   same_instrumentation=True  dur= 5000ms  count=3 ✅
+    [  29/228] n=3 diminished  root=F#1  same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [  30/228] n=3 augmented   root=E6   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  31/228] n=3 diminished  root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  32/228] n=3 augmented   root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  33/228] n=3 diminished  root=F#1  same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  34/228] n=3 diminished  root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  35/228] n=3 augmented   root=G5   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  36/228] n=3 diminished  root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  37/228] n=3 diminished  root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  38/228] n=3 augmented   root=E6   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  39/228] n=3 diminished  root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  40/228] n=3 diminished  root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  41/228] n=3 diminished  root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  42/228] n=3 diminished  root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  43/228] n=3 diminished  root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  44/228] n=3 diminished  root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  45/228] n=3 diminished  root=E6   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  46/228] n=3 major       root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  47/228] n=3 major       root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  48/228] n=3 diminished  root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  49/228] n=3 diminished  root=A4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  50/228] n=3 major       root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  51/228] n=3 diminished  root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  52/228] n=3 diminished  root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  53/228] n=3 major       root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  54/228] n=3 major       root=C2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  55/228] n=3 major       root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  56/228] n=3 major       root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  57/228] n=3 diminished  root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  58/228] n=3 diminished  root=E4   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [  59/228] n=3 diminished  root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  60/228] n=3 major       root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  61/228] n=3 major       root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  62/228] n=3 major       root=G2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  63/228] n=3 major       root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  64/228] n=3 major       root=F#3  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  65/228] n=3 major       root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  66/228] n=3 major       root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  67/228] n=3 major       root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  68/228] n=3 major       root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  69/228] n=3 major       root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  70/228] n=3 major       root=A4   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [  71/228] n=3 major       root=E6   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  72/228] n=3 minor       root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  73/228] n=3 minor       root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  74/228] n=3 minor       root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  75/228] n=3 minor       root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  76/228] n=3 minor       root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  77/228] n=3 major       root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  78/228] n=3 minor       root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  79/228] n=3 minor       root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  80/228] n=3 minor       root=C3   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  81/228] n=3 minor       root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  82/228] n=3 minor       root=G2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  83/228] n=3 minor       root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  84/228] n=3 minor       root=E6   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  85/228] n=3 minor       root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  86/228] n=3 minor       root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  87/228] n=3 minor       root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  88/228] n=3 minor       root=C4   same_instrumentation=True  dur= 5000ms  count=3 ✅
+    [  89/228] n=3 minor       root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  90/228] n=3 minor       root=E6   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  91/228] n=3 random_set  root=G1   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [  92/228] n=3 random_set  root=B1   same_instrumentation=True  dur= 1000ms  count=None ❌
+    [  93/228] n=3 minor       root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  94/228] n=3 random_set  root=B1   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  95/228] n=3 random_set  root=G1   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  96/228] n=3 sus2        root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [  97/228] n=3 sus2        root=G2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [  98/228] n=3 sus2        root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [  99/228] n=3 random_set  root=F#3  same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 100/228] n=3 sus2        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 101/228] n=3 minor       root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 102/228] n=3 random_set  root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 103/228] n=3 sus2        root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 104/228] n=3 sus2        root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 105/228] n=3 sus2        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 106/228] n=3 sus2        root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 107/228] n=3 sus2        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 108/228] n=3 sus2        root=C3   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 109/228] n=3 sus2        root=C2   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 110/228] n=3 sus2        root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 111/228] n=3 sus2        root=E6   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 112/228] n=3 sus2        root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 113/228] n=3 sus2        root=E4   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 114/228] n=3 sus2        root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 115/228] n=3 sus2        root=G5   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 116/228] n=3 sus4        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 117/228] n=3 sus4        root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 118/228] n=3 sus4        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 119/228] n=3 sus2        root=E4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 120/228] n=3 sus4        root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 121/228] n=3 sus4        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 122/228] n=3 sus4        root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 123/228] n=3 sus4        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 124/228] n=3 sus4        root=F#3  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 125/228] n=3 sus4        root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 126/228] n=3 sus4        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 127/228] n=3 sus4        root=E4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 128/228] n=3 sus2        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 129/228] n=3 sus4        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 130/228] n=3 sus4        root=E4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 131/228] n=3 sus4        root=A4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 132/228] n=3 sus4        root=E6   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 133/228] n=3 sus4        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 134/228] n=3 sus4        root=C3   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 135/228] n=3 sus4        root=E6   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 136/228] n=4 dom7        root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 137/228] n=4 dom7        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 138/228] n=3 sus4        root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 139/228] n=3 sus4        root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 140/228] n=4 dom7        root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 141/228] n=4 dom7        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 142/228] n=4 dom7        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 143/228] n=4 dom7        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 144/228] n=4 dom7        root=F#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 145/228] n=4 dom7        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 146/228] n=4 dom7        root=G2   same_instrumentation=False dur= 5000ms  count=None ❌
+    [ 147/228] n=4 dom7        root=C3   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 148/228] n=4 dom7        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 149/228] n=4 m7b5        root=F#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 150/228] n=4 dom7        root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 151/228] n=4 dom7        root=C4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 152/228] n=4 dom7        root=A4   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 153/228] n=4 m7b5        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 154/228] n=4 m7b5        root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 155/228] n=4 m7b5        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 156/228] n=4 m7b5        root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 157/228] n=4 dom7        root=E4   same_instrumentation=True  dur= 5000ms  count=3 ❌
+    [ 158/228] n=4 m7b5        root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 159/228] n=4 dom7        root=G5   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 160/228] n=4 dom7        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 161/228] n=4 dom7        root=G5   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 162/228] n=4 m7b5        root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 163/228] n=4 m7b5        root=C2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 164/228] n=4 m7b5        root=C4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 165/228] n=4 m7b5        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 166/228] n=4 m7b5        root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 167/228] n=4 m7b5        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 168/228] n=4 m7b5        root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 169/228] n=4 m7b5        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 170/228] n=4 m7b5        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 171/228] n=4 m7b5        root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 172/228] n=4 maj7        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 173/228] n=4 maj7        root=F#1  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 174/228] n=4 maj7        root=G2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 175/228] n=4 maj7        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 176/228] n=4 maj7        root=C3   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 177/228] n=4 m7b5        root=G5   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 178/228] n=3 sus2        root=C2   same_instrumentation=False dur= 5000ms  count=None ❌
+    [ 179/228] n=4 maj7        root=C2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 180/228] n=4 maj7        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 181/228] n=4 maj7        root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 182/228] n=4 maj7        root=C3   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 183/228] n=4 maj7        root=C4   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 184/228] n=4 maj7        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 185/228] n=4 maj7        root=C4   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 186/228] n=4 maj7        root=E4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 187/228] n=4 maj7        root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 188/228] n=4 maj7        root=A4   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 189/228] n=4 maj7        root=G2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 190/228] n=4 m7b5        root=E4   same_instrumentation=True  dur= 5000ms  count=1 ❌
+    [ 191/228] n=4 min7        root=F#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 192/228] n=4 min7        root=C2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 193/228] n=4 min7        root=G2   same_instrumentation=False dur= 5000ms  count=1 ❌
+    [ 194/228] n=4 min7        root=C3   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 195/228] n=4 min7        root=F#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 196/228] n=4 min7        root=G2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 197/228] n=4 min7        root=F#3  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 198/228] n=4 min7        root=C4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 199/228] n=4 min7        root=E4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 200/228] n=4 maj7        root=F#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 201/228] n=4 min7        root=A4   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 202/228] n=4 min7        root=F#3  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 203/228] n=4 min7        root=A4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 204/228] n=4 min7        root=C2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 205/228] n=4 min7        root=G5   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 206/228] n=4 min7        root=E4   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 207/228] n=4 random_set  root=F1   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 208/228] n=4 min7        root=C3   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 209/228] n=4 random_set  root=E2   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 210/228] n=4 min7        root=C4   same_instrumentation=False dur= 5000ms  count=3 ❌
+    [ 211/228] n=4 random_set  root=A#1  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 212/228] n=4 random_set  root=E2   same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 213/228] n=4 random_set  root=F1   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 214/228] n=4 random_set  root=A#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 215/228] n=5 random_set  root=A#1  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 216/228] n=5 random_set  root=A#2  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 217/228] n=5 random_set  root=C#2  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 218/228] n=4 min7        root=G5   same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 219/228] n=6 random_set  root=D#3  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 220/228] n=6 random_set  root=F2   same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 221/228] n=6 random_set  root=C#2  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 222/228] n=5 random_set  root=C#2  same_instrumentation=True  dur= 5000ms  count=2 ❌
+    [ 223/228] n=6 random_set  root=F2   same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 224/228] n=6 random_set  root=C#2  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 225/228] n=5 random_set  root=A#1  same_instrumentation=False dur= 5000ms  count=2 ❌
+    [ 226/228] n=5 random_set  root=A#2  same_instrumentation=False dur= 1000ms  count=2 ❌
+    [ 227/228] n=6 random_set  root=D#3  same_instrumentation=True  dur= 1000ms  count=2 ❌
+    [ 228/228] n=4 maj7        root=G5   same_instrumentation=False dur= 1000ms  count=2 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 228 of 8664 (stratified by '(n, chord_quality, root_midi, same_instrument)', seed=42)
+  Stimuli (total)     : 228
+  Stimuli (condition) : 228  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+       COUNT       3.1%
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           228
+  prompt tokens                16,644
+  completion tokens               249
+  total tokens                 16,893
+  cost (USD)                $0.300600
+
+Results saved → results/run_20260506_072518/pitchbench_c1_chord_count_pitches/run_001_20260506_072518/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_c2_chord_dyad_interval
+############################################################
+
+Experiment : pitchbench_c2_chord_dyad_interval
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 232
+  Sampling     : 232 of 8816 (stratified by '(interval_st, same_instrument, root_midi)', seed=42)

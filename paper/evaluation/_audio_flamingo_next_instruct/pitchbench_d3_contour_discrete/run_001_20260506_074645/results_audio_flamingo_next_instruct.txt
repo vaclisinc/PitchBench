@@ -1,0 +1,96 @@
+Experiment : pitchbench_d3_contour_discrete
+Model      : audio_flamingo_next_instruct
+timestamp  : 2026-05-06T07:47:42.911631
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'audio_flamingo_next_instruct']
+git_commit : c9248adc7803776d37c80a3651e8df71e34b43f1
+git_dirty  : True
+model_name : audio_flamingo_next_instruct
+model_info : {'status': 'ok', 'model': 'nvidia/audio-flamingo-next-hf', 'checkpoint': 'audio_flamingo_next_instruct', 'device': 'cuda:0'}
+task_type  : contour
+headline_metrics : ['sequence']
+primary_filter_set : False
+record_extras : ['duration_ms', 'base_midi', 'n_transitions', 'step_size_st', 'note_duration_ms']
+sample_n   : 180
+sample_seed : 42
+total_available : 21614
+stratified_by : (n_transitions, step_size_st, note_duration_ms)
+
+SUMMARY
+==================================================
+  Sampling     : 180 of 21614 (stratified by '(n_transitions, step_size_st, note_duration_ms)', seed=42)
+  Stimuli (total)     : 180
+  Stimuli (condition) : 180  (all records)
+
+          Metric   Accuracy
+  ───────────────────────────
+        SEQUENCE       0.0%
+
+== Marginal accuracy ==
+
+duration_ms     sequence_correct    n
+──────────────  ───────  ────
+250               0.00%    60
+500               0.00%    60
+1000              0.00%    60
+
+source          sequence_correct    n
+──────────────  ───────  ────
+bass              0.00%     8
+cello             0.00%     7
+clarinet          0.00%    11
+electric_keyboard    0.00%    12
+flute             0.00%    10
+guitar            0.00%    10
+oboe              0.00%     9
+organ             0.00%     8
+piano             0.00%    10
+sawtooth          0.00%     8
+sine              0.00%     7
+square            0.00%    14
+synth_lead        0.00%    12
+synth_pad         0.00%    11
+triangle          0.00%     9
+trombone          0.00%     9
+trumpet           0.00%     8
+violin            0.00%     4
+voice             0.00%    13
+
+source_type     sequence_correct    n
+──────────────  ───────  ────
+instrument        0.00%   142
+waveform          0.00%    38
+
+n_transitions   sequence_correct    n
+──────────────  ───────  ────
+2                 0.00%    45
+3                 0.00%    45
+5                 0.00%    45
+7                 0.00%    45
+
+step_size_st    sequence_correct    n
+──────────────  ───────  ────
+1                 0.00%    36
+2                 0.00%    36
+4                 0.00%    36
+7                 0.00%    36
+11                0.00%    36
+
+note_duration_ms  sequence_correct    n
+──────────────  ───────  ────
+250               0.00%    60
+500               0.00%    60
+1000              0.00%    60
+
+base_midi       sequence_correct    n
+──────────────  ───────  ────
+30                0.00%    14
+36                0.00%    19
+43                0.00%    17
+48                0.00%    11
+54                0.00%    23
+60                0.00%    12
+64                0.00%    21
+69                0.00%    22
+79                0.00%    25
+88                0.00%    16
+

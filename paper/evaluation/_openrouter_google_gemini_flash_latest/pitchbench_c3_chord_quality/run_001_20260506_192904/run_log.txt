@@ -1,0 +1,229 @@
+
+  Model : openrouter/~google/gemini-flash-latest
+    [dispatch] 192 items, max_workers=20
+    [   1/192] augmented   root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   2/192] augmented   root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   3/192] augmented   root=E6   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   4/192] augmented   root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   5/192] augmented   root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   6/192] augmented   root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   7/192] augmented   root=G5   same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [   8/192] augmented   root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [   9/192] augmented   root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  10/192] augmented   root=E6   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  11/192] augmented   root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  12/192] augmented   root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  13/192] augmented   root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  14/192] augmented   root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  15/192] augmented   root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  16/192] augmented   root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  17/192] augmented   root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  18/192] augmented   root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  19/192] augmented   root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  20/192] augmented   root=E4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  21/192] diminished  root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  22/192] diminished  root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  23/192] diminished  root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  24/192] diminished  root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  25/192] diminished  root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  26/192] diminished  root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  27/192] diminished  root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  28/192] diminished  root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  29/192] diminished  root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  30/192] diminished  root=E4   same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [  31/192] diminished  root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  32/192] diminished  root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  33/192] diminished  root=E6   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  34/192] diminished  root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  35/192] diminished  root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  36/192] diminished  root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  37/192] diminished  root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  38/192] diminished  root=E6   same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [  39/192] diminished  root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  40/192] diminished  root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  41/192] dom7        root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  42/192] dom7        root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  43/192] dom7        root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  44/192] dom7        root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  45/192] dom7        root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  46/192] dom7        root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  47/192] dom7        root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  48/192] dom7        root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  49/192] dom7        root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  50/192] dom7        root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  51/192] dom7        root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  52/192] dom7        root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  53/192] dom7        root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  54/192] dom7        root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  55/192] dom7        root=E4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  56/192] dom7        root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  57/192] m7b5        root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  58/192] dom7        root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  59/192] dom7        root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  60/192] m7b5        root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  61/192] m7b5        root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  62/192] m7b5        root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  63/192] m7b5        root=G2   same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [  64/192] m7b5        root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  65/192] m7b5        root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  66/192] m7b5        root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  67/192] m7b5        root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  68/192] m7b5        root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  69/192] m7b5        root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  70/192] m7b5        root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  71/192] m7b5        root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  72/192] m7b5        root=E4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  73/192] m7b5        root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  74/192] maj7        root=F#1  same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [  75/192] maj7        root=C2   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  76/192] m7b5        root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  77/192] m7b5        root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  78/192] maj7        root=G2   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  79/192] m7b5        root=F#1  same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [  80/192] maj7        root=C3   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  81/192] maj7        root=E4   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  82/192] maj7        root=A4   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  83/192] maj7        root=F#1  same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  84/192] maj7        root=F#3  same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [  85/192] maj7        root=C2   same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  86/192] maj7        root=G2   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [  87/192] maj7        root=C3   same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  88/192] maj7        root=E4   same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  89/192] major       root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  90/192] maj7        root=G5   same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  91/192] maj7        root=C4   same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  92/192] maj7        root=F#3  same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  93/192] maj7        root=A4   same_instrumentation=True  quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [  94/192] major       root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  95/192] major       root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  96/192] major       root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  97/192] major       root=E4   same_instrumentation=False quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [  98/192] major       root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [  99/192] major       root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 100/192] major       root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 101/192] major       root=E6   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 102/192] major       root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 103/192] major       root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 104/192] major       root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 105/192] major       root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 106/192] major       root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 107/192] major       root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 108/192] major       root=E4   same_instrumentation=True  quality_only  quality=major ✅  | root=None ❌  | joint=None ❌
+    [ 109/192] major       root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 110/192] major       root=E6   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 111/192] major       root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 112/192] maj7        root=G5   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [ 113/192] maj7        root=C4   same_instrumentation=False quality_only  quality=maj7 ✅  | root=None ❌  | joint=None ❌
+    [ 114/192] min7        root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 115/192] min7        root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 116/192] min7        root=F#1  same_instrumentation=False quality_only  quality=min7 ✅  | root=None ❌  | joint=None ❌
+    [ 117/192] min7        root=F#3  same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 118/192] major       root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 119/192] min7        root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 120/192] min7        root=C2   same_instrumentation=False quality_only  quality=min7 ✅  | root=None ❌  | joint=None ❌
+    [ 121/192] min7        root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 122/192] min7        root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 123/192] min7        root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 124/192] min7        root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 125/192] min7        root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 126/192] min7        root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 127/192] min7        root=C2   same_instrumentation=True  quality_only  quality=min7 ✅  | root=None ❌  | joint=None ❌
+    [ 128/192] min7        root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 129/192] minor       root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 130/192] min7        root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 131/192] min7        root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 132/192] minor       root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 133/192] min7        root=E4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 134/192] minor       root=C4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 135/192] min7        root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 136/192] minor       root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 137/192] minor       root=E4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 138/192] minor       root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 139/192] minor       root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 140/192] minor       root=E6   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 141/192] minor       root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 142/192] minor       root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 143/192] minor       root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 144/192] minor       root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 145/192] minor       root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 146/192] minor       root=F#3  same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 147/192] minor       root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 148/192] minor       root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 149/192] minor       root=A4   same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 150/192] minor       root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 151/192] minor       root=E6   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 152/192] sus2        root=C2   same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 153/192] sus2        root=G2   same_instrumentation=False quality_only  quality=diminished ❌  | root=None ❌  | joint=None ❌
+    [ 154/192] sus2        root=C3   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 155/192] sus2        root=F#1  same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 156/192] sus2        root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 157/192] sus2        root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 158/192] sus2        root=E6   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 159/192] sus2        root=C4   same_instrumentation=False quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 160/192] sus2        root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 161/192] sus2        root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 162/192] sus2        root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 163/192] sus2        root=G2   same_instrumentation=True  quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 164/192] sus2        root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 165/192] sus2        root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 166/192] sus2        root=E6   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 167/192] sus2        root=C3   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 168/192] sus2        root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 169/192] sus4        root=F#1  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 170/192] sus2        root=E4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 171/192] sus4        root=G2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 172/192] sus4        root=C3   same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 173/192] sus2        root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 174/192] sus4        root=C2   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 175/192] sus2        root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 176/192] sus4        root=E4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 177/192] sus4        root=F#3  same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 178/192] sus4        root=C4   same_instrumentation=False quality_only  quality=min7 ❌  | root=None ❌  | joint=None ❌
+    [ 179/192] sus4        root=A4   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 180/192] sus4        root=F#1  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 181/192] sus4        root=G5   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 182/192] sus4        root=G2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 183/192] sus4        root=E6   same_instrumentation=False quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 184/192] sus4        root=A4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 185/192] sus4        root=C3   same_instrumentation=True  quality_only  quality=minor ❌  | root=None ❌  | joint=None ❌
+    [ 186/192] sus4        root=C4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 187/192] sus4        root=F#3  same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 188/192] sus4        root=G5   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 189/192] sus4        root=E6   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 190/192] sus4        root=E4   same_instrumentation=True  quality_only  quality=major ❌  | root=None ❌  | joint=None ❌
+    [ 191/192] sus4        root=C2   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+    [ 192/192] minor       root=E4   same_instrumentation=True  quality_only  quality=maj7 ❌  | root=None ❌  | joint=None ❌
+
+============================================================
+SUMMARY — openrouter/~google/gemini-flash-latest
+  Sampling     : 192 of 7296 (stratified by '(chord_quality_gt, same_instrument, root_midi)', seed=42)
+  Stimuli (total)     : 192
+  Stimuli (condition) : 192  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+     QUALITY      10.4%
+        ROOT       0.0%
+       JOINT       0.0%
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           192
+  prompt tokens                25,453
+  completion tokens               377
+  total tokens                 25,830
+  cost (USD)                $0.021207
+
+Results saved → results/run_20260506_191031/pitchbench_c3_chord_quality/run_001_20260506_192904/results_openrouter_google_gemini_flash_latest.*
+
+############################################################
+# pitchbench_c4_chord_pitches
+############################################################
+
+Experiment : pitchbench_c4_chord_pitches
+Models     : openrouter/~google/gemini-flash-latest
+Stimuli    : 200
+  Sampling     : 200 of 3800 (stratified by '(chord_type, n_notes, root_midi)', seed=42)

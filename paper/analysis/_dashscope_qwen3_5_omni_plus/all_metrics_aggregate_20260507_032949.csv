@@ -1,0 +1,17 @@
+experiment,model,n_samples,metric,value
+pitchbench_a1_single_pitch_id,dashscope/qwen3.5-omni-plus,42,condition_n,42.0
+pitchbench_a2_single_pitch_by_loudness,dashscope/qwen3.5-omni-plus,210,condition_n,210.0
+pitchbench_a3_single_pitch_by_duration,dashscope/qwen3.5-omni-plus,210,condition_n,210.0
+pitchbench_b1_single_pitch_within_silence,dashscope/qwen3.5-omni-plus,126,condition_n,126.0
+pitchbench_b1_single_pitch_within_silence,dashscope/qwen3.5-omni-plus,126,baseline_n,0.0
+pitchbench_b2_pitch_at_timestamp,dashscope/qwen3.5-omni-plus,84,condition_n,84.0
+pitchbench_d7a_pitch_with_reference,dashscope/qwen3.5-omni-plus,156,condition_n,156.0
+pitchbench_d7a_pitch_with_reference,dashscope/qwen3.5-omni-plus,156,baseline_n,0.0
+pitchbench_d7b_pitch_with_reference_split,dashscope/qwen3.5-omni-plus,156,condition_n,156.0
+pitchbench_e1_audio_effects,dashscope/qwen3.5-omni-plus,252,condition_n,252.0
+pitchbench_e2_background,dashscope/qwen3.5-omni-plus,252,condition_n,252.0
+pitchbench_e3_harmonic_saturation,dashscope/qwen3.5-omni-plus,126,condition_n,126.0
+pitchbench_e4_time_stretching,dashscope/qwen3.5-omni-plus,288,condition_n,288.0
+pitchbench_e6_slightly_off,dashscope/qwen3.5-omni-plus,252,condition_n,252.0
+pitchbench_e6_slightly_off,dashscope/qwen3.5-omni-plus,252,baseline_n,0.0
+pitchbench_y1_single_pitch_id_mcq,dashscope/qwen3.5-omni-plus,126,condition_n,126.0

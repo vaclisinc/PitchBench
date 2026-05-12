@@ -1,0 +1,162 @@
+Experiment : pitchbench_c1_chord_count_pitches
+Model      : dashscope/qwen3.5-omni-flash
+timestamp  : 2026-05-06T21:41:50.435402
+argv       : ['.venv/bin/pitchbench', 'all', '--id', 'c', '--models', 'dashscope/qwen3.5-omni-flash']
+git_commit : 02a934072b503c2b804400cf761047d988a4e285
+git_dirty  : True
+model_name : dashscope/qwen3.5-omni-flash
+model_info : {'model': 'dashscope/qwen3.5-omni-flash', 'checkpoint': 'dashscope', 'provider': 'dashscope', 'dashscope_model_id': 'qwen3.5-omni-flash'}
+task_type  : count
+headline_metrics : ['count']
+primary_filter_set : False
+record_extras : ['duration_ms', 'n', 'chord_quality', 'root_midi', 'same_instrument', 'trial']
+sample_n   : 228
+sample_seed : 42
+total_available : 8664
+stratified_by : (n, chord_quality, root_midi, same_instrument)
+
+SUMMARY
+==================================================
+  Sampling     : 228 of 8664 (stratified by '(n, chord_quality, root_midi, same_instrument)', seed=42)
+  Stimuli (total)     : 228
+  Stimuli (condition) : 228  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+       COUNT      20.2%
+
+== Marginal accuracy ==
+
+duration_ms     count_correct    n
+──────────────  ───────  ────
+1000             20.18%   114
+5000             20.18%   114
+
+source          count_correct    n
+──────────────  ───────  ────
+bass             20.00%     5
+bass+voice+oboe   50.00%     6
+cello            20.00%     5
+cello+bass        0.00%     1
+cello+triangle+square    0.00%     6
+cello+triangle+trombone+clarinet    0.00%     4
+clarinet          0.00%     5
+clarinet+synth_lead    0.00%     1
+clarinet+violin+sawtooth+bass+trombone    0.00%     1
+electric_keyboard   16.67%     6
+electric_keyboard+oboe+piano  100.00%     6
+electric_keyboard+organ+synth_pad  100.00%     6
+electric_keyboard+trumpet+organ  100.00%     1
+electric_keyboard+violin+synth_pad   33.33%     6
+flute             7.14%    14
+flute+cello+synth_pad+guitar    0.00%     4
+flute+electric_keyboard+oboe+sine+triangle+voice    0.00%     1
+flute+oboe+sawtooth+synth_lead    0.00%     1
+flute+sine+square+electric_keyboard+bass    0.00%     1
+guitar           20.00%     5
+guitar+organ+voice+electric_keyboard   50.00%     4
+guitar+synth_pad+cello    0.00%     1
+guitar+violin+organ  100.00%     1
+oboe             33.33%     6
+oboe+clarinet+trombone+flute    0.00%     1
+oboe+guitar+synth_pad+electric_keyboard+sawtooth+bass    0.00%     1
+oboe+violin+organ   50.00%     6
+organ            60.00%     5
+organ+clarinet+cello+voice    0.00%     4
+organ+clarinet+electric_keyboard+sawtooth    0.00%     4
+piano            50.00%     6
+piano+violin      0.00%     1
+sawtooth          0.00%     8
+sawtooth+oboe+flute+bass    0.00%     4
+sawtooth+voice+electric_keyboard+sine    0.00%     4
+sine             33.33%     3
+sine+synth_lead+synth_pad+organ    0.00%     4
+square            0.00%     8
+square+piano+clarinet    0.00%     6
+square+sine+synth_pad    0.00%     6
+synth_lead        0.00%     5
+synth_lead+bass+oboe+electric_keyboard    0.00%     4
+synth_pad        33.33%     9
+triangle          0.00%     7
+triangle+sawtooth+bass+oboe+trombone    0.00%     1
+trombone         33.33%     3
+trombone+trumpet+sawtooth    0.00%     6
+trumpet          14.29%     7
+trumpet+flute+triangle   16.67%     6
+violin           16.67%     6
+violin+synth_pad+oboe+guitar+organ+clarinet    0.00%     1
+violin+trombone+guitar+oboe    0.00%     1
+voice            25.00%     4
+
+source_type     count_correct    n
+──────────────  ───────  ────
+instrument       22.28%   202
+waveform          3.85%    26
+
+same_instrument  count_correct    n
+──────────────  ───────  ────
+False            23.68%   114
+True             16.67%   114
+
+chord_quality   count_correct    n
+──────────────  ───────  ────
+augmented        40.00%    20
+diminished       25.00%    20
+dom7              5.56%    18
+m7b5              0.00%    18
+maj7              0.00%    18
+major            20.00%    20
+min7              5.56%    18
+minor            40.00%    20
+random_set       27.78%    36
+sus2             10.00%    20
+sus4             35.00%    20
+
+n               count_correct    n
+──────────────  ───────  ────
+1                83.33%     6
+2                 0.00%     6
+3                30.95%   126
+4                 2.56%    78
+5                 0.00%     6
+6                 0.00%     6
+
+root_midi       count_correct    n
+──────────────  ───────  ────
+29                0.00%     2
+30               35.00%    20
+31               75.00%     4
+34                0.00%     4
+35              100.00%     2
+36               10.00%    20
+37                0.00%     4
+40                0.00%     2
+41                0.00%     2
+43               10.00%    20
+46                0.00%     2
+48               15.00%    20
+50                0.00%     2
+51                0.00%     2
+54               12.50%    24
+55              100.00%     2
+60               50.00%    20
+64               30.00%    20
+68               50.00%     2
+69               25.00%    20
+76                0.00%     2
+79                0.00%    20
+88                0.00%    12
+
+trial           count_correct    n
+──────────────  ───────  ────
+0                18.63%   204
+1                33.33%    12
+2                33.33%    12
+
+
+LLM USAGE
+==================================================
+  calls                           228
+  prompt tokens                15,276
+  completion tokens               456
+  total tokens                 15,732

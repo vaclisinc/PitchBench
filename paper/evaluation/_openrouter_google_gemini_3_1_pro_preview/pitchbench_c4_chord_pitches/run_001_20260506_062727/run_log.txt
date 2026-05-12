@@ -1,0 +1,238 @@
+
+  Model : openrouter/google/gemini-3.1-pro-preview
+    [dispatch] 200 items, max_workers=20
+    [   1/200] dyad_M2      r=C2  sine          midi=[36] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [   2/200] dyad_M3      r=F#1 cello         midi=[36, 4] ❌  | spn=[] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[36] ❌
+    [   3/200] dyad_M3      r=C2  sawtooth      midi=[48, 55] ❌  | spn=['C2', 'E2'] ✅  | doremi=['do', 're', 'fa', 'la'] ❌  | hz=[49] ❌
+    [   4/200] dyad_M2      r=F#1 triangle      midi=[36, 4] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [   5/200] dyad_M2      r=G5  square        midi=[60, 64] ❌  | spn=['F#4', 'A4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [   6/200] dyad_M2      r=F#3 flute         midi=[48, 55] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [   7/200] dyad_M2      r=E4  triangle      midi=[60, 64] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[72] ❌
+    [   8/200] dyad_M3      r=G2  sine          midi=[36, 48] ❌  | spn=[] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [   9/200] dyad_M3      r=G5  synth_pad     midi=[64, 71] ❌  | spn=['G4', 'B4'] ❌  | doremi=['do', 'mi'] ❌  | hz=[] ❌
+    [  10/200] dyad_M2      r=C4  piano         midi=[6] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[62] ❌
+    [  11/200] dyad_M3      r=C4  flute         midi=[72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  12/200] dyad_M2      r=G2  trumpet       midi=[48] ❌  | spn=[] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[36] ❌
+    [  13/200] dyad_M2      r=C3  flute         midi=[48, 55] ❌  | spn=['C2', 'G2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[] ❌
+    [  14/200] dyad_M3      r=A4  sine          midi=[60, 64] ❌  | spn=['C4', 'E4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  15/200] dyad_M3      r=E4  synth_lead    midi=[52, 56] ❌  | spn=['D4', 'F#4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[31] ❌
+    [  16/200] dyad_M2      r=A4  synth_pad     midi=[48, 55] ❌  | spn=['B3'] ❌  | doremi=['si', 're', 'fa', 'sol'] ❌  | hz=[60] ❌
+    [  17/200] dyad_M3      r=C3  square        midi=[54, 61] ❌  | spn=['F4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  18/200] dyad_M3      r=F#3 guitar        midi=[41] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [  19/200] dyad_M3      r=E6  guitar        midi=[66, 69] ❌  | spn=['C4'] ❌  | doremi=[] ❌  | hz=[73] ❌
+    [  20/200] dyad_M2      r=E6  voice         midi=[96, 100] ❌  | spn=['E4', 'G#4'] ❌  | doremi=[] ❌  | hz=[46] ❌
+    [  21/200] dyad_M6      r=F#1 synth_pad     midi=[48, 5] ❌  | spn=['C3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [  22/200] dyad_M6      r=E4  sine          midi=[65, 69] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[72] ❌
+    [  23/200] dyad_M6      r=G2  flute         midi=[48, 5] ❌  | spn=['F2', 'C3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[49] ❌
+    [  24/200] dyad_M6      r=C3  organ         midi=[6] ❌  | spn=['C3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [  25/200] dyad_M6      r=C2  cello         midi=[36, 43] ❌  | spn=['C2', 'E2'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [  26/200] dyad_M6      r=C4  trumpet       midi=[60] ❌  | spn=['C4'] ❌  | doremi=['fa', 'la', 'do', 'mi'] ❌  | hz=[60] ❌
+    [  27/200] dyad_M7      r=F#1 trumpet       midi=[36, 40] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=[] ❌  | hz=[36] ❌
+    [  28/200] dyad_M6      r=A4  electric_keyboard  midi=[40, 52] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  29/200] dyad_M6      r=G5  cello         midi=[72, 7] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  30/200] dyad_M6      r=E6  clarinet      midi=[72, 7] ❌  | spn=['F5'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [  31/200] dyad_M7      r=C2  piano         midi=[36, 4] ❌  | spn=['C2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [  32/200] dyad_M7      r=G2  guitar        midi=[48, 5] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  33/200] dyad_M7      r=C3  clarinet      midi=[48, 5] ❌  | spn=[] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  34/200] dyad_M7      r=F#3 triangle      midi=[60, 64] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[72] ❌
+    [  35/200] dyad_M6      r=F#3 voice         midi=[41, 45] ❌  | spn=['F2', 'C3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[48] ❌
+    [  36/200] dyad_M7      r=C4  square        midi=[60, 64] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [  37/200] dyad_M7      r=E4  violin        midi=[60] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[] ❌
+    [  38/200] dyad_M7      r=A4  triangle      midi=[65, 69] ❌  | spn=['A3', 'C#4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[65] ❌
+    [  39/200] dyad_M7      r=G5  oboe          midi=[77, 81] ❌  | spn=['F4', 'A4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[32] ❌
+    [  40/200] dyad_m2      r=C3  synth_pad     midi=[48, 55] ❌  | spn=['C2', 'G2', 'C3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [  41/200] dyad_M7      r=E6  oboe          midi=[84, 8] ❌  | spn=['C5', 'E5', 'G5'] ❌  | doremi=['do', 'fa', 'la', 'si'] ❌  | hz=[72] ❌
+    [  42/200] dyad_m2      r=F#1 trumpet       midi=[36, 4] ❌  | spn=['C2', 'C3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[36] ❌
+    [  43/200] dyad_m2      r=C2  sawtooth      midi=[48] ❌  | spn=['C2', 'E2', 'G2'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[49] ❌
+    [  44/200] dyad_m2      r=E4  square        midi=[60, 64] ❌  | spn=['F#4', 'A4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [  45/200] dyad_m3      r=C2  guitar        midi=[36, 48] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  46/200] dyad_m2      r=G2  organ         midi=[43, 55] ❌  | spn=['F#3'] ❌  | doremi=['do', 'mi'] ❌  | hz=[61] ❌
+    [  47/200] dyad_m2      r=E6  oboe          midi=[8] ❌  | spn=['C5'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[84] ❌
+    [  48/200] dyad_m2      r=A4  synth_pad     midi=[47, 59] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi'] ❌  | hz=[72] ❌
+    [  49/200] dyad_m2      r=G5  trombone      midi=[62, 65] ❌  | spn=['C4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[72] ❌
+    [  50/200] dyad_m3      r=F#1 voice         midi=[36, 40] ❌  | spn=['C3', 'E3'] ❌  | doremi=[] ❌  | hz=[48] ❌
+    [  51/200] dyad_m2      r=F#3 triangle      midi=[60, 6] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[] ❌
+    [  52/200] dyad_m2      r=C4  violin        midi=[7] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  53/200] dyad_m3      r=G2  square        midi=[60] ❌  | spn=['C3', 'D#3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[49, 53, 56, 60, 63, 65, 68, 72, 75, 77, 80, 84, 87, 89, 92] ❌
+    [  54/200] dyad_m3      r=C3  sawtooth      midi=[48] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si', 'do'] ❌  | hz=[60] ❌
+    [  55/200] dyad_m3      r=E4  square        midi=[60] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [  56/200] dyad_m3      r=A4  flute         midi=[60, 64] ❌  | spn=['F5', 'A5'] ❌  | doremi=[] ❌  | hz=[72] ❌
+    [  57/200] dyad_m3      r=C4  trombone      midi=[5] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [  58/200] dyad_m3      r=F#3 flute         midi=[5] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  59/200] dyad_m3      r=E6  violin        midi=[7] ❌  | spn=['E4'] ❌  | doremi=['mi', 'sol'] ✅  | hz=[72] ❌
+    [  60/200] dyad_m3      r=G5  triangle      midi=[55, 59] ❌  | spn=['C3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [  61/200] dyad_m6      r=C3  electric_keyboard  midi=[48, 52] ❌  | spn=['C3', 'E3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  62/200] dyad_m6      r=G2  oboe          midi=[36, 48] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [  63/200] dyad_m6      r=C4  oboe          midi=[48, 55] ❌  | spn=['C#4', 'F4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  64/200] dyad_m6      r=G5  square        midi=[] ❌  | spn=['C3', 'E3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  65/200] dyad_m6      r=E4  guitar        midi=[65] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[72] ❌
+    [  66/200] dyad_m7      r=F#1 synth_pad     midi=[65, 6] ❌  | spn=['C3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [  67/200] dyad_m7      r=C3  organ         midi=[49, 5] ❌  | spn=['C3', 'D#3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[51] ❌
+    [  68/200] dyad_m7      r=G2  electric_keyboard  midi=[48] ❌  | spn=['C2'] ❌  | doremi=['do', 'mi'] ❌  | hz=[60] ❌
+    [  69/200] dyad_m7      r=C2  flute         midi=[3] ❌  | spn=['C2', 'G2'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [  70/200] dyad_m6      r=F#1 trumpet       midi=[36, 4] ❌  | spn=['F2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[36] ❌
+    [  71/200] dyad_m6      r=E6  electric_keyboard  midi=[72] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[72] ❌
+    [  72/200] dyad_m6      r=F#3 oboe          midi=[60, 64] ❌  | spn=['F3', 'A3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  73/200] dyad_m6      r=C2  organ         midi=[48, 52] ❌  | spn=[] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [  74/200] dyad_m7      r=F#3 violin        midi=[60] ❌  | spn=['C4', 'E4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  75/200] dyad_m7      r=C4  trumpet       midi=[48, 55] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [  76/200] dyad_m7      r=A4  flute         midi=[65, 69] ❌  | spn=['F4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  77/200] dyad_m7      r=E4  synth_pad     midi=[60, 64] ❌  | spn=['D4', 'F4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  78/200] dyad_m7      r=G5  clarinet      midi=[65, 69] ❌  | spn=['C3', 'E3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  79/200] dyad_m7      r=E6  sawtooth      midi=[60] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [  80/200] dyad_oct     r=F#1 flute         midi=[36, 40] ❌  | spn=['C2', 'C3'] ❌  | doremi=[] ❌  | hz=[48] ❌
+    [  81/200] dyad_oct     r=C2  sawtooth      midi=[60, 64] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[48] ❌
+    [  82/200] dyad_oct     r=G2  clarinet      midi=[48, 52] ❌  | spn=['C3', 'E3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  83/200] dyad_oct     r=C3  violin        midi=[60, 64] ❌  | spn=['C3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [  84/200] dyad_m6      r=A4  trumpet       midi=[65, 6] ❌  | spn=['F4', 'A4', 'C5'] ❌  | doremi=[] ❌  | hz=[65] ❌
+    [  85/200] dyad_oct     r=C4  square        midi=[60] ❌  | spn=['C4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [  86/200] dyad_oct     r=A4  voice         midi=[65, 69] ❌  | spn=['F#4', 'A4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[72] ❌
+    [  87/200] dyad_oct     r=E4  guitar        midi=[64, 67] ❌  | spn=['E4', 'G4', 'B4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  88/200] dyad_oct     r=G5  clarinet      midi=[60, 64] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'si'] ❌  | hz=[72] ❌
+    [  89/200] dyad_p4      r=F#1 bass          midi=[36, 4] ❌  | spn=['C2'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[36] ❌
+    [  90/200] dyad_oct     r=F#3 trumpet       midi=[60, 64] ❌  | spn=['F#2', 'A2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [  91/200] dyad_p4      r=C3  piano         midi=[36] ❌  | spn=['F2'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [  92/200] dyad_oct     r=E6  guitar        midi=[6] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[72] ❌
+    [  93/200] dyad_p4      r=C2  violin        midi=[36, 4] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [  94/200] dyad_p4      r=E4  flute         midi=[60] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[69] ❌
+    [  95/200] dyad_p4      r=C4  piano         midi=[60, 6] ❌  | spn=[] ❌  | doremi=['fa', 'la', 'do', 'mi'] ❌  | hz=[72] ❌
+    [  96/200] dyad_p4      r=G2  organ         midi=[60, 64] ❌  | spn=['F3', 'A3', 'C4'] ❌  | doremi=['do', 'mi'] ❌  | hz=[60] ❌
+    [  97/200] dyad_p4      r=G5  synth_pad     midi=[60, 64] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [  98/200] dyad_p4      r=A4  synth_pad     midi=[60, 64] ❌  | spn=['D4', 'F#4'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[60] ❌
+    [  99/200] dyad_p5      r=C2  cello         midi=[36, 40] ❌  | spn=['C2', 'G2', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[48] ❌
+    [ 100/200] dyad_p5      r=F#1 voice         midi=[48, 5] ❌  | spn=['F2', 'C3', 'F3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[49] ❌
+    [ 101/200] dyad_p4      r=E6  trumpet       midi=[72, 76] ❌  | spn=['C5', 'E5', 'G5'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [ 102/200] dyad_p5      r=F#3 oboe          midi=[48] ❌  | spn=['C2'] ❌  | doremi=['fa', 'la', 'do', 'mi'] ❌  | hz=[48] ❌
+    [ 103/200] dyad_p5      r=C3  violin        midi=[48, 60] ❌  | spn=['C4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 104/200] dyad_p5      r=C4  flute         midi=[60] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 105/200] dyad_p5      r=E4  piano         midi=[60, 6] ❌  | spn=['C#4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 106/200] dyad_p4      r=F#3 trumpet       midi=[40, 52] ❌  | spn=['F3', 'A3', 'C4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [ 107/200] dyad_tt      r=F#1 sawtooth      midi=[56, 6] ❌  | spn=['C2', 'E2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[49] ❌
+    [ 108/200] dyad_p5      r=G5  bass          midi=[55] ❌  | spn=['G4'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're', 'fa'] ❌  | hz=[60] ❌
+    [ 109/200] dyad_tt      r=C2  triangle      midi=[48, 55] ❌  | spn=['C3'] ❌  | doremi=['do'] ❌  | hz=[60] ❌
+    [ 110/200] dyad_tt      r=F#3 cello         midi=[60, 6] ❌  | spn=[] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[60] ❌
+    [ 111/200] dyad_tt      r=G2  piano         midi=[36, 43] ❌  | spn=[] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[] ❌
+    [ 112/200] dyad_p5      r=G2  voice         midi=[48] ❌  | spn=['C2', 'G2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [ 113/200] dyad_tt      r=C4  square        midi=[60] ❌  | spn=['C4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 114/200] dyad_p5      r=E6  square        midi=[72, 76] ❌  | spn=['C3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 115/200] dyad_p5      r=A4  synth_lead    midi=[60, 6] ❌  | spn=['F4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[25] ❌
+    [ 116/200] dyad_tt      r=C3  electric_keyboard  midi=[60] ❌  | spn=['C2'] ❌  | doremi=['do', 'mi'] ❌  | hz=[60] ❌
+    [ 117/200] dyad_tt      r=A4  violin        midi=[52, 59] ❌  | spn=['C3', 'F3'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[60] ❌
+    [ 118/200] dyad_tt      r=E4  violin        midi=[60, 64] ❌  | spn=[] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[60] ❌
+    [ 119/200] dyad_tt      r=G5  organ         midi=[74] ❌  | spn=['F#4', 'A4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[72] ❌
+    [ 120/200] dyad_tt      r=E6  synth_lead    midi=[48, 55] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[72] ❌
+    [ 121/200] dyad_uni     r=F#1 trumpet       midi=[36, 40] ❌  | spn=['C2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[36] ❌
+    [ 122/200] dyad_uni     r=C2  synth_pad     midi=[3] ❌  | spn=['C2'] ✅  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 123/200] dyad_uni     r=F#3 synth_pad     midi=[36, 4] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [ 124/200] dyad_uni     r=C3  triangle      midi=[60] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 125/200] dyad_uni     r=C4  trumpet       midi=[60, 64] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ✅
+    [ 126/200] dyad_uni     r=A4  triangle      midi=[60] ❌  | spn=['C4'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [ 127/200] dyad_uni     r=G2  sine          midi=[36, 40] ❌  | spn=['C2', 'E2'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48, 52, 55, 60, 64, 67] ❌
+    [ 128/200] seventh_dom  r=G2  sine          midi=[51, 58, 63, 67, 70, 75, 79, 82, 87, 91, 94, 99, 103, 106] ❌  | spn=['C2', 'E2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[25] ❌
+    [ 129/200] dyad_uni     r=E6  cello         midi=[60, 64] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 130/200] dyad_uni     r=G5  trombone      midi=[60, 64] ❌  | spn=['C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 131/200] dyad_uni     r=E4  clarinet      midi=[72, 7] ❌  | spn=['F#4'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[60] ❌
+    [ 132/200] seventh_dom  r=C2  organ         midi=[48, 5] ❌  | spn=['C3'] ❌  | doremi=[] ❌  | hz=[53] ❌
+    [ 133/200] seventh_dom  r=F#3 synth_lead    midi=[60, 64] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 134/200] seventh_dom  r=C4  electric_keyboard  midi=[48] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 135/200] seventh_dom  r=C3  trumpet       midi=[48] ❌  | spn=['C2', 'E2', 'G2'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[48] ❌
+    [ 136/200] seventh_dom  r=F#1 electric_keyboard  midi=[36] ❌  | spn=['C2', 'A2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 137/200] seventh_dom  r=E4  synth_lead    midi=[60, 64] ❌  | spn=['D4', 'F#4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [ 138/200] seventh_dom  r=A4  triangle      midi=[60, 64] ❌  | spn=[] ❌  | doremi=['do', 'mi', 'sol', 'si', 're', 'fa'] ❌  | hz=[60] ❌
+    [ 139/200] seventh_dom  r=G5  trombone      midi=[60, 6] ❌  | spn=['C4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 140/200] seventh_maj  r=F#1 guitar        midi=[48, 5] ❌  | spn=['C4', 'E4'] ❌  | doremi=[] ❌  | hz=[48] ❌
+    [ 141/200] seventh_dom  r=E6  synth_lead    midi=[72, 76] ❌  | spn=[] ❌  | doremi=[] ❌  | hz=[84] ❌
+    [ 142/200] seventh_maj  r=C3  electric_keyboard  midi=[48] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ✅  | hz=[60] ❌
+    [ 143/200] seventh_maj  r=G2  oboe          midi=[36, 4] ❌  | spn=['C2', 'G2'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[36] ❌
+    [ 144/200] seventh_maj  r=F#3 synth_pad     midi=[48, 5] ❌  | spn=['C3', 'F3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 145/200] seventh_maj  r=C4  synth_lead    midi=[48, 55] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[19] ❌
+    [ 146/200] seventh_maj  r=E4  sine          midi=[60] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'mi', 'sol', 'si', 'do'] ❌  | hz=[60] ❌
+    [ 147/200] seventh_maj  r=A4  clarinet      midi=[66, 70] ❌  | spn=['C#4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 148/200] seventh_maj  r=C2  piano         midi=[36] ❌  | spn=['C2'] ❌  | doremi=[] ❌  | hz=[36] ❌
+    [ 149/200] seventh_maj  r=E6  sine          midi=[60, 64] ❌  | spn=['C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 150/200] seventh_min  r=G2  trombone      midi=[36, 4] ❌  | spn=['C2', 'C3'] ❌  | doremi=[] ❌  | hz=[36] ❌
+    [ 151/200] seventh_maj  r=G5  bass          midi=[67] ❌  | spn=['F#4', 'A4'] ❌  | doremi=[] ❌  | hz=[] ❌
+    [ 152/200] seventh_min  r=C2  oboe          midi=[36, 43] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si', 're'] ❌  | hz=[48] ❌
+    [ 153/200] seventh_min  r=C3  flute         midi=[48, 5] ❌  | spn=['C2', 'G2'] ❌  | doremi=['do', 'mi'] ❌  | hz=[48] ❌
+    [ 154/200] seventh_min  r=C4  flute         midi=[55, 59] ❌  | spn=[] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 155/200] seventh_min  r=G5  square        midi=[48, 52] ❌  | spn=['F3', 'A3', 'C4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[65] ❌
+    [ 156/200] seventh_min  r=A4  square        midi=[60, 64] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[62] ❌
+    [ 157/200] seventh_min  r=F#1 triangle      midi=[60] ❌  | spn=['C3', 'D#3'] ❌  | doremi=[] ❌  | hz=[48] ❌
+    [ 158/200] seventh_min  r=F#3 sawtooth      midi=[48, 5] ❌  | spn=[] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[60] ❌
+    [ 159/200] seventh_min  r=E6  bass          midi=[64] ❌  | spn=['F4', 'A4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 160/200] seventh_min  r=E4  voice         midi=[60, 64] ❌  | spn=['C4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[53] ❌
+    [ 161/200] triad_aug    r=F#3 bass          midi=[60, 6] ❌  | spn=['C3', 'F3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [ 162/200] triad_aug    r=G2  piano         midi=[48, 52] ❌  | spn=['C2'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [ 163/200] triad_aug    r=E4  electric_keyboard  midi=[56, 6] ❌  | spn=['G#3', 'C4'] ❌  | doremi=['fa', 'la', 'do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 164/200] triad_aug    r=F#1 square        midi=[48, 55] ❌  | spn=['C2', 'F2'] ❌  | doremi=[] ❌  | hz=[49] ❌
+    [ 165/200] triad_aug    r=A4  trumpet       midi=[60, 64] ❌  | spn=['C#4', 'E4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[65] ❌
+    [ 166/200] triad_dim    r=C2  synth_pad     midi=[48, 5] ❌  | spn=['C2'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[20] ❌
+    [ 167/200] triad_aug    r=E6  cello         midi=[60, 6] ❌  | spn=['F5', 'A5'] ❌  | doremi=[] ❌  | hz=[84] ❌
+    [ 168/200] triad_aug    r=C3  piano         midi=[48, 52] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [ 169/200] triad_dim    r=F#1 guitar        midi=[36] ❌  | spn=['C2', 'F#3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[64] ❌
+    [ 170/200] triad_aug    r=G5  synth_lead    midi=[43, 50] ❌  | spn=[] ❌  | doremi=[] ❌  | hz=[] ❌
+    [ 171/200] triad_dim    r=C3  trombone      midi=[48, 52] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[36] ❌
+    [ 172/200] triad_dim    r=E4  organ         midi=[41] ❌  | spn=['F#3'] ❌  | doremi=['mi', 'sol', 'si', 're', 'fa'] ❌  | hz=[60] ❌
+    [ 173/200] triad_aug    r=C4  synth_pad     midi=[53, 60] ❌  | spn=['D#4', 'F#4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [ 174/200] triad_dim    r=C4  oboe          midi=[66, 70] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[60] ❌
+    [ 175/200] triad_dim    r=G5  organ         midi=[53] ❌  | spn=['F#2'] ❌  | doremi=[] ❌  | hz=[21] ❌
+    [ 176/200] triad_dim    r=A4  synth_lead    midi=[48, 5] ❌  | spn=['D3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 177/200] triad_aug    r=C2  synth_pad     midi=[36, 4] ❌  | spn=['D3', 'F#3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [ 178/200] triad_dim    r=G2  guitar        midi=[48, 52] ❌  | spn=['C#3', 'E3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[49] ❌
+    [ 179/200] triad_dim    r=E6  triangle      midi=[60, 64] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[72] ❌
+    [ 180/200] triad_maj    r=G2  square        midi=[66, 7] ❌  | spn=['C3', 'E3', 'G3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 181/200] triad_maj    r=C2  flute         midi=[6] ❌  | spn=['C4'] ❌  | doremi=['fa', 'la', 'do', 'mi'] ❌  | hz=[] ❌
+    [ 182/200] triad_maj    r=F#1 flute         midi=[48, 5] ❌  | spn=['C2', 'E3'] ❌  | doremi=[] ❌  | hz=[48] ❌
+    [ 183/200] triad_dim    r=F#3 violin        midi=[60] ❌  | spn=['C3', 'G3'] ❌  | doremi=[] ❌  | hz=[60] ❌
+    [ 184/200] triad_maj    r=F#3 sine          midi=[36, 48] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[49] ❌
+    [ 185/200] triad_maj    r=E4  synth_pad     midi=[40, 52] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[59] ❌
+    [ 186/200] triad_maj    r=C4  voice         midi=[48, 5] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[48] ❌
+    [ 187/200] triad_maj    r=A4  flute         midi=[60, 64] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 188/200] triad_maj    r=E6  flute         midi=[6] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[84] ❌
+    [ 189/200] triad_maj    r=G5  voice         midi=[67, 71] ❌  | spn=['D4', 'F#4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[67] ❌
+    [ 190/200] triad_maj    r=C3  clarinet      midi=[56, 60] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [ 191/200] triad_min    r=C2  square        midi=[48, 52] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[60] ❌
+    [ 192/200] triad_min    r=G2  sawtooth      midi=[48, 55] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[49] ❌
+    [ 193/200] triad_min    r=C4  sawtooth      midi=[55, 6] ❌  | spn=['D#3'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[60] ❌
+    [ 194/200] triad_min    r=F#3 square        midi=[60] ❌  | spn=['C4', 'E4', 'G4'] ❌  | doremi=['do', 'mi', 'sol'] ❌  | hz=[62] ❌
+    [ 195/200] triad_min    r=E4  clarinet      midi=[48, 60] ❌  | spn=['D3', 'F3'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[65] ❌
+    [ 196/200] triad_min    r=A4  square        midi=[60, 64] ❌  | spn=['D4', 'F#4'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[72] ❌
+    [ 197/200] triad_min    r=F#1 sine          midi=[48, 52] ❌  | spn=['C3', 'E3'] ❌  | doremi=['do', 'fa', 'la', 'do'] ❌  | hz=[48] ❌
+    [ 198/200] triad_min    r=C3  flute         midi=[48, 52] ❌  | spn=['C4', 'E4'] ❌  | doremi=['do', 'fa', 'la'] ❌  | hz=[48] ❌
+    [ 199/200] triad_min    r=E6  flute         midi=[60, 6] ❌  | spn=['C5'] ❌  | doremi=['do', 'mi', 'sol', 'si'] ❌  | hz=[84] ❌
+    [ 200/200] triad_min    r=G5  synth_lead    midi=[43, 55] ❌  | spn=['G3', 'B3'] ❌  | doremi=[] ❌  | hz=[55] ❌
+
+============================================================
+SUMMARY — openrouter/google/gemini-3.1-pro-preview
+  Sampling     : 200 of 3800 (stratified by '(chord_type, n_notes, root_midi)', seed=42)
+  Stimuli (total)     : 200
+  Stimuli (condition) : 200  (all records)
+
+      Metric   Accuracy
+  ───────────────────────
+        MIDI       0.0%
+         SPN       1.0%
+      DOREMI       1.0%
+          HZ       0.5%
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           800
+  prompt tokens               149,447
+  completion tokens            98,790
+  total tokens                248,237
+  cost (USD)                $1.484374
+
+Results saved → results/run_20260506_055002/pitchbench_c4_chord_pitches/run_001_20260506_062727/results_openrouter_google_gemini_3_1_pro_preview.*
+
+############################################################
+# pitchbench_d7a_pitch_with_reference
+############################################################
+
+Experiment : pitchbench_d7a_pitch_with_reference
+Models     : openrouter/google/gemini-3.1-pro-preview
+Stimuli    : 130
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)

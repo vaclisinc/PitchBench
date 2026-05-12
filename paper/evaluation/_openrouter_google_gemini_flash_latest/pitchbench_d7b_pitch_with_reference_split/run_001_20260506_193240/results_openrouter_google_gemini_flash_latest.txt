@@ -1,0 +1,287 @@
+Experiment : pitchbench_d7b_pitch_with_reference_split
+Model      : openrouter/~google/gemini-flash-latest
+timestamp  : 2026-05-06T19:33:36.003164
+argv       : ['.venv/bin/pitchbench', 'all', '--models', 'openrouter/~google/gemini-flash-latest']
+git_commit : bc0df421bfa6118892df4024a7646aa99b072890
+git_dirty  : True
+model_name : openrouter/~google/gemini-flash-latest
+model_info : {'model': 'openrouter/~google/gemini-flash-latest', 'checkpoint': 'openrouter', 'provider': 'openrouter', 'openrouter_model_id': '~google/gemini-flash-latest'}
+record_extras : ['ref_midi', 'interval', 'ref_wav']
+sample_n   : 130
+sample_seed : 42
+total_available : 1235
+stratified_by : (ref_midi, interval)
+
+SUMMARY
+==================================================
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+  Stimuli : 130
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      50.0%
+     SPN      40.8%
+  DOREMI      31.5%
+      HZ      38.5%
+
+== Marginal accuracy ==
+
+source             midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+bass            100.00%  100.00%   50.00%  100.00%     2
+cello            66.67%   50.00%   66.67%   33.33%     6
+clarinet         66.67%   50.00%   33.33%   66.67%     6
+electric_keyboard   50.00%   50.00%   33.33%   66.67%     6
+flute            72.73%   54.55%   36.36%   27.27%    11
+guitar           71.43%   85.71%   57.14%   57.14%     7
+oboe             80.00%  100.00%   80.00%   40.00%     5
+organ            42.86%   28.57%   28.57%   14.29%     7
+piano            83.33%   50.00%   33.33%   50.00%     6
+sawtooth         33.33%   33.33%   33.33%   33.33%     6
+sine             16.67%    0.00%    0.00%   16.67%     6
+square            0.00%   10.00%    0.00%    0.00%    10
+synth_lead       33.33%    0.00%    0.00%    0.00%     3
+synth_pad        40.00%   30.00%   30.00%   50.00%    10
+triangle         33.33%    0.00%    0.00%   22.22%     9
+trombone        100.00%   66.67%   66.67%  100.00%     3
+trumpet          38.46%   46.15%   38.46%   53.85%    13
+violin           62.50%   37.50%   37.50%   50.00%     8
+voice            50.00%   50.00%   16.67%   16.67%     6
+
+source_type        midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+instrument       59.60%   50.51%   39.39%   45.45%    99
+waveform         19.35%    9.68%    6.45%   16.13%    31
+
+interval           midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+-12              30.00%   10.00%    0.00%   20.00%    10
+-7               30.00%   30.00%   20.00%    0.00%    10
+-5               70.00%   50.00%   40.00%   40.00%    10
+-4               40.00%   30.00%   40.00%   20.00%    10
+-3               30.00%   40.00%   20.00%   60.00%    10
+-1               70.00%   60.00%   60.00%   70.00%    10
+0                40.00%   40.00%   10.00%   20.00%    10
+1                50.00%   40.00%    0.00%   30.00%    10
+3                50.00%   60.00%   60.00%   60.00%    10
+4                80.00%   80.00%   90.00%   60.00%    10
+5                60.00%   60.00%   40.00%   30.00%    10
+7                50.00%   20.00%   30.00%   40.00%    10
+12               50.00%   10.00%    0.00%   50.00%    10
+
+ref_midi           midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+42               30.77%   19.23%   19.23%    3.85%    26
+53               38.46%   30.77%   15.38%   38.46%    26
+60               61.54%   61.54%   53.85%   57.69%    26
+67               76.92%   69.23%   46.15%   53.85%    26
+77               42.31%   23.08%   23.08%   38.46%    26
+
+hz_ratio           midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+0.561238        100.00%    0.00%    0.00%    0.00%     1
+0.594604          0.00%    0.00%    0.00%    0.00%     2
+0.629993          0.00%    0.00%  100.00%    0.00%     1
+0.707115          0.00%    0.00%    0.00%    0.00%     2
+0.749138        100.00%  100.00%    0.00%    0.00%     1
+0.749152          0.00%    0.00%    0.00%    0.00%     1
+0.749154         50.00%    0.00%    0.00%    0.00%     2
+0.749162          0.00%    0.00%    0.00%    0.00%     2
+0.749182        100.00%  100.00%  100.00%    0.00%     1
+0.840883        100.00%  100.00%  100.00%    0.00%     1
+0.840895          0.00%    0.00%    0.00%    0.00%     1
+0.840896        100.00%    0.00%    0.00%    0.00%     2
+0.840906          0.00%  100.00%    0.00%    0.00%     1
+0.890889        100.00%  100.00%  100.00%    0.00%     1
+0.890899         50.00%   50.00%   25.00%    0.00%     4
+0.943854          0.00%    0.00%    0.00%    0.00%     1
+0.943874        100.00%  100.00%  100.00%    0.00%     1
+0.943885          0.00%    0.00%    0.00%    0.00%     1
+0.999976        100.00%    0.00%    0.00%  100.00%     1
+0.999977         50.00%   50.00%   50.00%  100.00%     2
+0.999979         50.00%   50.00%    0.00%  100.00%     2
+0.999984         66.67%  100.00%   33.33%  100.00%     3
+0.999988        100.00%  100.00%  100.00%  100.00%     2
+0.999989        100.00%  100.00%    0.00%  100.00%     1
+0.999991        100.00%  100.00%    0.00%  100.00%     1
+0.999992        100.00%  100.00%  100.00%  100.00%     3
+0.999993        100.00%  100.00%  100.00%  100.00%     2
+0.999998         60.00%   40.00%   40.00%  100.00%     5
+0.999999         50.00%    0.00%    0.00%  100.00%     2
+1.0              42.86%   42.86%   57.14%  100.00%     7
+1.000001         80.00%   60.00%    0.00%  100.00%     5
+1.000005        100.00%   50.00%   50.00%  100.00%     2
+1.000007        100.00%  100.00%  100.00%  100.00%     3
+1.00001          75.00%   75.00%   75.00%  100.00%     4
+1.000012        100.00%  100.00%   66.67%  100.00%     3
+1.000015          0.00%    0.00%    0.00%  100.00%     1
+1.000017          0.00%  100.00%    0.00%  100.00%     1
+1.059461        100.00%  100.00%  100.00%    0.00%     1
+1.059462          0.00%    0.00%    0.00%    0.00%     2
+1.059463         50.00%  100.00%   50.00%    0.00%     2
+1.059465         50.00%   50.00%    0.00%    0.00%     2
+1.059475          0.00%    0.00%    0.00%    0.00%     1
+1.059479          0.00%    0.00%    0.00%    0.00%     1
+1.122438         50.00%   50.00%    0.00%    0.00%     2
+1.122453          0.00%  100.00%  100.00%    0.00%     1
+1.122462         50.00%   50.00%   33.33%    0.00%     6
+1.189206          0.00%    0.00%    0.00%    0.00%     1
+1.189207        100.00%  100.00%    0.00%    0.00%     1
+1.259892          0.00%    0.00%    0.00%    0.00%     1
+1.259921         50.00%    0.00%    0.00%    0.00%     4
+1.259927          0.00%    0.00%    0.00%    0.00%     1
+1.25993           0.00%    0.00%    0.00%    0.00%     1
+1.33484           0.00%  100.00%    0.00%    0.00%     1
+1.334842         50.00%    0.00%    0.00%    0.00%     2
+1.334847          0.00%    0.00%    0.00%    0.00%     1
+1.33486           0.00%    0.00%    0.00%    0.00%     1
+1.414214          0.00%    0.00%   50.00%    0.00%     2
+1.498305        100.00%    0.00%  100.00%    0.00%     1
+1.498307         50.00%    0.00%    0.00%    0.00%     2
+1.587401          0.00%    0.00%    0.00%    0.00%     2
+1.587413          0.00%    0.00%  100.00%    0.00%     1
+1.58742           0.00%    0.00%    0.00%    0.00%     1
+1.587483        100.00%    0.00%    0.00%    0.00%     1
+1.681791          0.00%    0.00%    0.00%    0.00%     1
+1.681793          0.00%    0.00%    0.00%    0.00%     1
+1.781797          0.00%    0.00%    0.00%    0.00%     1
+1.781799          0.00%    0.00%  100.00%    0.00%     1
+1.887758        100.00%    0.00%    0.00%    0.00%     1
+1.999996        100.00%    0.00%    0.00%    0.00%     1
+1.999998        100.00%    0.00%  100.00%    0.00%     1
+2.00001         100.00%  100.00%  100.00%    0.00%     1
+2.244888          0.00%    0.00%    0.00%    0.00%     1
+2.244922          0.00%    0.00%    0.00%    0.00%     2
+2.378414          0.00%    0.00%    0.00%    0.00%     1
+
+midi_gt            midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+30               50.00%    0.00%    0.00%    0.00%     2
+35                0.00%    0.00%    0.00%    0.00%     2
+37                0.00%    0.00%    0.00%    0.00%     2
+38               50.00%    0.00%    0.00%    0.00%     2
+39                0.00%    0.00%   50.00%    0.00%     2
+41               50.00%    0.00%    0.00%    0.00%     4
+42               50.00%   50.00%    0.00%    0.00%     2
+43               50.00%   50.00%    0.00%    0.00%     2
+45               50.00%   50.00%  100.00%   50.00%     2
+46               50.00%   50.00%   50.00%    0.00%     4
+47               50.00%   50.00%    0.00%    0.00%     2
+48               25.00%   25.00%    0.00%   50.00%     4
+49                0.00%    0.00%    0.00%    0.00%     4
+50                0.00%   50.00%    0.00%   50.00%     2
+52               50.00%   50.00%   50.00%  100.00%     2
+53               75.00%   50.00%   25.00%   25.00%     4
+54               25.00%    0.00%    0.00%   25.00%     4
+55               75.00%   75.00%   50.00%   50.00%     4
+56                0.00%   50.00%   75.00%    0.00%     4
+57               25.00%   25.00%   25.00%  100.00%     4
+58               50.00%  100.00%   50.00%   50.00%     2
+59              100.00%  100.00%  100.00%  100.00%     2
+60                0.00%   16.67%    0.00%   16.67%     6
+61               50.00%   50.00%    0.00%   50.00%     2
+62              100.00%  100.00%   50.00%  100.00%     2
+63               75.00%   75.00%   75.00%  100.00%     4
+64               75.00%  100.00%   75.00%   75.00%     4
+65               66.67%   33.33%   33.33%   33.33%     6
+66              100.00%  100.00%  100.00%  100.00%     2
+67               75.00%   50.00%   75.00%   25.00%     4
+68              100.00%  100.00%    0.00%   50.00%     2
+70               50.00%   50.00%   75.00%   25.00%     4
+71              100.00%  100.00%  100.00%    0.00%     2
+72              100.00%   33.33%   33.33%   33.33%     6
+73               50.00%    0.00%    0.00%    0.00%     2
+74              100.00%   50.00%    0.00%   75.00%     4
+76               50.00%   50.00%   50.00%   50.00%     2
+77               50.00%   50.00%    0.00%    0.00%     2
+78                0.00%    0.00%    0.00%    0.00%     2
+79               50.00%    0.00%    0.00%  100.00%     2
+80               50.00%   50.00%    0.00%  100.00%     2
+81              100.00%  100.00%  100.00%  100.00%     2
+82                0.00%    0.00%    0.00%    0.00%     2
+84               50.00%    0.00%   50.00%  100.00%     2
+89                0.00%    0.00%    0.00%   50.00%     2
+
+ref_wav            midi      spn   doremi       hz    n
+──────────────  ───────  ───────  ───────  ───────  ────
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_clarinet_5000ms.wav  100.00%    0.00%  100.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_electric_keyboard_5000ms.wav   66.67%   66.67%   66.67%  100.00%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_flute_5000ms.wav   75.00%   50.00%   50.00%   50.00%     4
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_guitar_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_oboe_5000ms.wav  100.00%  100.00%  100.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_organ_5000ms.wav   50.00%   50.00%   50.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_sawtooth_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_square_5000ms.wav    0.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_synth_pad_5000ms.wav  100.00%  100.00%   50.00%  100.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_triangle_5000ms.wav    0.00%    0.00%    0.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_trombone_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_trumpet_5000ms.wav   33.33%  100.00%   66.67%   66.67%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_violin_5000ms.wav   50.00%   50.00%   50.00%  100.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/C4_voice_5000ms.wav  100.00%  100.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_cello_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_clarinet_5000ms.wav    0.00%    0.00%    0.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_guitar_5000ms.wav   50.00%  100.00%   50.00%  100.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_oboe_5000ms.wav   50.00%  100.00%   50.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_organ_5000ms.wav  100.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_piano_5000ms.wav  100.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_sawtooth_5000ms.wav    0.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_square_5000ms.wav    0.00%    0.00%    0.00%    0.00%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_synth_pad_5000ms.wav    0.00%   50.00%   50.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_triangle_5000ms.wav   33.33%    0.00%    0.00%    0.00%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_trombone_5000ms.wav  100.00%    0.00%    0.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_trumpet_5000ms.wav   50.00%    0.00%    0.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_violin_5000ms.wav  100.00%   50.00%    0.00%  100.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F3_voice_5000ms.wav    0.00%   50.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_bass_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_cello_5000ms.wav  100.00%   50.00%   50.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_clarinet_5000ms.wav  100.00%  100.00%    0.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_electric_keyboard_5000ms.wav   50.00%   50.00%    0.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_organ_5000ms.wav    0.00%    0.00%   50.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_piano_5000ms.wav  100.00%    0.00%    0.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_sawtooth_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_sine_5000ms.wav   50.00%    0.00%    0.00%   50.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_square_5000ms.wav    0.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_synth_lead_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_synth_pad_5000ms.wav   50.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_triangle_5000ms.wav    0.00%    0.00%    0.00%   33.33%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_trombone_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_trumpet_5000ms.wav    0.00%   33.33%   33.33%   66.67%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_violin_5000ms.wav  100.00%    0.00%  100.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/F5_voice_5000ms.wav  100.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_cello_5000ms.wav    0.00%    0.00%   50.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_electric_keyboard_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_flute_5000ms.wav   50.00%   50.00%   25.00%    0.00%     4
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_guitar_5000ms.wav  100.00%  100.00%   50.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_organ_5000ms.wav  100.00%  100.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_piano_5000ms.wav    0.00%    0.00%  100.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_sawtooth_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_sine_5000ms.wav    0.00%    0.00%    0.00%    0.00%     4
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_square_5000ms.wav    0.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_synth_lead_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_synth_pad_5000ms.wav    0.00%    0.00%   33.33%   33.33%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_triangle_5000ms.wav  100.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/Fs2_trumpet_5000ms.wav   50.00%    0.00%    0.00%    0.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_bass_5000ms.wav  100.00%  100.00%    0.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_cello_5000ms.wav  100.00%  100.00%  100.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_clarinet_5000ms.wav  100.00%  100.00%   50.00%  100.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_flute_5000ms.wav  100.00%   66.67%   33.33%   33.33%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_guitar_5000ms.wav  100.00%  100.00%  100.00%  100.00%     2
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_oboe_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_organ_5000ms.wav    0.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_piano_5000ms.wav  100.00%  100.00%   33.33%   66.67%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_sawtooth_5000ms.wav  100.00%  100.00%  100.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_square_5000ms.wav    0.00%  100.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_synth_lead_5000ms.wav  100.00%    0.00%    0.00%    0.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_synth_pad_5000ms.wav  100.00%    0.00%    0.00%  100.00%     1
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_trumpet_5000ms.wav   66.67%   66.67%   66.67%   66.67%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_violin_5000ms.wav   33.33%   33.33%   33.33%    0.00%     3
+data/audio/pitchbench_d7b_pitch_with_reference_split/G4_voice_5000ms.wav   50.00%   50.00%   50.00%   50.00%     2
+
+
+LLM USAGE
+==================================================
+  calls                           520
+  prompt tokens               167,583
+  completion tokens             1,537
+  total tokens                169,120
+  cost (USD)                $0.153402

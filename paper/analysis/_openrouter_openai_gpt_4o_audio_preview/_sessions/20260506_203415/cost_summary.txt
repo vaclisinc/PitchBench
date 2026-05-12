@@ -1,0 +1,21 @@
+PitchBench session cost summary
+Timestamp : 2026-05-06T20:34:15.587538
+
+Experiment                                      calls        tokens      cost (USD)
+───────────────────────────────────────────────────────────────────────────────────
+pitchbench_a1_single_pitch_id                     168        19,873       $0.366310
+pitchbench_a2_single_pitch_by_loudness            840       102,154       $1.840540
+pitchbench_a3_single_pitch_by_duration          1,008       204,739       $5.587990
+pitchbench_b1_single_pitch_within_silence         504       340,605      $12.227625
+pitchbench_b2_pitch_at_timestamp                  336       230,980       $8.141080
+pitchbench_d7a_pitch_with_reference               624       115,716       $2.840790
+pitchbench_d7b_pitch_with_reference_split         156        28,849       $0.671080
+pitchbench_e1_audio_effects                     1,008       122,375       $2.206550
+pitchbench_e2_background                        1,008       137,491       $2.244310
+pitchbench_e3_harmonic_saturation                 504        61,198       $1.103380
+pitchbench_e4_time_stretching                   1,152       155,211       $2.027310
+pitchbench_e6_slightly_off                      1,008       143,017       $2.261770
+pitchbench_y1_single_pitch_id_mcq                 504        63,497       $1.112007
+───────────────────────────────────────────────────────────────────────────────────
+TOTAL                                           8,820     1,725,705      $42.630742
+

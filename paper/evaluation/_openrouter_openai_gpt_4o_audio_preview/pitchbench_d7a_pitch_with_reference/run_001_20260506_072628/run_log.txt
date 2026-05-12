@@ -1,0 +1,175 @@
+
+  Model : openrouter/openai/gpt-4o-audio-preview
+    [dispatch] 130 items, max_workers=20
+    [   1/130] anchored r=F#2 i= -7 sawtooth  | midi: gt=35 pred=42 ❌  | spn: gt=B1 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=61.7354 pred=185.0 ❌
+    [   2/130] anchored r=F#2 i= -4 synth_pad  | midi: gt=38 pred=42 ❌  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=None ❌
+    [   3/130] anchored r=F#2 i=-12 trumpet  | midi: gt=30 pred=42 ❌  | spn: gt=F#1 pred=G1 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=55.0 ❌
+    [   4/130] anchored r=F#2 i= -3 piano  | midi: gt=39 pred=42 ❌  | spn: gt=D#2 pred=G#2 ❌  | doremi: gt=re# pred=sol ❌  | hz: gt=77.7817 pred=185.0 ❌
+    [   5/130] anchored r=F#2 i=-12 flute  | midi: gt=30 pred=42 ❌  | spn: gt=F#1 pred=G2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=46.2493 pred=110.0 ❌
+    [   6/130] anchored r=F#2 i= -1 sine  | midi: gt=41 pred=42 ❌  | spn: gt=F2 pred=G#2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=185.0 ❌
+    [   7/130] anchored r=F#2 i= +1 synth_lead  | midi: gt=43 pred=42 ❌  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=185.0 ❌
+    [   8/130] anchored r=F#2 i= -5 cello  | midi: gt=37 pred=42 ❌  | spn: gt=C#2 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=69.2957 pred=110.0 ❌
+    [   9/130] anchored r=F#2 i= -7 sine  | midi: gt=35 pred=42 ❌  | spn: gt=B1 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=61.7354 pred=185.0 ❌
+    [  10/130] anchored r=F#2 i= -4 triangle  | midi: gt=38 pred=42 ❌  | spn: gt=D2 pred=G#2 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=73.4162 pred=185.0 ❌
+    [  11/130] anchored r=F#2 i= +0 square  | midi: gt=42 pred=42 ✅  | spn: gt=F#2 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=92.4986 pred=185.0 ❌
+    [  12/130] anchored r=F#2 i= +0 guitar  | midi: gt=42 pred=42 ✅  | spn: gt=F#2 pred=G2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=92.4986 pred=110.0 ❌
+    [  13/130] anchored r=F#2 i= +3 synth_pad  | midi: gt=45 pred=42 ❌  | spn: gt=A2 pred=G#2 ❌  | doremi: gt=la pred=sol ❌  | hz: gt=110.0 pred=185.0 ❌
+    [  14/130] anchored r=F#2 i= +4 cello  | midi: gt=46 pred=42 ❌  | spn: gt=A#2 pred=G#2 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=185.0 ❌
+    [  15/130] anchored r=F#2 i= -3 flute  | midi: gt=39 pred=42 ❌  | spn: gt=D#2 pred=G#2 ❌  | doremi: gt=re# pred=sol ❌  | hz: gt=77.7817 pred=110.0 ❌
+    [  16/130] anchored r=F#2 i= +3 guitar  | midi: gt=45 pred=42 ❌  | spn: gt=A2 pred=G2 ❌  | doremi: gt=la pred=sol ❌  | hz: gt=110.0 pred=110.0 ✅
+    [  17/130] anchored r=F#2 i= -1 triangle  | midi: gt=41 pred=42 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=87.3071 pred=185.0 ❌
+    [  18/130] anchored r=F#2 i= +1 flute  | midi: gt=43 pred=42 ❌  | spn: gt=G2 pred=G#2 ❌  | doremi: gt=sol pred=sol ✅  | hz: gt=97.9989 pred=110.0 ❌
+    [  19/130] anchored r=F#2 i= +4 flute  | midi: gt=46 pred=42 ❌  | spn: gt=A#2 pred=G2 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=110.0 ❌
+    [  20/130] anchored r=F#2 i= -5 square  | midi: gt=37 pred=42 ❌  | spn: gt=C#2 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=69.2957 pred=185.0 ❌
+    [  21/130] anchored r=F#2 i= +5 trumpet  | midi: gt=47 pred=42 ❌  | spn: gt=B2 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=92.5 ❌
+    [  22/130] anchored r=F#2 i= +7 electric_keyboard  | midi: gt=49 pred=42 ❌  | spn: gt=C#3 pred=G2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=110.0 ❌
+    [  23/130] anchored r=F#2 i= +5 organ  | midi: gt=47 pred=42 ❌  | spn: gt=B2 pred=G#2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=185.0 ❌
+    [  24/130] anchored r=F#2 i=+12 synth_pad  | midi: gt=54 pred=42 ❌  | spn: gt=F#3 pred=G#2 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=185.0 ✅
+    [  25/130] anchored r= F3 i= -4 square  | midi: gt=49 pred=53 ❌  | spn: gt=C#3 pred=G3 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=440.0 ❌
+    [  26/130] anchored r=F#2 i=+12 sine  | midi: gt=54 pred=42 ❌  | spn: gt=F#3 pred=D#3 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=184.9972 pred=185.0 ✅
+    [  27/130] anchored r= F3 i= -5 triangle  | midi: gt=48 pred=53 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=fa ❌  | hz: gt=130.8128 pred=349.23 ❌
+    [  28/130] anchored r= F3 i= -3 guitar  | midi: gt=50 pred=53 ❌  | spn: gt=D3 pred=G3 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=146.8324 pred=220.0 ❌
+    [  29/130] anchored r= F3 i= -4 triangle  | midi: gt=49 pred=53 ❌  | spn: gt=C#3 pred=G3 ❌  | doremi: gt=do# pred=mi ❌  | hz: gt=138.5913 pred=349.23 ❌
+    [  30/130] anchored r= F3 i= -5 violin  | midi: gt=48 pred=53 ❌  | spn: gt=C3 pred=G2 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=130.8128 pred=196.0 ❌
+    [  31/130] anchored r= F3 i= -7 voice  | midi: gt=46 pred=53 ❌  | spn: gt=A#2 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=349.23 ❌
+    [  32/130] anchored r= F3 i= -7 oboe  | midi: gt=46 pred=53 ❌  | spn: gt=A#2 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=116.5409 pred=196.0 ❌
+    [  33/130] anchored r= F3 i= -1 clarinet  | midi: gt=52 pred=53 ❌  | spn: gt=E3 pred=G3 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=164.8138 pred=349.23 ❌
+    [  34/130] anchored r= F3 i= -3 clarinet  | midi: gt=50 pred=53 ❌  | spn: gt=D3 pred=G3 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=146.8324 pred=349.23 ❌
+    [  35/130] anchored r=F#2 i= +7 sine  | midi: gt=49 pred=42 ❌  | spn: gt=C#3 pred=G#2 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=138.5913 pred=185.0 ❌
+    [  36/130] anchored r= F3 i= +0 sawtooth  | midi: gt=53 pred=57 ❌  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=174.6141 pred=349.23 ❌
+    [  37/130] anchored r= F3 i= -1 cello  | midi: gt=52 pred=53 ❌  | spn: gt=E3 pred=G3 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=164.8138 pred=220.0 ❌
+    [  38/130] anchored r= F3 i=-12 trumpet  | midi: gt=41 pred=53 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=87.3071 pred=196.0 ❌
+    [  39/130] anchored r= F3 i=-12 piano  | midi: gt=41 pred=53 ❌  | spn: gt=F2 pred=G2 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=87.3071 pred=196.0 ❌
+    [  40/130] anchored r= F3 i= +0 trumpet  | midi: gt=53 pred=53 ✅  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=174.6141 pred=174.61 ✅
+    [  41/130] anchored r= F3 i= +1 organ  | midi: gt=54 pred=53 ❌  | spn: gt=F#3 pred=G3 ❌  | doremi: gt=fa# pred=mi ❌  | hz: gt=184.9972 pred=220.0 ❌
+    [  42/130] anchored r= F3 i= +3 synth_pad  | midi: gt=56 pred=53 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=207.6523 pred=220.0 ❌
+    [  43/130] anchored r= F3 i= +3 square  | midi: gt=56 pred=53 ❌  | spn: gt=G#3 pred=G3 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=349.23 ❌
+    [  44/130] anchored r= C4 i=-12 flute  | midi: gt=48 pred=60 ❌  | spn: gt=C3 pred=G3 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=130.8128 pred=196.0 ❌
+    [  45/130] anchored r= F3 i= +7 sawtooth  | midi: gt=60 pred=53 ❌  | spn: gt=C4 pred=G3 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  46/130] anchored r= F3 i= +5 voice  | midi: gt=58 pred=53 ❌  | spn: gt=A#3 pred=G3 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=233.0819 pred=349.23 ❌
+    [  47/130] anchored r= C4 i= -7 voice  | midi: gt=53 pred=60 ❌  | spn: gt=F3 pred=G4 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=174.6141 pred=392.0 ❌
+    [  48/130] anchored r= F3 i= +4 oboe  | midi: gt=57 pred=53 ❌  | spn: gt=A3 pred=G3 ❌  | doremi: gt=la pred=fa# ❌  | hz: gt=220.0 pred=174.61 ❌
+    [  49/130] anchored r= F3 i= +4 trombone  | midi: gt=57 pred=53 ❌  | spn: gt=A3 pred=G3 ❌  | doremi: gt=la pred=mi ❌  | hz: gt=220.0 pred=196.0 ❌
+    [  50/130] anchored r= F3 i= +7 square  | midi: gt=60 pred=53 ❌  | spn: gt=C4 pred=G3 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  51/130] anchored r= C4 i= -5 oboe  | midi: gt=55 pred=60 ❌  | spn: gt=G3 pred=G3 ✅  | doremi: gt=sol pred=sol ✅  | hz: gt=195.9977 pred=293.66 ❌
+    [  52/130] anchored r= C4 i=-12 square  | midi: gt=48 pred=60 ❌  | spn: gt=C3 pred=G4 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=130.8128 pred=440.0 ❌
+    [  53/130] anchored r= C4 i= -7 oboe  | midi: gt=53 pred=60 ❌  | spn: gt=F3 pred=G3 ❌  | doremi: gt=fa pred=la ❌  | hz: gt=174.6141 pred=220.0 ❌
+    [  54/130] anchored r= C4 i= -5 electric_keyboard  | midi: gt=55 pred=60 ❌  | spn: gt=G3 pred=G4 ❌  | doremi: gt=sol pred=mi ❌  | hz: gt=195.9977 pred=440.0 ❌
+    [  55/130] anchored r= C4 i= -4 trumpet  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G4 ❌  | doremi: gt=sol# pred=re ❌  | hz: gt=207.6523 pred=293.66 ❌
+    [  56/130] anchored r= F3 i=+12 triangle  | midi: gt=65 pred=53 ❌  | spn: gt=F4 pred=G3 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=349.23 ✅
+    [  57/130] anchored r= F3 i= +1 synth_pad  | midi: gt=54 pred=53 ❌  | spn: gt=F#3 pred=G3 ❌  | doremi: gt=fa# pred=mi ❌  | hz: gt=184.9972 pred=349.23 ❌
+    [  58/130] anchored r= C4 i= -4 organ  | midi: gt=56 pred=60 ❌  | spn: gt=G#3 pred=G4 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=207.6523 pred=392.0 ❌
+    [  59/130] anchored r= F3 i=+12 violin  | midi: gt=65 pred=57 ❌  | spn: gt=F4 pred=G3 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=220.0 ❌
+    [  60/130] anchored r= F3 i= +5 guitar  | midi: gt=58 pred=53 ❌  | spn: gt=A#3 pred=G3 ❌  | doremi: gt=la# pred=mi ❌  | hz: gt=233.0819 pred=196.0 ❌
+    [  61/130] anchored r= C4 i= -3 violin  | midi: gt=57 pred=60 ❌  | spn: gt=A3 pred=D4 ❌  | doremi: gt=la pred=do ❌  | hz: gt=220.0 pred=392.0 ❌
+    [  62/130] anchored r= C4 i= -1 flute  | midi: gt=59 pred=60 ❌  | spn: gt=B3 pred=G4 ❌  | doremi: gt=si pred=re ❌  | hz: gt=246.9417 pred=392.0 ❌
+    [  63/130] anchored r= C4 i= -3 triangle  | midi: gt=57 pred=60 ❌  | spn: gt=A3 pred=G4 ❌  | doremi: gt=la pred=re ❌  | hz: gt=220.0 pred=440.0 ❌
+    [  64/130] anchored r= C4 i= -1 trombone  | midi: gt=59 pred=60 ❌  | spn: gt=B3 pred=G3 ❌  | doremi: gt=si pred=do# ❌  | hz: gt=246.9417 pred=349.23 ❌
+    [  65/130] anchored r= C4 i= +0 guitar  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=re ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  66/130] anchored r= C4 i= +1 electric_keyboard  | midi: gt=61 pred=60 ❌  | spn: gt=C#4 pred=G4 ❌  | doremi: gt=do# pred=re ❌  | hz: gt=277.1826 pred=261.63 ❌
+    [  67/130] anchored r= C4 i= +4 violin  | midi: gt=64 pred=60 ❌  | spn: gt=E4 pred=D4 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=329.6276 pred=392.0 ❌
+    [  68/130] anchored r= C4 i= +3 organ  | midi: gt=63 pred=60 ❌  | spn: gt=D#4 pred=G4 ❌  | doremi: gt=re# pred=mi ❌  | hz: gt=311.127 pred=261.63 ❌
+    [  69/130] anchored r= C4 i= +0 trumpet  | midi: gt=60 pred=60 ✅  | spn: gt=C4 pred=G4 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=261.6256 pred=349.23 ❌
+    [  70/130] anchored r= C4 i= +5 synth_pad  | midi: gt=65 pred=60 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=392.0 ❌
+    [  71/130] anchored r= C4 i= +4 trumpet  | midi: gt=64 pred=60 ❌  | spn: gt=E4 pred=D4 ❌  | doremi: gt=mi pred=re ❌  | hz: gt=329.6276 pred=293.66 ❌
+    [  72/130] anchored r= C4 i= +3 electric_keyboard  | midi: gt=63 pred=60 ❌  | spn: gt=D#4 pred=G4 ❌  | doremi: gt=re# pred=re ❌  | hz: gt=311.127 pred=392.0 ❌
+    [  73/130] anchored r= C4 i= +1 square  | midi: gt=61 pred=60 ❌  | spn: gt=C#4 pred=G4 ❌  | doremi: gt=do# pred=mi ❌  | hz: gt=277.1826 pred=440.0 ❌
+    [  74/130] anchored r= C4 i= +5 flute  | midi: gt=65 pred=60 ❌  | spn: gt=F4 pred=G4 ❌  | doremi: gt=fa pred=re ❌  | hz: gt=349.2282 pred=392.0 ❌
+    [  75/130] anchored r= C4 i= +7 sawtooth  | midi: gt=67 pred=60 ❌  | spn: gt=G4 pred=G4 ✅  | doremi: gt=sol pred=re ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  76/130] anchored r= G4 i=-12 clarinet  | midi: gt=55 pred=67 ❌  | spn: gt=G3 pred=D4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=195.9977 pred=349.0 ❌
+    [  77/130] anchored r= C4 i= +7 clarinet  | midi: gt=67 pred=60 ❌  | spn: gt=G4 pred=D4 ❌  | doremi: gt=sol pred=re ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  78/130] anchored r= C4 i=+12 flute  | midi: gt=72 pred=60 ❌  | spn: gt=C5 pred=D4 ❌  | doremi: gt=do pred=re ❌  | hz: gt=523.2511 pred=392.0 ❌
+    [  79/130] anchored r= G4 i=-12 violin  | midi: gt=55 pred=67 ❌  | spn: gt=G3 pred=E4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=195.9977 pred=440.0 ❌
+    [  80/130] anchored r= G4 i= -7 violin  | midi: gt=60 pred=67 ❌  | spn: gt=C4 pred=A4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  81/130] anchored r= G4 i= -5 guitar  | midi: gt=62 pred=67 ❌  | spn: gt=D4 pred=D4 ✅  | doremi: gt=re pred=la ❌  | hz: gt=293.6648 pred=440.0 ❌
+    [  82/130] anchored r= G4 i= -4 guitar  | midi: gt=63 pred=67 ❌  | spn: gt=D#4 pred=A4 ❌  | doremi: gt=re# pred=fa ❌  | hz: gt=311.127 pred=440.0 ❌
+    [  83/130] anchored r= G4 i= -7 organ  | midi: gt=60 pred=67 ❌  | spn: gt=C4 pred=E4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=261.6256 pred=440.0 ❌
+    [  84/130] anchored r= G4 i= -5 bass  | midi: gt=62 pred=67 ❌  | spn: gt=D4 pred=E4 ❌  | doremi: gt=re pred=la ❌  | hz: gt=293.6648 pred=440.0 ❌
+    [  85/130] anchored r= G4 i= -4 clarinet  | midi: gt=63 pred=67 ❌  | spn: gt=D#4 pred=D4 ❌  | doremi: gt=re# pred=fa ❌  | hz: gt=311.127 pred=440.0 ❌
+    [  86/130] anchored r= C4 i=+12 synth_pad  | midi: gt=72 pred=60 ❌  | spn: gt=C5 pred=G4 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=523.2511 pred=392.0 ❌
+    [  87/130] anchored r= G4 i= -3 square  | midi: gt=64 pred=67 ❌  | spn: gt=E4 pred=E4 ✅  | doremi: gt=mi pred=la ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  88/130] anchored r= G4 i= -3 trumpet  | midi: gt=64 pred=67 ❌  | spn: gt=E4 pred=A4 ❌  | doremi: gt=mi pred=fa ❌  | hz: gt=329.6276 pred=440.0 ❌
+    [  89/130] anchored r= G4 i= -1 sawtooth  | midi: gt=66 pred=67 ❌  | spn: gt=F#4 pred=E4 ❌  | doremi: gt=fa# pred=la ❌  | hz: gt=369.9944 pred=440.0 ❌
+    [  90/130] anchored r= G4 i= +0 piano  | midi: gt=67 pred=67 ✅  | spn: gt=G4 pred=E4 ❌  | doremi: gt=sol pred=la ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  91/130] anchored r= G4 i= +3 trumpet  | midi: gt=70 pred=67 ❌  | spn: gt=A#4 pred=A4 ❌  | doremi: gt=la# pred=fa ❌  | hz: gt=466.1638 pred=440.0 ❌
+    [  92/130] anchored r= G4 i= +1 flute  | midi: gt=68 pred=67 ❌  | spn: gt=G#4 pred=E4 ❌  | doremi: gt=sol# pred=la ❌  | hz: gt=415.3047 pred=440.0 ❌
+    [  93/130] anchored r= G4 i= +1 piano  | midi: gt=68 pred=67 ❌  | spn: gt=G#4 pred=E4 ❌  | doremi: gt=sol# pred=fa ❌  | hz: gt=415.3047 pred=440.0 ❌
+    [  94/130] anchored r= G4 i= +3 cello  | midi: gt=70 pred=67 ❌  | spn: gt=A#4 pred=A4 ❌  | doremi: gt=la# pred=la ❌  | hz: gt=466.1638 pred=440.0 ❌
+    [  95/130] anchored r= G4 i= -1 flute  | midi: gt=66 pred=67 ❌  | spn: gt=F#4 pred=A4 ❌  | doremi: gt=fa# pred=la ❌  | hz: gt=369.9944 pred=440.0 ❌
+    [  96/130] anchored r= G4 i= +5 flute  | midi: gt=72 pred=67 ❌  | spn: gt=C5 pred=A4 ❌  | doremi: gt=do pred=la ❌  | hz: gt=523.2511 pred=440.0 ❌
+    [  97/130] anchored r= G4 i= +0 trumpet  | midi: gt=67 pred=67 ✅  | spn: gt=G4 pred=A4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=391.9954 pred=440.0 ❌
+    [  98/130] anchored r= G4 i= +5 oboe  | midi: gt=72 pred=67 ❌  | spn: gt=C5 pred=A4 ❌  | doremi: gt=do pred=fa ❌  | hz: gt=523.2511 pred=440.0 ❌
+    [  99/130] anchored r= G4 i= +4 voice  | midi: gt=71 pred=67 ❌  | spn: gt=B4 pred=A4 ❌  | doremi: gt=si pred=la ❌  | hz: gt=493.8833 pred=440.0 ❌
+    [ 100/130] anchored r= G4 i= +4 violin  | midi: gt=71 pred=67 ❌  | spn: gt=B4 pred=E4 ❌  | doremi: gt=si pred=fa ❌  | hz: gt=493.8833 pred=440.0 ❌
+    [ 101/130] anchored r= G4 i= +7 synth_lead  | midi: gt=74 pred=67 ❌  | spn: gt=D5 pred=A4 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 102/130] anchored r= G4 i= +7 piano  | midi: gt=74 pred=67 ❌  | spn: gt=D5 pred=E4 ❌  | doremi: gt=re pred=fa ❌  | hz: gt=587.3295 pred=440.0 ❌
+    [ 103/130] anchored r= G4 i=+12 synth_pad  | midi: gt=79 pred=67 ❌  | spn: gt=G5 pred=A4 ❌  | doremi: gt=sol pred=fa ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [ 104/130] anchored r= F5 i= -7 synth_lead  | midi: gt=70 pred=77 ❌  | spn: gt=A#4 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=466.1638 pred=987.77 ❌
+    [ 105/130] anchored r= F5 i=-12 sawtooth  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=440.0 ❌
+    [ 106/130] anchored r= G4 i=+12 voice  | midi: gt=79 pred=67 ❌  | spn: gt=G5 pred=A4 ❌  | doremi: gt=sol pred=fa# ❌  | hz: gt=783.9909 pred=440.0 ❌
+    [ 107/130] anchored r= F5 i= -5 violin  | midi: gt=72 pred=77 ❌  | spn: gt=C5 pred=G5 ❌  | doremi: gt=do pred=mi ❌  | hz: gt=523.2511 pred=880.0 ❌
+    [ 108/130] anchored r= F5 i=-12 triangle  | midi: gt=65 pred=77 ❌  | spn: gt=F4 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=880.0 ❌
+    [ 109/130] anchored r= F5 i= -5 voice  | midi: gt=72 pred=77 ❌  | spn: gt=C5 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=523.2511 pred=880.0 ❌
+    [ 110/130] anchored r= F5 i= -4 square  | midi: gt=73 pred=77 ❌  | spn: gt=C#5 pred=G5 ❌  | doremi: gt=do# pred=sol ❌  | hz: gt=554.3653 pred=880.0 ❌
+    [ 111/130] anchored r= F5 i= -4 cello  | midi: gt=73 pred=77 ❌  | spn: gt=C#5 pred=G5 ❌  | doremi: gt=do# pred=mi ❌  | hz: gt=554.3653 pred=880.0 ❌
+    [ 112/130] anchored r= F5 i= -1 square  | midi: gt=76 pred=77 ❌  | spn: gt=E5 pred=G5 ❌  | doremi: gt=mi pred=mi ✅  | hz: gt=659.2551 pred=880.0 ❌
+    [ 113/130] anchored r= F5 i= -7 organ  | midi: gt=70 pred=77 ❌  | spn: gt=A#4 pred=G5 ❌  | doremi: gt=la# pred=mi ❌  | hz: gt=466.1638 pred=880.0 ❌
+    [ 114/130] anchored r= F5 i= -1 bass  | midi: gt=76 pred=77 ❌  | spn: gt=E5 pred=G5 ❌  | doremi: gt=mi pred=sol ❌  | hz: gt=659.2551 pred=440.0 ❌
+    [ 115/130] anchored r= F5 i= -3 piano  | midi: gt=74 pred=77 ❌  | spn: gt=D5 pred=G5 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=587.3295 pred=880.0 ❌
+    [ 116/130] anchored r= F5 i= +0 trumpet  | midi: gt=77 pred=77 ✅  | spn: gt=F5 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=698.4565 pred=440.0 ❌
+    [ 117/130] anchored r= F5 i= +1 sine  | midi: gt=78 pred=77 ❌  | spn: gt=F#5 pred=G5 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=739.9888 pred=880.0 ❌
+    [ 118/130] anchored r= F5 i= +1 triangle  | midi: gt=78 pred=77 ❌  | spn: gt=F#5 pred=G5 ❌  | doremi: gt=fa# pred=sol ❌  | hz: gt=739.9888 pred=880.0 ❌
+    [ 119/130] anchored r= F5 i= -3 electric_keyboard  | midi: gt=74 pred=77 ❌  | spn: gt=D5 pred=G5 ❌  | doremi: gt=re pred=mi ❌  | hz: gt=587.3295 pred=880.0 ❌
+    [ 120/130] anchored r= F5 i= +3 triangle  | midi: gt=80 pred=77 ❌  | spn: gt=G#5 pred=G5 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=830.6094 pred=880.0 ❌
+    [ 121/130] anchored r= F5 i= +0 synth_pad  | midi: gt=77 pred=77 ✅  | spn: gt=F5 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=698.4565 pred=880.0 ❌
+    [ 122/130] anchored r= F5 i= +7 sine  | midi: gt=84 pred=77 ❌  | spn: gt=C6 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=1046.5023 pred=880.0 ❌
+    [ 123/130] anchored r= F5 i= +4 cello  | midi: gt=81 pred=77 ❌  | spn: gt=A5 pred=G5 ❌  | doremi: gt=la pred=mi ❌  | hz: gt=880.0 pred=880.0 ✅
+    [ 124/130] anchored r= F5 i= +5 organ  | midi: gt=82 pred=77 ❌  | spn: gt=A#5 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=932.3275 pred=880.0 ❌
+    [ 125/130] anchored r= F5 i= +3 clarinet  | midi: gt=80 pred=77 ❌  | spn: gt=G#5 pred=D#5 ❌  | doremi: gt=sol# pred=mi ❌  | hz: gt=830.6094 pred=880.0 ❌
+    [ 126/130] anchored r= F5 i= +4 trombone  | midi: gt=81 pred=77 ❌  | spn: gt=A5 pred=G5 ❌  | doremi: gt=la pred=mi ❌  | hz: gt=880.0 pred=880.0 ✅
+    [ 127/130] anchored r= F5 i= +7 trumpet  | midi: gt=84 pred=77 ❌  | spn: gt=C6 pred=G5 ❌  | doremi: gt=do pred=sol ❌  | hz: gt=1046.5023 pred=880.0 ❌
+    [ 128/130] anchored r= F5 i= +5 electric_keyboard  | midi: gt=82 pred=77 ❌  | spn: gt=A#5 pred=G5 ❌  | doremi: gt=la# pred=sol ❌  | hz: gt=932.3275 pred=880.0 ❌
+    [ 129/130] anchored r= F5 i=+12 synth_pad  | midi: gt=89 pred=77 ❌  | spn: gt=F6 pred=G5 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=1396.9129 pred=880.0 ❌
+    [ 130/130] anchored r= F5 i=+12 trumpet  | midi: gt=89 pred=77 ❌  | spn: gt=F6 pred=G5 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=1396.9129 pred=880.0 ❌
+
+============================================================
+SUMMARY — openrouter/openai/gpt-4o-audio-preview
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+  Stimuli (total)     : 130
+  Stimuli (condition) : 130
+  Stimuli (baseline)  : 0
+
+  Format  Condition   Baseline
+  ──────────────────────────────
+    MIDI       6.9%       0.0%
+     SPN       3.1%       0.0%
+  DOREMI       5.4%       0.0%
+      HZ       5.4%       0.0%
+     ANY      14.6%       0.0%
+
+  Headline 'accuracy' is computed on the condition subset only (see CatASpec.primary_filter).
+
+  
+
+
+LLM USAGE
+==================================================
+  calls                           520
+  prompt tokens                85,982
+  completion tokens            10,203
+  total tokens                 96,185
+  cost (USD)                $2.364485
+
+Results saved → results/run_20260506_072628/pitchbench_d7a_pitch_with_reference/run_001_20260506_072628/results_openrouter_openai_gpt_4o_audio_preview.*
+
+############################################################
+# pitchbench_d7b_pitch_with_reference_split
+############################################################
+
+Experiment : pitchbench_d7b_pitch_with_reference_split
+Models     : openrouter/openai/gpt-4o-audio-preview
+Stimuli    : 130
+  Sampling     : 130 of 1235 (stratified by '(ref_midi, interval)', seed=42)
+
+Probing multi-audio support...
+  openrouter/openai/gpt-4o-audio-preview             OK

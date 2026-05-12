@@ -1,0 +1,25 @@
+{
+  "group_key": "note_duration_ms",
+  "score_key": "sequence_correct",
+  "score_label": "Sequence accuracy (%)",
+  "x_values": [
+    250,
+    500,
+    1000
+  ],
+  "x_labels": [
+    "250",
+    "500",
+    "1000"
+  ],
+  "mean_pct": [
+    1.6666666666666667,
+    3.3333333333333335,
+    41.66666666666667
+  ],
+  "n_samples": [
+    60,
+    60,
+    60
+  ]
+}

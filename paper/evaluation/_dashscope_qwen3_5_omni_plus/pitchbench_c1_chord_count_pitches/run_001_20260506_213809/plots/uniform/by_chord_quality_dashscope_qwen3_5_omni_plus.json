@@ -1,0 +1,57 @@
+{
+  "group_key": "chord_quality",
+  "score_key": "count_correct",
+  "score_label": "Count accuracy (%)",
+  "x_values": [
+    "augmented",
+    "diminished",
+    "dom7",
+    "m7b5",
+    "maj7",
+    "major",
+    "min7",
+    "minor",
+    "random_set",
+    "sus2",
+    "sus4"
+  ],
+  "x_labels": [
+    "augmented",
+    "diminished",
+    "dom7",
+    "m7b5",
+    "maj7",
+    "major",
+    "min7",
+    "minor",
+    "random_set",
+    "sus2",
+    "sus4"
+  ],
+  "mean_pct": [
+    5.0,
+    10.0,
+    16.666666666666664,
+    11.11111111111111,
+    5.555555555555555,
+    5.0,
+    22.22222222222222,
+    0.0,
+    22.22222222222222,
+    0.0,
+    0.0
+  ],
+  "n_samples": [
+    20,
+    20,
+    18,
+    18,
+    18,
+    20,
+    18,
+    20,
+    36,
+    20,
+    20
+  ]
+}

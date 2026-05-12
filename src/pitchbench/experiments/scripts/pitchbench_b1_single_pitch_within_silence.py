@@ -1,0 +1,92 @@
+"""
+b1 — Hidden pitch in silence.
+
+A single musical note is embedded at a specific position inside a long silent
+clip (default: 60 s). The prompt tells the model exactly when the note occurs;
+the task is to identify its pitch.
+
+Universal IVs: source, source_type, midi.
+Experiment-specific IVs: pos_ms.
+
+Usage::
+    pitchbench --id b1 --preview
+    pitchbench --id b1 --models audio_flamingo_next_instruct
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pitchbench.config as config
+import pitchbench.sound.engine as engine
+from pitchbench.experiments.helpers.cat_b import CatBSpec, run_cat_b_experiment
+
+EXP_NAME          = Path(__file__).stem
+PITCHES           = config.pitchbench_b1_PITCHES
+TONE_POSITIONS_MS = config.pitchbench_b1_TONE_POSITIONS_MS
+TONE_DURATION_MS  = config.pitchbench_b1_TONE_DURATION_MS
+TOTAL_SILENCE_MS  = config.pitchbench_b1_TOTAL_SILENCE_MS
+SOURCES           = config.pitchbench_b1_SOURCES
+
+
+def build_conditions() -> list[dict]:
+    rows: list[dict] = []
+    for src in SOURCES:
+        for midi in PITCHES:
+            for pos_ms in TONE_POSITIONS_MS:
+                rows.append({
+                    "source":      src,
+                    "source_type": "waveform" if src in config.WAVEFORMS else "instrument",
+                    "midi":        midi,
+                    "pos_ms":      pos_ms,
+                })
+    return rows
+
+
+def wav_for(c: dict) -> Path:
+    return engine.tone_in_silence(
+        c["midi"], c["source"],
+        tone_start_ms=c["pos_ms"],
+        tone_dur_ms=TONE_DURATION_MS,
+        total_dur_ms=TOTAL_SILENCE_MS,
+    )
+
+
+def prompts_for(c: dict) -> dict[str, str]:
+    total_s = TOTAL_SILENCE_MS / 1000
+    context = (f"You will hear a {total_s:.0f}-second audio clip. "
+               f"A single musical note sounds in the clip; the rest is silence. ")
+    return {
+        "midi":   context + "What is the MIDI note number (0–127) of that note? "
+                            "Reply with ONLY the integer.",
+        "spn":    context + "What is the note name and octave of that note, "
+                            "e.g. C4, F#3? Reply with ONLY the note name in "
+                            "Scientific Pitch Notation.",
+        "doremi": context + "What is the solfège syllable and accidental (if needed) "
+                            "(fixed-do: do=C re=D mi=E fa=F sol=G la=A si=B) of that "
+                            "note? Reply with ONLY the syllable and accidental.",
+        "hz":     context + "What is the pitch frequency of that note in Hertz? "
+                            "Reply with ONLY a number (the frequency in Hz).",
+    }
+
+
+SPEC = CatBSpec(
+    exp_name=EXP_NAME,
+    build_conditions_fn=build_conditions,
+    wav_fn=wav_for,
+    task_type="pitch",
+    prompts_fn=prompts_for,
+    record_extras=("pos_ms",),
+)
+
+
+def preview() -> None:
+    run_cat_b_experiment(SPEC, mode="preview")
+
+
+def run() -> dict | None:
+    return run_cat_b_experiment(SPEC, mode="run")
+
+
+if __name__ == "__main__":
+    run()

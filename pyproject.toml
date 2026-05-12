@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pitchbench"
+version = "0.1.2"
+description = "Benchmark suite for evaluating pitch and acoustic perception in audio language models"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "pitchbench-authors", email = "lofi123woooo@gmail.com" },
+]
+keywords = ["audio", "language-model", "benchmark", "pitch", "music", "ALM"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "numpy>=2.0",
+    "soundfile>=0.12",
+    "matplotlib>=3.9",
+    "requests>=2.32",
+    "openai>=1.0",
+    "scikit-learn>=1.4",
+    "python-dotenv>=1.0",
+    "music21>=9.9.1",
+    "pandas>=2.0",
+    "pyarrow>=15",
+    "pedalboard>=0.9",
+    "pyfluidsynth>=1.3",
+    "pretty-midi>=0.2",
+    "scipy>=1.13",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.14",
+]
+
+[project.scripts]
+pitchbench = "pitchbench.experiments.run:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-mock>=3.15.1",
+]
+

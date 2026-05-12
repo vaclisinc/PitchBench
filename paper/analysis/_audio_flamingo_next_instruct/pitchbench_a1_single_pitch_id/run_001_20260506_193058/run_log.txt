@@ -1,0 +1,73 @@
+
+  Model : Audio Flamingo Next – instruct
+    [dispatch] 42 items, max_workers=2
+    [   1/42]   F1 sine  | midi: gt=29 pred=35 ❌  | spn: gt=F1 pred=C2 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=25.0 ❌
+    [   2/42]   D2 sine  | midi: gt=38 pred=36 ❌  | spn: gt=D2 pred=C2 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=105.26 ❌
+    [   3/42]   B2 sine  | midi: gt=47 pred=45 ❌  | spn: gt=B2 pred=C2 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=250.0 ❌
+    [   4/42]  G#3 sine  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=105.26 ❌
+    [   5/42]   F4 sine  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=350.0 ✅
+    [   6/42]   D5 sine  | midi: gt=74 pred=68 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1075.0 ❌
+    [   7/42]   B5 sine  | midi: gt=83 pred=68 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=1073.64 ❌
+    [   8/42]   F1 synth_lead  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=C2 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=105.26 ❌
+    [   9/42]   D2 synth_lead  | midi: gt=38 pred=48 ❌  | spn: gt=D2 pred=C6 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=120.0 ❌
+    [  10/42]   B2 synth_lead  | midi: gt=47 pred=48 ❌  | spn: gt=B2 pred=A#2 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=176.47 ❌
+    [  11/42]  G#3 synth_lead  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=1680.0 ❌
+    [  12/42]   F4 synth_lead  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol# ❌  | hz: gt=349.2282 pred=1052.63 ❌
+    [  13/42]   D5 synth_lead  | midi: gt=74 pred=68 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=1052.63 ❌
+    [  14/42]   B5 synth_lead  | midi: gt=83 pred=63 ❌  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=987.7666 pred=1800.0 ❌
+    [  15/42]   F1 cello  | midi: gt=29 pred=34 ❌  | spn: gt=F1 pred=A#2 ❌  | doremi: gt=fa pred=re ❌  | hz: gt=43.6535 pred=210.0 ❌
+    [  16/42]   D2 cello  | midi: gt=38 pred=38 ✅  | spn: gt=D2 pred=C2 ❌  | doremi: gt=re pred=re ✅  | hz: gt=73.4162 pred=45.0 ❌
+    [  17/42]   B2 cello  | midi: gt=47 pred=46 ❌  | spn: gt=B2 pred=A#4 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=450.0 ❌
+    [  18/42]  G#3 cello  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=105.26 ❌
+    [  19/42]   F4 cello  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=mi ❌  | hz: gt=349.2282 pred=659.3 ❌
+    [  20/42]   D5 cello  | midi: gt=74 pred=62 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=6250.0 ❌
+    [  21/42]   B5 cello  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=B6 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=987.7666 pred=1034.57 ❌
+    [  22/42]   F1 flute  | midi: gt=29 pred=35 ❌  | spn: gt=F1 pred=A#2 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=105.26 ❌
+    [  23/42]   D2 flute  | midi: gt=38 pred=43 ❌  | spn: gt=D2 pred=A#2 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=107.95 ❌
+    [  24/42]   B2 flute  | midi: gt=47 pred=45 ❌  | spn: gt=B2 pred=C6 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=130.81 ❌
+    [  25/42]   F4 flute  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=C6 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=250.0 ❌
+    [  26/42]  G#3 flute  | midi: gt=56 pred=45 ❌  | spn: gt=G#3 pred=C4 ❌  | doremi: gt=sol# pred=fa# ❌  | hz: gt=207.6523 pred=213.045 ❌
+    [  27/42]   D5 flute  | midi: gt=74 pred=62 ❌  | spn: gt=D5 pred=D6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=None ❌
+    [  28/42]   B5 flute  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=987.7666 pred=830.41 ❌
+    [  29/42]   F1 piano  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=C4 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=43.6535 pred=329.68 ❌
+    [  30/42]   D2 piano  | midi: gt=38 pred=43 ❌  | spn: gt=D2 pred=C4 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1058.47 ❌
+    [  31/42]   B2 piano  | midi: gt=47 pred=46 ❌  | spn: gt=B2 pred=A#4 ❌  | doremi: gt=si pred=sol ❌  | hz: gt=123.4708 pred=460.0 ❌
+    [  32/42]  G#3 piano  | midi: gt=56 pred=56 ✅  | spn: gt=G#3 pred=C6 ❌  | doremi: gt=sol# pred=sol# ✅  | hz: gt=207.6523 pred=450.0 ❌
+    [  33/42]   F4 piano  | midi: gt=65 pred=63 ❌  | spn: gt=F4 pred=F#2 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=480.0 ❌
+    [  34/42]   D5 piano  | midi: gt=74 pred=68 ❌  | spn: gt=D5 pred=A#6 ❌  | doremi: gt=re pred=sol# ❌  | hz: gt=587.3295 pred=6705.83 ❌
+    [  35/42]   B5 piano  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=987.7666 pred=8250.0 ❌
+    [  36/42]   F1 voice  | midi: gt=29 pred=36 ❌  | spn: gt=F1 pred=C2 ❌  | doremi: gt=fa pred=fa# ❌  | hz: gt=43.6535 pred=1250.0 ❌
+    [  37/42]   D2 voice  | midi: gt=38 pred=48 ❌  | spn: gt=D2 pred=C4 ❌  | doremi: gt=re pred=fa# ❌  | hz: gt=73.4162 pred=1250.0 ❌
+    [  38/42]   B2 voice  | midi: gt=47 pred=63 ❌  | spn: gt=B2 pred=C4 ❌  | doremi: gt=si pred=fa# ❌  | hz: gt=123.4708 pred=480.0 ❌
+    [  39/42]  G#3 voice  | midi: gt=56 pred=68 ❌  | spn: gt=G#3 pred=None ❌  | doremi: gt=sol# pred=sol ❌  | hz: gt=207.6523 pred=435.0 ❌
+    [  40/42]   F4 voice  | midi: gt=65 pred=65 ✅  | spn: gt=F4 pred=E4 ❌  | doremi: gt=fa pred=sol ❌  | hz: gt=349.2282 pred=659.3 ❌
+    [  41/42]   D5 voice  | midi: gt=74 pred=62 ❌  | spn: gt=D5 pred=C6 ❌  | doremi: gt=re pred=sol ❌  | hz: gt=587.3295 pred=625.0 ❌
+    [  42/42]   B5 voice  | midi: gt=83 pred=83 ✅  | spn: gt=B5 pred=C6 ❌  | doremi: gt=si pred=sol# ❌  | hz: gt=987.7666 pred=8250.0 ❌
+
+============================================================
+SUMMARY — audio_flamingo_next_instruct
+  Sampling     : none (full set of 42)
+  Stimuli (total)     : 42
+  Stimuli (condition) : 42  (all records)
+
+  Format   Accuracy
+  ──────────────────
+    MIDI      33.3%
+     SPN       0.0%
+  DOREMI       7.1%
+      HZ       2.4%
+     ANY      33.3%
+
+  
+
+
+Results saved → results/analysis/run_20260506_193058/pitchbench_a1_single_pitch_id/run_001_20260506_193058/results_audio_flamingo_next_instruct.*
+
+############################################################
+# pitchbench_a2_single_pitch_by_loudness
+############################################################
+
+Experiment : pitchbench_a2_single_pitch_by_loudness
+Models     : audio_flamingo_next_instruct
+Stimuli    : 210
+  Sampling     : none (full set of 210)
