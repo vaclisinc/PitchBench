@@ -1015,6 +1015,25 @@ def _track_events_fixed_count(
     return [run["pitch"] for run in runs]
 
 
+def _sequence_pitches(
+    analysis: Analysis,
+    expected_count: int | None,
+) -> list[float]:
+    """Convert the monophonic frame track into ordered, stable pitch runs."""
+    if analysis.frame_times.size and analysis.monophonic_midi.size:
+        finite = np.isfinite(analysis.monophonic_midi)
+        if np.any(finite):
+            return _track_events_fixed_count(
+                analysis.frame_times[finite],
+                analysis.monophonic_midi[finite],
+                expected_count,
+            )
+    pitches = [event.midi for event in _events_in_order(analysis)]
+    if expected_count is not None:
+        pitches = pitches[:expected_count]
+    return pitches
+
+
 def _missing() -> str:
     config, _, _ = _load_config()
     return str(config["runtime"]["missing_prediction_text"])
@@ -1072,7 +1091,8 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
         return _format_pitch_list(sorted(pitches), prompt) if pitches else _missing()
 
     if experiment == "d1":
-        return str(len(events)) if events else _missing()
+        distinct = {round(event.midi) for event in events}
+        return str(len(distinct)) if distinct else _missing()
 
     if experiment == "d2":
         pair = _two_region_pitches(analysis)
@@ -1083,11 +1103,12 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
         return "first" if pair[0] > pair[1] else "second"
 
     if experiment == "d3":
-        if len(events) < 2:
+        pitches = _sequence_pitches(analysis, expected_count=None)
+        if len(pitches) < 2:
             return _missing()
         directions = [
-            "up" if second.midi > first.midi else "down"
-            for first, second in itertools.pairwise(events)
+            "up" if second > first else "down"
+            for first, second in itertools.pairwise(pitches)
         ]
         return ", ".join(directions)
 
@@ -1097,21 +1118,23 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
 
     if experiment == "d5":
         expected = _parse_int_from_prompt(r"^(\d+)\s+tones", prompt)
-        selected = events[:expected] if expected is not None else events
-        if not selected:
+        pitches = _sequence_pitches(analysis, expected)
+        if not pitches:
             return _missing()
-        order = sorted(range(len(selected)), key=lambda index: selected[index].midi)
+        order = sorted(range(len(pitches)), key=lambda index: pitches[index])
         return " ".join(str(index + 1) for index in order)
 
     if experiment == "d6":
-        if len(events) < 2:
+        pitches = _sequence_pitches(analysis, expected_count=2)
+        if len(pitches) < 2:
             return _missing()
-        return str(round(events[1].midi - events[0].midi))
+        return str(round(pitches[1] - pitches[0]))
 
     if experiment == "d7a":
-        if len(events) < 2:
+        pitches = _sequence_pitches(analysis, expected_count=2)
+        if len(pitches) < 2:
             return _missing()
-        interval = events[1].midi - events[0].midi
+        interval = pitches[1] - pitches[0]
         output_format = _pitch_format(prompt)
         if output_format == "midi":
             reference = _parse_int_from_prompt(
@@ -1148,11 +1171,9 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
         return _format_pitch(reference_midi + interval, prompt)
 
     if experiment == "d8":
-        return (
-            _format_pitch_list([event.midi for event in events], prompt)
-            if events
-            else _missing()
-        )
+        expected = _parse_int_from_prompt(r"hear\s+(\d+)\s+musical notes", prompt)
+        pitches = _sequence_pitches(analysis, expected)
+        return _format_pitch_list(pitches, prompt) if pitches else _missing()
 
     if experiment in {"f1", "f2"}:
         expected = _parse_int_from_prompt(
@@ -1163,6 +1184,8 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
         return _format_pitch_list(track, prompt) if track else _missing()
 
     event = _dominant_event(analysis)
+    if experiment == "e6" and event is not None:
+        return _format_pitch(float(round(event.midi)), prompt)
     return _format_pitch(event.midi, prompt) if event is not None else _missing()
 
 

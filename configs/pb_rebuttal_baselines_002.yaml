@@ -1,0 +1,177 @@
+schema_version: 1
+
+experiment:
+  experiment_id: "PB-REBUTTAL-BASELINES-002"
+  kind: "formal"
+  rq_id: "RQ-REBUTTAL-BASELINES"
+  why: "Measure the DSP and Basic Pitch baselines with task-semantic sequence and nearest-pitch adapters on all 28 PitchBench experiments."
+  hypothesis: "Task-semantic conversion will correct event-fragmentation penalties while preserving the specialized baselines' acoustic limitations."
+  compare_to: "PB-REBUTTAL-BASELINES-001 under the same data, seed, acoustic front ends, prompts, and scorers."
+  decision: "Replace the initial rebuttal table with this run if the corrected adapters pass all protocol checks."
+  expected_evidence: "Per-experiment scores for both baselines over the exact 5,802-example protocol, raw predictions, aggregate tables, and sliced diagnostics."
+
+benchmark:
+  mode: "paper_locked"
+  sample_seed: 42
+  experiments:
+    - "a1"
+    - "a2"
+    - "a3"
+    - "b1"
+    - "b2"
+    - "b3"
+    - "b4"
+    - "b5"
+    - "c1"
+    - "c2"
+    - "c3"
+    - "c4"
+    - "d1"
+    - "d2"
+    - "d3"
+    - "d4"
+    - "d5"
+    - "d6"
+    - "d7a"
+    - "d8"
+    - "e1"
+    - "e2"
+    - "e3"
+    - "e4"
+    - "e5"
+    - "e6"
+    - "f1"
+    - "f2"
+  expected_experiment_count: 28
+  expected_condition_count: 5802
+
+input_dataset:
+  repository: "pitchbench-authors/PitchBench"
+  repository_type: "dataset"
+  revision: "f6c672608057cb877bfaacaeeff9bfb49eef7778"
+  license: "CC-BY-4.0"
+  local_dir: "/tmp/pitchbench-pb-rebuttal-baselines-001/official_hf"
+  split: "test"
+  parquet_filename: "test-00000-of-00001.parquet"
+  embedded_audio_field: "audio"
+  verify_embedded_audio: true
+  write_shard_sha256: true
+
+runtime:
+  python: "3.11.15"
+  runtime_root: "/tmp/pitchbench-pb-rebuttal-baselines-001"
+  environment_dir: "/tmp/pitchbench-pb-rebuttal-baselines-001-venv"
+  persistent_results_dir: "results/evaluation/PB-REBUTTAL-BASELINES-002"
+  logs_dir: "logs/PB-REBUTTAL-BASELINES-002"
+  tmux_session: "pitchbench-pb-rebuttal-baselines-002"
+  formal_command: "/tmp/pitchbench-pb-rebuttal-baselines-001-venv/bin/python scripts/run_rebuttal_baselines.py configs/pb_rebuttal_baselines_002.yaml --phase all"
+  concurrency: 1
+  fail_on_missing_prediction: false
+  missing_prediction_text: "__NO_DETECTION__"
+  packages:
+    basic-pitch: "0.4.0"
+    librosa: "0.10.2.post1"
+    mir-eval: "0.7"
+    numpy: "1.26.4"
+    onnxruntime: "1.19.2"
+    pandas: "2.2.3"
+    pyarrow: "18.1.0"
+    resampy: "0.4.2"
+    scipy: "1.13.1"
+    soundfile: "0.12.1"
+
+shared_decoder:
+  midi_min: 0
+  midi_max: 127
+  analysis_midi_min: 21
+  analysis_midi_max: 108
+  cents_per_semitone: 100.0
+  pitch_change_threshold_cents: 12.5
+  contour_median_filter_frames: 9
+  event_merge_gap_seconds: 0.50
+  event_merge_pitch_cents: 50.0
+  event_glitch_max_seconds: 0.30
+  event_pitch_split_threshold_cents: 50.0
+  event_pitch_split_median_frames: 5
+  minimum_event_seconds: 0.05
+  steady_state_start_fraction: 0.20
+  steady_state_end_fraction: 0.80
+  d2_first_region_fractions: [0.05, 0.30]
+  d2_second_region_fractions: [0.70, 0.95]
+  chord_templates:
+    major: [0, 4, 7]
+    minor: [0, 3, 7]
+    diminished: [0, 3, 6]
+    augmented: [0, 4, 8]
+    dominant seventh: [0, 4, 7, 10]
+    major seventh: [0, 4, 7, 11]
+    minor seventh: [0, 3, 7, 10]
+    half diminished: [0, 3, 6, 10]
+    sus2: [0, 2, 7]
+    sus4: [0, 5, 7]
+  chord_template_tie_order:
+    - "major"
+    - "minor"
+    - "diminished"
+    - "augmented"
+    - "dominant seventh"
+    - "major seventh"
+    - "minor seventh"
+    - "half diminished"
+    - "sus2"
+    - "sus4"
+
+baselines:
+  dsp:
+    model_name: "baseline/dsp"
+    implementation: "librosa.yin plus RMS activity and harmonic CQT peak tracking"
+    sample_rate: 16000
+    yin:
+      fmin_hz: 30.0
+      fmax_hz: 2500.0
+      frame_length: 4096
+      hop_length: 256
+      trough_threshold: 0.10
+      center: true
+      pad_mode: "constant"
+    activity:
+      frame_length: 1024
+      hop_length: 256
+      relative_rms_threshold: 0.01
+      absolute_rms_floor: 0.00001
+      closing_seconds: 0.12
+    multipitch:
+      bins_per_octave: 36
+      hop_length: 256
+      fmin_midi: 21
+      n_octaves: 8
+      harmonics: [1, 2, 3, 4]
+      harmonic_weights: [1.0, 0.5, 0.3333333333, 0.25]
+      salience_relative_threshold: 0.28
+      fundamental_relative_threshold: 0.08
+      chord_presence_fraction: 0.30
+      maximum_polyphony: 6
+      minimum_pitch_separation_semitones: 0.75
+      activation_median_filter_frames: 5
+  basic_pitch:
+    model_name: "baseline/basic-pitch"
+    package: "basic-pitch"
+    package_version: "0.4.0"
+    serialization: "onnx"
+    model_filename: "nmp.onnx"
+    onset_threshold: 0.5
+    frame_threshold: 0.3
+    minimum_note_length_ms: 127.7
+    minimum_frequency_hz: null
+    maximum_frequency_hz: null
+    multiple_pitch_bends: true
+    melodia_trick: true
+    contour_bins_per_semitone: 3
+
+outputs:
+  dsp_model_label: "dsp_yin_harmonic_cqt_adapter_v2"
+  basic_pitch_model_label: "spotify_basic_pitch_0_4_0_adapter_v2"
+  run_name: "PB-REBUTTAL-BASELINES-002"
+  receipt_json: "results/evaluation/PB-REBUTTAL-BASELINES-002/receipt.json"
+  aggregate_csv: "results/evaluation/PB-REBUTTAL-BASELINES-002/baseline_aggregate.csv"
+  openreview_markdown: "paper/rebuttal_dsp_nn_baselines_openreview.md"
