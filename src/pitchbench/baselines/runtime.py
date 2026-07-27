@@ -1034,6 +1034,16 @@ def _sequence_pitches(
     return pitches
 
 
+def _event_pitches_without_adjacent_duplicates(analysis: Analysis) -> list[float]:
+    """Keep decoded event order while collapsing same-note fragmentation."""
+    pitches: list[float] = []
+    for event in _events_in_order(analysis):
+        if pitches and round(event.midi) == round(pitches[-1]):
+            continue
+        pitches.append(event.midi)
+    return pitches
+
+
 def _missing() -> str:
     config, _, _ = _load_config()
     return str(config["runtime"]["missing_prediction_text"])
@@ -1103,7 +1113,7 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
         return "first" if pair[0] > pair[1] else "second"
 
     if experiment == "d3":
-        pitches = _sequence_pitches(analysis, expected_count=None)
+        pitches = _event_pitches_without_adjacent_duplicates(analysis)
         if len(pitches) < 2:
             return _missing()
         directions = [

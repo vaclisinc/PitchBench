@@ -178,6 +178,30 @@ def test_d8_uses_prompt_count_to_stabilize_frame_track(
     assert answer["result"] == "60 64 67"
 
 
+def test_d3_collapses_adjacent_same_pitch_event_fragments(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("PITCHBENCH_BASELINE_CONFIG", str(CONFIG))
+    result = _analysis(
+        events=[
+            Event(0.0, 0.4, 60.0, 1.0),
+            Event(0.4, 0.8, 60.1, 1.0),
+            Event(1.0, 1.8, 64.0, 1.0),
+            Event(2.0, 2.8, 62.0, 1.0),
+        ],
+        frame_times=list(np.arange(8, dtype=float)),
+        monophonic=[60.0, 61.0, 60.0, 64.0, 63.0, 64.0, 62.0, 63.0],
+    )
+    monkeypatch.setattr(runtime, "_analysis", lambda *_args: result)
+    answer = runtime.query_baseline(
+        "baseline/basic-pitch",
+        _path(tmp_path, "d3"),
+        "For each transition, reply with up or down.",
+    )
+    assert answer["result"] == "up, down"
+
+
 def test_e6_snaps_hz_response_to_equal_temperament(
     tmp_path: Path,
     monkeypatch,
