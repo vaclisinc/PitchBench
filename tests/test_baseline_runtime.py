@@ -137,6 +137,62 @@ def test_d7a_anchors_measured_interval_to_prompt_reference(
     assert answer["result"] == "67"
 
 
+def test_d1_counts_distinct_pitches_not_fragmented_events(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("PITCHBENCH_BASELINE_CONFIG", str(CONFIG))
+    result = _analysis(
+        events=[
+            Event(0.0, 0.4, 60.0, 1.0),
+            Event(0.4, 1.0, 60.1, 1.0),
+            Event(1.5, 2.5, 64.0, 1.0),
+        ]
+    )
+    monkeypatch.setattr(runtime, "_analysis", lambda *_args: result)
+    answer = runtime.query_baseline(
+        "baseline/basic-pitch",
+        _path(tmp_path, "d1"),
+        "How many distinct musical pitches are played in this sequence?",
+    )
+    assert answer["result"] == "2"
+
+
+def test_d8_uses_prompt_count_to_stabilize_frame_track(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("PITCHBENCH_BASELINE_CONFIG", str(CONFIG))
+    result = _analysis(
+        events=[Event(0.0, 3.0, 72.0, 1.0)],
+        frame_times=list(np.arange(9, dtype=float)),
+        monophonic=[60.0, 60.0, 60.0, 64.0, 64.0, 67.0, 67.0, 67.0, 67.0],
+    )
+    monkeypatch.setattr(runtime, "_analysis", lambda *_args: result)
+    answer = runtime.query_baseline(
+        "baseline/basic-pitch",
+        _path(tmp_path, "d8"),
+        "You will hear 3 musical notes played one after another. "
+        "Identify all 3 MIDI note numbers in order.",
+    )
+    assert answer["result"] == "60 64 67"
+
+
+def test_e6_snaps_hz_response_to_equal_temperament(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("PITCHBENCH_BASELINE_CONFIG", str(CONFIG))
+    result = _analysis(events=[Event(0.0, 1.0, 60.4, 1.0)])
+    monkeypatch.setattr(runtime, "_analysis", lambda *_args: result)
+    answer = runtime.query_baseline(
+        "baseline/basic-pitch",
+        _path(tmp_path, "e6"),
+        "Identify the nearest in-tune pitch in Hertz.",
+    )
+    assert answer["result"] == "261.6256"
+
+
 def test_missing_detection_is_returned_as_incorrect_sentinel(
     tmp_path: Path,
     monkeypatch,
