@@ -23,9 +23,9 @@ Polyphony rules:
   • the target voice always has exactly N_NOTES notes
   • each distractor voice has between DIST_N_MIN and DIST_N_MAX notes
 
-Headline metrics: ``midi_seq``, ``spn_seq``, ``doremi_seq`` — full-sequence
-exact-match per format. Per-position correctness is preserved as a
-``<format>_per_pos`` list-string in the records CSV.
+Headline metric: order-aware note F1 per format, with ``any`` defined as the
+per-stimulus maximum across MIDI, SPN, and Hz. Strict full-sequence exact match
+and per-position correctness are retained as diagnostics.
 """
 
 from __future__ import annotations

@@ -9,11 +9,9 @@ from an n-part polyphonic mix:
 * **chorale_voice** (f2) — real Bach chorales sourced via music21, sliced
   to the longest no-cross segment per voice. Variable note counts.
 
-Both produce one record per condition with three multi-format
-``<format>_seq_correct`` columns (MIDI / SPN / Doremi). Per-position
-correctness is preserved as a list-string diagnostic
-``<format>_per_pos`` (no ``_correct`` suffix → invisible to the
-auto-marginals).
+Both produce one record per condition with order-aware note F1 as the
+headline metric. The strict ``<format>_seq_correct`` columns and positional
+diagnostics are retained for backwards-compatible error analysis.
 
 The lifecycle (argparse → sampling → audio → dispatch → save_results)
 mirrors :mod:`cat_d`. ``score_polyphonic_record`` does all the
@@ -54,7 +52,7 @@ from pitchbench.experiments.helpers.sampling import (
 )
 
 
-HEADLINE_METRICS: tuple[str, ...] = ("midi_seq", "spn_seq", "doremi_seq", "hz_seq", "any_seq")
+HEADLINE_METRICS: tuple[str, ...] = ("midi", "spn", "doremi", "hz", "any")
 
 
 # ── Spec ─────────────────────────────────────────────────────────────────────
@@ -66,9 +64,8 @@ class CatFSpec:
     Each condition produces ONE record. ``prompts_fn`` returns a mapping
     ``{format_name: prompt_text}`` whose keys are queried in turn.
     ``record_fn`` receives the cond, the wav path, and the raw responses
-    and must return a dict with at least ``midi_seq_correct``,
-    ``spn_seq_correct``, and ``doremi_seq_correct``. In practice both
-    f1 and f2 just delegate to :func:`score_polyphonic_record`.
+    and must return the per-format ``<format>_note_f1`` values. In practice
+    both f1 and f2 just delegate to :func:`score_polyphonic_record`.
     """
     exp_name:            str
     build_conditions_fn: Callable[[], list[dict]]
@@ -101,78 +98,110 @@ def _src_type(source: str) -> str:
 
 # ── Response parsing (variable n) ────────────────────────────────────────────
 
-def _pad(seq: list, n: int) -> list:
-    out = list(seq[:n])
-    while len(out) < n:
-        out.append(None)
-    return out
+def parse_midi_seq(text: str) -> list[int]:
+    return [
+        int(m)
+        for m in re.findall(r"\b(\d{1,3})\b", text or "")
+        if 0 <= int(m) <= 127
+    ]
 
 
-def parse_midi_seq(text: str, n: int) -> list[int | None]:
-    nums = [int(m) for m in re.findall(r"\b(\d{1,3})\b", text or "") if 0 <= int(m) <= 127]
-    return _pad(nums, n)
+def parse_spn_seq(text: str) -> list[str]:
+    return extract_all_notes(text or "")
 
 
-def parse_spn_seq(text: str, n: int) -> list[str | None]:
-    return _pad(extract_all_notes(text or ""), n)
+def parse_doremi_seq(text: str) -> list[int]:
+    return extract_all_solfege(text or "")
 
 
-def parse_doremi_seq(text: str, n: int) -> list[int | None]:
-    return _pad(extract_all_solfege(text or ""), n)
-
-
-def parse_hz_seq(text: str, n: int) -> list[float | None]:
+def parse_hz_seq(text: str) -> list[float]:
     nums: list[float] = []
     for m in re.finditer(r"\d+(?:\.\d+)?", text or ""):
         v = float(m.group(0))
         if 16.0 <= v <= 20000.0:
             nums.append(v)
-    return _pad(nums, n)
+    return nums
 
 
 # ── Scoring ──────────────────────────────────────────────────────────────────
 
-def _score_midi(gt: list[int], pred: list[int | None]) -> tuple[list[bool | None], int]:
+def _lcs_length(
+    gt: list[Any],
+    pred: list[Any],
+    match_fn: Callable[[Any, Any], bool],
+) -> int:
+    """Length of the longest order-preserving one-to-one note alignment."""
+    previous = [0] * (len(pred) + 1)
+    for gt_item in gt:
+        current = [0]
+        for j, pred_item in enumerate(pred, start=1):
+            if match_fn(gt_item, pred_item):
+                current.append(previous[j - 1] + 1)
+            else:
+                current.append(max(previous[j], current[j - 1]))
+        previous = current
+    return previous[-1]
+
+
+def ordered_note_f1(
+    gt: list[Any],
+    pred: list[Any],
+    match_fn: Callable[[Any, Any], bool] = lambda a, b: a == b,
+) -> dict[str, float | int]:
+    """ROUGE-L-style note precision/recall/F1 over an ordered pitch sequence."""
+    matches = _lcs_length(gt, pred, match_fn)
+    precision = matches / len(pred) if pred else 0.0
+    recall = matches / len(gt) if gt else 0.0
+    denom = len(gt) + len(pred)
+    f1 = (2 * matches / denom) if denom else 1.0
+    return {
+        "matches": matches,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+    }
+
+
+def _strict_per_position(
+    gt: list[Any],
+    pred: list[Any],
+    match_fn: Callable[[Any, Any], bool],
+) -> tuple[list[bool | None], int]:
     per_pos = [
-        (gt[i] == pred[i] if pred[i] is not None else None)
-        for i in range(len(gt))
+        match_fn(gt_item, pred[i]) if i < len(pred) else None
+        for i, gt_item in enumerate(gt)
     ]
-    return per_pos, int(all(v is True for v in per_pos))
+    exact = int(len(gt) == len(pred) and all(v is True for v in per_pos))
+    return per_pos, exact
 
 
-def _score_spn(gt_midi: list[int], pred: list[str | None]) -> tuple[list[bool | None], int]:
+def _score_midi(gt: list[int], pred: list[int]) -> tuple[list[bool | None], int]:
+    return _strict_per_position(gt, pred, lambda a, b: a == b)
+
+
+def _score_spn(gt_midi: list[int], pred: list[str]) -> tuple[list[bool | None], int]:
     gt_spn = [midi_to_note(m) for m in gt_midi]
-    per_pos: list[bool | None] = []
-    for gt, pr in zip(gt_spn, pred):
-        if pr is None:
-            per_pos.append(None)
-        else:
-            dist = semitone_distance(gt, pr)
-            per_pos.append(dist == 0 if dist is not None else False)
-    return per_pos, int(all(v is True for v in per_pos))
+    return _strict_per_position(
+        gt_spn,
+        pred,
+        lambda a, b: semitone_distance(a, b) == 0,
+    )
 
 
-def _score_doremi(gt_midi: list[int], pred_pcs: list[int | None]) -> tuple[list[bool | None], int]:
+def _score_doremi(gt_midi: list[int], pred_pcs: list[int]) -> tuple[list[bool | None], int]:
     gt_pcs = [m % 12 for m in gt_midi]
-    per_pos: list[bool | None] = []
-    for gt_pc, pred_pc in zip(gt_pcs, pred_pcs):
-        if pred_pc is None:
-            per_pos.append(None)
-        else:
-            diff = abs(gt_pc - pred_pc)
-            per_pos.append(min(diff, 12 - diff) == 0)
-    return per_pos, int(all(v is True for v in per_pos))
+    return _strict_per_position(gt_pcs, pred_pcs, lambda a, b: a == b)
 
 
-def _score_hz(gt_midi: list[int], pred: list[float | None]) -> tuple[list[bool | None], int]:
-    per_pos: list[bool | None] = []
-    for gt_m, pr in zip(gt_midi, pred):
-        if pr is None or pr <= 0:
-            per_pos.append(None)
-        else:
-            ratio = pr / midi_to_freq(gt_m)
-            per_pos.append(0.99 <= ratio <= 1.01)
-    return per_pos, int(all(v is True for v in per_pos))
+def _hz_match(gt_midi: int, pred_hz: float) -> bool:
+    if pred_hz <= 0:
+        return False
+    ratio = pred_hz / midi_to_freq(gt_midi)
+    return 0.99 <= ratio <= 1.01
+
+
+def _score_hz(gt_midi: list[int], pred: list[float]) -> tuple[list[bool | None], int]:
+    return _strict_per_position(gt_midi, pred, _hz_match)
 
 
 # ── Per-stim record builder shared by f1 and f2 ──────────────────────────────
@@ -195,10 +224,10 @@ def score_polyphonic_record(
     raw_doremi = responses.get("doremi", "") or ""
     raw_hz     = responses.get("hz", "") or ""
 
-    pred_midi   = parse_midi_seq(raw_midi, n)
-    pred_spn    = parse_spn_seq(raw_spn, n)
-    pred_doremi = parse_doremi_seq(raw_doremi, n)
-    pred_hz     = parse_hz_seq(raw_hz, n)
+    pred_midi   = parse_midi_seq(raw_midi)
+    pred_spn    = parse_spn_seq(raw_spn)
+    pred_doremi = parse_doremi_seq(raw_doremi)
+    pred_hz     = parse_hz_seq(raw_hz)
 
     midi_pos, midi_sc = _score_midi(target_pitches, pred_midi)
     spn_pos,  spn_sc  = _score_spn(target_pitches, pred_spn)
@@ -207,8 +236,19 @@ def score_polyphonic_record(
     any_sc = any_format_correct((midi_sc, spn_sc, hz_sc))  # doremi excluded — pitch-class only
 
     target_spn    = [midi_to_note(m) for m in target_pitches]
+    target_pcs    = [m % 12 for m in target_pitches]
     target_doremi = [PC_TO_SOLFEGE[m % 12] for m in target_pitches]
     target_hz     = [round(midi_to_freq(m), 4) for m in target_pitches]
+
+    midi_f1 = ordered_note_f1(target_pitches, pred_midi)
+    spn_f1 = ordered_note_f1(
+        target_spn,
+        pred_spn,
+        lambda a, b: semitone_distance(a, b) == 0,
+    )
+    doremi_f1 = ordered_note_f1(target_pcs, pred_doremi)
+    hz_f1 = ordered_note_f1(target_pitches, pred_hz, _hz_match)
+    any_f1 = max(midi_f1["f1"], spn_f1["f1"], hz_f1["f1"])
 
     return {
         "n_target":           n,
@@ -220,20 +260,42 @@ def score_polyphonic_record(
         "midi_pred":          str(pred_midi),
         "midi_per_pos":       str(midi_pos),
         "midi_seq_correct":   midi_sc,
+        "midi_note_matches":  midi_f1["matches"],
+        "midi_note_precision": midi_f1["precision"],
+        "midi_note_recall":   midi_f1["recall"],
+        "midi_note_f1":       midi_f1["f1"],
         # SPN
         "spn_pred":           str(pred_spn),
         "spn_per_pos":        str(spn_pos),
         "spn_seq_correct":    spn_sc,
+        "spn_note_matches":   spn_f1["matches"],
+        "spn_note_precision": spn_f1["precision"],
+        "spn_note_recall":    spn_f1["recall"],
+        "spn_note_f1":        spn_f1["f1"],
         # Doremi
         "doremi_pred":        str(pred_doremi),
         "doremi_per_pos":     str(dor_pos),
         "doremi_seq_correct": dor_sc,
+        "doremi_note_matches": doremi_f1["matches"],
+        "doremi_note_precision": doremi_f1["precision"],
+        "doremi_note_recall": doremi_f1["recall"],
+        "doremi_note_f1":     doremi_f1["f1"],
         # Hz
         "hz_pred":            str(pred_hz),
         "hz_per_pos":         str(hz_pos),
         "hz_seq_correct":     hz_sc,
+        "hz_note_matches":    hz_f1["matches"],
+        "hz_note_precision":  hz_f1["precision"],
+        "hz_note_recall":     hz_f1["recall"],
+        "hz_note_f1":         hz_f1["f1"],
         # Any
         "any_seq_correct":    any_sc,
+        "any_note_f1":        any_f1,
+        # Count diagnostics
+        "midi_pred_count":    len(pred_midi),
+        "midi_count_error":   len(pred_midi) - n,
+        "midi_count_abs_error": abs(len(pred_midi) - n),
+        "midi_count_exact":   int(len(pred_midi) == n),
         # Raw
         "raw_midi":           raw_midi.strip(),
         "raw_spn":            raw_spn.strip(),
@@ -261,7 +323,7 @@ def compute_summary(records: list[dict]) -> dict[str, Any]:
         "condition_n": total,
         "accuracy": {
             "n":      total,
-            **{m: _accuracy(records, f"{m}_correct") for m in HEADLINE_METRICS},
+            **{m: _accuracy(records, f"{m}_note_f1") for m in HEADLINE_METRICS},
         },
     }
 
@@ -282,8 +344,8 @@ def _format_summary_lines(
         lines.append(f"  {m.upper():>14}  {acc[m]:>9.1%}")
     lines.append("")
     lines.append(
-        "  (Headline = full-sequence exact match for each format. Per-position "
-        "diagnostics live in <format>_per_pos in the records CSV.)"
+        "  (Headline = macro ordered-note F1. ANY is the per-stimulus maximum "
+        "of MIDI, SPN, and Hz; solfege is excluded because it lacks octave.)"
     )
     return lines
 
@@ -369,7 +431,8 @@ def run_one_model(
         model_name=model_name, model_info=info,
         **({"model_label": model_label} if model_label else {}),
         task_type=spec.task_type,
-        headline_metrics=list(HEADLINE_METRICS),
+        headline_metrics=[f"{m}_note_f1" for m in HEADLINE_METRICS],
+        score_name="ordered_note_f1_lcs",
         record_extras=list(spec.record_extras),
         **extra_meta,
         **(sample_info or {}),
@@ -378,7 +441,7 @@ def run_one_model(
         spec.exp_name, stem_name, full_records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=tuple(f"{m}_correct" for m in HEADLINE_METRICS),
+        extra_metrics=tuple(f"{m}_note_f1" for m in HEADLINE_METRICS),
     )
     return summary
 

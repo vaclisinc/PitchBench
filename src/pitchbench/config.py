@@ -88,6 +88,10 @@ CONCURRENCY: dict[str, int] = {
 
 def concurrency_for(model_name: str) -> int:
     """Return the configured max-workers cap for ``model_name``."""
+    if model_name.startswith("baseline/"):
+        from pitchbench.baselines import baseline_concurrency
+
+        return baseline_concurrency(model_name)
     if model_name == "manual":
         return CONCURRENCY["manual"]
     if model_name.startswith("openrouter/"):
