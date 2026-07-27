@@ -8,6 +8,9 @@ from pitchbench.baselines.runtime import Analysis, Event
 CONFIG = (
     Path(__file__).resolve().parents[1] / "configs" / "pb_rebuttal_baselines_001.yaml"
 )
+MUSCRIPTOR_CONFIG = (
+    Path(__file__).resolve().parents[1] / "configs" / "pb_rebuttal_muscriptor_001.yaml"
+)
 
 
 def _path(tmp_path: Path, experiment: str) -> Path:
@@ -91,6 +94,26 @@ def test_c3_matches_transposed_chord_template(
         "This audio contains a chord. What is its harmonic quality?",
     )
     assert answer["result"] == "minor"
+
+
+def test_muscriptor_chord_decoder_uses_its_configured_presence_threshold(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("PITCHBENCH_BASELINE_CONFIG", str(MUSCRIPTOR_CONFIG))
+    frames = [(60.0, 64.0, 67.0)] * 10
+    result = _analysis(
+        events=[],
+        frame_times=list(np.linspace(0.0, 10.0, len(frames))),
+        polyphonic=frames,
+    )
+    monkeypatch.setattr(runtime, "_analysis", lambda *_args: result)
+    answer = runtime.query_baseline(
+        "baseline/muscriptor",
+        _path(tmp_path, "c1"),
+        "How many distinct pitches are sounding simultaneously?",
+    )
+    assert answer["result"] == "3"
 
 
 def test_d7a_anchors_measured_interval_to_prompt_reference(
