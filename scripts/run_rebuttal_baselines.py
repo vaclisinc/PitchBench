@@ -592,6 +592,7 @@ def _write_receipt(
             "version": sys.version,
             "packages": _package_versions(),
         },
+        "command": [sys.executable, *sys.argv],
         "benchmark": {
             **config["benchmark"],
             "resolved_counts": counts,

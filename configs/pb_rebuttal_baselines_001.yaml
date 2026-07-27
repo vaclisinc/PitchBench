@@ -64,6 +64,7 @@ runtime:
   persistent_results_dir: "results/evaluation/PB-REBUTTAL-BASELINES-001"
   logs_dir: "logs/PB-REBUTTAL-BASELINES-001"
   tmux_session: "pitchbench-pb-rebuttal-baselines-001"
+  formal_command: "/tmp/pitchbench-pb-rebuttal-baselines-001-venv/bin/python scripts/run_rebuttal_baselines.py configs/pb_rebuttal_baselines_001.yaml --phase all"
   concurrency: 1
   fail_on_missing_prediction: false
   missing_prediction_text: "__NO_DETECTION__"
