@@ -9,3 +9,4 @@ logs/
 .venv/
 .pytest_cache/
 results/
+paper/latex/
