@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare and evaluate the two formal PitchBench rebuttal baselines."""
+"""Prepare and evaluate formal PitchBench rebuttal baselines."""
 
 from __future__ import annotations
 
@@ -20,6 +20,14 @@ import pandas as pd
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def _run(
@@ -375,11 +383,18 @@ def _prepare_official_dataset(
     return manifest
 
 
-def _environment(config_path: Path, runtime_root: Path) -> dict[str, str]:
+def _environment(
+    config: dict[str, Any], config_path: Path, runtime_root: Path
+) -> dict[str, str]:
     env = dict(os.environ)
-    pythonpath = str(REPO_ROOT / "src")
+    pythonpath_entries = [str(REPO_ROOT / "src")]
+    if "muscriptor" in config["baselines"]:
+        pythonpath_entries.append(
+            str((REPO_ROOT / config["baselines"]["muscriptor"]["source_dir"]).resolve())
+        )
     if env.get("PYTHONPATH"):
-        pythonpath = pythonpath + os.pathsep + env["PYTHONPATH"]
+        pythonpath_entries.append(env["PYTHONPATH"])
+    pythonpath = os.pathsep.join(pythonpath_entries)
     env.update(
         {
             "PYTHONPATH": pythonpath,
@@ -411,6 +426,52 @@ def _validate_runtime_environment(config: dict[str, Any]) -> None:
         raise RuntimeError(
             "Runtime package versions do not match the formal config:\n"
             + "\n".join(mismatches)
+        )
+
+
+def _validate_muscriptor_inputs(config: dict[str, Any]) -> None:
+    settings = config["baselines"]["muscriptor"]
+    expected_visible = str(config["runtime"]["cuda_visible_devices"])
+    actual_visible = os.environ.get("CUDA_VISIBLE_DEVICES")
+    if actual_visible != expected_visible:
+        raise RuntimeError(
+            "CUDA_VISIBLE_DEVICES does not match runtime.cuda_visible_devices: "
+            f"expected {expected_visible!r}, found {actual_visible!r}"
+        )
+    source_dir = (REPO_ROOT / settings["source_dir"]).resolve()
+    checkpoint = (REPO_ROOT / settings["checkpoint"]).resolve()
+    if not source_dir.is_dir():
+        raise FileNotFoundError(f"MuScriptor source directory is missing: {source_dir}")
+    source_status = subprocess.run(
+        ["git", "status", "--porcelain"],
+        cwd=source_dir,
+        check=True,
+        text=True,
+        capture_output=True,
+    ).stdout.strip()
+    if source_status:
+        raise RuntimeError(
+            f"MuScriptor source checkout must be clean: {source_dir}\n{source_status}"
+        )
+    source_revision = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=source_dir,
+        check=True,
+        text=True,
+        capture_output=True,
+    ).stdout.strip()
+    if source_revision != str(settings["source_revision"]):
+        raise RuntimeError(
+            f"MuScriptor source revision mismatch: expected "
+            f"{settings['source_revision']}, found {source_revision}"
+        )
+    if not checkpoint.is_file():
+        raise FileNotFoundError(f"MuScriptor checkpoint is missing: {checkpoint}")
+    checkpoint_sha = _sha256(checkpoint)
+    if checkpoint_sha != str(settings["checkpoint_sha256"]):
+        raise RuntimeError(
+            f"MuScriptor checkpoint SHA256 mismatch: expected "
+            f"{settings['checkpoint_sha256']}, found {checkpoint_sha}"
         )
 
 
@@ -510,6 +571,19 @@ def _package_versions() -> dict[str, str]:
     return dict(sorted(versions.items(), key=lambda item: item[0].lower()))
 
 
+def _configured_output_labels(config: dict[str, Any]) -> list[str]:
+    labels = [
+        str(value)
+        for key, value in config["outputs"].items()
+        if key.endswith("_model_label")
+    ]
+    if not labels:
+        raise ValueError("outputs must define at least one *_model_label")
+    if len(labels) != len(set(labels)):
+        raise ValueError("outputs contains duplicate model labels")
+    return labels
+
+
 def _copy_results(
     config: dict[str, Any],
     runtime_root: Path,
@@ -517,10 +591,7 @@ def _copy_results(
 ) -> None:
     evaluation_root = runtime_root / "results" / "evaluation"
     run_name = config["outputs"]["run_name"]
-    labels = (
-        config["outputs"]["dsp_model_label"],
-        config["outputs"]["basic_pitch_model_label"],
-    )
+    labels = _configured_output_labels(config)
     copied = 0
     for label in labels:
         source = evaluation_root / label / run_name
@@ -540,10 +611,7 @@ def _write_aggregate(
 ) -> Path | None:
     run_name = config["outputs"]["run_name"]
     frames: list[pd.DataFrame] = []
-    for label in (
-        config["outputs"]["dsp_model_label"],
-        config["outputs"]["basic_pitch_model_label"],
-    ):
+    for label in _configured_output_labels(config):
         source = (
             runtime_root
             / "results"
@@ -616,7 +684,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("config", type=Path)
     parser.add_argument(
         "--phase",
-        choices=("prepare-data", "dsp", "basic-pitch", "all"),
+        choices=("prepare-data", "dsp", "basic-pitch", "muscriptor", "all"),
         default="all",
     )
     parser.add_argument(
@@ -642,16 +710,37 @@ def main() -> None:
         preflight = _formal_preflight()
 
     runtime_root, persistent = _prepare_runtime(config)
-    env = _environment(config_path, runtime_root)
+    env = _environment(config, config_path, runtime_root)
     counts = _expected_counts(config, env)
     experiments = list(config["benchmark"]["experiments"])
     seed = str(config["benchmark"]["sample_seed"])
     run_name = config["outputs"]["run_name"]
-    phases = (
-        ["prepare-data", "dsp", "basic-pitch"] if args.phase == "all" else [args.phase]
-    )
-    if any(phase in phases for phase in ("dsp", "basic-pitch")):
+    models: dict[str, tuple[str, str]] = {}
+    if "dsp" in config["baselines"]:
+        models["dsp"] = (
+            config["baselines"]["dsp"]["model_name"],
+            config["outputs"]["dsp_model_label"],
+        )
+    if "basic_pitch" in config["baselines"]:
+        models["basic-pitch"] = (
+            config["baselines"]["basic_pitch"]["model_name"],
+            config["outputs"]["basic_pitch_model_label"],
+        )
+    if "muscriptor" in config["baselines"]:
+        models["muscriptor"] = (
+            config["baselines"]["muscriptor"]["model_name"],
+            config["outputs"]["muscriptor_model_label"],
+        )
+    phases = ["prepare-data", *models] if args.phase == "all" else [args.phase]
+    unknown_phases = set(phases) - {"prepare-data", *models}
+    if unknown_phases:
+        raise ValueError(
+            f"Requested phases are not configured: {sorted(unknown_phases)}"
+        )
+    if any(phase in phases for phase in models):
         _validate_runtime_environment(config)
+    if "muscriptor" in phases:
+        _validate_muscriptor_inputs(config)
 
     dataset_manifest: dict[str, Any] | None = None
     if "prepare-data" in phases:
@@ -666,21 +755,10 @@ def main() -> None:
         if manifest_path.exists():
             dataset_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
-    models = {
-        "dsp": (
-            config["baselines"]["dsp"]["model_name"],
-            config["outputs"]["dsp_model_label"],
-        ),
-        "basic-pitch": (
-            config["baselines"]["basic_pitch"]["model_name"],
-            config["outputs"]["basic_pitch_model_label"],
-        ),
-    }
-    for phase in ("dsp", "basic-pitch"):
+    for phase, (model_name, model_label) in models.items():
         if phase not in phases:
             continue
         _validate_generated(runtime_root, counts)
-        model_name, model_label = models[phase]
         _run(
             [
                 sys.executable,
@@ -702,7 +780,7 @@ def main() -> None:
         run_dir = runtime_root / "results" / "evaluation" / model_label / run_name
         _validate_evaluation(run_dir, counts)
 
-    if any(phase in phases for phase in ("dsp", "basic-pitch")):
+    if any(phase in phases for phase in models):
         _copy_results(config, runtime_root, persistent)
         aggregate_path = _write_aggregate(config, runtime_root, persistent)
         if aggregate_path is not None:
