@@ -1,6 +1,6 @@
 # PitchBench -- Python Package
 
-Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more — reporting per-format accuracy (MIDI, SPN, doremi, Hz) to expose where verbal decoding fails.
+Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more. The paper comparison uses MIDI, SPN and Hz; D8/F1/F2 use Ordered Note F1 and other tasks use accuracy.
 
 
 ## Paper results
@@ -11,7 +11,7 @@ is the canonical paper comparison, including DSP and Basic Pitch.
 [LaTeX](paper/figures-and-tables/table1.tex), and
 [source mapping](paper/figures-and-tables/table1.sources.json) are generated together.
 The [reproduction guide](paper/figures-and-tables/README.md) documents the metrics,
-precision limits, and underlying evidence.
+sample coverage, and underlying evidence.
 
 ```bash
 PYTHONPATH=src python -m pitchbench.analysis.table1 --check
@@ -24,7 +24,9 @@ or third-party Python packages. Omit `--check` to regenerate all formats.
 
 ## Setup
 
-### 1. Install FluidSynth
+### 1. Install FluidSynth (stimulus generation only)
+
+Skip this step when evaluating an existing Parquet dataset.
 
 | Platform | Command |
 |----------|---------|

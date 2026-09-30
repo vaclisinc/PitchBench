@@ -41,69 +41,19 @@
     "F2": "Tonal"
   },
   "cell_sources": {
-    "ALM D8/F1/F2": "alm_note_f1:any_note_f1 * 100",
-    "ALM C4": "alm_c4: per-item OR(midi_correct, spn_correct, hz_correct), then mean * 100",
-    "ALM other tasks": "alm_accuracy:accuracy * 100 (excluding C4/D8/F1/F2)",
-    "baseline D8": "baseline_d8:any_note_f1 * 100",
-    "baseline other tasks": "baseline_accuracy_and_f1:*_displayed_pct",
-    "Mean": "arithmetic mean of the 28 source scores, before display rounding"
+    "All 224 task/model cells": "recomputed:score_sum / n_samples * 100",
+    "Mean": "arithmetic mean of the 28 unrounded task scores"
   },
   "display": "one decimal, ROUND_HALF_UP; ranks use displayed values",
-  "notes": "Scores are percentages. D8, F1 and F2 use Ordered Note F1; other tasks use accuracy. Mean weights each of the 28 tasks equally. D7a is the concatenated reference task (D7 in the paper); Y1 is excluded. DSP and Basic Pitch means are approximate: their 27 non-D8 inputs were preserved only to 0.1 percentage points (mean rounding bound: ±0.0483 percentage points).",
+  "notes": "Scores are percentages. D8, F1 and F2 use Ordered Note F1; other tasks use accuracy. Mean weights each of the 28 tasks equally, using unrounded scores. D7a is the concatenated reference task (D7 in the paper); Y1 is excluded. GPT-4o B1 uses the 158 saved responses; two of the 160 responses are missing.",
   "sources": {
-    "alm_accuracy": {
-      "path": "paper/figures-and-tables/accuracies_by_model_experiment.csv",
-      "sha256": "feb09bf85a45c0adb098d06fd49584fb5acf00ea2b653ba74cf1500bdf067fa7"
+    "recomputed": {
+      "path": "results/table1-recomputed/metrics.csv",
+      "sha256": "24f32c6e70b87927319f9a8f0a57a4e20d6dadc11990801fff783fa070cccddf"
     },
-    "alm_note_f1": {
-      "path": "results/d8-ordered-note-f1/metrics.csv",
-      "sha256": "8bf9fee12622a60d1d63942bef166b3e86f03571d62f88ed37fc3223b725d3cb"
-    },
-    "baseline_accuracy_and_f1": {
-      "path": "results/d8-baselines-lcs/historical_table.csv",
-      "sha256": "051eab67be5450fd2e83047823f99df59a4aee84023cb5124c9ce7fe4052d99e"
-    },
-    "baseline_d8": {
-      "path": "results/d8-baselines-lcs/metrics.csv",
-      "sha256": "0f17333a0f7f0ba82894af82543a313bc11da579b1e19a7aa034376d1ce25c2a"
-    }
-  },
-  "alm_c4": {
-    "audio_flamingo_next_instruct": {
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c4_chord_pitches/run_001_20260506_073827/results_audio_flamingo_next_instruct.json",
-      "sha256": "a03daf0e1182dda0141e3a9c991b81900e6a43c5ffa0483e21d9224ef40d39b9",
-      "n_samples": 200,
-      "n_correct": 0
-    },
-    "openrouter_google_gemini_3_1_pro_preview": {
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c4_chord_pitches/run_001_20260506_062727/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "896e800abbcbc3d1b9553341d5db203dc0916ae5e93aa1629a02cbc553fab54d",
-      "n_samples": 200,
-      "n_correct": 3
-    },
-    "openrouter_google_gemini_flash_latest": {
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c4_chord_pitches/run_001_20260506_192955/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "591b19f7a084e94f0aab0e372eea90506fbe274a097f996096e923d5cc0e2cba",
-      "n_samples": 200,
-      "n_correct": 0
-    },
-    "openrouter_openai_gpt_4o_audio_preview": {
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c4_chord_pitches/run_001_20260506_072554/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "48e1c79801a4ebd770bdf63575d4564a8b94eb37b38eeda3a0873151260a982b",
-      "n_samples": 200,
-      "n_correct": 1
-    },
-    "dashscope_qwen3_5_omni_plus": {
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c4_chord_pitches/run_001_20260506_214846/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "bb605873d7951b72a61b0cc241cf34cf291a7fd4cf91280550644feb8a15ce42",
-      "n_samples": 200,
-      "n_correct": 24
-    },
-    "dashscope_qwen3_5_omni_flash": {
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c4_chord_pitches/run_001_20260506_214855/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "a362d0792216888837b26a27beaa47e45dc439c8ab65920dee236618d858f77a",
-      "n_samples": 200,
-      "n_correct": 13
+    "audit": {
+      "path": "results/table1-recomputed/run.json",
+      "sha256": "39c26bc152e2b3a65395d72afdabb73f08ceba586fa59d068ddfab7e0c206472"
     }
   }
 }
