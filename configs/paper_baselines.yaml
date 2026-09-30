@@ -1,28 +1,53 @@
 schema_version: 1
 
+# Copy into a run directory and set absolute dataset/runtime/output paths.
+# Acoustic parameters are fixed; see paper/figures-and-tables/README.md.
 experiment:
-  experiment_id: "PB-REBUTTAL-D3-ADAPTER-003"
-  kind: "supporting"
-  parent_experiment_id: "PB-REBUTTAL-BASELINES-002"
-  why: "Resolve the D3 regression caused by treating noisy frame-level pitch changes as note transitions."
-  compare_to: "The D3 rows from PB-REBUTTAL-BASELINES-001 and PB-REBUTTAL-BASELINES-002."
-  decision: "Use the adjacent-event-deduplicated D3 row in the final rebuttal table if the run passes protocol checks."
-  expected_evidence: "All 180 paper-protocol D3 predictions and scores for DSP and Basic Pitch."
+  experiment_id: "pitchbench-baselines"
+  kind: "evaluation"
+  description: "Frozen DSP and Basic Pitch on the 28 paper tasks."
 
 benchmark:
   mode: "paper_locked"
   sample_seed: 42
   experiments:
+    - "a1"
+    - "a2"
+    - "a3"
+    - "b1"
+    - "b2"
+    - "b3"
+    - "b4"
+    - "b5"
+    - "c1"
+    - "c2"
+    - "c3"
+    - "c4"
+    - "d1"
+    - "d2"
     - "d3"
-  expected_experiment_count: 1
-  expected_condition_count: 180
+    - "d4"
+    - "d5"
+    - "d6"
+    - "d7a"
+    - "d8"
+    - "e1"
+    - "e2"
+    - "e3"
+    - "e4"
+    - "e5"
+    - "e6"
+    - "f1"
+    - "f2"
+  expected_experiment_count: 28
+  expected_condition_count: 5802
 
 input_dataset:
   repository: "pitchbench-authors/PitchBench"
   repository_type: "dataset"
   revision: "f6c672608057cb877bfaacaeeff9bfb49eef7778"
   license: "CC-BY-4.0"
-  local_dir: "/tmp/pitchbench-pb-rebuttal-baselines-001/official_hf"
+  local_dir: "/ABSOLUTE/PATH/TO/DATASET"
   split: "test"
   parquet_filename: "test-00000-of-00001.parquet"
   embedded_audio_field: "audio"
@@ -31,12 +56,9 @@ input_dataset:
 
 runtime:
   python: "3.11.15"
-  runtime_root: "/tmp/pitchbench-pb-rebuttal-baselines-001"
-  environment_dir: "/tmp/pitchbench-pb-rebuttal-baselines-001-venv"
-  persistent_results_dir: "results/evaluation/PB-REBUTTAL-D3-ADAPTER-003"
-  logs_dir: "logs/PB-REBUTTAL-D3-ADAPTER-003"
-  tmux_session: "pitchbench-pb-rebuttal-d3-adapter-003"
-  formal_command: "/tmp/pitchbench-pb-rebuttal-baselines-001-venv/bin/python scripts/run_rebuttal_baselines.py configs/pb_rebuttal_d3_adapter_003.yaml --phase all"
+  runtime_root: "/ABSOLUTE/PATH/TO/RUN/runtime"
+  environment_dir: "/ABSOLUTE/PATH/TO/ENVIRONMENT"
+  persistent_results_dir: "/ABSOLUTE/PATH/TO/RUN/artifacts/evaluation"
   concurrency: 1
   fail_on_missing_prediction: false
   missing_prediction_text: "__NO_DETECTION__"
@@ -51,6 +73,7 @@ runtime:
     resampy: "0.4.2"
     scipy: "1.13.1"
     soundfile: "0.12.1"
+    setuptools: "75.8.0"
 
 shared_decoder:
   midi_min: 0
@@ -141,9 +164,6 @@ baselines:
     contour_bins_per_semitone: 3
 
 outputs:
-  dsp_model_label: "dsp_yin_harmonic_cqt_d3_adapter_v3"
-  basic_pitch_model_label: "spotify_basic_pitch_0_4_0_d3_adapter_v3"
-  run_name: "PB-REBUTTAL-D3-ADAPTER-003"
-  receipt_json: "results/evaluation/PB-REBUTTAL-D3-ADAPTER-003/receipt.json"
-  aggregate_csv: "results/evaluation/PB-REBUTTAL-D3-ADAPTER-003/baseline_aggregate.csv"
-  openreview_markdown: "paper/rebuttal_dsp_nn_baselines_openreview.md"
+  dsp_model_label: "dsp_yin_harmonic_cqt"
+  basic_pitch_model_label: "spotify_basic_pitch_0_4_0"
+  run_name: "pitchbench-baselines"

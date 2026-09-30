@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare and evaluate formal PitchBench rebuttal baselines."""
+"""Prepare and evaluate the DSP and Basic Pitch baselines."""
 
 from __future__ import annotations
 
@@ -20,14 +20,6 @@ import pandas as pd
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def _run(
@@ -400,10 +392,6 @@ def _environment(
 ) -> dict[str, str]:
     env = dict(os.environ)
     pythonpath_entries = [str(REPO_ROOT / "src")]
-    if "muscriptor" in config["baselines"]:
-        pythonpath_entries.append(
-            str((REPO_ROOT / config["baselines"]["muscriptor"]["source_dir"]).resolve())
-        )
     if env.get("PYTHONPATH"):
         pythonpath_entries.append(env["PYTHONPATH"])
     pythonpath = os.pathsep.join(pythonpath_entries)
@@ -438,52 +426,6 @@ def _validate_runtime_environment(config: dict[str, Any]) -> None:
         raise RuntimeError(
             "Runtime package versions do not match the formal config:\n"
             + "\n".join(mismatches)
-        )
-
-
-def _validate_muscriptor_inputs(config: dict[str, Any]) -> None:
-    settings = config["baselines"]["muscriptor"]
-    expected_visible = str(config["runtime"]["cuda_visible_devices"])
-    actual_visible = os.environ.get("CUDA_VISIBLE_DEVICES")
-    if actual_visible != expected_visible:
-        raise RuntimeError(
-            "CUDA_VISIBLE_DEVICES does not match runtime.cuda_visible_devices: "
-            f"expected {expected_visible!r}, found {actual_visible!r}"
-        )
-    source_dir = (REPO_ROOT / settings["source_dir"]).resolve()
-    checkpoint = (REPO_ROOT / settings["checkpoint"]).resolve()
-    if not source_dir.is_dir():
-        raise FileNotFoundError(f"MuScriptor source directory is missing: {source_dir}")
-    source_status = subprocess.run(
-        ["git", "status", "--porcelain"],
-        cwd=source_dir,
-        check=True,
-        text=True,
-        capture_output=True,
-    ).stdout.strip()
-    if source_status:
-        raise RuntimeError(
-            f"MuScriptor source checkout must be clean: {source_dir}\n{source_status}"
-        )
-    source_revision = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=source_dir,
-        check=True,
-        text=True,
-        capture_output=True,
-    ).stdout.strip()
-    if source_revision != str(settings["source_revision"]):
-        raise RuntimeError(
-            f"MuScriptor source revision mismatch: expected "
-            f"{settings['source_revision']}, found {source_revision}"
-        )
-    if not checkpoint.is_file():
-        raise FileNotFoundError(f"MuScriptor checkpoint is missing: {checkpoint}")
-    checkpoint_sha = _sha256(checkpoint)
-    if checkpoint_sha != str(settings["checkpoint_sha256"]):
-        raise RuntimeError(
-            f"MuScriptor checkpoint SHA256 mismatch: expected "
-            f"{settings['checkpoint_sha256']}, found {checkpoint_sha}"
         )
 
 
@@ -696,7 +638,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("config", type=Path)
     parser.add_argument(
         "--phase",
-        choices=("prepare-data", "dsp", "basic-pitch", "muscriptor", "all"),
+        choices=("prepare-data", "dsp", "basic-pitch", "all"),
         default="all",
     )
     parser.add_argument(
@@ -738,11 +680,6 @@ def main() -> None:
             config["baselines"]["basic_pitch"]["model_name"],
             config["outputs"]["basic_pitch_model_label"],
         )
-    if "muscriptor" in config["baselines"]:
-        models["muscriptor"] = (
-            config["baselines"]["muscriptor"]["model_name"],
-            config["outputs"]["muscriptor_model_label"],
-        )
     phases = ["prepare-data", *models] if args.phase == "all" else [args.phase]
     unknown_phases = set(phases) - {"prepare-data", *models}
     if unknown_phases:
@@ -751,8 +688,6 @@ def main() -> None:
         )
     if any(phase in phases for phase in models):
         _validate_runtime_environment(config)
-    if "muscriptor" in phases:
-        _validate_muscriptor_inputs(config)
 
     dataset_manifest: dict[str, Any] | None = None
     if "prepare-data" in phases:

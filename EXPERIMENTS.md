@@ -114,7 +114,7 @@ Conditions are identical to D7a, but the reference and target tones are delivere
 
 All pitches in a sequence of three, five, or ten notes must be listed in order in all four notation formats. Three conditions are generated per (n_notes, source) stratum.
 
-Headline scoring uses Ordered Note F1: $2M/(N_{gt}+N_{pred})$, where $M$ is the LCS match count. Full predictions are retained, including extra notes. MIDI matches exactly, SPN matches equivalent pitches, and Hz retains the original ±1 Hz tolerance. ANY takes the maximum of MIDI/SPN/Hz per stimulus, then averages over stimuli; solfège is diagnostic only. Strict full-sequence exact match and positional matches remain auxiliary diagnostics. See the [saved-response rescore and updated model table](results/d8-ordered-note-f1/README.md).
+Headline scoring uses Ordered Note F1: $2M/(N_{gt}+N_{pred})$, where $M$ is the LCS match count. Full predictions are retained, including extra notes. MIDI matches exactly, SPN matches equivalent pitches, and Hz retains the original ±1 Hz tolerance. ANY takes the maximum of MIDI/SPN/Hz per stimulus, then averages over stimuli; solfège is diagnostic only. Strict full-sequence exact match and positional matches remain auxiliary diagnostics. See the [final Table 1](paper/figures-and-tables/table1.md) and [saved-response evidence](results/d8-ordered-note-f1/README.md).
 
 ---
 
