@@ -1,0 +1,22 @@
+{
+  "distinct_task_ids": 28,
+  "all_expected_tasks_present": true,
+  "intentional_repeated_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "F1",
+    "F2"
+  ],
+  "all_middle_labels_fully_inside_their_actual_wedges": [
+    "B",
+    "Temporal",
+    "C",
+    "Chord",
+    "D",
+    "Sequence",
+    "E",
+    "Acoustic"
+  ],
+  "collision_warnings_review": "Six fill-edge warnings arise from overlapping bounding rectangles of adjacent trapezoids; all eight label boxes lie entirely inside their own polygon."
+}

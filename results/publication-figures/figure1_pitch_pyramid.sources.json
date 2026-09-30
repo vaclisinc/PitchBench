@@ -1,0 +1,29 @@
+{
+  "generator": {
+    "path": "src/pitchbench/analysis/pyramid.py",
+    "sha256": "cc5565b5692da4631f89fc6e55d1dd65f654a2477487299901f53654425e372d"
+  },
+  "definitions": {
+    "path": "EXPERIMENTS.md",
+    "sha256": "f50e92cd1cf4c5a828456faa1dfa2b33be2f1be920757942da1baf2cc496f745"
+  },
+  "geometry": {
+    "size_inches": [
+      5.5,
+      3.9
+    ],
+    "alignment": "NOT APPLICABLE"
+  },
+  "n_tasks": 28,
+  "category_counts": {
+    "A": 3,
+    "B": 5,
+    "C": 4,
+    "D": 8,
+    "E": 6,
+    "F": 2
+  },
+  "structure": "A base with A1/A2/A3; B/C/D/E middle wedges; F apex.",
+  "meaning": "Conceptual taxonomy; areas do not encode counts or measured difficulty.",
+  "exclusions": "None. All 28 tasks retained; A1\u2013A3 and F1\u2013F2 are repeated within the pyramid."
+}

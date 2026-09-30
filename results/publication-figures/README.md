@@ -1,6 +1,6 @@
 # Manuscript Figures 1–4: sources and redesigned figures
 
-Figures 2–4 were redrawn on 2026-10-01 from the saved submission evidence.
+Figures 1–4 were redrawn on 2026-10-01 from the task definitions and saved submission evidence.
 This changes presentation, not evaluation scores. The original plots and CSVs
 remain intact. No model calls, smoothing, new confidence intervals, or new
 experimental comparisons were introduced.
@@ -9,7 +9,7 @@ experimental comparisons were introduced.
 
 | Figure | Saved evidence | Original plotting implementation |
 | --- | --- | --- |
-| 1: task hierarchy | `PitchBench-paper/exp-figure.jpg`; task definitions in [EXPERIMENTS.md](../../EXPERIMENTS.md) | No editable schematic or generator found in the tracked tree or relevant path history |
+| 1: task hierarchy | `PitchBench-paper/exp-figure.jpg`; task definitions in [EXPERIMENTS.md](../../EXPERIMENTS.md) | Original editable source unavailable; pyramid reconstructed with [pyramid.py](../../src/pitchbench/analysis/pyramid.py) |
 | 2: A1 prediction distributions | Six `paper/evaluation/_<model>/pitchbench_a1_single_pitch_id/<run>/results_<model>.csv` files; exact paths and SHA-256 hashes in [figure_sources.json](figure_sources.json) | [a1.py](../../src/pitchbench/analysis/a1.py), `extract_a1_data`, `_predicted_midi`, `plot_a1_heatmap` |
 | 3: accuracy by pitch | [accuracies_by_pitch.csv](../../paper/figures-and-tables/accuracies_by_pitch.csv) | [overview.py](../../src/pitchbench/analysis/overview.py), `plot_accuracy_by_note` |
 | 4: accuracy by representation | [accuracies_by_notation.csv](../../paper/figures-and-tables/accuracies_by_notation.csv) | [overview.py](../../src/pitchbench/analysis/overview.py), `plot_accuracy_by_notation` |
@@ -75,3 +75,44 @@ inspected. The manuscript compiles to 14 pages; body text ends on page 11,
 references begin on page 12, and the prompt-sensitivity table stays in the
 appendix. Existing text/font warnings outside these figures remain. Manuscript
 Q1/Q2 paragraphs are unchanged by this figure-only revision.
+
+## Figure 1: redesigned pyramid
+
+**Keep the pyramid.** The owner requires the original three-tier structure:
+A1 as the foundation, A2/A3 as the variation blocks above it; four adjacent
+B/C/D/E wedges in the middle; F at the apex. All 28 tasks remain in the side
+legends, with A/B/C/F on the left and D/E on the right. This revision changes
+colour, typography, separators, spacing and export quality. It does not turn
+the taxonomy into a task list or flowchart. Areas do not encode counts,
+performance or measured difficulty.
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.pyramid \
+  --output-dir /ABSOLUTE/OUTPUT/DIRECTORY \
+  --qa-scripts /ABSOLUTE/PATH/TO/nature-figure/scripts
+```
+
+- [PDF](figures/figure1_pitch_pyramid.pdf) and
+  [editable SVG](figures/figure1_pitch_pyramid.svg).
+- [Task mapping](figure1_pitch_pyramid.tasks.csv),
+  [source hashes](figure1_pitch_pyramid.sources.json),
+  [figure contract](figure1-pyramid-contract.md).
+- PNG preview and compiled manuscript:
+  `outputs/pitchbench-paper/figure1-pyramid-20261001/`.
+
+The figure is 139.7 × 99.1 mm, matching manuscript text width. The PDF contains
+all 28 distinct task IDs; A1–A3 and F1–F2 are intentionally repeated inside the
+pyramid. Minimum text is 5.4 pt. The alignment gate records a single canvas as
+not applicable. PDF font checks pass, and the collision audit has no failures.
+Its six fill-edge warnings are reviewed false positives: bounding rectangles
+of adjacent trapezoids overlap, but all eight middle text boxes are completely
+inside their own actual wedge polygons (verified geometrically in the
+[content check](qa/figure1-pyramid-content-check.json)). All six categories,
+three tiers, and the complete manuscript page were visually inspected.
+
+Source validation reports 19 passes, no failures and two reviewed warnings:
+139.7 mm intentionally follows the NeurIPS manuscript rather than the checker's
+89/183-mm Nature defaults, and TIFF is unnecessary for this PDF-based paper.
+The SVG has only trailing serialization whitespace removed; path coordinates
+are unchanged. The manuscript compiles to 14 pages with the conclusion on
+page 11. Only the Figure 1 image include changes in the manuscript.
