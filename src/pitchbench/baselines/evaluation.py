@@ -122,8 +122,9 @@ def _prepare_runtime(config: dict[str, Any]) -> tuple[Path, Path]:
     runtime_data = runtime_root / "data"
     runtime_data.mkdir(parents=True, exist_ok=True)
     persistent.mkdir(parents=True, exist_ok=True)
+    asset_data_dir = Path(config["runtime"].get("asset_data_dir", REPO_ROOT / "data"))
     for name in ("preloaded", "soundfonts"):
-        source = REPO_ROOT / "data" / name
+        source = asset_data_dir / name
         target = runtime_data / name
         if target.is_symlink():
             if target.resolve() != source.resolve():

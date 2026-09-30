@@ -52,3 +52,16 @@ def test_queue_preflight_requires_matching_pushed_snapshot(tmp_path, monkeypatch
     path.write_text(json.dumps({"snapshot": True, "git_commit": "wrong"}))
     with pytest.raises(RuntimeError, match="does not match"):
         evaluation._formal_preflight()
+
+
+def test_runtime_assets_survive_checkout_snapshot_changes(tmp_path, monkeypatch):
+    assets = tmp_path / "shared-data"
+    for name in ("preloaded", "soundfonts"):
+        (assets / name).mkdir(parents=True)
+    config = {"runtime": {"runtime_root": str(tmp_path / "run"),
+                          "persistent_results_dir": str(tmp_path / "results"),
+                          "asset_data_dir": str(assets)}}
+    evaluation._prepare_runtime(config)
+    monkeypatch.setattr(evaluation, "REPO_ROOT", tmp_path / "different-checkout")
+    root, _ = evaluation._prepare_runtime(config)
+    assert (root / "data/preloaded").resolve() == assets / "preloaded"
