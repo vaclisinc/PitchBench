@@ -335,7 +335,11 @@ def _prepare_official_dataset(
             }
             for source, target in prompt_renames.items():
                 if source in prepared:
-                    prepared[target] = prepared[source]
+                    prepared[target] = prepared.pop(source)
+            # Table 1 evaluates only MIDI, SPN and Hz. Empty optional prompts
+            # are skipped by the evaluators, retaining the result-file schema.
+            if "prompt_doremi" in prepared:
+                prepared["prompt_doremi"] = ""
             if "prompt" in prepared:
                 prepared["prompt_main"] = prepared["prompt"]
             gt_renames = {
@@ -400,6 +404,7 @@ def _environment(
             "PYTHONPATH": pythonpath,
             "PITCHBENCH_ROOT": str(runtime_root),
             "PITCHBENCH_BASELINE_CONFIG": str(config_path),
+            "PITCHBENCH_OFFLINE_SCORING": "1",
             "MPLCONFIGDIR": str(runtime_root / "matplotlib"),
             "PYTHONUNBUFFERED": "1",
         }
@@ -624,6 +629,8 @@ def _write_receipt(
             "manifest": dataset_manifest,
         },
         "baselines": config["baselines"],
+        "offline_scoring": True,
+        "pitch_formats": ["midi", "spn", "hz"],
         "phases": phases,
         "runtime_root": config["runtime"]["runtime_root"],
         "persistent_results": str(persistent.resolve()),

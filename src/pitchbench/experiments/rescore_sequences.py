@@ -22,6 +22,7 @@ import pitchbench.config as config
 config.AUDIO_DIR = config.GENERATED_DIR
 
 from pitchbench.experiments.helpers.cat_f import score_polyphonic_record
+from pitchbench.experiments.helpers.music import offline_scoring
 from pitchbench.experiments.scripts.pitchbench_d8_sequence_pitches import record_for
 
 
@@ -38,6 +39,7 @@ def rescore_d8_record(row: dict) -> dict:
     return record_for(cond, row.get("wav", ""), {f: row[f"raw_{f}"] for f in FORMATS[:-1]})
 
 
+@offline_scoring()
 def rescore_d8_baselines(input_dir: Path, output: Path) -> None:
     """Export raw baseline answers and independently recomputed D8 metrics."""
     expected = {"baseline/dsp", "baseline/basic-pitch"}
@@ -105,6 +107,7 @@ def write_csv(path: Path, rows: list[dict]) -> None:
         writer.writerows(rows)
 
 
+@offline_scoring()
 def rescore(repo: Path, output: Path) -> None:
     table = repo / "paper/figures-and-tables/accuracies_by_model_experiment.csv"
     with table.open() as handle:
