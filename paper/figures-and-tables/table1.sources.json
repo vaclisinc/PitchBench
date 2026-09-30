@@ -42,7 +42,8 @@
   },
   "cell_sources": {
     "ALM D8/F1/F2": "alm_note_f1:any_note_f1 * 100",
-    "ALM other tasks": "alm_accuracy:accuracy * 100",
+    "ALM C4": "alm_c4: per-item OR(midi_correct, spn_correct, hz_correct), then mean * 100",
+    "ALM other tasks": "alm_accuracy:accuracy * 100 (excluding C4/D8/F1/F2)",
     "baseline D8": "baseline_d8:any_note_f1 * 100",
     "baseline other tasks": "baseline_accuracy_and_f1:*_displayed_pct",
     "Mean": "arithmetic mean of the 28 source scores, before display rounding"
@@ -65,6 +66,44 @@
     "baseline_d8": {
       "path": "results/d8-baselines-lcs/metrics.csv",
       "sha256": "0f17333a0f7f0ba82894af82543a313bc11da579b1e19a7aa034376d1ce25c2a"
+    }
+  },
+  "alm_c4": {
+    "audio_flamingo_next_instruct": {
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c4_chord_pitches/run_001_20260506_073827/results_audio_flamingo_next_instruct.json",
+      "sha256": "b2d53a4f7d5790ee9b539848c515a0920975d032f1f2ef5f7151e3222cd0de43",
+      "n_samples": 200,
+      "n_correct": 0
+    },
+    "openrouter_google_gemini_3_1_pro_preview": {
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c4_chord_pitches/run_001_20260506_062727/results_openrouter_google_gemini_3_1_pro_preview.json",
+      "sha256": "e675a1de11f008aaf96aa624b0705b02c83c64c47e83fc6d9a1c9c28ce7974fb",
+      "n_samples": 200,
+      "n_correct": 3
+    },
+    "openrouter_google_gemini_flash_latest": {
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c4_chord_pitches/run_001_20260506_192955/results_openrouter_google_gemini_flash_latest.json",
+      "sha256": "b7b4b7dff4ae13838b2ea6c2dd6a8d1ced7722c375f42164665dda3580538f2a",
+      "n_samples": 200,
+      "n_correct": 0
+    },
+    "openrouter_openai_gpt_4o_audio_preview": {
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c4_chord_pitches/run_001_20260506_072554/results_openrouter_openai_gpt_4o_audio_preview.json",
+      "sha256": "9fd6a5a8d30d4f8a7cd88b2d2a40034f29c8c415ac099c015dc626985a2db472",
+      "n_samples": 200,
+      "n_correct": 1
+    },
+    "dashscope_qwen3_5_omni_plus": {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c4_chord_pitches/run_001_20260506_214846/results_dashscope_qwen3_5_omni_plus.json",
+      "sha256": "d8dc4b32f2ff09a023759d85feea323b02abf120bf7b50f4305c383fb93e5db7",
+      "n_samples": 200,
+      "n_correct": 24
+    },
+    "dashscope_qwen3_5_omni_flash": {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c4_chord_pitches/run_001_20260506_214855/results_dashscope_qwen3_5_omni_flash.json",
+      "sha256": "b9cdee9c08d3041ceaff3cfddfb31c730ce27098745c8f53bcd9c9a3066e3e28",
+      "n_samples": 200,
+      "n_correct": 13
     }
   }
 }
