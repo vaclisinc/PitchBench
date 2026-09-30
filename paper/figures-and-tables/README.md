@@ -135,7 +135,9 @@ script and intermediate reports, which remain available in Git history.
 DSP uses YIN for monophonic continuous F0 (30–2,500 Hz, 256-ms window, 16-ms hop)
 and a harmonic CQT for simultaneous pitches (288 bins, 36 bins/octave over eight
 octaves, 16-ms hop). Basic Pitch 0.4.0 uses its packaged ONNX model for note events
-and pitch-bend contours. The deterministic task adapters receive only audio,
+and pitch-bend contours. The paper baseline run queries MIDI, SPN and Hz only. DoReMi is skipped,
+and scoring explicitly disables optional external LLM parsing.
+The deterministic task adapters receive only audio,
 the task ID and the public prompt, never hidden synthesis conditions or targets.
 
 The reusable [baseline recipe](../../configs/paper_baselines.yaml) contains the

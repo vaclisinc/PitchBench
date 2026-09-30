@@ -1215,11 +1215,12 @@ def query_four_formats(
     """Query the model with the four standard pitch-naming formats.
 
     Returns four ``query_alm`` result dicts in order: (MIDI, SPN, Doremi, Hz).
+    An empty prompt leaves that format unqueried and returns an empty response.
     """
-    r_midi   = query_alm(model_name, audio_path, prompt_midi)
-    r_spn    = query_alm(model_name, audio_path, prompt_spn)
-    r_doremi = query_alm(model_name, audio_path, prompt_doremi)
-    r_hz     = query_alm(model_name, audio_path, prompt_hz)
+    r_midi, r_spn, r_doremi, r_hz = (
+        query_alm(model_name, audio_path, prompt) if prompt else {"result": ""}
+        for prompt in (prompt_midi, prompt_spn, prompt_doremi, prompt_hz)
+    )
     if verbose:
         fname = Path(str(audio_path)).name
         print(f"      [{fname}]")
@@ -1257,4 +1258,3 @@ def query_three_formats(
         print(f"        doremi → {s_doremi.strip()!r}")
         _print_running_cost(model_name)
     return s_midi, s_spn, s_doremi
-

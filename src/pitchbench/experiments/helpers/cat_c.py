@@ -265,7 +265,7 @@ def run_one_model(
         prompts = job["prompts"]
         responses: dict[str, str] = {}
         for name, prompt in prompts.items():
-            out = query_alm(model_name, job["wav"], prompt)
+            out = query_alm(model_name, job["wav"], prompt) if prompt else {"result": ""}
             responses[name] = (out["result"] or "").strip()
         record = spec.record_fn(c, job["wav"], responses)
         # Inject `prompt_<name>` columns + record_extras (carried from cond).
@@ -494,7 +494,7 @@ def evaluate_cat_c_from_parquet(
         c = job["cond"]; prompts = job["prompts"]
         responses: dict[str, str] = {}
         for name, prompt in prompts.items():
-            out = query_alm(model_name, job["wav"], prompt)
+            out = query_alm(model_name, job["wav"], prompt) if prompt else {"result": ""}
             responses[name] = (out["result"] or "").strip()
         record = spec.record_fn(c, job["wav"], responses)
         for name, prompt in prompts.items():
