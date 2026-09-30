@@ -1,6 +1,6 @@
 # Manuscript Figures 1–4: sources and redesigned figures
 
-Figures 1–4 were redrawn on 2026-10-01 from the manuscript task taxonomy and saved submission evidence.
+Figures 2–4 were redrawn on 2026-10-01 from the saved submission evidence.
 This changes presentation, not evaluation scores. The original plots and CSVs
 remain intact. No model calls, smoothing, new confidence intervals, or new
 experimental comparisons were introduced.
@@ -9,7 +9,7 @@ experimental comparisons were introduced.
 
 | Figure | Saved evidence | Original plotting implementation |
 | --- | --- | --- |
-| 1: task hierarchy | `PitchBench-paper/exp-figure.jpg`; task definitions in [EXPERIMENTS.md](../../EXPERIMENTS.md) | Original editable source unavailable; reconstructed with [hierarchy.py](../../src/pitchbench/analysis/hierarchy.py) |
+| 1: task hierarchy | `PitchBench-paper/exp-figure.jpg`; task definitions in [EXPERIMENTS.md](../../EXPERIMENTS.md) | No editable schematic or generator found in the tracked tree or relevant path history |
 | 2: A1 prediction distributions | Six `paper/evaluation/_<model>/pitchbench_a1_single_pitch_id/<run>/results_<model>.csv` files; exact paths and SHA-256 hashes in [figure_sources.json](figure_sources.json) | [a1.py](../../src/pitchbench/analysis/a1.py), `extract_a1_data`, `_predicted_midi`, `plot_a1_heatmap` |
 | 3: accuracy by pitch | [accuracies_by_pitch.csv](../../paper/figures-and-tables/accuracies_by_pitch.csv) | [overview.py](../../src/pitchbench/analysis/overview.py), `plot_accuracy_by_note` |
 | 4: accuracy by representation | [accuracies_by_notation.csv](../../paper/figures-and-tables/accuracies_by_notation.csv) | [overview.py](../../src/pitchbench/analysis/overview.py), `plot_accuracy_by_notation` |
@@ -75,32 +75,3 @@ inspected. The manuscript compiles to 14 pages; body text ends on page 11,
 references begin on page 12, and the prompt-sensitivity table stays in the
 appendix. Existing text/font warnings outside these figures remain. Manuscript
 Q1/Q2 paragraphs are unchanged by this figure-only revision.
-
-## Figure 1: editable task hierarchy
-
-The original pyramid has been replaced by a three-level task map: Atomic,
-Contextual, and Melodic. All 28 tasks remain in their original six categories
-(A=3, B=5, C=4, D=8, E=6, F=2). Short labels were checked against the manuscript
-Task Hierarchy and EXPERIMENTS.md; [the mapping](figure1_task_hierarchy.tasks.csv)
-records every displayed task. The connectors represent conceptual progression,
-not observed performance, empirical difficulty, or proven prerequisites.
-
-```bash
-PYTHONPATH=src python -m pitchbench.analysis.hierarchy \
-  --output-dir /ABSOLUTE/OUTPUT/DIRECTORY \
-  --qa-scripts /ABSOLUTE/PATH/TO/nature-figure/scripts
-```
-
-[PDF](figures/figure1_task_hierarchy.pdf) and
-[editable SVG](figures/figure1_task_hierarchy.svg) are committed. The PNG preview
-and compiled manuscript are in
-`outputs/pitchbench-paper/figure1-redesign-20261001/`. See the
-[contract](figure1-contract.md) and [source hashes](figure1_task_hierarchy.sources.json).
-Figure 1 uses 139.7 × 96.5 mm, the existing manuscript text width. Alignment,
-PDF text and collision checks pass; the smallest glyph is 5.6 pt. All six
-category blocks were visually checked. The 71 fully contained text/fill
-relationships are intentional labels within panels and numbered level markers.
-Source preflight has 19 passes, no failures, and two reviewed warnings:
-139.7 mm is intentional for the NeurIPS manuscript (rather than the checker’s
-89/183-mm Nature defaults), and TIFF is unnecessary for this PDF-based paper.
-No research questions or result paragraphs are changed by the replacement.

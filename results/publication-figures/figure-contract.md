@@ -3,7 +3,7 @@
 Backend: existing Python/matplotlib workflow. Target: the manuscript's 139.7 mm text width; PDF/SVG editable text, PNG at 600 dpi; minimum 5 pt at final size. Existing empirical values and parser/aggregation semantics are preserved. No new evaluation, uncertainty estimates, smoothing, or model calls.
 
 ## Figure 1
-Task-hierarchy schematic, not a numeric plot. The original editable source was unavailable. A subsequent owner-requested reconstruction now preserves all 28 tasks in an editable three-level task map; see figure1-contract.md and src/pitchbench/analysis/hierarchy.py.
+Task-hierarchy schematic, not a numeric plot. The paper's raster is available. No editable source or generator found in the PitchBench tracked tree or relevant path history. Task definitions are available in EXPERIMENTS.md. Leave this asset unchanged.
 
 ## Figure 2 — quantitative grid
 Question: do predicted pitches follow ground truth, and does this depend on model/notation?
