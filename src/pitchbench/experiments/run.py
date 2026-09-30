@@ -206,6 +206,7 @@ def _evaluate_one(
     run_dir:     Path,
     sample_info: dict[str, Any] | None = None,
     model_label: str | None = None,
+    filter_conditions: bool = False,
 ) -> dict | None:
     """Import the experiment module and call the right evaluate_cat_*_from_parquet.
 
@@ -233,15 +234,15 @@ def _evaluate_one(
 
     try:
         if isinstance(spec, CatASpec):  # covers CatESpec (same class)
-            return evaluate_cat_a_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_a_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatBSpec):
-            return evaluate_cat_b_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_b_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatCSpec):
-            return evaluate_cat_c_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_c_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatDSpec):
-            return evaluate_cat_d_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_d_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatFSpec):
-            return evaluate_cat_f_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_f_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         print(f"  [SKIP] {name}: unrecognised spec type {type(spec).__name__}")
         return None
     except FileNotFoundError as exc:
@@ -534,7 +535,7 @@ def cmd_analyze(args: argparse.Namespace) -> None:
 
     for n in names:
         cost_tracker.reset()
-        result = _evaluate_one(n, model_name, run_dir, sample_info, model_label=model_label)
+        result = _evaluate_one(n, model_name, run_dir, sample_info, model_label=model_label, filter_conditions=True)
         per_exp_costs[n] = cost_tracker.all_totals()
         if result is not None:
             all_runs[n] = result

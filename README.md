@@ -122,6 +122,12 @@ pitchbench evaluate a1  --model openrouter/<provider>/<model> --sample-n 20 --sa
 
 Results land in `results/evaluation/<model_slug>/<YYYYMMDD_HHMMSS>/`.
 
+Evaluation uses the stored stimuli; it does not require local audio synthesis
+or regenerate conditions to filter out instruments. Condition filtering belongs
+to `analyze` presets. D8/F1/F2 export Ordered Note F1 through the task summary,
+CSV and overall score. B3/B4/B5 export their timing accuracy as task-level scores;
+the paper overall is the equal-weight mean of all 28 tasks.
+
 In tmux (recommended for long runs):
 ```bash
 tmux new-session -d -s mymodel "source .venv/bin/activate && \
