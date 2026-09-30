@@ -1,0 +1,107 @@
+{
+  "run_id": "d8-ordered-note-f1",
+  "project": "pitchbench",
+  "status": "succeeded",
+  "git_commit": "d1e3bd72ad4f8d5402ea34a81529526444c1844b",
+  "command": [
+    "python",
+    "-m",
+    "pitchbench.experiments.rescore_sequences",
+    "--repo-root",
+    "${VACLAB_ROOT}/projects/PitchBench",
+    "--output-dir",
+    "${VACLAB_ROOT}/outputs/pitchbench/d8-ordered-note-f1"
+  ],
+  "dataset_ids": [
+    "PitchBench saved paper/evaluation responses"
+  ],
+  "output_path": "${VACLAB_ROOT}/outputs/pitchbench/d8-ordered-note-f1",
+  "sources": [
+    {
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d8_sequence_pitches/run_001_20260506_075548/results_audio_flamingo_next_instruct.json",
+      "sha256": "48ab847734a456f3561cc6a05d7eab64fdf2454bf0438c564f6adc3f7ef91682"
+    },
+    {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d8_sequence_pitches/run_001_20260506_223641/results_dashscope_qwen3_5_omni_flash.json",
+      "sha256": "3a323d7b0011c57aff8bfba6cf4fe55b6edb3b34dc622ac44417d39005648a11"
+    },
+    {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d8_sequence_pitches/run_001_20260506_222854/results_dashscope_qwen3_5_omni_plus.json",
+      "sha256": "d8179f19dd86b024990d7b6e4e519bc64db479803d333749010dc504d8655b30"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d8_sequence_pitches/run_001_20260506_064103/results_openrouter_google_gemini_3_1_pro_preview.json",
+      "sha256": "513ff3fc8bc86918877100064a9cf34a5b2d041104297b3da386e373d637e8f2"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d8_sequence_pitches/run_001_20260506_193900/results_openrouter_google_gemini_flash_latest.json",
+      "sha256": "2d471d1d462cefae1f386d2812b20bd1f786e031f80fdabea9399d3e231b7f0a"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d8_sequence_pitches/run_001_20260506_072838/results_openrouter_openai_gpt_4o_audio_preview.json",
+      "sha256": "09d60f97ef04bf97124aab729f41cb561015eb217fbfdcf99113780bd19eba75"
+    },
+    {
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f1_melodic_line_atonal/run_001_20260506_081352/results_audio_flamingo_next_instruct.json",
+      "sha256": "87cc52083d861a3f4d39d129d453ddd5ba874d62f05328db666284df4fd235af"
+    },
+    {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f1_melodic_line_atonal/run_001_20260506_224910/results_dashscope_qwen3_5_omni_flash.json",
+      "sha256": "28eba0b4067eeba0755bff33361b4cfd1dec6f743477d8d1ae3cc2a51065215f"
+    },
+    {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f1_melodic_line_atonal/run_001_20260506_224202/results_dashscope_qwen3_5_omni_plus.json",
+      "sha256": "3c38ef6fa81f0f8f2d681de96c66728409e5f85ce1538fe48a02e1ba4804e574"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_070316/results_openrouter_google_gemini_3_1_pro_preview.json",
+      "sha256": "510af3c77f5e921829b3f25f577a9c7556cd26f8e6a7f3bfa77cca5fdcda1388"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f1_melodic_line_atonal/run_001_20260506_195126/results_openrouter_google_gemini_flash_latest.json",
+      "sha256": "194ab68f1120c08c36e547a0ebd6eadc066694afccf4bf61d89d9a713d187a8b"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_072841/results_openrouter_openai_gpt_4o_audio_preview.json",
+      "sha256": "9968d8c2fd4868fc1ffcdcb1ff7a5741520b15f6d671269e7d3a020f72f66398"
+    },
+    {
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f2_melodic_line_tonal/run_001_20260506_083145/results_audio_flamingo_next_instruct.json",
+      "sha256": "b2abdbbc62c9a462fb34e021c25c7d48fdb178cb31e64b635a28fdc8261e3e96"
+    },
+    {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f2_melodic_line_tonal/run_001_20260506_225743/results_dashscope_qwen3_5_omni_flash.json",
+      "sha256": "f336dd08d29a5a45418355b469d76f998a9663d1561ba590e0e23e53f1dd378f"
+    },
+    {
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f2_melodic_line_tonal/run_001_20260506_225047/results_dashscope_qwen3_5_omni_plus.json",
+      "sha256": "7cba2c6b6f68f74e378cdb949747cf3440e72c14cff96576b8afbda8718a45c5"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_070548/results_openrouter_google_gemini_3_1_pro_preview.json",
+      "sha256": "0ee268809b03b1793e054a436003c06d57265a1b51a5ab17b419fdb9f8ec332f"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f2_melodic_line_tonal/run_001_20260506_200958/results_openrouter_google_gemini_flash_latest.json",
+      "sha256": "74570312e644c53f697db436024a38d815577612ff1397136d16d1229f7e1292"
+    },
+    {
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_072913/results_openrouter_openai_gpt_4o_audio_preview.json",
+      "sha256": "fc7487e83392ca8f3395b729d49025141af2e4e78f195d167ad9ce76e3636baf"
+    },
+    {
+      "path": "paper/figures-and-tables/accuracies_by_model_experiment.csv",
+      "sha256": "feb09bf85a45c0adb098d06fd49584fb5acf00ea2b653ba74cf1500bdf067fa7"
+    }
+  ],
+  "new_model_queries": 0,
+  "metric": "Ordered Note F1 = 2 * LCS / (n_gt + n_pred)",
+  "matching": {
+    "midi": "exact integer",
+    "spn": "semitone distance zero",
+    "hz_d8": "absolute error <= 1 Hz",
+    "hz_f1_f2": "relative error <= 1%",
+    "doremi": "pitch class only; excluded from ANY"
+  },
+  "aggregation": "Per-stimulus max(MIDI, SPN, Hz), then macro mean over stimuli"
+}
