@@ -1,22 +1,9 @@
-"""
-d7 — Multi-pitch sequence identification.
+"""D8 — Ordered pitch identification in a sequence of separated notes.
 
-Tests whether models can identify all pitches in a sequence of N notes
-played one after another. Four prompts per stimulus (one per format —
-MIDI / SPN / Doremi / Hz). Each format scored as a binary
-``<format>_sequence_correct`` (1 iff all N notes correct in that format).
-
-Per-position correctness is preserved as a list-string diagnostic
-``<format>_per_pos`` in the per-stim records CSV; the count of correct
-positions is exposed as ``<format>_n_pos_match`` (a non-``_correct``
-column so it stays out of the auto-marginals).
-
-Universal IVs: source.
-Experiment-specific IVs:
-    n_notes:  ∈ N_NOTES_LIST  (sequence length)
-
-Headline metrics: ``midi_sequence``, ``spn_sequence``, ``doremi_sequence``,
-``hz_sequence``.
+Headline scores are macro Ordered Note F1 (LCS) per response format. ANY
+is the per-stimulus maximum of MIDI, SPN and Hz (solfege lacks octave).
+Full parsed sequences retain extra notes. Strict full-sequence correctness
+and positional matches remain diagnostics; Hz retains its <=1 Hz tolerance.
 """
 
 from __future__ import annotations
@@ -27,6 +14,7 @@ from pathlib import Path
 
 import pitchbench.config as config
 import pitchbench.sound.engine as engine
+from pitchbench.experiments.helpers.ordered_notes import ordered_note_f1
 from pitchbench.experiments.helpers.cat_d import CatDSpec, run_cat_d_experiment
 from pitchbench.experiments.helpers.music import (
     PC_TO_SOLFEGE,
@@ -134,30 +122,30 @@ def _pad(seq: list, n: int) -> list:
     return out
 
 
-def _parse_midi_seq(text: str, n: int) -> list[int | None]:
+def _parse_midi_seq(text: str) -> list[int]:
     nums: list[int] = []
     for m in re.finditer(r"\b(\d{1,3})\b", text or ""):
         v = int(m.group(1))
         if 0 <= v <= 127:
             nums.append(v)
-    return _pad(nums, n)
+    return nums
 
 
-def _parse_spn_seq(text: str, n: int) -> list[str | None]:
-    return _pad(extract_all_notes(text or ""), n)
+def _parse_spn_seq(text: str) -> list[str]:
+    return extract_all_notes(text or "")
 
 
-def _parse_doremi_seq(text: str, n: int) -> list[int | None]:
-    return _pad(extract_all_solfege(text or ""), n)
+def _parse_doremi_seq(text: str) -> list[int]:
+    return extract_all_solfege(text or "")
 
 
-def _parse_hz_seq(text: str, n: int) -> list[float | None]:
+def _parse_hz_seq(text: str) -> list[float]:
     nums: list[float] = []
     for m in re.finditer(r"\d+(?:\.\d+)?", text or ""):
         v = float(m.group(0))
         if 16.0 <= v <= 20000.0:
             nums.append(v)
-    return _pad(nums, n)
+    return nums
 
 
 def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
@@ -168,16 +156,16 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
     raw_hz     = responses["hz"]
 
     # MIDI scoring — exact integer match.
-    pred_midi = _parse_midi_seq(raw_midi, n)
+    pred_midi = _parse_midi_seq(raw_midi)
     midi_per_pos: list[bool | None] = [
         None if p is None else (gt == p)
-        for gt, p in zip(c["midi_sequence"], pred_midi)
+        for gt, p in zip(c["midi_sequence"], _pad(pred_midi, n))
     ]
 
     # SPN scoring — semitone distance == 0.
-    pred_spn = _parse_spn_seq(raw_spn, n)
+    pred_spn = _parse_spn_seq(raw_spn)
     spn_per_pos: list[bool | None] = []
-    for gt, pred in zip(c["note_sequence"], pred_spn):
+    for gt, pred in zip(c["note_sequence"], _pad(pred_spn, n)):
         if pred is None:
             spn_per_pos.append(None)
         else:
@@ -185,10 +173,10 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
             spn_per_pos.append(dist == 0 if dist is not None else False)
 
     # Doremi scoring — pitch class match (mod-12 distance == 0).
-    pred_doremi = _parse_doremi_seq(raw_doremi, n)
+    pred_doremi = _parse_doremi_seq(raw_doremi)
     doremi_per_pos: list[bool | None] = []
     gt_pcs = [m % 12 for m in c["midi_sequence"]]
-    for gt_pc, pred_pc in zip(gt_pcs, pred_doremi):
+    for gt_pc, pred_pc in zip(gt_pcs, _pad(pred_doremi, n)):
         if pred_pc is None:
             doremi_per_pos.append(None)
         else:
@@ -196,10 +184,10 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
             doremi_per_pos.append(min(diff, 12 - diff) == 0)
 
     # Hz scoring — ≤1 Hz tolerance (matches standard_pitch_record).
-    pred_hz = _parse_hz_seq(raw_hz, n)
+    pred_hz = _parse_hz_seq(raw_hz)
     hz_per_pos: list[bool | None] = [
         None if p is None else (abs(p - gt) <= 1.0)
-        for gt, p in zip(c["hz_sequence"], pred_hz)
+        for gt, p in zip(c["hz_sequence"], _pad(pred_hz, n))
     ]
 
     def _n_match(per_pos: list[bool | None]) -> int:
@@ -210,7 +198,25 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
     n_doremi_match = _n_match(doremi_per_pos)
     n_hz_match     = _n_match(hz_per_pos)
 
+    note_scores = {
+        "midi": ordered_note_f1(c["midi_sequence"], pred_midi),
+        "spn": ordered_note_f1(
+            c["note_sequence"], pred_spn,
+            lambda a, b: semitone_distance(a, b) == 0,
+        ),
+        "doremi": ordered_note_f1(gt_pcs, pred_doremi),
+        "hz": ordered_note_f1(
+            c["hz_sequence"], pred_hz, lambda a, b: abs(a - b) <= 1.0,
+        ),
+    }
+
     return {
+        **{
+            f"{fmt}_note_{metric}": value
+            for fmt, scores in note_scores.items()
+            for metric, value in scores.items()
+        },
+        "any_note_f1": max(note_scores[fmt]["f1"] for fmt in ("midi", "spn", "hz")),
         "source":                  c["source"],
         "n_notes":                 n,
         "trial":                   c["trial"],
@@ -222,25 +228,27 @@ def record_for(c: dict, wav: str, responses: dict[str, str]) -> dict:
         "midi_pred":               str(pred_midi),
         "midi_per_pos":            str(midi_per_pos),
         "midi_n_pos_match":        n_midi_match,
-        "midi_sequence_correct":   int(n_midi_match == n),
+        "midi_sequence_correct":   int(n_midi_match == n and len(pred_midi) == n),
         # SPN
         "spn_pred":                str(pred_spn),
         "spn_per_pos":             str(spn_per_pos),
         "spn_n_pos_match":         n_spn_match,
-        "spn_sequence_correct":    int(n_spn_match == n),
+        "spn_sequence_correct":    int(n_spn_match == n and len(pred_spn) == n),
         # Doremi
         "doremi_pred":             str(pred_doremi),
         "doremi_per_pos":          str(doremi_per_pos),
         "doremi_n_pos_match":      n_doremi_match,
-        "doremi_sequence_correct": int(n_doremi_match == n),
+        "doremi_sequence_correct": int(n_doremi_match == n and len(pred_doremi) == n),
         # Hz
         "hz_pred":                 str(pred_hz),
         "hz_per_pos":              str(hz_per_pos),
         "hz_n_pos_match":          n_hz_match,
-        "hz_sequence_correct":     int(n_hz_match == n),
+        "hz_sequence_correct":     int(n_hz_match == n and len(pred_hz) == n),
         # Any format correct (doremi excluded — pitch-class only, reduced task)
         "any_sequence_correct":    int(
-            n_midi_match == n or n_spn_match == n or n_hz_match == n
+            (n_midi_match == n and len(pred_midi) == n)
+            or (n_spn_match == n and len(pred_spn) == n)
+            or (n_hz_match == n and len(pred_hz) == n)
         ),
         # Raw
         "raw_midi":                (raw_midi or "").strip(),
@@ -257,10 +265,9 @@ SPEC = CatDSpec(
     task_type="sequence_id",
     prompts_fn=prompts_for,
     record_fn=record_for,
-    headline_metrics=(
-        "midi_sequence", "spn_sequence", "doremi_sequence", "hz_sequence",
-        "any_sequence",
-    ),
+    headline_metrics=("midi", "spn", "doremi", "hz", "any"),
+    metric_suffix="_note_f1",
+    metadata_fn=lambda: {"score_name": "ordered_note_f1_lcs", "hz_tolerance_hz": 1.0},
     record_extras=("n_notes", "trial"),
     label_fn=lambda j: (
         f"n={j['cond']['n_notes']} t={j['cond']['trial']} {j['cond']['source']}"

@@ -112,7 +112,9 @@ Conditions are identical to D7a, but the reference and target tones are delivere
 
 #### D8: Sequential Pitch Identification
 
-All pitches in a sequence of three, five, or ten notes must be listed in order in all four notation formats. Scoring is position-exact: each predicted note must match its ground-truth counterpart at that position. A composite "any-format correct" metric counts a stimulus as correct if the full sequence is reproduced exactly in at least one format. Three conditions are generated per (n_notes, source) stratum.
+All pitches in a sequence of three, five, or ten notes must be listed in order in all four notation formats. Three conditions are generated per (n_notes, source) stratum.
+
+Headline scoring uses Ordered Note F1: $2M/(N_{gt}+N_{pred})$, where $M$ is the LCS match count. Full predictions are retained, including extra notes. MIDI matches exactly, SPN matches equivalent pitches, and Hz retains the original ±1 Hz tolerance. ANY takes the maximum of MIDI/SPN/Hz per stimulus, then averages over stimuli; solfège is diagnostic only. Strict full-sequence exact match and positional matches remain auxiliary diagnostics. See the [saved-response rescore and updated model table](results/d8-ordered-note-f1/README.md).
 
 ---
 

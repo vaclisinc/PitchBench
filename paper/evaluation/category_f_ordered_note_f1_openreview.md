@@ -1,5 +1,7 @@
 # Response on Category F scoring
 
+This records the earlier F-only rescore. D8 now uses Ordered Note F1 too; see the [combined D8/F1/F2 results and updated overall means](../../results/d8-ordered-note-f1/README.md).
+
 Thank you for raising this point. We agree that full-sequence exact match is too strict for the Category F transcription tasks because one missing or extra note can make an otherwise partially correct sequence score zero.
 
 We therefore rescored all saved Category F model responses using **Ordered Note F1**. For each response, we find the longest common subsequence of ground-truth and predicted pitches. If the alignment contains $M$ matched notes, the score is $2M/(N_{\mathrm{gt}}+N_{\mathrm{pred}})$. This gives partial credit while penalizing wrong, missing, extra, duplicated, and out-of-order notes.

@@ -8,7 +8,7 @@ We evaluated three frozen baselines on all 28 PitchBench experiments (5,802 exam
 - **Neural pitch:** [Basic Pitch](https://arxiv.org/abs/2203.09893) v0.4.0 for note events and pitch-bend contours (3 bins/semitone), and [MuScriptor-medium](https://arxiv.org/abs/2607.08168) with greedy decoding and `acoustic_piano` conditioning for MIDI transcription.
 - For tasks beyond direct note extraction, a fixed deterministic adapter converts these outputs into the requested answer: e.g., distinct-pitch counts, continuous higher/lower comparisons, nearest equal-tempered pitch, interval relative to the reference stated in the question, or an ordered pitch/voice sequence. It never receives hidden synthesis parameters or ground truth.
 
-The table reports the unchanged PitchBench headline metric for each experiment (%); F1 and F2 use ordered-note F1.
+This historical table reports the metrics used for the baseline runs (%); F1 and F2 use ordered-note F1. D8 below still reports the original exact-match score. D8 now uses Ordered Note F1; the [updated LALM results](../results/d8-ordered-note-f1/README.md) must not be compared directly with this table's D8 row until the baseline responses are rescored.
 
 | Experiment | DSP | Basic Pitch | MuScriptor (piano-conditioned) |
 |---|---|---|---|
