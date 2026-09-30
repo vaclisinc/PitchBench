@@ -1,0 +1,22 @@
+{
+  "dsp": {
+    "n_unique_stimuli": 171,
+    "legacy_exact_pct": 80.1,
+    "matches_original_table": true,
+    "repeated_preflight_raw_answers_identical": true
+  },
+  "basic_pitch": {
+    "n_unique_stimuli": 171,
+    "legacy_exact_pct": 98.8,
+    "matches_original_table": true,
+    "repeated_preflight_raw_answers_identical": true
+  },
+  "dataset": {
+    "matches_saved_alm_sets": 6,
+    "matched_stimuli_per_model": 171
+  },
+  "export": {
+    "independent_raw_response_rescore": true,
+    "metrics_and_item_csv_byte_identical": true
+  }
+}

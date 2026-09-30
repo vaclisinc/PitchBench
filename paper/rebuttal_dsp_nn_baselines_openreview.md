@@ -2,13 +2,13 @@
 
 On top of the discussion above, our goal is not to outperform specialized DSP/neural pitch systems, but to make the LALM community aware that pitch should be treated as a basic capability of LALMs. At the same time, the fact that standard DSP/neural systems solve many of these tasks shows that the relevant information is recoverable from audio—and therefore that LALMs should, in principle, also be able to acquire it.
 
-We evaluated two frozen baselines on all 28 PitchBench experiments (5,802 examples each):
+The original evaluation covered two frozen baselines on all 28 PitchBench experiments (5,802 examples each). We reran D8 on the same 171 official stimuli to apply the updated sequence metric; the other 27 rows retain their historical values:
 
 - **DSP:** YIN for continuous monophonic \(F_0\) (30--2,500 Hz, 256-ms window, 16-ms hop) and a harmonic CQT for simultaneous pitches. The CQT has exactly **288 bins: 36 bins/octave over 8 octaves**, or **3 bins/semitone (33.3 cents/bin)**, with a 16-ms hop.
 - **Neural pitch:** Spotify Basic Pitch v0.4.0 (ONNX) for note events and pitch-bend contours (3 bins/semitone).
 - For tasks beyond direct note extraction, a fixed deterministic adapter converts these outputs into the requested answer: e.g., distinct-pitch counts, continuous higher/lower comparisons, nearest equal-tempered pitch, interval relative to the reference stated in the question, or an ordered pitch/voice sequence. It never receives hidden synthesis parameters or ground truth.
 
-This historical table reports the metrics used for the baseline runs (%); F1 and F2 use ordered-note F1. D8 below still reports the original exact-match score. D8 now uses Ordered Note F1; the [updated LALM results](../results/d8-ordered-note-f1/README.md) must not be compared directly with this table's D8 row until the baseline responses are rescored.
+The table reports scores (%); D8, F1 and F2 use Ordered Note F1. The D8 rerun reproduced the original exact-match scores (DSP 80.1%, Basic Pitch 98.8%) and gives LCS scores of 94.6% and 99.6%. [Raw answers, full-precision metrics and reproduction details](../results/d8-baselines-lcs/README.md) are preserved alongside the [LALM results](../results/d8-ordered-note-f1/README.md).
 
 | Experiment | DSP | Basic Pitch |
 | --- | --- | --- |
@@ -31,7 +31,7 @@ This historical table reports the metrics used for the baseline runs (%); F1 and
 | D5 | 88.3 | 67.5 |
 | D6 | 96.2 | 97.5 |
 | D7a | 98.5 | 100.0 |
-| D8 | 80.1 | 98.8 |
+| D8 | 94.6 | 99.6 |
 | E1 | 94.6 | 91.2 |
 | E2 | 36.7 | 88.8 |
 | E3 | 97.5 | 96.7 |
@@ -40,4 +40,6 @@ This historical table reports the metrics used for the baseline runs (%); F1 and
 | E6 | 23.8 | 19.4 |
 | F1 | 20.6 | 58.9 |
 | F2 | 14.7 | 27.3 |
-| **Macro average over 28 experiments** | **69.4** | **73.1** |
+| **Macro average over 28 experiments (approx.)** | **69.9** | **73.1** |
+
+Macro averages are approximate: they combine the full-precision D8 rerun with the other 27 historical scores rounded to one decimal place.

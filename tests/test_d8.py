@@ -114,6 +114,10 @@ def test_baseline_export_preserves_raw_answers_and_rejects_score_drift(tmp_path)
         (source / f"results_{model}.json").write_text(json.dumps(payload))
     rescore_d8_baselines(source, output)
     assert json.loads((output / "results_dsp.json").read_text())["results"] == rows
+    replay = tmp_path / "replay"
+    rescore_d8_baselines(output, replay)
+    for name in ("metrics.csv", "item_scores.csv"):
+        assert (output / name).read_bytes() == (replay / name).read_bytes()
     rows[0]["any_note_f1"] = 1.0
     (source / "results_dsp.json").write_text(json.dumps({
         "metadata": {"model_name": "baseline/dsp"}, "results": rows,

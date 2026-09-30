@@ -1,0 +1,8 @@
+{
+  "approximate_macro_mean_pct": {
+    "dsp": 69.92997772208298,
+    "basic_pitch": 73.13607630186577
+  },
+  "historical_rounding_error_bound_pct": 0.048214285714285716,
+  "note": "Only D8 was rerun. The other 27 inputs are the historical table values rounded to 0.1 percentage points, so these are approximate means."
+}
