@@ -1,6 +1,7 @@
 """Rescore saved D8/F1/F2 responses without model calls.
 
 Run with ``python -m pitchbench.experiments.rescore_sequences --output-dir DIR``.
+Use ``--baseline-input DIR`` to rescore and export saved DSP/Basic Pitch D8 answers.
 Original evaluation files and the submission table remain read-only inputs.
 """
 
@@ -27,6 +28,71 @@ from pitchbench.experiments.scripts.pitchbench_d8_sequence_pitches import record
 TASKS = ("pitchbench_d8_sequence_pitches", "pitchbench_f1_melodic_line_atonal",
          "pitchbench_f2_melodic_line_tonal")
 FORMATS = ("midi", "spn", "doremi", "hz", "any")
+
+
+def rescore_d8_record(row: dict) -> dict:
+    cond = {"source": row["source"], "trial": row["trial"], "n_notes": row["n_notes"]}
+    for name, field in (("midi", "midi"), ("note", "spn"),
+                        ("doremi", "doremi"), ("hz", "hz")):
+        cond[f"{name}_sequence"] = ast.literal_eval(row[f"{field}_sequence_gt"])
+    return record_for(cond, row.get("wav", ""), {f: row[f"raw_{f}"] for f in FORMATS[:-1]})
+
+
+def rescore_d8_baselines(input_dir: Path, output: Path) -> None:
+    """Export raw baseline answers and independently recomputed D8 metrics."""
+    expected = {"baseline/dsp", "baseline/basic-pitch"}
+    seen, aggregates, items, sources, payloads = set(), [], [], [], []
+    for path in sorted(input_dir.rglob("results_*.json")):
+        payload = json.loads(path.read_text())
+        model = payload.get("metadata", {}).get("model_name")
+        if model not in expected:
+            continue
+        if model in seen:
+            raise ValueError(f"Duplicate baseline results: {model}")
+        seen.add(model)
+        rows = payload["results"]
+        if len(rows) != 171:
+            raise ValueError(f"Expected all 171 D8 stimuli for {model}; found {len(rows)}")
+        identities = {(r["source"], r["n_notes"], r["trial"]) for r in rows}
+        if len(identities) != 171:
+            raise ValueError(f"Duplicate or missing D8 stimulus identities: {model}")
+        rescored = []
+        for index, row in enumerate(rows):
+            scored = rescore_d8_record(row)
+            for fmt in FORMATS:
+                key = f"{fmt}_note_f1"
+                if abs(scored[key] - row[key]) > 1e-12:
+                    raise ValueError(f"Saved and recomputed score disagree: {model}/{index}/{key}")
+            legacy_exact = int(any(
+                all(value is True for value in ast.literal_eval(scored[f"{fmt}_per_pos"]))
+                for fmt in ("midi", "spn", "hz")
+            ))
+            item = dict(model=model, item_index=index, source=row["source"], n_notes=row["n_notes"],
+                        **{f"{f}_note_f1": scored[f"{f}_note_f1"] for f in FORMATS},
+                        strict_any_accuracy=scored["any_sequence_correct"],
+                        legacy_any_accuracy=legacy_exact)
+            items.append(item)
+            rescored.append(item)
+        metrics = [f"{f}_note_f1" for f in FORMATS] + ["strict_any_accuracy", "legacy_any_accuracy"]
+        aggregates.append(dict(model=model, n_samples=len(rows),
+                               **{m: sum(r[m] for r in rescored) / len(rows) for m in metrics}))
+        sources.append(dict(path=str(path.resolve()), sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+        payloads.append((model, payload))
+    if seen != expected:
+        raise ValueError(f"Missing baselines: {sorted(expected - seen)}")
+    output.mkdir(parents=True, exist_ok=True)
+    for model, payload in payloads:
+        filename = "results_" + model.split("/")[1].replace("-", "_") + ".json"
+        (output / filename).write_text(json.dumps(payload, indent=2) + "\n")
+    write_csv(output / "metrics.csv", aggregates)
+    write_csv(output / "item_scores.csv", items)
+    (output / "rescore.json").write_text(json.dumps(dict(
+        metric="Ordered Note F1 = 2 * LCS / (n_gt + n_pred)",
+        aggregation="Per-stimulus max(MIDI, SPN, Hz), then macro mean",
+        hz_tolerance_hz=1.0, source_files=sources,
+        validation="All saved F1 scores independently recomputed from raw answers",
+    ), indent=2) + "\n")
+    print(json.dumps(aggregates, indent=2))
 
 
 def write_csv(path: Path, rows: list[dict]) -> None:
@@ -60,12 +126,7 @@ def rescore(repo: Path, output: Path) -> None:
             for index, row in enumerate(rows):
                 responses = {f: row[f"raw_{f}"] for f in FORMATS[:-1]}
                 if task == TASKS[0]:
-                    cond = {"source": row["source"], "trial": row["trial"],
-                            "n_notes": row["n_notes"]}
-                    for name, field in (("midi", "midi"), ("note", "spn"),
-                                        ("doremi", "doremi"), ("hz", "hz")):
-                        cond[f"{name}_sequence"] = ast.literal_eval(row[f"{field}_sequence_gt"])
-                    scored = record_for(cond, row.get("wav", ""), responses)
+                    scored = rescore_d8_record(row)
                     exact = "any_sequence_correct"
                 else:
                     scored = score_polyphonic_record(
@@ -148,8 +209,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[3])
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--baseline-input", type=Path,
+                        help="Rescore/export complete DSP and Basic Pitch D8 result JSONs instead of LALMs")
     args = parser.parse_args()
-    rescore(args.repo_root.resolve(), args.output_dir.resolve())
+    if args.baseline_input:
+        rescore_d8_baselines(args.baseline_input.resolve(), args.output_dir.resolve())
+    else:
+        rescore(args.repo_root.resolve(), args.output_dir.resolve())
 
 
 if __name__ == "__main__":
