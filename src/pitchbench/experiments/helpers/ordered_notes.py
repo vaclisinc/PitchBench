@@ -38,5 +38,3 @@ def ordered_note_f1(
         "recall": recall,
         "f1": f1,
     }
-
-
