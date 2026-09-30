@@ -22,6 +22,8 @@ parsing+scoring+record assembly so each cat-F script reduces to a
 
 from __future__ import annotations
 
+from math import fsum
+
 import argparse
 import re
 from tqdm import tqdm
@@ -277,7 +279,7 @@ def _accuracy(records: list[dict], col: str) -> float:
     vals = [r[col] for r in records if isinstance(r.get(col), (int, float, bool))]
     if not vals:
         return 0.0
-    return round(sum(vals) / len(vals), 4)
+    return fsum(vals) / len(vals)
 
 
 def compute_summary(records: list[dict]) -> dict[str, Any]:

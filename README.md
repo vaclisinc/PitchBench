@@ -126,7 +126,8 @@ Evaluation uses the stored stimuli; it does not require local audio synthesis
 or regenerate conditions to filter out instruments. Condition filtering belongs
 to `analyze` presets. D8/F1/F2 export Ordered Note F1 through the task summary,
 CSV and overall score. B3/B4/B5 export their timing accuracy as task-level scores;
-the paper overall is the equal-weight mean of all 28 tasks.
+the paper overall is the equal-weight mean of all 28 tasks. Numeric summaries
+and CSVs retain unrounded scores; rounding is applied only for display.
 
 In tmux (recommended for long runs):
 ```bash

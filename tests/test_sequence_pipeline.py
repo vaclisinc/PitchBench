@@ -69,7 +69,7 @@ def test_sequence_f1_reaches_package_overall(mode, tmp_path, monkeypatch):
     with summary.open() as handle:
         row = next(csv.DictReader(handle))
     assert row["model_name"] == "custom_label"
-    assert float(row["mean_accuracy"]) == 0.8
+    assert float(row["mean_accuracy"]) == pytest.approx(0.8)
     for task in tasks:
         assert float(row[f"pitchbench_{task}_accuracy"]) == 0.8
 
@@ -94,4 +94,46 @@ def test_overall_includes_all_28_tasks_including_timing(tmp_path):
     values = [float(v) for k, v in row.items() if k.startswith("pitchbench_") and k.endswith("_accuracy")]
     assert len(values) == 28
     assert values.count(0.25) == 3
-    assert float(row["mean_accuracy"]) == round((25 * 0.5 + 3 * 0.25) / 28, 6)
+    assert float(row["mean_accuracy"]) == (25 * 0.5 + 3 * 0.25) / 28
+
+
+def test_task_and_overall_exports_preserve_unrounded_accuracy(tmp_path):
+    from pitchbench.experiments.helpers.cat_a import compute_summary
+    from pitchbench.experiments.helpers.results import save_accuracies_csv
+
+    folder = tmp_path / 'pitchbench_d7a_pitch_with_reference'
+    folder.mkdir()
+    records = [dict(source='piano', source_type='instrument', midi_gt=60,
+                    **{f'{fmt}_correct': int(i < 18) for fmt in ('midi','spn','doremi','hz','any')})
+               for i in range(130)]
+    save_accuracies_csv(folder, 'test', compute_summary(records, None))
+    aggregate = aggregate_run_accuracies(tmp_path, tmp_path / 'aggregate.csv')
+    result = write_model_summary_csv(aggregate, tmp_path / 'summary.csv')
+    with result.open() as handle:
+        row = next(csv.DictReader(handle))
+    assert float(row['pitchbench_d7a_pitch_with_reference_accuracy']) == 18 / 130
+    assert float(row['mean_accuracy']) == 18 / 130
+
+
+@pytest.mark.parametrize('mode', ['direct', 'parquet'])
+def test_chord_results_preserve_model_label(mode, tmp_path, monkeypatch):
+    from pitchbench.experiments.helpers import cat_c
+    from pitchbench.experiments.scripts.pitchbench_c1_chord_count_pitches import SPEC
+
+    cond = dict(source='piano', duration_ms=5000, same_instrument=True,
+                chord_quality='random_set', root_midi=60, midis=[60, 64], n=2, trial=0)
+    spec = replace(SPEC, wav_fn=lambda c: tmp_path / 'audio.wav',
+                   prompts_fn=lambda c: {'main': 'count'}, label_fn=lambda j: 'test')
+    monkeypatch.setattr(cat_c, 'get_model_info', lambda name: {})
+    monkeypatch.setattr(cat_c, 'query_alm', lambda *a: {'result': '2'})
+    monkeypatch.setattr(cat_c, 'dispatch', lambda jobs, fn, **kw: [fn(j) for j in jobs])
+    if mode == 'direct':
+        cat_c.run_one_model(spec, 'test', [cond], tmp_path, None, model_label='custom-label')
+    else:
+        monkeypatch.setattr(data, 'read_dataset', lambda path: [
+            {'audio_path': 'audio.wav', '_condition': cond, 'prompt_main': 'count'}])
+        monkeypatch.setattr(cat_c, 'apply_default_sampling', lambda exp, rows, **kw: (rows, {}))
+        cat_c.evaluate_cat_c_from_parquet(spec, 'test', tmp_path, model_label='custom-label')
+    payload = json.loads((tmp_path / 'results_custom_label.json').read_text())
+    assert payload['metadata']['model_label'] == 'custom-label'
+    assert payload['summary']['accuracy']['count'] == 1
