@@ -1,0 +1,19 @@
+{
+  "exported_pdf_task_ids": 28,
+  "unique_exported_pdf_task_ids": 28,
+  "category_counts": {
+    "A": 3,
+    "B": 5,
+    "C": 4,
+    "D": 8,
+    "E": 6,
+    "F": 2
+  },
+  "all_expected_ids_present_once": true,
+  "manuscript_compile": "success",
+  "manuscript_pages": 14,
+  "body_end_page": 11,
+  "figure1_page": 4,
+  "minimum_text_pt": 5.6,
+  "visual_inspection": "All six categories and assembled manuscript page checked."
+}
