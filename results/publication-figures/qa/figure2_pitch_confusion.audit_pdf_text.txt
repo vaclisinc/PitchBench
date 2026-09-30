@@ -1,0 +1,8 @@
+Nature Figure PDF Text Audit
+pdf: ${VACLAB_ROOT}/outputs/pitchbench-paper/figure-redesign-20261001/figure2_pitch_confusion.pdf
+minimum required: 5 pt
+minimum found: 5.3 pt
+text runs: 73
+below minimum: 0
+verdict: PASS
+note: Tf scanning does not replace final-size visual inspection or account for every PDF transform

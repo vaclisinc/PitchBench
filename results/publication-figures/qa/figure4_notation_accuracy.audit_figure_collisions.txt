@@ -1,0 +1,10 @@
+Nature Figure Rendered Collision Audit
+pdf: ${VACLAB_ROOT}/outputs/pitchbench-paper/figure-redesign-20261001/figure4_notation_accuracy.pdf
+pages: 1
+visible text boxes: 48
+stroke paths: 21
+
+
+summary: 0 fail, 0 warn, 12 contained fill overlays, 0 contained image overlays
+verdict: PASS
+note: contained overlays can be intentional; WARN findings need final-size visual review

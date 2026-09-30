@@ -1,0 +1,8 @@
+Nature Figure PDF Text Audit
+pdf: ${VACLAB_ROOT}/outputs/pitchbench-paper/figure-redesign-20261001/figure3_pitch_accuracy.pdf
+minimum required: 5 pt
+minimum found: 5.6 pt
+text runs: 67
+below minimum: 0
+verdict: PASS
+note: Tf scanning does not replace final-size visual inspection or account for every PDF transform
