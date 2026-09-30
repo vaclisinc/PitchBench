@@ -86,6 +86,30 @@ already matched the three-format protocol, leaving eight manuscript task-cell
 discrepancies against the saved evidence. No manuscript files were edited by
 this audit. Git history alone does not establish how the incorrect cells arose.
 
+### Independent confirmation of Gemini Flash D4/D5
+
+Both saved runs were rechecked directly from `raw_response`, without trusting
+the stored correctness flags. Calling each task's `record_for` reproduced every
+flag: **D4 = 0/160**, **D5 = 9/120**. Both scorer files are byte-identical to the
+initial-submission commit `471221b`; this discrepancy is not caused by the
+rebuttal's sequence-metric changes.
+
+- [D4 raw results](../evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d4_contour_continuous/run_001_20260506_193621/results_openrouter_google_gemini_flash_latest.json):
+  all 160 responses contain 62 alternating direction tokens (152 start with
+  `up`, eight with `down`). Ground truths, independently reconstructed from
+  `traj_name`, contain only one or two tokens. Direct normalized sequence
+  comparison also gives zero exact matches.
+- [D5 raw results](../evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_193644/results_openrouter_google_gemini_flash_latest.json):
+  independently sorting each item's `presented_hz` reproduces every ground-truth
+  ranking. Nine raw responses match those rankings verbatim, at zero-based row
+  indices `0, 6, 13, 19, 22, 27, 37, 53, 80`. For example, frequencies
+  `[233.0819, 220.0, 246.9417]` imply `2 1 3`, exactly the first raw response.
+- The same model's D7a result is **46/130 = 35.4%**, matching the value appearing
+  in the manuscript's D4 cell. This suggests a table transcription error, but
+  does not prove its cause. No alternative Gemini Flash D4/D5 run was found in
+  the local project results or shared `outputs/pitchbench` directory. These
+  conclusions concern the saved May 6 evaluation, not a new inference run.
+
 ## Recompute sequence scores from saved answers
 
 With the project's scoring dependencies available:
