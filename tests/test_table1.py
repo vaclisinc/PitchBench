@@ -2,6 +2,7 @@
 
 import csv
 import io
+import importlib
 import shutil
 from decimal import Decimal
 from pathlib import Path
@@ -12,6 +13,19 @@ from pitchbench.analysis.table1 import MODELS, SOURCES, TASKS, load_scores, rend
 
 
 REPO = Path(__file__).resolve().parents[1]
+C4_PERCENT = dict(zip(list(MODELS)[:6], [0, 1.5, 0, 0.5, 12, 6.5]))
+
+
+@pytest.mark.parametrize("module", ["analyze", "overview"])
+def test_c4_any_excludes_solfege_only_matches(tmp_path, module):
+    aggregate = importlib.import_module(f"pitchbench.analysis.{module}")
+    folder = tmp_path / "model/pitchbench_c4_chord_pitches/run"
+    folder.mkdir(parents=True)
+    (folder / "results_model.csv").write_text(
+        "midi_correct,spn_correct,doremi_correct,hz_correct\n"
+        "0,0,1,0\n0,1,0,0\n"
+    )
+    assert aggregate._compute_c4_any_from_results(tmp_path, "model") == (2, 0.5)
 
 
 def test_final_scores_match_independently_saved_result_bundles():
@@ -21,7 +35,8 @@ def test_final_scores_match_independently_saved_result_bundles():
         for row in csv.DictReader(handle):
             task = row["experiment"].split("_")[1].upper()
             task = "D7a" if task == "D7A" else task
-            assert float(scores[row["model"], task]) == pytest.approx(float(row["score"]) * 100)
+            expected = C4_PERCENT[row["model"]] if task == "C4" else float(row["score"]) * 100
+            assert float(scores[row["model"], task]) == pytest.approx(expected)
     with (REPO / "results/d8-baselines-lcs/updated_table.csv").open() as handle:
         for row in csv.DictReader(handle):
             for model, field in (("baseline/dsp", "dsp_score_pct"), ("baseline/basic-pitch", "basic_pitch_score_pct")):
@@ -35,8 +50,11 @@ def test_means_use_all_28_tasks_and_agree_with_published_evidence():
         expected = sum(Decimal(row[model]) for row in rows[:-1]) / 28
         assert Decimal(rows[-1][model]) == expected
     with (REPO / "results/d8-ordered-note-f1/overall.csv").open() as handle:
+        legacy_c4 = dict(zip(list(MODELS)[:6], [1.5, 2.5, 0, 1.5, 21, 8.5]))
         for row in csv.DictReader(handle):
-            assert float(rows[-1][row["model"]]) == pytest.approx(float(row["mean_score"]) * 100)
+            model = row["model"]
+            corrected = float(row["mean_score"]) * 100 + (C4_PERCENT[model] - legacy_c4[model]) / 28
+            assert float(rows[-1][model]) == pytest.approx(corrected)
     assert float(rows[-1]["baseline/dsp"]) == pytest.approx(69.92997772208298)
     assert float(rows[-1]["baseline/basic-pitch"]) == pytest.approx(73.13607630186577)
 

@@ -35,6 +35,7 @@ see [experiment definitions](../../EXPERIMENTS.md).
 | Cells | Evidence used by the builder |
 | --- | --- |
 | ALMs, D8/F1/F2 | [Sequence metrics](../../results/d8-ordered-note-f1/metrics.csv), `any_note_f1` |
+| ALMs, C4 | Saved per-item MIDI/SPN/Hz correctness flags in `paper/evaluation/`; paths and counts in [source mapping](table1.sources.json) |
 | ALMs, other tasks | [Original task aggregates](accuracies_by_model_experiment.csv), `accuracy` |
 | DSP / Basic Pitch, D8 | [Baseline metrics](../../results/d8-baselines-lcs/metrics.csv), `any_note_f1` |
 | DSP / Basic Pitch, other tasks | [Preserved baseline scores](../../results/d8-baselines-lcs/historical_table.csv), displayed percentages |
@@ -42,7 +43,9 @@ see [experiment definitions](../../EXPERIMENTS.md).
 [table1.sources.json](table1.sources.json) records exact source hashes, model IDs,
 task IDs, cell selection rules, aggregation, and display rounding. The original
 ALM aggregate file is an immutable evidence input; its old D8/F1/F2 values are
-replaced by the sequence metrics when building Table 1. The evidence bundles in
+replaced by the sequence metrics when building Table 1. Its C4 values are also
+replaced: the old analysis fallback incorrectly counted solfège-only matches,
+although the paper and the C4 evaluator define ANY using MIDI/SPN/Hz. The evidence bundles in
 `results/` preserve raw answers, per-item scores, and provenance for auditing;
 their intermediate tables are not separate paper tables.
 
@@ -51,6 +54,37 @@ their intermediate tables are not separate paper tables.
 73.1% Basic Pitch), with a conservative rounding bound below ±0.0483 percentage
 points. The builder preserves the available ALM aggregate precision; it does
 not infer additional precision from the displayed values.
+
+## Manuscript cross-check
+
+An audit against `PitchBench-paper` Table 1 at commit `f5fe30e` found both
+manuscript discrepancies and the legacy C4 aggregation bug above. The table
+below reports the saved per-item scores, with C4 using the existing three-format
+ANY rule. It does not introduce new model calls or change the task scorers.
+
+| Model / task | Manuscript (%) | Correct / total | Verified score (%) |
+| --- | ---: | ---: | ---: |
+| GPT-4o audio / B3 | 0.8 | 0 / 160 | 0.0 |
+| GPT-4o audio / B4 | 0.0 | 1 / 120 | 0.8 |
+| Gemini Flash / D3 | 0.0 | 2 / 180 | 1.1 |
+| Gemini Flash / D4 | 35.4 | 0 / 160 | 0.0 |
+| Gemini Flash / D5 | 0.0 | 9 / 120 | 7.5 |
+| AF-next-instruct / C4 | 0.0 | 0 / 200 | 0.0 |
+| Gemini Pro / C4 | 1.5 | 3 / 200 | 1.5 |
+| Gemini Flash / C4 | 0.0 | 0 / 200 | 0.0 |
+| GPT-4o audio / C4 | 0.0 | 1 / 200 | 0.5 |
+| Qwen plus / C4 | 15.6 | 24 / 200 | 12.0 |
+| Qwen flash / C4 | 12.8 | 13 / 200 | 6.5 |
+
+B3/B4 use saved `correct` flags; D3/D4/D5 use `sequence_correct`,
+`trajectory_correct`, and `answer_correct`, respectively. Their files are under
+`paper/evaluation/_<model>/pitchbench_<task>_*/run_*/results_<model>.json`.
+The first table-consolidation commit `35c44ae` retained the faulty legacy C4
+aggregates; current exports correct them and recompute all means. Thus the
+initial ten differing cells were not ten proven manuscript errors: two C4 cells
+already matched the three-format protocol, leaving eight manuscript task-cell
+discrepancies against the saved evidence. No manuscript files were edited by
+this audit. Git history alone does not establish how the incorrect cells arose.
 
 ## Recompute sequence scores from saved answers
 

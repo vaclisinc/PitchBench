@@ -1,5 +1,10 @@
 # D8, F1 and F2 Ordered Note F1
 
+This bundle records the sequence-only rescore. Its non-sequence rows and overall
+means retain the legacy C4 aggregation, which included solfège. Use the
+[canonical Table 1](../../paper/figures-and-tables/table1.md) for the final
+comparison with C4 corrected to MIDI/SPN/Hz; the sequence metrics here are unchanged.
+
 Rescored saved responses; no new model calls. Main scores use order-preserving one-to-one LCS matches: `2M/(N_gt+N_pred)`. ANY is the maximum of MIDI, SPN and Hz for each stimulus, then the macro mean. Solfège is excluded from ANY.
 
 D8 retains its ±1 Hz matching tolerance; F1/F2 retain ±1%. Full predicted sequences are scored, including extra notes. Strict exact match is auxiliary. Legacy D8 accuracy truncated extra predictions; it is reported separately for comparison.

@@ -57,6 +57,31 @@ def _task(experiment: str) -> str:
     return "D7a" if value == "D7A" else value
 
 
+def c4_evidence(repo: Path) -> dict[str, dict]:
+    """Recover three-format ANY; the legacy aggregate also counted solfège."""
+    evidence = {}
+    for model in MODELS:
+        if model.startswith("baseline/"):
+            continue
+        paths = list((repo / "paper/evaluation" / ("_" + model)).glob(
+            "pitchbench_c4_chord_pitches/*/results_*.json"))
+        if len(paths) != 1:
+            raise ValueError(f"Expected one saved C4 run for {model}; found {len(paths)}")
+        path = paths[0]
+        rows = json.loads(path.read_text())["results"]
+        if len(rows) != 200:
+            raise ValueError(f"Expected 200 C4 items for {model}")
+        flags = [[row[f"{fmt}_correct"] for fmt in ("midi", "spn", "hz")] for row in rows]
+        if any(flag not in (0, 1) for item in flags for flag in item):
+            raise ValueError(f"Invalid C4 correctness flag for {model}")
+        evidence[model] = {
+            "path": str(path.relative_to(repo)),
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "n_samples": len(rows), "n_correct": sum(any(item) for item in flags),
+        }
+    return evidence
+
+
 def load_scores(repo: Path) -> dict[tuple[str, str], Decimal]:
     """Require complete, unique coverage in every evidence source before merging."""
     alm_models = set(MODELS) - {"baseline/dsp", "baseline/basic-pitch"}
@@ -94,6 +119,8 @@ def load_scores(repo: Path) -> dict[tuple[str, str], Decimal]:
             extra = current.keys() - expected[source]
             raise ValueError(f"Coverage mismatch in {relative}: missing={sorted(missing)}, extra={sorted(extra)}")
         scores.update(current)
+    for model, evidence in c4_evidence(repo).items():
+        scores[model, "C4"] = Decimal(evidence["n_correct"]) * 100 / evidence["n_samples"]
     return scores
 
 
@@ -162,7 +189,8 @@ def render(repo: Path) -> dict[str, str]:
         "units": "percent", "models": MODELS, "tasks": TASKS,
         "cell_sources": {
             "ALM D8/F1/F2": "alm_note_f1:any_note_f1 * 100",
-            "ALM other tasks": "alm_accuracy:accuracy * 100",
+            "ALM C4": "alm_c4: per-item OR(midi_correct, spn_correct, hz_correct), then mean * 100",
+            "ALM other tasks": "alm_accuracy:accuracy * 100 (excluding C4/D8/F1/F2)",
             "baseline D8": "baseline_d8:any_note_f1 * 100",
             "baseline other tasks": "baseline_accuracy_and_f1:*_displayed_pct",
             "Mean": "arithmetic mean of the 28 source scores, before display rounding",
@@ -171,6 +199,7 @@ def render(repo: Path) -> dict[str, str]:
         "notes": NOTE,
         "sources": {key: {"path": path, "sha256": hashlib.sha256((repo / path).read_bytes()).hexdigest()}
                     for key, path in SOURCES.items()},
+        "alm_c4": c4_evidence(repo),
     }
     return {"table1.csv": stream.getvalue(), "table1.md": "\n".join(md) + "\n",
             "table1.tex": "\n".join(tex) + "\n",
