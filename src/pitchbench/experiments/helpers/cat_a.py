@@ -624,6 +624,7 @@ def evaluate_cat_a_from_parquet(
     sample_info: dict | None = None,
     *,
     model_label: str | None = None,
+    filter_conditions: bool = False,
 ) -> dict:
     """Evaluate ``model_name`` on the pre-generated dataset for ``spec``.
 
@@ -638,8 +639,10 @@ def evaluate_cat_a_from_parquet(
     from pitchbench.experiments.helpers.sampling import apply_default_sampling
 
     rows = read_dataset(dataset_path(spec.exp_name))
-    expected = spec.build_conditions_fn()
-    if len(expected) < len(rows):
+    # Ordinary evaluation consumes the stored sample independently of local
+    # synthesis capabilities. Only analysis presets request condition filtering.
+    if filter_conditions:
+        expected = spec.build_conditions_fn()
         before = len(rows)
         rows = filter_rows_to_conditions(rows, expected)
         print(f"  Filtered to analysis config: {len(rows)} / {before} rows")

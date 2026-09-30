@@ -33,6 +33,29 @@ def test_official_b5_timestamps_are_flattened_in_order() -> None:
     assert timestamps == [0.1, 0.6, 1.0, 1.5]
 
 
+def test_frozen_counts_do_not_regenerate_audio_conditions(tmp_path, monkeypatch):
+    import pandas as pd
+    import pytest
+
+    shard = tmp_path / "test.parquet"
+    pd.DataFrame({"item": [1, 2]}).to_parquet(shard)
+    monkeypatch.setattr(evaluation, "_official_shard_path", lambda *args: shard)
+    monkeypatch.setattr(evaluation, "_official_shard_revision", lambda *args: "fixed")
+    monkeypatch.setenv("PITCHBENCH_ROOT", str(tmp_path))
+    monkeypatch.setenv("PITCHBENCH_BASELINE_CONFIG", str(tmp_path / "config.yaml"))
+    env = {"PITCHBENCH_ROOT": str(tmp_path), "PITCHBENCH_BASELINE_CONFIG": str(tmp_path / "config.yaml")}
+    config = {"benchmark": {"experiments": ["f2"], "expected_condition_count": 2},
+              "input_dataset": {"revision": "fixed"}}
+    counts = evaluation._expected_counts(config, env)
+    assert counts["pitchbench_f2_melodic_line_tonal"]["sampled"] == 2
+    config["benchmark"]["expected_condition_count"] = 3
+    with pytest.raises(RuntimeError, match="Expected 3 conditions, got 2"):
+        evaluation._expected_counts(config, env)
+    config["input_dataset"]["revision"] = "different"
+    with pytest.raises(RuntimeError, match="unexpected dataset revision"):
+        evaluation._expected_counts(config, env)
+
+
 def test_queue_preflight_requires_matching_pushed_snapshot(tmp_path, monkeypatch):
     import json
     import pytest

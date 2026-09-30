@@ -335,6 +335,8 @@ def run_one_model(
     conds:       list[dict],
     run_dir:     Path,
     sample_info: dict | None,
+    *,
+    model_label: str | None = None,
 ) -> dict:
     info = get_model_info(model_name)
     print(f"\n  Model : {model_name}")
@@ -525,6 +527,7 @@ def evaluate_cat_f_from_parquet(
     sample_info: dict | None = None,
     *,
     model_label: str | None = None,
+    filter_conditions: bool = False,
 ) -> dict:
     """Evaluate ``model_name`` on the pre-generated dataset for a cat-F spec."""
     from pitchbench.experiments.helpers.data import (
@@ -532,8 +535,10 @@ def evaluate_cat_f_from_parquet(
     )
 
     rows = read_dataset(dataset_path(spec.exp_name))
-    expected = spec.build_conditions_fn()
-    if len(expected) < len(rows):
+    # Ordinary evaluation consumes the stored sample independently of local
+    # synthesis capabilities. Only analysis presets request condition filtering.
+    if filter_conditions:
+        expected = spec.build_conditions_fn()
         before = len(rows)
         rows = filter_rows_to_conditions(rows, expected)
         print(f"  Filtered to analysis config: {len(rows)} / {before} rows")
@@ -592,19 +597,22 @@ def evaluate_cat_f_from_parquet(
     for line in summary_lines:
         print(line)
 
+    stem_name = model_label or model_name
     extra_meta = spec.metadata_fn() if spec.metadata_fn else {}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
         task_type=spec.task_type,
-        headline_metrics=list(HEADLINE_METRICS),
+        headline_metrics=[f"{m}_note_f1" for m in HEADLINE_METRICS],
+        score_name="ordered_note_f1_lcs",
+        **({"model_label": model_label} if model_label else {}),
         record_extras=list(spec.record_extras),
         **extra_meta,
         **(sample_info or {}),
     )
     save_results(
-        spec.exp_name, model_name, full_records, summary, metadata, summary_lines,
+        spec.exp_name, stem_name, full_records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=tuple(f"{m}_correct" for m in HEADLINE_METRICS),
+        extra_metrics=tuple(f"{m}_note_f1" for m in HEADLINE_METRICS),
     )
     return summary

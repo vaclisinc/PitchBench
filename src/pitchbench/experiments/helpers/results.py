@@ -867,11 +867,11 @@ def save_accuracies_csv(
     Partial-credit marginals (octave-only, pitch-class-only, within-tolerance)
     are intentionally omitted here so the file stays focused on exact accuracy.
     """
-    # "accuracy.correct" is a timing-task artefact (b2/b3/b5); the per-IV
-    # breakdowns already carry correctness, so suppress the redundant rollup.
+    # Keep task-level rollups, including timing correctness: model summaries
+    # need these to include every task in the overall score.
     flat_rows = [
         r for r in _flatten_summary(summary)
-        if not r[0].startswith("by_") and r[0] != "accuracy.correct"
+        if not r[0].startswith("by_")
     ]
 
     # Normalise accuracy metric names:

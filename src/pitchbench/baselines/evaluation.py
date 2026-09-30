@@ -443,28 +443,28 @@ def _expected_counts(
     import pitchbench.config as pitchbench_config
 
     pitchbench_config.AUDIO_DIR = pitchbench_config.GENERATED_DIR
-    from pitchbench.experiments.helpers.sampling import apply_default_sampling
     from pitchbench.experiments.run import _id_to_name
+    import pyarrow.parquet as pq
 
     counts: dict[str, dict[str, Any]] = {}
-    seed = int(config["benchmark"]["sample_seed"])
     for experiment_id in config["benchmark"]["experiments"]:
         name = _id_to_name(experiment_id)
         if name is None:
             raise RuntimeError(f"Unknown experiment ID in config: {experiment_id}")
-        module = importlib.import_module(f"pitchbench.experiments.scripts.{name}")
-        all_conditions = module.SPEC.build_conditions_fn()
-        sampled, metadata = apply_default_sampling(
-            name,
-            all_conditions,
-            None,
-            seed,
-        )
+        # The official shards already contain the frozen paper sample. Rebuilding
+        # conditions here incorrectly depends on local synthesizers and music21,
+        # even though evaluation uses the embedded audio and ground truth.
+        revision = _official_shard_revision(config, name)
+        if revision != str(config["input_dataset"]["revision"]):
+            raise RuntimeError(f"{name}: unexpected dataset revision {revision}")
+        count = pq.read_metadata(_official_shard_path(config, name)).num_rows
+        if not count:
+            raise RuntimeError(f"Empty official dataset shard: {name}")
         counts[name] = {
             "experiment_id": experiment_id,
-            "sampled": len(sampled),
-            "available": len(all_conditions),
-            "sampling": metadata,
+            "sampled": count,
+            "available": count,
+            "sampling": {"source": "official frozen shard", "revision": revision},
         }
     total = sum(item["sampled"] for item in counts.values())
     if total != int(config["benchmark"]["expected_condition_count"]):
