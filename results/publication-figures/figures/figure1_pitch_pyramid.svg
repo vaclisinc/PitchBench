@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="396pt" height="280.8pt" viewBox="0 0 396 280.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-01T04:48:44.174201</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 280.8
+L 396 280.8
+L 396 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 199 20
+L 217.92 64
+L 180.08 64
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #266e73; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 172.34 82
+L 185.67 82
+L 157.505 213
+L 116.01 213
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #d8e7f0; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 185.67 82
+L 199 82
+L 199 213
+L 157.505 213
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #e3dfef; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 199 82
+L 212.33 82
+L 240.495 213
+L 199 213
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #dcece5; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 212.33 82
+L 225.66 82
+L 281.99 213
+L 240.495 213
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #f1e6d4; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 110.85 225
+L 199 225
+L 199 239
+L 104.83 239
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #dce7ee; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 199 225
+L 287.15 225
+L 293.17 239
+L 199 239
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #dce7ee; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 104.83 239
+L 293.17 239
+L 302.63 261
+L 95.37 261
+z
+" clip-path="url(#peb4376fcf2)" style="fill: #385b72; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 4 230
+L 100 230
+" clip-path="url(#peb4376fcf2)" style="fill: none; stroke: #385b72; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 4 88
+L 100 88
+" clip-path="url(#peb4376fcf2)" style="fill: none; stroke: #4e7995; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 4 158
+L 100 158
+" clip-path="url(#peb4376fcf2)" style="fill: none; stroke: #756f94; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 294 88
+L 390 88
+" clip-path="url(#peb4376fcf2)" style="fill: none; stroke: #427c71; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 294 184
+L 390 184
+" clip-path="url(#peb4376fcf2)" style="fill: none; stroke: #98784a; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 4 35
+L 100 35
+" clip-path="url(#peb4376fcf2)" style="fill: none; stroke: #266e73; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="199" y="49.117188" transform="rotate(-0 199 49.117188)">F</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 5.4px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="199" y="59.402734" transform="rotate(-0 199 59.402734)">F1 · F2</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 5.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #266e73" x="199" y="10.428711" transform="rotate(-0 199 10.428711)">LEVEL 3  /  MELODIC</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #4e7995" x="147.4" y="177.117188" transform="rotate(-0 147.4 177.117188)">B</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 5.4px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #4e7995" x="147.4" y="189.402945" transform="rotate(-0 147.4 189.402945)">Temporal</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #756f94" x="181.8" y="177.117188" transform="rotate(-0 181.8 177.117188)">C</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 5.4px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #756f94" x="181.8" y="189.402945" transform="rotate(-0 181.8 189.402945)">Chord</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #427c71" x="216.2" y="177.117188" transform="rotate(-0 216.2 177.117188)">D</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 5.4px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #427c71" x="216.2" y="189.402734" transform="rotate(-0 216.2 189.402734)">Sequence</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #98784a" x="250.6" y="177.117188" transform="rotate(-0 250.6 177.117188)">E</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 5.4px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #98784a" x="250.6" y="189.402945" transform="rotate(-0 250.6 189.402945)">Acoustic</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 5.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #253b4b" x="199" y="74.428711" transform="rotate(-0 199 74.428711)">LEVEL 2  /  CONTEXTUAL</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #385b72" x="154.925" y="233.558828" transform="rotate(-0 154.925 233.558828)">A2  Loudness</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #385b72" x="243.075" y="233.558828" transform="rotate(-0 243.075 233.558828)">A3  Duration</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="199" y="251.948242" transform="rotate(-0 199 251.948242)">A1   SINGLE PITCH</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 5.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #385b72" x="199" y="273.428711" transform="rotate(-0 199 273.428711)">LEVEL 1  /  ATOMIC</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #385b72" x="4" y="224.078125" transform="rotate(-0 4 224.078125)">A</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="16" y="223.610789" transform="rotate(-0 16 223.610789)">Single note</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #385b72" x="4" y="242.454688" transform="rotate(-0 4 242.454688)">A1</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="242.454906" transform="rotate(-0 17 242.454906)">Single-pitch identification</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #385b72" x="4" y="250.654687" transform="rotate(-0 4 250.654687)">A2</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="250.654906" transform="rotate(-0 17 250.654906)">Loudness variation</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #385b72" x="4" y="258.854687" transform="rotate(-0 4 258.854687)">A3</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="258.854906" transform="rotate(-0 17 258.854906)">Duration variation</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #4e7995" x="4" y="82.078125" transform="rotate(-0 4 82.078125)">B</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="16" y="81.610789" transform="rotate(-0 16 81.610789)">Temporal localization</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #4e7995" x="4" y="100.454688" transform="rotate(-0 4 100.454688)">B1</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="100.454906" transform="rotate(-0 17 100.454906)">Pitch within silence</text>
+   </g>
+   <g id="text_29">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #4e7995" x="4" y="108.654687" transform="rotate(-0 4 108.654687)">B2</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="108.654906" transform="rotate(-0 17 108.654906)">Pitch at a timestamp</text>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #4e7995" x="4" y="116.854688" transform="rotate(-0 4 116.854688)">B3</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="116.854906" transform="rotate(-0 17 116.854906)">Single-tone onset / offset</text>
+   </g>
+   <g id="text_33">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #4e7995" x="4" y="125.054688" transform="rotate(-0 4 125.054688)">B4</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="125.054906" transform="rotate(-0 17 125.054906)">Timing of a named pitch</text>
+   </g>
+   <g id="text_35">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #4e7995" x="4" y="133.254688" transform="rotate(-0 4 133.254688)">B5</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="133.254906" transform="rotate(-0 17 133.254906)">Timing of every note</text>
+   </g>
+   <g id="text_37">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #756f94" x="4" y="152.078125" transform="rotate(-0 4 152.078125)">C</text>
+   </g>
+   <g id="text_38">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="16" y="151.610789" transform="rotate(-0 16 151.610789)">Chordal structure</text>
+   </g>
+   <g id="text_39">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #756f94" x="4" y="170.454688" transform="rotate(-0 4 170.454688)">C1</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="170.454906" transform="rotate(-0 17 170.454906)">Count pitches in a chord</text>
+   </g>
+   <g id="text_41">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #756f94" x="4" y="178.654687" transform="rotate(-0 4 178.654687)">C2</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="178.654906" transform="rotate(-0 17 178.654906)">Identify a dyad interval</text>
+   </g>
+   <g id="text_43">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #756f94" x="4" y="186.854688" transform="rotate(-0 4 186.854688)">C3</text>
+   </g>
+   <g id="text_44">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="186.854906" transform="rotate(-0 17 186.854906)">Identify chord quality</text>
+   </g>
+   <g id="text_45">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #756f94" x="4" y="195.054688" transform="rotate(-0 4 195.054688)">C4</text>
+   </g>
+   <g id="text_46">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="195.054906" transform="rotate(-0 17 195.054906)">Name all pitches in a chord</text>
+   </g>
+   <g id="text_47">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="82.078125" transform="rotate(-0 294 82.078125)">D</text>
+   </g>
+   <g id="text_48">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="306" y="81.610789" transform="rotate(-0 306 81.610789)">Sequential structure</text>
+   </g>
+   <g id="text_49">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="100.454688" transform="rotate(-0 294 100.454688)">D1</text>
+   </g>
+   <g id="text_50">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="100.454906" transform="rotate(-0 307 100.454906)">Count pitches in sequence</text>
+   </g>
+   <g id="text_51">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="108.654687" transform="rotate(-0 294 108.654687)">D2</text>
+   </g>
+   <g id="text_52">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="108.654906" transform="rotate(-0 307 108.654906)">Higher / lower judgement</text>
+   </g>
+   <g id="text_53">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="116.854688" transform="rotate(-0 294 116.854688)">D3</text>
+   </g>
+   <g id="text_54">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="116.854906" transform="rotate(-0 307 116.854906)">Discrete melodic contour</text>
+   </g>
+   <g id="text_55">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="125.054688" transform="rotate(-0 294 125.054688)">D4</text>
+   </g>
+   <g id="text_56">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="125.054906" transform="rotate(-0 307 125.054906)">Continuous pitch trajectory</text>
+   </g>
+   <g id="text_57">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="133.254688" transform="rotate(-0 294 133.254688)">D5</text>
+   </g>
+   <g id="text_58">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="133.254906" transform="rotate(-0 307 133.254906)">Rank pitches by height</text>
+   </g>
+   <g id="text_59">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="141.454688" transform="rotate(-0 294 141.454688)">D6</text>
+   </g>
+   <g id="text_60">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="141.454906" transform="rotate(-0 307 141.454906)">Signed sequential interval</text>
+   </g>
+   <g id="text_61">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="149.654687" transform="rotate(-0 294 149.654687)">D7</text>
+   </g>
+   <g id="text_62">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="149.654906" transform="rotate(-0 307 149.654906)">Pitch with a reference tone</text>
+   </g>
+   <g id="text_63">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #427c71" x="294" y="157.854687" transform="rotate(-0 294 157.854687)">D8</text>
+   </g>
+   <g id="text_64">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="157.854906" transform="rotate(-0 307 157.854906)">All pitches in sequence</text>
+   </g>
+   <g id="text_65">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="178.078125" transform="rotate(-0 294 178.078125)">E</text>
+   </g>
+   <g id="text_66">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="306" y="177.610789" transform="rotate(-0 306 177.610789)">Acoustic variations</text>
+   </g>
+   <g id="text_67">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="196.454688" transform="rotate(-0 294 196.454688)">E1</text>
+   </g>
+   <g id="text_68">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="196.454906" transform="rotate(-0 307 196.454906)">Audio effects</text>
+   </g>
+   <g id="text_69">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="204.654687" transform="rotate(-0 294 204.654687)">E2</text>
+   </g>
+   <g id="text_70">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="204.654906" transform="rotate(-0 307 204.654906)">Background interference</text>
+   </g>
+   <g id="text_71">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="212.854688" transform="rotate(-0 294 212.854688)">E3</text>
+   </g>
+   <g id="text_72">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="212.854906" transform="rotate(-0 307 212.854906)">Harmonic saturation</text>
+   </g>
+   <g id="text_73">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="221.054688" transform="rotate(-0 294 221.054688)">E4</text>
+   </g>
+   <g id="text_74">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="221.054906" transform="rotate(-0 307 221.054906)">Time stretching / resampling</text>
+   </g>
+   <g id="text_75">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="229.254688" transform="rotate(-0 294 229.254688)">E5</text>
+   </g>
+   <g id="text_76">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="229.254906" transform="rotate(-0 307 229.254906)">Vibrato</text>
+   </g>
+   <g id="text_77">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #98784a" x="294" y="237.454688" transform="rotate(-0 294 237.454688)">E6</text>
+   </g>
+   <g id="text_78">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="307" y="237.454906" transform="rotate(-0 307 237.454906)">Slight detuning</text>
+   </g>
+   <g id="text_79">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #266e73" x="4" y="29.078125" transform="rotate(-0 4 29.078125)">F</text>
+   </g>
+   <g id="text_80">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="16" y="28.610789" transform="rotate(-0 16 28.610789)">Polyphonic music</text>
+   </g>
+   <g id="text_81">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #266e73" x="4" y="47.454688" transform="rotate(-0 4 47.454688)">F1</text>
+   </g>
+   <g id="text_82">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="47.454906" transform="rotate(-0 17 47.454906)">Melody in synthetic mixtures</text>
+   </g>
+   <g id="text_83">
+    <text style="font-weight: 700; font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #266e73" x="4" y="55.654687" transform="rotate(-0 4 55.654687)">F2</text>
+   </g>
+   <g id="text_84">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans', sans-serif; text-anchor: start; fill: #253b4b" x="17" y="55.654906" transform="rotate(-0 17 55.654906)">Melody in Bach chorales</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="peb4376fcf2">
+   <rect x="0" y="0" width="396" height="280.8"/>
+  </clipPath>
+ </defs>
+</svg>
