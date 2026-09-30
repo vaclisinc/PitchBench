@@ -1,45 +1,9 @@
-# Response on DSP and neural pitch baselines
+# DSP and Basic Pitch baselines
 
-On top of the discussion above, our goal is not to outperform specialized DSP/neural pitch systems, but to make the LALM community aware that pitch should be treated as a basic capability of LALMs. At the same time, the fact that standard DSP/neural systems solve many of these tasks shows that the relevant information is recoverable from audio—and therefore that LALMs should, in principle, also be able to acquire it.
+The final comparison is published in [Table 1](figures-and-tables/table1.md),
+including all six ALMs and both specialized baselines. See the
+[table protocol and reproduction instructions](figures-and-tables/README.md)
+for the acoustic front ends, metrics, source mapping and precision limits.
 
-The original evaluation covered two frozen baselines on all 28 PitchBench experiments (5,802 examples each). We reran D8 on the same 171 official stimuli to apply the updated sequence metric; the other 27 rows retain their historical values:
-
-- **DSP:** YIN for continuous monophonic \(F_0\) (30--2,500 Hz, 256-ms window, 16-ms hop) and a harmonic CQT for simultaneous pitches. The CQT has exactly **288 bins: 36 bins/octave over 8 octaves**, or **3 bins/semitone (33.3 cents/bin)**, with a 16-ms hop.
-- **Neural pitch:** Spotify Basic Pitch v0.4.0 (ONNX) for note events and pitch-bend contours (3 bins/semitone).
-- For tasks beyond direct note extraction, a fixed deterministic adapter converts these outputs into the requested answer: e.g., distinct-pitch counts, continuous higher/lower comparisons, nearest equal-tempered pitch, interval relative to the reference stated in the question, or an ordered pitch/voice sequence. It never receives hidden synthesis parameters or ground truth.
-
-The table reports scores (%); D8, F1 and F2 use Ordered Note F1. The D8 rerun reproduced the original exact-match scores (DSP 80.1%, Basic Pitch 98.8%) and gives LCS scores of 94.6% and 99.6%. [Raw answers, full-precision metrics and reproduction details](../results/d8-baselines-lcs/README.md) are preserved alongside the [LALM results](../results/d8-ordered-note-f1/README.md).
-
-| Experiment | DSP | Basic Pitch |
-| --- | --- | --- |
-| A1 | 95.8 | 98.7 |
-| A2 | 97.0 | 99.0 |
-| A3 | 82.9 | 82.4 |
-| B1 | 98.1 | 99.4 |
-| B2 | 94.0 | 99.3 |
-| B3 | 78.8 | 81.2 |
-| B4 | 65.8 | 51.7 |
-| B5 | 54.2 | 22.5 |
-| C1 | 28.1 | 47.8 |
-| C2 | 30.2 | 62.1 |
-| C3 | 58.9 | 77.6 |
-| C4 | 34.0 | 61.0 |
-| D1 | 76.4 | 42.9 |
-| D2 | 80.3 | 76.5 |
-| D3 | 61.7 | 56.7 |
-| D4 | 73.8 | 73.8 |
-| D5 | 88.3 | 67.5 |
-| D6 | 96.2 | 97.5 |
-| D7a | 98.5 | 100.0 |
-| D8 | 94.6 | 99.6 |
-| E1 | 94.6 | 91.2 |
-| E2 | 36.7 | 88.8 |
-| E3 | 97.5 | 96.7 |
-| E4 | 96.9 | 99.5 |
-| E5 | 85.6 | 68.8 |
-| E6 | 23.8 | 19.4 |
-| F1 | 20.6 | 58.9 |
-| F2 | 14.7 | 27.3 |
-| **Macro average over 28 experiments (approx.)** | **69.9** | **73.1** |
-
-Macro averages are approximate: they combine the full-precision D8 rerun with the other 27 historical scores rounded to one decimal place.
+This former rebuttal-response path is retained for existing links. Superseded
+response text and intermediate tables remain available in Git history.

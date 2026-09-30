@@ -14,8 +14,6 @@ import json
 import math
 import os
 import re
-import subprocess
-import sys
 import threading
 from dataclasses import dataclass
 from pathlib import Path
@@ -30,7 +28,6 @@ _config_lock = threading.Lock()
 _config_cache: tuple[Path, int, dict[str, Any]] | None = None
 _analysis_lock = threading.Lock()
 _basic_pitch_model: Any | None = None
-_muscriptor_model: Any | None = None
 
 
 @dataclass(frozen=True)
@@ -40,7 +37,6 @@ class Event:
     midi: float
     confidence: float
     contour: tuple[float, ...] = ()
-    instrument: str | None = None
 
     @property
     def duration(self) -> float:
@@ -115,12 +111,11 @@ def baseline_concurrency(model_name: str) -> int:
 def baseline_model_info(model_name: str) -> dict[str, Any]:
     config, path, digest = _load_config()
     backend = model_name.removeprefix(BASELINE_PREFIX)
-    if backend not in {"dsp", "basic-pitch", "muscriptor"}:
+    if backend not in {"dsp", "basic-pitch"}:
         raise ValueError(f"Unknown baseline backend: {model_name}")
     section_name = {
         "basic-pitch": "basic_pitch",
         "dsp": "dsp",
-        "muscriptor": "muscriptor",
     }[backend]
     section = config["baselines"][section_name]
     if section["model_name"] != model_name:
@@ -143,13 +138,6 @@ def baseline_model_info(model_name: str) -> dict[str, Any]:
             info["installed_package_version"] = version(section["package"])
         except PackageNotFoundError:
             info["installed_package_version"] = "unavailable"
-    elif backend == "muscriptor":
-        source_dir = (REPO_ROOT / section["source_dir"]).resolve()
-        info["source_revision"] = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"],
-            cwd=source_dir,
-            text=True,
-        ).strip()
     return info
 
 
@@ -547,123 +535,6 @@ def _basic_pitch_analysis(audio_path: str | Path, need_polyphony: bool) -> Analy
     )
 
 
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
-
-
-def _muscriptor_analysis(audio_path: str | Path, need_polyphony: bool) -> Analysis:
-    del need_polyphony
-    config, _, _ = _load_config()
-    settings = config["baselines"]["muscriptor"]
-    source_dir = (REPO_ROOT / settings["source_dir"]).resolve()
-    checkpoint = (REPO_ROOT / settings["checkpoint"]).resolve()
-    if not source_dir.is_dir():
-        raise FileNotFoundError(f"MuScriptor source directory is missing: {source_dir}")
-    if not checkpoint.is_file():
-        raise FileNotFoundError(f"MuScriptor checkpoint is missing: {checkpoint}")
-
-    source_text = str(source_dir)
-    if source_text not in sys.path:
-        sys.path.insert(0, source_text)
-    from muscriptor import TranscriptionModel
-    from muscriptor.events import NoteEndEvent, NoteStartEvent
-
-    global _muscriptor_model
-    with _analysis_lock:
-        if _muscriptor_model is None:
-            actual_revision = subprocess.check_output(
-                ["git", "rev-parse", "HEAD"],
-                cwd=source_dir,
-                text=True,
-            ).strip()
-            if actual_revision != str(settings["source_revision"]):
-                raise RuntimeError(
-                    f"MuScriptor source revision mismatch: expected "
-                    f"{settings['source_revision']}, found {actual_revision}"
-                )
-            actual_checkpoint_sha = _sha256(checkpoint)
-            if actual_checkpoint_sha != str(settings["checkpoint_sha256"]):
-                raise RuntimeError(
-                    f"MuScriptor checkpoint SHA256 mismatch: expected "
-                    f"{settings['checkpoint_sha256']}, found {actual_checkpoint_sha}"
-                )
-            _muscriptor_model = TranscriptionModel.load_model(
-                checkpoint,
-                device=str(settings["device"]),
-            )
-        model = _muscriptor_model
-
-    events: list[Event] = []
-    for item in model.transcribe(
-        audio_path,
-        use_sampling=bool(settings["use_sampling"]),
-        temperature=float(settings["temperature"]),
-        cfg_coef=float(settings["cfg_coef"]),
-        instruments=settings["instruments"],
-        batch_size=int(settings["batch_size"]),
-        no_eos_is_ok=bool(settings["no_eos_is_ok"]),
-        beam_size=int(settings["beam_size"]),
-    ):
-        if isinstance(item, NoteStartEvent):
-            continue
-        if not isinstance(item, NoteEndEvent):
-            continue
-        start = item.start_event
-        onset = max(0.0, float(start.start_time))
-        offset = max(onset, float(item.end_time))
-        if offset <= onset:
-            continue
-        events.append(
-            Event(
-                onset=onset,
-                offset=offset,
-                midi=float(start.pitch),
-                confidence=1.0,
-                instrument=str(start.instrument),
-            )
-        )
-
-    import soundfile as sf
-
-    audio_info = sf.info(str(audio_path))
-    duration = float(audio_info.frames) / float(audio_info.samplerate)
-    frame_hop = float(settings["frame_hop_seconds"])
-    if frame_hop <= 0:
-        raise ValueError("baselines.muscriptor.frame_hop_seconds must be positive")
-    frame_count = max(1, math.ceil(duration / frame_hop) + 1)
-    times = np.arange(frame_count, dtype=np.float32) * frame_hop
-    mono = np.full(frame_count, np.nan, dtype=np.float32)
-    mono_score = np.full(frame_count, -np.inf, dtype=np.float32)
-    poly_sets: list[set[float]] = [set() for _ in range(frame_count)]
-    for event in events:
-        start_index = max(0, math.ceil(event.onset / frame_hop))
-        end_index = min(frame_count, math.floor(event.offset / frame_hop) + 1)
-        if end_index <= start_index:
-            continue
-        for index in range(start_index, end_index):
-            poly_sets[index].add(event.midi)
-        score = event.duration
-        indices = np.arange(start_index, end_index)
-        replace = score > mono_score[indices]
-        selected = indices[replace]
-        mono[selected] = event.midi
-        mono_score[selected] = score
-
-    return Analysis(
-        duration=duration,
-        events=tuple(
-            sorted(events, key=lambda event: (event.onset, event.midi, event.offset))
-        ),
-        frame_times=times,
-        monophonic_midi=mono,
-        polyphonic_pitches=tuple(tuple(sorted(pitches)) for pitches in poly_sets),
-    )
-
-
 def _analysis(
     model_name: str, audio_path: str | Path, need_polyphony: bool
 ) -> Analysis:
@@ -677,8 +548,6 @@ def _analysis(
         result = _dsp_analysis(audio_path, need_polyphony)
     elif backend == "basic-pitch":
         result = _basic_pitch_analysis(audio_path, need_polyphony)
-    elif backend == "muscriptor":
-        result = _muscriptor_analysis(audio_path, need_polyphony)
     else:
         raise ValueError(f"Unknown baseline backend: {model_name}")
     with _analysis_lock:
@@ -813,7 +682,7 @@ def _prompt_timestamp(prompt: str) -> float:
     return 60 * int(match.group(1)) + float(match.group(2))
 
 
-def _simultaneous_pitches(analysis: Analysis, model_name: str) -> list[float]:
+def _simultaneous_pitches(analysis: Analysis) -> list[float]:
     config, _, _ = _load_config()
     shared = config["shared_decoder"]
     if analysis.polyphonic_pitches and analysis.frame_times.size:
@@ -829,15 +698,9 @@ def _simultaneous_pitches(analysis: Analysis, model_name: str) -> list[float]:
             for pitch in {round(value) for value in frame}:
                 counts[pitch] = counts.get(pitch, 0) + 1
         if selected_frames:
-            backend = model_name.removeprefix(BASELINE_PREFIX)
-            if backend == "muscriptor":
-                fraction = float(
-                    config["baselines"]["muscriptor"]["chord_presence_fraction"]
-                )
-            else:
-                fraction = float(
-                    config["baselines"]["dsp"]["multipitch"]["chord_presence_fraction"]
-                )
+            fraction = float(
+                config["baselines"]["dsp"]["multipitch"]["chord_presence_fraction"]
+            )
             required = max(1, math.ceil(fraction * len(selected_frames)))
             pitches = sorted(
                 float(pitch) for pitch, count in counts.items() if count >= required
@@ -1085,7 +948,7 @@ def _decode(model_name: str, audio_path: str | Path, prompt: str) -> str:
         return ", ".join(timestamps)
 
     if experiment in {"c1", "c2", "c3", "c4"}:
-        pitches = _simultaneous_pitches(analysis, model_name)
+        pitches = _simultaneous_pitches(analysis)
         if experiment == "c1":
             return (
                 str(len({round(pitch) for pitch in pitches})) if pitches else _missing()

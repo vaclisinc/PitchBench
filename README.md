@@ -2,6 +2,24 @@
 
 Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more — reporting per-format accuracy (MIDI, SPN, doremi, Hz) to expose where verbal decoding fails.
 
+
+## Paper results
+
+[**Table 1: all 28 tasks × 8 models**](paper/figures-and-tables/table1.md)
+is the canonical paper comparison, including DSP and Basic Pitch.
+[CSV](paper/figures-and-tables/table1.csv),
+[LaTeX](paper/figures-and-tables/table1.tex), and
+[source mapping](paper/figures-and-tables/table1.sources.json) are generated together.
+The [reproduction guide](paper/figures-and-tables/README.md) documents the metrics,
+precision limits, and underlying evidence.
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.table1 --check
+```
+
+This checks the committed table against its evidence without model calls, audio,
+or third-party Python packages. Omit `--check` to regenerate all formats.
+
 ---
 
 ## Setup
@@ -293,9 +311,10 @@ Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.
 uv run pytest
 ```
 
-77 tests covering CLI resolution, Parquet I/O, result aggregation, sampling, and API routing. No network calls or audio generation required.
+Tests cover CLI resolution, Parquet I/O, result aggregation, sequence scoring,
+baseline adapters, Table 1 consistency, sampling, and API routing. No network
+calls or audio generation required.
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
-

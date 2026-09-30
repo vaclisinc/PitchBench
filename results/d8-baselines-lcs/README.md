@@ -1,6 +1,6 @@
 # D8 DSP and Basic Pitch reproduction
 
-Reran the original two rebuttal baselines on all **171 official D8 stimuli** (342 model/stimulus records), using dataset revision `f6c672608057cb877bfaacaeeff9bfb49eef7778`, seed 42, Python 3.11.15 and the pinned acoustic parameters. No MuScriptor run is included.
+Reran the original two rebuttal baselines on all **171 official D8 stimuli** (342 model/stimulus records), using dataset revision `f6c672608057cb877bfaacaeeff9bfb49eef7778`, seed 42, Python 3.11.15 and the pinned acoustic parameters.
 
 | Baseline | Original displayed exact match | Rerun exact match | Ordered Note F1 (LCS) |
 |---|---:|---:|---:|
