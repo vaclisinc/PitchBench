@@ -1,0 +1,16 @@
+{
+  "metric": "Ordered Note F1 = 2 * LCS / (n_gt + n_pred)",
+  "aggregation": "Per-stimulus max(MIDI, SPN, Hz), then macro mean",
+  "hz_tolerance_hz": 1.0,
+  "source_files": [
+    {
+      "path": "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/artifacts/evaluation/dsp_yin_harmonic_cqt_adapter_v2/d8-baselines-lcs/pitchbench_d8_sequence_pitches/results_baseline_dsp.json",
+      "sha256": "79d0404ce0b9099c600397c45928ab65da4027d23b58a5cee0c3db2a3d66b431"
+    },
+    {
+      "path": "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/artifacts/evaluation/spotify_basic_pitch_0_4_0_adapter_v2/d8-baselines-lcs/pitchbench_d8_sequence_pitches/results_baseline_basic_pitch.json",
+      "sha256": "5c5ab3bcb9905bb8faee5107b0adadcda3ab089b9aa231b87db01de43e6d43be"
+    }
+  ],
+  "validation": "All saved F1 scores independently recomputed from raw answers"
+}

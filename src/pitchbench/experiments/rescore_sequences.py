@@ -80,6 +80,9 @@ def rescore_d8_baselines(input_dir: Path, output: Path) -> None:
         payloads.append((model, payload))
     if seen != expected:
         raise ValueError(f"Missing baselines: {sorted(expected - seen)}")
+    model_order = ("baseline/dsp", "baseline/basic-pitch")
+    aggregates.sort(key=lambda r: model_order.index(r["model"]))
+    items.sort(key=lambda r: (model_order.index(r["model"]), r["item_index"]))
     output.mkdir(parents=True, exist_ok=True)
     for model, payload in payloads:
         filename = "results_" + model.split("/")[1].replace("-", "_") + ".json"

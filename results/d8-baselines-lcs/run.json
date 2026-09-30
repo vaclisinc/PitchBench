@@ -1,0 +1,64 @@
+{
+  "attempt": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "env",
+        "OMP_NUM_THREADS=4",
+        "OPENBLAS_NUM_THREADS=4",
+        "NUMBA_NUM_THREADS=4",
+        "NUMBA_CACHE_DIR=${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/cache/numba",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "${VACLAB_ROOT}/models/envs/pitchbench-baselines/bin/python",
+        "scripts/run_rebuttal_baselines.py",
+        "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/config.yaml",
+        "--phase",
+        "all"
+      ],
+      "exit_code": 1,
+      "finished_at": "2026-09-30T12:59:50Z",
+      "git_commit": "1bc58560b9e1c6dee2876bdbd4e69692af1fafe7",
+      "log_file": "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/logs/job.attempt1.log",
+      "reason": "exit code 1",
+      "started_at": "2026-09-30T12:59:44Z",
+      "status": "failed"
+    }
+  ],
+  "checkout": "${VACLAB_ROOT}/.worktrees/pitchbench/queue-ba3cac65b22f",
+  "command": [
+    "env",
+    "OMP_NUM_THREADS=4",
+    "OPENBLAS_NUM_THREADS=4",
+    "NUMBA_NUM_THREADS=4",
+    "NUMBA_CACHE_DIR=${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/cache/numba",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "${VACLAB_ROOT}/models/envs/pitchbench-baselines/bin/python",
+    "scripts/run_rebuttal_baselines.py",
+    "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/config.yaml",
+    "--phase",
+    "all"
+  ],
+  "created_at": "2026-09-30T12:59:43Z",
+  "exit_code": 0,
+  "finished_at": "2026-09-30T13:05:12Z",
+  "git_commit": "ba3cac65b22faadda24349d767ff23510ddedbda",
+  "log_file": "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs/logs/job.log",
+  "project": "pitchbench",
+  "queue_job_id": "pitchbench--d8-baselines-lcs",
+  "reason": null,
+  "resources": {
+    "assigned_gpus": [],
+    "cpus": 32,
+    "gpus": 0,
+    "ram_mib": 8192,
+    "vram_mib_each": 0
+  },
+  "run_dir": "${VACLAB_ROOT}/outputs/pitchbench/d8-baselines-lcs",
+  "run_id": "d8-baselines-lcs",
+  "snapshot": true,
+  "source_checkout": "${VACLAB_ROOT}/projects/PitchBench",
+  "started_at": "2026-09-30T13:00:56Z",
+  "status": "succeeded",
+  "wandb_mode": null
+}
