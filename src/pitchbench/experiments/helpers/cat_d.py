@@ -465,10 +465,11 @@ def evaluate_cat_d_from_parquet(
 ) -> dict:
     """Evaluate ``model_name`` on the pre-generated dataset for a cat-D spec."""
     from pitchbench.experiments.helpers.data import (
-        dataset_path, filter_rows_to_conditions, read_dataset,
+        dataset_path, filter_rows_to_conditions, read_dataset, select_pitch_formats,
     )
 
-    rows = read_dataset(dataset_path(spec.exp_name))
+    rows = select_pitch_formats(read_dataset(dataset_path(spec.exp_name)),
+                                (sample_info or {}).get("pitch_formats"))
     # Ordinary evaluation consumes the stored sample independently of local
     # synthesis capabilities. Only analysis presets request condition filtering.
     if filter_conditions:

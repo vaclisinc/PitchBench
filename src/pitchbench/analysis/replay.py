@@ -7,6 +7,7 @@ Add --baseline-input DIR for a complete 28-task, eight-model result bundle.
 from __future__ import annotations
 import argparse
 import csv
+import gzip
 import hashlib
 import importlib
 import json
@@ -80,6 +81,14 @@ def write_csv(path, rows, fields=None):
         w = csv.DictWriter(f, fieldnames=fields or list(rows[0]), lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
+
+
+def read_results(path):
+    """Read original JSON or the compressed baseline evidence bundle."""
+    if path.suffix == ".gz":
+        with gzip.open(path, "rt") as handle:
+            return json.load(handle)
+    return json.loads(path.read_text())
 
 
 def identity(task, row, *, official=False, baseline=False):
@@ -172,8 +181,10 @@ def replay(repo, dataset, output, baseline_input=None):
             baseline = model.startswith("baseline/")
             if baseline:
                 paths = []
-                for path in baseline_input.glob(f"*/**/{experiment}/results_*.json"):
-                    if json.loads(path.read_text())["metadata"]["model_name"] == model:
+                for path in baseline_input.rglob("results_*.json*"):
+                    if path.parent.name != experiment or path.suffix not in {".json", ".gz"}:
+                        continue
+                    if read_results(path)["metadata"]["model_name"] == model:
                         paths.append(path)
             else:
                 paths = list(
@@ -186,7 +197,7 @@ def replay(repo, dataset, output, baseline_input=None):
                     f"Expected one result file: {model}/{task}, got {len(paths)}"
                 )
             path = paths[0]
-            payload = json.loads(path.read_text())
+            payload = read_results(path)
             rows = payload["results"]
             source = (
                 str(path.relative_to(repo)) if path.is_relative_to(repo) else str(path)

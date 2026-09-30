@@ -103,6 +103,14 @@ def concurrency_for(model_name: str) -> int:
 
 DEFAULT_SAMPLE_SEED = 42
 
+# Camera-ready Table 1 protocol. Additional reference variants and Y1 remain
+# available by explicit ID or through the exploratory "all" selector.
+PAPER_EXPERIMENT_IDS = (
+    "a1", "a2", "a3", "b1", "b2", "b3", "b4", "b5",
+    "c1", "c2", "c3", "c4", "d1", "d2", "d3", "d4", "d5", "d6", "d7a", "d8",
+    "e1", "e2", "e3", "e4", "e5", "e6", "f1", "f2",
+)
+
 # ── Re-export BENCHMARK_* from benchmark_config (backward compat) ────────────
 from pitchbench.configs.benchmark_config import (  # noqa: E402
     BENCHMARK_NOTATION_FORMATS,

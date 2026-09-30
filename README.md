@@ -95,7 +95,7 @@ PitchBench separates stimulus generation from model evaluation. Generate once, e
 ### Generate
 
 ```bash
-pitchbench generate all
+pitchbench generate paper
 pitchbench generate a          # single category
 pitchbench generate a1         # single experiment
 ```
@@ -113,7 +113,7 @@ data/generated/pitchbench_a1_single_pitch_id/
 
 ```bash
 pitchbench --list   
-pitchbench evaluate all --model openrouter/<provider>/<model>
+pitchbench evaluate paper --model openrouter/<provider>/<model>
 pitchbench evaluate a1  --model openrouter/<provider>/<model>
 
 # Quick test (20 stimuli, stratified)
@@ -121,6 +121,10 @@ pitchbench evaluate a1  --model openrouter/<provider>/<model> --sample-n 20 --sa
 ```
 
 Results land in `results/evaluation/<model_slug>/<YYYYMMDD_HHMMSS>/`.
+
+`paper` selects exactly the 28 Table 1 tasks and queries MIDI/SPN/Hz only.
+It rejects missing tasks before reporting overall. `all` includes extra tasks
+such as Y1 and the additional reference variants.
 
 Evaluation uses the stored stimuli; it does not require local audio synthesis
 or regenerate conditions to filter out instruments. Condition filtering belongs
@@ -132,7 +136,7 @@ and CSVs retain unrounded scores; rounding is applied only for display.
 In tmux (recommended for long runs):
 ```bash
 tmux new-session -d -s mymodel "source .venv/bin/activate && \
-  pitchbench evaluate all --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
+  pitchbench evaluate paper --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
 ```
 
 Without any model specification, the system defaults to the localhost:8001 endpoint. An example file (audio_flamingo_next_instruct.py) was added for running Audio Flamingo Next Instruct on localhost:8001. 

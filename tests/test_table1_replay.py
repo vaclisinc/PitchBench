@@ -126,3 +126,12 @@ def test_unrequested_format_makes_no_model_call(monkeypatch):
     )
     assert called == ["midi", "spn", "hz"]
     assert result[2]["result"] == ""
+
+
+def test_compressed_baseline_evidence_preserves_raw_answers(tmp_path):
+    import gzip
+    payload = {'metadata': {'model_name': 'baseline/dsp'},
+               'results': [{'raw_midi': '60 64', 'raw_hz': '261.6 329.6'}]}
+    path = tmp_path / 'results_dsp.json.gz'
+    path.write_bytes(gzip.compress(json.dumps(payload).encode(), mtime=0))
+    assert replay.read_results(path) == payload
