@@ -24,6 +24,8 @@ to the auto-marginals because their column names do not end in
 
 from __future__ import annotations
 
+from math import fsum
+
 import argparse
 from dataclasses import dataclass
 from tqdm import tqdm
@@ -102,7 +104,7 @@ def _accuracy(records: list[dict], col: str) -> float:
     vals = [r[col] for r in records if isinstance(r.get(col), (int, float, bool))]
     if not vals:
         return 0.0
-    return round(sum(vals) / len(vals), 4)
+    return fsum(vals) / len(vals)
 
 
 def compute_summary(
@@ -238,6 +240,8 @@ def run_one_model(
     conds:       list[dict],
     run_dir:     Path,
     sample_info: dict | None,
+    *,
+    model_label: str | None = None,
 ) -> dict:
     info = get_model_info(model_name)
     print(f"\n  Model : {model_name}")
@@ -314,7 +318,7 @@ def run_one_model(
     extra_meta = spec.metadata_fn() if spec.metadata_fn else {}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
-        **({"+model_label": model_label} if model_label else {}),
+        **({"model_label": model_label} if model_label else {}),
         task_type=spec.task_type,
         headline_metrics=list(spec.headline_metrics),
         primary_filter_set=spec.primary_filter is not None,
@@ -517,7 +521,7 @@ def evaluate_cat_c_from_parquet(
     extra_meta = spec.metadata_fn() if spec.metadata_fn else {}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
-        **({"+model_label": model_label} if model_label else {}),
+        **({"model_label": model_label} if model_label else {}),
         task_type=spec.task_type,
         headline_metrics=list(spec.headline_metrics),
         primary_filter_set=spec.primary_filter is not None,
