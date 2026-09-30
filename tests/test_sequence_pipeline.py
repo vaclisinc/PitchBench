@@ -36,8 +36,11 @@ def test_sequence_f1_reaches_package_overall(mode, tmp_path, monkeypatch):
                        wav_fn=lambda c: tmp_path / "audio.wav", prompts_fn=lambda c: prompts,
                        label_fn=lambda j: "test")
         monkeypatch.setattr(runner, "get_model_info", lambda name: {})
-        monkeypatch.setattr(runner, "query_alm", lambda name, wav, prompt: {
-            "result": "60 64" if prompt == "midi" else ""})
+        def respond(name, wav, prompt):
+            if mode == "parquet":
+                assert prompt != "doremi"
+            return {"result": "60 64" if prompt == "midi" else ""}
+        monkeypatch.setattr(runner, "query_alm", respond)
         monkeypatch.setattr(runner, "dispatch", lambda jobs, fn, **kw: [fn(j) for j in jobs])
         folder = tmp_path / spec.exp_name
         folder.mkdir()
@@ -53,7 +56,7 @@ def test_sequence_f1_reaches_package_overall(mode, tmp_path, monkeypatch):
             } for c in conditions])
             monkeypatch.setattr(runner, "apply_default_sampling", lambda exp, rows, **kw: (rows, {}))
             evaluate = runner.evaluate_cat_d_from_parquet if runner is cat_d else runner.evaluate_cat_f_from_parquet
-            evaluate(spec, "test", folder, model_label="custom-label")
+            evaluate(spec, "test", folder, {"pitch_formats": ("midi", "spn", "hz")}, model_label="custom-label")
         payload = json.loads((folder / "results_custom_label.json").read_text())
         assert payload["summary"]["accuracy"]["any"] == pytest.approx(0.8)
         assert payload["metadata"]["score_name"] == "ordered_note_f1_lcs"

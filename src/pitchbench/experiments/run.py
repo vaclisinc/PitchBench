@@ -93,10 +93,16 @@ def _resolve_experiments(positionals: list[str]) -> list[str]:
     """Resolve a list of positional tokens to full experiment module names.
 
     Accepts: experiment IDs (``a1``), category letters (``a``), full module
-    names, and ``"all"``.  Raises ``SystemExit`` on unknown tokens.
+    names, ``"all"``, or the standalone ``"paper"`` selector for Table 1.
+    Raises ``SystemExit`` on unknown tokens.
     """
     if not positionals or positionals == ["all"]:
         return discover()
+    if positionals == ["paper"]:
+        names = [_id_to_name(exp_id) for exp_id in config.PAPER_EXPERIMENT_IDS]
+        if any(name is None for name in names):
+            sys.exit("A required paper experiment is missing from the package.")
+        return names
 
     known = discover()
     out: list[str] = []
@@ -298,6 +304,8 @@ def cmd_evaluate(args: argparse.Namespace) -> None:
     config.RESULTS_DIR = run_dir
 
     sample_info: dict[str, Any] = {"sample_n": args.sample_n, "sample_seed": args.sample_seed}
+    if args.experiments == ["paper"]:
+        sample_info["pitch_formats"] = ("midi", "spn", "hz")
 
     print(f"Evaluating {len(names)} experiment(s) with model: {model_name}")
     if args.name:
@@ -317,6 +325,10 @@ def cmd_evaluate(args: argparse.Namespace) -> None:
             all_runs[n] = result
 
     # ── Post-run aggregation ─────────────────────────────────────────────────
+    if args.experiments == ["paper"] and set(all_runs) != set(names):
+        missing = sorted(set(names) - set(all_runs))
+        sys.exit("Paper evaluation is incomplete; refusing to report a partial overall. "
+                 "Missing: " + ", ".join(missing))
     overall_dir = run_dir / "overall"
     overall_dir.mkdir(exist_ok=True)
     ts2 = datetime.now().strftime("%Y%m%d_%H%M%S")

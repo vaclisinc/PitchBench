@@ -636,11 +636,12 @@ def evaluate_cat_a_from_parquet(
     format-accuracy summary dict.
     """
     from pitchbench.experiments.helpers.data import (
-        dataset_path, filter_rows_to_conditions, read_dataset,
+        dataset_path, filter_rows_to_conditions, read_dataset, select_pitch_formats,
     )
     from pitchbench.experiments.helpers.sampling import apply_default_sampling
 
-    rows = read_dataset(dataset_path(spec.exp_name))
+    rows = select_pitch_formats(read_dataset(dataset_path(spec.exp_name)),
+                                (sample_info or {}).get("pitch_formats"))
     # Ordinary evaluation consumes the stored sample independently of local
     # synthesis capabilities. Only analysis presets request condition filtering.
     if filter_conditions:
