@@ -1,0 +1,34 @@
+{
+  "generator": {
+    "path": "src/pitchbench/analysis/hierarchy.py",
+    "sha256": "31712a41bd251c1132c1ae9cbd93ec6d468187a418e261c8955fb6c88160ba6a"
+  },
+  "task_definitions": {
+    "path": "EXPERIMENTS.md",
+    "sha256": "f50e92cd1cf4c5a828456faa1dfa2b33be2f1be920757942da1baf2cc496f745"
+  },
+  "geometry": {
+    "size_inches": [
+      5.5,
+      3.8
+    ],
+    "alignment": "PASS"
+  },
+  "category_counts": {
+    "A": 3,
+    "B": 5,
+    "C": 4,
+    "D": 8,
+    "E": 6,
+    "F": 2
+  },
+  "level_counts": {
+    "1": 3,
+    "2": 23,
+    "3": 2
+  },
+  "n_tasks": 28,
+  "meaning": "Conceptual taxonomy; no empirical scores, difficulty scale, or uncertainty encoded.",
+  "exclusions": "None: all 28 tasks and six categories retained.",
+  "exports": "PDF and SVG with editable text; 600-dpi PNG."
+}
