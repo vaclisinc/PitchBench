@@ -1,0 +1,7 @@
+model,mean_score
+audio_flamingo_next_instruct,0.17761672006272128
+dashscope_qwen3_5_omni_flash,0.37931898271529324
+dashscope_qwen3_5_omni_plus,0.517106863122451
+openrouter_google_gemini_3_1_pro_preview,0.19560385513272913
+openrouter_google_gemini_flash_latest,0.15614839113848392
+openrouter_openai_gpt_4o_audio_preview,0.10980675334632728
