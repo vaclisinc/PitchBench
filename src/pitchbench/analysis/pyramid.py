@@ -64,7 +64,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
         writer.writerows(rows)
 
     font_paths = [Path(__file__).with_name("fonts") / f"HankenGrotesk-{style}.ttf"
-                  for style in ("Regular", "Bold")]
+                  for style in ("Regular", "ExtraBold")]
     for font_path in font_paths:
         font_manager.fontManager.addfont(font_path)
     plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": ["Hanken Grotesk"],
@@ -72,10 +72,10 @@ def render(out: Path, qa_scripts: Path | None) -> None:
                          "svg.fonttype": "none", "pdf.fonttype": 42, "savefig.dpi": 600})
     # One coordinate unit is one export point. The manuscript scales to 5.5 in.
     # Extra room on the right lets D/E sit beside the contextual tier.
-    figure_width = 414 / 72
+    figure_width = 426 / 72
     fig = plt.figure(figsize=(figure_width, 2.9))
     ax = fig.add_axes([0, 0, 1, 1])
-    ax.set(xlim=(0, 414), ylim=(208.8, 0))
+    ax.set(xlim=(0, 426), ylim=(208.8, 0))
     ax.set_axis_off()
 
     def text(x, y, label, size=5.7, color=INK, weight="normal", ha="left"):
@@ -96,7 +96,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     # Level 3: melodic pitch perception at the apex.
     left, right = edges(40)
     poly([(centre, apex_y), (right, 40), (left, 40)], FILLS["F"])
-    text(centre, 29, "F", size=10, color=COLORS["F"], weight="bold", ha="center")
+    text(centre, 29, "F", size=11, color=COLORS["F"], weight="extra bold", ha="center")
 
     # Level 2: preserve the original four side-by-side category wedges.
     top, bottom = 47, 164
@@ -110,8 +110,8 @@ def render(out: Path, qa_scripts: Path | None) -> None:
               (bottom_left + u * (bottom_right-bottom_left), bottom)], FILLS[letter])
         label_left, label_right = edges(141)
         x = label_left + (i + .5) / 4 * (label_right-label_left)
-        text(x, 134, letter, size=11, color=COLORS[letter], weight="bold", ha="center")
-        text(x, 147, label, size=5.4, color=COLORS[letter], ha="center")
+        text(x, 134, letter, size=12, color=COLORS[letter], weight="extra bold", ha="center")
+        text(x, 147, label, size=6.3, color=COLORS[letter], ha="center")
 
     # Level 1: A1 foundation, with A2 and A3 as the two variation blocks above.
     upper, split, lower = 171, 183, 203
@@ -121,9 +121,9 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     poly([(ul, upper), (centre, upper), (centre, split), (sl, split)], "#F3F3F5")
     poly([(centre, upper), (ur, upper), (sr, split), (centre, split)], "#F3F3F5")
     poly([(sl, split), (sr, split), (lr, lower), (ll, lower)], FILLS["A"])
-    text((ul+centre)/2, 177, "A2  Loudness", size=6.0, color=COLORS["A"], ha="center")
-    text((ur+centre)/2, 177, "A3  Duration", size=6.0, color=COLORS["A"], ha="center")
-    text(centre, 193, "A1  Single pitch", size=6.0, color=COLORS["A"], ha="center")
+    text((ul+centre)/2, 177, "A2  Loudness", size=7.0, color=COLORS["A"], ha="center")
+    text((ur+centre)/2, 177, "A3  Duration", size=7.0, color=COLORS["A"], ha="center")
+    text(centre, 193, "A1  Single pitch", size=7.0, color=COLORS["A"], ha="center")
 
     # Move the level labels to the side; no title-only space above/below tiers.
     for level, title, y0, y1, color in (
@@ -133,22 +133,22 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     ):
         middle = (y0+y1)/2
         ax.plot([38, 35, 35, 38], [y0, y0, y1, y1], color="#B5C1CA", linewidth=.6)
-        text(31, middle-4.5, f"LEVEL {level}", size=5.3, color=color, weight="bold", ha="right")
-        text(31, middle+4.5, title, size=5.3, color=color, ha="right")
+        text(31, middle-4.5, f"LEVEL {level}", size=6.1, color=color, weight="extra bold", ha="right")
+        text(31, middle+4.5, title, size=6.1, color=color, ha="right")
 
     # Original side descriptions, aligned and kept clear of the pyramid slopes.
-    positions = {"F": (43, 10), "B": (43, 52), "C": (43, 111), "A": (43, 173),
-                 "D": (339, 30), "E": (339, 105)}
+    positions = {"F": (43, 10), "B": (43, 52), "C": (43, 109), "A": (40, 173),
+                 "D": (342, 20), "E": (342, 103)}
     legend_texts = []
     for letter, title, level, labels in TASKS:
         x, y = positions[letter]
-        legend_texts.append(text(x, y, letter, size=8, color=COLORS[letter], weight="bold"))
-        legend_texts.append(text(x+12, y, title, size=6.2, weight="bold"))
+        legend_texts.append(text(x, y, letter, size=9, color=COLORS[letter], weight="extra bold"))
+        legend_texts.append(text(x+12, y, title, size=7.3, weight="extra bold"))
         rule_width = 78 if letter == "A" else (67 if letter in "DE" else 96)
         ax.plot([x, x+rule_width], [y+6, y+6], color=COLORS[letter], linewidth=.55, alpha=.55)
         for i, label in enumerate(labels):
-            legend_texts.append(text(x, y+13+i*7.2, f"{letter}{i+1}", size=5.6, color=COLORS[letter], weight="bold"))
-            legend_texts.append(text(x+13, y+13+i*7.2, label, size=5.6))
+            legend_texts.append(text(x, y+13+i*8.0, f"{letter}{i+1}", size=6.6, color=COLORS[letter], weight="extra bold"))
+            legend_texts.append(text(x+13, y+13+i*8.0, label, size=6.6))
 
     fig.canvas.draw()
     # Bounding rectangles of neighbouring wedges overlap. Check the actual
@@ -184,7 +184,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     plt.close(fig)
     manifest = {"generator": source(Path(__file__)), "definitions": source(REPO / "EXPERIMENTS.md"),
                 "fonts": [source(path) for path in font_paths],
-                "typography": "Hanken Grotesk Regular (400) and Bold (700); vaclis.net family with stronger heading weight.",
+                "typography": "Hanken Grotesk Regular (400) and ExtraBold (800); vaclis.net family with stronger heading weight.",
                 "geometry": geometry, "n_tasks": 28, "category_counts": dict(zip("ABCDEF", [3,5,4,8,6,2])),
                 "structure": "A base with A1/A2/A3; B/C/D/E middle wedges; F apex.",
                 "meaning": "Conceptual taxonomy; areas do not encode counts or measured difficulty.",

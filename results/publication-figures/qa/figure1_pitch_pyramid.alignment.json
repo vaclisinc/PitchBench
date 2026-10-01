@@ -20,7 +20,7 @@
     "schema_version": 1,
     "backend": "python-matplotlib",
     "figure": {
-      "width_pt": 414.0,
+      "width_pt": 426.0,
       "height_pt": 208.79999999999998
     },
     "panels": [
@@ -29,7 +29,7 @@
         "bbox_pt": [
           0.0,
           0.0,
-          414.0,
+          426.0,
           208.79999999999998
         ]
       }

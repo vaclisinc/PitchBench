@@ -1,9 +1,9 @@
 {
-  "pdf": "../../outputs/pitchbench-paper/pyramid-bold-20261001/figure1_pitch_pyramid.pdf",
+  "pdf": "../../outputs/pitchbench-paper/pyramid-readable-20261001/figure1_pitch_pyramid.pdf",
   "auditable": true,
   "verdict": "REVIEW REQUIRED",
   "page_count": 1,
-  "visible_text_box_count": 86,
+  "visible_text_box_count": 64,
   "text_trace_count": 92,
   "stroke_path_count": 17,
   "filled_region_count": 9,
@@ -27,10 +27,10 @@
       "message": "Text partially overlaps the edge of 1 filled region(s)",
       "text": "Sequence",
       "text_bbox": [
-        247.61968994140625,
-        144.73760986328125,
-        271.3059997558594,
-        150.1376190185547
+        245.63531494140625,
+        144.36056518554688,
+        273.25244140625,
+        150.66055297851562
       ],
       "other_text": null,
       "other_bbox": [

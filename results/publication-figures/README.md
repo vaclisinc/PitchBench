@@ -149,12 +149,12 @@ See [validation](qa/compact-validation.json), [pagination](qa/compact-pagination
 and [contract](compact-figure-contract.md). Current previews and compiled PDF:
 `outputs/pitchbench-paper/compact-figures-20261001/`.
 
-## Current pyramid label and spacing refinement
+## Current pyramid readability refinement
 
-The pale slate, blue, lavender, sage, peach and teal pyramid retains its wider geometry. A1/A2/A3 now share 6 pt normal text; the apex shows only F. All 28 task descriptions remain in the side legends. D/E descriptions sit lower beside the contextual tier. The canvas extends right to 5.75 × 2.9 inches; the manuscript scales it to 5.5 × 2.774 inches, slightly reducing its height.
+Figure 1 uses Hanken Grotesk Regular (400) and ExtraBold (800). All task descriptions grow from 5.6 to 6.6 export pt; headings from 6.2 to 7.3 pt; minimum text from 5.3 to 6.1 pt; equal Regular A1/A2/A3 labels from 6 to 7 pt. Task rows are spaced at 8 pt instead of 7.2 pt. The pyramid and pastel fills are preserved, with F alone in the apex and all 28 descriptions retained.
 
-The generator checks all 68 exterior legend text boxes with 2.5 pt padding against actual polygons. All eight middle label boxes fit inside their own wedges. The PDF collision audit has zero failures and one reviewed bounding-rectangle warning for Sequence, whose text is inside its own wedge. Minimum text is 5.3 pt in the export and 5.07 pt in the manuscript. Alignment is not applicable to this single canvas. Source checks have no failures; manuscript-specific width and vector PDF delivery explain the two advisory warnings.
+The right edge of the canvas extends to 5.917 inches to fit enlarged text; export height remains 2.9 inches. At the unchanged 5.5-inch manuscript width, task descriptions are 6.14 pt (14.5% larger), minimum text is 5.67 pt and height is 2.70 inches. The PDF embeds both bundled, open-licensed fonts; every text run was checked for the intended family, and A1/A2/A3 have identical Regular typography.
 
-Only Figure 1 changes; prose and Figures 2–4 are untouched. The compiled manuscript remains 14 total pages, with body text ending on page 11. The full figure page was visually inspected. Latest preview and compiled PDF: `outputs/pitchbench-paper/pyramid-bold-20261001/`.
+All 68 exterior legend text boxes pass the 2.5-pt actual-polygon clearance check. All eight middle label boxes fit inside their wedges. The PDF collision audit has zero failures and one reviewed bounding-rectangle warning for Sequence, whose text is inside its own wedge. Single-canvas alignment is not applicable. Source checks have no failures; the manuscript-specific width and vector PDF delivery explain the two advisory warnings.
 
-Figure 1 now uses Hanken Grotesk Regular (400) and Bold (700), using the vaclis.net family with stronger emphasis as requested. The open-licensed fonts are bundled under `src/pitchbench/analysis/fonts/` and embedded in the PDF; SVG text remains editable. Every PDF text run was verified as Hanken Grotesk, including equal Regular A1/A2/A3 labels. The typography update preserves geometry, page count and all 28 tasks; font and actual-polygon clearance checks pass.
+The final manuscript figure page was visually inspected. Only Figure 1 changes; prose and Figures 2–4 are untouched. The manuscript remains 14 total pages and body text ends on page 11. Current preview and compiled PDF: `outputs/pitchbench-paper/pyramid-readable-20261001/`.

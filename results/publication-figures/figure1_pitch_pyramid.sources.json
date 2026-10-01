@@ -1,7 +1,7 @@
 {
   "generator": {
     "path": "src/pitchbench/analysis/pyramid.py",
-    "sha256": "8e3b4d207bb1db8721bbbe2d5a1de638d48abe255bceb756e144b64ace879baf"
+    "sha256": "4e3ce98e98e34ba694585765e77b8a70f753c9b738ceb1ef94dd7f113af2f828"
   },
   "definitions": {
     "path": "EXPERIMENTS.md",
@@ -13,19 +13,19 @@
       "sha256": "f056a9f15687ed262ce26ac6766632fd6f54e158b2e2e4f5de62d4ac586c3636"
     },
     {
-      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-Bold.ttf",
-      "sha256": "ef775c9a09d8a021f4023d596053e620a675793c5012d05512acf75b96faed96"
+      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-ExtraBold.ttf",
+      "sha256": "ca55af01871102eb89576002b26c64b56d02d8c2b2e83d5173cf3d228cb86193"
     }
   ],
-  "typography": "Hanken Grotesk Regular (400) and Bold (700); vaclis.net family with stronger heading weight.",
+  "typography": "Hanken Grotesk Regular (400) and ExtraBold (800); vaclis.net family with stronger heading weight.",
   "geometry": {
     "size_inches": [
-      5.75,
+      5.916666666666667,
       2.9
     ],
     "alignment": "NOT APPLICABLE",
     "manuscript_width_inches": 5.5,
-    "manuscript_scale": 0.9565217391304348,
+    "manuscript_scale": 0.9295774647887324,
     "pyramid_width_pt": 250.88,
     "legend_polygon_clearance_pt": 2.5,
     "legend_text_boxes_checked": 68

@@ -1,9 +1,7 @@
-# Pyramid label refinement
+# Pyramid readability refinement
 
-Preserve the three-level pastel pyramid, all 28 tasks and left-side level brackets. Set A1/A2/A3 to the same 6 pt normal font and show only F in the apex. Move the D/E side descriptions down toward the contextual tier with 2.5 pt clearance from actual polygons.
+Keep the three-level pastel pyramid, all 28 task descriptions, left-side level brackets and F-only apex. Improve readability at the manuscript's 5.5-inch width: ExtraBold (800) headings and task codes; larger Regular task descriptions (6.6 export pt), category subtitles (6.3 pt), level labels (6.1 pt) and equal A1/A2/A3 labels (7 pt). Increase row spacing to 8 pt.
 
-Keep pyramid geometry unchanged; extend the canvas right to 5.75 × 2.9 inches. At the existing 5.5-inch manuscript width the height becomes 2.774 inches and minimum glyph size remains 5.07 pt. No prose or other figure edits.
+Retain pyramid geometry and 2.9-inch export height. Add only the right-side space needed for enlarged text (5.917-inch canvas). At manuscript scale the task descriptions are 6.14 pt, minimum text 5.67 pt and total height 2.70 inches. Preserve polygon clearance and inspect all text at manuscript size. No prose or other figure edits.
 
-Use the established Python backend, editable PDF/SVG and 600-dpi PNG. Check all 28 task IDs, equal A label typography, clipping, actual-polygon clearance and the compiled manuscript. Single-canvas panel alignment is not applicable.
-
-Use Hanken Grotesk Regular (400) and Bold (700), using the vaclis.net family with stronger emphasis as requested. Bundle licensed fonts for reproducibility and embed them in the PDF; retain equal Regular A1/A2/A3 labels.
+Use the established Python backend with bundled licensed Hanken Grotesk Regular/ExtraBold, embedded PDF text, editable SVG and 600-dpi PNG. Validate all task IDs, equal A typography, clipping and actual-polygon clearance. Single-canvas alignment is not applicable.
