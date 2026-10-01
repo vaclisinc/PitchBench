@@ -1,9 +1,9 @@
 {
-  "pdf": "../../outputs/pitchbench-paper/pyramid-labels-20261001/figure1_pitch_pyramid.pdf",
+  "pdf": "../../outputs/pitchbench-paper/pyramid-hanken-20261001/figure1_pitch_pyramid.pdf",
   "auditable": true,
   "verdict": "REVIEW REQUIRED",
   "page_count": 1,
-  "visible_text_box_count": 78,
+  "visible_text_box_count": 86,
   "text_trace_count": 92,
   "stroke_path_count": 17,
   "filled_region_count": 9,
@@ -27,10 +27,10 @@
       "message": "Text partially overlaps the edge of 1 filled region(s)",
       "text": "Sequence",
       "text_bbox": [
-        246.14312744140625,
-        144.09664916992188,
-        272.79046630859375,
-        149.49664306640625
+        247.61968994140625,
+        144.73760986328125,
+        271.3059997558594,
+        150.1376190185547
       ],
       "other_text": null,
       "other_bbox": [

@@ -1,12 +1,23 @@
 {
   "generator": {
     "path": "src/pitchbench/analysis/pyramid.py",
-    "sha256": "2c2e337a649ca615ed44ef9364c0530afaace7d09d29a4238861af18814b0b7f"
+    "sha256": "cc56f7a1a0c1d46f8cc50fa2d6c76f3debcce28f86d7465978f95bc9e3146dda"
   },
   "definitions": {
     "path": "EXPERIMENTS.md",
     "sha256": "f50e92cd1cf4c5a828456faa1dfa2b33be2f1be920757942da1baf2cc496f745"
   },
+  "fonts": [
+    {
+      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-Regular.ttf",
+      "sha256": "f056a9f15687ed262ce26ac6766632fd6f54e158b2e2e4f5de62d4ac586c3636"
+    },
+    {
+      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-SemiBold.ttf",
+      "sha256": "c0f9e836b917a2e9d00004c3b6b5720b4dc0f42250ab60bd212870f2949086a0"
+    }
+  ],
+  "typography": "Hanken Grotesk Regular (400) and SemiBold (600), matching vaclis.net.",
   "geometry": {
     "size_inches": [
       5.75,

@@ -21,5 +21,10 @@
   "apex_label": "F",
   "total_pdf_pages": 14,
   "figure1_page": 4,
-  "collision_review": "One generic fill-box warning: Sequence is fully inside its own wedge; its bounding box intersects a neighbouring wedge bounding rectangle only. Actual polygons checked. No failures."
+  "collision_review": "One generic fill-box warning: Sequence is fully inside its own wedge; its bounding box intersects a neighbouring wedge bounding rectangle only. Actual polygons checked. No failures.",
+  "fonts": [
+    "HankenGrotesk-Regular",
+    "HankenGrotesk-SemiBold"
+  ],
+  "all_text_uses_Hanken_Grotesk": true
 }
