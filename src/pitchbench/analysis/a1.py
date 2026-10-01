@@ -6,7 +6,7 @@ Extracts MIDI accuracy data from all a1 experiments in a directory,
 aggregates by MIDI pitch and model, and creates a visualization.
 
 Usage:
-    python analyze_a1.py results/eval
+    python -m pitchbench.analysis.a1 results/eval
 """
 
 import argparse
