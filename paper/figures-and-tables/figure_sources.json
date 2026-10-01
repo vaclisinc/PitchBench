@@ -1,11 +1,11 @@
 {
   "generator": {
     "path": "src/pitchbench/analysis/publication.py",
-    "sha256": "0a9b616d0231a809f2f608a08fe7841e02ed40b6fb04fd4f2cdaecbd9a282a7f"
+    "sha256": "5130c63db2436d41b2b6000c63fc35af9d9540db23be028ba6bcb8cb123ad6d1"
   },
   "prediction_parser": {
     "path": "src/pitchbench/analysis/a1.py",
-    "sha256": "0fc7d52a10650f7d62810a0f700de745a2b827aee72ea378ae11cefcd0d08ddb"
+    "sha256": "40248328fbba70e012349571f89ebc3e8bc149c1d66c52990370b1b0bff03b5a"
   },
   "music_parser": {
     "path": "src/pitchbench/experiments/helpers/music.py",

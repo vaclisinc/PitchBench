@@ -42,10 +42,10 @@ def test_publication_rejects_incomplete_or_corrupted_plot_data(corruption):
         publication.check_aggregate(rows, ('midi', 'spn'), range(48, 73))
 
 
-def test_pyramid_fonts_are_available_without_system_font_installation():
+def test_figure1_fonts_are_available_without_system_font_installation():
     from matplotlib.ft2font import FT2Font
-    from pitchbench.analysis import pyramid
+    from pitchbench.analysis import publication
 
-    fonts = Path(pyramid.__file__).with_name('fonts')
+    fonts = Path(publication.__file__).with_name('fonts')
     for weight in ('Regular', 'ExtraBold'):
         assert FT2Font(str(fonts / f'HankenGrotesk-{weight}.ttf')).family_name == 'Hanken Grotesk'
