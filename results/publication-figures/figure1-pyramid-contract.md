@@ -6,4 +6,4 @@ Keep pyramid geometry unchanged; extend the canvas right to 5.75 × 2.9 inches. 
 
 Use the established Python backend, editable PDF/SVG and 600-dpi PNG. Check all 28 task IDs, equal A label typography, clipping, actual-polygon clearance and the compiled manuscript. Single-canvas panel alignment is not applicable.
 
-Use Hanken Grotesk Regular (400) and SemiBold (600), matching vaclis.net. Bundle licensed fonts for reproducibility and embed them in the PDF; retain equal Regular A1/A2/A3 labels.
+Use Hanken Grotesk Regular (400) and Bold (700), using the vaclis.net family with stronger emphasis as requested. Bundle licensed fonts for reproducibility and embed them in the PDF; retain equal Regular A1/A2/A3 labels.
