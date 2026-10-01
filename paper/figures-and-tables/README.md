@@ -132,4 +132,7 @@ and pushed commit.
 its denominators differ from Table 1. Its numeric inputs are under
 `paper/analysis/`. `figure2_*` files show A1 predicted pitch and bootstrap
 intervals in MIDI/SPN/Hz. These are diagnostic plots, not alternative overall
-benchmark scores. Table 1 is the only model-by-task score table.
+benchmark scores. Figure 3 shows per-pitch results; Figure 4 shows notation
+comparisons, and Figure X shows instrument comparisons. Their companion
+`accuracies_by_*` CSVs contain the plotted diagnostic aggregates. Table 1 and
+its verified evidence bundle define the current 28-task benchmark scores.
