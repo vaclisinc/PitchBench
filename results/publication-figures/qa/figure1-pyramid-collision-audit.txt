@@ -1,11 +1,11 @@
 Nature Figure Rendered Collision Audit
-pdf: ../../outputs/pitchbench-paper/pyramid-bold-20261001/figure1_pitch_pyramid.pdf
+pdf: ../../outputs/pitchbench-paper/pyramid-readable-20261001/figure1_pitch_pyramid.pdf
 pages: 1
-visible text boxes: 86
+visible text boxes: 64
 stroke paths: 17
 
 [WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'Sequence'
-  text bbox: (247.61968994140625, 144.73760986328125, 271.3059997558594, 150.1376190185547)
+  text bbox: (245.63531494140625, 144.36056518554688, 273.25244140625, 150.66055297851562)
 
 summary: 0 fail, 1 warn, 15 contained fill overlays, 0 contained image overlays
 verdict: REVIEW REQUIRED

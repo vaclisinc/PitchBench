@@ -12,19 +12,21 @@
   ],
   "legend_boxes_checked": 68,
   "legend_polygon_clearance_pt": 2.5,
-  "figure_width_inches": 5.75,
+  "figure_width_inches": 5.916666666666667,
   "figure_height_inches": 2.9,
   "manuscript_width_inches": 5.5,
-  "manuscript_height_inches": 2.773913043478261,
-  "minimum_manuscript_glyph_pt": 5.069565399833348,
+  "manuscript_height_inches": 2.695774647887324,
+  "minimum_manuscript_glyph_pt": 5.670437812805176,
   "A_labels_equal_font_size_and_weight": true,
   "apex_label": "F",
   "total_pdf_pages": 14,
   "figure1_page": 4,
   "collision_review": "One generic fill-box warning: Sequence is fully inside its own wedge; its bounding box intersects a neighbouring wedge bounding rectangle only. Actual polygons checked. No failures.",
   "fonts": [
-    "HankenGrotesk-Bold",
+    "HankenGrotesk-ExtraBold",
     "HankenGrotesk-Regular"
   ],
-  "all_text_uses_Hanken_Grotesk": true
+  "all_text_uses_Hanken_Grotesk": true,
+  "manuscript_task_description_pt": 6.135211267605634,
+  "task_text_increase_percent": 14.537223340040239
 }
