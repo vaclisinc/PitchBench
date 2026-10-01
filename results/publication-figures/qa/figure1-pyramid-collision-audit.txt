@@ -1,20 +1,12 @@
 Nature Figure Rendered Collision Audit
-pdf: ${VACLAB_ROOT}/outputs/pitchbench-paper/pyramid-refinement-20261001/figure1_pitch_pyramid.pdf
+pdf: ../../outputs/pitchbench-paper/pyramid-labels-20261001/figure1_pitch_pyramid.pdf
 pages: 1
-visible text boxes: 79
+visible text boxes: 78
 stroke paths: 17
 
 [WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'Sequence'
   text bbox: (246.14312744140625, 144.09664916992188, 272.79046630859375, 149.49664306640625)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'D5Rank pitches'
-  text bbox: (325.0, 45.78910446166992, 374.0546569824219, 51.38910675048828)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'D6Signed interval'
-  text bbox: (325.0, 52.98911666870117, 380.31182861328125, 58.58911895751953)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'D7Reference pitch'
-  text bbox: (325.0, 60.18911361694336, 381.8921203613281, 65.78911590576172)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'D8All pitches in order'
-  text bbox: (325.0, 67.38911437988281, 390.6017150878906, 72.9891128540039)
 
-summary: 0 fail, 5 warn, 23 contained fill overlays, 0 contained image overlays
+summary: 0 fail, 1 warn, 15 contained fill overlays, 0 contained image overlays
 verdict: REVIEW REQUIRED
 note: contained overlays can be intentional; WARN findings need final-size visual review

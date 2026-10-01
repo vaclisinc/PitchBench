@@ -14,7 +14,7 @@ backend: python
 [WARN] EXPORT-RASTER: PNG preview is present but no TIFF submission raster was found
 [PASS] RASTER-DPI: A raster export of at least 600 dpi is configured
   - 600
-[WARN] FINAL-WIDTH: Detected width 139.7 mm is not near the common 89/183 mm defaults; verify the target journal
+[WARN] FINAL-WIDTH: No static final width detected; verify the target journal's current specification
 [PASS] DATA-SAMPLING: No high-confidence row-sampling operation detected
 [PASS] DATA-EXCLUSION: No high-confidence missing-data exclusion detected
 [PASS] DEMO-DATA: No obvious simulated-data generator detected
