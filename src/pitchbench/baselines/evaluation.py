@@ -81,31 +81,33 @@ def _formal_preflight() -> dict[str, str]:
     status = _git("status", "--porcelain")
     if status:
         raise RuntimeError(
-            "Formal evaluation requires a clean PitchBench tree. Commit and push first.\n"
+            "Formal evaluation requires a clean PitchBench tree. Commit changes first.\n"
             + status
         )
     branch = _git("branch", "--show-current")
-    if not branch:
-        run_dir = os.environ.get("VACLAB_RUN_DIR")
-        receipt_path = Path(run_dir) / "run.json" if run_dir else None
-        if receipt_path is None or not receipt_path.is_file():
-            raise RuntimeError("Detached evaluation requires a commit-pinned queue receipt")
+    head = _git("rev-parse", "HEAD")
+    run_dir = os.environ.get("VACLAB_RUN_DIR")
+    if run_dir:
+        # Keep workspace queue checks local to queue execution. Public callers
+        # may reproduce a clean tag/commit without a queue or remote tracking.
+        receipt_path = Path(run_dir) / "run.json"
+        if not receipt_path.is_file():
+            raise RuntimeError("VacLab evaluation requires a queue receipt")
         receipt = json.loads(receipt_path.read_text())
-        head = _git("rev-parse", "HEAD")
-        if not receipt.get("snapshot") or receipt.get("git_commit") != head:
+        if not branch and not receipt.get("snapshot"):
+            raise RuntimeError("Detached VacLab evaluation requires a snapshot receipt")
+        if receipt.get("git_commit") != head:
             raise RuntimeError("Queue receipt does not match the evaluation snapshot")
         upstream = _git("branch", "-r", "--contains", head).strip()
         if not upstream:
             raise RuntimeError("Evaluation snapshot has not been pushed")
-        return {"branch": "detached-queue-snapshot", "commit": head, "upstream": upstream}
-    upstream = _git("rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}")
-    head = _git("rev-parse", "HEAD")
-    upstream_head = _git("rev-parse", upstream)
-    if head != upstream_head:
-        raise RuntimeError(
-            f"Formal evaluation commit is not pushed: HEAD={head}, {upstream}={upstream_head}"
-        )
-    return {"branch": branch, "commit": head, "upstream": upstream}
+        return {
+            "branch": branch or "detached-queue-snapshot",
+            "commit": head,
+            "upstream": upstream,
+            "execution": "vaclab-queue",
+        }
+    return {"branch": branch or "detached", "commit": head, "execution": "standalone"}
 
 
 def _prepare_runtime(config: dict[str, Any]) -> tuple[Path, Path]:
@@ -412,6 +414,28 @@ def _environment(
     return env
 
 
+def _runtime_packages(config: dict[str, Any]) -> dict[str, str]:
+    runtime = config["runtime"]
+    requirements = runtime.get("requirements_file")
+    if requirements is None:
+        # Historical resolved configs retain their inline version record.
+        return runtime["packages"]
+    if "packages" in runtime:
+        raise ValueError("Use requirements_file or packages, not both")
+    packages = {}
+    for line in (REPO_ROOT / requirements).read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, separator, version = line.partition("==")
+        if not separator or not name or not version or name in packages:
+            raise ValueError(f"Expected a unique exact package pin: {line}")
+        packages[name] = version
+    if not packages:
+        raise ValueError("Baseline requirements must not be empty")
+    return packages
+
+
 def _validate_runtime_environment(config: dict[str, Any]) -> None:
     expected_python = str(config["runtime"]["python"])
     actual_python = ".".join(str(part) for part in sys.version_info[:3])
@@ -420,7 +444,7 @@ def _validate_runtime_environment(config: dict[str, Any]) -> None:
             f"Expected Python {expected_python}, running {actual_python}"
         )
     mismatches: list[str] = []
-    for package, expected in config["runtime"]["packages"].items():
+    for package, expected in _runtime_packages(config).items():
         try:
             actual = importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:
@@ -649,6 +673,11 @@ def parse_args() -> argparse.Namespace:
         default="all",
     )
     parser.add_argument(
+        "--check-environment",
+        action="store_true",
+        help="Check pinned Python/packages and load the ONNX model; no data or inference.",
+    )
+    parser.add_argument(
         "--skip-formal-preflight",
         action="store_true",
         help="Allowed only for local smoke testing; never use for the formal run.",
@@ -660,6 +689,22 @@ def main() -> None:
     args = parse_args()
     config_path = args.config.resolve()
     config = _load_config(config_path)
+    if args.check_environment:
+        _validate_runtime_environment(config)
+        if "basic_pitch" in config["baselines"]:
+            from basic_pitch import ICASSP_2022_MODEL_PATH
+            from basic_pitch.inference import Model
+
+            path = Path(ICASSP_2022_MODEL_PATH)
+            if path.suffix != ".onnx":
+                raise RuntimeError(f"Expected the ONNX-only environment, got {path}")
+            Model(path)
+            print(
+                "Basic Pitch ONNX SHA-256:",
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+            )
+        print("Baseline environment verified; no inference performed.")
+        return
     started_at = datetime.now(UTC).isoformat()
     if args.skip_formal_preflight:
         preflight = {

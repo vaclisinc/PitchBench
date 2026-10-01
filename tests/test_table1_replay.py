@@ -130,8 +130,49 @@ def test_unrequested_format_makes_no_model_call(monkeypatch):
 
 def test_compressed_baseline_evidence_preserves_raw_answers(tmp_path):
     import gzip
-    payload = {'metadata': {'model_name': 'baseline/dsp'},
-               'results': [{'raw_midi': '60 64', 'raw_hz': '261.6 329.6'}]}
-    path = tmp_path / 'results_dsp.json.gz'
+
+    payload = {
+        "metadata": {"model_name": "baseline/dsp"},
+        "results": [{"raw_midi": "60 64", "raw_hz": "261.6 329.6"}],
+    }
+    path = tmp_path / "results_dsp.json.gz"
     path.write_bytes(gzip.compress(json.dumps(payload).encode(), mtime=0))
     assert replay.read_results(path) == payload
+
+
+def test_legacy_command_uses_canonical_replay(audit_fixture, monkeypatch):
+    """The old entrypoint must not combine new F1 with a stale overall table."""
+    import sys
+    from pitchbench.experiments import rescore_sequences
+
+    root, dataset, _, _ = audit_fixture
+    out = root / "legacy-command"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "rescore_sequences",
+            "--repo-root",
+            str(root),
+            "--dataset-dir",
+            str(dataset),
+            "--output-dir",
+            str(out),
+        ],
+    )
+    rescore_sequences.main()
+    assert pd.read_csv(out / "overall.csv").iloc[0]["score"] == 0
+    assert pd.read_csv(out / "metrics.csv").iloc[0]["task"] == "D4"
+    assert not (out / "scores_by_model_experiment.csv").exists()
+
+
+def test_legacy_command_requires_verified_dataset(tmp_path, monkeypatch):
+    import sys
+    from pitchbench.experiments import rescore_sequences
+
+    out = tmp_path / "out"
+    monkeypatch.setattr(sys, "argv", ["rescore_sequences", "--output-dir", str(out)])
+    with pytest.raises(SystemExit) as error:
+        rescore_sequences.main()
+    assert error.value.code == 2
+    assert not out.exists()

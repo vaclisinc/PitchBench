@@ -1,5 +1,10 @@
 # D8 DSP and Basic Pitch reproduction
 
+Historical audit evidence. For the final paper scores and current replay command,
+use [the complete Table 1 bundle](../table1-recomputed/README.md). To reproduce
+this historical bundle specifically, check out the commit recorded in its run
+receipt; its old command is not the current paper evaluation workflow.
+
 Reran the original two rebuttal baselines on all **171 official D8 stimuli** (342 model/stimulus records), using dataset revision `f6c672608057cb877bfaacaeeff9bfb49eef7778`, seed 42, Python 3.11.15 and the pinned acoustic parameters.
 
 | Baseline | Original displayed exact match | Rerun exact match | Ordered Note F1 (LCS) |
