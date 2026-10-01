@@ -91,3 +91,22 @@ class TestResolveExperiments:
     def test_case_insensitive(self, fake_discover):
         result = _resolve_experiments(["A1"])
         assert result == ["pitchbench_a1_single_pitch_id"]
+
+
+def test_paper_selector_is_exactly_the_28_table_tasks():
+    from pitchbench.analysis.table1 import TASKS
+    from pitchbench.experiments.run import _resolve_experiments
+    names = _resolve_experiments(['paper'])
+    assert [name.split('_')[1] for name in names] == [task.lower() for task in TASKS]
+    assert len(names) == 28
+
+
+def test_paper_evaluation_rejects_missing_task_instead_of_partial_overall(tmp_path, monkeypatch):
+    from argparse import Namespace
+    import pitchbench.experiments.run as run
+    monkeypatch.setattr(run.config, '_PROJECT_ROOT', tmp_path)
+    monkeypatch.setattr(run, '_evaluate_one', lambda name, *a, **k: None if '_b3_' in name else {})
+    args = Namespace(experiments=['paper'], model='test', name=None,
+                     run_name='test', sample_n=1, sample_seed=42)
+    with pytest.raises(SystemExit, match='incomplete.*pitchbench_b3'):
+        run.cmd_evaluate(args)

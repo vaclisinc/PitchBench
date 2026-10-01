@@ -6,10 +6,13 @@ Extracts MIDI accuracy data from all a1 experiments in a directory,
 aggregates by MIDI pitch and model, and creates a visualization.
 
 Usage:
-    python analyze_a1.py results/eval
+    python -m pitchbench.analysis.a1 results/eval
 """
 
+import argparse
 import csv
+import gzip
+import json
 import math
 import sys
 from collections import defaultdict
@@ -34,7 +37,10 @@ def extract_a1_data(directory):
     """
     data = {fmt: defaultdict(lambda: defaultdict(list)) for fmt in FORMATS}
 
-    for csv_file in Path(directory).rglob('results_*.csv'):
+    candidates = sorted(Path(directory).rglob('results_*.csv'))
+    candidates += [path for path in sorted(Path(directory).rglob('results_*.json.gz'))
+                   if not path.with_suffix('').with_suffix('.csv').exists()]
+    for csv_file in candidates:
         csv_path = csv_file.as_posix()
 
         # Prefer model-first layout: results/eval/<model_bucket>/pitchbench_a1_single_pitch_id/.../accuracies_<model>.csv
@@ -42,10 +48,11 @@ def extract_a1_data(directory):
         is_a1_path = '/pitchbench_a1_single_pitch_id/' in csv_path
 
         # Extract model name from filename
-        model = csv_file.stem.replace('accuracies_', '').replace('results_', '')
+        model = csv_file.name.split('.')[0].removeprefix('results_')
 
-        with open(csv_file) as f:
-            reader = csv.DictReader(f)
+        opener = gzip.open if csv_file.suffix == '.gz' else open
+        with opener(csv_file, 'rt') as f:
+            reader = json.load(f)['results'] if csv_file.suffix == '.gz' else csv.DictReader(f)
             for row in reader:
                 exp = row.get('experiment', '')
 
@@ -452,10 +459,11 @@ def save_l1_csv(l1_scores, stats, output_file='analyze_a1_l1.csv'):
 
 
 def main():
-    if len(sys.argv) > 1:
-        directory = sys.argv[1]
-    else:
-        directory = 'results/eval'
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('directory', nargs='?', type=Path, default=Path('paper/evaluation'))
+    parser.add_argument('--output-dir', type=Path, default=Path('results/a1'))
+    args = parser.parse_args()
+    directory = args.directory
 
     data_dir = Path(directory)
     if not data_dir.exists():
@@ -484,8 +492,7 @@ def main():
         for model in sorted(l1_scores[fmt].keys()):
             print(f"    {model}: {l1_scores[fmt][model]:.6f}")
 
-    repo_root = Path(__file__).resolve().parent.parent
-    out_dir = repo_root / "paper" / datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_dir = args.output_dir
     out_dir.mkdir(parents=True, exist_ok=True)
 
     save_summary_csv(stats, str(out_dir / 'analyze_a1.csv'))

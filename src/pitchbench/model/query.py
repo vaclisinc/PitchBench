@@ -65,6 +65,7 @@ def _get_openai_client(base_url: str, api_key: str, extra_headers: dict | None =
 
 OPENROUTER_PREFIX  = "openrouter/"
 DASHSCOPE_PREFIX   = "dashscope/"
+BASELINE_PREFIX    = "baseline/"
 MANUAL_MODEL_NAME  = "manual"
 _OPENROUTER_MIN_WAV_MS = 100
 _DASHSCOPE_MIN_WAV_MS  = 250
@@ -229,6 +230,10 @@ def model_slug(info: dict | str) -> str:
 
 def get_model_info(model_name: str) -> dict:
     """Return /health for local models, or a synthetic info dict for OpenRouter / manual."""
+    if model_name.startswith(BASELINE_PREFIX):
+        from pitchbench.baselines import baseline_model_info
+
+        return baseline_model_info(model_name)
     if model_name == MANUAL_MODEL_NAME:
         return {
             "model":    MANUAL_MODEL_NAME,
@@ -779,9 +784,12 @@ def query_alm(
     is_manual     = model_name == MANUAL_MODEL_NAME
     is_openrouter = model_name.startswith(OPENROUTER_PREFIX)
     is_dashscope  = model_name.startswith(DASHSCOPE_PREFIX)
+    is_baseline   = model_name.startswith(BASELINE_PREFIX)
     info          = get_model_info(model_name)
 
-    if is_manual:
+    if is_baseline:
+        endpoint = "offline_baseline"
+    elif is_manual:
         endpoint = "manual"
     elif is_openrouter:
         endpoint = "openrouter"
@@ -810,7 +818,15 @@ def query_alm(
             model_params["upload_audio_min_duration_ms"] = upload_audio["min_duration_ms"]
 
     start = time.time()
-    if is_manual:
+    if is_baseline:
+        if mode != "text":
+            raise NotImplementedError(
+                f"Baseline mode supports mode='text' only, got mode={mode!r}."
+            )
+        from pitchbench.baselines import query_baseline
+
+        result = query_baseline(model_name, audio_path, prompt)
+    elif is_manual:
         if mode != "text":
             raise NotImplementedError(
                 f"Manual mode supports mode='text' only, got mode={mode!r}."
@@ -1199,11 +1215,12 @@ def query_four_formats(
     """Query the model with the four standard pitch-naming formats.
 
     Returns four ``query_alm`` result dicts in order: (MIDI, SPN, Doremi, Hz).
+    An empty prompt leaves that format unqueried and returns an empty response.
     """
-    r_midi   = query_alm(model_name, audio_path, prompt_midi)
-    r_spn    = query_alm(model_name, audio_path, prompt_spn)
-    r_doremi = query_alm(model_name, audio_path, prompt_doremi)
-    r_hz     = query_alm(model_name, audio_path, prompt_hz)
+    r_midi, r_spn, r_doremi, r_hz = (
+        query_alm(model_name, audio_path, prompt) if prompt else {"result": ""}
+        for prompt in (prompt_midi, prompt_spn, prompt_doremi, prompt_hz)
+    )
     if verbose:
         fname = Path(str(audio_path)).name
         print(f"      [{fname}]")
@@ -1241,5 +1258,3 @@ def query_three_formats(
         print(f"        doremi → {s_doremi.strip()!r}")
         _print_running_cost(model_name)
     return s_midi, s_spn, s_doremi
-
-

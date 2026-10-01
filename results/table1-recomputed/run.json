@@ -1,0 +1,1772 @@
+{
+  "run_id": "table1-recomputed",
+  "project": "pitchbench",
+  "status": "succeeded",
+  "complete_table": true,
+  "git_commit": "72211f9139a7b4a03f89e9e92879f1ee47472e1f",
+  "command": [
+    "python",
+    "-m",
+    "pitchbench.analysis.replay",
+    "--dataset-dir",
+    "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778",
+    "--output-dir",
+    "/tmp/pitchbench-minimal-clean-review",
+    "--baseline-input",
+    "results/table1-recomputed/baselines"
+  ],
+  "output_path": "/tmp/pitchbench-minimal-clean-review",
+  "dataset_ids": [
+    "pitchbench-authors/PitchBench@f6c672608057cb877bfaacaeeff9bfb49eef7778"
+  ],
+  "new_model_queries": 0,
+  "optional_llm_parsing": "disabled explicitly by PITCHBENCH_OFFLINE_SCORING",
+  "pitch_formats": [
+    "midi",
+    "spn",
+    "hz"
+  ],
+  "aggregation": "Per-item max(MIDI, SPN, Hz), mean over saved items, then equal mean over 28 tasks. Solfege excluded.",
+  "metric": "D8/F1/F2 Ordered Note F1 (LCS); all others accuracy",
+  "hz_tolerance": {
+    "D8": "1 Hz",
+    "F1/F2 and single pitch": "1%",
+    "C4": "nearest MIDI"
+  },
+  "python": "3.12.7",
+  "scoring_files": [
+    {
+      "path": "analysis/replay.py",
+      "sha256": "ab04ebe2a397f82d97fcc6a3f1073c61d2210febef56812430e20a2725444c5d"
+    },
+    {
+      "path": "baselines/evaluation.py",
+      "sha256": "953ff5443a19fbe806e9a9ee31288a44e2a414dd483ad52cef879c9705903403"
+    },
+    {
+      "path": "experiments/helpers/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "experiments/helpers/audit.py",
+      "sha256": "7d79ed338296594a163b539fcb4da8cd24207570613ca2adb94cf9f6fe23e0aa"
+    },
+    {
+      "path": "experiments/helpers/cat_a.py",
+      "sha256": "2859070ac0cfa589c07b2c20d39ac0b748a1b021bcb9e6717d61ed2fb7c4af59"
+    },
+    {
+      "path": "experiments/helpers/cat_b.py",
+      "sha256": "48d67c03157091a53df654a062a1e92afa15a03135d93d36b180b2d6b8a5fbb8"
+    },
+    {
+      "path": "experiments/helpers/cat_c.py",
+      "sha256": "ba622b6016c2b9c4d5fd70777c55ab5454cc7385f56ecbc40cb39c6af53bdf24"
+    },
+    {
+      "path": "experiments/helpers/cat_d.py",
+      "sha256": "a6690777b43386011d842c747a195f02f9a05c16694f1c241e7639ec51feda71"
+    },
+    {
+      "path": "experiments/helpers/cat_e.py",
+      "sha256": "7e3ac459211b7ce87bfe0645e8ece785f9f35ca561953647ab2a5ed89768e506"
+    },
+    {
+      "path": "experiments/helpers/cat_f.py",
+      "sha256": "a66b958895d24ec92d3f813048e8b55775a5ee88a0eea10b16908a4df1a758e0"
+    },
+    {
+      "path": "experiments/helpers/data.py",
+      "sha256": "699046cd4803a1c65f34ae9cc0a5b932bafdaedea158156c7f4d6c843a8c3c73"
+    },
+    {
+      "path": "experiments/helpers/music.py",
+      "sha256": "f11927fd0684786505d4b67b58c8e2dbaecb144ff9a90624e2d57012b99569a3"
+    },
+    {
+      "path": "experiments/helpers/ordered_notes.py",
+      "sha256": "4c1b31522d5d7bf08d565877c792a89d6554aa8142fbd34ba91432d39cc08f48"
+    },
+    {
+      "path": "experiments/helpers/plots.py",
+      "sha256": "3412851298b8f3d8ad68fe3833b012af7214c91d55ad0ee5634d1d1a1e62b6de"
+    },
+    {
+      "path": "experiments/helpers/results.py",
+      "sha256": "afeb60eaaa11eee2f03dc8999f6b0bce8ff996263de6f7a1d3fe63c96b1c8a50"
+    },
+    {
+      "path": "experiments/helpers/sampling.py",
+      "sha256": "45017fc039d6151cea6af27e31eafe9156e0311d7a1b2bdba0cc309971484c52"
+    },
+    {
+      "path": "experiments/helpers/setup.py",
+      "sha256": "66a1607870be701028cf2d17d300d4ef656e1adab29db68ae8e0d746c859930f"
+    },
+    {
+      "path": "experiments/helpers/timing_layout.py",
+      "sha256": "c5bed1812cbe414975141d9a71caaa6b19461efdade25e6f10be0fd310d593ea"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_a1_single_pitch_id.py",
+      "sha256": "c0685ac0508879bed6f983098c0c6fba804a7cd4e85a3f2e456dcf665c341f65"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_a2_single_pitch_by_loudness.py",
+      "sha256": "ee58f763a2d885a1b4b7b0f1bad253d390c329addf2c0bd2333d8afc3c8fed88"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_a3_single_pitch_by_duration.py",
+      "sha256": "e1014b2afbd9583e75b61163067ed4782f8cd918723ff53662fc626d4895717e"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_b1_single_pitch_within_silence.py",
+      "sha256": "b3e904025bfefc616a13fcaa7faa48eb82fccb46665efa3573e95a760a53cafb"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_b2_pitch_at_timestamp.py",
+      "sha256": "332b93805d4e5fc23daf466bfd8252aab91a355f0070f648f27950035b4e663d"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_b3_timestamp_single_pitch.py",
+      "sha256": "a8097444bf409b75320b491b43749cf14051fb018d419c6b274855ef4ddd0bb2"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_b4_timestamp_specific_pitch.py",
+      "sha256": "cead8a1b9f86a18300e0736dc9ce838e995bf9d496f9953eed1dbe166a3478de"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_b5_timestamp_multiple_pitches.py",
+      "sha256": "6a1e853cd306362c9da9f7b872b79e9eb68387561a75fdda1ccd88640cb368c2"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_c1_chord_count_pitches.py",
+      "sha256": "fb716acc17e1bd0cab6899508fc6bf3cab0891d69663e3a24dff884c830b1b67"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_c2_chord_dyad_interval.py",
+      "sha256": "ca913fb09e10401c47f4135356a6271af1b6ef245cd4692c5ebb92561b0736a4"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_c3_chord_quality.py",
+      "sha256": "a889fc33270d7b40b41970e6a1531a87d6fdd4c92dd892c326f6b32a8d6d8507"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_c4_chord_pitches.py",
+      "sha256": "b7f6229da3565357d3b50a37574735543455c2b0109e064a7bca6b5869dc4385"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d1_sequence_count_pitches.py",
+      "sha256": "6cb731b5e76d46afe1524b0b8e7c85d4355fae2b0ea529f3c2a9c79fa6bf5558"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d2_dyad_lower_higher_difference.py",
+      "sha256": "e6b656f808910916ca08f7eff0af1392d5ed9a79c0be3a3829ef938519bf62a0"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d3_contour_discrete.py",
+      "sha256": "2f56c6cb83a6f11a6ba7bcf1128685268162ae77d525600ac341925293f04e32"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d4_contour_continuous.py",
+      "sha256": "0a99302628eb41ba7e5bb624c2d216db09d62a98e30c8690ecc5e069ee8f2306"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d5_sequence_ranking_by_pitch.py",
+      "sha256": "5ab53e8c84fd82f753d88cf1f5a73f53652370cc47741bd0ac79c61e5035aa3b"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d6_sequence_dyad_interval.py",
+      "sha256": "50ffe70194de3abc83e2d760d212a23acb038f00e744a936e7a7380e7e7953a6"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d7a_pitch_with_reference.py",
+      "sha256": "fb4d20b96244118c788d226fe7ef249eb1541515379c99f18c1ad4dda2ac417f"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d7b_pitch_with_reference_split.py",
+      "sha256": "afc5bda147e3aabf3057fa96d14c539eda0fdfba97a58ca4297f04678a9aa6e3"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d7c_pitch_with_reference.py",
+      "sha256": "15a18f25676085e954f8f7e3e66371d5b06e6f237205c357e54b8f9e1cd6ef9e"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d7d_pitch_with_reference_split.py",
+      "sha256": "7b84326fc29f940103b1e40fc380a0570cef4996c1af7f104f90b68520f86849"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_d8_sequence_pitches.py",
+      "sha256": "08a5a780d990e40b6134683ee8a3068ac5fa04cc624d460a970758292d158a05"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_e1_audio_effects.py",
+      "sha256": "01440787d2025337da16796f5c22b49e8657d1bb48e3413bb6e3797485a07a13"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_e2_background.py",
+      "sha256": "7e29777dd2d374f8335f6ce3e3afa6c38c5c6082d997ce9d8481ca1e9880ebbf"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_e3_harmonic_saturation.py",
+      "sha256": "6d73020692775a15c6a1beefcc3fb26d087227929942bc8cfec50bed1f9aa8d1"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_e4_time_stretching.py",
+      "sha256": "c0ba8766bc24cb8c85056deb62caf648645355e0a160c62847de3ffea2d73df8"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_e5_vibrato.py",
+      "sha256": "f9532be5ae55cba31a639f7406577f70f226dba068fc2cb3314a0b7c4265199d"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_e6_slightly_off.py",
+      "sha256": "c050028179d2ed58b466c8e3b244c35a4dc26fe6884ca39fe30a7a6edc0b6538"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_f1_melodic_line_atonal.py",
+      "sha256": "247ad2241ed435ba930485279230dc807aa245c6ab879b60d0d366d6f65dc1cd"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_f2_melodic_line_tonal.py",
+      "sha256": "7a4c206a3e01b9252e78c4fb187bddbbab0cef70b3ff682975ff4e85473d0d50"
+    },
+    {
+      "path": "experiments/scripts/pitchbench_y1_single_pitch_id_mcq.py",
+      "sha256": "0a54c310681762745f6375c2b0badfde2a17b08c82f93578589ab9b051d7e486"
+    }
+  ],
+  "primary_score_mismatches": 0,
+  "sources": [
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "A1",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a1_single_pitch_id/run_001_20260506_071008/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "e3f27b3113498741fce1b0c37306fbca3574a256c39ff9281ab4aaa6f5ae4498"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "A1",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a1_single_pitch_id/run_001_20260506_055002/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "e5952963d35013220913f3b04402bffb4b6dfed26f0118c6f5fec0be2033f983"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "A1",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a1_single_pitch_id/run_001_20260506_191031/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a99e3594b597d301e428f953bb32eae8ea099526e8143f444ddbe1a96bc6fa52"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "A1",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a1_single_pitch_id/run_001_20260506_071123/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "751f4024ef216775f633cc79912046106d49659740c54da8a0f43e873570eb07"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "A1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a1_single_pitch_id/run_001_20260506_185726/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "368a76f85145b38aa57af3a817dfb98619a814b0c03095762c0a8596030cf7b5"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "A1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a1_single_pitch_id/run_001_20260506_185708/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "a25dec22174b11a554bf0e5a7179a5e6076caa99d6fb72da2c0aadc1861bafdc"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "A1",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_a1_single_pitch_id/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "63810f17b60e1ed43ef68b37b3d6b199ea272be3ea64a9d2457227b9abaa6077"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "A1",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_a1_single_pitch_id/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "b7c34f991a696bd56e2c4e3a6d14bff491dd81a1b01ff2d3a2e53998e98ee632"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "A2",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_072015/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "57debd0e3b9118656b7e5693cff22539283e08d95ea7077c67d5ea3f9ff67117"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "A2",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_060854/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "7f27f3fccd81e167ba2ccee836d779cc410b79da528310ad434dd459bd117a95"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "A2",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_191755/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "991aeb233ad18d31b6a62bedde181ee4e9fe5c96b29c6c70cfe593b06cedf372"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "A2",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_071509/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "37f57ef74a5fe271e04ccad819382dfa6721d9ce5883f84b417f668155db8fbc"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "A2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_201454/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "67afa901f494c5fcb764cb4e43ca3b5ea9d052d560bfc7c184faeadc28d2b9c5"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "A2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_201428/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "771a7b3b6ab8e3fbda5c4700f8d84986c53a298f4a2a8b50c615bb4655e37853"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "A2",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_a2_single_pitch_by_loudness/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "1135cc9892139dfd5feaa50314915843d12995a266130d717f4dd74ed60274d9"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "A2",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_a2_single_pitch_by_loudness/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "356e0f5021b136cdff463fdc0b932718955e243e1f8e1f0caa26802a4d000774"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "A3",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a3_single_pitch_by_duration/run_001_20260506_072158/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "8ca4853607ebc49975acdc1c77216326113527c8d669adefa9dd1d5b52acfda4"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "A3",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a3_single_pitch_by_duration/run_001_20260506_061242/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "24871949084e0f1594be942f0a2e063711f8a7e5920269569a56f2e6923efe6e"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "A3",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a3_single_pitch_by_duration/run_001_20260506_191929/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "4e3df37bef69c0c8f3d9c7d2f7caa5612b259894fb9a1839025e451f88c06390"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "A3",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a3_single_pitch_by_duration/run_001_20260506_074614/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "9f394549a5a9309c3be8c166bab29d2548980aea6d8ed5688b1bbd6894e82494"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "A3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a3_single_pitch_by_duration/run_001_20260507_002116/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "19eae25558acedb01efe9ec041924def8f2418c6d86accce259dba4d221a9fca"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "A3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a3_single_pitch_by_duration/run_001_20260507_001512/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "4aed3e5624fe7f42726a710212733ff8318d11629295271019b63ca81437d9f1"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "A3",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_a3_single_pitch_by_duration/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "2d4d35a31f98f658eb1857d2cac0dadccc779c6f0a0e1ea7489b796dbe3b4428"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "A3",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_a3_single_pitch_by_duration/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "6b45ee8b67ec20473944aab1174ad48b40b8e6d0bcaf397be598bf117b76d9ec"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "B1",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b1_single_pitch_within_silence/run_001_20260506_072402/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "87a21ea01945b592ce3c8975eb8563d7d898e084955393b1ed530019a6c77c75"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "B1",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b1_single_pitch_within_silence/run_001_20260506_061628/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "12e1eff3139c316b9d7e2dadd0f3a6604cc1d6b06137132094ede58a69deeaa9"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "B1",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b1_single_pitch_within_silence/run_001_20260506_192050/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "46b59d436062f641725f66ddc653eb120f214502dcdf34e87d6c5550493e5f2a"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "B1",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b1_single_pitch_within_silence/run_001_20260506_071637/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "0d37af4252715beb3e95869f778e4227f9875d422e0596b1200be1a88fc8d5d5"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "B1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b1_single_pitch_within_silence/run_001_20260506_204109/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "4416da501c3dec96655e083b850933539bf0c3eebf9e723cdc67dfb42988e9c7"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "B1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b1_single_pitch_within_silence/run_001_20260506_204104/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "f5f0ec125990cae284e55c2fdb844ac11bc85699227f06ba2c320693d6958c47"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "B1",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_b1_single_pitch_within_silence/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "ba31d1ef5c89c6a066e3efc2f693fccdc9ed861797603c72570f3116ebd4c18f"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "B1",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_b1_single_pitch_within_silence/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "a136f1946c9c1faf8db8b39b7fb8f15e2aa670eb0dd29f670ca57cb8127c22f8"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "B2",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b2_pitch_at_timestamp/run_001_20260506_072703/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "40571e5c331756bce3179b306c3fdc77d93f2178af8b786c193193ee961d3166"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "B2",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b2_pitch_at_timestamp/run_001_20260506_061930/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "97c796683f61a303528b6a365aca969d7cefb1fe2d7152c5272d3bfabad578be"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "B2",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b2_pitch_at_timestamp/run_001_20260506_192251/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "7c338a88f43d2bd93a173ba14de4b4a46f103e2e7acaba352097fcd331b88702"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "B2",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b2_pitch_at_timestamp/run_001_20260506_071738/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "5a56006c2953f239f38a36c8cd3c104e196a86ffb0911b4abfda6ad2b636c5ab"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "B2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b2_pitch_at_timestamp/run_001_20260506_205325/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "6412ea042331aea499995eeff791659a93d4436fc2ee94f6a907711a07e29b29"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "B2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b2_pitch_at_timestamp/run_001_20260506_205252/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "85a815bce617174dfb68464919e2d88feea9fd157122f609e033241e68dc405b"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "B2",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_b2_pitch_at_timestamp/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "8ead52eee7abd81163ac959448c259a01c5ca786454da342a3fabd0702b45b41"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "B2",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_b2_pitch_at_timestamp/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "fa0d0d748fc625ab41904f4f0821a6b61532a38f81006ceee62c5a33712da472"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "B3",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b3_timestamp_single_pitch/run_001_20260506_072954/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "73842cb90800d1cdfb1cf8818aee7354a4698e364843f6da813d0a5958b8cd9b"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "B3",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b3_timestamp_single_pitch/run_001_20260506_062224/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "63a67361d8ac9f5165cf98451a58f9c6d57e467a38d95f4ed4d87ab4b7100eb0"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "B3",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b3_timestamp_single_pitch/run_001_20260506_192358/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "3f7f9cf8e4b3df6ab4c46c74db3da761ffc80463a8d2c3caa8f99daf5d385dc2"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "B3",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b3_timestamp_single_pitch/run_001_20260506_071834/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "be5e96ef079f655402e2e8b5abfd4c695581982977c15a89eb22be91c50a7ae9"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "B3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b3_timestamp_single_pitch/run_001_20260506_211013/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "150738f5079c0c7b0df77cce330fece8d31aee731233d2b11cb1133bd1922f40"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "B3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b3_timestamp_single_pitch/run_001_20260506_211045/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "b7263735ffc6a79306c6af6e68cff4a7898890f5e32ffdb5983d55937ae245a8"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "B3",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_b3_timestamp_single_pitch/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "b59d1265c118a6b53493f4c54d6ea7b717af2c4d3ca7e81aca069c4721817839"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "B3",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_b3_timestamp_single_pitch/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "56dd2a91a020e2351f154eec3ac9a55a42fdb50b4190f50f6bc86af869c00289"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "B4",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_073123/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "ee5ceb31360f824dedb95508150c0c5bb5352ea5a9f638e4228f4271ae0e62c5"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "B4",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_062310/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "4fe525391557dc390c33ff6a0c25c862940c17d5620257c87f049e027f98972d"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "B4",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_192512/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "52c660772ccbe6f5ddc90c2e2d84a75887c3381c14ff085bd3d59581b11f530a"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "B4",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_071849/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "a9a04abb1450fdaa115466d2c9414764f7f6dcfae315aba3c776962a9d9098ec"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "B4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_211403/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "4c9babebd17b8975e20c5956134ef9fb2a3d40e7f11402ee8a9849d45119dd24"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "B4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_211432/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "2386d5b0c40c4a2bcf498ab5db4d8828304b11177eb7d445ece76d6fd2c650a5"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "B4",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_b4_timestamp_specific_pitch/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "4e5a998731b6fc4170bcbf4aa23a0a34e2dd6429181e84472fe757ea08c2c8ea"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "B4",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_b4_timestamp_specific_pitch/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "6d8b927909d088b1bed065f9102c86ab566c510006e4d60e27c28cbd8bbf2ac4"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "B5",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073230/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "6cded8ee2b71cb427540c270c4fa372805fc3c0eca2c807d10bed7ea83f1e1c6"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "B5",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_062350/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "da065d0e789261c785a2367dda9611fc415e652e8cc84e0aa3385c4cf30b6490"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "B5",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_192611/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a6d12f3086c583b83017cc1dec0df827e90b59d8eea30254ef4a3200ad5694e9"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "B5",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073224/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "760ecd9bb35ce2a976b7efbf5720816ee9d894e4b83c5491e85c4680391e9758"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "B5",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_212000/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "883537afc780abb30714b063da1849d5c8d590f71d7fee54973ccbbbd45059bc"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "B5",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_211946/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "1697eebf8693598dea59c94ebc56a206560aa341c3c620997b1f9ae31ee35739"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "B5",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_b5_timestamp_multiple_pitches/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "4484785c08fd92e434f8c3b1fed5c7d4c4cc9cf58fc6160d8c5a2079073f7a73"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "B5",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_b5_timestamp_multiple_pitches/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "4d49772e38e1fdb6bcaf6fe3f29542490f5342237e61ba68f8f59d42816d9686"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "C1",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c1_chord_count_pitches/run_001_20260506_073719/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "94c9e7e0bec52230001f294bda67d67e0e12d1a976682b03d9c6efbedecd050c"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "C1",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c1_chord_count_pitches/run_001_20260506_062429/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "52c437823d714a8e54b670fbde593bc7f57d79e2e9039df5042f69a825901310"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "C1",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c1_chord_count_pitches/run_001_20260506_192718/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "5c4036c8dc0bd84b57021cf947a83d99e7f52c2a2618ceb8afc7a1940d4f2ffa"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "C1",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c1_chord_count_pitches/run_001_20260506_072518/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "6c72c532e90e32cc42eed7d46fa7ce2a2e2d856afa9cb8dcca0fc866aa5299ee"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "C1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c1_chord_count_pitches/run_001_20260506_213809/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "eae36877fcd045eb863bc0b2b711a709005681b0ec97ad7750be6d51d69baf54"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "C1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c1_chord_count_pitches/run_001_20260506_213826/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "2c3fd633f96ea9b5b4e1004e6dbf12353935c1d611f04d5e2015a36a9a636b27"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "C1",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_c1_chord_count_pitches/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "d10286d91670652808d5b2eb809be667559be850cd3d1c5857ca20e2ec4677db"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "C1",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_c1_chord_count_pitches/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "cb238da155794545b1899ed012d0a5c5a50ca0822961627e9c92b688fb8575c6"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "C2",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c2_chord_dyad_interval/run_001_20260506_073740/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "ce24e209d5c9eb52dc044451b4d473e457cd7a6377420e7b8520697ad1fb503b"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "C2",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c2_chord_dyad_interval/run_001_20260506_062535/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "930d79c58e7cc8f097ed1f3031f06820a710ec48d4308519fcac10700b60c5ff"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "C2",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c2_chord_dyad_interval/run_001_20260506_192806/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "30eecd1c397d3dc976edb24f6e97bf0c93d2a2f7916f18380b89560694a31b78"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "C2",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c2_chord_dyad_interval/run_001_20260506_072530/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "bc16a27a00f77bcc4f7faa3699b1efc72b51bdf799d6fb21f78a5356b6b9aed5"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "C2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c2_chord_dyad_interval/run_001_20260506_214139/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "3b61a7fed8fead09e677d95dfd8f29056030a895e28db77407fc5427ffe90553"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "C2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c2_chord_dyad_interval/run_001_20260506_214151/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "8f4c11703f229bfc847eb660715277c7cc882be820c6bd86e48b57ccb5dcc782"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "C2",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_c2_chord_dyad_interval/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "52263e99345ecb30d01b3b5090bdf4a78cfcbc6ed39342a8ee035d6a001d864f"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "C2",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_c2_chord_dyad_interval/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "d8fd61de64e7a184ab9f99715c8c96e141720b485ea69449ddcaa87545ea8bdd"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "C3",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c3_chord_quality/run_001_20260506_073806/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "0465d6e1861594381ba6dede9053cd3b11967234e4e6c70d8063c991051d2eb5"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "C3",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c3_chord_quality/run_001_20260506_062633/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "e660997b7cc87b7b91237fb59e96aaeae12d1cc5406e696ca56a050bb8e13547"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "C3",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c3_chord_quality/run_001_20260506_192904/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "099a644c99bea50c474dd335c899bf5ea65793456c9b876b6bc722717f3b3b0a"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "C3",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c3_chord_quality/run_001_20260506_072544/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "70a7f4f0983f39af413726b2d491003ec2d3f368a36bd8ae57758776a5afde16"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "C3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c3_chord_quality/run_001_20260506_214535/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "7b965e13b2e3dddd1a249ebf6129bd432dbfa99d8aecba790f7fd67f6a152f80"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "C3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c3_chord_quality/run_001_20260506_214547/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "4ae9445938130c72371411b16ed607a99f567f0fb19f06ab56ebe2128b376f61"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "C3",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_c3_chord_quality/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "4000734da1669c2f6f309bd169d7c7cf143b01684e3840a61815b56d2d50bd2d"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "C3",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_c3_chord_quality/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "6b0129811a28f4a50a8e8a61ce1ec3faa1ee1d0fd5df89670e4b61f1fc034a51"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "C4",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c4_chord_pitches/run_001_20260506_073827/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "da20b6ac9da967ac920ccb72be2f0504a22bef1582888a8a14eb1e952b2cf89a"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "C4",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c4_chord_pitches/run_001_20260506_062727/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "20e395caf790f95e2ebe90d943a592a8cc9efb59828b200543d1b4b1b992d1c7"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "C4",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c4_chord_pitches/run_001_20260506_192955/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "7f585206ad820e0492ed37a2308be6f437d96ac7144c594b9e3245032de66354"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "C4",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c4_chord_pitches/run_001_20260506_072554/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "e5a63f5d1f0a57b7fefcc770b29ccca06e6e4619f7ebc6d975e20d59a4d005fb"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "C4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c4_chord_pitches/run_001_20260506_214846/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "181f1b58d91ded0a9819dfb65029e2e6cec09dcc06467f6d8d2707a8e3b858ee"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "C4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c4_chord_pitches/run_001_20260506_214855/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "972beedfa9c4d2b36e712f6e699da5339460f5520378f34b7433aa9d5231accd"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "C4",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_c4_chord_pitches/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "61b8bf956c4dde1e866a4ea33af967c4abd3bbbb0468fddcb7096d0d4382f863"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "C4",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_c4_chord_pitches/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "5142819eba0da6739fd88d3a32e0cbc9914b8e0341ebcb41b7acb4095231b053"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D1",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d1_sequence_count_pitches/run_001_20260506_074614/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "b76b2a5496d7e410b8e09c01fc13ff9214b2815833cb42e6c9de40f9729d64f9"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D1",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d1_sequence_count_pitches/run_001_20260506_063603/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "85a7664070320a97e3186f220c0db282a924d459b774baea4c93ce3f33671193"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D1",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d1_sequence_count_pitches/run_001_20260506_193407/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "9b9c883a9f18d46e4b121284866e6d3dd8c7a2418a43b2de1d2929f815574b43"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D1",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d1_sequence_count_pitches/run_001_20260506_072740/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "67e85eee89fa2441f01013fbbdb15fe3c03f1606406423f036ee7cd6f1266e7c"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d1_sequence_count_pitches/run_001_20260506_221141/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "3aa48debc099114f3752ae7a2a06d0547dcb6981855cccce3935512f9e0bb383"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d1_sequence_count_pitches/run_001_20260506_222032/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "ca5f19d574172336d325ba18eaec4ad6b36c86c49e8c9eddbbda04d1fbd9fb28"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D1",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d1_sequence_count_pitches/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "b24f6d2c2c639088bda0e70e9a2839796f81aa4e96450f391618d88aaab67486"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D1",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d1_sequence_count_pitches/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "91744f8d49d4521934ebf0839ea24f0db88dbe0595a66f40a3457e0cc4a83130"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D2",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_074632/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "d4916bea7c9a42c8254dc5c9d079aacb4efc2ebbee51bb7f9d15dfe7786d69b1"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D2",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_063649/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "7289976de4d13d8668a73dc8f02b8ae779c4d1683e7f2a94bd92e5c15f040399"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D2",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_193445/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "d9c85cc9ec8a30f59b3393349974a17626929601583cf045c0694c28e5026077"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D2",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_072749/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "39562939b5bd12500db3bf75f93513bc1cc41142c7386263aa6af95875a62696"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_221405/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "91cd9df8c62c320e9823b7d2927b59e9b5bd9c978a8b03ea263e1f1aac967b5c"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_222251/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "5b8887b054025b327f5a926f4069e0714a25638544005848433dbf871bbf1e52"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D2",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d2_dyad_lower_higher_difference/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "e5b6f00667c9e38885b5630c0ae3d43ff2bd2f9c5f19d5b576558f074dc719e4"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D2",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d2_dyad_lower_higher_difference/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "36a94e60a0caf45550a11a74b37213d85c07b5690bc7b0fae41b9f45b3a0e2be"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D3",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d3_contour_discrete/run_001_20260506_074645/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "c98e905c59c4684c071807d75292c73935faf7c3b58286bdd881df35cb5976c9"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D3",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d3_contour_discrete/run_001_20260506_063721/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "5ff5c45df1a55ce24278ca251b5b07141abb9a5d3a6d0e8af2de8ec137f0b317"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D3",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d3_contour_discrete/run_001_20260506_193553/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "7647d408d1b225f960a72b94fa32868e303598b151585aa0a1157ab5bebe52e2"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D3",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d3_contour_discrete/run_001_20260506_072756/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "35839e3e6d505207c96c53299e7fef8c5c2d7d2533a6dd86644c28e6c921dd23"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d3_contour_discrete/run_001_20260506_221702/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "069f2baa718e2a242b01253dbbacb0c735fe412b5a811493c36d2cbdbdc11d15"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d3_contour_discrete/run_001_20260506_222502/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "24152d0d6dad53bd4d0140b5c7c225669b30d6417b24cc6f1eea6ac6c6571b28"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D3",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d3_contour_discrete/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "6e42d854d65d32e1f3943d99a23047dffa2a28d32a926b6904d09c2a3fee2b49"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D3",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d3_contour_discrete/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "d81c2da9e41bee5ba4ae1318f28931c1290b256dda42a7327b92833e3398245c"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D4",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d4_contour_continuous/run_001_20260506_074743/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "f17307eb81335d2246becec86d1db852adf31d9d39eb260a1a21f3521e2908de"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D4",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d4_contour_continuous/run_001_20260506_063815/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "1b5eca3201b7d19b115d2fca50089327c7bc41dfe6aacd897b60c0193498d00e"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D4",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d4_contour_continuous/run_001_20260506_193621/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "76ca026c6078696048287c88f8e3d54260f66f7b2953969cfee771c446ac99f9"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D4",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d4_contour_continuous/run_001_20260506_072806/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "8acaa9999b36f8775b07012d55cef84685670808943c8041a00e3594d27a7cfb"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d4_contour_continuous/run_001_20260506_222002/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "0f9335d4e3bd3219836656a83b6305306ad72316dd2b8e2ae0352a4f4f9b2638"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d4_contour_continuous/run_001_20260506_222801/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "e6114ba459ad249bbbec0a76f0bec39816dffd3304df32835fcb2f10477754a7"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D4",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d4_contour_continuous/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "03fe4f3fd7a8fd0ac62a536348722ad90292df649b897a33684e69ac9e1624ed"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D4",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d4_contour_continuous/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "1125a08aef57734aa51399cd206fe8daee504f5709eb510b774d57ee52aa36f1"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D5",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_075447/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "2b97173dd88544940571343e73e18ecb09bb8fc45d24fd7a06c7e59e50156dbe"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D5",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_063903/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "611b008e0cee6aaded3bc426d58b26bde498ff862785a7e1347e2afd20c66bd6"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D5",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_193644/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "50338f18ff693f96432145133f4617894735272962748df978060897e0f62dd8"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D5",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_072817/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "2db15d18c4ba251f31879996d2d0775db1d3889974dd04df7b11f2447b6594e9"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D5",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_222232/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "3e7c1589a2026e5dbaa8f5f6c42df1e52cd796595fadadbba5bc759abefce222"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D5",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_223042/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "2ebb1655dab986456eb832a064f846fe394981c52c248a09a45330a507583500"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D5",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d5_sequence_ranking_by_pitch/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "e2e502e5f85ac2d3a1f8a7815e0b5785bc6782423cd45bf22c9a970752722619"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D5",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d5_sequence_ranking_by_pitch/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "5d79a8691909c62feea6598d29909a4409b0600b105b24f32725346c1f9fe6d9"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D6",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d6_sequence_dyad_interval/run_001_20260506_075521/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "f8822856782a1a75aa0cbf0c5fce77b97b22dd8619caf07891f93a3fb5d52425"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D6",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d6_sequence_dyad_interval/run_001_20260506_063940/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "d1b45a849145d830f30fb9cb9c593fc4cbbec826fcc9f4921bd11a2cbe4c4212"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D6",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d6_sequence_dyad_interval/run_001_20260506_193735/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "4eabb09c847ac41be529902ad9c716e5c44d1a0170ec97cb8a1a9191d91f6781"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D6",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d6_sequence_dyad_interval/run_001_20260506_072826/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "25bf5e048a838550f1c51f1a05b2c7d56c3070a057423e9569a27db32d98d5ec"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D6",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d6_sequence_dyad_interval/run_001_20260506_222459/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "23b552de98c1a81eaac7200a9fc0f2592ad2df8dcb2f86dad0d2ad33ca0ec0fe"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D6",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d6_sequence_dyad_interval/run_001_20260506_223247/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "a9db339cfab7343016e883a547517ec9d556d6d2381c4034c046773720a28688"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D6",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d6_sequence_dyad_interval/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "ffbd83817682f98a23bc5f0dff7ee4cd7cd79ab34cd4556942478b58dd9d53a2"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D6",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d6_sequence_dyad_interval/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "86e1feaf26878ca2161f8575af2edeb06d3fa2dc8bbbd2f1914a9ef2eae462f9"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D7a",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d7a_pitch_with_reference/run_001_20260506_074455/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "dbb0c1ffef6fc15e217d90ca0d4d6a1a0df92082c57a59157ad9af144eec83ee"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D7a",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d7a_pitch_with_reference/run_001_20260506_063035/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "b03a0834cd89cffd2c2fbf6b28be7ea07d8de937f47fecb3d72ad815f864dde9"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D7a",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d7a_pitch_with_reference/run_001_20260506_193132/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "2bb2d7a86d6a55fd8d362a62187b7c5489397281797741c6c792a6289c6819b6"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D7a",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d7a_pitch_with_reference/run_001_20260506_072628/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "c7faa367b42653fd7d117c05e47622ceace21ad73f13536d3f7dc7b73a625528"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D7a",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d7a_pitch_with_reference/run_001_20260506_220256/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "deb1c6b1e80bf7b94667fe63a7c336ba7ef7049d65e3352c223c1dd5dff08747"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D7a",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d7a_pitch_with_reference/run_001_20260506_220310/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "dbee907a1111350f57de20b3c1bcc863fc617c02ba4169d623baafd3d77df20f"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D7a",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d7a_pitch_with_reference/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "b06cd729deab4b006ba2c956ad6bdcf7c4e0fc211193ce2d8ba78a9d3e5cf939"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D7a",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d7a_pitch_with_reference/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "bf938ae8b6b3a4fd2fbffea1cae7e68ef52d66b5bea34e5d536b8e5cd9071580"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "D8",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d8_sequence_pitches/run_001_20260506_075548/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "d2ff9abf019f8f3b85bf4858dd3caf2191ad10a5efe2648d24e7faebf6b9595c"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "D8",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d8_sequence_pitches/run_001_20260506_064103/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "e228c11524ed509f9effee421c044d360354125c24a9a895775843a3393a9165"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D8",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d8_sequence_pitches/run_001_20260506_193900/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a0217603f6808fdad86da9b2429212e41f92f311d0ed100a4583a978954800e9"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D8",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d8_sequence_pitches/run_001_20260506_072838/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "104278465c34eee85c47667cfa8f3c2135a82f16be21d6b21ccc2381e68387a6"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D8",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d8_sequence_pitches/run_001_20260506_222854/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "887c0b753f7fa5ae6493af4c45aad163567ac525fda1cf79fac17a26e763ccee"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D8",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d8_sequence_pitches/run_001_20260506_223641/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "e31cf5ed5a4cc558914e6363df8ddc31b0841790d93d59f8dded45ba3b11a3a0"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "D8",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d8_sequence_pitches/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "e03cdae9394fd7115d1d83feceedc062a0f35d251aa1d907ae8f065965a63d8f"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "D8",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d8_sequence_pitches/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "b9ff73286c47c608663c43f651e3d4ad4c5458ded7b10412c75146b50bae903b"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "E1",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e1_audio_effects/run_001_20260506_080141/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "e6539266c6e22d33514d6eb2a9feba944f0dbe5b425457f158b9e17aedcfdeb3"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "E1",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e1_audio_effects/run_001_20260506_064418/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "abfcf7ffc3b47b6dc8f5b62be06e2be7fe58cb3a2875ed334a8745f7841fd8b2"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E1",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e1_audio_effects/run_001_20260506_194009/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "907652dc3cc5b08a89cb08f7e6fd17e9a0b79ec5c7aadc2fcacd06f0efe7928e"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E1",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e1_audio_effects/run_001_20260506_072824/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "03d31a006e4cfaeae8603ade27ac222293fef95096e5c4c65395f203c65bc033"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e1_audio_effects/run_001_20260506_223316/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "3fe38143ea0039128c8fea57e92ff470b1e4a0ea62b60803da5f49e8186984c5"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e1_audio_effects/run_001_20260506_223352/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "eeea7798cfa404216a4fb3706fd8c9f4ac00d353137e77c4d8bfe1d7e03d6193"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "E1",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e1_audio_effects/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "6a500745286ff02428f2072888286217fb5aaf6cba4baf53d64b82c0293d84b7"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "E1",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e1_audio_effects/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "8ea994b8fd9e2333dcbfdfa589a6b146f4993bb899ad5d34d3a32aeedf9fd9c0"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "E2",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e2_background/run_001_20260506_080347/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "832dd6f65e6d4534746a5ffdc2c69cb60687d010fcb095b10796fcee98058ebf"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "E2",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e2_background/run_001_20260506_064826/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "bce2b003f2a6316ff889c7dc58df2186a1305e316ddcf12a096d320dca50757a"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E2",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e2_background/run_001_20260506_194151/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "2c7e0fc1141ac9c84cf1b44533f7a169392b135ed2832ca7c87cb828c5edf6cd"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E2",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e2_background/run_001_20260506_072912/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "89776fe2523f25054dc30db1e354e327f2bdc4d74dab718f76fba55caad98cd4"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e2_background/run_001_20260506_225345/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "cf444dc5c7f876933373ef4de9db4a28149f4c8e252c8849a831583af0c26c37"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e2_background/run_001_20260506_225109/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "bc0daf57a2aadd44fc921d714b7f108b9a85ab8426108c0b8128aa79bda2e091"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "E2",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e2_background/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "2c74cc28e4116c0eec1419453864ad06e11c9c1679fbc028876c325cea6b02cc"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "E2",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e2_background/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "448a5d43079f745f5c480eaa8cb540b6c4669989e38a95e33f03067d1a9112c2"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "E3",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e3_harmonic_saturation/run_001_20260506_080554/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "1b2f2423370bd8beee164cc3e5c2b5c3b3dc620422bb5db6ef4177cb010040ae"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "E3",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e3_harmonic_saturation/run_001_20260506_065213/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "9c9f2fb604ba0bea529f9bec365a74313144f6af8b730ae3df57b331a2f41894"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E3",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e3_harmonic_saturation/run_001_20260506_194335/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "558f30a02a84bb764056bc644d4206e6d4c4d73857a0319bc13ba1887ef4b80e"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E3",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e3_harmonic_saturation/run_001_20260506_073003/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "afaa640f27241afa2753f0bd121410f5a5181b719edc9b7e00bb7a4833785e1f"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e3_harmonic_saturation/run_001_20260506_233609/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "f2ae56e46d2323e22c3bd90ee3d9da1c9b70e3d2d8497ba842a109e6ee707b6e"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E3",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e3_harmonic_saturation/run_001_20260506_230842/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "ce3f421f8374cd0184037d9ff79871fe87550b0853bbd405ba7b93b82d65cdf1"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "E3",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e3_harmonic_saturation/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "7259cbc58be3e5e438b4930a4b3c7e5d07878c0412ecaa99784694330275941a"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "E3",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e3_harmonic_saturation/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "6be99cf728c49eb8c682ed862f5d560b3f7a69962f18db30b4df5091cc9bf425"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "E4",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e4_time_stretching/run_001_20260506_080656/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "11f6f036620b4b4b012bfae1844b70c2ffaec76b6187949c914a784cb38f2b0d"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "E4",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e4_time_stretching/run_001_20260506_065415/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "b05c1431d0f4dcdcb99a0cf639057c1f523a71344ca2e41010624cf9ac6d2841"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E4",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e4_time_stretching/run_001_20260506_194428/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "097f76392fe3ea6330d533713fb32c0f8aef66dcb12b22c9f6916a683cc6c3ef"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E4",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e4_time_stretching/run_001_20260506_073029/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "abdc0f3639daf4282461b76f272e6bcba186a9261f5a8a3ad52a6a89e749cb3b"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e4_time_stretching/run_001_20260506_235227/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "809483209295b143859ea900ad43d53749ba4f2a05d2bb0830c04e7dd658d79b"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E4",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e4_time_stretching/run_001_20260506_231731/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "96abc07bb7264ed3ebdae626e74b0ed852cab137f8e6c08a9ec41b909bc8fb7d"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "E4",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e4_time_stretching/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "0dca9c28482a8fa3a477a9bd4849a4c707c70ca27abc8ff90859ec62cc7568f1"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "E4",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e4_time_stretching/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "a01557001321d3c89c6f824544143cf4a14010de885905c3678d0e265a62b1b0"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "E5",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e5_vibrato/run_001_20260506_080828/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "9518ba08f32018a06e9b68bf695bbd98bbf25a96c44146fcdd6cb3779dc8ee9b"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "E5",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e5_vibrato/run_001_20260506_065733/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "d7b400df7fa2cbbe0f57b313db646050933047ffc82709edf0a111d348c0251d"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E5",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e5_vibrato/run_001_20260506_194540/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "f29390c7fdc2a9f8dfdbda1c624e17f894aa28245039c24291be1ffa94407a2f"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E5",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e5_vibrato/run_001_20260506_073105/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "cc142b90fd63a70cf07b90c54f43deb2530e04da695f3f166bcfeec46579ceec"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E5",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e5_vibrato/run_001_20260506_235316/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "65c48165f4688a35f075251fd1325c0cda5a0eec42470153cd3eb5a75ee2e867"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E5",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e5_vibrato/run_001_20260506_233126/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "4bf09922551a11ee6f5b3c79ae0f3579e9774d8524ab97f8fa65aafb2fec9a36"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "E5",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e5_vibrato/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "7d85f96a30facd12cda30f3e830ee86bf10d3b4a39b5941b4472100bdb9bf8d0"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "E5",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e5_vibrato/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "fdbc8a30a984aeb5db07b9a1357bfbcd0d5db767427dee0449ac1b38eb31ced5"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "E6",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e6_slightly_off/run_001_20260506_081023/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "1c5ff2fca806fbf305ce354ceab335726c467d3ea524530d1082ce46817fa18e"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "E6",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e6_slightly_off/run_001_20260506_070009/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "bd9f609fc2f91a7d3996e6bb6d2fff65469adebff64251f8fd5fb588e3fc9e0f"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E6",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e6_slightly_off/run_001_20260506_194648/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a089a30fb8afe21252e52157907543e55d9e20434404551e0cc267b353818ecd"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E6",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e6_slightly_off/run_001_20260506_073628/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "373619f1071bcea23faa18e23feae36614ebaa03cc9a666551d2f9417cfc5bcd"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E6",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e6_slightly_off/run_001_20260507_001236/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "f3ee57be47b3cf88660868dd3ff26788c948c0a3c5fbfd2443216fdc20690d52"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E6",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e6_slightly_off/run_001_20260506_234322/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "c473e17b90a9bb344a65269c3d90c57054905aa4c66117033b2fb8c492d24a4b"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "E6",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e6_slightly_off/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "cb4504f737275720aa3f84acbdab2e5cdc571e311df32c20b5afcbba88737cf9"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "E6",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e6_slightly_off/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "84bf8b095173b7e2840414aeaa58fa3c7fc5cd17aabbf02e06f14bae455b939a"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "F1",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f1_melodic_line_atonal/run_001_20260506_081352/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "2c8380c81721fa458366d1ef4dca91e558f7123d6308568a5ccbae674076bd2a"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "F1",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_070316/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "7dfae8aafb03f130cd56c23417f613f51b65e518ea075c0973608229737ed6b8"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "F1",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f1_melodic_line_atonal/run_001_20260506_195126/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "288e0a67ed5ce0483e07050a5caccaa3a545093c3bedcdf81828b42a2bca57d0"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "F1",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_072841/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "917126c0d90e05d05e28d2bb1835dea5f09fe81c1392f3be33ed8efa31e87b48"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "F1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f1_melodic_line_atonal/run_001_20260506_224202/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "d40796123f5f20962dd183e2ada732c3d09dce9e5efc904f927d816bbc614fcc"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "F1",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f1_melodic_line_atonal/run_001_20260506_224910/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "9a83806159e39e130dba188ecb4fcc9a1fd8c2a2359bfeafe20cfbc99833d40c"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "F1",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_f1_melodic_line_atonal/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "fa31317dd651fb777512d9db670cd9bc9316ad4324bbf1e45fc3925ec4b432ab"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "F1",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_f1_melodic_line_atonal/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "e5821e6dce4c741c24c4620bf85b323982b3930b6523b96798c9d1224e0c5ec1"
+    },
+    {
+      "model": "audio_flamingo_next_instruct",
+      "task": "F2",
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f2_melodic_line_tonal/run_001_20260506_083145/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "7d8392e5b6910abe7e398a1e4c4c5b806327f6f919d8080bf05a427b95acd652"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "task": "F2",
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_070548/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "5fe81c88e6d54e268cca42b0a61c4d6de2077c21fe6807736057f384ca03b184"
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "F2",
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f2_melodic_line_tonal/run_001_20260506_200958/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "8ac6b29ea5414bacdf47ea655f7df19f9402fd4726f29648185360a98aa48e56"
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "F2",
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_072913/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "20ba5babe6f775d9fe4bef01ddee1bf6632c2953861c6be18f30941a9d785d5b"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "F2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f2_melodic_line_tonal/run_001_20260506_225047/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "da576f17425c18d10727ea7d111ce1c60a3472153da07ca01e6ecafab627bc14"
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "F2",
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f2_melodic_line_tonal/run_001_20260506_225743/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "5f08abf4094263c3d032461106f03f76a9fc9d6c3b936f5408448684fd537fd2"
+    },
+    {
+      "model": "baseline/dsp",
+      "task": "F2",
+      "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_f2_melodic_line_tonal/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+      "sha256": "9fe63d114266ea1146430074f4fc7def56d08301e2378e44c7093a6993de4407"
+    },
+    {
+      "model": "baseline/basic-pitch",
+      "task": "F2",
+      "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_f2_melodic_line_tonal/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+      "sha256": "4b1a55c2542cee75cea883a3d4950d8bf36993714118d909a73c5a0f15f1abbe"
+    }
+  ],
+  "datasets": [
+    {
+      "task": "A1",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_a1_single_pitch_id/test-00000-of-00001.parquet",
+      "sha256": "2c8ca7e51080ce75bbb6c27ca5c105efd379bbf627c2a4227883dc975a9d04c5",
+      "n_samples": 1159
+    },
+    {
+      "task": "A2",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_a2_single_pitch_by_loudness/test-00000-of-00001.parquet",
+      "sha256": "38f7f36a0272a21da50b888ffbe99d9be3194ed66360b11070121c7f51655cbb",
+      "n_samples": 200
+    },
+    {
+      "task": "A3",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_a3_single_pitch_by_duration/test-00000-of-00001.parquet",
+      "sha256": "59152c7114155deeea222fd93f8cbcdb78afe3d82f605fb1c6be98f4a2762067",
+      "n_samples": 210
+    },
+    {
+      "task": "B1",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b1_single_pitch_within_silence/test-00000-of-00001.parquet",
+      "sha256": "27c084428a3b8f0b9b38a5c71725fc80a658b0096a32f06d75c9d8623ea2a7d2",
+      "n_samples": 160
+    },
+    {
+      "task": "B2",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b2_pitch_at_timestamp/test-00000-of-00001.parquet",
+      "sha256": "bae8122519410fa0fe6b26c95cc1993142d5c9e3a3efa5f30f56b3853bbc6183",
+      "n_samples": 150
+    },
+    {
+      "task": "B3",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b3_timestamp_single_pitch/test-00000-of-00001.parquet",
+      "sha256": "d4c1359c032c05d3dc90785efd939670a489af2268dd98475715362ee358686f",
+      "n_samples": 160
+    },
+    {
+      "task": "B4",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b4_timestamp_specific_pitch/test-00000-of-00001.parquet",
+      "sha256": "5e97c49be3f612d329e200f488485ec9116e0e2930b45ecf30466efd19b5265a",
+      "n_samples": 120
+    },
+    {
+      "task": "B5",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b5_timestamp_multiple_pitches/test-00000-of-00001.parquet",
+      "sha256": "cc65b83b40fdd919cb4168c8d71947a70a9ddd856a808778a61e92cf82fbafd0",
+      "n_samples": 120
+    },
+    {
+      "task": "C1",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c1_chord_count_pitches/test-00000-of-00001.parquet",
+      "sha256": "21e52a29eb66595219bb6788993aab1c9bfaefa8c885dcc19cc30a435da80002",
+      "n_samples": 228
+    },
+    {
+      "task": "C2",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c2_chord_dyad_interval/test-00000-of-00001.parquet",
+      "sha256": "adad0f2011dc766f29912d8abe959c54b06e401593b3500416de745f1166edae",
+      "n_samples": 232
+    },
+    {
+      "task": "C3",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c3_chord_quality/test-00000-of-00001.parquet",
+      "sha256": "84eaf36899bbaba1fab20fdac0e6c64ca3791134051eb8f0bb9a1afd56f5f44b",
+      "n_samples": 192
+    },
+    {
+      "task": "C4",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c4_chord_pitches/test-00000-of-00001.parquet",
+      "sha256": "1118e278def6828b94333396911120fe47fd651ab0ed085eddaf43f60a851990",
+      "n_samples": 200
+    },
+    {
+      "task": "D1",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d1_sequence_count_pitches/test-00000-of-00001.parquet",
+      "sha256": "0807fabab97bc26370e3b05a1d4c78161ec6668dd5ff63034d70c55e01e63ae0",
+      "n_samples": 140
+    },
+    {
+      "task": "D2",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d2_dyad_lower_higher_difference/test-00000-of-00001.parquet",
+      "sha256": "826252d262c7b53a835d9286431d3b748d2c42331ddb8847186f38ead8899e05",
+      "n_samples": 132
+    },
+    {
+      "task": "D3",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d3_contour_discrete/test-00000-of-00001.parquet",
+      "sha256": "d8c30f3e87a30df24650842f9d16b820bae83f78976997a5db0cabe434c241c0",
+      "n_samples": 180
+    },
+    {
+      "task": "D4",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d4_contour_continuous/test-00000-of-00001.parquet",
+      "sha256": "1b8a43496cd9cc943a3e2516024871f4224c523db378f5d2e17aaf604e333908",
+      "n_samples": 160
+    },
+    {
+      "task": "D5",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d5_sequence_ranking_by_pitch/test-00000-of-00001.parquet",
+      "sha256": "6c72076c822210909954e02f545cef5b75eb4125aac376fbf5bf25f58243fa05",
+      "n_samples": 120
+    },
+    {
+      "task": "D6",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d6_sequence_dyad_interval/test-00000-of-00001.parquet",
+      "sha256": "29caff8db6bc4ac525a2ef585cbeb87bd7a767089d6a53c94a5a450253173e9e",
+      "n_samples": 236
+    },
+    {
+      "task": "D7a",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d7a_pitch_with_reference/test-00000-of-00001.parquet",
+      "sha256": "43300bff0fd93be6c6ffd0afe160ce0cf8d36e3c9c012a97e087c31ccb108214",
+      "n_samples": 130
+    },
+    {
+      "task": "D8",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d8_sequence_pitches/test-00000-of-00001.parquet",
+      "sha256": "4c7b47b966218a9555faaf43fd8dd121283bfc0a0224e9297c165c5f40359ff5",
+      "n_samples": 171
+    },
+    {
+      "task": "E1",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e1_audio_effects/test-00000-of-00001.parquet",
+      "sha256": "7f7ac2e0ac89e820e56d675c975666ad3ff6cf68faed468cdeadf8d1fa7d3b2b",
+      "n_samples": 240
+    },
+    {
+      "task": "E2",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e2_background/test-00000-of-00001.parquet",
+      "sha256": "d23f5022ea0b9b8afd01f47aec59747ee04a11b584d3e7cc97ce3a6b017eda79",
+      "n_samples": 240
+    },
+    {
+      "task": "E3",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e3_harmonic_saturation/test-00000-of-00001.parquet",
+      "sha256": "7234f89254e517f1d3aac2fb2717815bbf8fb30a8a322dcd748ed27edc00fc20",
+      "n_samples": 120
+    },
+    {
+      "task": "E4",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e4_time_stretching/test-00000-of-00001.parquet",
+      "sha256": "357b9af049fc896d4557e587b818156c848058528e531429036a1ca11f1a783d",
+      "n_samples": 192
+    },
+    {
+      "task": "E5",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e5_vibrato/test-00000-of-00001.parquet",
+      "sha256": "5c68c414587344740dd1fa14d55073657d3e1ddbfbb614d42ac20c77501a071c",
+      "n_samples": 160
+    },
+    {
+      "task": "E6",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e6_slightly_off/test-00000-of-00001.parquet",
+      "sha256": "59c703c55c99f552171619e925eddf70ab99cae3103e82732c878f1766319c44",
+      "n_samples": 160
+    },
+    {
+      "task": "F1",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_f1_melodic_line_atonal/test-00000-of-00001.parquet",
+      "sha256": "7d858f44ddef92b6fe366c13a700722fb331cda1fc9dacfd12e2c9aafd7bdaca",
+      "n_samples": 130
+    },
+    {
+      "task": "F2",
+      "path": "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_f2_melodic_line_tonal/test-00000-of-00001.parquet",
+      "sha256": "80dd7b695df9bfac524be65e6fb71215bec0c72045812ba841bb2b3c8eec1ac7",
+      "n_samples": 160
+    }
+  ],
+  "missing_responses": [
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "B1",
+      "expected": 160,
+      "observed": 158,
+      "missing": [
+        "C2_cello_in_silence_at22000ms_for5000ms_of60000ms.wav",
+        "C4_piano_in_silence_at53000ms_for5000ms_of60000ms.wav"
+      ]
+    }
+  ],
+  "score_mismatches": 0,
+  "total_responses": 46414,
+  "cells": 224,
+  "source_tree_modified": true
+}

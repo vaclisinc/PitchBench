@@ -137,3 +137,13 @@ class TestReadDataset:
         self._write(p, [{"audio_path": f"{i}.wav", "gt_midi": i} for i in range(5)])
         rows = read_dataset(p)
         assert len(rows) == 5
+
+
+def test_paper_formats_drop_solfege_queries_without_mutating_dataset():
+    from pitchbench.experiments.helpers.data import select_pitch_formats
+    row = {'prompt_main': 'count', 'prompt_midi': 'midi', 'prompt_abc': 'spn',
+           'prompt_solfege': 'doremi', 'prompt_freq': 'hz'}
+    selected = select_pitch_formats([row], ('midi', 'spn', 'hz'))[0]
+    assert selected == {'prompt_main': 'count', 'prompt_midi': 'midi',
+                        'prompt_spn': 'spn', 'prompt_doremi': '', 'prompt_hz': 'hz'}
+    assert row['prompt_solfege'] == 'doremi'

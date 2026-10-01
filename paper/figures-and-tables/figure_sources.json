@@ -1,0 +1,400 @@
+{
+  "generator": {
+    "path": "src/pitchbench/analysis/publication.py",
+    "sha256": "5130c63db2436d41b2b6000c63fc35af9d9540db23be028ba6bcb8cb123ad6d1"
+  },
+  "prediction_parser": {
+    "path": "src/pitchbench/analysis/a1.py",
+    "sha256": "40248328fbba70e012349571f89ebc3e8bc149c1d66c52990370b1b0bff03b5a"
+  },
+  "music_parser": {
+    "path": "src/pitchbench/experiments/helpers/music.py",
+    "sha256": "f11927fd0684786505d4b67b58c8e2dbaecb144ff9a90624e2d57012b99569a3"
+  },
+  "backend": "Python/matplotlib",
+  "matplotlib_version": "3.10.9",
+  "numpy_version": "2.4.4",
+  "width_mm": 139.7,
+  "figure1": {
+    "manifest": "figure1_pitch_pyramid.sources.json"
+  },
+  "figure2": {
+    "inputs": [
+      {
+        "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a1_single_pitch_id/run_001_20260506_071008/results_audio_flamingo_next_instruct.json.gz",
+        "sha256": "e3f27b3113498741fce1b0c37306fbca3574a256c39ff9281ab4aaa6f5ae4498"
+      },
+      {
+        "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a1_single_pitch_id/run_001_20260506_055002/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+        "sha256": "e5952963d35013220913f3b04402bffb4b6dfed26f0118c6f5fec0be2033f983"
+      },
+      {
+        "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a1_single_pitch_id/run_001_20260506_191031/results_openrouter_google_gemini_flash_latest.json.gz",
+        "sha256": "a99e3594b597d301e428f953bb32eae8ea099526e8143f444ddbe1a96bc6fa52"
+      },
+      {
+        "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a1_single_pitch_id/run_001_20260506_071123/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+        "sha256": "751f4024ef216775f633cc79912046106d49659740c54da8a0f43e873570eb07"
+      },
+      {
+        "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a1_single_pitch_id/run_001_20260506_185726/results_dashscope_qwen3_5_omni_plus.json.gz",
+        "sha256": "368a76f85145b38aa57af3a817dfb98619a814b0c03095762c0a8596030cf7b5"
+      },
+      {
+        "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a1_single_pitch_id/run_001_20260506_185708/results_dashscope_qwen3_5_omni_flash.json.gz",
+        "sha256": "a25dec22174b11a554bf0e5a7179a5e6076caa99d6fb72da2c0aadc1861bafdc"
+      }
+    ],
+    "geometry": {
+      "size_inches": [
+        5.5,
+        2.75
+      ],
+      "axes_rectangles": [
+        [
+          0.075,
+          0.7230701754385965,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.23172222222222222,
+          0.7230701754385965,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.3884444444444444,
+          0.7230701754385965,
+          0.12638888888888883,
+          0.14692982456140347
+        ],
+        [
+          0.5451666666666666,
+          0.7230701754385965,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.7018888888888888,
+          0.7230701754385965,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.858611111111111,
+          0.7230701754385965,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.075,
+          0.46153508771929835,
+          0.12638888888888888,
+          0.1469298245614034
+        ],
+        [
+          0.23172222222222222,
+          0.46153508771929835,
+          0.12638888888888888,
+          0.1469298245614034
+        ],
+        [
+          0.3884444444444444,
+          0.46153508771929835,
+          0.12638888888888883,
+          0.1469298245614034
+        ],
+        [
+          0.5451666666666666,
+          0.46153508771929835,
+          0.12638888888888888,
+          0.1469298245614034
+        ],
+        [
+          0.7018888888888888,
+          0.46153508771929835,
+          0.12638888888888888,
+          0.1469298245614034
+        ],
+        [
+          0.858611111111111,
+          0.46153508771929835,
+          0.12638888888888888,
+          0.1469298245614034
+        ],
+        [
+          0.075,
+          0.20000000000000018,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.23172222222222222,
+          0.20000000000000018,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.3884444444444444,
+          0.20000000000000018,
+          0.12638888888888883,
+          0.14692982456140347
+        ],
+        [
+          0.5451666666666666,
+          0.20000000000000018,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.7018888888888888,
+          0.20000000000000018,
+          0.12638888888888888,
+          0.14692982456140347
+        ],
+        [
+          0.858611111111111,
+          0.20000000000000018,
+          0.12638888888888888,
+          0.14692982456140347
+        ]
+      ],
+      "alignment": "PASS"
+    },
+    "normalization": "P(rounded predicted MIDI | ground-truth MIDI, valid prediction in 29\u201389)",
+    "exclusions": [
+      {
+        "model": "audio_flamingo_next_instruct",
+        "format": "midi",
+        "n_total": 1159,
+        "n_in_range": 1159,
+        "n_outside_range": 0,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "audio_flamingo_next_instruct",
+        "format": "spn",
+        "n_total": 1159,
+        "n_in_range": 956,
+        "n_outside_range": 167,
+        "n_invalid": 36,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "audio_flamingo_next_instruct",
+        "format": "hz",
+        "n_total": 1159,
+        "n_in_range": 1002,
+        "n_outside_range": 152,
+        "n_invalid": 5,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_google_gemini_3_1_pro_preview",
+        "format": "midi",
+        "n_total": 1159,
+        "n_in_range": 793,
+        "n_outside_range": 350,
+        "n_invalid": 16,
+        "empty_gt_columns": 1
+      },
+      {
+        "model": "openrouter_google_gemini_3_1_pro_preview",
+        "format": "spn",
+        "n_total": 1159,
+        "n_in_range": 1015,
+        "n_outside_range": 45,
+        "n_invalid": 99,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_google_gemini_3_1_pro_preview",
+        "format": "hz",
+        "n_total": 1159,
+        "n_in_range": 999,
+        "n_outside_range": 73,
+        "n_invalid": 87,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_google_gemini_flash_latest",
+        "format": "midi",
+        "n_total": 1159,
+        "n_in_range": 1155,
+        "n_outside_range": 4,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_google_gemini_flash_latest",
+        "format": "spn",
+        "n_total": 1159,
+        "n_in_range": 1104,
+        "n_outside_range": 55,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_google_gemini_flash_latest",
+        "format": "hz",
+        "n_total": 1159,
+        "n_in_range": 1151,
+        "n_outside_range": 8,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_openai_gpt_4o_audio_preview",
+        "format": "midi",
+        "n_total": 1159,
+        "n_in_range": 1159,
+        "n_outside_range": 0,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_openai_gpt_4o_audio_preview",
+        "format": "spn",
+        "n_total": 1159,
+        "n_in_range": 1158,
+        "n_outside_range": 1,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "openrouter_openai_gpt_4o_audio_preview",
+        "format": "hz",
+        "n_total": 1159,
+        "n_in_range": 1159,
+        "n_outside_range": 0,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "dashscope_qwen3_5_omni_plus",
+        "format": "midi",
+        "n_total": 1159,
+        "n_in_range": 1058,
+        "n_outside_range": 101,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "dashscope_qwen3_5_omni_plus",
+        "format": "spn",
+        "n_total": 1159,
+        "n_in_range": 1147,
+        "n_outside_range": 12,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "dashscope_qwen3_5_omni_plus",
+        "format": "hz",
+        "n_total": 1159,
+        "n_in_range": 1143,
+        "n_outside_range": 16,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "dashscope_qwen3_5_omni_flash",
+        "format": "midi",
+        "n_total": 1159,
+        "n_in_range": 965,
+        "n_outside_range": 194,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "dashscope_qwen3_5_omni_flash",
+        "format": "spn",
+        "n_total": 1159,
+        "n_in_range": 1065,
+        "n_outside_range": 94,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      },
+      {
+        "model": "dashscope_qwen3_5_omni_flash",
+        "format": "hz",
+        "n_total": 1159,
+        "n_in_range": 1134,
+        "n_outside_range": 25,
+        "n_invalid": 0,
+        "empty_gt_columns": 0
+      }
+    ],
+    "all_response_counts": "figure2_response_coverage.csv",
+    "nonzero_heatmap_counts": "figure2_prediction_counts.csv",
+    "note": "Zero-count cells are implicit. No predictions were downsampled; excluded answers are disclosed."
+  },
+  "figure3": {
+    "inputs": [
+      {
+        "path": "paper/figures-and-tables/accuracies_by_pitch.csv",
+        "sha256": "402a58e3ccc86860fd6b33d812c484489cbd6bcfd112b864d5f93febf35f3451"
+      }
+    ],
+    "geometry": {
+      "size_inches": [
+        5.5,
+        1.72
+      ],
+      "axes_rectangles": [
+        [
+          0.082,
+          0.27,
+          0.4268867924528302,
+          0.42499999999999993
+        ],
+        [
+          0.5601132075471698,
+          0.27,
+          0.42688679245283023,
+          0.42499999999999993
+        ]
+      ],
+      "alignment": "PASS"
+    },
+    "n_cells": 300,
+    "aggregation": "Unmodified saved sample-weighted accuracy for each model, notation and pitch.",
+    "uncertainty": "Not supplied in the source aggregate; no intervals inferred.",
+    "exclusions": "None: all 300 source rows retained, covering MIDI/SPN and C3\u2013C5."
+  },
+  "figure4": {
+    "inputs": [
+      {
+        "path": "paper/figures-and-tables/accuracies_by_notation.csv",
+        "sha256": "eff26b3bab61e6d1c8df874c9f686e1903978acdca6a5056e87c85e651d41678"
+      }
+    ],
+    "geometry": {
+      "size_inches": [
+        5.5,
+        1.5
+      ],
+      "axes_rectangles": [
+        [
+          0.278,
+          0.24,
+          0.5520764331210191,
+          0.53
+        ],
+        [
+          0.8656942675159236,
+          0.24,
+          0.11130573248407638,
+          0.53
+        ]
+      ],
+      "alignment": "PASS"
+    },
+    "n_cells": 30,
+    "aggregation": "Sample-weighted four-format diagnostic accuracy. ANY is a cross-format aggregate with a separate denominator, not a fifth requested format or the Table 1 overall.",
+    "uncertainty": "Not supplied; no intervals inferred.",
+    "exclusions": "None: all 30 rows retained."
+  }
+}

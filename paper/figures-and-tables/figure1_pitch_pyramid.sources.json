@@ -1,0 +1,45 @@
+{
+  "generator": {
+    "path": "src/pitchbench/analysis/publication.py",
+    "sha256": "5130c63db2436d41b2b6000c63fc35af9d9540db23be028ba6bcb8cb123ad6d1"
+  },
+  "definitions": {
+    "path": "EXPERIMENTS.md",
+    "sha256": "30c08509650a1fde53e867ee24d736bdecef7e1e7feef0d9603d9854bc90fdf7"
+  },
+  "fonts": [
+    {
+      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-Regular.ttf",
+      "sha256": "f056a9f15687ed262ce26ac6766632fd6f54e158b2e2e4f5de62d4ac586c3636"
+    },
+    {
+      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-ExtraBold.ttf",
+      "sha256": "ca55af01871102eb89576002b26c64b56d02d8c2b2e83d5173cf3d228cb86193"
+    }
+  ],
+  "typography": "Hanken Grotesk Regular (400) and ExtraBold (800); vaclis.net family with stronger heading weight.",
+  "geometry": {
+    "size_inches": [
+      5.916666666666667,
+      2.9
+    ],
+    "alignment": "NOT APPLICABLE",
+    "manuscript_width_inches": 5.5,
+    "manuscript_scale": 0.9295774647887324,
+    "pyramid_width_pt": 250.88,
+    "legend_polygon_clearance_pt": 2.5,
+    "legend_text_boxes_checked": 68
+  },
+  "n_tasks": 28,
+  "category_counts": {
+    "A": 3,
+    "B": 5,
+    "C": 4,
+    "D": 8,
+    "E": 6,
+    "F": 2
+  },
+  "structure": "A base with A1/A2/A3; B/C/D/E middle wedges; F apex.",
+  "meaning": "Conceptual taxonomy; areas do not encode counts or measured difficulty.",
+  "exclusions": "None. All 28 tasks retained in side legends; A1\u2013A3 repeat within the pyramid, and the apex shows only F."
+}
