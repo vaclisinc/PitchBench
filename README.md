@@ -1,4 +1,29 @@
+<div align="center">
+
 # PitchBench
+
+### Measuring Pitch Hearing in Audio-Language Models
+
+<span style="white-space:nowrap;">Milan Liessens Dujardin<sup>1*</sup></span>&nbsp;·
+<span style="white-space:nowrap;">Song-Ze Yu<sup>1*</sup></span>&nbsp;·
+<span style="white-space:nowrap;">Craver Corbyn Thomas-Smith<sup>2</sup></span>&nbsp;·
+<span style="white-space:nowrap;">David M. Chan<sup>1</sup></span>&nbsp;·
+<span style="white-space:nowrap;">Karina Nguyen<sup>2</sup></span>
+
+<sub><sup>1</sup>University of California, Berkeley · <sup>2</sup>Thoughtful Lab · <sup>*</sup>Equal contribution</sub>
+
+<br/>
+
+[![NeurIPS 2026 E&D](https://img.shields.io/badge/NeurIPS_2026-Evaluations_%26_Datasets-8c1b13.svg)](https://neurips.cc/Conferences/2026)
+[![Hugging Face dataset](https://img.shields.io/badge/%F0%9F%A4%97_Dataset-vaclis%2FPitchBench-ffcc4d.svg)](https://huggingface.co/datasets/vaclis/PitchBench)
+[![PyPI](https://img.shields.io/pypi/v/pitchbench.svg?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/pitchbench/)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
+
+</div>
+
+<p align="center">
+  <img src="paper/figures-and-tables/figure1_pitch_pyramid.png" alt="PitchBench task hierarchy (Figure 1)" width="100%">
+</p>
 
 Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more. The paper comparison uses MIDI, SPN and Hz; D8/F1/F2 use Ordered Note F1 and other tasks use accuracy.
 
