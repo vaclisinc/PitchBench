@@ -1,12 +1,32 @@
 # PitchBench -- Python Package
 
-Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more — reporting per-format accuracy (MIDI, SPN, doremi, Hz) to expose where verbal decoding fails.
+Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more. The paper comparison uses MIDI, SPN and Hz; D8/F1/F2 use Ordered Note F1 and other tasks use accuracy.
+
+
+## Paper results
+
+[**Table 1: all 28 tasks × 8 models**](paper/figures-and-tables/table1.md)
+is the canonical paper comparison, including DSP and Basic Pitch.
+[CSV](paper/figures-and-tables/table1.csv),
+[LaTeX](paper/figures-and-tables/table1.tex), and
+[source mapping](paper/figures-and-tables/table1.sources.json) are generated together.
+The [reproduction guide](paper/figures-and-tables/README.md) documents the metrics,
+sample coverage, and underlying evidence.
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.table1 --check
+```
+
+This checks the committed table against its evidence without model calls, audio,
+or third-party Python packages. Omit `--check` to regenerate all formats.
 
 ---
 
 ## Setup
 
-### 1. Install FluidSynth
+### 1. Install FluidSynth (stimulus generation only)
+
+Skip this step when evaluating an existing Parquet dataset.
 
 | Platform | Command |
 |----------|---------|
@@ -39,8 +59,11 @@ SF2 resolution order: `PITCHBENCH_SF2` env var → `data/soundfonts/` → `/usr/
 python3 -m venv .venv
 source .venv/bin/activate        # Linux / macOS
 # .venv\Scripts\activate         # Windows
-pip install pitchbench
+pip install -e .               # install the version in this checkout
 ```
+
+The paper commands below target this checkout. A published release can be installed
+with `pip install pitchbench`, but may not yet contain changes on this branch.
 
 For development tools:
 ```bash
@@ -77,7 +100,7 @@ PitchBench separates stimulus generation from model evaluation. Generate once, e
 ### Generate
 
 ```bash
-pitchbench generate all
+pitchbench generate paper
 pitchbench generate a          # single category
 pitchbench generate a1         # single experiment
 ```
@@ -95,7 +118,7 @@ data/generated/pitchbench_a1_single_pitch_id/
 
 ```bash
 pitchbench --list   
-pitchbench evaluate all --model openrouter/<provider>/<model>
+pitchbench evaluate paper --model openrouter/<provider>/<model>
 pitchbench evaluate a1  --model openrouter/<provider>/<model>
 
 # Quick test (20 stimuli, stratified)
@@ -104,10 +127,21 @@ pitchbench evaluate a1  --model openrouter/<provider>/<model> --sample-n 20 --sa
 
 Results land in `results/evaluation/<model_slug>/<YYYYMMDD_HHMMSS>/`.
 
+`paper` selects exactly the 28 Table 1 tasks and queries MIDI/SPN/Hz only.
+It rejects missing tasks before reporting overall. `all` includes extra tasks
+such as Y1 and the additional reference variants.
+
+Evaluation uses the stored stimuli; it does not require local audio synthesis
+or regenerate conditions to filter out instruments. Condition filtering belongs
+to `analyze` presets. D8/F1/F2 export Ordered Note F1 through the task summary,
+CSV and overall score. B3/B4/B5 export their timing accuracy as task-level scores;
+the paper overall is the equal-weight mean of all 28 tasks. Numeric summaries
+and CSVs retain unrounded scores; rounding is applied only for display.
+
 In tmux (recommended for long runs):
 ```bash
 tmux new-session -d -s mymodel "source .venv/bin/activate && \
-  pitchbench evaluate all --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
+  pitchbench evaluate paper --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
 ```
 
 Without any model specification, the system defaults to the localhost:8001 endpoint. An example file (audio_flamingo_next_instruct.py) was added for running Audio Flamingo Next Instruct on localhost:8001. 
@@ -263,10 +297,18 @@ src/pitchbench/
     combine.py                 # combine multi-run CSV outputs
     overview.py                # overview plots/tables
     run_analysis.py            # batch analysis CLI
+    replay.py                  # canonical 28-task raw-answer replay
+    table1.py                  # Table 1 exports from verified evidence
+  baselines/
+    evaluation.py              # frozen-dataset baseline runner
+    runtime.py                 # DSP and Basic Pitch adapters
 data/
   preloaded/                   # background recordings (gitignored)
   generated/                   # created by `pitchbench generate`
-results/                       # created by evaluate/analyze runs
+configs/
+  paper_baselines.yaml         # reusable baseline recipe
+  baselines-requirements.txt    # separate pinned ONNX inference environment
+results/                       # committed compact evidence and local run results
 ```
 
 Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.
@@ -293,9 +335,10 @@ Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.
 uv run pytest
 ```
 
-77 tests covering CLI resolution, Parquet I/O, result aggregation, sampling, and API routing. No network calls or audio generation required.
+Tests cover CLI resolution, Parquet I/O, result aggregation, sequence scoring,
+baseline adapters, Table 1 consistency, sampling, and API routing. No network
+calls or audio generation required.
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
-

@@ -8,4 +8,6 @@ logs/
 .env
 .venv/
 .pytest_cache/
-results/
+paper/latex/
+results/evaluation/
+results/analysis/

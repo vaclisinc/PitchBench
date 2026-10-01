@@ -9,6 +9,7 @@ And when multiple models finish, a cross-model comparison:
 """
 
 import csv
+from math import fsum
 import io
 import json
 import re
@@ -360,7 +361,7 @@ def summarise_marginals(
             entry: dict[str, Any] = {"n": len(sub)}
             for m in metric_cols:
                 vals = [r[m] for r in sub if m in r and isinstance(r[m], (int, float, bool))]
-                entry[m] = round(sum(vals) / len(vals), 4) if vals else None
+                entry[m] = fsum(vals) / len(vals) if vals else None
             col_summary[v] = entry
         if col_summary:
             out[col] = col_summary
@@ -523,7 +524,7 @@ def write_aggregate_format_accuracies(
                     "model":      model,
                     "n_samples":  n if n is not None else "",
                     "format":     fmt,
-                    "accuracy":   round(acc, 4),
+                    "accuracy":   acc,
                 })
                 means.setdefault((model, fmt), []).append(acc)
             if isinstance(n, int):
@@ -537,7 +538,7 @@ def write_aggregate_format_accuracies(
             "model":      model,
             "n_samples":  totals.get(model, ""),
             "format":     fmt,
-            "accuracy":   round(sum(accs) / len(accs), 4),
+            "accuracy":   fsum(accs) / len(accs),
         })
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -867,11 +868,11 @@ def save_accuracies_csv(
     Partial-credit marginals (octave-only, pitch-class-only, within-tolerance)
     are intentionally omitted here so the file stays focused on exact accuracy.
     """
-    # "accuracy.correct" is a timing-task artefact (b2/b3/b5); the per-IV
-    # breakdowns already carry correctness, so suppress the redundant rollup.
+    # Keep task-level rollups, including timing correctness: model summaries
+    # need these to include every task in the overall score.
     flat_rows = [
         r for r in _flatten_summary(summary)
-        if not r[0].startswith("by_") and r[0] != "accuracy.correct"
+        if not r[0].startswith("by_")
     ]
 
     # Normalise accuracy metric names:
@@ -1077,7 +1078,7 @@ def write_model_summary_csv(agg_path: Path, output_path: Path) -> Path:
                 else:
                     row[f"{exp}_accuracy"] = ""
                     row[f"{exp}_n"] = ""
-            row["mean_accuracy"] = round(sum(accs) / len(accs), 6) if accs else ""
+            row["mean_accuracy"] = fsum(accs) / len(accs) if accs else ""
             writer.writerow(row)
     return output_path
 

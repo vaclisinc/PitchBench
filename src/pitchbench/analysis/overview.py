@@ -191,7 +191,6 @@ def _compute_c4_any_from_results(eval_dir: Path, model_name: str) -> tuple[int, 
                 flags = [
                     row.get("midi_correct", "0"),
                     row.get("spn_correct", "0"),
-                    row.get("doremi_correct", "0"),
                     row.get("hz_correct", "0"),
                 ]
                 total += 1
