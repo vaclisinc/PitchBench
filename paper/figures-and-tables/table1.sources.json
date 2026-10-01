@@ -1,0 +1,59 @@
+{
+  "units": "percent",
+  "models": {
+    "audio_flamingo_next_instruct": "AF-next-instruct",
+    "openrouter_google_gemini_3_1_pro_preview": "Gemini 3.1 Pro",
+    "openrouter_google_gemini_flash_latest": "Gemini 3 Flash",
+    "openrouter_openai_gpt_4o_audio_preview": "GPT-4o audio",
+    "dashscope_qwen3_5_omni_plus": "Qwen-3.5 omni plus",
+    "dashscope_qwen3_5_omni_flash": "Qwen-3.5 omni flash",
+    "baseline/dsp": "DSP",
+    "baseline/basic-pitch": "Basic Pitch"
+  },
+  "tasks": {
+    "A1": "Pitch ID",
+    "A2": "Loudness",
+    "A3": "Duration",
+    "B1": "Silence",
+    "B2": "At Time",
+    "B3": "Time Pitch",
+    "B4": "Time Spec.",
+    "B5": "Time Multi.",
+    "C1": "Count",
+    "C2": "Interval",
+    "C3": "Quality",
+    "C4": "Chord P.",
+    "D1": "Seq. Count",
+    "D2": "High/Low",
+    "D3": "Contour D.",
+    "D4": "Contour C.",
+    "D5": "Rank",
+    "D6": "Seq. Int.",
+    "D7a": "Ref. Pitch",
+    "D8": "Seq. Pitch",
+    "E1": "Effects",
+    "E2": "Background",
+    "E3": "Saturation",
+    "E4": "Stretch",
+    "E5": "Vibrato",
+    "E6": "Off Pitch",
+    "F1": "Atonal",
+    "F2": "Tonal"
+  },
+  "cell_sources": {
+    "All 224 task/model cells": "recomputed:score_sum / n_samples * 100",
+    "Mean": "arithmetic mean of the 28 unrounded task scores"
+  },
+  "display": "one decimal, ROUND_HALF_UP; ranks use displayed values",
+  "notes": "Scores are percentages. D8, F1 and F2 use Ordered Note F1; other tasks use accuracy. Mean weights each of the 28 tasks equally, using unrounded scores. D7a is the concatenated reference task (D7 in the paper); Y1 is excluded. GPT-4o B1 uses the 158 saved responses; two of the 160 responses are missing.",
+  "sources": {
+    "recomputed": {
+      "path": "results/table1-recomputed/metrics.csv",
+      "sha256": "24f32c6e70b87927319f9a8f0a57a4e20d6dadc11990801fff783fa070cccddf"
+    },
+    "audit": {
+      "path": "results/table1-recomputed/run.json",
+      "sha256": "39c26bc152e2b3a65395d72afdabb73f08ceba586fa59d068ddfab7e0c206472"
+    }
+  }
+}
