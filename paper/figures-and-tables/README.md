@@ -49,7 +49,7 @@ Keep the dataset and run outputs outside the source checkout. Download with
 
 ```bash
 export PITCHBENCH_DATASET_DIR="$(pwd)/../pitchbench-dataset"
-uvx --from huggingface-hub hf download pitchbench-authors/PitchBench \
+uvx --from huggingface-hub hf download vaclis/PitchBench \
   --repo-type dataset --revision f6c672608057cb877bfaacaeeff9bfb49eef7778 \
   --include "pitchbench_*/test-00000-of-00001.parquet" \
   --local-dir "$PITCHBENCH_DATASET_DIR"

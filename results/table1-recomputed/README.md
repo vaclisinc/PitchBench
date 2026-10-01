@@ -6,7 +6,7 @@ audio language models, DSP, and Basic Pitch. The table builder reads
 
 ## Protocol
 
-- Dataset: `pitchbench-authors/PitchBench@f6c672608057cb877bfaacaeeff9bfb49eef7778`,
+- Dataset: `vaclis/PitchBench@f6c672608057cb877bfaacaeeff9bfb49eef7778`,
   containing 5,802 fixed stimuli.
 - Pitch formats: MIDI, SPN, and Hz. ANY is the per-stimulus maximum across
   these formats; solfège does not contribute.

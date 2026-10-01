@@ -54,7 +54,7 @@
       "@id": "repo",
       "name": "repo",
       "description": "The Hugging Face git repository.",
-      "contentUrl": "https://huggingface.co/datasets/pitchbench-authors/PitchBench/tree/refs%2Fconvert%2Fparquet",
+      "contentUrl": "https://huggingface.co/datasets/vaclis/PitchBench/tree/refs%2Fconvert%2Fparquet",
       "encodingFormat": "git+https",
       "sha256": "https://github.com/mlcommons/croissant/issues/80"
     },
@@ -319,7 +319,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_a1_pitch_id",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_a1_pitch_id' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_a1_pitch_id' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -499,7 +499,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_a2_pitch_with_reference",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_a2_pitch_with_reference' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_a2_pitch_with_reference' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -718,7 +718,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_a3_pitch_by_duration",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_a3_pitch_by_duration' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_a3_pitch_by_duration' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -911,7 +911,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_a4_pitch_with_vibrato",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_a4_pitch_with_vibrato' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_a4_pitch_with_vibrato' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -1156,7 +1156,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_a5_pitch_slightly_off",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_a5_pitch_slightly_off' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_a5_pitch_slightly_off' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -1375,7 +1375,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_b1_pitch_in_silence",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_b1_pitch_in_silence' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_b1_pitch_in_silence' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -1594,7 +1594,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_b2_onset_offset_single",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_b2_onset_offset_single' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_b2_onset_offset_single' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -1761,7 +1761,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_b3_onset_offset_specific",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_b3_onset_offset_specific' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_b3_onset_offset_specific' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -2010,7 +2010,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_b4_pitch_at_time",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_b4_pitch_at_time' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_b4_pitch_at_time' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -2285,7 +2285,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_b5_onset_offset_each",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_b5_onset_offset_each' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_b5_onset_offset_each' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -2469,7 +2469,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_c1_dyad_interval",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_c1_dyad_interval' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_c1_dyad_interval' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -2638,7 +2638,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_c2_chord_pitch_count",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_c2_chord_pitch_count' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_c2_chord_pitch_count' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -2833,7 +2833,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_c3_chord_pitch_id",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_c3_chord_pitch_id' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_c3_chord_pitch_id' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -3103,7 +3103,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_c4_chord_quality",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_c4_chord_quality' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_c4_chord_quality' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -3285,7 +3285,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_d1_seq_pitch_count",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_d1_seq_pitch_count' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_d1_seq_pitch_count' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -3471,7 +3471,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_d3_interval_id_seq",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_d3_interval_id_seq' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_d3_interval_id_seq' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -3653,7 +3653,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_d4_contour_discrete",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_d4_contour_discrete' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_d4_contour_discrete' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -3850,7 +3850,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_d5_contour_continuous",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_d5_contour_continuous' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_d5_contour_continuous' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -4019,7 +4019,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_d6_pitch_ranking",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_d6_pitch_ranking' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_d6_pitch_ranking' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -4244,7 +4244,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_d7_seq_pitch_id",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_d7_seq_pitch_id' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_d7_seq_pitch_id' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -4503,7 +4503,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_e1_loudness",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_e1_loudness' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_e1_loudness' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -4696,7 +4696,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_e3_background_effects",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_e3_background_effects' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_e3_background_effects' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -4915,7 +4915,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_e4_harmonic_saturation",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_e4_harmonic_saturation' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_e4_harmonic_saturation' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -5147,7 +5147,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_e5_time_stretch",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_e5_time_stretch' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_e5_time_stretch' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -5392,7 +5392,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_f1_melodic_line_id",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_f1_melodic_line_id' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_f1_melodic_line_id' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -5671,7 +5671,7 @@
     {
       "@type": "cr:RecordSet",
       "@id": "pitchbench_f2_chorale_voice_id",
-      "description": "pitchbench-authors/PitchBench - 'pitchbench_f2_chorale_voice_id' subset",
+      "description": "vaclis/PitchBench - 'pitchbench_f2_chorale_voice_id' subset",
       "field": [
         {
           "@type": "cr:Field",
@@ -5967,15 +5967,15 @@
   ],
   "conformsTo": "http://mlcommons.org/croissant/1.1",
   "name": "PitchBench",
-  "description": "\n\t\n\t\t\n\t\tPitchBench\n\t\n\nA benchmark for testing what audio / acoustic signals Audio Language Models (ALMs) do\nand don't understand. PitchBench probes pitch perception across 28 controlled\nexperiments — single-pitch ID, onsets/offsets, chords, sequences, contour, audio\neffects, and polyphonic streams.\nEach row is one (audio, question, answer) triple: a short WAV stimulus, the\nquestion (prompt*) asked of the model, and the ground-truth answer fields\n(experiment-specific column names).… See the full description on the dataset page: https://huggingface.co/datasets/pitchbench-authors/PitchBench.",
+  "description": "\n\t\n\t\t\n\t\tPitchBench\n\t\n\nA benchmark for testing what audio / acoustic signals Audio Language Models (ALMs) do\nand don't understand. PitchBench probes pitch perception across 28 controlled\nexperiments — single-pitch ID, onsets/offsets, chords, sequences, contour, audio\neffects, and polyphonic streams.\nEach row is one (audio, question, answer) triple: a short WAV stimulus, the\nquestion (prompt*) asked of the model, and the ground-truth answer fields\n(experiment-specific column names).… See the full description on the dataset page: https://huggingface.co/datasets/vaclis/PitchBench.",
   "alternateName": [
-    "pitchbench-authors/PitchBench",
+    "vaclis/PitchBench",
     "PitchBench"
   ],
   "creator": {
     "@type": "Person",
-    "name": "pitchbench-authors",
-    "url": "https://huggingface.co/pitchbench-authors"
+    "name": "vaclis",
+    "url": "https://huggingface.co/vaclis"
   },
   "keywords": [
     "audio-classification",
@@ -5997,7 +5997,7 @@
     "audio-language-model"
   ],
   "license": "https://choosealicense.com/licenses/cc-by-4.0/",
-  "url": "https://huggingface.co/datasets/pitchbench-authors/PitchBench",
+  "url": "https://huggingface.co/datasets/vaclis/PitchBench",
   "rai:dataLimitations": "PitchBench is a controlled procedural evaluation suite for studying pitch-perception capabilities in audio-language models (ALMs). The suite is designed to isolate specific auditory variables under reproducible conditions rather than to approximate all aspects of real-world music listening.\n\nLimitations include:\n\n- Controlled synthesis setting: Most stimuli are procedurally generated using additive synthesis and FluidSynth-rendered GM instruments. This enables exact control over pitch, interval structure, timing, tuning deviation, and acoustic perturbations, but does not fully capture the acoustic diversity of real-world recordings, performers, studio production workflows, or live acoustic environments.\n\n - Western tuning conventions: Pitch labels follow standard MIDI-based 12-tone equal temperament (12-TET) conventions and Scientific Pitch Notation. Dedicated sub-experiments include controlled microtonal perturbations within limited cent ranges, but non-Western tuning systems and musical traditions are not comprehensively represented.\n\n- Restricted pitch range: Experiments primarily span approximately F1–F6 (MIDI 29–89). Extremely low, ultra-high, and inaudible frequency regions are outside the suite scope.\n\n- Limited timbral diversity: Instrument sounds are rendered through a controlled synthesis pipeline using a fixed GM soundfont together with several analytic waveforms (sine, square, sawtooth, triangle). Vocal music, heavily processed studio effects, and broader real-world timbral variation are only partially represented.\n\n- English-language prompting: Evaluation prompts are written in English only.\n\n- Scope limitation: PitchBench focuses specifically on low-level auditory perception capabilities that underlie higher-level music understanding tasks. It is not intended as a comprehensive benchmark for all aspects of music understanding, music generation quality, artistic evaluation, or production-level MIR systems.\n\nControlled synthesis is used intentionally to isolate auditory variables such as pitch, interval structure, tuning deviation, temporal distortion, and polyphonic interference without confounds introduced by uncontrolled recording conditions.\n\nThe public python framework package supports generation of additional synthetic training or evaluation data. However, the exact configurations used for the official held-out benchmark are intentionally not fully disclosed in order to reduce benchmark contamination and preserve long-term evaluation usefulness.",
   "rai:dataBiases": "PitchBench reflects several intentional design choices and associated biases:\n\n- Western music-theory framing: Pitch labels follow Scientific Pitch Notation and equal-tempered MIDI semitone conventions. Models are evaluated against these representations rather than alternative pitch-labeling or tuning traditions.\n\n- Controlled synthesis pipeline: Instrument timbres are rendered through a single GM soundfont pipeline (FluidR3_GM), which provides controlled cross-instrument consistency but does not capture the full acoustic diversity of real-world recordings, performers, recording environments, or production styles.\n\n- Pitch-range distribution: Although experiments are stratified across pitch ranges, perception difficulty varies substantially at very low and very high frequencies for both humans and models. Aggregate scores may therefore mask performance differences across frequency regions.\n\n- Limited vocal representation: The suite does not contain natural singing voice recordings or spoken musical examples. Choir-like synthesized patches are only coarse approximations of vocal timbre.\n\n- Narrow environmental-noise coverage: Real-world background mixtures are limited to a small number of ambient recordings used in controlled robustness experiments. These environments are not intended to represent the full distribution of real acoustic listening conditions.\n\nThese biases are deliberate tradeoffs to prioritize controllability, reproducibility, and precise attribution of model failures to specific auditory variables.",
   "rai:personalSensitiveInformation": "PitchBench does not contain personal, demographic, medical, financial, or intentionally collected sensitive information.\n\nThe suite contains no human-subject annotations, interviews, conversations, biometric records, or user metadata. Most audio is procedurally synthesized. The benchmark does not contain intentionally collected speech, identifiable vocal recordings, or recordings tied to specific individuals.\n\nA small subset of robustness experiments mixes synthetic targets with publicly available ambient environmental recordings (e.g., rain, crowd, street, church-bell environments). These recordings are used only as non-semantic background-noise sources and are not associated with identifiable individuals.\n\nThe only natural-language content in the suite consists of English-language evaluation prompts presented to models.",

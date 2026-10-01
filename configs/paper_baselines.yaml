@@ -43,7 +43,7 @@ benchmark:
   expected_condition_count: 5802
 
 input_dataset:
-  repository: "pitchbench-authors/PitchBench"
+  repository: "vaclis/PitchBench"
   repository_type: "dataset"
   revision: "f6c672608057cb877bfaacaeeff9bfb49eef7778"
   license: "CC-BY-4.0"
