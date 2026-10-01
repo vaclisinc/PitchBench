@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import os
 import re
+from contextlib import contextmanager
+from math import fsum
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable
@@ -150,7 +152,7 @@ def format_accuracy_dict(
     present_cols: list[str] = []
     for fmt, col in metric_map.items():
         vals = [r[col] for r in records if isinstance(r.get(col), (int, float, bool))]
-        out[fmt] = round(sum(vals) / len(vals), 4) if vals else 0.0
+        out[fmt] = fsum(vals) / len(vals) if vals else 0.0
         if vals:
             present_cols.append(col)
     if include_all and present_cols:
@@ -160,7 +162,7 @@ def format_accuracy_dict(
             any_format_correct(r.get(col) for col in any_cols)
             for r in records
         ]
-        out["any"] = round(sum(any_vals) / len(any_vals), 4) if any_vals else 0.0
+        out["any"] = fsum(any_vals) / len(any_vals) if any_vals else 0.0
     return out
 
 
@@ -221,7 +223,23 @@ def extract_all_solfege(text: str) -> list[int]:
 
 # ── LLM fallback for solfège parsing ──────────────────────────────────────────
 
+@contextmanager
+def offline_scoring():
+    """Disable optional remote parsing while replaying saved evidence."""
+    previous = os.environ.get("PITCHBENCH_OFFLINE_SCORING")
+    os.environ["PITCHBENCH_OFFLINE_SCORING"] = "1"
+    try:
+        yield
+    finally:
+        if previous is None:
+            os.environ.pop("PITCHBENCH_OFFLINE_SCORING", None)
+        else:
+            os.environ["PITCHBENCH_OFFLINE_SCORING"] = previous
+
+
 def _doremi_llm_enabled() -> bool:
+    if os.environ.get("PITCHBENCH_OFFLINE_SCORING") == "1":
+        return False
     if os.environ.get("PITCHBENCH_DOREMI_LLM", "1") == "0":
         return False
     return bool(

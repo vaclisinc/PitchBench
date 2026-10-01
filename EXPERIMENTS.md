@@ -1,6 +1,6 @@
 # PitchBench Dataset Experiment Breakdown
 
-For each experiment, the key independent variables and their benchmark values are described in sequence, along with a note on how conditions are stratified when sub-sampling is applied. Sources are drawn from a catalogue of 19 timbres: four synthetic waveforms (sine, sawtooth, square, and triangle) and 15 General MIDI instruments (piano, electric keyboard, guitar, flute, trumpet, trombone, clarinet, oboe, violin, cello, organ, bass, synthesizer lead, synthesizer pad, and voice). When models are prompted to output a pitch, four notation formats are queried per stimulus: MIDI integer, Scientific Pitch Notation (SPN, e.g., C4), fixed-do solfège (do = C, re = D, and so on), and frequency in Hertz. The conditions (i.e. parameter settings) for each experiment were stratified according to the variables salient to that specific experiment. Each experiment produced a total of 120-240 audio fragments, with the exception of A1.
+For each experiment, the key independent variables and their benchmark values are described in sequence, along with a note on how conditions are stratified when sub-sampling is applied. Sources are drawn from a catalogue of 19 timbres: four synthetic waveforms (sine, sawtooth, square, and triangle) and 15 General MIDI instruments (piano, electric keyboard, guitar, flute, trumpet, trombone, clarinet, oboe, violin, cello, organ, bass, synthesizer lead, synthesizer pad, and voice). The paper benchmark queries three pitch formats: MIDI integer, Scientific Pitch Notation (SPN, e.g., C4), and frequency in Hertz. Fixed-do solfège is available as an optional diagnostic and does not contribute to the paper score. The conditions (i.e. parameter settings) for each experiment were stratified according to the variables salient to that specific experiment. Each experiment produced a total of 120-240 audio fragments, with the exception of A1.
 
 ---
 
@@ -10,7 +10,7 @@ At the lowest level, models identify a single pitch in audio clips containing a 
 
 ### A1: Single Pitch Identification
 
-Each stimulus is a single sustained tone rendered by one source, either a synthetic waveform or a General MIDI instrument, and the model is asked to report the pitch in all four notation formats. The pitch set sweeps all 61 MIDI values from 29 to 89, the note range leading to audible and identifiable sound fragments for all sources. Exact-match scoring is applied for MIDI, SPN, and solfège, while a ±1 % tolerance is used for the Hz format. Duration is fixed at five seconds. Each condition corresponds to a unique (midi, source) pair.
+Each stimulus is a single sustained tone rendered by one source, either a synthetic waveform or a General MIDI instrument, and the model is asked to report the pitch in MIDI, SPN, and Hz. The pitch set sweeps all 61 MIDI values from 29 to 89, the note range leading to audible and identifiable sound fragments for all sources. Exact-match scoring is applied for MIDI and SPN, while a ±1 % tolerance is used for the Hz format. Duration is fixed at five seconds. Each condition corresponds to a unique (midi, source) pair.
 
 ### A2: Pitch Identification under Loudness Variation
 
@@ -70,7 +70,7 @@ A chord is presented and the model must classify its harmonic quality from a clo
 
 #### C4: Simultaneous Pitch Enumeration
 
-All pitches of a chord must be listed in all four notation formats. Scoring is set-exact: the predicted set must match the ground-truth set exactly, regardless of order. Chord types cover 13 dyad interval classes (unison through octave), the four triads, and three seventh-chord types (dominant, major, and minor), rooted at each of the ten benchmark pitches. This is the most demanding simultaneous-pitch task, requiring full enumeration rather than counting or labelling. Duration is fixed at five seconds, and one condition is generated per (chord_type, n_notes, root_midi) stratum.
+All pitches of a chord must be listed in MIDI, SPN, and Hz. Scoring is set-exact: the predicted set must match the ground-truth set exactly, regardless of order. Chord types cover 13 dyad interval classes (unison through octave), the four triads, and three seventh-chord types (dominant, major, and minor), rooted at each of the ten benchmark pitches. This is the most demanding simultaneous-pitch task, requiring full enumeration rather than counting or labelling. Duration is fixed at five seconds, and one condition is generated per (chord_type, n_notes, root_midi) stratum.
 
 ---
 
@@ -112,7 +112,9 @@ Conditions are identical to D7a, but the reference and target tones are delivere
 
 #### D8: Sequential Pitch Identification
 
-All pitches in a sequence of three, five, or ten notes must be listed in order in all four notation formats. Scoring is position-exact: each predicted note must match its ground-truth counterpart at that position. A composite "any-format correct" metric counts a stimulus as correct if the full sequence is reproduced exactly in at least one format. Three conditions are generated per (n_notes, source) stratum.
+All pitches in a sequence of three, five, or ten notes must be listed in order in MIDI, SPN, and Hz. Three conditions are generated per (n_notes, source) stratum.
+
+Headline scoring uses Ordered Note F1: $2M/(N_{gt}+N_{pred})$, where $M$ is the LCS match count. Full predictions are retained, including extra notes. MIDI matches exactly, SPN matches equivalent pitches, and Hz uses a ±1 Hz tolerance. ANY takes the maximum of MIDI/SPN/Hz per stimulus, then averages over stimuli; solfège is diagnostic only. Strict full-sequence exact match and positional matches remain auxiliary diagnostics. See the [Table 1](paper/figures-and-tables/table1.md) and [saved-response evidence](results/table1-recomputed/README.md).
 
 ---
 
@@ -149,6 +151,8 @@ A tone is detuned by a small amount within the perceptual basin of attraction of
 ## Level 3: Melodic Pitch Perception
 
 At the highest level, PitchBench tests whether models can identify pitches within a melodic line in polyphonic settings where multiple voices sound simultaneously, building onto all capabilities established at level 1 (absolute pitch) and 2 (pitch within chord and sequences). 
+
+D8, F1, and F2 use Ordered Note F1, $2M/(N_{gt}+N_{pred})$, with the longest order-preserving one-to-one alignment providing $M$. Extra predictions remain in the denominator. For F1/F2, MIDI and SPN require the same pitch including octave; Hz uses ±1% matching. The score is the mean of each stimulus's maximum MIDI/SPN/Hz F1. Strict sequence accuracy is an auxiliary diagnostic.
 
 ### F1: Melodic Line in Synthetic Polyphony
 

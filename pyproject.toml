@@ -10,7 +10,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [
-    { name = "pitchbench-authors", email = "lofi123woooo@gmail.com" },
+    { name = "Milan Liessens Dujardin" },
+    { name = "Song-Ze Yu" },
+    { name = "Craver Corbyn Thomas-Smith" },
+    { name = "David M. Chan" },
+    { name = "Karina Nguyen" },
 ]
 keywords = ["audio", "language-model", "benchmark", "pitch", "music", "ALM"]
 classifiers = [
@@ -29,6 +33,7 @@ dependencies = [
     "openai>=1.0",
     "scikit-learn>=1.4",
     "python-dotenv>=1.0",
+    "PyYAML>=6.0",
     "music21>=9.9.1",
     "pandas>=2.0",
     "pyarrow>=15",
@@ -51,6 +56,9 @@ pitchbench = "pitchbench.experiments.run:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"pitchbench.analysis" = ["fonts/*.ttf", "fonts/OFL.txt"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v"
@@ -60,4 +68,3 @@ dev = [
     "pytest>=9.0.3",
     "pytest-mock>=3.15.1",
 ]
-

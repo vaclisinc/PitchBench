@@ -93,10 +93,16 @@ def _resolve_experiments(positionals: list[str]) -> list[str]:
     """Resolve a list of positional tokens to full experiment module names.
 
     Accepts: experiment IDs (``a1``), category letters (``a``), full module
-    names, and ``"all"``.  Raises ``SystemExit`` on unknown tokens.
+    names, ``"all"``, or the standalone ``"paper"`` selector for Table 1.
+    Raises ``SystemExit`` on unknown tokens.
     """
     if not positionals or positionals == ["all"]:
         return discover()
+    if positionals == ["paper"]:
+        names = [_id_to_name(exp_id) for exp_id in config.PAPER_EXPERIMENT_IDS]
+        if any(name is None for name in names):
+            sys.exit("A required paper experiment is missing from the package.")
+        return names
 
     known = discover()
     out: list[str] = []
@@ -206,6 +212,7 @@ def _evaluate_one(
     run_dir:     Path,
     sample_info: dict[str, Any] | None = None,
     model_label: str | None = None,
+    filter_conditions: bool = False,
 ) -> dict | None:
     """Import the experiment module and call the right evaluate_cat_*_from_parquet.
 
@@ -233,15 +240,15 @@ def _evaluate_one(
 
     try:
         if isinstance(spec, CatASpec):  # covers CatESpec (same class)
-            return evaluate_cat_a_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_a_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatBSpec):
-            return evaluate_cat_b_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_b_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatCSpec):
-            return evaluate_cat_c_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_c_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatDSpec):
-            return evaluate_cat_d_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_d_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         if isinstance(spec, CatFSpec):
-            return evaluate_cat_f_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label)  # type: ignore[return-value]
+            return evaluate_cat_f_from_parquet(spec, model_name, exp_run_dir, sample_info, model_label=model_label, filter_conditions=filter_conditions)  # type: ignore[return-value]
         print(f"  [SKIP] {name}: unrecognised spec type {type(spec).__name__}")
         return None
     except FileNotFoundError as exc:
@@ -297,6 +304,8 @@ def cmd_evaluate(args: argparse.Namespace) -> None:
     config.RESULTS_DIR = run_dir
 
     sample_info: dict[str, Any] = {"sample_n": args.sample_n, "sample_seed": args.sample_seed}
+    if args.experiments == ["paper"]:
+        sample_info["pitch_formats"] = ("midi", "spn", "hz")
 
     print(f"Evaluating {len(names)} experiment(s) with model: {model_name}")
     if args.name:
@@ -316,6 +325,10 @@ def cmd_evaluate(args: argparse.Namespace) -> None:
             all_runs[n] = result
 
     # ── Post-run aggregation ─────────────────────────────────────────────────
+    if args.experiments == ["paper"] and set(all_runs) != set(names):
+        missing = sorted(set(names) - set(all_runs))
+        sys.exit("Paper evaluation is incomplete; refusing to report a partial overall. "
+                 "Missing: " + ", ".join(missing))
     overall_dir = run_dir / "overall"
     overall_dir.mkdir(exist_ok=True)
     ts2 = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -534,7 +547,7 @@ def cmd_analyze(args: argparse.Namespace) -> None:
 
     for n in names:
         cost_tracker.reset()
-        result = _evaluate_one(n, model_name, run_dir, sample_info, model_label=model_label)
+        result = _evaluate_one(n, model_name, run_dir, sample_info, model_label=model_label, filter_conditions=True)
         per_exp_costs[n] = cost_tracker.all_totals()
         if result is not None:
             all_runs[n] = result

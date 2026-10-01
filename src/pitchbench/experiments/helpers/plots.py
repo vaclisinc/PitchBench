@@ -748,6 +748,7 @@ def save_cross_model_pitch_plots(
 # Ordered list of primary-score field candidates. The first one present in
 # every record is used as that experiment's primary score.
 _PRIMARY_SCORE_CANDIDATES: tuple[tuple[str, str], ...] = (
+    ("any_note_f1",         "Ordered Note F1 (%)"),
     ("midi_correct",        "MIDI accuracy (%)"),
     ("answer_correct",      "Answer accuracy (%)"),
     ("interval_correct",    "Interval accuracy (%)"),

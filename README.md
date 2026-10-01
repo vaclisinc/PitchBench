@@ -1,12 +1,65 @@
-# PitchBench -- Python Package
+<div align="center">
 
-Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more — reporting per-format accuracy (MIDI, SPN, doremi, Hz) to expose where verbal decoding fails.
+# PitchBench
+
+### Measuring Pitch Hearing in Audio-Language Models
+
+<span style="white-space:nowrap;">Milan Liessens Dujardin<sup>1*</sup></span>&nbsp;·
+<span style="white-space:nowrap;">Song-Ze Yu<sup>1*</sup></span>&nbsp;·
+<span style="white-space:nowrap;">Craver Corbyn Thomas-Smith<sup>2</sup></span>&nbsp;·
+<span style="white-space:nowrap;">David M. Chan<sup>1</sup></span>&nbsp;·
+<span style="white-space:nowrap;">Karina Nguyen<sup>2</sup></span>
+
+<sub><sup>1</sup>University of California, Berkeley · <sup>2</sup>Thoughtful Lab · <sup>*</sup>Equal contribution</sub>
+
+<br/>
+
+[![NeurIPS 2026 E&D](https://img.shields.io/badge/NeurIPS_2026-Evaluations_%26_Datasets-8c1b13.svg)](https://neurips.cc/Conferences/2026)
+[![Hugging Face dataset](https://img.shields.io/badge/%F0%9F%A4%97_Dataset-vaclis%2FPitchBench-ffcc4d.svg)](https://huggingface.co/datasets/vaclis/PitchBench)
+[![PyPI](https://img.shields.io/pypi/v/pitchbench.svg?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/pitchbench/)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
+
+</div>
+
+<p align="center">
+  <img src="paper/figures-and-tables/figure1_pitch_pyramid.png" alt="PitchBench task hierarchy (Figure 1)" width="100%">
+</p>
+
+Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more. The paper comparison uses MIDI, SPN and Hz; D8/F1/F2 use Ordered Note F1 and other tasks use accuracy.
+
+
+## Paper results
+
+[**Table 1: all 28 tasks × 8 models**](paper/figures-and-tables/table1.md)
+is the canonical paper comparison, including DSP and Basic Pitch.
+[CSV](paper/figures-and-tables/table1.csv),
+[LaTeX](paper/figures-and-tables/table1.tex), and
+[source mapping](paper/figures-and-tables/table1.sources.json) are generated together.
+The [reproduction guide](paper/figures-and-tables/README.md) documents the metrics,
+sample coverage, and underlying evidence.
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.table1 --check
+```
+
+This checks the committed table against its evidence without model calls, audio,
+or third-party Python packages. Omit `--check` to regenerate all formats.
+
+Regenerate Figures 1–4 with the paper layout:
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.publication
+```
+
+The figure generator uses saved evidence and bundled fonts; it makes no model calls.
 
 ---
 
 ## Setup
 
-### 1. Install FluidSynth
+### 1. Install FluidSynth (stimulus generation only)
+
+Skip this step when evaluating an existing Parquet dataset.
 
 | Platform | Command |
 |----------|---------|
@@ -39,8 +92,10 @@ SF2 resolution order: `PITCHBENCH_SF2` env var → `data/soundfonts/` → `/usr/
 python3 -m venv .venv
 source .venv/bin/activate        # Linux / macOS
 # .venv\Scripts\activate         # Windows
-pip install pitchbench
+pip install -e .               # install the version in this checkout
 ```
+
+Use the source installation above for the scoring protocol and reproduction commands documented here.
 
 For development tools:
 ```bash
@@ -63,7 +118,7 @@ DASHSCOPE_API_KEY=sk-...
 ```
 Use `--model dashscope/<model>`.
 
-**Local server** — included in the base `pip install pitchbench` dependencies:
+**Local server** — use an OpenAI-compatible audio endpoint:
 ```
 --model http://localhost:8001 --name my-local-model
 ```
@@ -77,7 +132,7 @@ PitchBench separates stimulus generation from model evaluation. Generate once, e
 ### Generate
 
 ```bash
-pitchbench generate all
+pitchbench generate paper
 pitchbench generate a          # single category
 pitchbench generate a1         # single experiment
 ```
@@ -94,8 +149,8 @@ data/generated/pitchbench_a1_single_pitch_id/
 ### Evaluate
 
 ```bash
-pitchbench --list   
-pitchbench evaluate all --model openrouter/<provider>/<model>
+pitchbench --list
+pitchbench evaluate paper --model openrouter/<provider>/<model>
 pitchbench evaluate a1  --model openrouter/<provider>/<model>
 
 # Quick test (20 stimuli, stratified)
@@ -104,13 +159,24 @@ pitchbench evaluate a1  --model openrouter/<provider>/<model> --sample-n 20 --sa
 
 Results land in `results/evaluation/<model_slug>/<YYYYMMDD_HHMMSS>/`.
 
+`paper` selects exactly the 28 Table 1 tasks and queries MIDI/SPN/Hz only.
+It rejects missing tasks before reporting overall. `all` includes extra tasks
+such as Y1 and the additional reference variants.
+
+Evaluation uses the stored stimuli; it does not require local audio synthesis
+or regenerate conditions to filter out instruments. Condition filtering belongs
+to `analyze` presets. D8/F1/F2 export Ordered Note F1 through the task summary,
+CSV and overall score. B3/B4/B5 export their timing accuracy as task-level scores;
+the paper overall is the equal-weight mean of all 28 tasks. Numeric summaries
+and CSVs retain unrounded scores; rounding is applied only for display.
+
 In tmux (recommended for long runs):
 ```bash
 tmux new-session -d -s mymodel "source .venv/bin/activate && \
-  pitchbench evaluate all --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
+  pitchbench evaluate paper --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
 ```
 
-Without any model specification, the system defaults to the localhost:8001 endpoint. An example file (audio_flamingo_next_instruct.py) was added for running Audio Flamingo Next Instruct on localhost:8001. 
+Without any model specification, the system defaults to the localhost:8001 endpoint. See [the Audio Flamingo Next server example](audio_flamingo_next_instruct.py) for a local backend.
 
 ### Analyze
 
@@ -147,7 +213,7 @@ results/evaluation/<model_slug>/<YYYYMMDD_HHMMSS>/
 
 ## Experiment categories
 
-28 experiments across 7 categories.
+The paper benchmark contains 28 tasks across categories A–F. The package also provides four optional tasks: D7b, D7c, D7d, and Y1.
 
 ### Category A — Single-pitch identification
 
@@ -256,17 +322,31 @@ src/pitchbench/
       setup.py                 # experiment setup helpers
       timing_layout.py         # timing-grid utilities
   analysis/
-    analyze_a1.py              # a1 line plots + heatmaps
     analyze.py                 # core analysis pipeline
-    a1.py                      # alternate A1 analysis entrypoint
+    a1.py                      # A1 line plots + heatmaps
     ablation.py                # ablation summaries
     combine.py                 # combine multi-run CSV outputs
     overview.py                # overview plots/tables
     run_analysis.py            # batch analysis CLI
+    replay.py                  # canonical 28-task raw-answer replay
+    table1.py                  # Table 1 exports from verified evidence
+    publication.py             # generate manuscript Figures 1–4
+    fonts/                     # bundled publication fonts and license
+  baselines/
+    evaluation.py              # frozen-dataset baseline runner
+    runtime.py                 # DSP and Basic Pitch adapters
 data/
   preloaded/                   # background recordings (gitignored)
   generated/                   # created by `pitchbench generate`
-results/                       # created by evaluate/analyze runs
+configs/
+  paper_baselines.yaml         # reusable baseline recipe
+  baselines-requirements.txt    # separate pinned ONNX inference environment
+paper/
+  evaluation/                  # compressed saved ALM answers (replay inputs)
+  analysis/                    # separate diagnostic sample and numeric evidence
+  figures-and-tables/          # publication tables and A1 figures
+results/
+  table1-recomputed/           # full-precision paper scores and provenance
 ```
 
 Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.
@@ -293,9 +373,10 @@ Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.
 uv run pytest
 ```
 
-77 tests covering CLI resolution, Parquet I/O, result aggregation, sampling, and API routing. No network calls or audio generation required.
+Tests cover CLI resolution, Parquet I/O, result aggregation, sequence scoring,
+baseline adapters, Table 1 consistency, sampling, and API routing. No network
+calls or audio generation required.
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
-

@@ -17,8 +17,9 @@ stimuli (notes one after another, or a continuous glide):
 
 The lifecycle (argparse → sampling → audio → dispatch → save_results)
 mirrors :mod:`cat_a`, :mod:`cat_b`, :mod:`cat_c`. ``CatDSpec.headline_metrics``
-lists the metric names whose ``<name>_correct`` columns flow into
-``summary["accuracy"]`` and the headline accuracies CSV. Auxiliary
+lists the metric names whose ``<name><metric_suffix>`` columns flow into
+``summary["accuracy"]`` and the headline accuracies CSV. The suffix defaults
+to ``_correct``; D8 uses ``_note_f1``. Auxiliary
 diagnostic columns (``off_by``, ``interval_within_1``, ``kendall_tau``,
 ``<format>_n_pos_match``) live in the per-stimulus records CSV but stay
 invisible to the auto-marginals because their column names do not end in
@@ -26,6 +27,8 @@ invisible to the auto-marginals because their column names do not end in
 """
 
 from __future__ import annotations
+
+from math import fsum
 
 import argparse
 from dataclasses import dataclass
@@ -56,8 +59,9 @@ class CatDSpec:
     ``{prompt_name: prompt_text}`` whose keys are queried in turn (the
     runner caches one query per prompt). ``record_fn`` is then called with
     the condition, the wav path, and the raw responses keyed by the same
-    prompt names; it must return a dict with at least one ``<name>_correct``
-    integer column for each entry in ``headline_metrics``.
+    prompt names; it must return a dict with at least one ``<name><metric_suffix>``
+    column for each entry in ``headline_metrics``. D8 uses ``metric_suffix``
+    to select fractional note-F1 columns instead.
     """
     exp_name:            str
     build_conditions_fn: Callable[[], list[dict]]
@@ -69,9 +73,10 @@ class CatDSpec:
     prompts_fn: Callable[[dict], dict[str, str]]
     record_fn:  Callable[[dict, str, dict[str, str]], dict]
 
-    # Names whose `<name>_correct` columns flow into summary["accuracy"]
+    # Names whose `<name><metric_suffix>` columns flow into summary["accuracy"]
     # (and therefore into accuracies_<model>.csv). Order = display order.
     headline_metrics: tuple[str, ...] = ()
+    metric_suffix: str = "_correct"
 
     # Shared (mirrors CatASpec / CatBSpec / CatCSpec).
     primary_filter: Callable[[dict], bool] | None = None
@@ -107,13 +112,14 @@ def _accuracy(records: list[dict], col: str) -> float:
     vals = [r[col] for r in records if isinstance(r.get(col), (int, float, bool))]
     if not vals:
         return 0.0
-    return round(sum(vals) / len(vals), 4)
+    return fsum(vals) / len(vals)
 
 
 def compute_summary(
     records:          list[dict],
     headline_metrics: tuple[str, ...],
     primary_filter:   Callable[[dict], bool] | None,
+    metric_suffix: str = "_correct",
 ) -> dict[str, Any]:
     """Build the cat-D summary dict.
 
@@ -123,8 +129,9 @@ def compute_summary(
     * When ``primary_filter`` is set, also ``baseline_n`` and
       ``accuracy_baseline``.
     * ``accuracy = {n, <m1>, <m2>, ...}`` where each ``<m>`` is averaged
-      over records whose ``<m>_correct`` column is numeric.
+      over records whose ``<m><metric_suffix>`` column is numeric.
     """
+    # Keep the legacy summary key for table/export compatibility.
     total = len(records)
     if primary_filter is None:
         primary, secondary = records, []
@@ -136,7 +143,7 @@ def compute_summary(
     def _acc_for(rs: list[dict]) -> dict[str, Any]:
         return {
             "n": len(rs),
-            **{m: _accuracy(rs, f"{m}_correct") for m in headline_metrics},
+            **{m: _accuracy(rs, f"{m}{metric_suffix}") for m in headline_metrics},
         }
 
     out: dict[str, Any] = {
@@ -160,6 +167,7 @@ def _format_summary_lines(
     lines = sampling_summary_lines(sample_info or {}) + [
         f"  Stimuli (total)     : {summary['total']}",
     ]
+    score_label = "Score" if spec.metric_suffix != "_correct" else "Accuracy"
     metrics = list(spec.headline_metrics)
     acc_p   = summary["accuracy"]
     if has_baseline:
@@ -184,11 +192,14 @@ def _format_summary_lines(
         lines += [
             f"  Stimuli (condition) : {summary['condition_n']}  (all records)",
             "",
-            f"  {'Metric':>14}  {'Accuracy':>9}",
+            f"  {'Metric':>14}  {score_label:>9}",
             f"  {'─' * 27}",
         ]
         for m in metrics:
             lines.append(f"  {m.upper():>14}  {acc_p[m]:>9.1%}")
+    if spec.metric_suffix == "_note_f1":
+        lines.append("  Headline = macro Ordered Note F1 (LCS); ANY is the per-stimulus "
+                     "maximum of MIDI/SPN/Hz, excluding solfege.")
     return lines
 
 
@@ -241,6 +252,8 @@ def run_one_model(
     conds:       list[dict],
     run_dir:     Path,
     sample_info: dict | None,
+    *,
+    model_label: str | None = None,
 ) -> dict:
     info = get_model_info(model_name)
     print(f"\n  Model : {model_name}")
@@ -264,7 +277,7 @@ def run_one_model(
         prompts = job["prompts"]
         responses: dict[str, str] = {}
         for name, prompt in prompts.items():
-            out = query_alm(model_name, job["wav"], prompt)
+            out = query_alm(model_name, job["wav"], prompt) if prompt else {"result": ""}
             responses[name] = (out["result"] or "").strip()
         record = spec.record_fn(c, job["wav"], responses)
         # Inject `prompt_<name>` columns + record_extras.
@@ -286,6 +299,9 @@ def run_one_model(
         per headline metric."""
         blocks: list[str] = []
         for m in spec.headline_metrics:
+            if spec.metric_suffix != "_correct":
+                blocks.append(f"{m}={record[f'{m}{spec.metric_suffix}']:.3f}")
+                continue
             pred = record.get(f"{m}_pred")
             ok   = bool(record.get(f"{m}_correct"))
             sym  = "✅" if ok else "❌"
@@ -301,7 +317,7 @@ def run_one_model(
     full_records: list[dict] = [r for r in raw if r is not None]
 
     # Phase 3 — summary + lines.
-    summary       = compute_summary(full_records, spec.headline_metrics, spec.primary_filter)
+    summary       = compute_summary(full_records, spec.headline_metrics, spec.primary_filter, spec.metric_suffix)
     summary_lines = _format_summary_lines(spec, summary, sample_info)
 
     print(f"\n{'=' * 60}")
@@ -314,9 +330,10 @@ def run_one_model(
     extra_meta = spec.metadata_fn() if spec.metadata_fn else {}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
-        **({"+model_label": model_label} if model_label else {}),
+        **({"model_label": model_label} if model_label else {}),
         task_type=spec.task_type,
         headline_metrics=list(spec.headline_metrics),
+        metric_suffix=spec.metric_suffix,
         primary_filter_set=spec.primary_filter is not None,
         record_extras=list(spec.record_extras),
         **extra_meta,
@@ -326,7 +343,7 @@ def run_one_model(
         spec.exp_name, stem_name, full_records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=tuple(f"{m}_correct" for m in spec.headline_metrics),
+        extra_metrics=tuple(f"{m}{spec.metric_suffix}" for m in spec.headline_metrics),
     )
     return summary
 
@@ -444,15 +461,19 @@ def evaluate_cat_d_from_parquet(
     sample_info: dict | None = None,
     *,
     model_label: str | None = None,
+    filter_conditions: bool = False,
 ) -> dict:
     """Evaluate ``model_name`` on the pre-generated dataset for a cat-D spec."""
     from pitchbench.experiments.helpers.data import (
-        dataset_path, filter_rows_to_conditions, read_dataset,
+        dataset_path, filter_rows_to_conditions, read_dataset, select_pitch_formats,
     )
 
-    rows = read_dataset(dataset_path(spec.exp_name))
-    expected = spec.build_conditions_fn()
-    if len(expected) < len(rows):
+    rows = select_pitch_formats(read_dataset(dataset_path(spec.exp_name)),
+                                (sample_info or {}).get("pitch_formats"))
+    # Ordinary evaluation consumes the stored sample independently of local
+    # synthesis capabilities. Only analysis presets request condition filtering.
+    if filter_conditions:
+        expected = spec.build_conditions_fn()
         before = len(rows)
         rows = filter_rows_to_conditions(rows, expected)
         print(f"  Filtered to analysis config: {len(rows)} / {before} rows")
@@ -482,7 +503,7 @@ def evaluate_cat_d_from_parquet(
         c = job["cond"]; prompts = job["prompts"]
         responses: dict[str, str] = {}
         for name, prompt in prompts.items():
-            out = query_alm(model_name, job["wav"], prompt)
+            out = query_alm(model_name, job["wav"], prompt) if prompt else {"result": ""}
             responses[name] = (out["result"] or "").strip()
         record = spec.record_fn(c, job["wav"], responses)
         for name, prompt in prompts.items():
@@ -497,7 +518,7 @@ def evaluate_cat_d_from_parquet(
     raw = dispatch(jobs, _query_one, model_name=model_name, label_fn=lambda j: label(j))
     full_records: list[dict] = [r for r in raw if r is not None]
 
-    summary       = compute_summary(full_records, spec.headline_metrics, spec.primary_filter)
+    summary       = compute_summary(full_records, spec.headline_metrics, spec.primary_filter, spec.metric_suffix)
     summary_lines = _format_summary_lines(spec, summary, sample_info)
 
     print(f"\n{'=' * 60}")
@@ -505,20 +526,23 @@ def evaluate_cat_d_from_parquet(
     for line in summary_lines:
         print(line)
 
+    stem_name = model_label or model_name
     extra_meta = spec.metadata_fn() if spec.metadata_fn else {}
     metadata = get_run_metadata(
         model_name=model_name, model_info=info,
+        **({"model_label": model_label} if model_label else {}),
         task_type=spec.task_type,
         headline_metrics=list(spec.headline_metrics),
+        metric_suffix=spec.metric_suffix,
         primary_filter_set=spec.primary_filter is not None,
         record_extras=list(spec.record_extras),
         **extra_meta,
         **(sample_info or {}),
     )
     save_results(
-        spec.exp_name, model_name, full_records, summary, metadata, summary_lines,
+        spec.exp_name, stem_name, full_records, summary, metadata, summary_lines,
         run_dir=run_dir,
         formats=(),
-        extra_metrics=tuple(f"{m}_correct" for m in spec.headline_metrics),
+        extra_metrics=tuple(f"{m}{spec.metric_suffix}" for m in spec.headline_metrics),
     )
     return summary
