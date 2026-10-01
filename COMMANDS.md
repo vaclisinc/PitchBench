@@ -36,6 +36,16 @@ To reparse raw answers against the fixed official ground truth, use
 guide. It is the single paper replay implementation, including D8/F1/F2 F1 and
 the equal-weight overall.
 
+## Paper figures
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.publication
+# Write all PDF/SVG/PNG exports to a separate directory:
+PYTHONPATH=src python -m pitchbench.analysis.publication --output-dir /PATH/TO/FIGURES
+```
+
+Figures use the manuscript layout and saved numeric evidence. No inference is needed.
+
 ## Individual experiments and diagnostics
 
 ```bash

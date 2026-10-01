@@ -52,6 +52,9 @@ pitchbench = "pitchbench.experiments.run:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"pitchbench.analysis" = ["fonts/*.ttf", "fonts/OFL.txt"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v"

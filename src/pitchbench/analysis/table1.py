@@ -129,6 +129,17 @@ def _ranked(values: list[Decimal], *, latex: bool = False) -> list[str]:
 
 def render(repo: Path) -> dict[str, str]:
     scores = load_scores(repo)
+    long_form = io.StringIO(newline="")
+    long_writer = csv.writer(long_form, lineterminator="\n")
+    long_writer.writerow(["model", "experiment", "metric", "n_samples", "accuracy", "accuracy_pct", "source_rows"])
+    with (repo / SOURCES["recomputed"]).open(newline="") as handle:
+        for row in csv.DictReader(handle):
+            # Preserve the companion CSV's schema while making its metric explicit.
+            name = next((Path(__file__).resolve().parents[1] / "experiments/scripts").glob(
+                f"pitchbench_{row['task'].lower()}_*.py")).stem
+            score = scores[row["model"], row["task"]]
+            long_writer.writerow([row["model"], name, row["metric"], row["n_samples"],
+                                  score / 100, _display(score) + "%", 1])
     rows = [(task, [scores[model, task] for model in MODELS]) for task in TASKS]
     rows.append(
         (
@@ -221,6 +232,7 @@ def render(repo: Path) -> dict[str, str]:
         },
     }
     return {
+        "accuracies_by_model_experiment.csv": long_form.getvalue(),
         "table1.csv": stream.getvalue(),
         "table1.md": "\n".join(md) + "\n",
         "table1.tex": "\n".join(tex) + "\n",

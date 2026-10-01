@@ -20,6 +20,14 @@ PYTHONPATH=src python -m pitchbench.analysis.table1 --check
 This checks the committed table against its evidence without model calls, audio,
 or third-party Python packages. Omit `--check` to regenerate all formats.
 
+Regenerate Figures 1–4 with the paper layout:
+
+```bash
+PYTHONPATH=src python -m pitchbench.analysis.publication
+```
+
+The figure generator uses saved evidence and bundled fonts; it makes no model calls.
+
 ---
 
 ## Setup
@@ -297,6 +305,9 @@ src/pitchbench/
     run_analysis.py            # batch analysis CLI
     replay.py                  # canonical 28-task raw-answer replay
     table1.py                  # Table 1 exports from verified evidence
+    publication.py             # generate manuscript Figures 1–4
+    pyramid.py                 # Figure 1 task hierarchy
+    fonts/                     # bundled publication fonts and license
   baselines/
     evaluation.py              # frozen-dataset baseline runner
     runtime.py                 # DSP and Basic Pitch adapters

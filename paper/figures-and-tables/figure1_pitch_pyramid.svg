@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="426pt" height="208.8pt" viewBox="0 0 426 208.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-02T03:18:15.018514</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 208.8
+L 426 208.8
+L 426 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 238 7
+L 259.12 40
+L 216.88 40
+z
+" clip-path="url(#p8e39319780)" style="fill: #d9e9e7; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 212.4 47
+L 225.2 47
+L 187.76 164
+L 137.52 164
+z
+" clip-path="url(#p8e39319780)" style="fill: #dae7f1; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 225.2 47
+L 238 47
+L 238 164
+L 187.76 164
+z
+" clip-path="url(#p8e39319780)" style="fill: #e6e1ee; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 238 47
+L 250.8 47
+L 288.24 164
+L 238 164
+z
+" clip-path="url(#p8e39319780)" style="fill: #dde8dd; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 250.8 47
+L 263.6 47
+L 338.48 164
+L 288.24 164
+z
+" clip-path="url(#p8e39319780)" style="fill: #f3e4d9; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 133.04 171
+L 238 171
+L 238 183
+L 125.36 183
+z
+" clip-path="url(#p8e39319780)" style="fill: #f3f3f5; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 238 171
+L 342.96 171
+L 350.64 183
+L 238 183
+z
+" clip-path="url(#p8e39319780)" style="fill: #f3f3f5; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 125.36 183
+L 350.64 183
+L 363.44 203
+L 112.56 203
+z
+" clip-path="url(#p8e39319780)" style="fill: #e8e8eb; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 38 7
+L 35 7
+L 35 40
+L 38 40
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #b5c1ca; stroke-width: 0.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 38 47
+L 35 47
+L 35 164
+L 38 164
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #b5c1ca; stroke-width: 0.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 38 171
+L 35 171
+L 35 203
+L 38 203
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #b5c1ca; stroke-width: 0.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 40 179
+L 118 179
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #626575; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 43 58
+L 139 58
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #527a99; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 43 115
+L 139 115
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #7c7193; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 342 26
+L 409 26
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #627d66; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 342 109
+L 409 109
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #9a755e; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 43 16
+L 139 16
+" clip-path="url(#p8e39319780)" style="fill: none; stroke: #527d79; stroke-opacity: 0.55; stroke-width: 0.55; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 800; font-size: 11px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #527d79" x="238" y="31.711328" transform="rotate(-0 238 31.711328)">F</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 800; font-size: 12px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #527a99" x="173.68" y="136.957812" transform="rotate(-0 173.68 136.957812)">B</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 6.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #527a99" x="173.68" y="148.552852" transform="rotate(-0 173.68 148.552852)">Temporal</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 800; font-size: 12px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #7c7193" x="216.56" y="136.957812" transform="rotate(-0 216.56 136.957812)">C</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 6.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #7c7193" x="216.56" y="148.552852" transform="rotate(-0 216.56 148.552852)">Chord</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 800; font-size: 12px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #627d66" x="259.44" y="136.957812" transform="rotate(-0 259.44 136.957812)">D</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 6.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #627d66" x="259.44" y="148.59075" transform="rotate(-0 259.44 148.59075)">Sequence</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 800; font-size: 12px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #9a755e" x="302.32" y="136.957812" transform="rotate(-0 302.32 136.957812)">E</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 6.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #9a755e" x="302.32" y="148.552852" transform="rotate(-0 302.32 148.552852)">Acoustic</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 7px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #626575" x="185.52" y="178.725391" transform="rotate(-0 185.52 178.725391)">A2  Loudness</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 7px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #626575" x="290.48" y="178.725391" transform="rotate(-0 290.48 178.725391)">A3  Duration</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 7px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: middle; fill: #626575" x="238" y="194.736328" transform="rotate(-0 238 194.736328)">A1  Single pitch</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 800; font-size: 6.1px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: end; fill: #527d79" x="31" y="20.503555" transform="rotate(-0 31 20.503555)">LEVEL 3</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 6.1px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: end; fill: #527d79" x="31" y="29.503555" transform="rotate(-0 31 29.503555)">Melodic</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 800; font-size: 6.1px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: end; fill: #253b4b" x="31" y="102.503555" transform="rotate(-0 31 102.503555)">LEVEL 2</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 6.1px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: end; fill: #253b4b" x="31" y="111.503555" transform="rotate(-0 31 111.503555)">Contextual</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 800; font-size: 6.1px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: end; fill: #626575" x="31" y="184.003555" transform="rotate(-0 31 184.003555)">LEVEL 1</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 6.1px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: end; fill: #626575" x="31" y="193.003555" transform="rotate(-0 31 193.003555)">Atomic</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 800; font-size: 9px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #626575" x="40" y="175.218359" transform="rotate(-0 40 175.218359)">A</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 800; font-size: 7.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="52" y="174.821578" transform="rotate(-0 52 174.821578)">Single note</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #626575" x="40" y="187.626797" transform="rotate(-0 40 187.626797)">A1</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="53" y="187.626797" transform="rotate(-0 53 187.626797)">Pitch identification</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #626575" x="40" y="195.626797" transform="rotate(-0 40 195.626797)">A2</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="53" y="195.626797" transform="rotate(-0 53 195.626797)">Loudness variation</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #626575" x="40" y="203.626797" transform="rotate(-0 40 203.626797)">A3</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="53" y="203.626797" transform="rotate(-0 53 203.626797)">Duration variation</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 800; font-size: 9px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527a99" x="43" y="54.218359" transform="rotate(-0 43 54.218359)">B</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 800; font-size: 7.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="55" y="53.799336" transform="rotate(-0 55 53.799336)">Temporal localization</text>
+   </g>
+   <g id="text_29">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527a99" x="43" y="66.626797" transform="rotate(-0 43 66.626797)">B1</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="66.626797" transform="rotate(-0 56 66.626797)">Pitch within silence</text>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527a99" x="43" y="74.626797" transform="rotate(-0 43 74.626797)">B2</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="74.626797" transform="rotate(-0 56 74.626797)">Pitch at a timestamp</text>
+   </g>
+   <g id="text_33">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527a99" x="43" y="82.626797" transform="rotate(-0 43 82.626797)">B3</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="82.637109" transform="rotate(-0 56 82.637109)">Single-tone onset / offset</text>
+   </g>
+   <g id="text_35">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527a99" x="43" y="90.626797" transform="rotate(-0 43 90.626797)">B4</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="90.623703" transform="rotate(-0 56 90.623703)">Timing of a named pitch</text>
+   </g>
+   <g id="text_37">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527a99" x="43" y="98.626797" transform="rotate(-0 43 98.626797)">B5</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="98.623703" transform="rotate(-0 56 98.623703)">Timing of every note</text>
+   </g>
+   <g id="text_39">
+    <text style="font-weight: 800; font-size: 9px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #7c7193" x="43" y="111.218359" transform="rotate(-0 43 111.218359)">C</text>
+   </g>
+   <g id="text_40">
+    <text style="font-weight: 800; font-size: 7.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="55" y="110.799336" transform="rotate(-0 55 110.799336)">Chordal structure</text>
+   </g>
+   <g id="text_41">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #7c7193" x="43" y="123.626797" transform="rotate(-0 43 123.626797)">C1</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="123.6665" transform="rotate(-0 56 123.6665)">Count pitches in a chord</text>
+   </g>
+   <g id="text_43">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #7c7193" x="43" y="131.626797" transform="rotate(-0 43 131.626797)">C2</text>
+   </g>
+   <g id="text_44">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="131.649484" transform="rotate(-0 56 131.649484)">Identify a dyad interval</text>
+   </g>
+   <g id="text_45">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #7c7193" x="43" y="139.626797" transform="rotate(-0 43 139.626797)">C3</text>
+   </g>
+   <g id="text_46">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="139.653094" transform="rotate(-0 56 139.653094)">Identify chord quality</text>
+   </g>
+   <g id="text_47">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #7c7193" x="43" y="147.626797" transform="rotate(-0 43 147.626797)">C4</text>
+   </g>
+   <g id="text_48">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="147.626797" transform="rotate(-0 56 147.626797)">Name all pitches in a chord</text>
+   </g>
+   <g id="text_49">
+    <text style="font-weight: 800; font-size: 9px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="22.218359" transform="rotate(-0 342 22.218359)">D</text>
+   </g>
+   <g id="text_50">
+    <text style="font-weight: 800; font-size: 7.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="354" y="21.8615" transform="rotate(-0 354 21.8615)">Sequence</text>
+   </g>
+   <g id="text_51">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="34.626797" transform="rotate(-0 342 34.626797)">D1</text>
+   </g>
+   <g id="text_52">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="34.6665" transform="rotate(-0 355 34.6665)">Count pitches</text>
+   </g>
+   <g id="text_53">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="42.626797" transform="rotate(-0 342 42.626797)">D2</text>
+   </g>
+   <g id="text_54">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="42.597406" transform="rotate(-0 355 42.597406)">Higher / lower</text>
+   </g>
+   <g id="text_55">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="50.626797" transform="rotate(-0 342 50.626797)">D3</text>
+   </g>
+   <g id="text_56">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="50.626797" transform="rotate(-0 355 50.626797)">Discrete contour</text>
+   </g>
+   <g id="text_57">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="58.626797" transform="rotate(-0 342 58.626797)">D4</text>
+   </g>
+   <g id="text_58">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="58.626797" transform="rotate(-0 355 58.626797)">Continuous contour</text>
+   </g>
+   <g id="text_59">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="66.626797" transform="rotate(-0 342 66.626797)">D5</text>
+   </g>
+   <g id="text_60">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="66.626797" transform="rotate(-0 355 66.626797)">Rank pitches</text>
+   </g>
+   <g id="text_61">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="74.626797" transform="rotate(-0 342 74.626797)">D6</text>
+   </g>
+   <g id="text_62">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="74.637109" transform="rotate(-0 355 74.637109)">Signed interval</text>
+   </g>
+   <g id="text_63">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="82.626797" transform="rotate(-0 342 82.626797)">D7</text>
+   </g>
+   <g id="text_64">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="82.653094" transform="rotate(-0 355 82.653094)">Reference pitch</text>
+   </g>
+   <g id="text_65">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #627d66" x="342" y="90.626797" transform="rotate(-0 342 90.626797)">D8</text>
+   </g>
+   <g id="text_66">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="90.626797" transform="rotate(-0 355 90.626797)">All pitches in order</text>
+   </g>
+   <g id="text_67">
+    <text style="font-weight: 800; font-size: 9px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="105.218359" transform="rotate(-0 342 105.218359)">E</text>
+   </g>
+   <g id="text_68">
+    <text style="font-weight: 800; font-size: 7.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="354" y="104.799336" transform="rotate(-0 354 104.799336)">Acoustics</text>
+   </g>
+   <g id="text_69">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="117.626797" transform="rotate(-0 342 117.626797)">E1</text>
+   </g>
+   <g id="text_70">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="117.626797" transform="rotate(-0 355 117.626797)">Audio effects</text>
+   </g>
+   <g id="text_71">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="125.626797" transform="rotate(-0 342 125.626797)">E2</text>
+   </g>
+   <g id="text_72">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="125.597406" transform="rotate(-0 355 125.597406)">Background sounds</text>
+   </g>
+   <g id="text_73">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="133.626797" transform="rotate(-0 342 133.626797)">E3</text>
+   </g>
+   <g id="text_74">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="133.626797" transform="rotate(-0 355 133.626797)">Harmonic saturation</text>
+   </g>
+   <g id="text_75">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="141.626797" transform="rotate(-0 342 141.626797)">E4</text>
+   </g>
+   <g id="text_76">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="141.643812" transform="rotate(-0 355 141.643812)">Stretch / resample</text>
+   </g>
+   <g id="text_77">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="149.626797" transform="rotate(-0 342 149.626797)">E5</text>
+   </g>
+   <g id="text_78">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="149.626797" transform="rotate(-0 355 149.626797)">Vibrato</text>
+   </g>
+   <g id="text_79">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #9a755e" x="342" y="157.626797" transform="rotate(-0 342 157.626797)">E6</text>
+   </g>
+   <g id="text_80">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="355" y="157.637109" transform="rotate(-0 355 157.637109)">Slight detuning</text>
+   </g>
+   <g id="text_81">
+    <text style="font-weight: 800; font-size: 9px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527d79" x="43" y="12.218359" transform="rotate(-0 43 12.218359)">F</text>
+   </g>
+   <g id="text_82">
+    <text style="font-weight: 800; font-size: 7.3px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="55" y="11.799336" transform="rotate(-0 55 11.799336)">Polyphonic music</text>
+   </g>
+   <g id="text_83">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527d79" x="43" y="24.626797" transform="rotate(-0 43 24.626797)">F1</text>
+   </g>
+   <g id="text_84">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="24.626797" transform="rotate(-0 56 24.626797)">Melody in synthetic mixtures</text>
+   </g>
+   <g id="text_85">
+    <text style="font-weight: 800; font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #527d79" x="43" y="32.626797" transform="rotate(-0 43 32.626797)">F2</text>
+   </g>
+   <g id="text_86">
+    <text style="font-size: 6.6px; font-family: 'Hanken Grotesk', sans-serif; text-anchor: start; fill: #253b4b" x="56" y="32.626797" transform="rotate(-0 56 32.626797)">Melody in Bach chorales</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p8e39319780">
+   <rect x="0" y="0" width="426" height="208.8"/>
+  </clipPath>
+ </defs>
+</svg>
