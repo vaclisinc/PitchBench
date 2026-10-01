@@ -189,7 +189,7 @@ def replay(repo, dataset, output, baseline_input=None):
             else:
                 paths = list(
                     (repo / "paper/evaluation" / ("_" + model) / experiment).glob(
-                        "*/results_*.json"
+                        "*/results_*.json*"
                     )
                 )
             if len(paths) != 1:

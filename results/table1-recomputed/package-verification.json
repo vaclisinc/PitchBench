@@ -1,40 +1,25 @@
 {
   "python": "3.12.7",
   "package": "0.1.2",
-  "installed_module": "${VACLAB_ROOT}/outputs/pitchbench/table1-verification/package-env/lib/python3.12/site-packages/pitchbench/__init__.py",
-  "wheel_sha256": "2ac1d76a9166e5c6777f2ad8e57b399b28708403e2c04c02f94c89d3e4dbba02",
+  "wheel_sha256": "c682101278b75e1637fa369cfd97b84bf7bde301bb2cad7c76f51fbe53c74e52",
   "lockfile_sha256": "fb87eb84f6e185e09b22b32c8b406ecf8cd71fe7e2017e5c3aef4a4d243a91d6",
+  "validation": "Source tree and extracted wheel tested separately using the locked package environment.",
   "command": "PITCHBENCH_OFFLINE_SCORING=1 python -m pytest -q",
-  "passed": 132,
-  "table_export_checks": "passed, including source hashes and all 224 cells",
-  "package_install": "wheel (not editable)",
-  "formats": [
-    "midi",
-    "spn",
-    "hz"
-  ],
-  "paper_tasks": 28,
-  "full_raw_answer_replay": {
-    "cells": 224,
-    "responses": 46414,
-    "score_mismatches": 0
-  },
-  "pypi_release_published": false,
+  "passed": 137,
+  "wheel_sources_match_recorded_hashes": true,
   "package_source_sha256": {
     "__init__.py": "a5ddb74bc3e4b60ad30fc8e56d62beeda75983024a2234671a1c59663dd38551",
-    "analysis/a1.py": "14f4ac46e5c72538dde34b4b4cea5a9ceed21dfa33cee6ed29b32965edd2198a",
+    "analysis/a1.py": "0fc7d52a10650f7d62810a0f700de745a2b827aee72ea378ae11cefcd0d08ddb",
     "analysis/ablation.py": "3b1564ae160d677bba15e371721e11d70d7bb5a4a607052c9ade109efaec2a96",
     "analysis/analyze.py": "22f0353c32a93669dd3d8c9f7ee4f85d481179f12cea2b09d743028a33df99c4",
     "analysis/analyze_a1.py": "f567243ed8811a031fcdb0d41a510f76e5a8b7ff40433b05422f32ae88c37386",
     "analysis/combine.py": "6994a7aed5389453658a962563e3b6f8135b8f32d77c74959e0a1d6d0858d486",
     "analysis/overview.py": "9e5c050007e83b98b0ec32fbfc0f3001200f0a255b905173332d53d06356f12b",
-    "analysis/publication.py": "797bbd6cac5cabb84f609e79307586552124e928e567763932e6b8fb06424093",
-    "analysis/pyramid.py": "cc5565b5692da4631f89fc6e55d1dd65f654a2477487299901f53654425e372d",
-    "analysis/replay.py": "eb1698cdbb09041e9e8a80231b97dea833d0ec35c72af056d4832e778d8f6f47",
+    "analysis/replay.py": "ab04ebe2a397f82d97fcc6a3f1073c61d2210febef56812430e20a2725444c5d",
     "analysis/run_analysis.py": "bd0871d1aadedc5d6635b0eb7ea0c1ddaa6ff9891cd5681da9eee2c93acde2af",
     "analysis/table1.py": "0047d57d82f4be45966d2eb5656c57017feeab73077d46160fb70bc9f421da21",
     "baselines/__init__.py": "db03ceddacb8750764f58e26303d74fd336750e07c74d51e2d2d0aac44cba604",
-    "baselines/evaluation.py": "965ba2010551a3d5cb5c7f5bf4f878200bbc8037f68c5de86614cfb931fa4aff",
+    "baselines/evaluation.py": "953ff5443a19fbe806e9a9ee31288a44e2a414dd483ad52cef879c9705903403",
     "baselines/runtime.py": "277f47ba7ad7644ec3f4b0f5640f8302ead09b209c3378eb968a63c2b0f389cf",
     "config.py": "0883c0f786ff3eb1f03a83833e1ce5577ef6abf26823ae244bbcb628f0026194",
     "configs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -59,7 +44,6 @@
     "experiments/helpers/sampling.py": "45017fc039d6151cea6af27e31eafe9156e0311d7a1b2bdba0cc309971484c52",
     "experiments/helpers/setup.py": "66a1607870be701028cf2d17d300d4ef656e1adab29db68ae8e0d746c859930f",
     "experiments/helpers/timing_layout.py": "c5bed1812cbe414975141d9a71caaa6b19461efdade25e6f10be0fd310d593ea",
-    "experiments/rescore_sequences.py": "bf374baa9b541653ba792e8d8f9619b06bad92a15f903a38912eee24269d1258",
     "experiments/run.py": "69115087e67e16c90f7a8c98a1d7e048ffa61d1a24d7047f08b87b9658597708",
     "experiments/scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "experiments/scripts/pitchbench_a1_single_pitch_id.py": "c0685ac0508879bed6f983098c0c6fba804a7cd4e85a3f2e456dcf665c341f65",
@@ -102,7 +86,21 @@
     "sound/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "sound/engine.py": "8ab741242c394568dff79cb6fc1f8a5a066740c2d3dcc38be099069299fc9149"
   },
-  "base_commit": "5e921df074cbfc117e6d53403256389aa957f7cc",
   "source_tree_modified_at_build": true,
-  "wheel_sources_match_recorded_hashes": true
+  "base_commit": "72211f9",
+  "full_raw_answer_replay": {
+    "cells": 224,
+    "responses": 46414,
+    "score_mismatches": 0,
+    "metrics_csv_byte_identical": true
+  },
+  "answer_compaction": {
+    "files": 174,
+    "records": 36619,
+    "all_retained_fields_and_raw_answers_equal_source": true
+  },
+  "baseline_environment_check": "Pinned Python and packages verified; ONNX loaded successfully.",
+  "basic_pitch_onnx_sha256": "2c3c1d144bfa61ad236e92e169c13535c880469a12a047d4e73451f2c059a0ec",
+  "fresh_baseline_inference_in_this_review": false,
+  "pypi_release_published": false
 }

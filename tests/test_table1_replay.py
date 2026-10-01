@@ -138,3 +138,29 @@ def test_compressed_baseline_evidence_preserves_raw_answers(tmp_path):
     path = tmp_path / "results_dsp.json.gz"
     path.write_bytes(gzip.compress(json.dumps(payload).encode(), mtime=0))
     assert replay.read_results(path) == payload
+
+
+def test_replay_reads_compressed_alm_answers(audit_fixture):
+    import gzip
+
+    root, dataset, path, row = audit_fixture
+    path.with_suffix('.json.gz').write_bytes(gzip.compress(path.read_bytes(), mtime=0))
+    path.unlink()
+    replay.replay(root, dataset, root / 'out')
+    metrics = pd.read_csv(root / 'out/metrics.csv')
+    assert metrics.iloc[0]['score'] == 0
+    assert metrics.iloc[0]['n_samples'] == 1
+
+
+def test_a1_reads_compact_evidence_without_counting_csv_twice(tmp_path):
+    import gzip
+    from pitchbench.analysis.a1 import extract_a1_data
+
+    folder = tmp_path / 'pitchbench_a1_single_pitch_id'
+    folder.mkdir()
+    row = dict(midi_gt=60, midi_pred=62, spn_pred='D4', raw_hz='293.6648')
+    packed = folder / 'results_test.json.gz'
+    packed.write_bytes(gzip.compress(json.dumps({'results': [row]}).encode(), mtime=0))
+    assert extract_a1_data(tmp_path)['midi']['test'][60] == [62.0]
+    (folder / 'results_test.csv').write_text('midi_gt,midi_pred,spn_pred,raw_hz\n60,62,D4,293.6648\n')
+    assert extract_a1_data(tmp_path)['midi']['test'][60] == [62.0]

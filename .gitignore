@@ -8,6 +8,7 @@ logs/
 .env
 .venv/
 .pytest_cache/
+.DS_Store
 paper/latex/
 results/evaluation/
 results/analysis/

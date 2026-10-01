@@ -32,19 +32,7 @@
       "f2"
     ],
     "task_csv_and_overall_agree": true,
-    "mean": 0.6991802856128421,
-    "d8_identical_records": 171,
-    "d8_fields": [
-      "raw_midi",
-      "raw_spn",
-      "raw_hz",
-      "any_note_f1",
-      "midi_note_f1",
-      "spn_note_f1",
-      "hz_note_f1"
-    ],
-    "previous_d8_sha256": "602d499c23fede9c654c89bcc0129bf02f7e58c19908fffd9278b2e91d7d4b08",
-    "current_d8_sha256": "6ba916b60501a98e09fbfd7dd7fe2fbe1ae39af2750296f88fb997d255a8538f"
+    "mean": 0.6991802856128421
   },
   {
     "model": "baseline/basic-pitch",
@@ -80,26 +68,13 @@
     ],
     "task_csv_and_overall_agree": true,
     "mean": 0.7312345223715797,
-    "d8_identical_records": 171,
-    "d8_fields": [
-      "raw_midi",
-      "raw_spn",
-      "raw_hz",
-      "any_note_f1",
-      "midi_note_f1",
-      "spn_note_f1",
-      "hz_note_f1"
-    ],
-    "previous_d8_sha256": "6b8c4efe82e527fb7b007b3de798b6ef7bd49bcb14e5dd947fd1d2bee00feef7",
-    "current_d8_sha256": "9625f86345c82437e8b00f5b1f0592a708914fd86f07c857d046cd259a3fb4a2",
     "independent_f1_check": {
       "source_sha256": "b3360275200fa2000595f71b4f0164c1ae30e30ae7452fd0e59179598953d70d",
       "method": "Independent dynamic-programming LCS on raw whitespace-separated MIDI and stored GT; compared every item to ANY F1",
       "n_samples": 130,
       "score_sum": 76.5,
       "score": 0.5884615384615385,
-      "mismatches": 0,
-      "legacy_four_decimal_mean": 0.5885
+      "mismatches": 0
     }
   }
 ]
