@@ -331,7 +331,6 @@ src/pitchbench/
     replay.py                  # canonical 28-task raw-answer replay
     table1.py                  # Table 1 exports from verified evidence
     publication.py             # generate manuscript Figures 1–4
-    pyramid.py                 # Figure 1 task hierarchy
     fonts/                     # bundled publication fonts and license
   baselines/
     evaluation.py              # frozen-dataset baseline runner
