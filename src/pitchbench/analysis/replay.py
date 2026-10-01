@@ -332,7 +332,7 @@ def replay(repo, dataset, output, baseline_input=None):
         ]
         + (["--baseline-input", str(baseline_input)] if baseline_input else []),
         output_path=str(output),
-        dataset_ids=["pitchbench-authors/PitchBench@" + REVISION],
+        dataset_ids=["vaclis/PitchBench@" + REVISION],
         new_model_queries=0,
         optional_llm_parsing="disabled explicitly by PITCHBENCH_OFFLINE_SCORING",
         pitch_formats=["midi", "spn", "hz"],

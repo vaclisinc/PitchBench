@@ -7,7 +7,7 @@ Each experiment writes its generated dataset to::
     data/generated/<exp_name>/_questions.csv
 
 The schema mirrors the HuggingFace PitchBench dataset
-(pitchbench-authors/PitchBench) but uses a local ``audio_path`` string
+(vaclis/PitchBench) but uses a local ``audio_path`` string
 column in place of the embedded audio bytes, and adds a ``condition_json``
 column containing a JSON dump of the full condition dict for use by the
 evaluate step.
