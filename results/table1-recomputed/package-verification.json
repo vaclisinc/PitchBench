@@ -1,11 +1,11 @@
 {
   "python": "3.12.7",
   "package": "0.1.2",
-  "wheel_sha256": "c682101278b75e1637fa369cfd97b84bf7bde301bb2cad7c76f51fbe53c74e52",
+  "wheel_sha256": "0a35c45a236255a29ea9a4d46d4568a93cd302339181459ea6b18ef5187266d3",
   "lockfile_sha256": "fb87eb84f6e185e09b22b32c8b406ecf8cd71fe7e2017e5c3aef4a4d243a91d6",
   "validation": "Source tree and extracted wheel tested separately using the locked package environment.",
   "command": "PITCHBENCH_OFFLINE_SCORING=1 python -m pytest -q",
-  "passed": 137,
+  "passed": 142,
   "wheel_sources_match_recorded_hashes": true,
   "package_source_sha256": {
     "__init__.py": "a5ddb74bc3e4b60ad30fc8e56d62beeda75983024a2234671a1c59663dd38551",
@@ -15,9 +15,11 @@
     "analysis/analyze_a1.py": "f567243ed8811a031fcdb0d41a510f76e5a8b7ff40433b05422f32ae88c37386",
     "analysis/combine.py": "6994a7aed5389453658a962563e3b6f8135b8f32d77c74959e0a1d6d0858d486",
     "analysis/overview.py": "9e5c050007e83b98b0ec32fbfc0f3001200f0a255b905173332d53d06356f12b",
+    "analysis/publication.py": "0a9b616d0231a809f2f608a08fe7841e02ed40b6fb04fd4f2cdaecbd9a282a7f",
+    "analysis/pyramid.py": "4e3ce98e98e34ba694585765e77b8a70f753c9b738ceb1ef94dd7f113af2f828",
     "analysis/replay.py": "ab04ebe2a397f82d97fcc6a3f1073c61d2210febef56812430e20a2725444c5d",
     "analysis/run_analysis.py": "bd0871d1aadedc5d6635b0eb7ea0c1ddaa6ff9891cd5681da9eee2c93acde2af",
-    "analysis/table1.py": "0047d57d82f4be45966d2eb5656c57017feeab73077d46160fb70bc9f421da21",
+    "analysis/table1.py": "2c5f5892af2d75ec330e7767cef51273781420650acfbb87325e390c24665832",
     "baselines/__init__.py": "db03ceddacb8750764f58e26303d74fd336750e07c74d51e2d2d0aac44cba604",
     "baselines/evaluation.py": "953ff5443a19fbe806e9a9ee31288a44e2a414dd483ad52cef879c9705903403",
     "baselines/runtime.py": "277f47ba7ad7644ec3f4b0f5640f8302ead09b209c3378eb968a63c2b0f389cf",
@@ -87,7 +89,7 @@
     "sound/engine.py": "8ab741242c394568dff79cb6fc1f8a5a066740c2d3dcc38be099069299fc9149"
   },
   "source_tree_modified_at_build": true,
-  "base_commit": "72211f9",
+  "base_commit": "7e2879c6e3b4731521912f3cd5a799d3a992a1bc",
   "full_raw_answer_replay": {
     "cells": 224,
     "responses": 46414,
@@ -102,5 +104,28 @@
   "baseline_environment_check": "Pinned Python and packages verified; ONNX loaded successfully.",
   "basic_pitch_onnx_sha256": "2c3c1d144bfa61ad236e92e169c13535c880469a12a047d4e73451f2c059a0ec",
   "fresh_baseline_inference_in_this_review": false,
-  "pypi_release_published": false
+  "pypi_release_published": false,
+  "package_data_sha256": {
+    "analysis/fonts/HankenGrotesk-ExtraBold.ttf": "ca55af01871102eb89576002b26c64b56d02d8c2b2e83d5173cf3d228cb86193",
+    "analysis/fonts/HankenGrotesk-Regular.ttf": "f056a9f15687ed262ce26ac6766632fd6f54e158b2e2e4f5de62d4ac586c3636",
+    "analysis/fonts/OFL.txt": "bb93c61eef5b10204ac305aeb3d204ce74c22c40aa8398f9e2c3bdab2263f2d1"
+  },
+  "publication_figures": {
+    "figures": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "alignment": "Figures 2\u20134 pass; single-canvas Figure 1 not applicable",
+    "visually_inspected": true,
+    "all_input_hashes_verified": true,
+    "figure2_counts_match_approved_evidence": true,
+    "figure4_protocol": "Existing manuscript four-format diagnostic, unchanged",
+    "formats": [
+      "pdf",
+      "svg",
+      "png"
+    ]
+  }
 }
