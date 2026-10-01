@@ -1,5 +1,5 @@
 Nature Figure Rendered Collision Audit
-pdf: ${VACLAB_ROOT}/outputs/pitchbench-paper/figure-redesign-20261001/figure4_notation_accuracy.pdf
+pdf: ${VACLAB_ROOT}/outputs/pitchbench-paper/compact-figures-20261001/figure4_notation_accuracy.pdf
 pages: 1
 visible text boxes: 48
 stroke paths: 21

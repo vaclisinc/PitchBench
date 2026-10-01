@@ -1,0 +1,34 @@
+{
+  "total_pages": 14,
+  "body_pages": 11,
+  "main_tex_unchanged": true,
+  "figure_pages": {
+    "1": 4,
+    "2": 8,
+    "3": 9,
+    "4": 11
+  },
+  "heights": {
+    "figure1_pitch_pyramid": {
+      "before_inches": 3.9,
+      "after_inches": 2.9,
+      "reduction_percent": 25.6
+    },
+    "figure2_pitch_confusion": {
+      "before_inches": 3.62,
+      "after_inches": 2.75,
+      "reduction_percent": 24.0
+    },
+    "figure3_pitch_accuracy": {
+      "before_inches": 2.08,
+      "after_inches": 1.72,
+      "reduction_percent": 17.3
+    },
+    "figure4_notation_accuracy": {
+      "before_inches": 2.05,
+      "after_inches": 1.5,
+      "reduction_percent": 26.8
+    }
+  },
+  "height_saved_inches": 2.78
+}

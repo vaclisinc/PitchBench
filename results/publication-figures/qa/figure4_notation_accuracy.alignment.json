@@ -19,16 +19,16 @@
     "backend": "python-matplotlib",
     "figure": {
       "width_pt": 396.0,
-      "height_pt": 147.6
+      "height_pt": 108.0
     },
     "panels": [
       {
         "id": "formats",
         "bbox_pt": [
           110.08800000000001,
-          34.686,
+          25.919999999999998,
           328.71026751592353,
-          125.46
+          83.16
         ],
         "grid_id": "matplotlib-grid-1",
         "row_start": 0,
@@ -40,9 +40,9 @@
         "id": "aggregate",
         "bbox_pt": [
           342.81492993630576,
-          34.686,
+          25.919999999999998,
           386.892,
-          125.46
+          83.16
         ],
         "grid_id": "matplotlib-grid-1",
         "row_start": 0,

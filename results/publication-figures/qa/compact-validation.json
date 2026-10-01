@@ -1,0 +1,17 @@
+{
+  "tasks_retained": 28,
+  "all_pyramid_middle_labels_inside_own_polygons": [
+    "B",
+    "Temporal",
+    "C",
+    "Chord",
+    "D",
+    "Sequence",
+    "E",
+    "Acoustic"
+  ],
+  "A1_counts_and_coverage_byte_identical": true,
+  "figure3_and_4_source_hashes_unchanged": true,
+  "manuscript_tex_byte_identical": true,
+  "collision_review": "Figure 1: two false-positive fill-edge warnings from overlapping trapezoid bounding rectangles; all eight actual label boxes contained in their own polygons. Figures 2\u20134: no failures or warnings."
+}

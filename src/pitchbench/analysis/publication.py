@@ -211,10 +211,10 @@ def figure2(out: Path, qa_scripts: Path | None) -> dict:
     write_csv(out / "figure2_response_coverage.csv", coverage)
     write_csv(out / "figure2_prediction_counts.csv", sparse)
     covered = {(r["model"], r["format"]): r["n_in_range"] / r["n_total"] for r in coverage}
-    fig = plt.figure(figsize=(WIDTH_IN, 3.62))
+    fig = plt.figure(figsize=(WIDTH_IN, 2.75))
     # Eighteen equal axes; model titles sit above, never on the heatmap.
-    grid = fig.add_gridspec(3, 6, left=.075, right=.985, bottom=.155, top=.905,
-                           wspace=.24, hspace=.69)
+    grid = fig.add_gridspec(3, 6, left=.075, right=.985, bottom=.20, top=.87,
+                           wspace=.24, hspace=.78)
     axes = []
     for idx, (model, name) in enumerate(zip(MODELS, NAMES)):
         row, pair = divmod(idx, 2)
@@ -236,21 +236,21 @@ def figure2(out: Path, qa_scripts: Path | None) -> dict:
                 spine.set_visible(True)
                 spine.set_linewidth(.35)
                 spine.set_color("#AFBAC4")
-            ax.set_title(f"{fmt.upper()} · {covered[model, fmt]:.0%}", fontsize=5.7, pad=3)
+            ax.set_title(f"{fmt.upper()} · {covered[model, fmt]:.0%}", fontsize=5.7, pad=2)
         box0, box1 = group_axes[0].get_position(), group_axes[-1].get_position()
-        fig.text(box0.x0, box0.y1 + .060, chr(97 + idx), weight="bold", fontsize=8)
-        fig.text((box0.x0 + box1.x1) / 2 + .015, box0.y1 + .060,
+        fig.text(box0.x0, box0.y1 + 14/(2.75*72), chr(97 + idx), weight="bold", fontsize=8)
+        fig.text((box0.x0 + box1.x1) / 2 + .015, box0.y1 + 14/(2.75*72),
                  name, fontsize=6.7, ha="center")
     fig.text(.013, .545, "Predicted pitch (MIDI)", rotation=90,
              rotation_mode="anchor", ha="center", fontsize=7)
-    fig.text(.53, .087, "Ground-truth pitch (MIDI)", ha="center", fontsize=7)
-    cax = fig.add_axes([.745, .038, .24, .021])
+    fig.text(.53, .12, "Ground-truth pitch (MIDI)", ha="center", fontsize=7)
+    cax = fig.add_axes([.745, .058, .24, .021])
     cb = fig.colorbar(plt.cm.ScalarMappable(norm=Normalize(0, 1), cmap=CMAP), cax=cax,
                       orientation="horizontal", ticks=[0, .5, 1])
     cb.ax.tick_params(labelsize=5.3, pad=1, length=1.5)
     cb.outline.set_visible(False)
-    fig.text(.075, .040, "Titles: % of responses within MIDI 29–89", fontsize=5.6)
-    fig.text(.735, .045, "Probability", ha="right", fontsize=5.6)
+    fig.text(.075, .060, "Titles: % of responses within MIDI 29–89", fontsize=5.6)
+    fig.text(.735, .065, "Probability", ha="right", fontsize=5.6)
     geometry = export(fig, out, "figure2_pitch_confusion", qa_scripts,
                       axes=axes, panel_ids=[f"{chr(97+i//3)}-{FORMATS[i%3]}" for i in range(18)])
     return {
@@ -269,8 +269,8 @@ def figure3(out: Path, qa_scripts: Path | None) -> dict:
     pitches = tuple(range(48, 73))
     check_aggregate(rows, ("midi", "spn"), pitches)
     values = {(r["model"], r["format"], int(r["pitch"])): float(r["accuracy"]) * 100 for r in rows}
-    fig, axes = plt.subplots(1, 2, figsize=(WIDTH_IN, 2.08), sharey=True)
-    fig.subplots_adjust(left=.082, right=.987, bottom=.24, top=.715, wspace=.12)
+    fig, axes = plt.subplots(1, 2, figsize=(WIDTH_IN, 1.72), sharey=True)
+    fig.subplots_adjust(left=.082, right=.987, bottom=.27, top=.695, wspace=.12)
     for j, (ax, fmt) in enumerate(zip(axes, ("midi", "spn"))):
         ax.axvspan(68.6, 69.4, color="#EAE7F0", zorder=0)
         for model, color, marker in zip(MODELS, COLORS, MARKERS):
@@ -307,8 +307,8 @@ def figure4(out: Path, qa_scripts: Path | None) -> dict:
     check_aggregate(rows, formats)
     values = {(r["model"], r["format"]): float(r["accuracy"]) * 100 for r in rows}
     matrix = np.array([[values[m, f] for f in formats[:4]] for m in MODELS])
-    fig = plt.figure(figsize=(WIDTH_IN, 2.05))
-    grid = fig.add_gridspec(1, 5, left=.278, right=.977, bottom=.235, top=.85, wspace=.32)
+    fig = plt.figure(figsize=(WIDTH_IN, 1.50))
+    grid = fig.add_gridspec(1, 5, left=.278, right=.977, bottom=.24, top=.77, wspace=.32)
     ax = fig.add_subplot(grid[0, :4])
     aggregate = fig.add_subplot(grid[0, 4])
     ax.imshow(matrix, cmap=CMAP, vmin=0, vmax=100, aspect="auto", interpolation="nearest")
