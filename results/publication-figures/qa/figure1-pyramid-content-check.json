@@ -1,6 +1,6 @@
 {
   "distinct_task_ids": 28,
-  "all_middle_labels_fully_inside_their_actual_wedges": [
+  "all_middle_labels_inside_actual_wedges": [
     "B",
     "Temporal",
     "C",
@@ -10,5 +10,13 @@
     "E",
     "Acoustic"
   ],
-  "collision_warnings_review": "Figure 1: two false-positive fill-edge warnings from overlapping trapezoid bounding rectangles; all eight actual label boxes contained in their own polygons. Figures 2\u20134: no failures or warnings."
+  "legend_boxes_checked": 68,
+  "legend_polygon_clearance_pt": 2.5,
+  "figure_width_inches": 5.5,
+  "figure_height_inches": 2.9,
+  "pyramid_width_increase_percent": 25.5,
+  "prose_unchanged": true,
+  "total_pdf_pages": 14,
+  "figure1_page": 4,
+  "collision_review": "Five generic fill-box warnings are false positives: Sequence is inside its own wedge; all exterior legend labels pass an actual-polygon check with 2.5 pt padding. No collision failures."
 }

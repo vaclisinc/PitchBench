@@ -1,5 +1,5 @@
 {
-  "pdf": "/home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/compact-figures-20261001/figure1_pitch_pyramid.pdf",
+  "pdf": "/home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/pyramid-refinement-20261001/figure1_pitch_pyramid.pdf",
   "auditable": true,
   "verdict": "REVIEW REQUIRED",
   "page_count": 1,
@@ -10,8 +10,8 @@
   "image_region_count": 0,
   "summary": {
     "fail": 0,
-    "warn": 2,
-    "contained_fill_overlays": 15,
+    "warn": 5,
+    "contained_fill_overlays": 23,
     "contained_image_overlays": 0
   },
   "thresholds": {
@@ -25,23 +25,23 @@
       "kind": "text-fill-edge",
       "page": 1,
       "message": "Text partially overlaps the edge of 1 filled region(s)",
-      "text": "Chord",
+      "text": "Sequence",
       "text_bbox": [
-        188.8993682861328,
+        246.14312744140625,
         144.09664916992188,
-        204.95864868164062,
+        272.79046630859375,
         149.49664306640625
       ],
       "other_text": null,
       "other_bbox": [
-        133.92999267578125,
+        250.8000030517578,
         47.0,
-        203.8000030517578,
+        338.4800109863281,
         164.0
       ],
       "object_count": 1,
       "object_indexes": [
-        2
+        5
       ]
     },
     {
@@ -49,18 +49,90 @@
       "kind": "text-fill-edge",
       "page": 1,
       "message": "Text partially overlaps the edge of 1 filled region(s)",
-      "text": "Sequence",
+      "text": "D5Rank pitches",
       "text_bbox": [
-        217.7881317138672,
-        144.09664916992188,
-        244.43545532226562,
-        149.49664306640625
+        325.0,
+        45.78910446166992,
+        374.0546569824219,
+        51.38910675048828
       ],
       "other_text": null,
       "other_bbox": [
-        224.1999969482422,
+        250.8000030517578,
         47.0,
-        294.07000732421875,
+        338.4800109863281,
+        164.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        5
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "D6Signed interval",
+      "text_bbox": [
+        325.0,
+        52.98911666870117,
+        380.31182861328125,
+        58.58911895751953
+      ],
+      "other_text": null,
+      "other_bbox": [
+        250.8000030517578,
+        47.0,
+        338.4800109863281,
+        164.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        5
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "D7Reference pitch",
+      "text_bbox": [
+        325.0,
+        60.18911361694336,
+        381.8921203613281,
+        65.78911590576172
+      ],
+      "other_text": null,
+      "other_bbox": [
+        250.8000030517578,
+        47.0,
+        338.4800109863281,
+        164.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        5
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "D8All pitches in order",
+      "text_bbox": [
+        325.0,
+        67.38911437988281,
+        390.6017150878906,
+        72.9891128540039
+      ],
+      "other_text": null,
+      "other_bbox": [
+        250.8000030517578,
+        47.0,
+        338.4800109863281,
         164.0
       ],
       "object_count": 1,

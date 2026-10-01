@@ -1,5 +1,5 @@
 Nature Figure PDF Text Audit
-pdf: /home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/compact-figures-20261001/figure1_pitch_pyramid.pdf
+pdf: /home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/pyramid-refinement-20261001/figure1_pitch_pyramid.pdf
 minimum required: 5 pt
 minimum found: 5.2 pt
 text runs: 93

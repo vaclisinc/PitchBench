@@ -11,19 +11,19 @@ C1,Chordal structure,2,Count pitches in a chord
 C2,Chordal structure,2,Identify a dyad interval
 C3,Chordal structure,2,Identify chord quality
 C4,Chordal structure,2,Name all pitches in a chord
-D1,Sequential structure,2,Count pitches in sequence
-D2,Sequential structure,2,Higher / lower judgement
-D3,Sequential structure,2,Discrete melodic contour
-D4,Sequential structure,2,Continuous pitch trajectory
-D5,Sequential structure,2,Rank pitches by height
-D6,Sequential structure,2,Signed sequential interval
-D7,Sequential structure,2,Pitch with a reference tone
-D8,Sequential structure,2,All pitches in sequence
-E1,Acoustic variations,2,Audio effects
-E2,Acoustic variations,2,Background interference
-E3,Acoustic variations,2,Harmonic saturation
-E4,Acoustic variations,2,Time stretching / resampling
-E5,Acoustic variations,2,Vibrato
-E6,Acoustic variations,2,Slight detuning
+D1,Sequence,2,Count pitches
+D2,Sequence,2,Higher / lower
+D3,Sequence,2,Discrete contour
+D4,Sequence,2,Continuous contour
+D5,Sequence,2,Rank pitches
+D6,Sequence,2,Signed interval
+D7,Sequence,2,Reference pitch
+D8,Sequence,2,All pitches in order
+E1,Acoustics,2,Audio effects
+E2,Acoustics,2,Background sounds
+E3,Acoustics,2,Harmonic saturation
+E4,Acoustics,2,Stretch / resample
+E5,Acoustics,2,Vibrato
+E6,Acoustics,2,Slight detuning
 F1,Polyphonic music,3,Melody in synthetic mixtures
 F2,Polyphonic music,3,Melody in Bach chorales
