@@ -1,7 +1,7 @@
-# Pyramid refinement
+# Pyramid label refinement
 
-Keep the three-level pyramid, all 28 tasks and left-side level brackets. The owner requests a wider pyramid, visible clearance between legends and sloped edges, lighter A1/F blocks and a coordinated palette. Keep final manuscript width 139.7 mm and compressed height 73.7 mm; no prose edits or changes to Figures 2–4.
+Preserve the three-level pastel pyramid, all 28 tasks and left-side level brackets. Set A1/A2/A3 to the same 6 pt normal font and show only F in the apex. Move the D/E side descriptions down toward the contextual tier with 2.5 pt clearance from actual polygons.
 
-Shift the pyramid right and increase its width by about 25%; move D/E legends to the upper right with concise labels of unchanged task meaning. Use pale slate, blue, lavender, sage, peach and teal fills at similar visual weight. Use dark text on A1/F; A2/A3 are slightly lighter.
+Keep pyramid geometry unchanged; extend the canvas right to 5.75 × 2.9 inches. At the existing 5.5-inch manuscript width the height becomes 2.774 inches and minimum glyph size remains 5.07 pt. No prose or other figure edits.
 
-Use the established Python backend. Export PDF/SVG editable text and 600-dpi PNG. Validate >=5 pt glyphs, all task IDs, no clipping/collisions, and explicitly check padded legend text rectangles against actual pyramid polygons (not only their bounding rectangles). Keep the existing 2.9-in height and inspect the compiled manuscript.
+Use the established Python backend, editable PDF/SVG and 600-dpi PNG. Check all 28 task IDs, equal A label typography, clipping, actual-polygon clearance and the compiled manuscript. Single-canvas panel alignment is not applicable.

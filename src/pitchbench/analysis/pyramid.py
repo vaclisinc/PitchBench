@@ -65,10 +65,12 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": ["DejaVu Sans"],
                          "font.size": 7, "text.color": INK, "figure.facecolor": "white",
                          "svg.fonttype": "none", "pdf.fonttype": 42, "savefig.dpi": 600})
-    # One coordinate unit is one physical point; final width is 139.7 mm.
-    fig = plt.figure(figsize=(5.5, 2.9))
+    # One coordinate unit is one export point. The manuscript scales to 5.5 in.
+    # Extra room on the right lets D/E sit beside the contextual tier.
+    figure_width = 414 / 72
+    fig = plt.figure(figsize=(figure_width, 2.9))
     ax = fig.add_axes([0, 0, 1, 1])
-    ax.set(xlim=(0, 396), ylim=(208.8, 0))
+    ax.set(xlim=(0, 414), ylim=(208.8, 0))
     ax.set_axis_off()
 
     def text(x, y, label, size=5.7, color=INK, weight="normal", ha="left"):
@@ -89,8 +91,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     # Level 3: melodic pitch perception at the apex.
     left, right = edges(40)
     poly([(centre, apex_y), (right, 40), (left, 40)], FILLS["F"])
-    text(centre, 25, "F", size=10, color=COLORS["F"], weight="bold", ha="center")
-    text(centre, 35, "F1 · F2", size=5.4, color=COLORS["F"], ha="center")
+    text(centre, 29, "F", size=10, color=COLORS["F"], weight="bold", ha="center")
 
     # Level 2: preserve the original four side-by-side category wedges.
     top, bottom = 47, 164
@@ -117,7 +118,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     poly([(sl, split), (sr, split), (lr, lower), (ll, lower)], FILLS["A"])
     text((ul+centre)/2, 177, "A2  Loudness", size=6.0, color=COLORS["A"], ha="center")
     text((ur+centre)/2, 177, "A3  Duration", size=6.0, color=COLORS["A"], ha="center")
-    text(centre, 193, "A1   SINGLE PITCH", size=7.5, color=COLORS["A"], weight="bold", ha="center")
+    text(centre, 193, "A1  Single pitch", size=6.0, color=COLORS["A"], ha="center")
 
     # Move the level labels to the side; no title-only space above/below tiers.
     for level, title, y0, y1, color in (
@@ -127,12 +128,12 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     ):
         middle = (y0+y1)/2
         ax.plot([38, 35, 35, 38], [y0, y0, y1, y1], color="#B5C1CA", linewidth=.6)
-        text(31, middle-4.5, f"LEVEL {level}", size=5.2, color=color, weight="bold", ha="right")
-        text(31, middle+4.5, title, size=5.2, color=color, ha="right")
+        text(31, middle-4.5, f"LEVEL {level}", size=5.3, color=color, weight="bold", ha="right")
+        text(31, middle+4.5, title, size=5.3, color=color, ha="right")
 
     # Original side descriptions, aligned and kept clear of the pyramid slopes.
     positions = {"F": (43, 10), "B": (43, 52), "C": (43, 111), "A": (43, 173),
-                 "D": (325, 7), "E": (325, 83)}
+                 "D": (339, 30), "E": (339, 105)}
     legend_texts = []
     for letter, title, level, labels in TASKS:
         x, y = positions[letter]
@@ -158,7 +159,9 @@ def render(out: Path, qa_scripts: Path | None) -> None:
         for patch in ax.patches:
             if patch.get_path().intersects_bbox(padded, filled=True):
                 raise ValueError(f"Legend too close to pyramid: {label.get_text()}")
-    geometry = {"size_inches": [5.5, 2.9], "alignment": "not audited",
+    geometry = {"size_inches": [figure_width, 2.9], "alignment": "not audited",
+                "manuscript_width_inches": 5.5,
+                "manuscript_scale": 5.5 / figure_width,
                 "pyramid_width_pt": 2*(lower-apex_y)*slope,
                 "legend_polygon_clearance_pt": clearance_pt,
                 "legend_text_boxes_checked": len(legend_texts)}
@@ -178,7 +181,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
                 "geometry": geometry, "n_tasks": 28, "category_counts": dict(zip("ABCDEF", [3,5,4,8,6,2])),
                 "structure": "A base with A1/A2/A3; B/C/D/E middle wedges; F apex.",
                 "meaning": "Conceptual taxonomy; areas do not encode counts or measured difficulty.",
-                "exclusions": "None. All 28 tasks retained; A1–A3 and F1–F2 are repeated within the pyramid."}
+                "exclusions": "None. All 28 tasks retained in side legends; A1–A3 repeat within the pyramid, and the apex shows only F."}
     (out / f"{NAME}.sources.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(f"Exported {NAME} to {out}")
 

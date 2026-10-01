@@ -149,25 +149,10 @@ See [validation](qa/compact-validation.json), [pagination](qa/compact-pagination
 and [contract](compact-figure-contract.md). Current previews and compiled PDF:
 `outputs/pitchbench-paper/compact-figures-20261001/`.
 
-## Pyramid spacing and palette refinement
+## Current pyramid label and spacing refinement
 
-The pyramid is now 25.5% wider and shifted right, while the canvas remains
-5.5 × 2.9 inches. D/E legends move into the upper-right whitespace; their labels
-are abbreviated without changing any of the 28 task meanings. A1 and F now have
-pale slate/teal fills and dark text, coordinated with pale blue, lavender, sage
-and peach middle wedges. A2/A3 are a lighter neutral tint.
+The pale slate, blue, lavender, sage, peach and teal pyramid retains its wider geometry. A1/A2/A3 now share 6 pt normal text; the apex shows only F. All 28 task descriptions remain in the side legends. D/E descriptions sit lower beside the contextual tier. The canvas extends right to 5.75 × 2.9 inches; the manuscript scales it to 5.5 × 2.774 inches, slightly reducing its height.
 
-The generator explicitly checks all 68 exterior legend text boxes, each padded
-by 2.5 pt, against the **actual** pyramid polygons before export. All eight
-middle label boxes are verified inside their own wedges. The generic PDF audit
-has zero failures and five reviewed fill-box warnings: `Sequence` is contained
-by its wedge; the D5–D8 legend warnings arise because a trapezoid's bounding
-rectangle extends beyond its actual sloping edge. Font checks pass at 5.2 pt
-minimum; the single-canvas alignment gate is not applicable. Source checks have
-no failures and the same reviewed width/TIFF warnings described above.
+The generator checks all 68 exterior legend text boxes with 2.5 pt padding against actual polygons. All eight middle label boxes fit inside their own wedges. The PDF collision audit has zero failures and one reviewed bounding-rectangle warning for Sequence, whose text is inside its own wedge. Minimum text is 5.3 pt in the export and 5.07 pt in the manuscript. Alignment is not applicable to this single canvas. Source checks have no failures; manuscript-specific width and vector PDF delivery explain the two advisory warnings.
 
-The final full manuscript page was visually inspected, with no text/shape
-collisions. Only Figure 1 changes in this refinement; main.tex and Figures 2–4
-are untouched. The compiled manuscript remains 14 total pages, with body text
-ending on page 11. Latest preview and compiled PDF:
-`outputs/pitchbench-paper/pyramid-refinement-20261001/`.
+Only Figure 1 changes; prose and Figures 2–4 are untouched. The compiled manuscript remains 14 total pages, with body text ending on page 11. The full figure page was visually inspected. Latest preview and compiled PDF: `outputs/pitchbench-paper/pyramid-labels-20261001/`.

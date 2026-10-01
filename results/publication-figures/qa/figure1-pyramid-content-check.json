@@ -12,11 +12,14 @@
   ],
   "legend_boxes_checked": 68,
   "legend_polygon_clearance_pt": 2.5,
-  "figure_width_inches": 5.5,
+  "figure_width_inches": 5.75,
   "figure_height_inches": 2.9,
-  "pyramid_width_increase_percent": 25.5,
-  "prose_unchanged": true,
+  "manuscript_width_inches": 5.5,
+  "manuscript_height_inches": 2.773913043478261,
+  "minimum_manuscript_glyph_pt": 5.069565399833348,
+  "A_labels_equal_font_size_and_weight": true,
+  "apex_label": "F",
   "total_pdf_pages": 14,
   "figure1_page": 4,
-  "collision_review": "Five generic fill-box warnings are false positives: Sequence is inside its own wedge; all exterior legend labels pass an actual-polygon check with 2.5 pt padding. No collision failures."
+  "collision_review": "One generic fill-box warning: Sequence is fully inside its own wedge; its bounding box intersects a neighbouring wedge bounding rectangle only. Actual polygons checked. No failures."
 }
