@@ -1,5 +1,5 @@
 task,category,level,label
-A1,Single note,1,Single-pitch identification
+A1,Single note,1,Pitch identification
 A2,Single note,1,Loudness variation
 A3,Single note,1,Duration variation
 B1,Temporal localization,2,Pitch within silence

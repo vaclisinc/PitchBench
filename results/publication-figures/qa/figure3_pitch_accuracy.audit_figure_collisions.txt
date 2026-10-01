@@ -1,5 +1,5 @@
 Nature Figure Rendered Collision Audit
-pdf: /home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/figure-redesign-20261001/figure3_pitch_accuracy.pdf
+pdf: /home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/compact-figures-20261001/figure3_pitch_accuracy.pdf
 pages: 1
 visible text boxes: 67
 stroke paths: 400

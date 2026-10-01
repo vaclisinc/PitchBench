@@ -72,7 +72,7 @@ intentional numeric labels inside shaded table cells.
 
 Every panel and each figure embedded in the compiled manuscript were visually
 inspected. The manuscript compiles to 14 pages; body text ends on page 11,
-references begin on page 12, and the prompt-sensitivity table stays in the
+references begin on page 11, and the prompt-sensitivity table stays in the
 appendix. Existing text/font warnings outside these figures remain. Manuscript
 Q1/Q2 paragraphs are unchanged by this figure-only revision.
 
@@ -100,11 +100,11 @@ PYTHONPATH=src python -m pitchbench.analysis.pyramid \
 - PNG preview and compiled manuscript:
   `outputs/pitchbench-paper/figure1-pyramid-20261001/`.
 
-The figure is 139.7 × 99.1 mm, matching manuscript text width. The PDF contains
+The figure is 139.7 × 73.7 mm, matching manuscript text width. The PDF contains
 all 28 distinct task IDs; A1–A3 and F1–F2 are intentionally repeated inside the
-pyramid. Minimum text is 5.4 pt. The alignment gate records a single canvas as
+pyramid. Minimum text is 5.2 pt. The alignment gate records a single canvas as
 not applicable. PDF font checks pass, and the collision audit has no failures.
-Its six fill-edge warnings are reviewed false positives: bounding rectangles
+Its two fill-edge warnings are reviewed false positives: bounding rectangles
 of adjacent trapezoids overlap, but all eight middle text boxes are completely
 inside their own actual wedge polygons (verified geometrically in the
 [content check](qa/figure1-pyramid-content-check.json)). All six categories,
@@ -115,4 +115,36 @@ Source validation reports 19 passes, no failures and two reviewed warnings:
 89/183-mm Nature defaults, and TIFF is unnecessary for this PDF-based paper.
 The SVG has only trailing serialization whitespace removed; path coordinates
 are unchanged. The manuscript compiles to 14 pages with the conclusion on
-page 11. Only the Figure 1 image include changes in the manuscript.
+page 11. The compact revision changes only the four figure PDF assets in the manuscript; main.tex and all prose/captions are byte-identical to the pre-compaction version.
+
+## Compact revision: figure height only
+
+The owner specified a 10-page body limit and requested figure compaction before
+any prose edits. Figure 1 now places Level 1/2/3 on the left with tier brackets,
+retaining the pyramid and all 28 tasks. A1's side label is shortened to “Pitch
+identification” under “Single note”; the pyramid still says “A1 SINGLE PITCH”.
+All other task meanings, panels and quantitative values remain unchanged.
+
+| Figure | Previous height (in) | Current height (in) | Reduction |
+| --- | ---: | ---: | ---: |
+| 1 | 3.90 | 2.90 | 25.6% |
+| 2 | 3.62 | 2.75 | 24.0% |
+| 3 | 2.08 | 1.72 | 17.3% |
+| 4 | 2.05 | 1.50 | 26.8% |
+
+All retain 5.5-in width. Total saved figure height is 2.78 in (7.06 cm; 23.9%).
+Minimum rendered text sizes are 5.2, 5.3, 5.6, and 5.5 pt. Font checks pass;
+Figures 2–4 pass alignment and collision checks. Figure 1 has one canvas
+(alignment not applicable) and two reviewed bounding-rectangle fill warnings;
+all eight middle label boxes are inside their actual wedge polygons. A1
+prediction counts and coverage CSVs are byte-identical to the previous revision;
+Figure 3/4 source hashes are unchanged. Every panel and all four manuscript
+figure pages were visually inspected.
+
+The manuscript still has **11 body pages**, so the 10-page limit is not yet met.
+Figure 4, Limitations and Conclusion remain on page 11; references also start
+there. No prose, captions, tables, margins or manuscript font sizes were edited.
+Content reductions are recommendations only, pending the owner's choice.
+See [validation](qa/compact-validation.json), [pagination](qa/compact-pagination.json)
+and [contract](compact-figure-contract.md). Current previews and compiled PDF:
+`outputs/pitchbench-paper/compact-figures-20261001/`.

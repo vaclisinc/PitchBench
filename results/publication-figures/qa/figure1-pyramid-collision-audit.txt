@@ -1,22 +1,14 @@
 Nature Figure Rendered Collision Audit
-pdf: /home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/figure1-pyramid-20261001/figure1_pitch_pyramid.pdf
+pdf: /home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench-paper/compact-figures-20261001/figure1_pitch_pyramid.pdf
 pages: 1
-visible text boxes: 76
-stroke paths: 14
+visible text boxes: 79
+stroke paths: 17
 
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'Temporal'
-  text bbox: (135.06405639648438, 185.0966339111328, 159.7797088623047, 190.4966278076172)
 [WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'Chord'
-  text bbox: (173.7843780517578, 185.0966339111328, 189.84365844726562, 190.4966278076172)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'C'
-  text bbox: (177.3937530517578, 167.54808044433594, 186.2003936767578, 179.54808044433594)
+  text bbox: (188.8993682861328, 144.09664916992188, 204.95864868164062, 149.49664306640625)
 [WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'Sequence'
-  text bbox: (202.9031219482422, 185.0966339111328, 229.55044555664062, 190.4966278076172)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'D'
-  text bbox: (211.2156219482422, 167.54808044433594, 221.1765594482422, 179.54808044433594)
-[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — 'Acoustic'
-  text bbox: (239.26406860351562, 185.0966339111328, 261.97369384765625, 190.4966278076172)
+  text bbox: (217.7881317138672, 144.09664916992188, 244.43545532226562, 149.49664306640625)
 
-summary: 0 fail, 6 warn, 13 contained fill overlays, 0 contained image overlays
+summary: 0 fail, 2 warn, 15 contained fill overlays, 0 contained image overlays
 verdict: REVIEW REQUIRED
 note: contained overlays can be intentional; WARN findings need final-size visual review

@@ -1,7 +1,7 @@
 {
   "generator": {
     "path": "src/pitchbench/analysis/pyramid.py",
-    "sha256": "cc5565b5692da4631f89fc6e55d1dd65f654a2477487299901f53654425e372d"
+    "sha256": "54587719d7a586f67e9b381d06b982ee7041eefc388ec172c1c841a0a447b189"
   },
   "definitions": {
     "path": "EXPERIMENTS.md",
@@ -10,7 +10,7 @@
   "geometry": {
     "size_inches": [
       5.5,
-      3.9
+      2.9
     ],
     "alignment": "NOT APPLICABLE"
   },
