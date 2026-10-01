@@ -1,5 +1,10 @@
 # D8, F1 and F2 Ordered Note F1
 
+Historical audit evidence. For the final paper scores and current replay command,
+use [the complete Table 1 bundle](../table1-recomputed/README.md). To reproduce
+this historical bundle specifically, check out the commit recorded in its run
+receipt; its old command is not the current paper evaluation workflow.
+
 This bundle records the sequence-only rescore. Its non-sequence rows and overall
 means retain the legacy C4 aggregation, which included solfège. Use the
 [canonical Table 1](../../paper/figures-and-tables/table1.md) for the final

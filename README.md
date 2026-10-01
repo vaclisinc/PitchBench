@@ -59,8 +59,11 @@ SF2 resolution order: `PITCHBENCH_SF2` env var → `data/soundfonts/` → `/usr/
 python3 -m venv .venv
 source .venv/bin/activate        # Linux / macOS
 # .venv\Scripts\activate         # Windows
-pip install pitchbench
+pip install -e .               # install the version in this checkout
 ```
+
+The paper commands below target this checkout. A published release can be installed
+with `pip install pitchbench`, but may not yet contain changes on this branch.
 
 For development tools:
 ```bash
@@ -294,10 +297,18 @@ src/pitchbench/
     combine.py                 # combine multi-run CSV outputs
     overview.py                # overview plots/tables
     run_analysis.py            # batch analysis CLI
+    replay.py                  # canonical 28-task raw-answer replay
+    table1.py                  # Table 1 exports from verified evidence
+  baselines/
+    evaluation.py              # frozen-dataset baseline runner
+    runtime.py                 # DSP and Basic Pitch adapters
 data/
   preloaded/                   # background recordings (gitignored)
   generated/                   # created by `pitchbench generate`
-results/                       # created by evaluate/analyze runs
+configs/
+  paper_baselines.yaml         # reusable baseline recipe
+  baselines-requirements.txt    # separate pinned ONNX inference environment
+results/                       # committed compact evidence and local run results
 ```
 
 Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.
