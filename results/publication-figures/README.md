@@ -104,7 +104,7 @@ The figure is 139.7 × 73.7 mm, matching manuscript text width. The PDF contains
 all 28 distinct task IDs; A1–A3 and F1–F2 are intentionally repeated inside the
 pyramid. Minimum text is 5.2 pt. The alignment gate records a single canvas as
 not applicable. PDF font checks pass, and the collision audit has no failures.
-Its two fill-edge warnings are reviewed false positives: bounding rectangles
+Its five fill-edge warnings are reviewed false positives: bounding rectangles
 of adjacent trapezoids overlap, but all eight middle text boxes are completely
 inside their own actual wedge polygons (verified geometrically in the
 [content check](qa/figure1-pyramid-content-check.json)). All six categories,
@@ -148,3 +148,26 @@ Content reductions are recommendations only, pending the owner's choice.
 See [validation](qa/compact-validation.json), [pagination](qa/compact-pagination.json)
 and [contract](compact-figure-contract.md). Current previews and compiled PDF:
 `outputs/pitchbench-paper/compact-figures-20261001/`.
+
+## Pyramid spacing and palette refinement
+
+The pyramid is now 25.5% wider and shifted right, while the canvas remains
+5.5 × 2.9 inches. D/E legends move into the upper-right whitespace; their labels
+are abbreviated without changing any of the 28 task meanings. A1 and F now have
+pale slate/teal fills and dark text, coordinated with pale blue, lavender, sage
+and peach middle wedges. A2/A3 are a lighter neutral tint.
+
+The generator explicitly checks all 68 exterior legend text boxes, each padded
+by 2.5 pt, against the **actual** pyramid polygons before export. All eight
+middle label boxes are verified inside their own wedges. The generic PDF audit
+has zero failures and five reviewed fill-box warnings: `Sequence` is contained
+by its wedge; the D5–D8 legend warnings arise because a trapezoid's bounding
+rectangle extends beyond its actual sloping edge. Font checks pass at 5.2 pt
+minimum; the single-canvas alignment gate is not applicable. Source checks have
+no failures and the same reviewed width/TIFF warnings described above.
+
+The final full manuscript page was visually inspected, with no text/shape
+collisions. Only Figure 1 changes in this refinement; main.tex and Figures 2–4
+are untouched. The compiled manuscript remains 14 total pages, with body text
+ending on page 11. Latest preview and compiled PDF:
+`outputs/pitchbench-paper/pyramid-refinement-20261001/`.

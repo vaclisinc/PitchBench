@@ -18,13 +18,15 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
+from matplotlib.transforms import Bbox
 
 REPO = Path(__file__).resolve().parents[3]
 NAME = "figure1_pitch_pyramid"
 INK = "#253B4B"
-COLORS = {"A": "#385B72", "B": "#4E7995", "C": "#756F94",
-          "D": "#427C71", "E": "#98784A", "F": "#266E73"}
-FILLS = {"B": "#D8E7F0", "C": "#E3DFEF", "D": "#DCECE5", "E": "#F1E6D4"}
+COLORS = {"A": "#626575", "B": "#527A99", "C": "#7C7193",
+          "D": "#627D66", "E": "#9A755E", "F": "#527D79"}
+FILLS = {"A": "#E8E8EB", "B": "#DAE7F1", "C": "#E6E1EE",
+         "D": "#DDE8DD", "E": "#F3E4D9", "F": "#D9E9E7"}
 TASKS = (
     ("A", "Single note", 1, ("Pitch identification", "Loudness variation", "Duration variation")),
     ("B", "Temporal localization", 2, (
@@ -33,13 +35,13 @@ TASKS = (
     ("C", "Chordal structure", 2, (
         "Count pitches in a chord", "Identify a dyad interval", "Identify chord quality",
         "Name all pitches in a chord")),
-    ("D", "Sequential structure", 2, (
-        "Count pitches in sequence", "Higher / lower judgement", "Discrete melodic contour",
-        "Continuous pitch trajectory", "Rank pitches by height", "Signed sequential interval",
-        "Pitch with a reference tone", "All pitches in sequence")),
-    ("E", "Acoustic variations", 2, (
-        "Audio effects", "Background interference", "Harmonic saturation",
-        "Time stretching / resampling", "Vibrato", "Slight detuning")),
+    ("D", "Sequence", 2, (
+        "Count pitches", "Higher / lower", "Discrete contour",
+        "Continuous contour", "Rank pitches", "Signed interval",
+        "Reference pitch", "All pitches in order")),
+    ("E", "Acoustics", 2, (
+        "Audio effects", "Background sounds", "Harmonic saturation",
+        "Stretch / resample", "Vibrato", "Slight detuning")),
     ("F", "Polyphonic music", 3, ("Melody in synthetic mixtures", "Melody in Bach chorales")),
 )
 
@@ -78,7 +80,7 @@ def render(out: Path, qa_scripts: Path | None) -> None:
                              linewidth=.8, joinstyle="miter"))
 
     # All three tiers share the same two outer slopes, with open gaps between.
-    centre, apex_y, slope = 214, 7, .51
+    centre, apex_y, slope = 238, 7, .64
 
     def edges(y):
         half = (y - apex_y) * slope
@@ -86,9 +88,9 @@ def render(out: Path, qa_scripts: Path | None) -> None:
 
     # Level 3: melodic pitch perception at the apex.
     left, right = edges(40)
-    poly([(centre, apex_y), (right, 40), (left, 40)], COLORS["F"])
-    text(centre, 25, "F", size=10, color="white", weight="bold", ha="center")
-    text(centre, 35, "F1 · F2", size=5.4, color="white", ha="center")
+    poly([(centre, apex_y), (right, 40), (left, 40)], FILLS["F"])
+    text(centre, 25, "F", size=10, color=COLORS["F"], weight="bold", ha="center")
+    text(centre, 35, "F1 · F2", size=5.4, color=COLORS["F"], ha="center")
 
     # Level 2: preserve the original four side-by-side category wedges.
     top, bottom = 47, 164
@@ -110,12 +112,12 @@ def render(out: Path, qa_scripts: Path | None) -> None:
     ul, ur = edges(upper)
     sl, sr = edges(split)
     ll, lr = edges(lower)
-    poly([(ul, upper), (centre, upper), (centre, split), (sl, split)], "#DCE7EE")
-    poly([(centre, upper), (ur, upper), (sr, split), (centre, split)], "#DCE7EE")
-    poly([(sl, split), (sr, split), (lr, lower), (ll, lower)], COLORS["A"])
+    poly([(ul, upper), (centre, upper), (centre, split), (sl, split)], "#F3F3F5")
+    poly([(centre, upper), (ur, upper), (sr, split), (centre, split)], "#F3F3F5")
+    poly([(sl, split), (sr, split), (lr, lower), (ll, lower)], FILLS["A"])
     text((ul+centre)/2, 177, "A2  Loudness", size=6.0, color=COLORS["A"], ha="center")
     text((ur+centre)/2, 177, "A3  Duration", size=6.0, color=COLORS["A"], ha="center")
-    text(centre, 193, "A1   SINGLE PITCH", size=7.5, color="white", weight="bold", ha="center")
+    text(centre, 193, "A1   SINGLE PITCH", size=7.5, color=COLORS["A"], weight="bold", ha="center")
 
     # Move the level labels to the side; no title-only space above/below tiers.
     for level, title, y0, y1, color in (
@@ -130,19 +132,36 @@ def render(out: Path, qa_scripts: Path | None) -> None:
 
     # Original side descriptions, aligned and kept clear of the pyramid slopes.
     positions = {"F": (43, 10), "B": (43, 52), "C": (43, 111), "A": (43, 173),
-                 "D": (294, 44), "E": (294, 119)}
+                 "D": (325, 7), "E": (325, 83)}
+    legend_texts = []
     for letter, title, level, labels in TASKS:
         x, y = positions[letter]
-        text(x, y, letter, size=8, color=COLORS[letter], weight="bold")
-        text(x+12, y, title, size=6.2, weight="bold")
-        rule_width = 78 if letter == "A" else 96
+        legend_texts.append(text(x, y, letter, size=8, color=COLORS[letter], weight="bold"))
+        legend_texts.append(text(x+12, y, title, size=6.2, weight="bold"))
+        rule_width = 78 if letter == "A" else (67 if letter in "DE" else 96)
         ax.plot([x, x+rule_width], [y+6, y+6], color=COLORS[letter], linewidth=.55, alpha=.55)
         for i, label in enumerate(labels):
-            text(x, y+13+i*7.2, f"{letter}{i+1}", size=5.6, color=COLORS[letter], weight="bold")
-            text(x+13, y+13+i*7.2, label, size=5.6)
+            legend_texts.append(text(x, y+13+i*7.2, f"{letter}{i+1}", size=5.6, color=COLORS[letter], weight="bold"))
+            legend_texts.append(text(x+13, y+13+i*7.2, label, size=5.6))
 
     fig.canvas.draw()
-    geometry = {"size_inches": [5.5, 2.9], "alignment": "not audited"}
+    # Bounding rectangles of neighbouring wedges overlap. Check the actual
+    # polygons, with a physical safety margin, for every exterior legend label.
+    renderer = fig.canvas.get_renderer()
+    clearance_pt = 2.5
+    for label in legend_texts:
+        bounds = label.get_window_extent(renderer).transformed(ax.transData.inverted())
+        x0, x1 = sorted((bounds.x0, bounds.x1))
+        y0, y1 = sorted((bounds.y0, bounds.y1))
+        padded = Bbox.from_extents(x0-clearance_pt, y0-clearance_pt,
+                                   x1+clearance_pt, y1+clearance_pt)
+        for patch in ax.patches:
+            if patch.get_path().intersects_bbox(padded, filled=True):
+                raise ValueError(f"Legend too close to pyramid: {label.get_text()}")
+    geometry = {"size_inches": [5.5, 2.9], "alignment": "not audited",
+                "pyramid_width_pt": 2*(lower-apex_y)*slope,
+                "legend_polygon_clearance_pt": clearance_pt,
+                "legend_text_boxes_checked": len(legend_texts)}
     if qa_scripts is not None:
         sys.path.insert(0, str(qa_scripts))
         from audit_panel_alignment import require_matplotlib_panel_alignment
