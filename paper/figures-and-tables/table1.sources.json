@@ -53,7 +53,7 @@
     },
     "audit": {
       "path": "results/table1-recomputed/run.json",
-      "sha256": "ad3497313bae76ca0c67fdcad4b3a1d73b2c30798659a1e317d1c3fcf0bd5532"
+      "sha256": "1418f5b38458dffdba79d6a8acadbddfb7f11c20695d9cfd4de55ec4467379c2"
     }
   }
 }

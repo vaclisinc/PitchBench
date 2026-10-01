@@ -38,7 +38,7 @@ score uses those 158 answers, with the missing identities recorded in the audit.
 
 The [complete audit bundle](../../results/table1-recomputed/README.md) contains
 full-precision scores, counts, compact baseline raw answers, source hashes,
-reproduction provenance and a comparison against the previous table. All ALM
+reproduction provenance. All ALM
 cells are replayed from saved raw answers against the official ground truth;
 both baselines are rerun on all 5,802 fixed stimuli.
 
@@ -124,5 +124,12 @@ A clean branch, tag or detached commit works outside VacLab; a remote upstream
 and a queue receipt are not required. The receipt records the actual commit.
 Inside VacLab, follow the workspace queue policy: run a small preflight, commit
 and push, then enqueue. Queue executions still validate the matching receipt
-and pushed commit. The `scripts/run_rebuttal_baselines.py` path is only a thin
-compatibility wrapper for the same baseline entrypoint.
+and pushed commit.
+
+## Other paper assets
+
+`table2.csv` reports the separate analysis sample and its ablation conditions;
+its denominators differ from Table 1. Its numeric inputs are under
+`paper/analysis/`. `figure2_*` files show A1 predicted pitch and bootstrap
+intervals in MIDI/SPN/Hz. These are diagnostic plots, not alternative overall
+benchmark scores. Table 1 is the only model-by-task score table.

@@ -1,4 +1,4 @@
-# PitchBench -- Python Package
+# PitchBench
 
 Benchmark suite for evaluating pitch and acoustic perception in audio language models (ALMs). Probes pitch identification, temporal localisation, chord recognition, melodic contour, robustness to audio effects, and more. The paper comparison uses MIDI, SPN and Hz; D8/F1/F2 use Ordered Note F1 and other tasks use accuracy.
 
@@ -62,8 +62,7 @@ source .venv/bin/activate        # Linux / macOS
 pip install -e .               # install the version in this checkout
 ```
 
-The paper commands below target this checkout. A published release can be installed
-with `pip install pitchbench`, but may not yet contain changes on this branch.
+Use the source installation above for the scoring protocol and reproduction commands documented here.
 
 For development tools:
 ```bash
@@ -86,7 +85,7 @@ DASHSCOPE_API_KEY=sk-...
 ```
 Use `--model dashscope/<model>`.
 
-**Local server** — included in the base `pip install pitchbench` dependencies:
+**Local server** — use an OpenAI-compatible audio endpoint:
 ```
 --model http://localhost:8001 --name my-local-model
 ```
@@ -117,7 +116,7 @@ data/generated/pitchbench_a1_single_pitch_id/
 ### Evaluate
 
 ```bash
-pitchbench --list   
+pitchbench --list
 pitchbench evaluate paper --model openrouter/<provider>/<model>
 pitchbench evaluate a1  --model openrouter/<provider>/<model>
 
@@ -144,7 +143,7 @@ tmux new-session -d -s mymodel "source .venv/bin/activate && \
   pitchbench evaluate paper --model openrouter/<provider>/<model> 2>&1 | tee logs/eval_mymodel_\$(date +%Y%m%d_%H%M%S).log"
 ```
 
-Without any model specification, the system defaults to the localhost:8001 endpoint. An example file (audio_flamingo_next_instruct.py) was added for running Audio Flamingo Next Instruct on localhost:8001. 
+Without any model specification, the system defaults to the localhost:8001 endpoint. See [the Audio Flamingo Next server example](audio_flamingo_next_instruct.py) for a local backend.
 
 ### Analyze
 
@@ -181,7 +180,7 @@ results/evaluation/<model_slug>/<YYYYMMDD_HHMMSS>/
 
 ## Experiment categories
 
-28 experiments across 7 categories.
+The paper benchmark contains 28 tasks across categories A–F. The package also provides four optional tasks: D7b, D7c, D7d, and Y1.
 
 ### Category A — Single-pitch identification
 
@@ -290,9 +289,8 @@ src/pitchbench/
       setup.py                 # experiment setup helpers
       timing_layout.py         # timing-grid utilities
   analysis/
-    analyze_a1.py              # a1 line plots + heatmaps
     analyze.py                 # core analysis pipeline
-    a1.py                      # alternate A1 analysis entrypoint
+    a1.py                      # A1 line plots + heatmaps
     ablation.py                # ablation summaries
     combine.py                 # combine multi-run CSV outputs
     overview.py                # overview plots/tables
@@ -308,7 +306,12 @@ data/
 configs/
   paper_baselines.yaml         # reusable baseline recipe
   baselines-requirements.txt    # separate pinned ONNX inference environment
-results/                       # committed compact evidence and local run results
+paper/
+  evaluation/                  # compressed saved ALM answers (replay inputs)
+  analysis/                    # separate diagnostic sample and numeric evidence
+  figures-and-tables/          # publication tables and A1 figures
+results/
+  table1-recomputed/           # full-precision paper scores and provenance
 ```
 
 Set `PITCHBENCH_ROOT` to override the project root for `data/` and `results/`.

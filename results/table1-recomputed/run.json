@@ -3,21 +3,19 @@
   "project": "pitchbench",
   "status": "succeeded",
   "complete_table": true,
-  "git_commit": "5e921df074cbfc117e6d53403256389aa957f7cc",
+  "git_commit": "72211f9139a7b4a03f89e9e92879f1ee47472e1f",
   "command": [
     "python",
     "-m",
     "pitchbench.analysis.replay",
-    "--repo-root",
-    "/home/b06611012/fundwotsai/vaclis/vaclab/projects/PitchBench",
     "--dataset-dir",
     "/home/b06611012/fundwotsai/vaclis/vaclab/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778",
     "--output-dir",
-    "/home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench/table1-verification/full-replay",
+    "/tmp/pitchbench-minimal-clean-review",
     "--baseline-input",
     "results/table1-recomputed/baselines"
   ],
-  "output_path": "/home/b06611012/fundwotsai/vaclis/vaclab/outputs/pitchbench/table1-verification/full-replay",
+  "output_path": "/tmp/pitchbench-minimal-clean-review",
   "dataset_ids": [
     "pitchbench-authors/PitchBench@f6c672608057cb877bfaacaeeff9bfb49eef7778"
   ],
@@ -39,11 +37,11 @@
   "scoring_files": [
     {
       "path": "analysis/replay.py",
-      "sha256": "eb1698cdbb09041e9e8a80231b97dea833d0ec35c72af056d4832e778d8f6f47"
+      "sha256": "ab04ebe2a397f82d97fcc6a3f1073c61d2210febef56812430e20a2725444c5d"
     },
     {
       "path": "baselines/evaluation.py",
-      "sha256": "965ba2010551a3d5cb5c7f5bf4f878200bbc8037f68c5de86614cfb931fa4aff"
+      "sha256": "953ff5443a19fbe806e9a9ee31288a44e2a414dd483ad52cef879c9705903403"
     },
     {
       "path": "experiments/helpers/__init__.py",
@@ -243,38 +241,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "A1",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a1_single_pitch_id/run_001_20260506_071008/results_audio_flamingo_next_instruct.json",
-      "sha256": "77201e1c4bc9d7ec807ae977366092f98d22cd33f5d88a7b3f1d96beaa6df691"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a1_single_pitch_id/run_001_20260506_071008/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "e3f27b3113498741fce1b0c37306fbca3574a256c39ff9281ab4aaa6f5ae4498"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "A1",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a1_single_pitch_id/run_001_20260506_055002/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "d065785b1fc8e3de29258eedaad653ffd48bc72d629017b8612004256306c454"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a1_single_pitch_id/run_001_20260506_055002/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "e5952963d35013220913f3b04402bffb4b6dfed26f0118c6f5fec0be2033f983"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "A1",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a1_single_pitch_id/run_001_20260506_191031/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "857587e2da687163fe06e1edfbe5dab03c757ab17f1bf57a094772eaf12fe0a3"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a1_single_pitch_id/run_001_20260506_191031/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a99e3594b597d301e428f953bb32eae8ea099526e8143f444ddbe1a96bc6fa52"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "A1",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a1_single_pitch_id/run_001_20260506_071123/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "945f9bd71c98fc257a18edd15fe630e30f70218ce1e33d9c01a3f48249b1ce1f"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a1_single_pitch_id/run_001_20260506_071123/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "751f4024ef216775f633cc79912046106d49659740c54da8a0f43e873570eb07"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "A1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a1_single_pitch_id/run_001_20260506_185726/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "0c25a7bab79a0b57953258c346102a3a7c0a5fc2c2b1cdcf0f7d83be44fdaf1d"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a1_single_pitch_id/run_001_20260506_185726/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "368a76f85145b38aa57af3a817dfb98619a814b0c03095762c0a8596030cf7b5"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "A1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a1_single_pitch_id/run_001_20260506_185708/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "7c5bc6b2d1fde4f06a332d8e63a1fe1f16aabcb5e0a034d396486d6299dade9d"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a1_single_pitch_id/run_001_20260506_185708/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "a25dec22174b11a554bf0e5a7179a5e6076caa99d6fb72da2c0aadc1861bafdc"
     },
     {
       "model": "baseline/dsp",
@@ -291,38 +289,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "A2",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_072015/results_audio_flamingo_next_instruct.json",
-      "sha256": "34e36a1e73ea310fb963ae95d4cea831e8ad9cf56520a45ff72fd404fb556aa9"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_072015/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "57debd0e3b9118656b7e5693cff22539283e08d95ea7077c67d5ea3f9ff67117"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "A2",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_060854/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "0499da37df29e786d7f644cbd02772f9fdc5aa3803e0b3941f98ef40357d5dc5"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_060854/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "7f27f3fccd81e167ba2ccee836d779cc410b79da528310ad434dd459bd117a95"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "A2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_191755/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "41ac4c68beb163b18cba694e87299cb726088638911fb5c77b62c4a54b1a208e"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_191755/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "991aeb233ad18d31b6a62bedde181ee4e9fe5c96b29c6c70cfe593b06cedf372"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "A2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_071509/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "2adbb8464bd01cfddf4c0450788aa96220a54c666f421bae3fcd47c48977b4b0"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_071509/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "37f57ef74a5fe271e04ccad819382dfa6721d9ce5883f84b417f668155db8fbc"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "A2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_201454/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "dcbdf8f8f7daf25bfaefc1c37877154c47644eb5f5e17e7dfd0a6ff511cc33e8"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_201454/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "67afa901f494c5fcb764cb4e43ca3b5ea9d052d560bfc7c184faeadc28d2b9c5"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "A2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_201428/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "238ed25f876944d1612a5a217a6df77e1862e8d54bfbb980b60f5706bab7d5af"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a2_single_pitch_by_loudness/run_001_20260506_201428/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "771a7b3b6ab8e3fbda5c4700f8d84986c53a298f4a2a8b50c615bb4655e37853"
     },
     {
       "model": "baseline/dsp",
@@ -339,38 +337,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "A3",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a3_single_pitch_by_duration/run_001_20260506_072158/results_audio_flamingo_next_instruct.json",
-      "sha256": "030f3b5ffcd83e5dff20ffc9203eccb6a63dc4a0b048a6d4d23ddf11a0ac1726"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_a3_single_pitch_by_duration/run_001_20260506_072158/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "8ca4853607ebc49975acdc1c77216326113527c8d669adefa9dd1d5b52acfda4"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "A3",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a3_single_pitch_by_duration/run_001_20260506_061242/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "aa53cda910dc25801bbbaa10398972fccc6c2061988003c245c8f1a25be6f08c"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_a3_single_pitch_by_duration/run_001_20260506_061242/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "24871949084e0f1594be942f0a2e063711f8a7e5920269569a56f2e6923efe6e"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "A3",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a3_single_pitch_by_duration/run_001_20260506_191929/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "e0a5b10d16f4a8be1f27a16f67662b08e77a87b9084915c436543cfc99090dc6"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_a3_single_pitch_by_duration/run_001_20260506_191929/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "4e3df37bef69c0c8f3d9c7d2f7caa5612b259894fb9a1839025e451f88c06390"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "A3",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a3_single_pitch_by_duration/run_001_20260506_074614/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "72116f0b08dc0e020a102105d3ce2da579b9cd8ef107bb779fe9df1559f5cc56"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_a3_single_pitch_by_duration/run_001_20260506_074614/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "9f394549a5a9309c3be8c166bab29d2548980aea6d8ed5688b1bbd6894e82494"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "A3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a3_single_pitch_by_duration/run_001_20260507_002116/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "1ac2a0111945d41b425ccae5a3da27bf342a03f0ee6d61cbe47f70d03c8d39cb"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_a3_single_pitch_by_duration/run_001_20260507_002116/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "19eae25558acedb01efe9ec041924def8f2418c6d86accce259dba4d221a9fca"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "A3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a3_single_pitch_by_duration/run_001_20260507_001512/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "33fb08d7c7841a10f14940735cc41cc7ca6b97ef3c697c24f805ebdc6ec2274b"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_a3_single_pitch_by_duration/run_001_20260507_001512/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "4aed3e5624fe7f42726a710212733ff8318d11629295271019b63ca81437d9f1"
     },
     {
       "model": "baseline/dsp",
@@ -387,38 +385,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "B1",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b1_single_pitch_within_silence/run_001_20260506_072402/results_audio_flamingo_next_instruct.json",
-      "sha256": "504f287b09a43c0ab0dc547959840df3bd3b61b8e5f755af4adfed0ead1ef707"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b1_single_pitch_within_silence/run_001_20260506_072402/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "87a21ea01945b592ce3c8975eb8563d7d898e084955393b1ed530019a6c77c75"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "B1",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b1_single_pitch_within_silence/run_001_20260506_061628/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "84a91e46ce8816339cd63799db9bd4c4fa3b7adbead4d5a67aa08ac604a9f5fd"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b1_single_pitch_within_silence/run_001_20260506_061628/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "12e1eff3139c316b9d7e2dadd0f3a6604cc1d6b06137132094ede58a69deeaa9"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "B1",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b1_single_pitch_within_silence/run_001_20260506_192050/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "80e15e7e1970b17eb147815dfb76c41267c89d44e8cd5b4abe819be3844d1ccd"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b1_single_pitch_within_silence/run_001_20260506_192050/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "46b59d436062f641725f66ddc653eb120f214502dcdf34e87d6c5550493e5f2a"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "B1",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b1_single_pitch_within_silence/run_001_20260506_071637/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "e6c15f95d80f4fe6701a34f50a602fb2ee186c1d375ac4b314141b358f9d260c"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b1_single_pitch_within_silence/run_001_20260506_071637/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "0d37af4252715beb3e95869f778e4227f9875d422e0596b1200be1a88fc8d5d5"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "B1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b1_single_pitch_within_silence/run_001_20260506_204109/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "c71a998d3c8248331d36f12ca649d9edc466bf5e1d103b58f37d666e7d3f3cbb"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b1_single_pitch_within_silence/run_001_20260506_204109/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "4416da501c3dec96655e083b850933539bf0c3eebf9e723cdc67dfb42988e9c7"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "B1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b1_single_pitch_within_silence/run_001_20260506_204104/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "ee52ed8522df8ec8da94818ebf4734f97c561c7c71235299c9b9920527ef3555"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b1_single_pitch_within_silence/run_001_20260506_204104/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "f5f0ec125990cae284e55c2fdb844ac11bc85699227f06ba2c320693d6958c47"
     },
     {
       "model": "baseline/dsp",
@@ -435,38 +433,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "B2",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b2_pitch_at_timestamp/run_001_20260506_072703/results_audio_flamingo_next_instruct.json",
-      "sha256": "418cdb3e1a926e71b444c75912bf166cf55aef8683a1cad11e34fef8ce097786"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b2_pitch_at_timestamp/run_001_20260506_072703/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "40571e5c331756bce3179b306c3fdc77d93f2178af8b786c193193ee961d3166"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "B2",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b2_pitch_at_timestamp/run_001_20260506_061930/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "fd73a8303d305ac01941319db90c8d2b142840341266141d360c99221227aec1"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b2_pitch_at_timestamp/run_001_20260506_061930/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "97c796683f61a303528b6a365aca969d7cefb1fe2d7152c5272d3bfabad578be"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "B2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b2_pitch_at_timestamp/run_001_20260506_192251/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "5fde7df9b99e11e9ce8ac21ca1d2e7ab05afd55a39bba9c8416845eaefd373eb"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b2_pitch_at_timestamp/run_001_20260506_192251/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "7c338a88f43d2bd93a173ba14de4b4a46f103e2e7acaba352097fcd331b88702"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "B2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b2_pitch_at_timestamp/run_001_20260506_071738/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "b85bc0dd1ad0ccb8b85e6a8016d9995dddf27232d41954806ed8e3f83139ca66"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b2_pitch_at_timestamp/run_001_20260506_071738/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "5a56006c2953f239f38a36c8cd3c104e196a86ffb0911b4abfda6ad2b636c5ab"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "B2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b2_pitch_at_timestamp/run_001_20260506_205325/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "c8d031acb869cc4c88cd2a24522e2c92d9338217ab425e9a49678cba6bd64df2"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b2_pitch_at_timestamp/run_001_20260506_205325/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "6412ea042331aea499995eeff791659a93d4436fc2ee94f6a907711a07e29b29"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "B2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b2_pitch_at_timestamp/run_001_20260506_205252/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "ff462997472c69cf3e24d98acac13c1166c87a1f8ddf8ebe233286d0287468e5"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b2_pitch_at_timestamp/run_001_20260506_205252/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "85a815bce617174dfb68464919e2d88feea9fd157122f609e033241e68dc405b"
     },
     {
       "model": "baseline/dsp",
@@ -483,38 +481,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "B3",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b3_timestamp_single_pitch/run_001_20260506_072954/results_audio_flamingo_next_instruct.json",
-      "sha256": "a9f2544f579d25bf919ae0610825ef27be57dc572959cbd8633eb9d50dce5caf"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b3_timestamp_single_pitch/run_001_20260506_072954/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "73842cb90800d1cdfb1cf8818aee7354a4698e364843f6da813d0a5958b8cd9b"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "B3",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b3_timestamp_single_pitch/run_001_20260506_062224/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "2fff1f8b74a6f3d882ffef9e3b0ab52b8d1b666bd3e3b98425cc1c3786d3b460"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b3_timestamp_single_pitch/run_001_20260506_062224/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "63a67361d8ac9f5165cf98451a58f9c6d57e467a38d95f4ed4d87ab4b7100eb0"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "B3",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b3_timestamp_single_pitch/run_001_20260506_192358/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "5af9a0f0e91380a08a31079cac00536f515f4f35195711ea0a0223f1ddcadcb5"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b3_timestamp_single_pitch/run_001_20260506_192358/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "3f7f9cf8e4b3df6ab4c46c74db3da761ffc80463a8d2c3caa8f99daf5d385dc2"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "B3",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b3_timestamp_single_pitch/run_001_20260506_071834/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "60bd83cb69e8f6bf48856c41f2df1caafba41bb3b94b24773502f7a54d3e4eec"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b3_timestamp_single_pitch/run_001_20260506_071834/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "be5e96ef079f655402e2e8b5abfd4c695581982977c15a89eb22be91c50a7ae9"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "B3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b3_timestamp_single_pitch/run_001_20260506_211013/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "e30043306b0d583f7c138f2bc49a54867d96fa8b45c0497c152a3dfe1abc85b1"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b3_timestamp_single_pitch/run_001_20260506_211013/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "150738f5079c0c7b0df77cce330fece8d31aee731233d2b11cb1133bd1922f40"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "B3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b3_timestamp_single_pitch/run_001_20260506_211045/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "0769771b4012b6eba2dee0401969ce52437ac9628fabe7320e898690cb48d212"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b3_timestamp_single_pitch/run_001_20260506_211045/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "b7263735ffc6a79306c6af6e68cff4a7898890f5e32ffdb5983d55937ae245a8"
     },
     {
       "model": "baseline/dsp",
@@ -531,38 +529,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "B4",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_073123/results_audio_flamingo_next_instruct.json",
-      "sha256": "ad3da3b6daa93ae247e92a1ebf785d39822bfe756d653feaaea01b0dd323ccbb"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_073123/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "ee5ceb31360f824dedb95508150c0c5bb5352ea5a9f638e4228f4271ae0e62c5"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "B4",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_062310/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "a0705750006182c2d4fcc001c7ef7c6b23ad74556f8e4c3e6baba0349a89410b"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_062310/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "4fe525391557dc390c33ff6a0c25c862940c17d5620257c87f049e027f98972d"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "B4",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_192512/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "06f9ebb764490e3f912246c9aa273b7133b15f2a289efbe16f06446f44c9e6c5"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_192512/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "52c660772ccbe6f5ddc90c2e2d84a75887c3381c14ff085bd3d59581b11f530a"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "B4",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_071849/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "27f72a37c94bf8093a49050d0f9dbb7428989b4e45fe1c6c3b03fa79253b2ee2"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_071849/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "a9a04abb1450fdaa115466d2c9414764f7f6dcfae315aba3c776962a9d9098ec"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "B4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_211403/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "84efdc2a757cb6cc79f381ed40d02014f60b9cac46866272f77c77964c3512c4"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_211403/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "4c9babebd17b8975e20c5956134ef9fb2a3d40e7f11402ee8a9849d45119dd24"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "B4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_211432/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "d159872d9f05af6f5eacb32f55e18f7e1de59aa926c315a660043c26c54decfe"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b4_timestamp_specific_pitch/run_001_20260506_211432/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "2386d5b0c40c4a2bcf498ab5db4d8828304b11177eb7d445ece76d6fd2c650a5"
     },
     {
       "model": "baseline/dsp",
@@ -579,38 +577,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "B5",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073230/results_audio_flamingo_next_instruct.json",
-      "sha256": "9fbb0900847cc02b52ac4d4c44d2d6871d8e94a8f3a2b9aebbad2e608256563b"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073230/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "6cded8ee2b71cb427540c270c4fa372805fc3c0eca2c807d10bed7ea83f1e1c6"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "B5",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_062350/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "ca15484d8c52eed6663d9af0b76f9847593846407112b848295786a63164ec85"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_062350/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "da065d0e789261c785a2367dda9611fc415e652e8cc84e0aa3385c4cf30b6490"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "B5",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_192611/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "4472f5ca801760b70365cb12f02bd42f2524554d4c14c02d07cf483717d4d50d"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_192611/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a6d12f3086c583b83017cc1dec0df827e90b59d8eea30254ef4a3200ad5694e9"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "B5",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073224/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "de7c6523250208b9feb420e087d8d58fa90e3d0ec887bc4751e93428cfc06a65"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_073224/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "760ecd9bb35ce2a976b7efbf5720816ee9d894e4b83c5491e85c4680391e9758"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "B5",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_212000/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "55a60955ee2963cbd21dd5ebed9943dc875b61a89a52c2163fb779b1829413b6"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_212000/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "883537afc780abb30714b063da1849d5c8d590f71d7fee54973ccbbbd45059bc"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "B5",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_211946/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "7e28b8d417c97c9752969c4c1034f3e07f81526389ac2fbb4251e55f95b540d9"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_b5_timestamp_multiple_pitches/run_001_20260506_211946/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "1697eebf8693598dea59c94ebc56a206560aa341c3c620997b1f9ae31ee35739"
     },
     {
       "model": "baseline/dsp",
@@ -627,38 +625,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "C1",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c1_chord_count_pitches/run_001_20260506_073719/results_audio_flamingo_next_instruct.json",
-      "sha256": "867eea27e23b8dfd3fccfc06244a9d1b095f34b2e1c370f03d1308cd4c6f6949"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c1_chord_count_pitches/run_001_20260506_073719/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "94c9e7e0bec52230001f294bda67d67e0e12d1a976682b03d9c6efbedecd050c"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "C1",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c1_chord_count_pitches/run_001_20260506_062429/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "672e31a0747e4608da8d25e8576b07bfad94144300e33a232d6ac66066fe2845"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c1_chord_count_pitches/run_001_20260506_062429/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "52c437823d714a8e54b670fbde593bc7f57d79e2e9039df5042f69a825901310"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "C1",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c1_chord_count_pitches/run_001_20260506_192718/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "396afa465daac9277a717b4dfe4724f9f206ccd70fae6ac31d1d2eb569a768d9"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c1_chord_count_pitches/run_001_20260506_192718/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "5c4036c8dc0bd84b57021cf947a83d99e7f52c2a2618ceb8afc7a1940d4f2ffa"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "C1",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c1_chord_count_pitches/run_001_20260506_072518/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "a6dbd331efcf997f3ce85d205a7e0cd482a46f032624e130e2192a787df76c5f"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c1_chord_count_pitches/run_001_20260506_072518/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "6c72c532e90e32cc42eed7d46fa7ce2a2e2d856afa9cb8dcca0fc866aa5299ee"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "C1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c1_chord_count_pitches/run_001_20260506_213809/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "716722a6310e5796b898ca8adb2245dd2edc7705d2f9802ea613b03c9d0add15"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c1_chord_count_pitches/run_001_20260506_213809/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "eae36877fcd045eb863bc0b2b711a709005681b0ec97ad7750be6d51d69baf54"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "C1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c1_chord_count_pitches/run_001_20260506_213826/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "88c1a9e2a43cbda616cb4203e11c4e403aa01f19b0ab856203a48d8901498e02"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c1_chord_count_pitches/run_001_20260506_213826/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "2c3fd633f96ea9b5b4e1004e6dbf12353935c1d611f04d5e2015a36a9a636b27"
     },
     {
       "model": "baseline/dsp",
@@ -675,38 +673,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "C2",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c2_chord_dyad_interval/run_001_20260506_073740/results_audio_flamingo_next_instruct.json",
-      "sha256": "6ac12f880f8ffd17f9acac15137bc102c8efe38fed0e2feee6c66d9a3c7dbcf1"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c2_chord_dyad_interval/run_001_20260506_073740/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "ce24e209d5c9eb52dc044451b4d473e457cd7a6377420e7b8520697ad1fb503b"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "C2",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c2_chord_dyad_interval/run_001_20260506_062535/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "36de8f51e0438932043b79990eb14414359cc4c5fc61f8ee8cf432e44321d770"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c2_chord_dyad_interval/run_001_20260506_062535/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "930d79c58e7cc8f097ed1f3031f06820a710ec48d4308519fcac10700b60c5ff"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "C2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c2_chord_dyad_interval/run_001_20260506_192806/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "26598bb271badcdd1c070554045938584d7890dcdcfede11c6f89395d725e383"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c2_chord_dyad_interval/run_001_20260506_192806/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "30eecd1c397d3dc976edb24f6e97bf0c93d2a2f7916f18380b89560694a31b78"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "C2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c2_chord_dyad_interval/run_001_20260506_072530/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "8242231379ba399a7fb9a7ab767998b774a7daa128d1efab8e97d17b0afa5b44"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c2_chord_dyad_interval/run_001_20260506_072530/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "bc16a27a00f77bcc4f7faa3699b1efc72b51bdf799d6fb21f78a5356b6b9aed5"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "C2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c2_chord_dyad_interval/run_001_20260506_214139/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "0c6df751ec7ddd74d4534ebd5c822e5dc8bd8ab70f3dd5c887b133e52680a713"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c2_chord_dyad_interval/run_001_20260506_214139/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "3b61a7fed8fead09e677d95dfd8f29056030a895e28db77407fc5427ffe90553"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "C2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c2_chord_dyad_interval/run_001_20260506_214151/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "65e0595194dc9ae9f3abadc4f68818acf390f7d54018218da34d418228c07834"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c2_chord_dyad_interval/run_001_20260506_214151/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "8f4c11703f229bfc847eb660715277c7cc882be820c6bd86e48b57ccb5dcc782"
     },
     {
       "model": "baseline/dsp",
@@ -723,38 +721,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "C3",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c3_chord_quality/run_001_20260506_073806/results_audio_flamingo_next_instruct.json",
-      "sha256": "16269673c218d341bb22e8c9ccf820d9e0b6aa2db4bfc1f58fa6825892875a49"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c3_chord_quality/run_001_20260506_073806/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "0465d6e1861594381ba6dede9053cd3b11967234e4e6c70d8063c991051d2eb5"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "C3",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c3_chord_quality/run_001_20260506_062633/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "22ef0d66d3e34bd4882de38fa77e013cfc7cbae885c9332badf4ddd6a2b64080"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c3_chord_quality/run_001_20260506_062633/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "e660997b7cc87b7b91237fb59e96aaeae12d1cc5406e696ca56a050bb8e13547"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "C3",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c3_chord_quality/run_001_20260506_192904/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "47a2996cf19a30247997629a6f757326dc00a3329b8ecbbbbcd21929d6b670e7"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c3_chord_quality/run_001_20260506_192904/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "099a644c99bea50c474dd335c899bf5ea65793456c9b876b6bc722717f3b3b0a"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "C3",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c3_chord_quality/run_001_20260506_072544/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "bf6c4c3994bbfb173cc09d95fa84e82358ed358193adec5828836690cf528b39"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c3_chord_quality/run_001_20260506_072544/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "70a7f4f0983f39af413726b2d491003ec2d3f368a36bd8ae57758776a5afde16"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "C3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c3_chord_quality/run_001_20260506_214535/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "df184dee35b5031c213148a651586ecbbda87fc0d1234b63d794ee83a3d15861"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c3_chord_quality/run_001_20260506_214535/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "7b965e13b2e3dddd1a249ebf6129bd432dbfa99d8aecba790f7fd67f6a152f80"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "C3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c3_chord_quality/run_001_20260506_214547/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "0427c2268a158130f83cc3db069d9c24726d6e33833c6ac93e5d5ed76cb9a95c"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c3_chord_quality/run_001_20260506_214547/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "4ae9445938130c72371411b16ed607a99f567f0fb19f06ab56ebe2128b376f61"
     },
     {
       "model": "baseline/dsp",
@@ -771,38 +769,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "C4",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c4_chord_pitches/run_001_20260506_073827/results_audio_flamingo_next_instruct.json",
-      "sha256": "b2d53a4f7d5790ee9b539848c515a0920975d032f1f2ef5f7151e3222cd0de43"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_c4_chord_pitches/run_001_20260506_073827/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "da20b6ac9da967ac920ccb72be2f0504a22bef1582888a8a14eb1e952b2cf89a"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "C4",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c4_chord_pitches/run_001_20260506_062727/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "e675a1de11f008aaf96aa624b0705b02c83c64c47e83fc6d9a1c9c28ce7974fb"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_c4_chord_pitches/run_001_20260506_062727/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "20e395caf790f95e2ebe90d943a592a8cc9efb59828b200543d1b4b1b992d1c7"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "C4",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c4_chord_pitches/run_001_20260506_192955/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "b7b4b7dff4ae13838b2ea6c2dd6a8d1ced7722c375f42164665dda3580538f2a"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_c4_chord_pitches/run_001_20260506_192955/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "7f585206ad820e0492ed37a2308be6f437d96ac7144c594b9e3245032de66354"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "C4",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c4_chord_pitches/run_001_20260506_072554/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "9fd6a5a8d30d4f8a7cd88b2d2a40034f29c8c415ac099c015dc626985a2db472"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_c4_chord_pitches/run_001_20260506_072554/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "e5a63f5d1f0a57b7fefcc770b29ccca06e6e4619f7ebc6d975e20d59a4d005fb"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "C4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c4_chord_pitches/run_001_20260506_214846/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "d8dc4b32f2ff09a023759d85feea323b02abf120bf7b50f4305c383fb93e5db7"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_c4_chord_pitches/run_001_20260506_214846/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "181f1b58d91ded0a9819dfb65029e2e6cec09dcc06467f6d8d2707a8e3b858ee"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "C4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c4_chord_pitches/run_001_20260506_214855/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "b9cdee9c08d3041ceaff3cfddfb31c730ce27098745c8f53bcd9c9a3066e3e28"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_c4_chord_pitches/run_001_20260506_214855/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "972beedfa9c4d2b36e712f6e699da5339460f5520378f34b7433aa9d5231accd"
     },
     {
       "model": "baseline/dsp",
@@ -819,38 +817,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D1",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d1_sequence_count_pitches/run_001_20260506_074614/results_audio_flamingo_next_instruct.json",
-      "sha256": "8cf9a576bc58e0f4b94a27ff1686f46ab512002cf5b066d6635875d149046a74"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d1_sequence_count_pitches/run_001_20260506_074614/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "b76b2a5496d7e410b8e09c01fc13ff9214b2815833cb42e6c9de40f9729d64f9"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D1",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d1_sequence_count_pitches/run_001_20260506_063603/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "2045b58a1b72caefba8ee8a06aec5fbe204e800af8fc3440f86321af7cf78cd2"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d1_sequence_count_pitches/run_001_20260506_063603/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "85a7664070320a97e3186f220c0db282a924d459b774baea4c93ce3f33671193"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D1",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d1_sequence_count_pitches/run_001_20260506_193407/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "24a696514e79a1b98a9fd8c18d2bd6fdc4744197d0e1d685f3cbcd787a644459"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d1_sequence_count_pitches/run_001_20260506_193407/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "9b9c883a9f18d46e4b121284866e6d3dd8c7a2418a43b2de1d2929f815574b43"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D1",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d1_sequence_count_pitches/run_001_20260506_072740/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "ac53ffcb0cbc7b980f2f48214bced6340524abfdebabd478937914f3911f80e9"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d1_sequence_count_pitches/run_001_20260506_072740/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "67e85eee89fa2441f01013fbbdb15fe3c03f1606406423f036ee7cd6f1266e7c"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d1_sequence_count_pitches/run_001_20260506_221141/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "0c4ce25a86da69c114bbbf7caa204903cdae0ceafab725c0a726049622162db3"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d1_sequence_count_pitches/run_001_20260506_221141/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "3aa48debc099114f3752ae7a2a06d0547dcb6981855cccce3935512f9e0bb383"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d1_sequence_count_pitches/run_001_20260506_222032/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "0520a6208c78dd635eee8c4e6ad5836bc13c408e5c981e3dbdbfb2f3203adbf0"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d1_sequence_count_pitches/run_001_20260506_222032/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "ca5f19d574172336d325ba18eaec4ad6b36c86c49e8c9eddbbda04d1fbd9fb28"
     },
     {
       "model": "baseline/dsp",
@@ -867,38 +865,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D2",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_074632/results_audio_flamingo_next_instruct.json",
-      "sha256": "8d939d68ef195c00344e0251500b5dbbe16329927039065af8061f489abf5f2a"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_074632/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "d4916bea7c9a42c8254dc5c9d079aacb4efc2ebbee51bb7f9d15dfe7786d69b1"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D2",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_063649/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "6db6e6f22150091e3ac90ec58c8dec4c7a89b92b8d46a0b51e12e3b06ebe94a0"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_063649/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "7289976de4d13d8668a73dc8f02b8ae779c4d1683e7f2a94bd92e5c15f040399"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_193445/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "ee24d4930e830c435d5e23e0823dbc14e1f815d1b9a20c3aa8f382c6275be80c"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_193445/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "d9c85cc9ec8a30f59b3393349974a17626929601583cf045c0694c28e5026077"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_072749/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "65061c4381da0e27e962cd31049375505e6cb9d2bd583c91b47e07b6c9d39aa2"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_072749/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "39562939b5bd12500db3bf75f93513bc1cc41142c7386263aa6af95875a62696"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_221405/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "afd9e36fc510cd7042684f5b98ea4d9cf05cb000e15d799d917070e889e0da72"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_221405/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "91cd9df8c62c320e9823b7d2927b59e9b5bd9c978a8b03ea263e1f1aac967b5c"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_222251/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "214f84b943e1ac9575249c30cb0c9a7a6de6a33f2131f70c88926fc6356ef6c1"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_222251/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "5b8887b054025b327f5a926f4069e0714a25638544005848433dbf871bbf1e52"
     },
     {
       "model": "baseline/dsp",
@@ -915,38 +913,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D3",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d3_contour_discrete/run_001_20260506_074645/results_audio_flamingo_next_instruct.json",
-      "sha256": "e758f997f70b530d93d74e8b06240579a40d3eafb3b494870253d234e2f56e2d"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d3_contour_discrete/run_001_20260506_074645/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "c98e905c59c4684c071807d75292c73935faf7c3b58286bdd881df35cb5976c9"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D3",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d3_contour_discrete/run_001_20260506_063721/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "636740995111b09386ce0c397eaa89902a974bffc64544be9a872964fc110863"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d3_contour_discrete/run_001_20260506_063721/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "5ff5c45df1a55ce24278ca251b5b07141abb9a5d3a6d0e8af2de8ec137f0b317"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D3",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d3_contour_discrete/run_001_20260506_193553/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "6762649280fe3e0796f5cb9ffcfec2280262706d9f69494d8d093816d88f4933"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d3_contour_discrete/run_001_20260506_193553/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "7647d408d1b225f960a72b94fa32868e303598b151585aa0a1157ab5bebe52e2"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D3",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d3_contour_discrete/run_001_20260506_072756/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "be1a79c110bbd97be0e107bd53af823e8c489b0d834e5a1f570dd60b3423d161"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d3_contour_discrete/run_001_20260506_072756/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "35839e3e6d505207c96c53299e7fef8c5c2d7d2533a6dd86644c28e6c921dd23"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d3_contour_discrete/run_001_20260506_221702/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "fcea4d6794a2b330337a1e7250c30715aedd274f0d2fb87074f9fcac11b86417"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d3_contour_discrete/run_001_20260506_221702/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "069f2baa718e2a242b01253dbbacb0c735fe412b5a811493c36d2cbdbdc11d15"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d3_contour_discrete/run_001_20260506_222502/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "a91073209bee0cd8f173c5805edec394a52672b6a75eb6b491e41969c2298341"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d3_contour_discrete/run_001_20260506_222502/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "24152d0d6dad53bd4d0140b5c7c225669b30d6417b24cc6f1eea6ac6c6571b28"
     },
     {
       "model": "baseline/dsp",
@@ -963,38 +961,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D4",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d4_contour_continuous/run_001_20260506_074743/results_audio_flamingo_next_instruct.json",
-      "sha256": "a938d65482ab01614a203bc98300aee99d5721a89a62a7815c63858f3fb800b1"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d4_contour_continuous/run_001_20260506_074743/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "f17307eb81335d2246becec86d1db852adf31d9d39eb260a1a21f3521e2908de"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D4",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d4_contour_continuous/run_001_20260506_063815/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "089ef6529742d6c06b00a52e724a2ef9514691520c4c144ede9bc15c8f008df3"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d4_contour_continuous/run_001_20260506_063815/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "1b5eca3201b7d19b115d2fca50089327c7bc41dfe6aacd897b60c0193498d00e"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D4",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d4_contour_continuous/run_001_20260506_193621/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "1e819c514f4a2f6ea0ebba0e026b176fe283d43a34b032be3632baf54da423ff"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d4_contour_continuous/run_001_20260506_193621/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "76ca026c6078696048287c88f8e3d54260f66f7b2953969cfee771c446ac99f9"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D4",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d4_contour_continuous/run_001_20260506_072806/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "d5ff5b8f4b68b03df39c84af4f0b9a91d608d17c85b3a1bf7bb644c1d83045dc"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d4_contour_continuous/run_001_20260506_072806/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "8acaa9999b36f8775b07012d55cef84685670808943c8041a00e3594d27a7cfb"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d4_contour_continuous/run_001_20260506_222002/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "7f78cccd2f02408affc4c59bde34d319159adc303659ea61f872103d83440329"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d4_contour_continuous/run_001_20260506_222002/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "0f9335d4e3bd3219836656a83b6305306ad72316dd2b8e2ae0352a4f4f9b2638"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d4_contour_continuous/run_001_20260506_222801/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "32f60e430bee6bff78a2a5bdfa43d7254836adda8d10a29ec2d6aa500d15b023"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d4_contour_continuous/run_001_20260506_222801/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "e6114ba459ad249bbbec0a76f0bec39816dffd3304df32835fcb2f10477754a7"
     },
     {
       "model": "baseline/dsp",
@@ -1011,38 +1009,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D5",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_075447/results_audio_flamingo_next_instruct.json",
-      "sha256": "55311fa3c3dd8a557612b214c39e5a6b4040ca46e653dbb84b74dbb1e017abf1"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_075447/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "2b97173dd88544940571343e73e18ecb09bb8fc45d24fd7a06c7e59e50156dbe"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D5",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_063903/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "1b916b699c821905ea625fed0a15010e33773a84d5a8f62d43e6dc79d071417e"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_063903/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "611b008e0cee6aaded3bc426d58b26bde498ff862785a7e1347e2afd20c66bd6"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D5",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_193644/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "c2de6cfed9cb316a5c16cabce68f792a4f38b4a4f18e7a8ae276b1a1e79e0fab"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_193644/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "50338f18ff693f96432145133f4617894735272962748df978060897e0f62dd8"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D5",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_072817/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "cb1364aabf9ccd53a49f55a8f8577b9f2451f99fd1ef43cc9142b509dee148e5"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_072817/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "2db15d18c4ba251f31879996d2d0775db1d3889974dd04df7b11f2447b6594e9"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D5",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_222232/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "ead72df6481bebda7ae9da417250bd77eba344e4e2a4369b7e820cc2d842ad19"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_222232/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "3e7c1589a2026e5dbaa8f5f6c42df1e52cd796595fadadbba5bc759abefce222"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D5",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_223042/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "528d53e45d553e7b749163d2ebf160935ba397291d3219c7e2eff2083783134a"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d5_sequence_ranking_by_pitch/run_001_20260506_223042/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "2ebb1655dab986456eb832a064f846fe394981c52c248a09a45330a507583500"
     },
     {
       "model": "baseline/dsp",
@@ -1059,38 +1057,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D6",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d6_sequence_dyad_interval/run_001_20260506_075521/results_audio_flamingo_next_instruct.json",
-      "sha256": "071a0416874898dde69c17a5134e109782129c08d140d4255a028b6fa20d9c6e"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d6_sequence_dyad_interval/run_001_20260506_075521/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "f8822856782a1a75aa0cbf0c5fce77b97b22dd8619caf07891f93a3fb5d52425"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D6",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d6_sequence_dyad_interval/run_001_20260506_063940/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "e4f37041211b7a364da8375c38f57b64a1bd02a89611b23e6de7494fd06ff47c"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d6_sequence_dyad_interval/run_001_20260506_063940/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "d1b45a849145d830f30fb9cb9c593fc4cbbec826fcc9f4921bd11a2cbe4c4212"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D6",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d6_sequence_dyad_interval/run_001_20260506_193735/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "c2ce997649f48ba23fe5609fded5534491f2802a0f913552901f18d17235c720"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d6_sequence_dyad_interval/run_001_20260506_193735/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "4eabb09c847ac41be529902ad9c716e5c44d1a0170ec97cb8a1a9191d91f6781"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D6",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d6_sequence_dyad_interval/run_001_20260506_072826/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "e3084db291eab857622c4acff48df1ff8180011b411aef6a96475d986f46db8a"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d6_sequence_dyad_interval/run_001_20260506_072826/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "25bf5e048a838550f1c51f1a05b2c7d56c3070a057423e9569a27db32d98d5ec"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D6",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d6_sequence_dyad_interval/run_001_20260506_222459/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "620035919e89b306bf9487c8f62664cf28e6337bffe048226fbe7530dd46b1a0"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d6_sequence_dyad_interval/run_001_20260506_222459/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "23b552de98c1a81eaac7200a9fc0f2592ad2df8dcb2f86dad0d2ad33ca0ec0fe"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D6",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d6_sequence_dyad_interval/run_001_20260506_223247/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "5d87e87d08cb5b1b5add08aa16e94d20900df14b09c2d5a58376a3cf0fa0b77b"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d6_sequence_dyad_interval/run_001_20260506_223247/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "a9db339cfab7343016e883a547517ec9d556d6d2381c4034c046773720a28688"
     },
     {
       "model": "baseline/dsp",
@@ -1107,38 +1105,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D7a",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d7a_pitch_with_reference/run_001_20260506_074455/results_audio_flamingo_next_instruct.json",
-      "sha256": "31aba06261e7a5834f77dd7c301cc3eddd497235c55ee9a662ed2a1bc2c02424"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d7a_pitch_with_reference/run_001_20260506_074455/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "dbb0c1ffef6fc15e217d90ca0d4d6a1a0df92082c57a59157ad9af144eec83ee"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D7a",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d7a_pitch_with_reference/run_001_20260506_063035/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "7e130cbe98616a8ada13c6bf0f9abcfffecff8ed4443066f438debadf9e010dc"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d7a_pitch_with_reference/run_001_20260506_063035/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "b03a0834cd89cffd2c2fbf6b28be7ea07d8de937f47fecb3d72ad815f864dde9"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D7a",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d7a_pitch_with_reference/run_001_20260506_193132/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "466b9ee4b94911aa144b9987e5afcb23831219037c466e4e4147697dece9db09"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d7a_pitch_with_reference/run_001_20260506_193132/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "2bb2d7a86d6a55fd8d362a62187b7c5489397281797741c6c792a6289c6819b6"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D7a",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d7a_pitch_with_reference/run_001_20260506_072628/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "6c244a1c05f2b5a2748e9fd0b7d88f1b70595da33c7852ff65bd176af78508ca"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d7a_pitch_with_reference/run_001_20260506_072628/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "c7faa367b42653fd7d117c05e47622ceace21ad73f13536d3f7dc7b73a625528"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D7a",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d7a_pitch_with_reference/run_001_20260506_220256/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "83bd61c0414f2896dc8195d711ef1d7a5392b1f066357bc1c47a7078714bd520"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d7a_pitch_with_reference/run_001_20260506_220256/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "deb1c6b1e80bf7b94667fe63a7c336ba7ef7049d65e3352c223c1dd5dff08747"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D7a",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d7a_pitch_with_reference/run_001_20260506_220310/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "c262007245099e853fb11a903847e066386e2f32b94e1763c1559422456af16b"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d7a_pitch_with_reference/run_001_20260506_220310/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "dbee907a1111350f57de20b3c1bcc863fc617c02ba4169d623baafd3d77df20f"
     },
     {
       "model": "baseline/dsp",
@@ -1155,38 +1153,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "D8",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d8_sequence_pitches/run_001_20260506_075548/results_audio_flamingo_next_instruct.json",
-      "sha256": "62c26686b610ff5ca5f94b18097558ad9af9ed1b99b93ba74d7b1eab0db97f9c"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d8_sequence_pitches/run_001_20260506_075548/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "d2ff9abf019f8f3b85bf4858dd3caf2191ad10a5efe2648d24e7faebf6b9595c"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D8",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d8_sequence_pitches/run_001_20260506_064103/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "51aeb4c257fae7c97b4c6ce4da5ea199ae7e8e1819d2d4179248ea42bc7a4277"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d8_sequence_pitches/run_001_20260506_064103/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "e228c11524ed509f9effee421c044d360354125c24a9a895775843a3393a9165"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "D8",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d8_sequence_pitches/run_001_20260506_193900/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "cba2396109d632549d03456e7b6a5431f60f5f2ea5ed0a474fba2e013cb0c1cd"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d8_sequence_pitches/run_001_20260506_193900/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a0217603f6808fdad86da9b2429212e41f92f311d0ed100a4583a978954800e9"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D8",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d8_sequence_pitches/run_001_20260506_072838/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "beb866b8c76697d0b8eb0b09c40c4b84e9568daf3a03828394b327b5dd6c47be"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d8_sequence_pitches/run_001_20260506_072838/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "104278465c34eee85c47667cfa8f3c2135a82f16be21d6b21ccc2381e68387a6"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "D8",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d8_sequence_pitches/run_001_20260506_222854/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "b705292d4b78f2e430e9a30a379cadfdb8964b3ea098095a05c7b4c644414f44"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d8_sequence_pitches/run_001_20260506_222854/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "887c0b753f7fa5ae6493af4c45aad163567ac525fda1cf79fac17a26e763ccee"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "D8",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d8_sequence_pitches/run_001_20260506_223641/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "ea609e78a0a8ecfd805242e94924e7e4a4478a7a98d8533c657b9fad473c8b91"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d8_sequence_pitches/run_001_20260506_223641/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "e31cf5ed5a4cc558914e6363df8ddc31b0841790d93d59f8dded45ba3b11a3a0"
     },
     {
       "model": "baseline/dsp",
@@ -1203,38 +1201,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "E1",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e1_audio_effects/run_001_20260506_080141/results_audio_flamingo_next_instruct.json",
-      "sha256": "d21d15840e581cca00194bf315e235f703d27597aaf903d813b4ea3187b7943a"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e1_audio_effects/run_001_20260506_080141/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "e6539266c6e22d33514d6eb2a9feba944f0dbe5b425457f158b9e17aedcfdeb3"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E1",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e1_audio_effects/run_001_20260506_064418/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "13cb65d7ed41bb2d23c01e00c45c2c152fb8e4f627a70c4c1233b784092ef03e"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e1_audio_effects/run_001_20260506_064418/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "abfcf7ffc3b47b6dc8f5b62be06e2be7fe58cb3a2875ed334a8745f7841fd8b2"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "E1",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e1_audio_effects/run_001_20260506_194009/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "c5f20bb24bf030a8b5413be52a2b525c4cf4185fb97de0de14c58cfae8d2b587"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e1_audio_effects/run_001_20260506_194009/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "907652dc3cc5b08a89cb08f7e6fd17e9a0b79ec5c7aadc2fcacd06f0efe7928e"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "E1",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e1_audio_effects/run_001_20260506_072824/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "b870333bb57b1ac96ede3452d9f17163263e19b910bec9f5ccdf5e5596958816"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e1_audio_effects/run_001_20260506_072824/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "03d31a006e4cfaeae8603ade27ac222293fef95096e5c4c65395f203c65bc033"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "E1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e1_audio_effects/run_001_20260506_223316/results_dashscope2_qwen3_5_omni_plus.json",
-      "sha256": "28c8e4ed1850ffb479e2d98617dbab2a73c5c3ac9379855178d29f7f8d4e2874"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e1_audio_effects/run_001_20260506_223316/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "3fe38143ea0039128c8fea57e92ff470b1e4a0ea62b60803da5f49e8186984c5"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "E1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e1_audio_effects/run_001_20260506_223352/results_dashscope2_qwen3_5_omni_flash.json",
-      "sha256": "dbde641b31ac130e1529ccec77d28bc587cb062570df13f4bb342931b306ddf2"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e1_audio_effects/run_001_20260506_223352/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "eeea7798cfa404216a4fb3706fd8c9f4ac00d353137e77c4d8bfe1d7e03d6193"
     },
     {
       "model": "baseline/dsp",
@@ -1251,38 +1249,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "E2",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e2_background/run_001_20260506_080347/results_audio_flamingo_next_instruct.json",
-      "sha256": "9574403f3cc5c81818a505e240830caae1a25cf47ddf09356798b3bcac646cf9"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e2_background/run_001_20260506_080347/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "832dd6f65e6d4534746a5ffdc2c69cb60687d010fcb095b10796fcee98058ebf"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E2",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e2_background/run_001_20260506_064826/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "f83c1398c4e6cc37d57adb8a7e558f6b62b9ff95fc0c6859b7cc4506084ff967"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e2_background/run_001_20260506_064826/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "bce2b003f2a6316ff889c7dc58df2186a1305e316ddcf12a096d320dca50757a"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "E2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e2_background/run_001_20260506_194151/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "578d481773e4cd9d8292a3e75beca51655de7d0502be9189c5363a795c58c94d"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e2_background/run_001_20260506_194151/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "2c7e0fc1141ac9c84cf1b44533f7a169392b135ed2832ca7c87cb828c5edf6cd"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "E2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e2_background/run_001_20260506_072912/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "46f6e65a786e181ea59f2c75346f52113c9ae1fa75b12fa3549bbc75596599e8"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e2_background/run_001_20260506_072912/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "89776fe2523f25054dc30db1e354e327f2bdc4d74dab718f76fba55caad98cd4"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "E2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e2_background/run_001_20260506_225345/results_dashscope2_qwen3_5_omni_plus.json",
-      "sha256": "eb85793423df072e16da3d177decb051b44b96ab231b85ca90c8743d6ee381a1"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e2_background/run_001_20260506_225345/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "cf444dc5c7f876933373ef4de9db4a28149f4c8e252c8849a831583af0c26c37"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "E2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e2_background/run_001_20260506_225109/results_dashscope2_qwen3_5_omni_flash.json",
-      "sha256": "7ff9bb3572c1c01f2ad5e0dd3c148ffbd5b85a0505f8833c8ae5e863512e52fc"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e2_background/run_001_20260506_225109/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "bc0daf57a2aadd44fc921d714b7f108b9a85ab8426108c0b8128aa79bda2e091"
     },
     {
       "model": "baseline/dsp",
@@ -1299,38 +1297,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "E3",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e3_harmonic_saturation/run_001_20260506_080554/results_audio_flamingo_next_instruct.json",
-      "sha256": "3076b0065770f33b95ff28b1c0754a1963392060b337f3d9a4d814fcba3c0166"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e3_harmonic_saturation/run_001_20260506_080554/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "1b2f2423370bd8beee164cc3e5c2b5c3b3dc620422bb5db6ef4177cb010040ae"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E3",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e3_harmonic_saturation/run_001_20260506_065213/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "8cd7d10581aefa67c5470611b9e9f2ddd0c72539ddea2fff88deab85d6f79c08"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e3_harmonic_saturation/run_001_20260506_065213/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "9c9f2fb604ba0bea529f9bec365a74313144f6af8b730ae3df57b331a2f41894"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "E3",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e3_harmonic_saturation/run_001_20260506_194335/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "5cb3eda1675720c67564e3b304b6757889c375d11296829df868db66bf7de317"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e3_harmonic_saturation/run_001_20260506_194335/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "558f30a02a84bb764056bc644d4206e6d4c4d73857a0319bc13ba1887ef4b80e"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "E3",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e3_harmonic_saturation/run_001_20260506_073003/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "afe98b914ff68108a7f0fc257a5bca7549f264ad73600d62f875e63cab47d4df"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e3_harmonic_saturation/run_001_20260506_073003/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "afaa640f27241afa2753f0bd121410f5a5181b719edc9b7e00bb7a4833785e1f"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "E3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e3_harmonic_saturation/run_001_20260506_233609/results_dashscope2_qwen3_5_omni_plus.json",
-      "sha256": "ba7762d2cb48e6f1cd53def975a81ae9562bda8d367eab21a1154bdba44e9db5"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e3_harmonic_saturation/run_001_20260506_233609/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "f2ae56e46d2323e22c3bd90ee3d9da1c9b70e3d2d8497ba842a109e6ee707b6e"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "E3",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e3_harmonic_saturation/run_001_20260506_230842/results_dashscope2_qwen3_5_omni_flash.json",
-      "sha256": "04347d8618f3767b98057092fece315970d4f287e3b0b8a5855807f1821359d4"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e3_harmonic_saturation/run_001_20260506_230842/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "ce3f421f8374cd0184037d9ff79871fe87550b0853bbd405ba7b93b82d65cdf1"
     },
     {
       "model": "baseline/dsp",
@@ -1347,38 +1345,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "E4",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e4_time_stretching/run_001_20260506_080656/results_audio_flamingo_next_instruct.json",
-      "sha256": "452a4c7f9b170700ff6451e2bc4356a0bd00cd86a718ca36cbc0ee42b4db731e"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e4_time_stretching/run_001_20260506_080656/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "11f6f036620b4b4b012bfae1844b70c2ffaec76b6187949c914a784cb38f2b0d"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E4",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e4_time_stretching/run_001_20260506_065415/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "063c4978cca7b89a8977278f844ffde1ed0a7628e08515ffcaa243dfa12966c9"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e4_time_stretching/run_001_20260506_065415/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "b05c1431d0f4dcdcb99a0cf639057c1f523a71344ca2e41010624cf9ac6d2841"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "E4",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e4_time_stretching/run_001_20260506_194428/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "95c66c6f1b973922200d763ef2ff473abaf9ace5d1b73d81d14669f1622dd62b"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e4_time_stretching/run_001_20260506_194428/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "097f76392fe3ea6330d533713fb32c0f8aef66dcb12b22c9f6916a683cc6c3ef"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "E4",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e4_time_stretching/run_001_20260506_073029/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "4eeda24f46087a36d8c53137f74b71fce462c3db395d52c118299a24aae3e47b"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e4_time_stretching/run_001_20260506_073029/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "abdc0f3639daf4282461b76f272e6bcba186a9261f5a8a3ad52a6a89e749cb3b"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "E4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e4_time_stretching/run_001_20260506_235227/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "42c28f04937849d4d8341e3de17821df4135a32ff0262946b3eb8c0c857329d5"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e4_time_stretching/run_001_20260506_235227/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "809483209295b143859ea900ad43d53749ba4f2a05d2bb0830c04e7dd658d79b"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "E4",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e4_time_stretching/run_001_20260506_231731/results_dashscope2_qwen3_5_omni_flash.json",
-      "sha256": "d278d4d716bd516d4d54d8c378015e5033534798e63802fcfafed609f8e4fd71"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e4_time_stretching/run_001_20260506_231731/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "96abc07bb7264ed3ebdae626e74b0ed852cab137f8e6c08a9ec41b909bc8fb7d"
     },
     {
       "model": "baseline/dsp",
@@ -1395,38 +1393,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "E5",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e5_vibrato/run_001_20260506_080828/results_audio_flamingo_next_instruct.json",
-      "sha256": "ce61fa78c361786e3b1aa7ffa4ccd1504172f8d36fa025606860d7420090f092"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e5_vibrato/run_001_20260506_080828/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "9518ba08f32018a06e9b68bf695bbd98bbf25a96c44146fcdd6cb3779dc8ee9b"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E5",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e5_vibrato/run_001_20260506_065733/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "686dc2610140bdd3532a2930c9b70572b97e7e8de39e205399cf2bf716785045"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e5_vibrato/run_001_20260506_065733/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "d7b400df7fa2cbbe0f57b313db646050933047ffc82709edf0a111d348c0251d"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "E5",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e5_vibrato/run_001_20260506_194540/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "f8bf472fa0bd2adacce1248c22602e7ec066a98bf47a59ab98d9c982a36b6570"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e5_vibrato/run_001_20260506_194540/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "f29390c7fdc2a9f8dfdbda1c624e17f894aa28245039c24291be1ffa94407a2f"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "E5",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e5_vibrato/run_001_20260506_073105/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "416b7be95644d23938cf28397d5fa8fda4bc8a11e809b85a95a86b928a1eb5fd"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e5_vibrato/run_001_20260506_073105/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "cc142b90fd63a70cf07b90c54f43deb2530e04da695f3f166bcfeec46579ceec"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "E5",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e5_vibrato/run_001_20260506_235316/results_dashscope2_qwen3_5_omni_plus.json",
-      "sha256": "12955fa3bdd69909bc6c3b6cc54117a214b9c9b3527d6ed73bd5aa617702c775"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e5_vibrato/run_001_20260506_235316/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "65c48165f4688a35f075251fd1325c0cda5a0eec42470153cd3eb5a75ee2e867"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "E5",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e5_vibrato/run_001_20260506_233126/results_dashscope2_qwen3_5_omni_flash.json",
-      "sha256": "4e1cb97262748e4741a7f99630ba035a9fa5db627fe46b6845b65ee0d8132014"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e5_vibrato/run_001_20260506_233126/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "4bf09922551a11ee6f5b3c79ae0f3579e9774d8524ab97f8fa65aafb2fec9a36"
     },
     {
       "model": "baseline/dsp",
@@ -1443,38 +1441,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "E6",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e6_slightly_off/run_001_20260506_081023/results_audio_flamingo_next_instruct.json",
-      "sha256": "5faa9c370f79d42e38b2e3ff56c17dd314d43b7cc6ae550c0cd458b536cb89a9"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e6_slightly_off/run_001_20260506_081023/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "1c5ff2fca806fbf305ce354ceab335726c467d3ea524530d1082ce46817fa18e"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E6",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e6_slightly_off/run_001_20260506_070009/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "865c0b84db99cd788c695d0c07e41f39e8b09c8ad7304f53f8b216c3ab96312c"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e6_slightly_off/run_001_20260506_070009/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "bd9f609fc2f91a7d3996e6bb6d2fff65469adebff64251f8fd5fb588e3fc9e0f"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "E6",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e6_slightly_off/run_001_20260506_194648/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "33de51fec02343c288b92e27bb5752d4935c74cb2274c6760f4cdf229e86db47"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e6_slightly_off/run_001_20260506_194648/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "a089a30fb8afe21252e52157907543e55d9e20434404551e0cc267b353818ecd"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "E6",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e6_slightly_off/run_001_20260506_073628/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "7fab2bbaa66a3bf58d90d9ee51b68747bfa362c79d96a0093b089424d1b70a2b"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e6_slightly_off/run_001_20260506_073628/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "373619f1071bcea23faa18e23feae36614ebaa03cc9a666551d2f9417cfc5bcd"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "E6",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e6_slightly_off/run_001_20260507_001236/results_dashscope2_qwen3_5_omni_plus.json",
-      "sha256": "780421a590ce1478985412d28daedea0d6e4b4408d57d5783376c75b0cc4f797"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e6_slightly_off/run_001_20260507_001236/results_dashscope2_qwen3_5_omni_plus.json.gz",
+      "sha256": "f3ee57be47b3cf88660868dd3ff26788c948c0a3c5fbfd2443216fdc20690d52"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "E6",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e6_slightly_off/run_001_20260506_234322/results_dashscope2_qwen3_5_omni_flash.json",
-      "sha256": "cb6733c384accf92fb1d33e472b527265e21708ba3d487a06d1ee3b96b0efe00"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e6_slightly_off/run_001_20260506_234322/results_dashscope2_qwen3_5_omni_flash.json.gz",
+      "sha256": "c473e17b90a9bb344a65269c3d90c57054905aa4c66117033b2fb8c492d24a4b"
     },
     {
       "model": "baseline/dsp",
@@ -1491,38 +1489,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "F1",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f1_melodic_line_atonal/run_001_20260506_081352/results_audio_flamingo_next_instruct.json",
-      "sha256": "082e81f177e32b62ae2d54af3e769bb8adc5cf51f91a7e67c40cf91c221a87e7"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f1_melodic_line_atonal/run_001_20260506_081352/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "2c8380c81721fa458366d1ef4dca91e558f7123d6308568a5ccbae674076bd2a"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "F1",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_070316/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "28ffc9257067ba7b79bfd75a44e7722c8d44e305659630e63ce550da5022bff3"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_070316/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "7dfae8aafb03f130cd56c23417f613f51b65e518ea075c0973608229737ed6b8"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "F1",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f1_melodic_line_atonal/run_001_20260506_195126/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "0b6cefbea414744c68d301bd77a03812e8258339908b807be67d4027df45dfee"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f1_melodic_line_atonal/run_001_20260506_195126/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "288e0a67ed5ce0483e07050a5caccaa3a545093c3bedcdf81828b42a2bca57d0"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "F1",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_072841/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "3c8a6e058d1a7f6d8483043b51d2cbe8f37f9c8949220fe099d41277992a1db6"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f1_melodic_line_atonal/run_001_20260506_072841/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "917126c0d90e05d05e28d2bb1835dea5f09fe81c1392f3be33ed8efa31e87b48"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "F1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f1_melodic_line_atonal/run_001_20260506_224202/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "1c58460938f17de9a20292dd696fe3351f91e5971beeda4ef0bb3241df93c4d2"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f1_melodic_line_atonal/run_001_20260506_224202/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "d40796123f5f20962dd183e2ada732c3d09dce9e5efc904f927d816bbc614fcc"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "F1",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f1_melodic_line_atonal/run_001_20260506_224910/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "03d65322e69aaf896351f989d3154528d20aa86f315da27caab7b4df9b595475"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f1_melodic_line_atonal/run_001_20260506_224910/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "9a83806159e39e130dba188ecb4fcc9a1fd8c2a2359bfeafe20cfbc99833d40c"
     },
     {
       "model": "baseline/dsp",
@@ -1539,38 +1537,38 @@
     {
       "model": "audio_flamingo_next_instruct",
       "task": "F2",
-      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f2_melodic_line_tonal/run_001_20260506_083145/results_audio_flamingo_next_instruct.json",
-      "sha256": "d30368eaffa92d10f6b767e3de58947e0ff412d2ad768343cabc088d326bc844"
+      "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_f2_melodic_line_tonal/run_001_20260506_083145/results_audio_flamingo_next_instruct.json.gz",
+      "sha256": "7d8392e5b6910abe7e398a1e4c4c5b806327f6f919d8080bf05a427b95acd652"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "F2",
-      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_070548/results_openrouter_google_gemini_3_1_pro_preview.json",
-      "sha256": "6916ed72cd1411ef2079830629ca6d826c9dddc9e422eadcde8391ec4085c3fb"
+      "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_070548/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "sha256": "5fe81c88e6d54e268cca42b0a61c4d6de2077c21fe6807736057f384ca03b184"
     },
     {
       "model": "openrouter_google_gemini_flash_latest",
       "task": "F2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f2_melodic_line_tonal/run_001_20260506_200958/results_openrouter_google_gemini_flash_latest.json",
-      "sha256": "7410ceb8ec6bc7af36da1487db7d919d3a671984d0001efd0b79385f2b48f94a"
+      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_f2_melodic_line_tonal/run_001_20260506_200958/results_openrouter_google_gemini_flash_latest.json.gz",
+      "sha256": "8ac6b29ea5414bacdf47ea655f7df19f9402fd4726f29648185360a98aa48e56"
     },
     {
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "F2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_072913/results_openrouter_openai_gpt_4o_audio_preview.json",
-      "sha256": "4e8111e7a6594f9f7052f887181a2a86d9c2cca9372f5627b5580f7157e7853f"
+      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_f2_melodic_line_tonal/run_001_20260506_072913/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
+      "sha256": "20ba5babe6f775d9fe4bef01ddee1bf6632c2953861c6be18f30941a9d785d5b"
     },
     {
       "model": "dashscope_qwen3_5_omni_plus",
       "task": "F2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f2_melodic_line_tonal/run_001_20260506_225047/results_dashscope_qwen3_5_omni_plus.json",
-      "sha256": "bdec8c403389509e6fd0d4daeab58d25a387564438463a80b746f56e9b57bb52"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_f2_melodic_line_tonal/run_001_20260506_225047/results_dashscope_qwen3_5_omni_plus.json.gz",
+      "sha256": "da576f17425c18d10727ea7d111ce1c60a3472153da07ca01e6ecafab627bc14"
     },
     {
       "model": "dashscope_qwen3_5_omni_flash",
       "task": "F2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f2_melodic_line_tonal/run_001_20260506_225743/results_dashscope_qwen3_5_omni_flash.json",
-      "sha256": "b2f7d2a9fa0742f6714835e71be69802e0b027316d1391d7a23a00d2ed611cc6"
+      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_f2_melodic_line_tonal/run_001_20260506_225743/results_dashscope_qwen3_5_omni_flash.json.gz",
+      "sha256": "5f08abf4094263c3d032461106f03f76a9fc9d6c3b936f5408448684fd537fd2"
     },
     {
       "model": "baseline/dsp",
@@ -1770,10 +1768,5 @@
   "score_mismatches": 0,
   "total_responses": 46414,
   "cells": 224,
-  "verification_environment": {
-    "package_install": "wheel (not editable)",
-    "python": "3.12.7",
-    "wheel_sha256": "2ac1d76a9166e5c6777f2ad8e57b399b28708403e2c04c02f94c89d3e4dbba02",
-    "baseline_python": "3.11.15"
-  }
+  "source_tree_modified": true
 }
