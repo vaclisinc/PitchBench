@@ -1,7 +1,7 @@
 {
   "generator": {
     "path": "src/pitchbench/analysis/pyramid.py",
-    "sha256": "cc56f7a1a0c1d46f8cc50fa2d6c76f3debcce28f86d7465978f95bc9e3146dda"
+    "sha256": "8e3b4d207bb1db8721bbbe2d5a1de638d48abe255bceb756e144b64ace879baf"
   },
   "definitions": {
     "path": "EXPERIMENTS.md",
@@ -13,11 +13,11 @@
       "sha256": "f056a9f15687ed262ce26ac6766632fd6f54e158b2e2e4f5de62d4ac586c3636"
     },
     {
-      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-SemiBold.ttf",
-      "sha256": "c0f9e836b917a2e9d00004c3b6b5720b4dc0f42250ab60bd212870f2949086a0"
+      "path": "src/pitchbench/analysis/fonts/HankenGrotesk-Bold.ttf",
+      "sha256": "ef775c9a09d8a021f4023d596053e620a675793c5012d05512acf75b96faed96"
     }
   ],
-  "typography": "Hanken Grotesk Regular (400) and SemiBold (600), matching vaclis.net.",
+  "typography": "Hanken Grotesk Regular (400) and Bold (700); vaclis.net family with stronger heading weight.",
   "geometry": {
     "size_inches": [
       5.75,
