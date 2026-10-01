@@ -10,7 +10,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [
-    { name = "pitchbench-authors", email = "lofi123woooo@gmail.com" },
+    { name = "Milan Liessens Dujardin" },
+    { name = "Song-Ze Yu" },
+    { name = "Craver Corbyn Thomas-Smith" },
+    { name = "David M. Chan" },
+    { name = "Karina Nguyen" },
 ]
 keywords = ["audio", "language-model", "benchmark", "pitch", "music", "ALM"]
 classifiers = [
