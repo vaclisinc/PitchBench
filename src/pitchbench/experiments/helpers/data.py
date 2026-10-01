@@ -98,6 +98,30 @@ def filter_rows_to_conditions(
     return result
 
 
+def select_pitch_formats(
+    rows: list[dict[str, Any]], formats: tuple[str, ...] | None,
+) -> list[dict[str, Any]]:
+    """Select requested pitch prompts while retaining non-pitch task prompts."""
+    if formats is None:
+        return rows
+    known = {"midi", "spn", "doremi", "hz"}
+    if not formats or not set(formats) <= known:
+        raise ValueError(f"Invalid pitch formats: {formats}")
+    selected = []
+    aliases = {"abc": "spn", "solfege": "doremi", "freq": "hz"}
+    for row in rows:
+        row = dict(row)
+        for alias, canonical in aliases.items():
+            if f"prompt_{alias}" in row:
+                value = row.pop(f"prompt_{alias}")
+                row.setdefault(f"prompt_{canonical}", value)
+        for fmt in known - set(formats):
+            if f"prompt_{fmt}" in row:
+                row[f"prompt_{fmt}"] = ""
+        selected.append(row)
+    return selected
+
+
 def read_dataset(path: Path) -> list[dict[str, Any]]:
     """Load a generated dataset as a list of row dicts.
 

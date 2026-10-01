@@ -29,6 +29,7 @@ dependencies = [
     "openai>=1.0",
     "scikit-learn>=1.4",
     "python-dotenv>=1.0",
+    "PyYAML>=6.0",
     "music21>=9.9.1",
     "pandas>=2.0",
     "pyarrow>=15",
@@ -60,4 +61,3 @@ dev = [
     "pytest>=9.0.3",
     "pytest-mock>=3.15.1",
 ]
-

@@ -30,6 +30,8 @@ mirrors :mod:`cat_a` and reuses ``cat_a._sample_conditions`` and
 
 from __future__ import annotations
 
+from math import fsum
+
 import argparse
 from dataclasses import dataclass
 from tqdm import tqdm
@@ -249,7 +251,7 @@ def _accuracy(records: list[dict], col: str) -> float:
     vals = [r[col] for r in records if isinstance(r.get(col), (int, float, bool))]
     if not vals:
         return 0.0
-    return round(sum(vals) / len(vals), 4)
+    return fsum(vals) / len(vals)
 
 
 def compute_summary(
@@ -622,15 +624,19 @@ def evaluate_cat_b_from_parquet(
     sample_info: dict | None = None,
     *,
     model_label: str | None = None,
+    filter_conditions: bool = False,
 ) -> dict:
     """Evaluate ``model_name`` on the pre-generated dataset for a cat-B spec."""
     from pitchbench.experiments.helpers.data import (
-        dataset_path, filter_rows_to_conditions, read_dataset,
+        dataset_path, filter_rows_to_conditions, read_dataset, select_pitch_formats,
     )
 
-    rows = read_dataset(dataset_path(spec.exp_name))
-    expected = spec.build_conditions_fn()
-    if len(expected) < len(rows):
+    rows = select_pitch_formats(read_dataset(dataset_path(spec.exp_name)),
+                                (sample_info or {}).get("pitch_formats"))
+    # Ordinary evaluation consumes the stored sample independently of local
+    # synthesis capabilities. Only analysis presets request condition filtering.
+    if filter_conditions:
+        expected = spec.build_conditions_fn()
         before = len(rows)
         rows = filter_rows_to_conditions(rows, expected)
         print(f"  Filtered to analysis config: {len(rows)} / {before} rows")

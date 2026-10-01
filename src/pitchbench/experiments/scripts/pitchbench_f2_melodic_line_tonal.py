@@ -17,8 +17,9 @@ Independent variables:
   inst_cfg   : "similar" – all 4 voices on the same source
                "mixed"   – each voice on a different source
 
-Headline metrics: ``midi_seq``, ``spn_seq``, ``doremi_seq`` — full-sequence
-exact-match per format. Note count is variable (per chorale segment).
+Headline metric: order-aware note F1 per format, with ``any`` defined as the
+per-stimulus maximum across MIDI, SPN, and Hz. Strict full-sequence exact match
+is retained as a diagnostic. Note count is variable (per chorale segment).
 
 Requires the ``music21`` package.
 """
@@ -61,7 +62,7 @@ def _import_music21():
 def _voice_to_events(stream_obj) -> list[tuple[float, int, float]]:
     m21 = _import_music21()
     events: list[tuple[float, int, float]] = []
-    for n in stream_obj.flat.notes:
+    for n in stream_obj.flatten().notes:
         if isinstance(n, m21.note.Note):
             events.append((float(n.offset), int(n.pitch.midi), float(n.quarterLength)))
         elif isinstance(n, m21.chord.Chord):
