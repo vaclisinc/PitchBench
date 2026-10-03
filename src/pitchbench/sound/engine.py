@@ -226,6 +226,20 @@ def _render_instrument(
     return audio.astype(np.float32)
 
 
+_BEND_RANGE_CENTS = 200.0
+
+
+def _pitch_bend_value(detune_cents: float) -> int:
+    """Signed pitch-bend value for ``fluidsynth.Synth.pitch_bend``.
+
+    pyfluidsynth takes a signed value in [-8192, 8191] (0 = no bend) and adds
+    the 8192 MIDI centre offset itself, so the raw 14-bit value must not be
+    passed here.
+    """
+    bend_value = int(round(detune_cents / _BEND_RANGE_CENTS * 8192))
+    return max(-8192, min(8191, bend_value))
+
+
 def _render_instrument_detuned(
     midi: int,
     instrument: str,
@@ -253,9 +267,7 @@ def _render_instrument_detuned(
         raise ValueError(f"Unknown instrument {instrument!r}. "
                          f"Available: {list(config.GM_PROGRAMS_V1)}")
 
-    _BEND_RANGE_CENTS = 200.0
-    bend_value = int(round(8192 + detune_cents / _BEND_RANGE_CENTS * 8192))
-    bend_value = max(0, min(16383, bend_value))
+    bend_value = _pitch_bend_value(detune_cents)
 
     fs = fluidsynth.Synth(samplerate=float(SR))
     sfid = fs.sfload(sf2)
