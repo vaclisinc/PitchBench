@@ -226,74 +226,47 @@ def _render_instrument(
     return audio.astype(np.float32)
 
 
-_BEND_RANGE_CENTS = 200.0
-
-
-def _pitch_bend_value(detune_cents: float) -> int:
-    """Signed pitch-bend value for ``fluidsynth.Synth.pitch_bend``.
-
-    pyfluidsynth takes a signed value in [-8192, 8191] (0 = no bend) and adds
-    the 8192 MIDI centre offset itself, so the raw 14-bit value must not be
-    passed here.
-    """
-    bend_value = int(round(detune_cents / _BEND_RANGE_CENTS * 8192))
-    return max(-8192, min(8191, bend_value))
-
-
 def _render_instrument_detuned(
     midi: int,
     instrument: str,
     duration_s: float,
     detune_cents: float,
 ) -> np.ndarray:
-    """Render a MIDI note via FluidSynth with a pitch-bend offset in cents.
+    """Render a MIDI note via FluidSynth, shifted by ``detune_cents``.
 
-    GM pitch bend range is ±200 cents (±2 semitones).  The maximum residual
-    when snapping an arbitrary Hz value to the nearest MIDI note is 50 cents,
-    well within range.
+    The shift is applied by resampling the rendered note rather than with MIDI
+    pitch bend: FluidSynth quantises pitch to whole cents, which collapses
+    small detunes (e.g. 1 cent) to no change at all.
     """
-    try:
-        import fluidsynth
-    except ImportError:
-        raise ValueError(
-            f"FluidSynth not available — cannot render instrument {instrument!r}.\n"
-            "Install with:  pip install pyfluidsynth\n"
-            "and ensure libfluidsynth is present on your system."
-        )
+    if detune_cents == 0:
+        return _render_instrument(midi, instrument, duration_s)
 
-    sf2 = config.SF2_PATH
-    program = config.GM_PROGRAMS_V1.get(instrument)
-    if program is None:
-        raise ValueError(f"Unknown instrument {instrument!r}. "
-                         f"Available: {list(config.GM_PROGRAMS_V1)}")
-
-    bend_value = _pitch_bend_value(detune_cents)
-
-    fs = fluidsynth.Synth(samplerate=float(SR))
-    sfid = fs.sfload(sf2)
-    fs.program_select(0, sfid, 0, program)
-    fs.pitch_bend(0, bend_value)
-
-    note_on_dur  = max(min(duration_s * 0.85, duration_s - 0.1), duration_s * 0.5)
-    release_dur  = duration_s - note_on_dur
-    n_body  = int(note_on_dur  * SR)
-    n_tail  = int(release_dur  * SR)
-    n_total = int(duration_s   * SR)
-
-    fs.noteon(0, midi, 100)
-    body = np.array(fs.get_samples(n_body),  dtype=np.float32).reshape(-1, 2).mean(axis=1)
-    fs.noteoff(0, midi)
-    tail = np.array(fs.get_samples(n_tail),  dtype=np.float32).reshape(-1, 2).mean(axis=1)
-    fs.delete()
-
-    audio = np.concatenate([body, tail])[:n_total]
-    peak  = float(np.max(np.abs(audio)))
+    ratio   = 2.0 ** (detune_cents / 1200.0)
+    n_total = int(duration_s * SR)
+    # Render ratio× longer so the shifted note keeps the requested duration.
+    audio = _resample_by_ratio(
+        _render_instrument(midi, instrument, duration_s * ratio + 0.01), ratio, n_total,
+    )
+    peak = float(np.max(np.abs(audio)))
     if peak > 0:
         audio = audio / peak * 0.9
-    fade_n = int(0.05 * SR)
-    if fade_n < len(audio):
-        audio[-fade_n:] *= np.linspace(1.0, 0.0, fade_n)
     return audio.astype(np.float32)
+
+
+def _resample_by_ratio(x: np.ndarray, ratio: float, n_out: int, half_width: int = 16) -> np.ndarray:
+    """Read ``x`` at ``ratio``× speed (pitch × ``ratio``) with windowed-sinc interpolation."""
+    cutoff = min(1.0, 1.0 / ratio)              # anti-alias when shifting up
+    taps = np.arange(-half_width + 1, half_width + 1)
+    padded = np.concatenate([np.zeros(half_width), x, np.zeros(2 * half_width)])
+    out = np.empty(n_out)
+    for start in range(0, n_out, 8192):
+        t = np.arange(start, min(start + 8192, n_out)) * ratio
+        i0 = np.floor(t).astype(int)
+        d = (t - i0)[:, None] - taps
+        w = cutoff * np.sinc(cutoff * d) * np.sinc(d / half_width)
+        idx = np.clip(i0[:, None] + taps + half_width, 0, len(padded) - 1)
+        out[start:start + len(t)] = (padded[idx] * w).sum(axis=1)
+    return out
 
 
 # ── Source routing ────────────────────────────────────────────────────────────
