@@ -57,6 +57,7 @@ SEQUENCE_TASKS = {"D8", "F1", "F2"}
 SOURCES = {
     "recomputed": "results/table1-recomputed/metrics.csv",
     "audit": "results/table1-recomputed/run.json",
+    "unavailable": "results/table1-recomputed/unavailable.json",
 }
 NOTE = (
     "Scores are percentages. D8, F1 and F2 use Ordered Note F1; other tasks use "
@@ -66,11 +67,26 @@ NOTE = (
 )
 
 
-def load_scores(repo: Path) -> dict[tuple[str, str], Decimal]:
+def unavailable_cells(repo: Path) -> dict[tuple[str, str], str]:
+    """Explicit invalidations prevent stale audio answers from becoming scores."""
+    path = repo / "results/table1-recomputed/unavailable.json"
+    if not path.exists():
+        return {}
+    cells = {}
+    for row in json.loads(path.read_text())["cells"]:
+        key = row["model"], row["task"]
+        if key in cells or key[0] not in MODELS or key[1] not in TASKS or not row["reason"]:
+            raise ValueError(f"Invalid unavailable cell: {key}")
+        cells[key] = row["reason"]
+    return cells
+
+
+def load_scores(repo: Path) -> dict[tuple[str, str], Decimal | None]:
     """Load the complete raw-answer replay; never blend rounded legacy tables."""
     relative = SOURCES["recomputed"]
     expected = {(model, task) for model in MODELS for task in TASKS}
     scores = {}
+    unavailable = unavailable_cells(repo)
     with (repo / relative).open(newline="") as handle:
         for row in csv.DictReader(handle):
             key = row["model"], row["task"]
@@ -79,6 +95,11 @@ def load_scores(repo: Path) -> dict[tuple[str, str], Decimal]:
             metric = "ordered_note_f1" if row["task"] in SEQUENCE_TASKS else "accuracy"
             if row["metric"] != metric:
                 raise ValueError(f"Invalid score metric for {key}: {row['metric']}")
+            if key in unavailable:
+                if row["n_samples"] != "0" or row["score_sum"] or row["score"] or int(row["n_expected"]) <= 0:
+                    raise ValueError(f"Unavailable cell contains a stale score: {key}")
+                scores[key] = None
+                continue
             n = int(row["n_samples"])
             total = Decimal(row["score_sum"])
             score = Decimal(row["score"])
@@ -110,15 +131,20 @@ def load_scores(repo: Path) -> dict[tuple[str, str], Decimal]:
     return scores
 
 
-def _display(value: Decimal) -> str:
+def _display(value: Decimal | None) -> str:
+    if value is None:
+        return "—"
     return str(value.quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))
 
 
-def _ranked(values: list[Decimal], *, latex: bool = False) -> list[str]:
+def _ranked(values: list[Decimal | None], *, latex: bool = False) -> list[str]:
     displayed = [_display(v) for v in values]
-    ranks = sorted({Decimal(v) for v in displayed}, reverse=True)
+    ranks = sorted({Decimal(v) for v in displayed if v != "—"}, reverse=True)
     result = []
     for value in displayed:
+        if value == "—":
+            result.append("--" if latex else value)
+            continue
         if Decimal(value) == ranks[0]:
             value = rf"\textbf{{{value}}}" if latex else f"**{value}**"
         elif len(ranks) > 1 and Decimal(value) == ranks[1]:
@@ -139,13 +165,15 @@ def render(repo: Path) -> dict[str, str]:
                 f"pitchbench_{row['task'].lower()}_*.py")).stem
             score = scores[row["model"], row["task"]]
             long_writer.writerow([row["model"], name, row["metric"], row["n_samples"],
-                                  score / 100, _display(score) + "%", 1])
+                                  score / 100 if score is not None else "", _display(score) + "%" if score is not None else "—", 1 if score is not None else 0])
+    pending_note = (" Unavailable corrected-audio results are shown as —; a model with any missing task has no overall mean or overall rank." if unavailable_cells(repo) else "")
     rows = [(task, [scores[model, task] for model in MODELS]) for task in TASKS]
     rows.append(
         (
             "Mean",
             [
                 sum(scores[model, task] for task in TASKS) / len(TASKS)
+                if all(scores[model, task] is not None for task in TASKS) else None
                 for model in MODELS
             ],
         )
@@ -164,7 +192,7 @@ def render(repo: Path) -> dict[str, str]:
     md = [
         "# Table 1 — PitchBench results",
         "",
-        NOTE,
+        NOTE + pending_note,
         "",
         "Best displayed score per row is bold. All formats are generated from the same evidence; "
         "see [sources and reproduction](README.md).",
@@ -182,7 +210,8 @@ def render(repo: Path) -> dict[str, str]:
         r"\centering",
         r"\caption{PitchBench results (\%). D8, F1 and F2 use Ordered Note F1; all other tasks use accuracy. "
         r"Best displayed value per row is bold and second-best underlined (including ties). "
-        r"Mean is the unweighted average of 28 unrounded task scores. GPT-4o B1 has 158 saved responses out of 160 stimuli.}",
+        r"Mean is the unweighted average of 28 unrounded task scores. GPT-4o B1 has 158 saved responses out of 160 stimuli."
+        + (r" -- denotes unavailable corrected-audio evidence; incomplete models have no mean." if pending_note else "") + "}",
         r"\label{tab:pitchbench_transposed}",
         r"\small",
         r"\setlength{\tabcolsep}{3pt}",
@@ -218,11 +247,13 @@ def render(repo: Path) -> dict[str, str]:
         "models": MODELS,
         "tasks": TASKS,
         "cell_sources": {
-            "All 224 task/model cells": "recomputed:score_sum / n_samples * 100",
+            "Available task/model cells": "recomputed:score_sum / n_samples * 100",
+            "Unavailable cells": "explicit invalidation; no score or mean imputed",
             "Mean": "arithmetic mean of the 28 unrounded task scores",
         },
         "display": "one decimal, ROUND_HALF_UP; ranks use displayed values",
-        "notes": NOTE,
+        "notes": NOTE + pending_note,
+        "unavailable_cells": [dict(model=m, task=t, reason=reason) for (m, t), reason in unavailable_cells(repo).items()],
         "sources": {
             key: {
                 "path": path,

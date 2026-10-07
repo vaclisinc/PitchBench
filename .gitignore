@@ -1,12 +1,12 @@
 __pycache__/
-*.egg-info/
+*.egg-info
 data/analysis/
 data/generated/
 data/soundfonts/*
 !data/soundfonts/FluidR3_GM.sf2
 logs/
 .env
-.venv/
+.venv
 .pytest_cache/
 .DS_Store
 paper/latex/

@@ -1,0 +1,26 @@
+[
+  {
+    "model": "baseline/dsp",
+    "dataset": "old",
+    "n_instrument": 121,
+    "correct": 0
+  },
+  {
+    "model": "baseline/dsp",
+    "dataset": "corrected",
+    "n_instrument": 121,
+    "correct": 119
+  },
+  {
+    "model": "baseline/basic-pitch",
+    "dataset": "old",
+    "n_instrument": 121,
+    "correct": 0
+  },
+  {
+    "model": "baseline/basic-pitch",
+    "dataset": "corrected",
+    "n_instrument": 121,
+    "correct": 86
+  }
+]

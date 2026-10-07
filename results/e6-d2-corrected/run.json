@@ -1,0 +1,38 @@
+{
+  "run_id": "e6-d2-corrected",
+  "project": "pitchbench",
+  "status": "completed_with_unavailable_models",
+  "git_commit": "4f8f46a432f32219b27b9185cb4aac0488bc4eb0",
+  "dataset_ids": [
+    "vaclis/PitchBench@6aebaf876b7d7d0c95d28cacdb808f4dc75f0829"
+  ],
+  "output_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected",
+  "command": "Canonical pitchbench evaluate e6 d2 and pitchbench.baselines.evaluation; see child queue receipts for exact commands.",
+  "child_runs": [
+    "e6-d2-corrected-baselines",
+    "e6-d2-corrected-af-next",
+    "e6-d2-corrected-gemini-pro"
+  ],
+  "rerun_models": [
+    "baseline/dsp",
+    "baseline/basic-pitch",
+    "audio_flamingo_next_instruct",
+    "openrouter/google/gemini-3.1-pro-preview"
+  ],
+  "unavailable_manifest": "results/table1-recomputed/unavailable.json",
+  "api_cost_usd": 1.10109425,
+  "formal_api_calls": 612,
+  "verification": {
+    "unchanged_other_task_score_rows": 208,
+    "unchanged_other_task_evidence_files": 215,
+    "rerun_cells": 8,
+    "unavailable_cells": 8,
+    "replay_primary_score_mismatches": 0,
+    "formal_pro_calls": 612,
+    "all_affected_rows_identity_matched": true,
+    "pytest_passed": 151,
+    "pytest_skipped": 0,
+    "table_check": "passed"
+  },
+  "replay_receipt": "results/table1-recomputed/run.json"
+}

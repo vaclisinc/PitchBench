@@ -1,0 +1,54 @@
+{
+  "attempt": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "${VACLAB_ROOT}/models/envs/pitchbench-baselines/bin/python",
+        "-m",
+        "pitchbench.baselines.evaluation",
+        "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/config.yaml",
+        "--phase",
+        "all"
+      ],
+      "exit_code": 1,
+      "finished_at": "2026-10-07T09:08:01Z",
+      "git_commit": "deb4d46ba073d5e60f5d93b7d7413340c6781050",
+      "log_file": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/logs/job.attempt1.log",
+      "reason": "exit code 1",
+      "started_at": "2026-10-07T09:07:48Z",
+      "status": "failed"
+    }
+  ],
+  "checkout": "${VACLAB_ROOT}/.worktrees/pitchbench/queue-3e4e80f8fd7e",
+  "command": [
+    "${VACLAB_ROOT}/models/envs/pitchbench-baselines/bin/python",
+    "-m",
+    "pitchbench.baselines.evaluation",
+    "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/config.yaml",
+    "--phase",
+    "all"
+  ],
+  "created_at": "2026-10-07T09:07:44Z",
+  "exit_code": 0,
+  "finished_at": "2026-10-07T09:10:40Z",
+  "git_commit": "3e4e80f8fd7e7027dc9c36395a5c70a132675cfb",
+  "log_file": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/logs/job.log",
+  "project": "pitchbench",
+  "queue_job_id": "pitchbench--e6-d2-corrected-baselines",
+  "reason": null,
+  "resources": {
+    "assigned_gpus": [],
+    "cpus": 4,
+    "gpus": 0,
+    "ram_mib": 12288,
+    "vram_mib_each": 0
+  },
+  "run_dir": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines",
+  "run_id": "e6-d2-corrected-baselines",
+  "snapshot": true,
+  "source_checkout": "${VACLAB_ROOT}/projects/PitchBench",
+  "started_at": "2026-10-07T09:09:35Z",
+  "status": "succeeded",
+  "wandb_mode": null
+}

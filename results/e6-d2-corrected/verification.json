@@ -1,0 +1,14 @@
+{
+  "unchanged_other_task_score_rows": 208,
+  "unchanged_other_task_evidence_files": 215,
+  "rerun_cells": 8,
+  "unavailable_cells": 8,
+  "replay_primary_score_mismatches": 0,
+  "formal_pro_calls": 612,
+  "all_affected_rows_identity_matched": true,
+  "pytest_passed": 151,
+  "pytest_skipped": 0,
+  "table_check": "passed",
+  "clean_committed_replay_matches_byte_for_byte": true,
+  "replay_source_commit": "4f8f46a432f32219b27b9185cb4aac0488bc4eb0"
+}

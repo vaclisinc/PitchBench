@@ -1,0 +1,45 @@
+{
+  "dataset_revision": "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829",
+  "cells": [
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E6",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D2",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E6",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D2",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E6",
+      "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D2",
+      "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E6",
+      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D2",
+      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
+    }
+  ]
+}

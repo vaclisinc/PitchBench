@@ -110,3 +110,56 @@ def test_paper_evaluation_rejects_missing_task_instead_of_partial_overall(tmp_pa
                      run_name='test', sample_n=1, sample_seed=42)
     with pytest.raises(SystemExit, match='incomplete.*pitchbench_b3'):
         run.cmd_evaluate(args)
+
+
+def test_official_audio_is_identity_checked_before_querying(tmp_path, monkeypatch):
+    import json
+    from argparse import Namespace
+    import pandas as pd
+    import pitchbench.experiments.run as run
+
+    name = 'pitchbench_e6_slightly_off'
+    dataset = tmp_path / 'dataset'
+    shard = dataset / name / 'test-00000-of-00001.parquet'
+    shard.parent.mkdir(parents=True)
+    pd.DataFrame([
+        {'audio': {'path': 'a.wav', 'bytes': b'original-a'}, 'source': 'sine', 'midi': 60,
+         'prompt_midi': 'MIDI?', 'prompt_abc': 'SPN?', 'prompt_freq': 'Hz?', 'prompt_solfege': 'DoReMi?'},
+        {'audio': {'path': 'b.wav', 'bytes': b'original-b'}, 'source': 'piano', 'midi': 61,
+         'prompt_midi': 'MIDI?', 'prompt_abc': 'SPN?', 'prompt_freq': 'Hz?', 'prompt_solfege': 'DoReMi?'},
+    ]).to_parquet(shard)
+    metadata = dataset / '.cache/huggingface/download' / name / (shard.name + '.metadata')
+    metadata.parent.mkdir(parents=True)
+    metadata.write_text('fixed\n')
+    reference = tmp_path / 'reference'
+    answers = reference / name / 'run/results_test.json'
+    answers.parent.mkdir(parents=True)
+    answers.write_text(json.dumps({'results': [{'wav': 'b.wav'}, {'wav': 'a.wav'}]}))
+    runtime = tmp_path / 'runtime'
+    monkeypatch.setattr(run.config, '_PROJECT_ROOT', runtime)
+    monkeypatch.setattr(run.config, 'GENERATED_DIR', runtime / 'data/generated')
+    calls = []
+    def evaluate(name, model, output, sample_info, **kwargs):
+        frame = pd.read_parquet(runtime / 'data/generated' / name / '_questions.parquet')
+        assert [__import__('pathlib').Path(p).name for p in frame.audio_path] == ['b.wav', 'a.wav']
+        assert [__import__('pathlib').Path(p).read_bytes() for p in frame.audio_path] == [b'original-b', b'original-a']
+        assert list(frame.prompt_doremi) == ['', '']
+        assert sample_info['pitch_formats'] == ('midi', 'spn', 'hz')
+        calls.append(name)
+        return {}
+    monkeypatch.setattr(run, '_evaluate_one', evaluate)
+    monkeypatch.setattr(run, '_run_eval_analysis', lambda *a: None)
+    monkeypatch.setattr(run, '_run_cross_model_analysis', lambda *a: None)
+    monkeypatch.setattr(run, '_run_a1_plots', lambda *a: None)
+    args = Namespace(experiments=['e6'], model='test', name=None, run_name='test',
+                     sample_n=None, sample_seed=42, dataset_dir=dataset,
+                     dataset_revision='fixed', reference_answers=reference)
+    run.cmd_evaluate(args)
+    assert calls == [name]
+    answers.write_text(json.dumps({'results': [{'wav': 'a.wav'}, {'wav': 'wrong.wav'}]}))
+    with pytest.raises(ValueError, match='identities differ'):
+        run.cmd_evaluate(args)
+    assert calls == [name]
+    args.dataset_revision = 'wrong'
+    with pytest.raises(RuntimeError, match='expected dataset revision'):
+        run.cmd_evaluate(args)

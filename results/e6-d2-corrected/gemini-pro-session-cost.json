@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-10-07T17:16:31.910569",
+  "experiments": {
+    "pitchbench_e6_slightly_off": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 480,
+        "prompt_tokens": 68561,
+        "completion_tokens": 58883,
+        "total_tokens": 127444,
+        "cached_tokens": 0,
+        "cost_usd": 0.843718,
+        "cost_reported": true
+      }
+    },
+    "pitchbench_d2_dyad_lower_higher_difference": {
+      "openrouter/google/gemini-3.1-pro-preview": {
+        "calls": 132,
+        "prompt_tokens": 27826,
+        "completion_tokens": 16013,
+        "total_tokens": 43839,
+        "cached_tokens": 0,
+        "cost_usd": 0.247808,
+        "cost_reported": true
+      }
+    }
+  },
+  "total_calls": 612,
+  "total_tokens": 171283,
+  "total_cost_usd": 1.091526
+}

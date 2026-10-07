@@ -287,6 +287,46 @@ def cmd_evaluate(args: argparse.Namespace) -> None:
     if not names:
         sys.exit("No experiments matched.")
 
+    if getattr(args, "dataset_dir", None):
+        from pitchbench.baselines.evaluation import _prepare_official_dataset
+        import pyarrow.parquet as pq
+        if not args.dataset_revision:
+            sys.exit("--dataset-dir requires --dataset-revision")
+        counts = {
+            name: {"experiment_id": _NAME_RE.match(name).group(1),
+                   "sampled": pq.read_metadata(args.dataset_dir / name / "test-00000-of-00001.parquet").num_rows}
+            for name in names
+        }
+        dataset_config = {
+            "input_dataset": {
+                "repository": "vaclis/PitchBench", "revision": args.dataset_revision,
+                "local_dir": str(args.dataset_dir.resolve()), "split": "test",
+                "parquet_filename": "test-00000-of-00001.parquet",
+                "embedded_audio_field": "audio", "verify_embedded_audio": True,
+                "write_shard_sha256": True, "preserve_audio_names": True,
+            },
+            "benchmark": {"expected_condition_count": sum(c["sampled"] for c in counts.values())},
+        }
+        _prepare_official_dataset(dataset_config, config._PROJECT_ROOT, counts)
+        if getattr(args, "reference_answers", None):
+            import gzip
+            import json
+            import pandas as pd
+            for name in names:
+                paths = list((args.reference_answers / name).glob("*/results_*.json*"))
+                if len(paths) != 1:
+                    raise ValueError(f"Expected one reference answer file for {name}")
+                path = paths[0]
+                with (gzip.open(path, "rt") if path.suffix == ".gz" else path.open()) as handle:
+                    order = [Path(r["wav"]).name for r in json.load(handle)["results"]]
+                parquet = config.GENERATED_DIR / name / "_questions.parquet"
+                frame = pd.read_parquet(parquet)
+                identities = frame["audio_path"].map(lambda p: Path(p).name)
+                if len(set(order)) != len(order) or set(order) != set(identities) or len(frame) != len(order):
+                    raise ValueError(f"Reference and official stimulus identities differ: {name}")
+                frame.index = identities
+                frame.loc[order].reset_index(drop=True).to_parquet(parquet, index=False)
+
     model_name = args.model
     model_label = args.name or model_slug(model_name)
 
@@ -304,7 +344,7 @@ def cmd_evaluate(args: argparse.Namespace) -> None:
     config.RESULTS_DIR = run_dir
 
     sample_info: dict[str, Any] = {"sample_n": args.sample_n, "sample_seed": args.sample_seed}
-    if args.experiments == ["paper"]:
+    if args.experiments == ["paper"] or getattr(args, "paper_formats", False) or getattr(args, "dataset_dir", None):
         sample_info["pitch_formats"] = ("midi", "spn", "hz")
 
     print(f"Evaluating {len(names)} experiment(s) with model: {model_name}")
@@ -624,6 +664,10 @@ def main() -> None:
     ev.add_argument("--sample-n", type=int, default=None, dest="sample_n", metavar="N",
                     help="Evaluate only N stimuli per experiment (stratified).")
     ev.add_argument("--sample-seed", type=int, default=42, dest="sample_seed", metavar="SEED")
+    ev.add_argument("--dataset-dir", type=Path, help="Official HF local-dir with embedded audio and revision metadata.")
+    ev.add_argument("--reference-answers", type=Path, help="Saved model answer root; verify and match stimulus order before querying.")
+    ev.add_argument("--dataset-revision", help="Required immutable revision for --dataset-dir.")
+    ev.add_argument("--paper-formats", action="store_true", help="Use MIDI/SPN/Hz only for selected experiments.")
     ev.add_argument("--parallel-experiments", type=int, default=1, dest="parallel",
                     metavar="N", help="Number of experiments to evaluate in parallel.")
 

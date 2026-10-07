@@ -306,7 +306,10 @@ def _prepare_official_dataset(
                     f"{experiment} row {row_index}: malformed embedded audio"
                 )
             original_name = Path(str(audio.get("path") or "audio.wav")).name
-            audio_path = audio_dir / f"{row_index:05d}_{original_name}"
+            audio_path = audio_dir / (
+                original_name if config["input_dataset"].get("preserve_audio_names")
+                else f"{row_index:05d}_{original_name}"
+            )
             audio_bytes = audio["bytes"]
             if audio_path.exists():
                 if (

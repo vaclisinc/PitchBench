@@ -45,7 +45,7 @@ benchmark:
 input_dataset:
   repository: "vaclis/PitchBench"
   repository_type: "dataset"
-  revision: "f6c672608057cb877bfaacaeeff9bfb49eef7778"
+  revision: "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829"
   license: "CC-BY-4.0"
   local_dir: "/ABSOLUTE/PATH/TO/DATASET"
   split: "test"

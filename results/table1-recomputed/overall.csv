@@ -1,9 +1,9 @@
 model,n_tasks,score
-audio_flamingo_next_instruct,28,0.17707810717755226
-openrouter_google_gemini_3_1_pro_preview,28,0.19524460739193053
-openrouter_google_gemini_flash_latest,28,0.15615178706176502
-openrouter_openai_gpt_4o_audio_preview,28,0.10944271717056749
-dashscope_qwen3_5_omni_plus,28,0.5138929492939704
-dashscope_qwen3_5_omni_flash,28,0.3786035455067089
-baseline/dsp,28,0.6991802856128421
-baseline/basic-pitch,28,0.7312345223715797
+audio_flamingo_next_instruct,28,0.18632458986153494
+openrouter_google_gemini_3_1_pro_preview,28,0.19817344938327253
+openrouter_google_gemini_flash_latest,26,
+openrouter_openai_gpt_4o_audio_preview,26,
+dashscope_qwen3_5_omni_plus,26,
+dashscope_qwen3_5_omni_flash,26,
+baseline/dsp,28,0.7322362921063486
+baseline/basic-pitch,28,0.7523248903369477

@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from pitchbench.analysis.table1 import MODELS, SOURCES, TASKS, load_scores, render
+from pitchbench.analysis.table1 import MODELS, SOURCES, TASKS, load_scores, render, unavailable_cells
 
 REPO = Path(__file__).resolve().parents[1]
 C4_PERCENT = dict(zip(list(MODELS)[:6], [0, 1.5, 0, 0.5, 12, 6.5]))
@@ -31,6 +31,9 @@ def test_final_scores_match_raw_replay_counts_and_sequence_scores():
     assert len(scores) == 28 * 8
     with (REPO / SOURCES["recomputed"]).open() as handle:
         for row in csv.DictReader(handle):
+            if (row["model"], row["task"]) in unavailable_cells(REPO):
+                assert scores[row["model"], row["task"]] is None
+                continue
             expected = Decimal(row["score_sum"]) * 100 / int(row["n_samples"])
             assert scores[row["model"], row["task"]] == expected
     # Independently established accuracy counts, including the manuscript errors.
@@ -54,6 +57,9 @@ def test_means_use_all_28_unrounded_tasks():
     rows = list(csv.DictReader(io.StringIO(render(REPO)["table1.csv"])))
     assert [r["task"] for r in rows] == [*TASKS, "Mean"]
     for model in MODELS:
+        if any((model, task) in unavailable_cells(REPO) for task in TASKS):
+            assert rows[-1][model] == ""
+            continue
         expected = sum(Decimal(row[model]) for row in rows[:-1]) / 28
         assert Decimal(rows[-1][model]) == expected
     # Double rounding used to display 9.7 and 13.9 from rounded intermediate CSVs.
@@ -100,3 +106,33 @@ def test_reject_incomplete_or_invalid_evidence(tmp_path, corruption):
         writer.writerows(rows)
     with pytest.raises(ValueError, match="Duplicate|Coverage mismatch|Invalid score"):
         load_scores(tmp_path)
+
+
+def test_unavailable_scores_are_not_zero_or_partial_means(tmp_path):
+    import json
+    for relative in SOURCES.values():
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(REPO / relative, path)
+    model, task = 'audio_flamingo_next_instruct', 'E6'
+    pending = json.loads((tmp_path / SOURCES['unavailable']).read_text())
+    pending['cells'].append(dict(model=model, task=task, reason='Needs corrected-audio rerun'))
+    (tmp_path / SOURCES['unavailable']).write_text(json.dumps(pending))
+    # An invalidation must reject even a numerically plausible stale score.
+    with pytest.raises(ValueError, match='stale score'):
+        load_scores(tmp_path)
+    path = tmp_path / SOURCES['recomputed']
+    with path.open() as handle:
+        rows = list(csv.DictReader(handle))
+    for row in rows:
+        if (row['model'], row['task']) == (model, task):
+            row.update(n_samples='0', score_sum='', score='')
+    with path.open('w') as handle:
+        writer = csv.DictWriter(handle, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    rendered = render(tmp_path)
+    table = {r['task']: r for r in csv.DictReader(io.StringIO(rendered['table1.csv']))}
+    assert table['E6'][model] == table['Mean'][model] == ''
+    assert '—' in rendered['table1.md']
+    assert '--' in rendered['table1.tex']

@@ -1,6 +1,6 @@
 # Table 1 — PitchBench results
 
-Scores are percentages. D8, F1 and F2 use Ordered Note F1; other tasks use accuracy. Mean weights each of the 28 tasks equally, using unrounded scores. D7a is the concatenated reference task (D7 in the paper); Y1 is excluded. GPT-4o B1 uses the 158 saved responses; two of the 160 responses are missing.
+Scores are percentages. D8, F1 and F2 use Ordered Note F1; other tasks use accuracy. Mean weights each of the 28 tasks equally, using unrounded scores. D7a is the concatenated reference task (D7 in the paper); Y1 is excluded. GPT-4o B1 uses the 158 saved responses; two of the 160 responses are missing. Unavailable corrected-audio results are shown as —; a model with any missing task has no overall mean or overall rank.
 
 Best displayed score per row is bold. All formats are generated from the same evidence; see [sources and reproduction](README.md).
 
@@ -19,7 +19,7 @@ Best displayed score per row is bold. All formats are generated from the same ev
 | C3 Quality | 9.9 | 13.0 | 10.4 | 10.9 | 13.0 | 13.0 | 58.9 | **77.6** |
 | C4 Chord P. | 0.0 | 1.5 | 0.0 | 0.5 | 12.0 | 6.5 | 34.0 | **61.0** |
 | D1 Seq. Count | 26.4 | 51.4 | 25.0 | 20.0 | **82.1** | 78.6 | 76.4 | 42.9 |
-| D2 High/Low | 50.0 | 63.6 | 50.8 | 50.0 | 65.2 | 57.6 | **80.3** | 76.5 |
+| D2 High/Low | 51.5 | 71.2 | — | — | — | — | **98.5** | 81.8 |
 | D3 Contour D. | 0.0 | 15.0 | 1.1 | 0.0 | 15.6 | 12.8 | **61.7** | 56.7 |
 | D4 Contour C. | 0.0 | 43.8 | 0.0 | 3.1 | 51.9 | 17.5 | **73.8** | **73.8** |
 | D5 Rank | 4.2 | 5.0 | 7.5 | 1.7 | 20.0 | 2.5 | **88.3** | 67.5 |
@@ -31,7 +31,7 @@ Best displayed score per row is bold. All formats are generated from the same ev
 | E3 Saturation | 45.0 | 14.2 | 24.2 | 10.8 | 86.7 | 69.2 | **97.5** | 96.7 |
 | E4 Stretch | 34.9 | 18.2 | 9.4 | 10.4 | 88.5 | 79.2 | 96.9 | **99.5** |
 | E5 Vibrato | 24.4 | 2.5 | 3.1 | 3.8 | 65.6 | 39.4 | **85.6** | 68.8 |
-| E6 Off Pitch | 23.8 | 12.5 | 13.8 | 11.3 | 22.5 | **30.0** | 23.8 | 19.4 |
+| E6 Off Pitch | 48.1 | 13.1 | — | — | — | — | **98.1** | 73.1 |
 | F1 Atonal | 26.3 | 16.4 | 30.6 | 26.9 | 35.5 | 30.5 | 20.6 | **58.8** |
 | F2 Tonal | 26.8 | 14.2 | 31.9 | 35.7 | **46.4** | 28.7 | 14.7 | 27.3 |
-| Mean | 17.7 | 19.5 | 15.6 | 10.9 | 51.4 | 37.9 | 69.9 | **73.1** |
+| Mean | 18.6 | 19.8 | — | — | — | — | 73.2 | **75.2** |

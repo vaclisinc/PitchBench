@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "experiment": {
+    "experiment_id": "e6-d2-corrected-baselines",
+    "kind": "evaluation",
+    "description": "Frozen DSP and Basic Pitch on the 28 paper tasks."
+  },
+  "started_at_utc": "2026-10-07T09:09:37.325763+00:00",
+  "completed_at_utc": "2026-10-07T09:10:38.917886+00:00",
+  "git": {
+    "branch": "detached-queue-snapshot",
+    "commit": "3e4e80f8fd7e7027dc9c36395a5c70a132675cfb",
+    "upstream": "origin/HEAD -> origin/main\n  origin/main",
+    "execution": "vaclab-queue"
+  },
+  "config": {
+    "path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/config.yaml",
+    "sha256": "fdedc111e92edf1627e808323d14f0cb12364e14299a74c651aecb12e679117c"
+  },
+  "python": {
+    "executable": "${VACLAB_ROOT}/models/envs/pitchbench-baselines/bin/python",
+    "version": "3.11.15 (main, Apr  7 2026, 20:48:58) [Clang 22.1.1 ]",
+    "packages": {
+      "annotated-types": "0.8.0",
+      "anyio": "4.15.1",
+      "audioread": "3.1.0",
+      "basic-pitch": "0.4.0",
+      "certifi": "2026.7.22",
+      "cffi": "2.1.1",
+      "charset-normalizer": "3.5.2",
+      "cloudpickle": "3.1.2",
+      "coloredlogs": "15.0.1",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "decorator": "5.3.1",
+      "flatbuffers": "25.12.19",
+      "fonttools": "4.66.1",
+      "future": "1.0.0",
+      "h11": "0.16.0",
+      "httpcore2": "2.13.1",
+      "httpx2": "2.13.1",
+      "humanfriendly": "10.0",
+      "idna": "3.20",
+      "importlib_resources": "7.1.0",
+      "iniconfig": "2.3.0",
+      "jiter": "0.17.0",
+      "joblib": "1.6.0",
+      "kiwisolver": "1.5.1",
+      "lazy-loader": "0.6",
+      "librosa": "0.10.2.post1",
+      "llvmlite": "0.49.0",
+      "matplotlib": "3.11.2",
+      "mido": "1.3.3",
+      "mir_eval": "0.7",
+      "mpmath": "1.3.0",
+      "msgpack": "1.2.3",
+      "narwhals": "2.26.0",
+      "numba": "0.67.0",
+      "numpy": "1.26.4",
+      "onnxruntime": "1.19.2",
+      "openai": "3.22.1",
+      "packaging": "26.3",
+      "pandas": "2.2.3",
+      "pillow": "12.3.0",
+      "pitchbench": "0.1.2",
+      "platformdirs": "4.12.2",
+      "pluggy": "1.6.0",
+      "pooch": "1.9.0",
+      "pretty_midi": "0.2.11.post0",
+      "protobuf": "7.36.2",
+      "pyarrow": "18.1.0",
+      "pycparser": "3.0",
+      "pydantic": "2.13.5",
+      "pydantic_core": "2.46.5",
+      "Pygments": "2.21.0",
+      "pyparsing": "3.3.3",
+      "pytest": "9.1.1",
+      "pytest-mock": "3.16.0",
+      "python-dateutil": "2.9.0.post0",
+      "python-dotenv": "1.2.3",
+      "pytz": "2026.4",
+      "PyYAML": "6.0.3",
+      "requests": "2.34.2",
+      "resampy": "0.4.2",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.13.1",
+      "setuptools": "75.8.0",
+      "six": "1.17.0",
+      "sniffio": "1.3.1",
+      "soundfile": "0.12.1",
+      "soxr": "1.1.0",
+      "sympy": "1.14.0",
+      "threadpoolctl": "3.7.0",
+      "tqdm": "4.70.1",
+      "truststore": "0.10.4",
+      "typing-inspection": "0.4.4",
+      "typing_extensions": "4.16.0",
+      "tzdata": "2026.4",
+      "urllib3": "2.8.0"
+    }
+  },
+  "command": [
+    "${VACLAB_ROOT}/models/envs/pitchbench-baselines/bin/python",
+    "src/pitchbench/baselines/evaluation.py",
+    "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/config.yaml",
+    "--phase",
+    "all"
+  ],
+  "benchmark": {
+    "mode": "paper_locked",
+    "sample_seed": 42,
+    "experiments": [
+      "e6",
+      "d2"
+    ],
+    "expected_experiment_count": 2,
+    "expected_condition_count": 292,
+    "resolved_counts": {
+      "pitchbench_e6_slightly_off": {
+        "experiment_id": "e6",
+        "sampled": 160,
+        "available": 160,
+        "sampling": {
+          "source": "official frozen shard",
+          "revision": "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829"
+        }
+      },
+      "pitchbench_d2_dyad_lower_higher_difference": {
+        "experiment_id": "d2",
+        "sampled": 132,
+        "available": 132,
+        "sampling": {
+          "source": "official frozen shard",
+          "revision": "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829"
+        }
+      }
+    }
+  },
+  "input_dataset": {
+    "repository": "vaclis/PitchBench",
+    "repository_type": "dataset",
+    "revision": "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829",
+    "license": "CC-BY-4.0",
+    "local_dir": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829",
+    "split": "test",
+    "parquet_filename": "test-00000-of-00001.parquet",
+    "embedded_audio_field": "audio",
+    "verify_embedded_audio": true,
+    "write_shard_sha256": true,
+    "manifest": {
+      "repository": "vaclis/PitchBench",
+      "revision": "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829",
+      "split": "test",
+      "subsets": {
+        "pitchbench_e6_slightly_off": {
+          "source_parquet": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e6_slightly_off/test-00000-of-00001.parquet",
+          "rows": 160,
+          "embedded_audio_bytes": 15623040,
+          "parquet_sha256": "e8485aa19c45ab08eabb81b489a9253f3115c209b39a25aaf6a0bb86384b9d74"
+        },
+        "pitchbench_d2_dyad_lower_higher_difference": {
+          "source_parquet": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d2_dyad_lower_higher_difference/test-00000-of-00001.parquet",
+          "rows": 132,
+          "embedded_audio_bytes": 29503408,
+          "parquet_sha256": "ba75b45f412f86b0f44458a7d13bae5c4b8b14bb0484834b79b9d71eda385125"
+        }
+      },
+      "total_rows": 292,
+      "embedded_audio_bytes": 45126448
+    }
+  },
+  "baselines": {
+    "dsp": {
+      "model_name": "baseline/dsp",
+      "implementation": "librosa.yin plus RMS activity and harmonic CQT peak tracking",
+      "sample_rate": 16000,
+      "yin": {
+        "fmin_hz": 30.0,
+        "fmax_hz": 2500.0,
+        "frame_length": 4096,
+        "hop_length": 256,
+        "trough_threshold": 0.1,
+        "center": true,
+        "pad_mode": "constant"
+      },
+      "activity": {
+        "frame_length": 1024,
+        "hop_length": 256,
+        "relative_rms_threshold": 0.01,
+        "absolute_rms_floor": 1e-05,
+        "closing_seconds": 0.12
+      },
+      "multipitch": {
+        "bins_per_octave": 36,
+        "hop_length": 256,
+        "fmin_midi": 21,
+        "n_octaves": 8,
+        "harmonics": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "harmonic_weights": [
+          1.0,
+          0.5,
+          0.3333333333,
+          0.25
+        ],
+        "salience_relative_threshold": 0.28,
+        "fundamental_relative_threshold": 0.08,
+        "chord_presence_fraction": 0.3,
+        "maximum_polyphony": 6,
+        "minimum_pitch_separation_semitones": 0.75,
+        "activation_median_filter_frames": 5
+      }
+    },
+    "basic_pitch": {
+      "model_name": "baseline/basic-pitch",
+      "package": "basic-pitch",
+      "package_version": "0.4.0",
+      "serialization": "onnx",
+      "model_filename": "nmp.onnx",
+      "onset_threshold": 0.5,
+      "frame_threshold": 0.3,
+      "minimum_note_length_ms": 127.7,
+      "minimum_frequency_hz": null,
+      "maximum_frequency_hz": null,
+      "multiple_pitch_bends": true,
+      "melodia_trick": true,
+      "contour_bins_per_semitone": 3
+    }
+  },
+  "offline_scoring": true,
+  "pitch_formats": [
+    "midi",
+    "spn",
+    "hz"
+  ],
+  "phases": [
+    "prepare-data",
+    "dsp",
+    "basic-pitch"
+  ],
+  "runtime_root": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/runtime",
+  "persistent_results": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/artifacts/evaluation"
+}

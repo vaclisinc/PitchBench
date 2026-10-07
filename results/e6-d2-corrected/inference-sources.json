@@ -1,0 +1,154 @@
+[
+  {
+    "model": "baseline/dsp",
+    "task": "E6",
+    "n_samples": 160,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/artifacts/evaluation/dsp_yin_harmonic_cqt/e6-d2-corrected-baselines/pitchbench_e6_slightly_off/results_dsp_yin_harmonic_cqt.json",
+    "raw_sha256": "6a27e7234dc7922a60c8f30c1d9d1cc87e4dd116b8fcf18be2802478625f6a29",
+    "committed_path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e6_slightly_off/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+    "committed_sha256": "555ef3b6eaece9c76d8e3529b614180f11f9f2e500bb5a4537bbb8e5e5ec2e97",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    },
+    "usage_source": "result metadata"
+  },
+  {
+    "model": "baseline/dsp",
+    "task": "D2",
+    "n_samples": 132,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/artifacts/evaluation/dsp_yin_harmonic_cqt/e6-d2-corrected-baselines/pitchbench_d2_dyad_lower_higher_difference/results_dsp_yin_harmonic_cqt.json",
+    "raw_sha256": "8100300aa5344328ec438b4d086f284c31eb22ff1f113f987ff464128e535557",
+    "committed_path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d2_dyad_lower_higher_difference/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
+    "committed_sha256": "2d876c4b36dc67c73cf3971c035bba681c47761e14c8c87a150e75c132c7d518",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    },
+    "usage_source": "result metadata"
+  },
+  {
+    "model": "baseline/basic-pitch",
+    "task": "E6",
+    "n_samples": 160,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/artifacts/evaluation/spotify_basic_pitch_0_4_0/e6-d2-corrected-baselines/pitchbench_e6_slightly_off/results_spotify_basic_pitch_0_4_0.json",
+    "raw_sha256": "9ec82c7eebb945932eaca58dfd9fa446511450eb78f3a83ba714b776b369db3d",
+    "committed_path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e6_slightly_off/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+    "committed_sha256": "cdb244b0c939d43d97ecb1abff5deb94fd1f0878ed088426f242bed367f9a396",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    },
+    "usage_source": "result metadata"
+  },
+  {
+    "model": "baseline/basic-pitch",
+    "task": "D2",
+    "n_samples": 132,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-baselines/artifacts/evaluation/spotify_basic_pitch_0_4_0/e6-d2-corrected-baselines/pitchbench_d2_dyad_lower_higher_difference/results_spotify_basic_pitch_0_4_0.json",
+    "raw_sha256": "52d4403d814a08d31e090cb46443e81d86b4d74e56c528401a835aa25d322c08",
+    "committed_path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d2_dyad_lower_higher_difference/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
+    "committed_sha256": "a31c98eaf2c50b09a3bc61eee949db2a6dd59324e987bcb3bd0ef007e5be1f2c",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    },
+    "usage_source": "result metadata"
+  },
+  {
+    "model": "audio_flamingo_next_instruct",
+    "task": "E6",
+    "n_samples": 160,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-af-next/results/evaluation/audio_flamingo_next_instruct/e6-d2-corrected/pitchbench_e6_slightly_off/results_audio_flamingo_next_instruct.json",
+    "raw_sha256": "d294f1259b26fcff7e1954b2741dfa503102ff47d217ff36d44079c41f09831d",
+    "committed_path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e6_slightly_off/run_001_20260506_081023/results_audio_flamingo_next_instruct.json.gz",
+    "committed_sha256": "6b1195679c87593d4b6b63e1c09dccf376a6e80b48d297d5de49521ba5796f63",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    },
+    "usage_source": "result metadata"
+  },
+  {
+    "model": "audio_flamingo_next_instruct",
+    "task": "D2",
+    "n_samples": 132,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-af-next/results/evaluation/audio_flamingo_next_instruct/e6-d2-corrected/pitchbench_d2_dyad_lower_higher_difference/results_audio_flamingo_next_instruct.json",
+    "raw_sha256": "ef2bf2542acd170855200cddd3790dd40be9a4018ce9f304e31a62bd2ef9a179",
+    "committed_path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_074632/results_audio_flamingo_next_instruct.json.gz",
+    "committed_sha256": "e07fc3aff0c95d3fdbfbaa299830107dfabce5caf5b23961c5b9035cbf2e4905",
+    "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0,
+      "cost_reported": false
+    },
+    "usage_source": "result metadata"
+  },
+  {
+    "model": "openrouter_google_gemini_3_1_pro_preview",
+    "task": "E6",
+    "n_samples": 160,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-gemini-pro/results/evaluation/openrouter_google_gemini_3_1_pro_preview/e6-d2-corrected/pitchbench_e6_slightly_off/results_openrouter_google_gemini_3_1_pro_preview.json",
+    "raw_sha256": "f8cd7f52df2d183c13f33388bbb122119a48a68e004b62a2dec39347c2d1b48f",
+    "committed_path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e6_slightly_off/run_001_20260506_070009/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+    "committed_sha256": "b7648cd7d9d0cd680cd2592cb72016cf113ec2f3305ef6ce9fb59c5fb8c115cf",
+    "usage": {
+      "calls": 480,
+      "prompt_tokens": 68561,
+      "completion_tokens": 58883,
+      "total_tokens": 127444,
+      "cached_tokens": 0,
+      "cost_usd": 0.843718,
+      "cost_reported": true
+    },
+    "usage_source": "gemini-pro-session-cost.json"
+  },
+  {
+    "model": "openrouter_google_gemini_3_1_pro_preview",
+    "task": "D2",
+    "n_samples": 132,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-gemini-pro/results/evaluation/openrouter_google_gemini_3_1_pro_preview/e6-d2-corrected/pitchbench_d2_dyad_lower_higher_difference/results_openrouter_google_gemini_3_1_pro_preview.json",
+    "raw_sha256": "5c0a4b47dffc5b5612946c3e4b11e0fb0b597e307271d5cd9acffc084dacb982",
+    "committed_path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_063649/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
+    "committed_sha256": "91c7d43e81355ec711c9cac3214becde749c24f3e781baa44c9fddb494e3b86a",
+    "usage": {
+      "calls": 132,
+      "prompt_tokens": 27826,
+      "completion_tokens": 16013,
+      "total_tokens": 43839,
+      "cached_tokens": 0,
+      "cost_usd": 0.247808,
+      "cost_reported": true
+    },
+    "usage_source": "gemini-pro-session-cost.json"
+  }
+]

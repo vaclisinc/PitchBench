@@ -1,0 +1,29 @@
+{
+  "model": "google/gemini-3.1-pro-preview",
+  "http_status": 200,
+  "usage": {
+    "prompt_tokens": 189,
+    "completion_tokens": 122,
+    "total_tokens": 311,
+    "cost": 0.001842,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 125,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.001842,
+      "upstream_inference_prompt_cost": 0.000378,
+      "upstream_inference_completions_cost": 0.001464
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 120,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1791364485-wp7fNodUWWJsqy1t9WnX",
+  "elapsed_seconds": 3.558702878654003
+}

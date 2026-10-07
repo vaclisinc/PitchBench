@@ -1,0 +1,23 @@
+{
+  "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "packages": {
+    "torch": "2.9.1",
+    "transformers": "5.9.0",
+    "accelerate": "1.12.0",
+    "fastapi": "0.142.2",
+    "uvicorn": "0.54.0",
+    "python-multipart": "0.0.32",
+    "numpy": "2.4.6",
+    "soundfile": "0.13.1",
+    "librosa": "0.11.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.22.2"
+  },
+  "model_repository": "nvidia/audio-flamingo-next-hf",
+  "model_revision": "5634886e2615c2f587dcf8b93c6edfe9907930ca",
+  "dtype": "bfloat16",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 128
+  }
+}

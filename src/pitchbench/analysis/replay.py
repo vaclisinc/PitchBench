@@ -21,7 +21,7 @@ import pyarrow.parquet as pq
 import pitchbench.config as config
 
 config.AUDIO_DIR = config.GENERATED_DIR
-from pitchbench.analysis.table1 import MODELS, TASKS, SEQUENCE_TASKS
+from pitchbench.analysis.table1 import MODELS, TASKS, SEQUENCE_TASKS, unavailable_cells
 from pitchbench.baselines.evaluation import (
     _condition_from_official_row,
     _timing_ground_truth,
@@ -34,7 +34,7 @@ from pitchbench.experiments.helpers.music import (
 from pitchbench.experiments.helpers.cat_b import score_timestamps
 from pitchbench.experiments.run import _id_to_name
 
-REVISION = "f6c672608057cb877bfaacaeeff9bfb49eef7778"
+REVISION = "6aebaf876b7d7d0c95d28cacdb808f4dc75f0829"
 SINGLE = {"A1", "A2", "A3", "B1", "B2", "D7a", "E1", "E2", "E3", "E4", "E5", "E6"}
 FIELDS = {
     "B3": "correct",
@@ -149,6 +149,7 @@ def score_record(task, experiment, row, condition):
 def replay(repo, dataset, output, baseline_input=None):
     output.mkdir(parents=True, exist_ok=True)
     aggregates, items, sources, mismatches, gaps, datasets = [], [], [], [], [], []
+    unavailable = unavailable_cells(repo)
     selected = list(MODELS) if baseline_input else list(MODELS)[:6]
     for task in TASKS:
         experiment = _id_to_name(task.lower())
@@ -178,6 +179,13 @@ def replay(repo, dataset, output, baseline_input=None):
             )
         )
         for model in selected:
+            if (model, task) in unavailable:
+                aggregates.append(dict(model=model, task=task,
+                    metric="ordered_note_f1" if task in SEQUENCE_TASKS else "accuracy",
+                    n_samples=0, n_expected=len(official), score_sum="", score=""))
+                gaps.append(dict(model=model, task=task, expected=len(official), observed=0,
+                                 reason=unavailable[model, task]))
+                continue
             baseline = model.startswith("baseline/")
             if baseline:
                 paths = []
@@ -306,9 +314,9 @@ def replay(repo, dataset, output, baseline_input=None):
     overall = [
         dict(
             model=m,
-            n_tasks=len(TASKS),
-            score=math.fsum(r["score"] for r in aggregates if r["model"] == m)
-            / len(TASKS),
+            n_tasks=sum(r["score"] != "" for r in aggregates if r["model"] == m),
+            score=(math.fsum(r["score"] for r in aggregates if r["model"] == m)
+                   / len(TASKS) if not any((m, task) in unavailable for task in TASKS) else ""),
         )
         for m in selected
     ]
@@ -317,7 +325,8 @@ def replay(repo, dataset, output, baseline_input=None):
         run_id="table1-recomputed",
         project="pitchbench",
         status="succeeded",
-        complete_table=baseline_input is not None,
+        complete_table=baseline_input is not None and not unavailable,
+        unavailable_cells=[dict(model=m, task=t, reason=reason) for (m, t), reason in unavailable.items()],
         git_commit=subprocess.check_output(
             ["git", "-C", str(repo), "rev-parse", "HEAD"], text=True
         ).strip(),

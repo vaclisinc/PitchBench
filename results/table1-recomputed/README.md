@@ -1,12 +1,19 @@
 # Table 1 evidence
 
-This bundle supplies all 224 scores in the paper comparison: 28 tasks, six
-audio language models, DSP, and Basic Pitch. The table builder reads
-`metrics.csv` and computes the equal-weight mean of the 28 task scores.
+This bundle supplies 216 available scores and eight explicit invalidations in
+the 28-task, eight-model comparison. The table builder reads `metrics.csv` and
+computes the equal-weight mean only for models with all 28 scores.
+
+The [E6/D2 correction bundle](../e6-d2-corrected/README.md) records new ALM and
+baseline inference, old/new scores, model availability and actual API costs.
+Qwen was deferred by the owner; the original GPT-4o endpoint is unavailable,
+and the historical Flash alias now resolves to a different model. Their
+E6/D2 cells and overall means are shown as — (blank in CSV). The old answer
+files remain historical records and are excluded by `unavailable.json`.
 
 ## Protocol
 
-- Dataset: `vaclis/PitchBench@f6c672608057cb877bfaacaeeff9bfb49eef7778`,
+- Dataset: `vaclis/PitchBench@6aebaf876b7d7d0c95d28cacdb808f4dc75f0829`,
   containing 5,802 fixed stimuli.
 - Pitch formats: MIDI, SPN, and Hz. ANY is the per-stimulus maximum across
   these formats; solfège does not contribute.
@@ -15,19 +22,29 @@ audio language models, DSP, and Basic Pitch. The table builder reads
   matching; F1/F2 use ±1%. Other tasks use accuracy.
 - Means retain full precision. Percentages display one decimal using
   ROUND_HALF_UP; displayed ties share the same rank.
-- ALM scores are reparsed from 34,810 saved responses against official ground
-  truth. Each baseline covers all 5,802 official audio files.
+- Available ALM scores are reparsed from 33,642 saved responses against official
+  ground truth. Both baselines cover all 5,802 stimuli: E6/D2 were rerun on
+  corrected audio; the other 26 task answers and provenance are unchanged.
 
 ## Contents
+
+Recorded project paths are relative to the repository. Shared data, model and
+run paths use `${VACLAB_ROOT}` as a portable placeholder; substitute your own
+workspace root when reading archived commands. These receipts describe past
+executions; use `configs/paper_baselines.yaml` for a fresh run. Raw/source/original
+hashes identify the external original bytes, while committed file hashes identify
+the sanitized evidence shipped here. Git commit IDs in execution receipts record
+the revisions used before the public history rewrite.
 
 | File | Purpose |
 | --- | --- |
 | `metrics.csv` | Per-model/task score, sum, observed count, and expected count |
-| `overall.csv` | Equal-weight mean across 28 tasks |
+| `overall.csv` | Equal-weight mean across 28 tasks; blank for incomplete models |
+| `unavailable.json` | Explicit model/task invalidations and reasons |
 | `run.json` | Replay provenance, input hashes, ground-truth checks, coverage |
 | `baselines/` | Compressed baseline answers and stimulus metadata |
-| `config.yaml` | Resolved baseline inference configuration |
-| `baseline-receipt.json`, `baseline-run.json` | Inference environment and run provenance |
+| `config.yaml` | Historical full-dataset baseline configuration; corrected two-task config is in `../e6-d2-corrected/` |
+| `baseline-receipt.json`, `baseline-run.json` | Original inference provenance for the unchanged tasks |
 | `model.json` | Basic Pitch model identity |
 | `package-verification.json` | Source/wheel tests, answer preservation, and environment checks |
 | `pipeline-verification.json` | Baseline task and overall agreement |
@@ -39,8 +56,9 @@ in this bundle and the generated Table 1 exports.
 
 ## Coverage
 
-The replay verifies 46,414 responses and all 224 model/task cells. The DSP overall
-is 69.9180285613%; Basic Pitch is 73.1234522372%.
+The replay verifies 45,246 usable responses and all 224 cell slots (216 scored,
+eight explicitly unavailable), with zero score mismatches. The DSP overall
+is 73.2236292106%; Basic Pitch is 75.2324890337%.
 
 GPT-4o B1 has 158 saved responses out of 160 stimuli. Its score uses those 158
 responses. The missing identities are:

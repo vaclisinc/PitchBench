@@ -2,22 +2,64 @@
   "run_id": "table1-recomputed",
   "project": "pitchbench",
   "status": "succeeded",
-  "complete_table": true,
-  "git_commit": "72211f9139a7b4a03f89e9e92879f1ee47472e1f",
+  "complete_table": false,
+  "unavailable_cells": [
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E6",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D2",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E6",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D2",
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E6",
+      "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D2",
+      "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E6",
+      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D2",
+      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
+    }
+  ],
+  "git_commit": "4f8f46a432f32219b27b9185cb4aac0488bc4eb0",
   "command": [
     "python",
     "-m",
     "pitchbench.analysis.replay",
     "--dataset-dir",
-    "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778",
+    "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829",
     "--output-dir",
-    "/tmp/pitchbench-minimal-clean-review",
+    "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected/replay-committed",
     "--baseline-input",
     "results/table1-recomputed/baselines"
   ],
-  "output_path": "/tmp/pitchbench-minimal-clean-review",
+  "output_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected/replay-committed",
   "dataset_ids": [
-    "pitchbench-authors/PitchBench@f6c672608057cb877bfaacaeeff9bfb49eef7778"
+    "vaclis/PitchBench@6aebaf876b7d7d0c95d28cacdb808f4dc75f0829"
   ],
   "new_model_queries": 0,
   "optional_llm_parsing": "disabled explicitly by PITCHBENCH_OFFLINE_SCORING",
@@ -33,15 +75,15 @@
     "F1/F2 and single pitch": "1%",
     "C4": "nearest MIDI"
   },
-  "python": "3.12.7",
+  "python": "3.13.13",
   "scoring_files": [
     {
       "path": "analysis/replay.py",
-      "sha256": "ab04ebe2a397f82d97fcc6a3f1073c61d2210febef56812430e20a2725444c5d"
+      "sha256": "2b24ffe53c756cc11ed2282aaaddd097dbff0de02a5392af651899c684a272e3"
     },
     {
       "path": "baselines/evaluation.py",
-      "sha256": "953ff5443a19fbe806e9a9ee31288a44e2a414dd483ad52cef879c9705903403"
+      "sha256": "0fd4a98732391aa185850e35974672f67301df52b2952ea1086c0598dd0066f2"
     },
     {
       "path": "experiments/helpers/__init__.py",
@@ -77,7 +119,7 @@
     },
     {
       "path": "experiments/helpers/data.py",
-      "sha256": "699046cd4803a1c65f34ae9cc0a5b932bafdaedea158156c7f4d6c843a8c3c73"
+      "sha256": "4c9957f0398af2c726535552631d035eb7894ec15c67f273db9c257c693f2a57"
     },
     {
       "path": "experiments/helpers/music.py",
@@ -866,49 +908,25 @@
       "model": "audio_flamingo_next_instruct",
       "task": "D2",
       "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_074632/results_audio_flamingo_next_instruct.json.gz",
-      "sha256": "2f091e6121b838b892e7b71f284be25a05f832cfa4b856e4d9c39f40340836c1"
+      "sha256": "e07fc3aff0c95d3fdbfbaa299830107dfabce5caf5b23961c5b9035cbf2e4905"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "D2",
       "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_063649/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
-      "sha256": "71bec3e8b09351c9039d1f5a6368c62daa84764adc73b4aa1cbc57afd8f6e0dc"
-    },
-    {
-      "model": "openrouter_google_gemini_flash_latest",
-      "task": "D2",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_193445/results_openrouter_google_gemini_flash_latest.json.gz",
-      "sha256": "e56393773a54c87db7ac9ca95621ddb61474629a7680ddedaaa70580ce297254"
-    },
-    {
-      "model": "openrouter_openai_gpt_4o_audio_preview",
-      "task": "D2",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_072749/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
-      "sha256": "dc30965194108ee81060e0d2208da6ca7394d5beb7cbb2ba1256c2b5c4acaff0"
-    },
-    {
-      "model": "dashscope_qwen3_5_omni_plus",
-      "task": "D2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_221405/results_dashscope_qwen3_5_omni_plus.json.gz",
-      "sha256": "e0636e0183052c1503910fc85d518704ef1789b824b681d210c2600cf0663468"
-    },
-    {
-      "model": "dashscope_qwen3_5_omni_flash",
-      "task": "D2",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_222251/results_dashscope_qwen3_5_omni_flash.json.gz",
-      "sha256": "32451cf61fa6537e7ae2cb371cdebee67b2aee41d2ae55dbf624fa0ac66dc51a"
+      "sha256": "91c7d43e81355ec711c9cac3214becde749c24f3e781baa44c9fddb494e3b86a"
     },
     {
       "model": "baseline/dsp",
       "task": "D2",
       "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_d2_dyad_lower_higher_difference/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
-      "sha256": "e5b6f00667c9e38885b5630c0ae3d43ff2bd2f9c5f19d5b576558f074dc719e4"
+      "sha256": "2d876c4b36dc67c73cf3971c035bba681c47761e14c8c87a150e75c132c7d518"
     },
     {
       "model": "baseline/basic-pitch",
       "task": "D2",
       "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_d2_dyad_lower_higher_difference/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
-      "sha256": "36a94e60a0caf45550a11a74b37213d85c07b5690bc7b0fae41b9f45b3a0e2be"
+      "sha256": "a31c98eaf2c50b09a3bc61eee949db2a6dd59324e987bcb3bd0ef007e5be1f2c"
     },
     {
       "model": "audio_flamingo_next_instruct",
@@ -1442,49 +1460,25 @@
       "model": "audio_flamingo_next_instruct",
       "task": "E6",
       "path": "paper/evaluation/_audio_flamingo_next_instruct/pitchbench_e6_slightly_off/run_001_20260506_081023/results_audio_flamingo_next_instruct.json.gz",
-      "sha256": "126559afb6b48e18dec1da34e402376301b3078d8f7862e09f636d8f905fdac7"
+      "sha256": "6b1195679c87593d4b6b63e1c09dccf376a6e80b48d297d5de49521ba5796f63"
     },
     {
       "model": "openrouter_google_gemini_3_1_pro_preview",
       "task": "E6",
       "path": "paper/evaluation/_openrouter_google_gemini_3_1_pro_preview/pitchbench_e6_slightly_off/run_001_20260506_070009/results_openrouter_google_gemini_3_1_pro_preview.json.gz",
-      "sha256": "53cc2e5c7d5a52a561ddad07658de3e2cc2e1ae276519a620734826a9877a3a0"
-    },
-    {
-      "model": "openrouter_google_gemini_flash_latest",
-      "task": "E6",
-      "path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e6_slightly_off/run_001_20260506_194648/results_openrouter_google_gemini_flash_latest.json.gz",
-      "sha256": "77072c7ef1d33b96220baa0723dde25ab38225e7ef912482573e67dc1d684b6b"
-    },
-    {
-      "model": "openrouter_openai_gpt_4o_audio_preview",
-      "task": "E6",
-      "path": "paper/evaluation/_openrouter_openai_gpt_4o_audio_preview/pitchbench_e6_slightly_off/run_001_20260506_073628/results_openrouter_openai_gpt_4o_audio_preview.json.gz",
-      "sha256": "16e9b9243f26c6cb84494b9c47fb28f03e3168c94d07ed94dd9f9cea15eef565"
-    },
-    {
-      "model": "dashscope_qwen3_5_omni_plus",
-      "task": "E6",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_plus/pitchbench_e6_slightly_off/run_001_20260507_001236/results_dashscope2_qwen3_5_omni_plus.json.gz",
-      "sha256": "c295a27a4add8ff1cf7b89f25ef547e2ca7ad49234c877ed6c76b6c80d448e7a"
-    },
-    {
-      "model": "dashscope_qwen3_5_omni_flash",
-      "task": "E6",
-      "path": "paper/evaluation/_dashscope_qwen3_5_omni_flash/pitchbench_e6_slightly_off/run_001_20260506_234322/results_dashscope2_qwen3_5_omni_flash.json.gz",
-      "sha256": "aaeb79d135c257240d0c37321b06ba202d742821fde0c98f726b3ec2df743418"
+      "sha256": "b7648cd7d9d0cd680cd2592cb72016cf113ec2f3305ef6ce9fb59c5fb8c115cf"
     },
     {
       "model": "baseline/dsp",
       "task": "E6",
       "path": "results/table1-recomputed/baselines/dsp_yin_harmonic_cqt_adapter_v2/pitchbench_e6_slightly_off/results_dsp_yin_harmonic_cqt_adapter_v2.json.gz",
-      "sha256": "cb4504f737275720aa3f84acbdab2e5cdc571e311df32c20b5afcbba88737cf9"
+      "sha256": "555ef3b6eaece9c76d8e3529b614180f11f9f2e500bb5a4537bbb8e5e5ec2e97"
     },
     {
       "model": "baseline/basic-pitch",
       "task": "E6",
       "path": "results/table1-recomputed/baselines/spotify_basic_pitch_0_4_0_adapter_v2/pitchbench_e6_slightly_off/results_spotify_basic_pitch_0_4_0_adapter_v2.json.gz",
-      "sha256": "84bf8b095173b7e2840414aeaa58fa3c7fc5cd17aabbf02e06f14bae455b939a"
+      "sha256": "cdb244b0c939d43d97ecb1abff5deb94fd1f0878ed088426f242bed367f9a396"
     },
     {
       "model": "audio_flamingo_next_instruct",
@@ -1586,169 +1580,169 @@
   "datasets": [
     {
       "task": "A1",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_a1_single_pitch_id/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_a1_single_pitch_id/test-00000-of-00001.parquet",
       "sha256": "2c8ca7e51080ce75bbb6c27ca5c105efd379bbf627c2a4227883dc975a9d04c5",
       "n_samples": 1159
     },
     {
       "task": "A2",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_a2_single_pitch_by_loudness/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_a2_single_pitch_by_loudness/test-00000-of-00001.parquet",
       "sha256": "38f7f36a0272a21da50b888ffbe99d9be3194ed66360b11070121c7f51655cbb",
       "n_samples": 200
     },
     {
       "task": "A3",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_a3_single_pitch_by_duration/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_a3_single_pitch_by_duration/test-00000-of-00001.parquet",
       "sha256": "59152c7114155deeea222fd93f8cbcdb78afe3d82f605fb1c6be98f4a2762067",
       "n_samples": 210
     },
     {
       "task": "B1",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b1_single_pitch_within_silence/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_b1_single_pitch_within_silence/test-00000-of-00001.parquet",
       "sha256": "27c084428a3b8f0b9b38a5c71725fc80a658b0096a32f06d75c9d8623ea2a7d2",
       "n_samples": 160
     },
     {
       "task": "B2",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b2_pitch_at_timestamp/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_b2_pitch_at_timestamp/test-00000-of-00001.parquet",
       "sha256": "bae8122519410fa0fe6b26c95cc1993142d5c9e3a3efa5f30f56b3853bbc6183",
       "n_samples": 150
     },
     {
       "task": "B3",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b3_timestamp_single_pitch/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_b3_timestamp_single_pitch/test-00000-of-00001.parquet",
       "sha256": "d4c1359c032c05d3dc90785efd939670a489af2268dd98475715362ee358686f",
       "n_samples": 160
     },
     {
       "task": "B4",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b4_timestamp_specific_pitch/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_b4_timestamp_specific_pitch/test-00000-of-00001.parquet",
       "sha256": "5e97c49be3f612d329e200f488485ec9116e0e2930b45ecf30466efd19b5265a",
       "n_samples": 120
     },
     {
       "task": "B5",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_b5_timestamp_multiple_pitches/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_b5_timestamp_multiple_pitches/test-00000-of-00001.parquet",
       "sha256": "cc65b83b40fdd919cb4168c8d71947a70a9ddd856a808778a61e92cf82fbafd0",
       "n_samples": 120
     },
     {
       "task": "C1",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c1_chord_count_pitches/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_c1_chord_count_pitches/test-00000-of-00001.parquet",
       "sha256": "21e52a29eb66595219bb6788993aab1c9bfaefa8c885dcc19cc30a435da80002",
       "n_samples": 228
     },
     {
       "task": "C2",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c2_chord_dyad_interval/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_c2_chord_dyad_interval/test-00000-of-00001.parquet",
       "sha256": "adad0f2011dc766f29912d8abe959c54b06e401593b3500416de745f1166edae",
       "n_samples": 232
     },
     {
       "task": "C3",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c3_chord_quality/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_c3_chord_quality/test-00000-of-00001.parquet",
       "sha256": "84eaf36899bbaba1fab20fdac0e6c64ca3791134051eb8f0bb9a1afd56f5f44b",
       "n_samples": 192
     },
     {
       "task": "C4",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_c4_chord_pitches/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_c4_chord_pitches/test-00000-of-00001.parquet",
       "sha256": "1118e278def6828b94333396911120fe47fd651ab0ed085eddaf43f60a851990",
       "n_samples": 200
     },
     {
       "task": "D1",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d1_sequence_count_pitches/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d1_sequence_count_pitches/test-00000-of-00001.parquet",
       "sha256": "0807fabab97bc26370e3b05a1d4c78161ec6668dd5ff63034d70c55e01e63ae0",
       "n_samples": 140
     },
     {
       "task": "D2",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d2_dyad_lower_higher_difference/test-00000-of-00001.parquet",
-      "sha256": "826252d262c7b53a835d9286431d3b748d2c42331ddb8847186f38ead8899e05",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d2_dyad_lower_higher_difference/test-00000-of-00001.parquet",
+      "sha256": "ba75b45f412f86b0f44458a7d13bae5c4b8b14bb0484834b79b9d71eda385125",
       "n_samples": 132
     },
     {
       "task": "D3",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d3_contour_discrete/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d3_contour_discrete/test-00000-of-00001.parquet",
       "sha256": "d8c30f3e87a30df24650842f9d16b820bae83f78976997a5db0cabe434c241c0",
       "n_samples": 180
     },
     {
       "task": "D4",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d4_contour_continuous/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d4_contour_continuous/test-00000-of-00001.parquet",
       "sha256": "1b8a43496cd9cc943a3e2516024871f4224c523db378f5d2e17aaf604e333908",
       "n_samples": 160
     },
     {
       "task": "D5",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d5_sequence_ranking_by_pitch/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d5_sequence_ranking_by_pitch/test-00000-of-00001.parquet",
       "sha256": "6c72076c822210909954e02f545cef5b75eb4125aac376fbf5bf25f58243fa05",
       "n_samples": 120
     },
     {
       "task": "D6",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d6_sequence_dyad_interval/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d6_sequence_dyad_interval/test-00000-of-00001.parquet",
       "sha256": "29caff8db6bc4ac525a2ef585cbeb87bd7a767089d6a53c94a5a450253173e9e",
       "n_samples": 236
     },
     {
       "task": "D7a",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d7a_pitch_with_reference/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d7a_pitch_with_reference/test-00000-of-00001.parquet",
       "sha256": "43300bff0fd93be6c6ffd0afe160ce0cf8d36e3c9c012a97e087c31ccb108214",
       "n_samples": 130
     },
     {
       "task": "D8",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_d8_sequence_pitches/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_d8_sequence_pitches/test-00000-of-00001.parquet",
       "sha256": "4c7b47b966218a9555faaf43fd8dd121283bfc0a0224e9297c165c5f40359ff5",
       "n_samples": 171
     },
     {
       "task": "E1",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e1_audio_effects/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e1_audio_effects/test-00000-of-00001.parquet",
       "sha256": "7f7ac2e0ac89e820e56d675c975666ad3ff6cf68faed468cdeadf8d1fa7d3b2b",
       "n_samples": 240
     },
     {
       "task": "E2",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e2_background/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e2_background/test-00000-of-00001.parquet",
       "sha256": "d23f5022ea0b9b8afd01f47aec59747ee04a11b584d3e7cc97ce3a6b017eda79",
       "n_samples": 240
     },
     {
       "task": "E3",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e3_harmonic_saturation/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e3_harmonic_saturation/test-00000-of-00001.parquet",
       "sha256": "7234f89254e517f1d3aac2fb2717815bbf8fb30a8a322dcd748ed27edc00fc20",
       "n_samples": 120
     },
     {
       "task": "E4",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e4_time_stretching/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e4_time_stretching/test-00000-of-00001.parquet",
       "sha256": "357b9af049fc896d4557e587b818156c848058528e531429036a1ca11f1a783d",
       "n_samples": 192
     },
     {
       "task": "E5",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e5_vibrato/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e5_vibrato/test-00000-of-00001.parquet",
       "sha256": "5c68c414587344740dd1fa14d55073657d3e1ddbfbb614d42ac20c77501a071c",
       "n_samples": 160
     },
     {
       "task": "E6",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_e6_slightly_off/test-00000-of-00001.parquet",
-      "sha256": "59c703c55c99f552171619e925eddf70ab99cae3103e82732c878f1766319c44",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_e6_slightly_off/test-00000-of-00001.parquet",
+      "sha256": "e8485aa19c45ab08eabb81b489a9253f3115c209b39a25aaf6a0bb86384b9d74",
       "n_samples": 160
     },
     {
       "task": "F1",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_f1_melodic_line_atonal/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_f1_melodic_line_atonal/test-00000-of-00001.parquet",
       "sha256": "7d858f44ddef92b6fe366c13a700722fb331cda1fc9dacfd12e2c9aafd7bdaca",
       "n_samples": 130
     },
     {
       "task": "F2",
-      "path": "${VACLAB_ROOT}/data/pitchbench/raw/f6c672608057cb877bfaacaeeff9bfb49eef7778/pitchbench_f2_melodic_line_tonal/test-00000-of-00001.parquet",
+      "path": "${VACLAB_ROOT}/data/pitchbench/raw/6aebaf876b7d7d0c95d28cacdb808f4dc75f0829/pitchbench_f2_melodic_line_tonal/test-00000-of-00001.parquet",
       "sha256": "80dd7b695df9bfac524be65e6fb71215bec0c72045812ba841bb2b3c8eec1ac7",
       "n_samples": 160
     }
@@ -1763,10 +1757,65 @@
         "C2_cello_in_silence_at22000ms_for5000ms_of60000ms.wav",
         "C4_piano_in_silence_at53000ms_for5000ms_of60000ms.wav"
       ]
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "D2",
+      "expected": 132,
+      "observed": 0,
+      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "D2",
+      "expected": 132,
+      "observed": 0,
+      "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "D2",
+      "expected": 132,
+      "observed": 0,
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "D2",
+      "expected": 132,
+      "observed": 0,
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "openrouter_google_gemini_flash_latest",
+      "task": "E6",
+      "expected": 160,
+      "observed": 0,
+      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
+    },
+    {
+      "model": "openrouter_openai_gpt_4o_audio_preview",
+      "task": "E6",
+      "expected": 160,
+      "observed": 0,
+      "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_plus",
+      "task": "E6",
+      "expected": 160,
+      "observed": 0,
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
+    },
+    {
+      "model": "dashscope_qwen3_5_omni_flash",
+      "task": "E6",
+      "expected": 160,
+      "observed": 0,
+      "reason": "Previous answer used invalid instrument audio; corrected-data Qwen rerun delegated to owner collaborator."
     }
   ],
   "score_mismatches": 0,
-  "total_responses": 46414,
-  "cells": 224,
-  "source_tree_modified": true
+  "total_responses": 45246,
+  "cells": 224
 }
