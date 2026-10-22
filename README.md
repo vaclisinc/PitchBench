@@ -14,6 +14,7 @@
 
 <br/>
 
+[![arXiv](https://img.shields.io/badge/arXiv-2605.26176-b31b1b.svg)](https://arxiv.org/abs/2605.26176)
 [![NeurIPS 2026 E&D](https://img.shields.io/badge/NeurIPS_2026-Evaluations_%26_Datasets-8c1b13.svg)](https://neurips.cc/Conferences/2026)
 [![Hugging Face dataset](https://img.shields.io/badge/%F0%9F%A4%97_Dataset-vaclis%2FPitchBench-ffcc4d.svg)](https://huggingface.co/datasets/vaclis/PitchBench)
 [![PyPI](https://img.shields.io/pypi/v/pitchbench.svg?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/pitchbench/)
@@ -376,6 +377,20 @@ uv run pytest
 Tests cover CLI resolution, Parquet I/O, result aggregation, sequence scoring,
 baseline adapters, Table 1 consistency, sampling, and API routing. No network
 calls or audio generation required.
+
+## Citation
+
+```bibtex
+@misc{dujardin2026pitchbench,
+  title         = {PitchBench: Measuring Pitch Hearing in Audio-Language Models},
+  author        = {Milan Liessens Dujardin and Song-Ze Yu and Craver Corbyn Thomas-Smith and David M. Chan and Karina Nguyen},
+  year          = {2026},
+  eprint        = {2605.26176},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SD},
+  url           = {https://arxiv.org/abs/2605.26176},
+}
+```
 
 ## License
 
