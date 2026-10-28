@@ -105,7 +105,7 @@ baseline/dsp,pitchbench_d1_sequence_count_pitches,accuracy,140,0.764285714285714
 baseline/basic-pitch,pitchbench_d1_sequence_count_pitches,accuracy,140,0.4285714285714285714285714286,42.9%,1
 audio_flamingo_next_instruct,pitchbench_d2_dyad_lower_higher_difference,accuracy,132,0.5151515151515151515151515152,51.5%,1
 openrouter_google_gemini_3_1_pro_preview,pitchbench_d2_dyad_lower_higher_difference,accuracy,132,0.7121212121212121212121212121,71.2%,1
-openrouter_google_gemini_flash_latest,pitchbench_d2_dyad_lower_higher_difference,accuracy,0,,—,0
+openrouter_google_gemini_flash_latest,pitchbench_d2_dyad_lower_higher_difference,accuracy,132,0.5,50.0%,1
 openrouter_openai_gpt_4o_audio_preview,pitchbench_d2_dyad_lower_higher_difference,accuracy,0,,—,0
 dashscope_qwen3_5_omni_plus,pitchbench_d2_dyad_lower_higher_difference,accuracy,0,,—,0
 dashscope_qwen3_5_omni_flash,pitchbench_d2_dyad_lower_higher_difference,accuracy,0,,—,0
@@ -201,7 +201,7 @@ baseline/dsp,pitchbench_e5_vibrato,accuracy,160,0.85625,85.6%,1
 baseline/basic-pitch,pitchbench_e5_vibrato,accuracy,160,0.6875,68.8%,1
 audio_flamingo_next_instruct,pitchbench_e6_slightly_off,accuracy,160,0.48125,48.1%,1
 openrouter_google_gemini_3_1_pro_preview,pitchbench_e6_slightly_off,accuracy,160,0.13125,13.1%,1
-openrouter_google_gemini_flash_latest,pitchbench_e6_slightly_off,accuracy,0,,—,0
+openrouter_google_gemini_flash_latest,pitchbench_e6_slightly_off,accuracy,160,0.16875,16.9%,1
 openrouter_openai_gpt_4o_audio_preview,pitchbench_e6_slightly_off,accuracy,0,,—,0
 dashscope_qwen3_5_omni_plus,pitchbench_e6_slightly_off,accuracy,0,,—,0
 dashscope_qwen3_5_omni_flash,pitchbench_e6_slightly_off,accuracy,0,,—,0

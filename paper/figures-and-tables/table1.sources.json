@@ -77,30 +77,20 @@
       "model": "openrouter_openai_gpt_4o_audio_preview",
       "task": "D2",
       "reason": "Original OpenRouter model ID is unavailable (HTTP 400 on 2026-10-07); no substitute model scored."
-    },
-    {
-      "model": "openrouter_google_gemini_flash_latest",
-      "task": "E6",
-      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
-    },
-    {
-      "model": "openrouter_google_gemini_flash_latest",
-      "task": "D2",
-      "reason": "Original ~google/gemini-flash-latest alias now resolves to Gemini 3.8 Flash (verified 2026-10-07); no mixed-version score substituted into the Gemini 3 Flash column."
     }
   ],
   "sources": {
     "recomputed": {
       "path": "results/table1-recomputed/metrics.csv",
-      "sha256": "a6703ed0f1b07b916990971255f67a6e47b310aff600ded44de172a3e0e8ed68"
+      "sha256": "a736c9197081dcf42bd98674989292c91688e113332b395739d48647a9ff2fc7"
     },
     "audit": {
       "path": "results/table1-recomputed/run.json",
-      "sha256": "28634c2d31fd6626dc8f6620c4cbfcd6d21e3149e34eca71028fe7b967813e51"
+      "sha256": "9e3963a7745ca62074fe1a44d06e9e9cb7a80a6a79f399123fe205942fdd87cf"
     },
     "unavailable": {
       "path": "results/table1-recomputed/unavailable.json",
-      "sha256": "c8c99ca5a93be971246d79e658d2fc1ac7906c18cb902f8d2be7777dd27f4f29"
+      "sha256": "7313a6caa5342ce12d48385e0c566d0fb48eb9b820d74062a2b3c8f85e356039"
     }
   }
 }

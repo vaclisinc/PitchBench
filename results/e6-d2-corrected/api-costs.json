@@ -3,6 +3,9 @@
   "gemini_pro_preflight_usd": 0.007202,
   "flash_alias_availability_usd": 0.00052425,
   "gemini_pro_latency_probe_usd": 0.001842,
-  "total_usd": 1.10109425,
-  "formal_gemini_pro_calls": 612
+  "total_usd": 1.18386425,
+  "formal_gemini_pro_calls": 612,
+  "formal_gemini_3_flash_usd": 0.082175,
+  "gemini_3_flash_preflight_usd": 0.000595,
+  "formal_gemini_3_flash_calls": 612
 }

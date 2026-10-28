@@ -11,28 +11,31 @@
   "child_runs": [
     "e6-d2-corrected-baselines",
     "e6-d2-corrected-af-next",
-    "e6-d2-corrected-gemini-pro"
+    "e6-d2-corrected-gemini-pro",
+    "e6-d2-corrected-gemini-3-flash"
   ],
   "rerun_models": [
     "baseline/dsp",
     "baseline/basic-pitch",
     "audio_flamingo_next_instruct",
-    "openrouter/google/gemini-3.1-pro-preview"
+    "openrouter/google/gemini-3.1-pro-preview",
+    "openrouter/google/gemini-3-flash-preview"
   ],
   "unavailable_manifest": "results/table1-recomputed/unavailable.json",
-  "api_cost_usd": 1.10109425,
-  "formal_api_calls": 612,
+  "api_cost_usd": 1.18386425,
+  "formal_api_calls": 1224,
   "verification": {
     "unchanged_other_task_score_rows": 208,
     "unchanged_other_task_evidence_files": 215,
-    "rerun_cells": 8,
-    "unavailable_cells": 8,
+    "rerun_cells": 10,
+    "unavailable_cells": 6,
     "replay_primary_score_mismatches": 0,
     "formal_pro_calls": 612,
     "all_affected_rows_identity_matched": true,
-    "pytest_passed": 151,
-    "pytest_skipped": 0,
-    "table_check": "passed"
+    "pytest_passed": 144,
+    "pytest_skipped": 7,
+    "table_check": "passed",
+    "formal_flash_calls": 612
   },
   "replay_receipt": "results/table1-recomputed/run.json"
 }

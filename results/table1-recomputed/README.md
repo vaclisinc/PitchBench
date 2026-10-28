@@ -1,15 +1,17 @@
 # Table 1 evidence
 
-This bundle supplies 216 available scores and eight explicit invalidations in
+This bundle supplies 218 available scores and six explicit invalidations in
 the 28-task, eight-model comparison. The table builder reads `metrics.csv` and
 computes the equal-weight mean only for models with all 28 scores.
 
 The [E6/D2 correction bundle](../e6-d2-corrected/README.md) records new ALM and
 baseline inference, old/new scores, model availability and actual API costs.
-Qwen was deferred by the owner; the original GPT-4o endpoint is unavailable,
-and the historical Flash alias now resolves to a different model. Their
-E6/D2 cells and overall means are shown as — (blank in CSV). The old answer
+Qwen was deferred by the owner and the original GPT-4o endpoint is unavailable;
+their E6/D2 cells and overall means are shown as — (blank in CSV). The old answer
 files remain historical records and are excluded by `unavailable.json`.
+Gemini 3 Flash E6/D2 were rerun with `google/gemini-3-flash-preview`, presumed
+to be the model behind the historical `~google/gemini-flash-latest` alias on
+2026-05-06 (not directly recorded).
 
 ## Protocol
 
@@ -22,7 +24,7 @@ files remain historical records and are excluded by `unavailable.json`.
   matching; F1/F2 use ±1%. Other tasks use accuracy.
 - Means retain full precision. Percentages display one decimal using
   ROUND_HALF_UP; displayed ties share the same rank.
-- Available ALM scores are reparsed from 33,642 saved responses against official
+- Available ALM scores are reparsed from 33,934 saved responses against official
   ground truth. Both baselines cover all 5,802 stimuli: E6/D2 were rerun on
   corrected audio; the other 26 task answers and provenance are unchanged.
 
@@ -56,8 +58,8 @@ in this bundle and the generated Table 1 exports.
 
 ## Coverage
 
-The replay verifies 45,246 usable responses and all 224 cell slots (216 scored,
-eight explicitly unavailable), with zero score mismatches. The DSP overall
+The replay verifies 45,538 usable responses and all 224 cell slots (218 scored,
+six explicitly unavailable), with zero score mismatches. The DSP overall
 is 73.2236292106%; Basic Pitch is 75.2324890337%.
 
 GPT-4o B1 has 158 saved responses out of 160 stimuli. Its score uses those 158

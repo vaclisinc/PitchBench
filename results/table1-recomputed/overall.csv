@@ -1,7 +1,7 @@
 model,n_tasks,score
 audio_flamingo_next_instruct,28,0.18632458986153494
 openrouter_google_gemini_3_1_pro_preview,28,0.19817344938327253
-openrouter_google_gemini_flash_latest,26,
+openrouter_google_gemini_flash_latest,28,0.1569972957197737
 openrouter_openai_gpt_4o_audio_preview,26,
 dashscope_qwen3_5_omni_plus,26,
 dashscope_qwen3_5_omni_flash,26,

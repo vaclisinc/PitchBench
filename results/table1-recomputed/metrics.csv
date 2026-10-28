@@ -105,7 +105,7 @@ baseline/dsp,D1,accuracy,140,140,107.0,0.7642857142857142
 baseline/basic-pitch,D1,accuracy,140,140,60.0,0.42857142857142855
 audio_flamingo_next_instruct,D2,accuracy,132,132,68.0,0.5151515151515151
 openrouter_google_gemini_3_1_pro_preview,D2,accuracy,132,132,94.0,0.7121212121212122
-openrouter_google_gemini_flash_latest,D2,accuracy,0,132,,
+openrouter_google_gemini_flash_latest,D2,accuracy,132,132,66.0,0.5
 openrouter_openai_gpt_4o_audio_preview,D2,accuracy,0,132,,
 dashscope_qwen3_5_omni_plus,D2,accuracy,0,132,,
 dashscope_qwen3_5_omni_flash,D2,accuracy,0,132,,
@@ -201,7 +201,7 @@ baseline/dsp,E5,accuracy,160,160,137.0,0.85625
 baseline/basic-pitch,E5,accuracy,160,160,110.0,0.6875
 audio_flamingo_next_instruct,E6,accuracy,160,160,77.0,0.48125
 openrouter_google_gemini_3_1_pro_preview,E6,accuracy,160,160,21.0,0.13125
-openrouter_google_gemini_flash_latest,E6,accuracy,0,160,,
+openrouter_google_gemini_flash_latest,E6,accuracy,160,160,27.0,0.16875
 openrouter_openai_gpt_4o_audio_preview,E6,accuracy,0,160,,
 dashscope_qwen3_5_omni_plus,E6,accuracy,0,160,,
 dashscope_qwen3_5_omni_flash,E6,accuracy,0,160,,

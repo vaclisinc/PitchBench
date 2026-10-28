@@ -150,5 +150,43 @@
       "cost_reported": true
     },
     "usage_source": "gemini-pro-session-cost.json"
+  },
+  {
+    "model": "openrouter_google_gemini_flash_latest",
+    "task": "E6",
+    "n_samples": 160,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-gemini-3-flash/results/evaluation/openrouter_google_gemini_3_flash_preview/e6-d2-corrected/pitchbench_e6_slightly_off/results_openrouter_google_gemini_3_flash_preview.json",
+    "raw_sha256": "a95b7cb537ef1a0c2116d029377c1d8c7e783daad4e89cb5b0671e9ce77d2d65",
+    "committed_path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_e6_slightly_off/run_001_20260506_194648/results_openrouter_google_gemini_flash_latest.json.gz",
+    "committed_sha256": "839a2da51448f482798dc9925604c216a87d26dcce19080329597407072c15be",
+    "usage": {
+      "calls": 480,
+      "prompt_tokens": 68452,
+      "completion_tokens": 1268,
+      "total_tokens": 69720,
+      "cached_tokens": 0,
+      "cost_usd": 0.05633,
+      "cost_reported": true
+    },
+    "usage_source": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-gemini-3-flash/results/evaluation/openrouter_google_gemini_3_flash_preview/e6-d2-corrected/_sessions/20261028_174634/cost_summary.json"
+  },
+  {
+    "model": "openrouter_google_gemini_flash_latest",
+    "task": "D2",
+    "n_samples": 132,
+    "raw_path": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-gemini-3-flash/results/evaluation/openrouter_google_gemini_3_flash_preview/e6-d2-corrected/pitchbench_d2_dyad_lower_higher_difference/results_openrouter_google_gemini_3_flash_preview.json",
+    "raw_sha256": "f3f3205cff952307c1a8eee51a371292bc61758e5e9ce20eb6889da2b2787691",
+    "committed_path": "paper/evaluation/_openrouter_google_gemini_flash_latest/pitchbench_d2_dyad_lower_higher_difference/run_001_20260506_193445/results_openrouter_google_gemini_flash_latest.json.gz",
+    "committed_sha256": "46c62440b07c9bf010701f80fb131ddbb77426d803646e4a307df8f12601111c",
+    "usage": {
+      "calls": 132,
+      "prompt_tokens": 27821,
+      "completion_tokens": 134,
+      "total_tokens": 27955,
+      "cached_tokens": 0,
+      "cost_usd": 0.025845,
+      "cost_reported": true
+    },
+    "usage_source": "${VACLAB_ROOT}/outputs/pitchbench/e6-d2-corrected-gemini-3-flash/results/evaluation/openrouter_google_gemini_3_flash_preview/e6-d2-corrected/_sessions/20261028_174634/cost_summary.json"
   }
 ]
