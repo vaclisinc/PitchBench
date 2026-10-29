@@ -40,7 +40,6 @@ MODELS = (
     "audio_flamingo_next_instruct",
     "openrouter_google_gemini_3_1_pro_preview",
     "openrouter_google_gemini_flash_latest",
-    "openrouter_openai_gpt_4o_audio_preview",
     "dashscope_qwen3_5_omni_plus",
     "dashscope_qwen3_5_omni_flash",
 )
@@ -48,12 +47,11 @@ NAMES = (
     "Audio Flamingo Next",
     "Gemini 3.1 Pro",
     "Gemini Flash",
-    "GPT-4o Audio",
     "Qwen 3.5 Omni Plus",
     "Qwen 3.5 Omni Flash",
 )
-COLORS = ("#287C80", "#9F6A2C", "#B39A3F", "#4477AA", "#705098", "#BA667F")
-MARKERS = ("o", "s", "^", "D", "P", "X")
+COLORS = ("#287C80", "#9F6A2C", "#B39A3F", "#705098", "#BA667F")
+MARKERS = ("o", "s", "^", "P", "X")
 FORMATS = ("midi", "spn", "hz")
 PITCH_MIN, PITCH_MAX = 29, 89
 INK = "#252C34"
@@ -384,7 +382,7 @@ def figure2(out: Path, qa_scripts: Path | None) -> dict:
     write_csv(out / "figure2_prediction_counts.csv", sparse)
     covered = {(r["model"], r["format"]): r["n_in_range"] / r["n_total"] for r in coverage}
     fig = plt.figure(figsize=(WIDTH_IN, 2.75))
-    # Eighteen equal axes; model titles sit above, never on the heatmap.
+    # Three equal axes per model; model titles sit above, never on the heatmap.
     grid = fig.add_gridspec(3, 6, left=.075, right=.985, bottom=.20, top=.87,
                            wspace=.24, hspace=.78)
     axes = []
@@ -402,7 +400,7 @@ def figure2(out: Path, qa_scripts: Path | None) -> dict:
             ax.tick_params(pad=1.5, length=1.5, labelsize=5.3)
             if j != 0:
                 ax.tick_params(labelleft=False)
-            if row != 2:
+            if idx + 2 < len(MODELS):
                 ax.tick_params(labelbottom=False)
             for spine in ax.spines.values():
                 spine.set_visible(True)
@@ -424,7 +422,7 @@ def figure2(out: Path, qa_scripts: Path | None) -> dict:
     fig.text(.075, .060, "Titles: % of responses within MIDI 29–89", fontsize=5.6)
     fig.text(.735, .065, "Probability", ha="right", fontsize=5.6)
     geometry = export(fig, out, "figure2_pitch_confusion", qa_scripts,
-                      axes=axes, panel_ids=[f"{chr(97+i//3)}-{FORMATS[i%3]}" for i in range(18)])
+                      axes=axes, panel_ids=[f"{chr(97+i//3)}-{FORMATS[i%3]}" for i in range(3 * len(MODELS))])
     return {
         "inputs": inputs, "geometry": geometry,
         "normalization": "P(rounded predicted MIDI | ground-truth MIDI, valid prediction in 29–89)",
@@ -437,7 +435,8 @@ def figure2(out: Path, qa_scripts: Path | None) -> dict:
 
 def figure3(out: Path, qa_scripts: Path | None) -> dict:
     path = REPO / "paper/figures-and-tables/accuracies_by_pitch.csv"
-    rows = read_csv(path)
+    rows = [r for r in read_csv(path) if r["model"] in MODELS]
+    n_kept = len(rows)
     pitches = tuple(range(48, 73))
     check_aggregate(rows, ("midi", "spn"), pitches)
     values = {(r["model"], r["format"], int(r["pitch"])): float(r["accuracy"]) * 100 for r in rows}
@@ -469,12 +468,12 @@ def figure3(out: Path, qa_scripts: Path | None) -> dict:
     return {"inputs": [source(path)], "geometry": geometry, "n_cells": len(rows),
             "aggregation": "Unmodified saved sample-weighted accuracy for each model, notation and pitch.",
             "uncertainty": "Not supplied in the source aggregate; no intervals inferred.",
-            "exclusions": "None: all 300 source rows retained, covering MIDI/SPN and C3–C5."}
+            "exclusions": f"GPT-4o audio rows dropped; {n_kept} rows retained, covering MIDI/SPN and C3–C5."}
 
 
 def figure4(out: Path, qa_scripts: Path | None) -> dict:
     path = REPO / "paper/figures-and-tables/accuracies_by_notation.csv"
-    rows = read_csv(path)
+    rows = [r for r in read_csv(path) if r["model"] in MODELS]
     formats = ("midi", "spn", "doremi", "hz", "any")
     check_aggregate(rows, formats)
     values = {(r["model"], r["format"]): float(r["accuracy"]) * 100 for r in rows}
@@ -485,22 +484,22 @@ def figure4(out: Path, qa_scripts: Path | None) -> dict:
     aggregate = fig.add_subplot(grid[0, 4])
     ax.imshow(matrix, cmap=CMAP, vmin=0, vmax=100, aspect="auto", interpolation="nearest")
     ax.set(xticks=range(4), xticklabels=["MIDI", "SPN", "DoReMi", "Hz"],
-           yticks=range(6), yticklabels=NAMES)
+           yticks=range(len(MODELS)), yticklabels=NAMES)
     ax.xaxis.tick_top()
     ax.tick_params(axis="both", length=0, pad=5, labelsize=6.4)
     for label, color in zip(ax.get_yticklabels(), COLORS):
         label.set_color(color)
     ax.set_xticks(np.arange(-.5, 4, 1), minor=True)
-    ax.set_yticks(np.arange(-.5, 6, 1), minor=True)
+    ax.set_yticks(np.arange(-.5, len(MODELS), 1), minor=True)
     ax.grid(which="minor", color="white", linewidth=1.2)
     ax.tick_params(which="minor", length=0)
-    for i in range(6):
+    for i in range(len(MODELS)):
         for j in range(4):
             value = matrix[i, j]
             ax.text(j, i, f"{value:.1f}", ha="center", va="center", fontsize=7,
                     color="white" if value >= 75 else INK,
                     weight="bold" if value == matrix[i].max() else "normal")
-    aggregate.set(xlim=(-.5, .5), ylim=(5.5, -.5), yticks=[], xticks=[0], xticklabels=["ANY"])
+    aggregate.set(xlim=(-.5, .5), ylim=(len(MODELS) - .5, -.5), yticks=[], xticks=[0], xticklabels=["ANY"])
     aggregate.xaxis.tick_top()
     aggregate.tick_params(axis="x", length=0, pad=5, labelsize=6.4)
     for i, model in enumerate(MODELS):
@@ -522,7 +521,7 @@ def figure4(out: Path, qa_scripts: Path | None) -> dict:
                       axes=[ax, aggregate], panel_ids=["formats", "aggregate"])
     return {"inputs": [source(path)], "geometry": geometry, "n_cells": len(rows),
             "aggregation": "Sample-weighted four-format diagnostic accuracy. ANY is a cross-format aggregate with a separate denominator, not a fifth requested format or the Table 1 overall.",
-            "uncertainty": "Not supplied; no intervals inferred.", "exclusions": "None: all 30 rows retained."}
+            "uncertainty": "Not supplied; no intervals inferred.", "exclusions": f"GPT-4o audio rows dropped; {len(rows)} rows retained."}
 
 
 def main() -> None:
