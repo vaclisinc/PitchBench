@@ -1,0 +1,44 @@
+{
+  "run_id": "t3-e6-corrected",
+  "project": "pitchbench",
+  "status": "succeeded",
+  "command": "pitchbench.experiments.run analyze e6 --preset q1 --paper-formats --model <MODEL> --run-name t3-e6-corrected (LD_LIBRARY_PATH=<fluidsynth 3.5.6 lib>, PITCHBENCH_SF2=data/soundfonts/FluidR3_GM.sf2)",
+  "dataset_ids": [
+    "PitchBench analysis preset q1, E6 grid regenerated with the fixed sound engine (252 stimuli)"
+  ],
+  "models": [
+    {
+      "model": "audio_flamingo_next_instruct",
+      "queue_job": "pitchbench--t3-e6-corrected-af-next",
+      "git_commit": "5f575620053130198316258aca2f16c84ffcf19c",
+      "status": "succeeded",
+      "started_at": "2026-10-29T14:55:55Z",
+      "finished_at": "2026-10-29T15:03:45Z",
+      "run_dir": "${VACLAB_ROOT}/outputs/pitchbench/t3-e6-corrected-af-next",
+      "answers": "answers/audio_flamingo_next_instruct.json.gz",
+      "raw_sha256": "e44553c6623f161e806db1bb3771cc3e705db90f099ce6e5e4ead406d820d477"
+    },
+    {
+      "model": "openrouter_google_gemini_3_1_pro_preview",
+      "queue_job": "pitchbench--t3-e6-corrected-gemini-pro",
+      "git_commit": "5f575620053130198316258aca2f16c84ffcf19c",
+      "status": "succeeded",
+      "started_at": "2026-10-29T14:55:53Z",
+      "finished_at": "2026-10-29T15:02:46Z",
+      "run_dir": "${VACLAB_ROOT}/outputs/pitchbench/t3-e6-corrected-gemini-pro",
+      "answers": "answers/openrouter_google_gemini_3_1_pro_preview.json.gz",
+      "raw_sha256": "6759bc60a2d573681cfd87048af9bc04a03e1b6e283751e077a810418a9a46a2"
+    },
+    {
+      "model": "openrouter_google_gemini_3_flash_preview",
+      "queue_job": "pitchbench--t3-e6-corrected-gemini-3-flash",
+      "git_commit": "5f575620053130198316258aca2f16c84ffcf19c",
+      "status": "succeeded",
+      "started_at": "2026-10-29T14:55:53Z",
+      "finished_at": "2026-10-29T14:59:21Z",
+      "run_dir": "${VACLAB_ROOT}/outputs/pitchbench/t3-e6-corrected-gemini-3-flash",
+      "answers": "answers/openrouter_google_gemini_3_flash_preview.json.gz",
+      "raw_sha256": "0e0cbce226483778687b300306222794ac3bf72fe5462eb6e72f138b31efcc8f"
+    }
+  ]
+}

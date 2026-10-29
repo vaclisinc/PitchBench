@@ -1,0 +1,4 @@
+model,task,condition,n,correct_any,accuracy_any,empty_responses,api_cost_usd
+audio_flamingo_next_instruct,E6,detuning,252,39,0.15476190476190477,0,0.0
+openrouter_google_gemini_3_1_pro_preview,E6,detuning,252,25,0.0992063492063492,19,1.400222
+openrouter_google_gemini_3_flash_preview,E6,detuning,252,13,0.051587301587301584,0,0.125691
