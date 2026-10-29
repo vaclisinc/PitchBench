@@ -542,26 +542,25 @@ def cmd_analyze(args: argparse.Namespace) -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
     config.RESULTS_DIR = run_dir
 
-    # Apply preset overrides (config attribute patching).
+    # Apply preset overrides (config attribute patching). Explicit experiments
+    # select a subset but keep the preset's condition grid.
     known_names = discover()
-    if args.experiments:
-        # User specified explicit experiments; ignore preset experiment list.
-        names = _resolve_experiments(args.experiments)
-    else:
-        preset_exp_names = _apply_analysis_preset(preset_name)
-        if preset_exp_names is None:
-            sys.exit(f"Unknown analysis preset '{preset_name}'. "
-                     f"Available: {sorted(_analysis_presets().keys())}")
-        unknown = [n for n in preset_exp_names if n not in known_names]
-        if unknown:
-            sys.exit(f"Preset '{preset_name}' references unknown experiment(s): {unknown}")
-        names = preset_exp_names
+    preset_exp_names = _apply_analysis_preset(preset_name)
+    if preset_exp_names is None:
+        sys.exit(f"Unknown analysis preset '{preset_name}'. "
+                 f"Available: {sorted(_analysis_presets().keys())}")
+    unknown = [n for n in preset_exp_names if n not in known_names]
+    if unknown:
+        sys.exit(f"Preset '{preset_name}' references unknown experiment(s): {unknown}")
+    names = _resolve_experiments(args.experiments) if args.experiments else preset_exp_names
 
     model_name  = args.model
     sample_info: dict[str, Any] | None = (
         {"sample_n": args.sample_n, "sample_seed": args.sample_seed}
-        if args.sample_n is not None else None
+        if args.sample_n is not None or getattr(args, "paper_formats", False) else None
     )
+    if getattr(args, "paper_formats", False):
+        sample_info["pitch_formats"] = ("midi", "spn", "hz")
 
     print(f"Analysis mode → preset={preset_name}  model={model_name}")
     if args.name:
@@ -685,6 +684,7 @@ def main() -> None:
     an.add_argument("--sample-n", type=int, default=None, dest="sample_n", metavar="N",
                     help="Evaluate only N stimuli per experiment (stratified).")
     an.add_argument("--sample-seed", type=int, default=42, dest="sample_seed", metavar="SEED")
+    an.add_argument("--paper-formats", action="store_true", help="Use MIDI/SPN/Hz only.")
 
     args = parser.parse_args()
 
